@@ -28,12 +28,10 @@ const BeerDetail = () =>{
                 </Img>
 
                 <Grid>
+                    <Horizion>
                     <span style={{ fontWeight: "700", fontSize: "20px", lineHeight: "29px"}}>{beer_detail.name}</span>
-                    <span>{beer_detail.eng_na}</span>
-                    <span style={{ fontWeight: "400", fontSize: "10px", lineHeight: "14.5px"}}>#{beer_detail.hash_tag}</span>
-
                     <div style={{ width: "38px", height: "38px", borderRadius: "50%" ,display: "flex", border: "1px solid #212121"}}>
-                        <HeartButton
+                        <HeartButton 
                             _onClick={(e) => {
                                 toggle ? setToggle(false) : setToggle(true);
                                 e.preventDefault();
@@ -42,27 +40,42 @@ const BeerDetail = () =>{
                             is_like={toggle}                    
                         />
                     </div>
+                    </Horizion>
+                    <span>{beer_detail.eng_name}</span>
+                    <TasteTag>#{beer_detail.hash_tag}</TasteTag>
+
+                    
                 </Grid>
                 <hr/>
 
                 <Grid>
                     <span style={{ fontWeight: "700"}}>맥주소개</span>
-                    <span style={{ padding: "14px 0"}}>스위트하게~~~~~~</span>
-                </Grid>
-
-                <Grid>
-                    <span style={{ fontWeight: "700"}}>그래프</span>
-
-                    <Graph>
-                        <TasteGraph/>
-                    </Graph>
+                    <span style={{ fontWeight: "500", fontSize: "14px", lineHeight: "20px",padding: "14px 0", minHeight: "60px"
+                        }}>스위트하게~위트있게~
+                        밀맥주 맛에 Tropical Fruit의
+                        달콤함이 어우러진 곰표 우리나라 밀맥주
+                    </span>
 
                 </Grid>
+
                 <hr/>
 
                 <Grid>
-                    <span style={{ fontWeight: "700"}}>판매처</span>
+                    <span style={{ fontWeight: "700"}}>그래프</span>
+                    
+                </Grid>
+                <Graph>
+                    <TasteGraph/>
+                </Graph>
 
+                <hr/>
+
+                <Grid>
+                    <span style={{ fontWeight: "700",paddingBottom: "14px"}}>판매처</span>
+                    <div style={{display: "flex"}}>
+                    <button/> 
+                    <span style={{ fontWeight: "300", fontSize: "12px", lineHeight: "146%"}}>GS25 편의점</span>
+                    </div>    
                     
 
 
@@ -70,15 +83,21 @@ const BeerDetail = () =>{
                 <hr/>
                 
                 <Grid>
-                    <span style={{ fontWeight: "700"}}>제보된 판매처</span>
+                    <span style={{ fontWeight: "700" ,paddingBottom: "14px"}}>제보된 판매처</span>
+                    <div style={{display: "flex"}}>
+                    <button/> 
+                    <span style={{ fontWeight: "300", fontSize: "12px", lineHeight: "146%"}}>GS25 편의점</span>
+                    </div>
                     
                     <ReportButton>장소 제보하기</ReportButton>
-
-
 
                 </Grid>
                 <hr/>
 
+                <Grid>
+
+                <span style={{ fontWeight: "700",paddingBottom: "14px"}}>리뷰</span>
+                </Grid>
             </Container>
 
 
@@ -94,6 +113,7 @@ export default BeerDetail;
 
 
 const Container = styled.div`
+    
     
     span{
         display: -webkit-box;
@@ -117,13 +137,22 @@ const Img = styled.div`
 
 const Grid = styled.div`
     width: 274px;
-    margin: 20px 24px
+    margin: 20px 24px;
+`
+const Horizion = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
 `
 
 const Graph = styled.div`
+    margin: 14px 15px;
+    display: flex;
     width: 313px;
     height: 313px;
+    border: 2px solid #FFC44F; 
+    border-radius: 10px;
 `
 
 const ReportButton = styled.button`
@@ -132,6 +161,20 @@ const ReportButton = styled.button`
     border-radius: 50px;
     border: 1px solid #FFC44F;
     background-color: #fff;
+    margin-top: 16px;
 
 
 `
+
+const TasteTag = styled.div`
+    display: inline-block;
+    width: 36px;
+    height: 16px;
+    border: 0.5px solid #888888;
+    box-sizing: border-box;
+    border-radius: 33px;
+    font-size: 10px;
+    text-align:center;
+    line-height: 14px;
+    color: #555;
+`;

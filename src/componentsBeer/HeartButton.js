@@ -23,6 +23,7 @@ const Heart = styled.div`
   background: url(${(props) => props.icon_url});
   background-size: cover;
   cursor: pointer;
+  float: right
 `;
 
 export default HeartButton;

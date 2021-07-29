@@ -14,15 +14,22 @@ const TasteGraph = (props) => {
       ];
     return(
         <React.Fragment>
-            <RadarChart cx={130} cy={135} outerRadius={70} width={265} height={265} data={data}>
-                <PolarGrid/>
-                <PolarAngleAxis style={{fontSize: "14px", color: "white"}} dataKey="subject" />
-                <PolarRadiusAxis  orient="middle" angle={67.5}/>
-                <Radar strokeWidth={2} name="standard" dataKey="A" stroke="gray" fill="gray" fillOpacity={0.4} />
-            </RadarChart>
+            <Grid>
+                <RadarChart cx={130} cy={135} outerRadius={70} width={265} height={265} data={data}>
+                    <PolarGrid/>
+                    <PolarAngleAxis style={{fontSize: "14px", color: "white"}} dataKey="subject" />
+                    <PolarRadiusAxis  orient="middle" angle={67.5}/>
+                    <Radar strokeWidth={2} name="standard" dataKey="A" stroke="gray" fill="gray" fillOpacity={0.4} />
+                </RadarChart>
+            </Grid>
 
         </React.Fragment>
     )
 }
 
 export default TasteGraph;
+
+const Grid = styled.div`
+    margin: auto;
+
+`

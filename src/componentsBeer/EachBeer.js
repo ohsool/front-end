@@ -28,7 +28,7 @@ const EachBeer=(props)=> {
                 return `${<span>{label}</span>}`;
             })}</SubText>
         */}
-            <HashTagText>#{hash_tag}</HashTagText>
+            <TasteTag>#{hash_tag}</TasteTag>
         </Container>   
         </>
     )
@@ -44,12 +44,13 @@ EachBeer.detaultProps = {
 const Container = styled.div`
     margin: 10px;
     padding: 0 8px;
+    
+    text-align:left;
     span{
         display: -webkit-box;
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 1;
         overflow: hidden;
-        text-align:left;
         margin: 0 6px;
           
     }
@@ -68,6 +69,7 @@ const NameText = styled.span`
     font-weight: bold;
     font-size: 14px;
     line-height: 20px;
+    display: inline;
 
 `
 const EngNameText = styled.span`
@@ -75,13 +77,15 @@ const EngNameText = styled.span`
     font-size: 12px;
     line-height: 17px;
 `
-const HashTagText = styled.span`
-    padding: 1px 6px;
-    border-radius: 50px;
-    border: 1px soild #212121;
-    background-color:transparent;
+const TasteTag = styled.div`
+    display: inline-block;
+    width: 36px;
+    height: 16px;
+    border: 0.5px solid #888888;
+    box-sizing: border-box;
+    border-radius: 33px;
     font-size: 10px;
+    text-align:center;
     line-height: 14px;
-    text-align:left;
-
-`
+    color: #555;
+`;

@@ -66,7 +66,7 @@ const BeerList = () =>{
     return(
         <React.Fragment>
             <Container>
-                    <span>안녕하세요!</span>
+
                     <TopNav>
                     <ul>
                         <li><Link to="/beers/list">all</Link></li>
@@ -119,8 +119,8 @@ const Container = styled.div`
 
 `
 const TopNav = styled.div`
-
-    width: 80%;
+    padding-top: 20px;
+    text-align: center;
     color: #483834;
     ul {
         display: flex;
