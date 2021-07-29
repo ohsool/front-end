@@ -25,6 +25,9 @@ export default App;
 const GlobalStyle = createGlobalStyle`
   body{
     font-family: "Noto Sans KR", sans-serif;
-    background-color: #F2F3F7;
+    font-size: "14px";
+    font-weight: "500";
+    line-height: "20px";
+    //background-color: #F2F3F7;
   }
 `;
