@@ -22,12 +22,7 @@ const EachBeer=(props)=> {
             is_like={toggle}
           />
             <EngNameText>{eng_name}</EngNameText>
-            {/*
-            <SubText>{hash_tag.map((item, idx)=>{
-                let label = item.join("#")
-                return `${<span>{label}</span>}`;
-            })}</SubText>
-        */}
+            
             <TasteTag>#{hash_tag}</TasteTag>
         </Container>   
         </>
