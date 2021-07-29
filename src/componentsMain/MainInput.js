@@ -9,7 +9,7 @@ const MainInput = (props) => {
             <LinkWrap>
                 <Wrap>
                     <LinkBox onClick={() => {
-                        history.push("/test");
+                        history.push("/test/0");
                     }}>
                         당신을 위한 오늘의 맥주는?
                     </LinkBox>
@@ -19,7 +19,7 @@ const MainInput = (props) => {
                     </LinkBox>
                     <LinkBox onClick={() => {
                     }}>
-                        대한민국의 모든 맥주
+                        나의 맥주 도감
                     </LinkBox>
                 </Wrap>
                 <ButtonWrap>

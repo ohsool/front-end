@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
-const TestQuestion = (props) => {
+const TestQuestion = ({ question }) => {
     return(
         <React.Fragment>
             <QuestionWrap>
-                <p>Q1</p>
-                <span>맥주를 주로 <br/>누구랑 마시나요?</span>
+                <p>{question.questionNum}</p>
+                <span>{question.question}</span>
             </QuestionWrap>
         </React.Fragment>
     )

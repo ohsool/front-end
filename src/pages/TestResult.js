@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import BackgroundCateImage from "../componentsTest/BackgroundCateImage";
+import { history } from "../redux/configureStore";
 
+import BackgroundCateImage from "../componentsTest/BackgroundCateImage";
 import { RecommendBeer, ResultInfo, TestHeader } from "../componentsTest/TestIndex";
 const TestResult = (props) => {
     const a = [1, 2];
@@ -10,15 +11,20 @@ const TestResult = (props) => {
             <TestHeader/>
             <Grid>  
                     <BackgroundCateImage/>
-                    <ResultInfo/>
-                    <RecommendBeerWrap>
-                        {a.map((p, idx) => (
-                            <RecommendBeer></RecommendBeer>
-                        ))}
-                    </RecommendBeerWrap>
-                    <ReButton>
-                        다시 하기
-                            <img src="https://image.flaticon.com/icons/png/512/724/724863.png"></img>
+                    <Wrap>
+                        <ResultInfo/>
+                        <RecommendBeerWrap>
+                            {a.map((p, idx) => (
+                                <RecommendBeer></RecommendBeer>
+                            ))}
+                        </RecommendBeerWrap>
+                    </Wrap>
+                    <ReButton
+                        onClick={() => {
+                            history.push("/test/0");
+                        }}
+                    >다시 하기
+                        <img src="https://image.flaticon.com/icons/png/512/724/724863.png"></img>
                     </ReButton>
             </Grid>
             <Testdiv></Testdiv>
@@ -39,6 +45,11 @@ const RecommendBeerWrap = styled.div`
     width: 312px;
     display: flex;
     justify-content: space-between;
+`;
+
+const Wrap = styled.div`
+    width: 360px;
+    margin: 0 auto;
 `;
 
 const ReButton = styled.div`

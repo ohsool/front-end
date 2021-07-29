@@ -29,7 +29,7 @@ const HeaderWrap = styled.div`
 `;
 
 const HeaderBox = styled.div`
-    width: 100%;
+    width: 360px;
     position: fixed;
     top: 0;
     height: 45px;
@@ -52,7 +52,7 @@ const UserImage = styled.div`
     position: absolute;
     width: 24px;
     height: 24px;
-    border: 1px solid #FFFFFF;
+    border: 1px solid #000000;
     top: 10px;
     right: 12px;
 `;

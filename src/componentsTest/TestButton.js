@@ -3,14 +3,12 @@ import styled from "styled-components";
 
 import { history } from "../redux/configureStore";
 
-const TestButton = (props) => {
+const TestButton = ({ goToNext, question }) => {
     return (
         <React.Fragment>
             <ButtonWrap>
-                <QuestionButton onClick={() => {
-                    history.push("/result")
-                }}>인생은 혼자지! 혼자마셔요!</QuestionButton>
-                <ClickedQuestionButton>코로나만 아니라면, 친구들과 함께</ClickedQuestionButton>
+                <QuestionButton onClick={() => {}}>{question.answer[0]}</QuestionButton>
+                <ClickedQuestionButton onClick={goToNext}>{question.answer[1]}</ClickedQuestionButton>
             </ButtonWrap>
         </React.Fragment>
     )

@@ -12,7 +12,7 @@ function App() {
       <GlobalStyle/>
       <ConnectedRouter history={history}>
         <Route path="/" exact component={Main}/>
-        <Route path="/test"  component={Test}/>
+        <Route path="/test/:question_id" component={Test}/>
         <Route path="/result" component={TestResult}/>
         <Route path="/beers"  component={Beers}/>
         <Route path="/mypage" component={Mypage}/>
@@ -27,5 +27,6 @@ const GlobalStyle = createGlobalStyle`
   body{
     font-family: "Noto Sans KR", sans-serif;
     margin: 0;
+    //background-color: #F2F3F7;
   }
 `;

@@ -5,7 +5,7 @@ import { headerAxios, nonHeaderAxios } from "./moduleAxios";
 export const signUp = createAsyncThunk(
   "user/signUp",
   async (data, thunkAPI) => {
-    console.log(data);    
+
     const response = await nonHeaderAxios.post(`/api/user`, );
 
     return ;
@@ -15,7 +15,7 @@ export const signUp = createAsyncThunk(
 // 로그인
 export const logIn = createAsyncThunk("user/logIn", 
 async (data, thunkAPI) => {
-    console.log(data);
+  
     const response = await nonHeaderAxios.post(`api/user/auth`,  );
 
   return ;

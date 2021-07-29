@@ -15,13 +15,25 @@ const TestHeader = (props) => {
     return (
         <React.Fragment>
             <HeaderWrap>
-                <HeaderBox>
-                    <div className={scrollPosition < 270 ? "white_header" : "black_header"}
+            {scrollPosition < 270 ? 
+                (<HeaderBox>
+                <WhiteHeaderLogo 
                     onClick={() => {
-                        history.push("/")
-                    }}>오늘의술</div>
-                    <UserImage></UserImage>
-                </HeaderBox>
+                    history.push("/")
+                    }}>오늘의술</WhiteHeaderLogo>
+                    <WhiteUserImage></WhiteUserImage>
+                    </HeaderBox>
+                    )
+                :
+                (<HeaderBox>
+                <BlackHeaderLogo 
+                    onClick={() => {
+                    history.push("/")
+                    }}>오늘의술</BlackHeaderLogo>
+                    <BlackUserImage></BlackUserImage>
+                    </HeaderBox>
+                    )
+                 }
             </HeaderWrap>
         </React.Fragment>
     )
@@ -36,7 +48,7 @@ const HeaderWrap = styled.div`
 `;
 
 const HeaderBox = styled.div`
-    width: 100%;
+    width: 360px;
     position: fixed;
     top: 0;
     height: 45px;
@@ -45,8 +57,25 @@ const HeaderBox = styled.div`
     display: flex;
     z-index: 10;
 `;
+const BlackHeaderLogo = styled.div`
+    display: inline-block;
+    font-size: 20px;
+    line-height: 45px;
+    color: #333333;
+    font-weight: bold;
+    cursor: pointer;
 
-const UserImage = styled.div`
+`;
+const WhiteHeaderLogo = styled.div`
+    display: inline-block;
+    font-size: 20px;
+    line-height: 45px;
+    color: #FFFFFF;
+    font-weight: bold;
+    cursor: pointer;
+`;
+
+const WhiteUserImage = styled.div`
     position: absolute;
     width: 24px;
     height: 24px;
@@ -54,7 +83,12 @@ const UserImage = styled.div`
     top: 10px;
     right: 12px;
 `;
-const Testdiv = styled.div`
-    width: 100%;
-    height: 1000px;
+
+const BlackUserImage = styled.div`
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border: 1px solid #000000;
+    top: 10px;
+    right: 12px;
 `;
