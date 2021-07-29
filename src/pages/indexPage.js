@@ -1,7 +1,7 @@
 import Main from "./Main";
 import Test from "./Test";
-import Beers from ".//Beers";
+import Beer from "./Beer";
 import Mypage from "./Mypage";
 import TestResult from "./TestResult";
 
-export {Main, Test, Beers, Mypage, TestResult};
+export {Main, Test, Beer, Mypage, TestResult};
