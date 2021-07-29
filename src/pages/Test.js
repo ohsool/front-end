@@ -1,10 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import {Route,Switch} from "react-router-dom";
 
+import { TestQuestion, TestButton} from "../componentsTest/TestIndex";
 import Header from "../Header";
-import TestQuestion from "../componentsTest/TestQuestion";
-import TestButton from "../componentsTest/TestButton";
 
 const Test = (props) => {
     return (

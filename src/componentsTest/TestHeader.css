@@ -1,0 +1,17 @@
+.black_header{
+    display: inline-block;
+    font-size: 20px;
+    line-height: 45px;
+    color: #333333;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.white_header{
+    display: inline-block;
+    font-size: 20px;
+    line-height: 45px;
+    color: #FFFFFF;
+    font-weight: bold;
+    cursor: pointer;
+}

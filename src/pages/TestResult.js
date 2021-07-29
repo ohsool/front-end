@@ -2,14 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import BackgroundCateImage from "../componentsTest/BackgroundCateImage";
 
-import RecommendBeer from "../componentsTest/RecommendBeer";
-import ResultInfo from "../componentsTest/ResultInfo";
-import Header from "../Header";
+import { RecommendBeer, ResultInfo, TestHeader } from "../componentsTest/TestIndex";
 const TestResult = (props) => {
     const a = [1, 2];
     return (
         <React.Fragment>
-            <Header/>
+            <TestHeader/>
             <Grid>  
                     <BackgroundCateImage/>
                     <ResultInfo/>
@@ -23,6 +21,7 @@ const TestResult = (props) => {
                             <img src="https://image.flaticon.com/icons/png/512/724/724863.png"></img>
                     </ReButton>
             </Grid>
+            <Testdiv></Testdiv>
         </React.Fragment>
     )
 }
@@ -60,4 +59,9 @@ const ReButton = styled.div`
         width: 11px;
         height: 11px;
     }
+`;
+
+const Testdiv = styled.div`
+    width: 100%;
+    height: 1000px;
 `;
