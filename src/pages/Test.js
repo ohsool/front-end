@@ -6,10 +6,6 @@ import {Route,Switch} from "react-router-dom";
 const Test = () => {
     return (
         <>
-        <Container>
-            <Switch>                  
-            </Switch>
-        </Container>
 
         </>
     )
