@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { history } from "../redux/configureStore";
 
+import { CSSTransitionGroup } from 'react-transition-group';
 import { TestQuestion, TestButton} from "../componentsTest/TestIndex";
+import "./testStyle.css";
 import Header from "../Header";
 
 const Test = (props) => {
+    const [pageAnimation, setPageAnimation] = useState(false);
     const question = [{
         question_id: 1,
         questionNum: "Q1",
@@ -24,26 +27,34 @@ const Test = (props) => {
         question: "맥주를 주로 누구랑 마시나요?",
         answer: ["인생은 혼자지! 혼자 마셔요!", "코로나만 아니라면 친구들과 함께!"]
     }];
-    const i = parseInt(props.match.params.question_id);
+    useEffect(() => {
+        setPageAnimation(true);
+    }, []);
+    
+    const index = parseInt(props.match.params.question_id);
 
     const goToNext = () => {
-        if(i == (question.length - 1)){
+        if(index == (question.length - 1)){
             history.push("/result")
         }
-        if(i < (question.length - 1)){
-        history.push(`/test/${i + 1}`)
+        if(index < (question.length - 1)){
+        history.push(`/test/${index + 1}`)
         }
     }
     return (
-        <React.Fragment>
+        <CSSTransitionGroup
+        transitionName="worksTransition"
+        transitionAppear={pageAnimation} 
+        key={props.location.pathname}
+        transitionAppearTimeout={500}>
             <Header/>
             <Grid>
                 <TestWrap>
-                    <TestQuestion question={question[i]}/>
-                    <TestButton goToNext={goToNext} question={question[i]}/>
+                    <TestQuestion question={question[index]}/>
+                    <TestButton goToNext={goToNext} question={question[index]}/>
                 </TestWrap>
             </Grid>
-        </React.Fragment>
+        </CSSTransitionGroup>
     )
 };
 
