@@ -2,8 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
 import { Link } from "react-router-dom";
-
+import Slider from './Slider';
 import EachBeer from "./EachBeer";
+
+
 const BeerList = () =>{
     /*
     const beerType = [
@@ -19,11 +21,13 @@ const BeerList = () =>{
 */
     const beers = [
     {
+        category: 'lager',
         name: '곰표 밀맥주' , 
         eng_name: 'Gompyo Wheat Beer',
         //hash_tag: ['달달', '과일향', '상큼함']},
         hash_tag: '달달'},
     {
+        category: 'lager',
         name: 'Y끼리 IPA', 
         eng_name: 'IPA with Y',
         hash_tag: '달달'},
@@ -63,22 +67,43 @@ const BeerList = () =>{
     ];
    
 
+
     return(
         <React.Fragment>
             <Container>
-
+                <Grid>
                     <TopNav>
-                    <ul>
-                        <li><Link to="/beers/list">all</Link></li>
-                        <li><Link to="/beers/list/pilsner">pilsner  </Link></li>
-                        <li><Link to="/beers/list/paleale">paleale </Link></li>
-                        <li><Link to="/beers/list/ipa">ipa </Link></li>
-                        <li><Link to="/beers/list/weizen">weizen </Link></li>
-                        <li><Link to="/beers/list/dunkel">dunkel </Link></li>
-                        <li><Link to="/beers/list/stout">stout </Link></li>
-                        <li><Link to="/beers/list/bock">bock </Link></li>
+                    {/*
+                        <li><Link to="/beer/list">all</Link></li>
+                        <li><Link to="/beer/list/pilsner">pilsner  </Link></li>
+                        <li><Link to="/beer/list/paleale">paleale </Link></li>
+                        <li><Link to="/beer/list/ipa">ipa </Link></li>
+                        <li><Link to="/beer/list/weizen">weizen </Link></li>
+                        <li><Link to="/beer/list/dunkel">dunkel </Link></li>
+                        <li><Link to="/beer/list/stout">stout </Link></li>
+                        <li><Link to="/beer/list/bock">bock </Link></li>
+                    */}
 
-                    </ul>
+                    <Slider                
+                        dots={true}
+                        show={3.2}
+                        scroll={3}
+                        autoplay={false}
+                        autoplaySpeed={100000}
+                        arrows={false}
+                        items={[
+                            "전체",
+                            "아메리칸 라거",
+                            "필스너",
+                            "페일에일",
+                            "복",
+                            "스카우트",
+                            "바우젠",
+                            "IPA",
+                            "둔켈" 
+                        ]}
+                        
+                    />
                     </TopNav>
 
                     <Search>
@@ -89,11 +114,12 @@ const BeerList = () =>{
                         {beers.length > 0 ? beers.map((item, idx) => (
                             <EachBeer key={idx} {...item} 
                             _onClick={() =>
-                                history.push("/beers/detail")
+                                history.push("/beer/detail")
                             }
                             />
                         )):""}
                     </List>
+                </Grid>
     
 {/*
                     {beerType.length>0? beerType.map((item, idx)=>{
@@ -113,20 +139,24 @@ const BeerList = () =>{
 }
 export default BeerList;
 
-const Container = styled.div`
-    width: 360px;
-    text-align: center;
 
+const Container = styled.div`
+    display: flex;
+    height: 754px;
+    background-color: #FFFFFF;
+    flex-direction: column;
+`;
+const Grid = styled.div`
+    width: 360px;
+    margin: 0 auto;
 `
 const TopNav = styled.div`
-    padding-top: 20px;
+    padding-top: 60px;
     text-align: center;
     color: #483834;
     ul {
         display: flex;
-        justify-content: space-between;
         list-style:none;
-        padding-left:0px;
         li {
             font-weight: 500;
             font-size: 14px;
@@ -153,7 +183,3 @@ const List = styled.div`
     grid-template-columns: repeat(2, 1fr);
 `;
 
-const BeerTypeName = styled.div`
-
-
-`

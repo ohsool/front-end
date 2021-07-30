@@ -6,15 +6,15 @@ import Header from "../Header";
 import BeerList from '../componentsBeer/BeerList';
 import BeerDetail from '../componentsBeer/BeerDetail';
 
-const Beers = () => {
+const Beer = () => {
     return (
         <>  
             <Header/>
-            <Route path="/beers/list/" exact component={BeerList}/>
-            <Route path="/beers/detail" component={BeerDetail}/>
+            <Route path="/beer/list/" exact component={BeerList}/>
+            <Route path="/beer/detail" component={BeerDetail}/>
         </>
     )
 
 }
 
-export default Beers;
+export default Beer;
