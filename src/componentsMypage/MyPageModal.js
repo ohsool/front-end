@@ -3,13 +3,8 @@ import styled from "styled-components";
 import "./myPageModal.css";
 
 const MyPageModal = (props) => {
-    const { open, close, suggestInfo } = props;
+    const { open, close, suggestInfo, EnterSubmit, onChange, chat } = props;
 
-    const EnterSubmit = (e) => {
-        if(e.key == "Enter"){
-            close();
-        }
-    }
     return(
         <React.Fragment>
             {open ? 
@@ -23,9 +18,11 @@ const MyPageModal = (props) => {
                     >
                     </CloseIcon>
                     <textarea 
-                        className={suggestInfo.suggestTitle == "맥주건의하기" ? 
+                        className={suggestInfo.suggestTitle !== "맥주 건의하기" ? 
                         "whiteInput" : "yellowInput"
-                    }
+                        }
+                        value={chat}
+                        onChange={onChange}
                         onKeyPress={EnterSubmit}
                         placeholder={suggestInfo.commentPlaceholder}
                     ></textarea>

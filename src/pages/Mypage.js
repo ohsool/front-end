@@ -13,6 +13,7 @@ import arrow from "../share/arrow.png";
 const MyPage = (props) => {
     const dispatch = useDispatch();
     const [modalOpen, setModalOpen] = useState(false);
+    const [input, setInput] = useState();
     const [modal_info, setModal_Info] = useState({
         suggestTitle: "",
         titlePlaceholder: "",
@@ -20,7 +21,6 @@ const MyPage = (props) => {
     });
     const openModal = () => {
         setModalOpen(true);
-        console.log(modal_info);
       };
     const closeModal = () => {
         setModalOpen(false);
@@ -30,6 +30,16 @@ const MyPage = (props) => {
             commentPlaceholder: "",
         });
     };
+    const onChange = (e) => {
+        setInput(e.target.value)
+    }
+    const EnterSubmit = (e) => {
+        if(e.key == "Enter"){
+            console.log("input:",input);
+            setInput("");
+            closeModal();
+        }
+    }
     return (
         <>
         <Container>
@@ -65,6 +75,9 @@ const MyPage = (props) => {
                 </MoveBoxWrap>
                 <MyPageModal
                         suggestInfo={modal_info}
+                        EnterSubmit={EnterSubmit}
+                        onChange={onChange}
+                        chat={input}
                         open={modalOpen}
                         close={closeModal}
                 ></MyPageModal>

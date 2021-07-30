@@ -41,7 +41,7 @@ const BeerDetail = () =>{
                                     e.preventDefault();
                                     e.stopPropagation();              
                                 }}
-                                is_like={toggle}                    
+                                is_like={toggle}                 
                             />
                         </div>
                         </Horizion>
