@@ -10,6 +10,7 @@ const BeerDetail = () =>{
 
     const beer_detail = 
         {
+            _id: "beer1",
             name: "곰표 밀맥주",
             eng_name: "Gompyo Wheat beer",
             hash_tag: ["달달","과일향","상큼함"],

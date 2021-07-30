@@ -10,20 +10,16 @@ import {history} from "../redux/configureStore";
 
 //export default function SimpleSlider({
 
-const BeerType = ({dots,
+const BeerType = ({
     items,
-    show,
-    scroll,
     autoplay,
     autoplaySpeed,
-    arrows,
 }) => {
     const settings = {
-        dots: true,
         infinite: true,
         speed: 200,
-        slidesToShow: 5,//show,
-        slidesToScroll: 4,//scroll,
+        slidesToShow: 5,//show
+        slidesToScroll: 4,//scroll
         autoplay,
         autoplaySpeed,
         arrows: false,
