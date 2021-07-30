@@ -1,12 +1,16 @@
 import React from "react";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
 import { history } from "../redux/configureStore";
 import { Link } from "react-router-dom";
 import Slider from './Slider';
 import EachBeer from "./EachBeer";
 
+import { getCategory } from "../redux/async/category";
 
 const BeerList = () =>{
+    const dispatch = useDispatch();
+    dispatch(getCategory());
     /*
     const beerType = [
         {name: "전체"},
@@ -84,13 +88,7 @@ const BeerList = () =>{
                         <li><Link to="/beer/list/bock">bock </Link></li>
                     */}
 
-                    <Slider                
-                        dots={true}
-                        show={3.2}
-                        scroll={3}
-                        autoplay={false}
-                        autoplaySpeed={100000}
-                        arrows={false}
+                    <Slider
                         items={[
                             "전체",
                             "아메리칸 라거",

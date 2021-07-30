@@ -1,9 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { history } from "../redux/configureStore";
+import LoginModal from "./LoginModal";
 
 const MainInput = (props) => {
+    const [modalOpen, setModalOpen] = useState(false);
+    const [is_login, setIs_Login] = useState(false);
+    const session = sessionStorage.getItem("token");
+
+    const openModal = () => {
+        setModalOpen(true);
+      };
+    const closeModal = () => {
+        setModalOpen(false);
+    };
+
+    useEffect(()=> {
+        if(session){
+            setIs_Login(true);
+        }else{
+            setIs_Login(false)
+        }
+        console.log(is_login);
+    }, [is_login])
+
     return(
         <React.Fragment>
             <LinkWrap>
@@ -14,7 +35,7 @@ const MainInput = (props) => {
                         당신을 위한 오늘의 맥주는?
                     </LinkBox>
                     <LinkBox onClick={() => {
-                        history.push("/beers/list")
+                        history.push("/beer/list")
                     }}>
                         대한민국의 모든 맥주
                     </LinkBox>
@@ -23,10 +44,17 @@ const MainInput = (props) => {
                         나의 맥주 도감
                     </LinkBox>
                 </Wrap>
-                <ButtonWrap>
-                    <LoginButton>LOGIN</LoginButton>
+                {is_login == false ? 
+                (<ButtonWrap>
+                    <LoginButton onClick={openModal}>LOGIN</LoginButton>
                     <LoginButton>JOIN</LoginButton>
-                </ButtonWrap>
+                </ButtonWrap>)
+                : null
+                }
+                <LoginModal
+                open={modalOpen}
+                close={closeModal}
+                ></LoginModal>
             </LinkWrap>
         </React.Fragment>
     )
