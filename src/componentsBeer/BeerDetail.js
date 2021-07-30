@@ -3,20 +3,22 @@ import styled from "styled-components";
 
 import HeartButton from "./HeartButton";
 import TasteGraph from "./TasteGraph";
+import EachReview from "./EachReview";
 //import axios from "Axios";
 const BeerDetail = () =>{
     const [toggle, setToggle] = useState(false);
-
+    const heart_detail = "detail"
     const beer_detail = 
         {
+            _id: "beer1",
             name: "곰표 밀맥주",
             eng_name: "Gompyo Wheat beer",
             hash_tag: ["달달","과일향","상큼함"],
             introduce: "",
-            //graph: "",
             store: ["GS25 편의점", "현대백화점 식품관"],
             other_store: ["CU 편의점 여의도역 R점"],
         }
+        
     
     
     return(
@@ -30,8 +32,9 @@ const BeerDetail = () =>{
                     <Wrap>
                         <Horizion>
                         <span style={{ fontWeight: "700", fontSize: "20px", lineHeight: "29px"}}>{beer_detail.name}</span>
-                        <div style={{ width: "38px", height: "38px", borderRadius: "50%" ,display: "flex", border: "1px solid #212121", right: "24px"}}>
-                            <HeartButton 
+                        <div style={{ width: "38px", height: "38px", display: "flex", position: "absolute", right: "24px"}}>
+                            <HeartButton
+                                heart_detail={heart_detail}
                                 _onClick={(e) => {
                                     toggle ? setToggle(false) : setToggle(true);
                                     e.preventDefault();
@@ -99,8 +102,11 @@ const BeerDetail = () =>{
                     <hr/>
 
                     <Wrap>
+                        <span style={{ fontWeight: "700",paddingBottom: "14px"}}>리뷰</span>
+                        <EachReview/>
+                        <EachReview/>
+                        <EachReview/>
 
-                    <span style={{ fontWeight: "700",paddingBottom: "14px"}}>리뷰</span>
                     </Wrap>
                 </Grid>
             </Container>
@@ -125,7 +131,7 @@ const Container = styled.div`
         display: -webkit-box;
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 1;
-        overflow: hidden;
+        overflow: auto;
         text-align:left;
     }
 
@@ -180,7 +186,8 @@ const ReportButton = styled.button`
 
 const TasteTag = styled.div`
     display: inline-block;
-    margin: 5px 0;
+    margin: 5px 0px;
+    margin-right: 3px;
     padding: 0 6px;
     height: 16px;
     border: 0.5px solid #888888;
@@ -189,6 +196,4 @@ const TasteTag = styled.div`
     font-size: 10px;
     line-height: 16px;
     color: #555;
-
-    
 `;

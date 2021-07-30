@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const WritedMyBeer = (props) => {
+const WritedReview = (props) => {
     return(
         <React.Fragment>
             <WritedBeerInfo>
@@ -16,7 +16,7 @@ const WritedMyBeer = (props) => {
     )
 }
 
-export default WritedMyBeer;
+export default WritedReview;
 
 const WritedBeerInfo = styled.div`
     width: 312px;
@@ -24,7 +24,7 @@ const WritedBeerInfo = styled.div`
     display: flex;
     background-color: #F6F6F6;
     border-radius: 10px;
-    margin: 0 auto;
+    margin: 5px auto;
 `;
 
 const BeerImage = styled.div`

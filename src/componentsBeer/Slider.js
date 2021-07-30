@@ -10,31 +10,31 @@ import {history} from "../redux/configureStore";
 
 //export default function SimpleSlider({
 
-const BeerType = ({dots,
+const BeerType = ({
     items,
-    show,
-    scroll,
     autoplay,
     autoplaySpeed,
-    arrows,
 }) => {
     const settings = {
         infinite: true,
         speed: 200,
-        slidesToShow: 5,//show,
-        slidesToScroll: 4,//scroll,
+        slidesToShow: 5,//show
+        slidesToScroll: 3,//scroll
         autoplay,
         autoplaySpeed,
         arrows: false,
     };
 
+    
+
+    
     return (
         <Container>
             <StyledSlider {...settings}>
                 {/* beer/list/${item} 이런 식으로 URL이 들어간다. */}
-                {items.map((item, idx) => (
-                    <div onClick={()=> history.push(`beer/list/${item}`) } key={idx}>
-                        {item}
+                {true && items.map((item, idx) => (
+                    <div onClick={()=> history.push(`beer/list`) } key={idx}>
+                        <span>{item}</span>
                     </div>
                 ))}
             </StyledSlider>
@@ -50,9 +50,11 @@ const Container = styled.div`
 `;
 
 const StyledSlider = styled(Slider)`
-    slick-slide div {
+    color: #C4C4C4;
+    font-size: 14px;
+    .slick-slide div {
+        display: flex;
         outline: none;
-        dislpay:flex;
     }
     .slick-dots {
         bottom: 5px;
@@ -73,7 +75,7 @@ const StyledSlider = styled(Slider)`
     .slick-prev,
     .slick-next {
         :before {
-            font-size: 20px;
+            font-size: 14px;
         }
     }
     .slick-prev {

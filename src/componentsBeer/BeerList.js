@@ -1,11 +1,15 @@
 import React from "react";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
 import { history } from "../redux/configureStore";
 import Slider from './Slider';
 import EachBeer from "./EachBeer";
 
+import { getCategory } from "../redux/async/category";
 
 const BeerList = () =>{
+    const dispatch = useDispatch();
+    dispatch(getCategory());
     /*
     const beerType = [
         {name: "전체"},
@@ -23,40 +27,29 @@ const BeerList = () =>{
         category: 'lager',
         name: '곰표 밀맥주' , 
         eng_name: 'Gompyo Wheat Beer',
-        //hash_tag: ['달달', '과일향', '상큼함']},
-        hash_tag: '달달'},
+        hash_tag: ['달달', '과일향', '상큼함']},
     {
         category: 'lager',
         name: 'Y끼리 IPA', 
         eng_name: 'IPA with Y',
-        hash_tag: '달달'},
+        hash_tag: ['달달', '과일향', '상큼함']},
     {
         name: '곰표 밀맥주' , 
         eng_name: 'Gompyo Wheat Beer',
-        //hash_tag: ['달달', '과일향', '상큼함']},
-        hash_tag: '달달'},
-    {
-        name: 'Y끼리 IPA', 
-        eng_name: 'IPA with Y',
-        hash_tag: '달달'},
+        hash_tag: ['달달', '과일향', '상큼함']},
     {
         name: '곰표 밀맥주' , 
         eng_name: 'Gompyo Wheat Beer',
-        //hash_tag: ['달달', '과일향', '상큼함']},
-        hash_tag: '달달'},
-    {
-        name: 'Y끼리 IPA', 
-        eng_name: 'IPA with Y',
-        hash_tag: '달달'},
+        hash_tag: ['달달', '과일향', '상큼함']},
     {
         name: '곰표 밀맥주' , 
         eng_name: 'Gompyo Wheat Beer',
-        //hash_tag: ['달달', '과일향', '상큼함']},
-        hash_tag: '달달'},
+        hash_tag: ['달달', '과일향', '상큼함']},
     {
+        category: 'lager',
         name: 'Y끼리 IPA', 
         eng_name: 'IPA with Y',
-        hash_tag: '달달'},     
+        hash_tag: ['달달', '과일향', '상큼함']},
 /*    {
         name: '아잉거 셀러브레이터 도펠 보크', 
         eng_name: 'Ayinger Celebrator Doppelbock',
@@ -72,24 +65,8 @@ const BeerList = () =>{
             <Container>
                 <Grid>
                     <TopNav>
-                    {/*
-                        <li><Link to="/beer/list">all</Link></li>
-                        <li><Link to="/beer/list/pilsner">pilsner  </Link></li>
-                        <li><Link to="/beer/list/paleale">paleale </Link></li>
-                        <li><Link to="/beer/list/ipa">ipa </Link></li>
-                        <li><Link to="/beer/list/weizen">weizen </Link></li>
-                        <li><Link to="/beer/list/dunkel">dunkel </Link></li>
-                        <li><Link to="/beer/list/stout">stout </Link></li>
-                        <li><Link to="/beer/list/bock">bock </Link></li>
-                    */}
 
-                    <Slider                
-                        dots={true}
-                        show={3.2}
-                        scroll={3}
-                        autoplay={false}
-                        autoplaySpeed={100000}
-                        arrows={false}
+                    <Slider
                         items={[
                             "전체",
                             "아메리칸 라거",
@@ -182,8 +159,8 @@ const Search = styled.div`
     }
 `
 const List = styled.div`
-    width: 320px;
-    margin: 0 16px;
+    width: 312px;
+    margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
 `;

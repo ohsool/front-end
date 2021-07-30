@@ -2,6 +2,8 @@ import React,{useState} from 'react';
 import styled from 'styled-components';
 import { logOut } from "../redux/reducer/userSlice";
 import { useDispatch } from "react-redux";
+import {history} from "../redux/configureStore";
+
 import MyPageModal from "../componentsMypage/MyPageModal";
 import Header from "../Header";
 import arrow from "../share/arrow.png";
@@ -30,8 +32,8 @@ const MyPage = (props) => {
         <Container>
             <Header></Header>
             <PageMoveWrap>
-                <MoveBoxWrap>
-                    <span>내가 쓴 댓글 확인하기</span>
+                <MoveBoxWrap onClick={()=> history.push('/mybeer')}>
+                    <span>마이 비어</span>
                     <ArrowImage src={arrow}></ArrowImage>
                 </MoveBoxWrap>
                 <MoveBoxWrap

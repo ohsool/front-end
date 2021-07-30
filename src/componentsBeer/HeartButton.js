@@ -1,29 +1,33 @@
 import React from "react";
 import styled from "styled-components";
 
-import heart_pink from "../share/heart_pink.png";
-import heart_gray from "../share/heart_gray.png";
+import heart_red from "../share/heart_red.jpeg";
+import heart_black from "../share/heart_black.png";
 
-const HeartButton = (props) => {
-
-  const icon_url = props.is_like? heart_pink : heart_gray;
+const HeartButton = ({_onClick, heart_detail, is_like}) => {
+  const icon_url = is_like? heart_red : heart_black;
 
   return (
     <React.Fragment>
-      <Heart onClick={props._onClick} icon_url={icon_url}></Heart>
+      {heart_detail !== "detail" ? (
+      <Heart onClick={_onClick} src={icon_url}></Heart>
+      ) :
+      (
+        <HeartDetail onClick={_onClick} src={icon_url}></HeartDetail>
+      )}
     </React.Fragment>
   );
 };
 
-const Heart = styled.div`
+const Heart = styled.img`
   width: 16px;
   height: 16px;
-  display: flex;
-  margin: auto;
-  background: url(${(props) => props.icon_url});
-  background-size: cover;
-  cursor: pointer;
-  float: right
+  float: right;
+`;
+const HeartDetail = styled.img`
+  width: 38px;
+  height: 38px;
+  box-sizing: border-box;
 `;
 
 export default HeartButton;
