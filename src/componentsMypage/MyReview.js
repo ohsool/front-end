@@ -1,18 +1,22 @@
 import React from "react";
 import styled from "styled-components";
+import WritedReview from "./WritedReview";
 
-const MyReview =()=>{
+const MyReview = (props) => {
     
     return(
         <React.Fragment>
-            <div style={{margin: "100px 50px"}}>
-                <span>바뀌었다</span>
-            </div>
+            <Container>
+                <WritedReview/>
+                <WritedReview/>
+                <WritedReview/>
+           </Container>
         </React.Fragment>
     )
-
-
-
 }
 
-export default MyReview; 
+export default MyReview;
+
+const Container = styled.div`
+    margin-top: 60px;
+`

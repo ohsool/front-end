@@ -3,7 +3,7 @@ import styled from "styled-components";
 import {history} from "../redux/configureStore";
 import Slider from "../componentsBeer/Slider";
 import EachBeer from "../componentsBeer/EachBeer";
-import MyReview from "./MyReview"
+import MyReview from "../componentsMypage/MyReview";
 
 const MyBeer = ()=>{
     const [is_Dogam, setIs_Dogam] = useState();
@@ -25,11 +25,8 @@ const MyBeer = ()=>{
             category: 'lager',
             name: 'Y끼리 IPA', 
             eng_name: 'IPA with Y',
-            hash_tag: '달달'},
-
-    
-    ];
-       
+            hash_tag: '달달'},    
+    ];      
     return (
         <React.Fragment>
         <Grid>

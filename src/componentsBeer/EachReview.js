@@ -11,62 +11,131 @@ const EachReview=(props)=> {
     return (
         <>
         <Container>
-            <NicknameText>{nickname}</NicknameText>
-            <DateText>{date}</DateText>
-            
-            <StarImg/>
-            <EngNameText>({rate})</EngNameText>
-            {is_user? 
-                <>
-                <EditButton onClick={()=>dispatch()}/>
-                <DeleteButton onClick = {()=>dispatch()}/>
-                </>
-            : null}
+            <Grid>
+                <GridHorizon>
+                    <Div>
+                    <NicknameText>
+                        <span style={{ fontWeight: "700", fontSize: "14px", lineHeight: "20.27px"}}>
+                            {nickname}닉네임</span>
+                    </NicknameText>
+                    <DateText>
+                        <span style={{ fontWeight: "300", fontSize: "10px", lineHeight: "14.48px"}}>
+                            {date}5분 전
+                        </span>
+                    </DateText>
+                    </Div>
+
+                    <Div>
+                        <StarImg/>
+                        <RateText>
+                            <span style={{fontWeight: "300", fontSize: "10px", lineHeight: "14.48px"}}>
+                                ({rate}4.0)</span>
+                        </RateText>
+                            {is_user? 
+                                <>
+                                <EditButton onClick={()=>dispatch()}/>
+                                <DeleteButton onClick = {()=>dispatch()}/>
+                                </>
+                            : null}
+                    </Div>
+
+                </GridHorizon>
+                <ReviewText>
+                    <span style={{ display: "block", width: "280px",fontWeight: "300", fontSize: "12px", lineHeight: "17.38px"}}>
+                    
+                        {review}
+                        ㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴ
+                        ㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㅎㅎㅎㅎㅎㅎ
+                        ㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎ
+                    </span>               
+                </ReviewText>
+            </Grid>
         </Container>   
         </>
     )
 }
 
-export default EachReview
-
-EachReview.detaultProps = {
-    _onClick: ()=>{}
-}
-
+export default EachReview;
 
 const Container = styled.div`
-    margin: 10px;
-    padding: 0 8px;
-    
-    text-align:left;
-    span{
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 1;
-        overflow: hidden;
-        margin: 0 6px;
-          
-    }
+    width: 312px;
+    height: 100px;
+    background-color: #FDF9F0;
+    border-radius: 5px;
+    margin: 5px 0;
+
+`
+
+const Grid = styled.div`
+    position: absolute;
+    margin: 16px 14px;
+
+`
+
+const GridHorizon = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+`
+
+const Div = styled.div`
+    display: flex;
+    padding: 0 2px;
+
 `
 const NicknameText =styled.div`
+    padding: 2px;
+    span{
+        font-weight: 700;
+        font-style: normal;
+        font-sixe: 14px;
+    }
 
 `
 
 const DateText =styled.div`
+    padding: 2px;
+    span{
+        font-weight: 500;
+        font-style: normal;
+        font-sixe: 8px;
+    }
 
 `
+const RateText = styled.div`
+    padding: 2px; 
+    span{
+        font-weight: 500;
+        font-style: light;
+        font-sixe: 8px;
+    }
+`
+
 
 const StarImg =styled.div`
+    img{
 
-`
-const EngNameText =styled.div`
-
-`
-
-const EditButton =styled.div`
+    }
 
 `
 
-const DeleteButton =styled.div`
+const EditButton =styled.button`
+    padding: 2px;
+
+`
+
+const DeleteButton =styled.button`
+    padding: 2px;
+
+
+`
+
+const ReviewText = styled.div`
+    
+    margin: 5px;
+    max-height: 51px;
+    line-height: 17px;
+    font-size: 12px;
 
 `

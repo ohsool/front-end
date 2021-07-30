@@ -16,11 +16,15 @@ const userSlice = createSlice({
     logOut: (state, action) => {
       sessionStorage.removeItem("token");
       state.currentUser = null;
+      window.location.reload("/");
     },
   },
   extraReducers: (builder) =>
     builder
         .addCase(signUp.fulfilled, (state, action) => {
+          if(action.payload.message === "existed user"){
+            window.alert("이미 존재하는 아이디입니다!")
+          }
         })
         .addCase(logIn.pending, (state, action) => {
         })
