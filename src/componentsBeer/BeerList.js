@@ -68,15 +68,14 @@ const BeerList = () =>{
 
                     <Slider
                         items={[
-                            "전체",
-                            "아메리칸 라거",
-                            "필스너",
-                            "페일에일",
-                            "복",
-                            "스카우트",
-                            "바우젠",
+                            "All",
+                            "Lager",
+                            "Pilsner",
+                            "Pale Ale",
                             "IPA",
-                            "둔켈" 
+                            "Weizen",
+                            "Dunkel",
+                            "Stout",
                         ]}
                         
                     />
@@ -143,17 +142,19 @@ const TopNav = styled.div`
 const Search = styled.div`
     width: 360px;
     & > input{
-        width: 312px;
+        width: 292px;
         height: 30px;
         border:none;
         margin: 10px 24px;
         background: #F6F6F6;
         border-radius: 18px;
+        outline: none;
+        padding-left: 20px;
         ::placeholder,
         ::-webkit-input-placeholder {
             position: absolute;
             color: #888888;
-            margin: 7px 24px;
+            margin-top: 7px
         }
     }
 `

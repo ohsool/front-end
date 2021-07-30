@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import MainLogo from "../componentsMain/MainLogo";
 import MainInput from '../componentsMain/MainInput';
+import mainbeer from "../share/mainbeer.jpeg";
 const Main = (props) => {
 
     return (
@@ -23,5 +24,7 @@ const Grid = styled.div`
     width: 100%;
     height: 754px;
     background-color: #C4C4C4;
+    background-image: url(${mainbeer});
+    background-size: cover;
     flex-direction: column;
 `;

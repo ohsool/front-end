@@ -5,10 +5,12 @@ import { createBrowserHistory } from "history";
 import { connectRouter } from "connected-react-router";
 
 import userSlice from "./reducer/userSlice";
+import suggestSlice from "./reducer/suggestSlice";
 
 export const history = createBrowserHistory();
 
 const reducer = combineReducers({
+  suggest: suggestSlice.reducer,
   user: userSlice.reducer,
   router: connectRouter(history),
 });

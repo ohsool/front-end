@@ -1,5 +1,6 @@
 import React,{useState, useEffect} from "react";
 import styled from "styled-components";
+import { history } from "../redux/configureStore";
 
 import Slider from "../componentsBeer/Slider";
 import EachBeer from "../componentsBeer/EachBeer";
@@ -9,10 +10,17 @@ import "./myBeer.css";
 
 const MyBeer = ()=>{
     const [is_Dogam, setIs_Dogam] = useState(true);
-
+    const session = sessionStorage.getItem("token");
     useEffect(()=> {
         setIs_Dogam(true);
     }, [])
+
+    useEffect(() => {
+        if(!session){
+            window.alert("로그인이 필요한 서비스입니다!")
+            history.push("/")
+        }
+    })
 
     const mydogam = [
         {
@@ -65,7 +73,9 @@ const MyBeer = ()=>{
                 <List>
                 {mydogam.length > 0 ? mydogam.map((item, idx) => (
                     <EachBeer key={idx} {...item} 
-                        _onClick={() =>{}
+                        _onClick={() =>{
+                            history.push("/beer/detail")
+                        }
                     }/>
                 )):""}
                 </List>

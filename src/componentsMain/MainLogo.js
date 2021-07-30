@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import TestHeader from "../componentsTest/TestHeader";
 
 const MainLogo = () => {
     return(
@@ -24,7 +25,7 @@ const ImageGridcenter = styled.div`
 
 const MainLogoWrap = styled.div`
     display: inline-block;
-    border: 1px solid black;
+    border: 2px solid #FFFFFF;
     width: 89px;
     height: 61px;
 `;

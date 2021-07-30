@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{ useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { logOut } from "../redux/reducer/userSlice";
 import { useDispatch } from "react-redux";
@@ -10,12 +10,21 @@ import arrow from "../share/arrow.png";
 
 const MyPage = (props) => {
     const dispatch = useDispatch();
+    const session = sessionStorage.getItem("token");
     const [modalOpen, setModalOpen] = useState(false);
     const [modal_info, setModal_Info] = useState({
         suggestTitle: "",
         titlePlaceholder: "",
         commentPlaceholder: "",
     });
+
+    useEffect(() => {
+        if(!session){
+            window.alert("로그인이 필요한 서비스입니다!")
+            history.push("/")
+        }
+    }, []);
+
     const openModal = () => {
         setModalOpen(true);
       };
@@ -27,6 +36,13 @@ const MyPage = (props) => {
             commentPlaceholder: "",
         });
     };
+
+    const confirmLogout = () => {
+        if(window.confirm("로그아웃 하시겠어요?")){
+            dispatch(logOut());
+        }
+    }
+
     return (
         <>
         <Container>
@@ -65,9 +81,8 @@ const MyPage = (props) => {
                         open={modalOpen}
                         close={closeModal}
                 ></MyPageModal>
-                <LogOutButton onClick={() => {
-                    dispatch(logOut());
-                }}>로그아웃</LogOutButton>
+                <LogOutButton 
+                    onClick={confirmLogout}>로그아웃</LogOutButton>
             </PageMoveWrap>
         </Container>
         </>
