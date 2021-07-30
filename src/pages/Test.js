@@ -1,22 +1,60 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import {Route,Switch} from "react-router-dom";
+import { history } from "../redux/configureStore";
 
+import { CSSTransitionGroup } from 'react-transition-group';
+import { TestQuestion, TestButton} from "../componentsTest/TestIndex";
+import "./testStyle.css";
 import Header from "../Header";
-import TestQuestion from "../componentsTest/TestQuestion";
-import TestButton from "../componentsTest/TestButton";
 
 const Test = (props) => {
+    const [pageAnimation, setPageAnimation] = useState(false);
+    const question = [{
+        question_id: 1,
+        questionNum: "Q1",
+        question: "맥주를 주로 누구랑 마시나요?",
+        answer: ["인생은 혼자지! 혼자 마셔요!", "코로나만 아니라면 친구들과 함께!"]
+    },
+    {   
+        question_id: 2,
+        questionNum: "Q2",
+        question: "맥주를 주로 누구랑 마시나요?",
+        answer: ["인생은 혼자지! 혼자 마셔요!", "코로나만 아니라면 친구들과 함께!"]
+    },
+    {   
+        question_id: 3,
+        questionNum: "Q3",
+        question: "맥주를 주로 누구랑 마시나요?",
+        answer: ["인생은 혼자지! 혼자 마셔요!", "코로나만 아니라면 친구들과 함께!"]
+    }];
+    useEffect(() => {
+        setPageAnimation(true);
+    }, []);
+    
+    const index = parseInt(props.match.params.question_id);
+
+    const goToNext = () => {
+        if(index == (question.length - 1)){
+            history.push("/result")
+        }
+        if(index < (question.length - 1)){
+        history.push(`/test/${index + 1}`)
+        }
+    }
     return (
-        <React.Fragment>
+        <CSSTransitionGroup
+        transitionName="worksTransition"
+        transitionAppear={pageAnimation} 
+        key={props.location.pathname}
+        transitionAppearTimeout={500}>
             <Header/>
             <Grid>
                 <TestWrap>
-                    <TestQuestion/>
-                    <TestButton/>
+                    <TestQuestion question={question[index]}/>
+                    <TestButton goToNext={goToNext} question={question[index]}/>
                 </TestWrap>
             </Grid>
-        </React.Fragment>
+        </CSSTransitionGroup>
     )
 };
 

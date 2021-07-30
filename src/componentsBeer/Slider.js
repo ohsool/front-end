@@ -10,31 +10,30 @@ import {history} from "../redux/configureStore";
 
 //export default function SimpleSlider({
 
-const BeerType = ({dots,
+const BeerType = ({
     items,
-    show,
-    scroll,
     autoplay,
     autoplaySpeed,
-    arrows,
 }) => {
     const settings = {
-        dots: true,
         infinite: true,
         speed: 200,
-        slidesToShow: 5,//show,
-        slidesToScroll: 4,//scroll,
+        slidesToShow: 5,//show
+        slidesToScroll: 4,//scroll
         autoplay,
         autoplaySpeed,
         arrows: false,
     };
 
+    
+
+    
     return (
         <Container>
             <StyledSlider {...settings}>
                 {/* beer/list/${item} 이런 식으로 URL이 들어간다. */}
-                {items.map((item, idx) => (
-                    <div onClick={()=> history.push(`beer/list/${item}`) } key={idx}>
+                {true && items.map((item, idx) => (
+                    <div onClick={()=> history.push(`beer/list`) } key={idx}>
                         {item}
                     </div>
                 ))}
@@ -46,6 +45,7 @@ const BeerType = ({dots,
 export default BeerType;
 
 const Container = styled.div`
+    width: 360px;
     overflow: hidden;
 `;
 

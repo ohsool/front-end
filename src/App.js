@@ -4,7 +4,7 @@ import {Route} from "react-router-dom";
 import { history } from "./redux/configureStore";
 import { ConnectedRouter } from "connected-react-router";
 
-import { Main, Test, Beer, Mypage, TestResult } from "./pages/indexPage";
+import { Main, Test, Beer, Mypage, TestResult, SignUp, MyBeer } from "./pages/indexPage";
 
 function App() {
   return (
@@ -12,10 +12,13 @@ function App() {
       <GlobalStyle/>
       <ConnectedRouter history={history}>
         <Route path="/" exact component={Main}/>
-        <Route path="/test"  component={Test}/>
+        <Route path="/test/:question_id" component={Test}/>
         <Route path="/result" component={TestResult}/>
         <Route path="/beer"  component={Beer}/>
+        <Route path="/signup" exact component={SignUp}/>
         <Route path="/mypage" component={Mypage}/>
+        <Route path="/mybeer" component={MyBeer}/>
+
       </ConnectedRouter>
     </React.Fragment>   
   );
@@ -27,9 +30,6 @@ const GlobalStyle = createGlobalStyle`
   body{
     margin: 0;
     font-family: "Noto Sans KR", sans-serif;
-    font-size: "14px";
-    font-weight: "500";
-    line-height: "20px";
     //background-color: #F2F3F7;
   }
 `;

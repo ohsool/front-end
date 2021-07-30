@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 
 import { history } from "./redux/configureStore";
@@ -7,12 +7,15 @@ const Header = (props) => {
     return (
         <React.Fragment>
             <HeaderWrap>
+            
             <HeaderBox>
                     <HeaderLogo 
                     onClick={() => {
                         history.push("/")
                     }}>오늘의술</HeaderLogo>
-                    <UserImage></UserImage>
+                    <UserImage onClick={() => {
+                        history.push("/mypage")
+                    }}></UserImage>
             </HeaderBox>
             </HeaderWrap>
         </React.Fragment>
@@ -28,7 +31,7 @@ const HeaderWrap = styled.div`
 `;
 
 const HeaderBox = styled.div`
-    width: 100%;
+    width: 360px;
     position: fixed;
     top: 0;
     height: 45px;
@@ -37,6 +40,7 @@ const HeaderBox = styled.div`
     display: flex;
     z-index: 10;
 `;
+
 const HeaderLogo = styled.div`
     display: inline-block;
     font-size: 20px;
@@ -50,7 +54,7 @@ const UserImage = styled.div`
     position: absolute;
     width: 24px;
     height: 24px;
-    border: 1px solid #FFFFFF;
+    border: 1px solid #000000;
     top: 10px;
     right: 12px;
 `;

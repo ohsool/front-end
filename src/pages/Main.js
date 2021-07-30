@@ -4,7 +4,8 @@ import {Route,Switch} from "react-router-dom";
 
 import MainLogo from "../componentsMain/MainLogo";
 import MainInput from '../componentsMain/MainInput';
-const Main = () => {
+const Main = (props) => {
+
     return (
         <React.Fragment>
             <Grid>
@@ -13,8 +14,7 @@ const Main = () => {
             </Grid>
         </React.Fragment>
     )
-
-}
+};
 
 export default Main;
 

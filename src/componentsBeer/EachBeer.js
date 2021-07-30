@@ -38,8 +38,6 @@ EachBeer.detaultProps = {
 
 const Container = styled.div`
     margin: 10px;
-    padding: 0 8px;
-    
     text-align:left;
     span{
         display: -webkit-box;

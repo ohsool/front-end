@@ -1,12 +1,16 @@
 import React from "react";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
 import { history } from "../redux/configureStore";
 import { Link } from "react-router-dom";
 import Slider from './Slider';
 import EachBeer from "./EachBeer";
 
+import { getCategory } from "../redux/async/category";
 
 const BeerList = () =>{
+    const dispatch = useDispatch();
+    dispatch(getCategory());
     /*
     const beerType = [
         {name: "전체"},
@@ -73,24 +77,8 @@ const BeerList = () =>{
             <Container>
                 <Grid>
                     <TopNav>
-                    {/*
-                        <li><Link to="/beer/list">all</Link></li>
-                        <li><Link to="/beer/list/pilsner">pilsner  </Link></li>
-                        <li><Link to="/beer/list/paleale">paleale </Link></li>
-                        <li><Link to="/beer/list/ipa">ipa </Link></li>
-                        <li><Link to="/beer/list/weizen">weizen </Link></li>
-                        <li><Link to="/beer/list/dunkel">dunkel </Link></li>
-                        <li><Link to="/beer/list/stout">stout </Link></li>
-                        <li><Link to="/beer/list/bock">bock </Link></li>
-                    */}
 
-                    <Slider                
-                        dots={true}
-                        show={3.2}
-                        scroll={3}
-                        autoplay={false}
-                        autoplaySpeed={100000}
-                        arrows={false}
+                    <Slider
                         items={[
                             "전체",
                             "아메리칸 라거",
@@ -151,7 +139,7 @@ const Grid = styled.div`
     margin: 0 auto;
 `
 const TopNav = styled.div`
-    padding-top: 60px;
+    margin-top: 60px;
     text-align: center;
     color: #483834;
     ul {
@@ -167,13 +155,19 @@ const TopNav = styled.div`
 
 const Search = styled.div`
     width: 360px;
-    input{
+    & > input{
         width: 312px;
+        height: 30px;
         border:none;
         margin: 10px 24px;
-        padding: 7px 24px;
         background: #F6F6F6;
         border-radius: 18px;
+        ::placeholder,
+        ::-webkit-input-placeholder {
+            position: absolute;
+            color: #888888;
+            margin: 7px 24px;
+        }
     }
 `
 const List = styled.div`

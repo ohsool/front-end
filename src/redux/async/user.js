@@ -5,18 +5,19 @@ import { headerAxios, nonHeaderAxios } from "./moduleAxios";
 export const signUp = createAsyncThunk(
   "user/signUp",
   async (data, thunkAPI) => {
-    console.log(data);    
-    const response = await nonHeaderAxios.post(`/api/user`, );
 
-    return ;
+    const response = await nonHeaderAxios.post(`/api/user`, data);
+
+    return response.data;
   }
 );
 
 // 로그인
-export const logIn = createAsyncThunk("user/logIn", 
+export const logIn = createAsyncThunk(
+  "user/logIn", 
 async (data, thunkAPI) => {
-    console.log(data);
-    const response = await nonHeaderAxios.post(`api/user/auth`,  );
 
-  return ;
+    const response = await nonHeaderAxios.post(`api/user/auth`, data);
+    
+  return response.data;
 });

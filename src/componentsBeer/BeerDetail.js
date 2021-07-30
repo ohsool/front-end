@@ -4,12 +4,14 @@ import { history } from "../redux/configureStore";
 import { Link } from "react-router-dom";
 import HeartButton from "./HeartButton";
 import TasteGraph from "./TasteGraph";
+import EachReview from "./EachReview";
 //import axios from "Axios";
 const BeerDetail = () =>{
     const [toggle, setToggle] = useState(false);
 
     const beer_detail = 
         {
+            _id: "beer1",
             name: "곰표 밀맥주",
             eng_name: "Gompyo Wheat beer",
             hash_tag: ["달달","과일향","상큼함"],
@@ -18,6 +20,7 @@ const BeerDetail = () =>{
             store: ["GS25 편의점", "현대백화점 식품관"],
             other_store: ["CU 편의점 여의도역 R점"],
         }
+        
     
     
     return(
@@ -38,7 +41,7 @@ const BeerDetail = () =>{
                                     e.preventDefault();
                                     e.stopPropagation();              
                                 }}
-                                is_like={toggle}                    
+                                is_like={toggle}                 
                             />
                         </div>
                         </Horizion>
@@ -100,8 +103,11 @@ const BeerDetail = () =>{
                     <hr/>
 
                     <Wrap>
+                        <span style={{ fontWeight: "700",paddingBottom: "14px"}}>리뷰</span>
+                        <EachReview/>
+                        <EachReview/>
+                        <EachReview/>
 
-                    <span style={{ fontWeight: "700",paddingBottom: "14px"}}>리뷰</span>
                     </Wrap>
                 </Grid>
             </Container>
@@ -126,7 +132,7 @@ const Container = styled.div`
         display: -webkit-box;
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 1;
-        overflow: hidden;
+        overflow: auto;
         text-align:left;
     }
 

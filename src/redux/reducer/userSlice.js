@@ -14,17 +14,23 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     logOut: (state, action) => {
-      sessionStorage.removeItem("access_token");
+      sessionStorage.removeItem("token");
       state.currentUser = null;
+      window.location.reload("/");
     },
   },
   extraReducers: (builder) =>
     builder
         .addCase(signUp.fulfilled, (state, action) => {
+          if(action.payload.message === "existed user"){
+            window.alert("이미 존재하는 아이디입니다!")
+          }
         })
         .addCase(logIn.pending, (state, action) => {
         })
         .addCase(logIn.fulfilled, (state, action) => {
+          sessionStorage.setItem("token", action.payload.token);
+          window.location.reload("/");
         })
       // 공통
       .addMatcher(
