@@ -1,4 +1,4 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import styled from "styled-components";
 
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis } from 'recharts';

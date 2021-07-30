@@ -50,7 +50,7 @@ const MainInput = (props) => {
                         나의 맥주 도감
                     </LinkBox>
                 </Wrap>
-                {is_login == false ? 
+                {is_login === false ? 
                 (<ButtonWrap>
                     <LoginButton onClick={openModal}>LOGIN</LoginButton>
                     <LoginButton>JOIN</LoginButton>

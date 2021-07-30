@@ -1,9 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import "./myPageModal.css";
 
+import { useDispatch } from "react-redux";
+import {suggestBeer, suggestComment} from "../redux/async/suggest";
+
 const MyPageModal = (props) => {
-    const { open, close, suggestInfo, EnterSubmit, onChange, chat } = props;
+    const dispatch = useDispatch();
+    const [chat, setChat] = useState();
+    const { open, close, suggestInfo } = props;
+
+    const onChange = (e) => {
+        setChat(e.target.value)
+    }
+
+    const EnterSubmit = (e) => {
+        if(e.key === "Enter"){
+            if(suggestInfo.suggestTitle === "맥주 건의하기"){
+                dispatch(suggestBeer(chat))
+            }
+            
+            setChat("");
+        }
+    }
 
     return(
         <React.Fragment>

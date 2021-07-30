@@ -29,7 +29,7 @@ const LoginModal = (props) => {
         });
     }
     const submitEnterSignUp = (e) => {
-        if(e.key == "Enter"){
+        if(e.key === "Enter"){
             onSubmit();
         }
     }

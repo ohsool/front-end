@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
-import { Link } from "react-router-dom";
 import Slider from './Slider';
 import EachBeer from "./EachBeer";
 

@@ -1,7 +1,6 @@
 import React,{useState} from "react";
 import styled from "styled-components";
-import { history } from "../redux/configureStore";
-import { Link } from "react-router-dom";
+
 import HeartButton from "./HeartButton";
 import TasteGraph from "./TasteGraph";
 //import axios from "Axios";

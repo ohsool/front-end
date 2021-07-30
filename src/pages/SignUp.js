@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import styled from "styled-components";
-import { history } from "../redux/configureStore";
 import {useDispatch} from "react-redux";
 import {signUp} from "../redux/async/user";
 import { emailCheck, pwdReg} from "../share/checkReg";
@@ -46,7 +45,7 @@ const SignUp = (props) => {
         })
     }
     const submitEnterSignUp = (e) => {
-        if(e.key == "Enter"){
+        if(e.key === "Enter"){
             submitSignUp();
         }
     }
