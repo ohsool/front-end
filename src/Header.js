@@ -13,7 +13,9 @@ const Header = (props) => {
                     onClick={() => {
                         history.push("/")
                     }}>오늘의술</HeaderLogo>
-                    <UserImage></UserImage>
+                    <UserImage onClick={() => {
+                        history.push("/mypage")
+                    }}></UserImage>
             </HeaderBox>
             </HeaderWrap>
         </React.Fragment>

@@ -151,7 +151,7 @@ const Grid = styled.div`
     margin: 0 auto;
 `
 const TopNav = styled.div`
-    padding-top: 60px;
+    margin-top: 60px;
     text-align: center;
     color: #483834;
     ul {
@@ -167,13 +167,19 @@ const TopNav = styled.div`
 
 const Search = styled.div`
     width: 360px;
-    input{
+    & > input{
         width: 312px;
+        height: 30px;
         border:none;
         margin: 10px 24px;
-        padding: 7px 24px;
         background: #F6F6F6;
         border-radius: 18px;
+        ::placeholder,
+        ::-webkit-input-placeholder {
+            position: absolute;
+            color: #888888;
+            margin: 7px 24px;
+        }
     }
 `
 const List = styled.div`

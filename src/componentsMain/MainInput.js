@@ -20,10 +20,17 @@ const MainInput = (props) => {
         if(session){
             setIs_Login(true);
         }else{
-            setIs_Login(false)
+            setIs_Login(false);
         }
-        console.log(is_login);
-    }, [is_login])
+    }, [is_login]);
+
+    const goBeerDogam = () => {
+        if(!session){
+            window.alert("로그인이 필요한 서비스입니다!")
+        }else{
+            history.push("/beer/list")
+        }
+    }
 
     return(
         <React.Fragment>
@@ -39,8 +46,7 @@ const MainInput = (props) => {
                     }}>
                         대한민국의 모든 맥주
                     </LinkBox>
-                    <LinkBox onClick={() => {
-                    }}>
+                    <LinkBox onClick={goBeerDogam}>
                         나의 맥주 도감
                     </LinkBox>
                 </Wrap>

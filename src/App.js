@@ -5,6 +5,7 @@ import { history } from "./redux/configureStore";
 import { ConnectedRouter } from "connected-react-router";
 
 import { Main, Test, Beer, Mypage, TestResult, SignUp } from "./pages/indexPage";
+import WritedMyBeer from "./componentsMypage/WritedMyBeer";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/beer"  component={Beer}/>
         <Route path="/signup" exact component={SignUp}/>
         <Route path="/mypage" component={Mypage}/>
+        <Route path="/mybeer" component={WritedMyBeer}/>
       </ConnectedRouter>
     </React.Fragment>   
   );

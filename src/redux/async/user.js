@@ -8,15 +8,15 @@ export const signUp = createAsyncThunk(
 
     const response = await nonHeaderAxios.post(`/api/user`, data);
 
-    return response.data.result;
+    return response.data;
   }
 );
 
 // 로그인
 export const logIn = createAsyncThunk("user/logIn", 
 async (data, thunkAPI) => {
-    console.log("Login data", data)
+
     const response = await nonHeaderAxios.post(`api/user/auth`, data);
-    console.log("Login response", response.data);
+    
   return response.data;
 });

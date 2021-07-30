@@ -21,7 +21,11 @@ const TestHeader = (props) => {
                     onClick={() => {
                     history.push("/")
                     }}>오늘의술</WhiteHeaderLogo>
-                    <WhiteUserImage></WhiteUserImage>
+                    <WhiteUserImage
+                        onClick={() => {
+                            history.push("/mypage")
+                        }}
+                    ></WhiteUserImage>
                     </HeaderBox>
                     )
                 :

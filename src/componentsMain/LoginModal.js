@@ -28,6 +28,11 @@ const LoginModal = (props) => {
             password: ""
         });
     }
+    const submitEnterSignUp = (e) => {
+        if(e.key == "Enter"){
+            onSubmit();
+        }
+    }
     return (
 
         <React.Fragment>
@@ -45,6 +50,7 @@ const LoginModal = (props) => {
                                 ></InputBox>
                                 <InputBox
                                     type="password"
+                                    onKeyPress={submitEnterSignUp}
                                     placeholder="비밀번호"
                                     onChange={onChange}
                                     name="password"

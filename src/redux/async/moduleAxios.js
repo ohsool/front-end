@@ -5,7 +5,7 @@ const headers = {
 };
 
 export const headerAxios = axios.create({
-    baseURL: `url`,
+    baseURL: `http://13.125.162.255`,
     headers: headers,
 });
 
