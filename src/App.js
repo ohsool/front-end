@@ -27,7 +27,6 @@ const GlobalStyle = createGlobalStyle`
   body{
     margin: 0;
     font-family: "Noto Sans KR", sans-serif;
-    margin: 0;
     //background-color: #F2F3F7;
   }
 `;
