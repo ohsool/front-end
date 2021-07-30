@@ -28,7 +28,7 @@ const MainInput = (props) => {
         if(!session){
             window.alert("로그인이 필요한 서비스입니다!")
         }else{
-            history.push("/beer/list")
+            history.push("/mybeer")
         }
     }
 

@@ -37,7 +37,7 @@ const MyBeer = ()=>{
                     onClick={()=>{
                         setIs_Dogam(true)
                     }}>
-                        맥주 도감
+                    맥주 도감
                 </button>
                 <button 
                     className={is_Dogam === false ? "clickedButtonContainer" : "buttonContainer"}
@@ -45,7 +45,7 @@ const MyBeer = ()=>{
                         setIs_Dogam(false)
                     }
                     }>
-                        내가 쓴 게시물
+                    내가 쓴 게시물
                 </button>
             </ButtonContainerWrap>
             <SliderWrap>
@@ -104,7 +104,7 @@ const Wrap = styled.div`
 `;
 
 const SliderWrap = styled.div`
-    margin: 0 0 20px 35px;
+    margin: 0 0 20px 0px;
 `;
 
 const List = styled.div`

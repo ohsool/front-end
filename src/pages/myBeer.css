@@ -6,8 +6,8 @@
     font-size: 14px;
     font-weight: bold;
     border: none;
-    border-bottom: 2px solid #fff;
-    background-color: #fff;
+    border-bottom: 2.5px solid #FFFFFF;
+    background-color: #FFFFFF;
 }
 
 .clickedButtonContainer{
@@ -17,8 +17,6 @@
     padding-bottom: 16px;
     font-size: 14px;
     font-weight: bold;
-    border: none;
-    border-bottom: 2px solid #fff;
     background-color: #fff;
     border: none;
     border-bottom: 2.5px solid #212121;

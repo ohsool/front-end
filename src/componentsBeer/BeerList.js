@@ -128,7 +128,6 @@ const Grid = styled.div`
 `
 const TopNav = styled.div`
     margin-top: 60px;
-    text-align: center;
     color: #483834;
     ul {
         display: flex;
