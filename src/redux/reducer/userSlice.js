@@ -14,7 +14,7 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     logOut: (state, action) => {
-      sessionStorage.removeItem("access_token");
+      sessionStorage.removeItem("token");
       state.currentUser = null;
     },
   },
@@ -25,6 +25,8 @@ const userSlice = createSlice({
         .addCase(logIn.pending, (state, action) => {
         })
         .addCase(logIn.fulfilled, (state, action) => {
+          sessionStorage.setItem("token", action.payload.token);
+          window.location.reload("/");
         })
       // 공통
       .addMatcher(

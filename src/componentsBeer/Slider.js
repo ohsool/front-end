@@ -19,7 +19,6 @@ const BeerType = ({dots,
     arrows,
 }) => {
     const settings = {
-        dots: true,
         infinite: true,
         speed: 200,
         slidesToShow: 5,//show,
@@ -46,6 +45,7 @@ const BeerType = ({dots,
 export default BeerType;
 
 const Container = styled.div`
+    width: 360px;
     overflow: hidden;
 `;
 

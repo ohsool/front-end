@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const headers = {
-    Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
+    Authorization: `Bearer ${sessionStorage.getItem("token")}`,
 };
 
 export const headerAxios = axios.create({
@@ -10,5 +10,5 @@ export const headerAxios = axios.create({
 });
 
 export const nonHeaderAxios = axios.create({
-    baseURL: `url`,
+    baseURL: `http://13.125.162.255`,
 });
