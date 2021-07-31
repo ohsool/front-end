@@ -13,7 +13,7 @@ export const getCategory = createAsyncThunk(
 );
 //특정카테고리 맥주 가져오기
 export const getCategoryBeer = createAsyncThunk(
-    "category/getCategoryBeer", 
+    "category/getCategoryBeer",
     async (data, thunkAPI) => {
 
     const response = await nonHeaderAxios.get(`/api/beerCategory/:beerCategoryId`, data);

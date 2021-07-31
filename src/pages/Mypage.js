@@ -81,7 +81,7 @@ const MyPage = (props) => {
                         open={modalOpen}
                         close={closeModal}
                 ></MyPageModal>
-                <LogOutButton 
+                <LogOutButton
                     onClick={confirmLogout}>로그아웃</LogOutButton>
             </PageMoveWrap>
         </Container>

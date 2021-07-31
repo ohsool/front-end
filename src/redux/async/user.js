@@ -19,4 +19,5 @@ async (data, thunkAPI) => {
     const response = await nonHeaderAxios.post(`api/user/auth`, data);
 
   return response.data;
-});
+  }
+);
