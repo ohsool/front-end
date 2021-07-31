@@ -5,7 +5,7 @@ import Header from "../Header";
 import BeerList from '../componentsBeer/BeerList';
 import BeerDetail from '../componentsBeer/BeerDetail';
 
-const Beer = () => {
+const Beer = (props) => {
     return (
         <>  
             <Header/>

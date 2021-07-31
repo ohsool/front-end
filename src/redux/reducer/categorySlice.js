@@ -1,32 +1,35 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getCategory } from "../async/category";
+import { getCategory, getCategoryBeer } from "../async/category";
 
 const initialState = {
-    categoryList: null,
+    categoryList: [],
+    categoryBeerList: [],
     isLoading: false,
     isDone: false,
     isError: false,
   };
-/*
+
 
 const categorySlice = createSlice({
     name: "category",
     initialState,
-    reducers: {
-      logOut: (state, action) => {
-        sessionStorage.removeItem("token");
-        state.currentUser = null;
-      },
-    },
     extraReducers: (builder) =>
       builder
-          .addCase(signUp.fulfilled, (state, action) => {
+          .addCase(getCategory.pending, (state, action) => {
+            state.categoryList = [];
           })
-          .addCase(logIn.pending, (state, action) => {
+          .addCase(getCategory.fulfilled, (state, action) => {
+            state.categoryList = action.payload;
           })
-          .addCase(logIn.fulfilled, (state, action) => {
-            sessionStorage.setItem("token", action.payload.token);
-            window.location.reload("/");
+          .addCase(getCategory.rejected, (state, action) => {
+          })
+          .addCase(getCategoryBeer.pending, (state, action) => {
+            state.categoryBeerList = [];
+          })
+          .addCase(getCategoryBeer.fulfilled, (state, action) => {
+            state.categoryBeerList = action.payload;
+          })
+          .addCase(getCategoryBeer.rejected, (state, action) => {
           })
         // 공통
         .addMatcher(
@@ -59,7 +62,5 @@ const categorySlice = createSlice({
         ),
   });
   
-  export const { logOut } = userSlice.actions;
+  export default categorySlice;
   
-  export default userSlice;
-  */

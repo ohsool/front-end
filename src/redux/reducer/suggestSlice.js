@@ -9,7 +9,7 @@ const initialState = {
     isError: false,
 };
 
-const userSlice = createSlice({
+const suggestSlice = createSlice({
   name: "suggest",
   initialState,
   extraReducers: (builder) =>
@@ -55,6 +55,4 @@ const userSlice = createSlice({
       ),
 });
 
-export const { logOut } = userSlice.actions;
-
-export default userSlice;
+export default suggestSlice;

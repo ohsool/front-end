@@ -1,27 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { history } from "../redux/configureStore";
+
 import Slider from './Slider';
 import EachBeer from "./EachBeer";
-
 import { getCategory } from "../redux/async/category";
+import { getAllBeer } from "../redux/async/beer";
 
 const BeerList = () =>{
     const dispatch = useDispatch();
-    dispatch(getCategory());
-    /*
-    const beerType = [
-        {name: "전체"},
-        {name: "필스너"},
-        {name: "페일에일"},
-        {name: "IPA"},
-        {name: "둔켈"},
-        {name: "스카우트"},
-        {name: "복"},
-    ]
-     console.log(beerType[0]["name"]);
-*/
+    
+    // useEffect(() => {
+    //     dispatch(getAllBeer());
+    //     dispatch(getCategory());
+    // }, []);
     const beers = [
     {
         category: 'lager',
