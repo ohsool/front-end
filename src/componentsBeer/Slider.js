@@ -54,34 +54,6 @@ const StyledSlider = styled(Slider)`
         outline: none;
         dislpay:flex;
     }
-    .slick-dots {
-        bottom: 5px;
-        li {
-            width: 10px;
-            &.slick-active{
-                button:before{
-                    color:black;}
-                }
-            button { 
-                &:before {
-                    color: white;
-                    font-size: 15px;
-                }
-            }
-        }
-    }
-    .slick-prev,
-    .slick-next {
-        :before {
-            font-size: 20px;
-        }
-    }
-    .slick-prev {
-        left: 5px;
-        z-index: 10;
-    }
-    .slick-next {
-        right: 5px;
-    }
+
 `;
 

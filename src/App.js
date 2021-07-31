@@ -4,7 +4,7 @@ import {Route} from "react-router-dom";
 import { history } from "./redux/configureStore";
 import { ConnectedRouter } from "connected-react-router";
 
-import { Main, Test, Beer, Mypage, TestResult, SignUp, MyBeer } from "./pages/indexPage";
+import { Main, Test, Beer, Mypage, TestResult, SignUp, MyBeer,ReviewList } from "./pages/indexPage";
 
 function App() {
   return (
@@ -18,7 +18,6 @@ function App() {
         <Route path="/signup" exact component={SignUp}/>
         <Route path="/mypage" component={Mypage}/>
         <Route path="/mybeer" component={MyBeer}/>
-
       </ConnectedRouter>
     </React.Fragment>   
   );

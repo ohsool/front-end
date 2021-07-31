@@ -20,7 +20,35 @@ const BeerDetail = () =>{
             store: ["GS25 편의점", "현대백화점 식품관"],
             other_store: ["CU 편의점 여의도역 R점"],
         }
-        
+    const reviews = [
+        {
+            nickname: "닉네임",
+            rate: "4.0",
+            review : "UserReview"
+        },
+        {
+            nickname: "닉네임",
+            rate: "4.0",
+            review : "UserReview"
+        },
+        {
+            nickname: "닉네임",
+            rate: "4.0",
+            review : "UserReview"
+        },
+        {
+            nickname: "닉네임",
+            rate: "4.0",
+            review : "UserReview"
+        },
+        {
+            nickname: "닉네임",
+            rate: "4.0",
+            review : "UserReview"
+        },
+
+
+    ];   
     
     
     return(
@@ -104,9 +132,17 @@ const BeerDetail = () =>{
 
                     <Wrap>
                         <span style={{ fontWeight: "700",paddingBottom: "14px"}}>리뷰</span>
-                        <EachReview/>
-                        <EachReview/>
-                        <EachReview/>
+                        <Gradient>
+                            {reviews.length > 0 ? reviews.map((item, idx) => (
+                                idx < 4 ? <EachReview key={idx} {...item}/> : null
+                            )):""}
+                            <span style={{ textAlign:"center", paddingBottom: "20px",  fontWeight: "700", fontSize: "14px", lineHeight: "20.27px", fontStyle: "bold"
+                            }} onClick={()=>{
+                                history.push("/beer/detail/review")
+                            }}>전체보기</span>
+                        </Gradient>
+
+                            
 
                     </Wrap>
                 </Grid>
@@ -197,5 +233,12 @@ const TasteTag = styled.div`
     line-height: 16px;
     color: #555;
 
-    
 `;
+
+const Gradient = styled.div`
+    position: absolute;
+    z-index: 100;
+    background: linear-gradient(rgba( 155, 155, 155, 0.1 ), rgba( 155, 155, 155, 1 ));
+
+
+`

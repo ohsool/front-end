@@ -3,7 +3,8 @@ import styled from "styled-components";
 import {history} from "../redux/configureStore";
 import Slider from "../componentsBeer/Slider";
 import EachBeer from "../componentsBeer/EachBeer";
-import MyReview from "../componentsMypage/MyReview";
+import WritedReview from "../componentsMypage/WritedReview";
+
 
 const MyBeer = ()=>{
     const [is_Dogam, setIs_Dogam] = useState();
@@ -41,7 +42,19 @@ const MyBeer = ()=>{
                         내가 쓴 게시물
                 </ButtonContainer>
             </div>
-            {/*<Slider/>*/}
+            <SliderWrap>
+                <Slider
+                    items={[
+                        "All",
+                        "Lager",
+                        "Pilsner",
+                        "Pale Ale",
+                        "IPA",
+                        "Weizen",
+                        "Dunkel",
+                        "Stout",
+                    ]}/>
+            </SliderWrap>
 
             {is_Dogam == true ? 
                 <List>
@@ -51,8 +64,13 @@ const MyBeer = ()=>{
                     }/>
                 )):""}
                 </List>
-            : <MyReview/> //마이리뷰 페이지로 전환..!
-            
+            : <MyReview> 
+                <Container>
+                    <WritedReview/>
+                    <WritedReview/>
+                    <WritedReview/>
+                </Container>
+              </MyReview>
             }
             </Wrap>
         </Grid>
@@ -78,25 +96,7 @@ const Wrap = styled.div`
     margin-top: 105px;
     display: block;
 `;
-/*
-const ButtonContainer = styled.div`
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-    button {
-        border: none;
-        border-bottom: 2px solid #fff;
-        width: 180px;
-        height: 50px;
-        background-color: #fff;
-        :focus {
-            border: none;
-            border-bottom: 2px solid #212121;
-        };
-    }
-`;
-*/
+
 const ButtonContainer = styled.button`
     float: left;
     width: 148px;
@@ -113,10 +113,6 @@ const ButtonContainer = styled.button`
     };
 `;
 
-
-
-
-
 const List = styled.div`
     width: 320px;
     margin: 0 16px;
@@ -124,3 +120,13 @@ const List = styled.div`
     grid-template-columns: repeat(2, 1fr);
 `;
 
+const SliderWrap = styled.div`
+    margin: 0 0 20px 35px;
+`;
+
+const Container = styled.div`
+    margin-top: 60px;
+`
+const MyReview = styled.div`
+
+`

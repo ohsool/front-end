@@ -16,7 +16,7 @@ const EachReview=(props)=> {
                     <Div>
                     <NicknameText>
                         <span style={{ fontWeight: "700", fontSize: "14px", lineHeight: "20.27px"}}>
-                            {nickname}닉네임</span>
+                            {nickname}</span>
                     </NicknameText>
                     <DateText>
                         <span style={{ fontWeight: "300", fontSize: "10px", lineHeight: "14.48px"}}>
@@ -29,7 +29,7 @@ const EachReview=(props)=> {
                         <StarImg/>
                         <RateText>
                             <span style={{fontWeight: "300", fontSize: "10px", lineHeight: "14.48px"}}>
-                                ({rate}4.0)</span>
+                                ({rate})</span>
                         </RateText>
                             {is_user? 
                                 <>
@@ -44,9 +44,7 @@ const EachReview=(props)=> {
                     <span style={{ display: "block", width: "280px",fontWeight: "300", fontSize: "12px", lineHeight: "17.38px"}}>
                     
                         {review}
-                        ㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴ
-                        ㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㅎㅎㅎㅎㅎㅎ
-                        ㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎ
+
                     </span>               
                 </ReviewText>
             </Grid>
