@@ -7,6 +7,7 @@ import EachBeer from "../componentsBeer/EachBeer";
 import MyReview from "../componentsMypage/MyReview";
 import Header from "../Header";
 import "./myBeer.css";
+import WritedReview from "../componentsMypage/WritedReview";
 
 const MyBeer = ()=>{
     const [is_Dogam, setIs_Dogam] = useState(true);
@@ -79,8 +80,13 @@ const MyBeer = ()=>{
                     }/>
                 )):""}
                 </List>
-            : <MyReview/>
-            
+            : <MyReview> 
+                <Container>
+                    <WritedReview/>
+                    <WritedReview/>
+                    <WritedReview/>
+                </Container>
+              </MyReview>
             }
             </Wrap>
         </Grid>
@@ -124,3 +130,6 @@ const List = styled.div`
     grid-template-columns: repeat(2, 1fr);
 `;
 
+const Container = styled.div`
+    margin-top: 60px;
+`
