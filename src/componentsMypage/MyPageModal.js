@@ -1,31 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import "./myPageModal.css";
+
+import { useDispatch } from "react-redux";
+import {suggestBeer, suggestComment} from "../redux/async/suggest";
 
 const MyPageModal = (props) => {
-    const { open, close, suggestInfo, EnterSubmit, onChange, chat } = props;
+    const dispatch = useDispatch();
+    const [chat, setChat] = useState();
+    const { open, close, suggestInfo } = props;
+
+    const onChange = (e) => {
+        setChat(e.target.value);
+    }
+
+    const EnterSubmit = (e) => {
+        if(e.key === "Enter"){
+            if(suggestInfo.suggestTitle === "맥주 건의하기"){
+                dispatch(suggestBeer(chat));
+                setChat("");
+                close();
+            }
+        else{
+            dispatch(suggestComment({
+                title: suggestInfo.suggestTitle,
+                description: chat
+            }));
+            setChat("");
+            close();
+        }
+        }
+    }
 
     return(
         <React.Fragment>
-            {open ? 
+            {open ?
             <Background>
                 <ModalWrap >
-                    <SuggestTitle onClick={close}>
+                    <SuggestTitle>
                         <span>{suggestInfo.suggestTitle}</span>
                     </SuggestTitle>
                     <CloseIcon
                         onClick={close}
                     >
                     </CloseIcon>
-                    <textarea 
-                        className={suggestInfo.suggestTitle !== "맥주 건의하기" ? 
-                        "whiteInput" : "yellowInput"
-                        }
+                    <SuggestInput
                         value={chat}
                         onChange={onChange}
                         onKeyPress={EnterSubmit}
                         placeholder={suggestInfo.commentPlaceholder}
-                    ></textarea>
+                    ></SuggestInput>
                 </ModalWrap>
             </Background>
             : null }
@@ -67,6 +90,21 @@ const ModalWrap = styled.div`
             transform: scale(1) translateY(0);
             opacity: 1;
         }
+    }
+`;
+
+const SuggestInput = styled.textarea`
+    height: 211px;
+    width: 296px;
+    padding: 15px;
+    margin: 0 auto;
+    border: none;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    ::-webkit-input-placeholder {
+    width: 180px;
+    color: #888888;
+    position: absolute;
     }
 `;
 

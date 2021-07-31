@@ -34,7 +34,7 @@ const Test = (props) => {
     const index = parseInt(props.match.params.question_id);
 
     const goToNext = () => {
-        if(index == (question.length - 1)){
+        if(index === (question.length - 1)){
             history.push("/result")
         }
         if(index < (question.length - 1)){

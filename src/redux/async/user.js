@@ -13,11 +13,10 @@ export const signUp = createAsyncThunk(
 );
 
 // 로그인
-export const logIn = createAsyncThunk(
-  "user/logIn", 
+export const logIn = createAsyncThunk("user/logIn",
 async (data, thunkAPI) => {
 
     const response = await nonHeaderAxios.post(`api/user/auth`, data);
-    
+
   return response.data;
 });

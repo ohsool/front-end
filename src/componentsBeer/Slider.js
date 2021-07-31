@@ -8,25 +8,15 @@ import "slick-carousel/slick/slick-theme.css";
 
 import {history} from "../redux/configureStore";
 
-//export default function SimpleSlider({
-
-const BeerType = ({
-    items,
-    autoplay,
-    autoplaySpeed,
-}) => {
+const BeerType = ({ items }) => {
     const settings = {
         infinite: true,
         speed: 200,
         slidesToShow: 5,//show
-        slidesToScroll: 4,//scroll
-        autoplay,
-        autoplaySpeed,
+        slidesToScroll: 3,//scroll
+        variableWidth: true, // slider 간격조정
         arrows: false,
     };
-
-    
-
     
     return (
         <Container>
@@ -45,15 +35,18 @@ const BeerType = ({
 export default BeerType;
 
 const Container = styled.div`
+    margin-left: 35px;
     width: 360px;
     overflow: hidden;
 `;
 
 const StyledSlider = styled(Slider)`
-    slick-slide div {
+    color: #C4C4C4;
+    font-size: 14px;
+    .slick-slide div {
+        position: relative;
         outline: none;
-        dislpay:flex;
+        width: 60px;
     }
-
 `;
 

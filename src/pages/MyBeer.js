@@ -1,49 +1,64 @@
 import React,{useState, useEffect} from "react";
 import styled from "styled-components";
-import {history} from "../redux/configureStore";
+import { history } from "../redux/configureStore";
+
 import Slider from "../componentsBeer/Slider";
 import EachBeer from "../componentsBeer/EachBeer";
+import MyReview from "../componentsMypage/MyReview";
+import Header from "../Header";
+import "./myBeer.css";
 import WritedReview from "../componentsMypage/WritedReview";
 
-
 const MyBeer = ()=>{
-    const [is_Dogam, setIs_Dogam] = useState();
-
+    const [is_Dogam, setIs_Dogam] = useState(true);
+    const session = sessionStorage.getItem("token");
     useEffect(()=> {
         setIs_Dogam(true);
-        console.log(is_Dogam);
-
     }, [])
+
+    useEffect(() => {
+        if(!session){
+            window.alert("로그인이 필요한 서비스입니다!")
+            history.push("/")
+        }
+    })
 
     const mydogam = [
         {
             category: 'lager',
             name: '곰표 밀맥주' , 
             eng_name: 'Gompyo Wheat Beer',
-            //hash_tag: ['달달', '과일향', '상큼함']},
-            hash_tag: '달달'},
+            hash_tag: ['달달', '과일향', '상큼함']},
         {
             category: 'lager',
-            name: 'Y끼리 IPA', 
+            name: 'Y끼리 IPA',
             eng_name: 'IPA with Y',
-            hash_tag: '달달'},    
+            hash_tag: ['달달', '과일향', '상큼함']},
     ];      
     return (
         <React.Fragment>
+            <Header></Header>
         <Grid>
             <Wrap>  
-            <div style={{ padding: "0 0 0 20px" }}> {/* 세밀한 padding 조절은 이후에 ..! */}
-                <ButtonContainer onClick={()=>setIs_Dogam(true)
+            <ButtonContainerWrap> {/* 세밀한 padding 조절은 이후에 ..!=> 수정했습니다! */}
+                <button
+                    className={is_Dogam === true ? "clickedButtonContainer" : "buttonContainer"}
+                    onClick={()=>{
+                        setIs_Dogam(true)
+                    }}>
+                    맥주 도감
+                </button>
+                <button 
+                    className={is_Dogam === false ? "clickedButtonContainer" : "buttonContainer"}
+                    onClick={()=>{
+                        setIs_Dogam(false)
+                    }
                     }>
-                        맥주 도감
-                </ButtonContainer>
-                <ButtonContainer onClick={()=>setIs_Dogam(false)
-                    }>
-                        내가 쓴 게시물
-                </ButtonContainer>
-            </div>
+                    내가 쓴 게시물
+                </button>
+            </ButtonContainerWrap>
             <SliderWrap>
-                <Slider
+            <Slider
                     items={[
                         "All",
                         "Lager",
@@ -55,12 +70,13 @@ const MyBeer = ()=>{
                         "Stout",
                     ]}/>
             </SliderWrap>
-
             {is_Dogam == true ? 
                 <List>
                 {mydogam.length > 0 ? mydogam.map((item, idx) => (
                     <EachBeer key={idx} {...item} 
-                        _onClick={() =>{}
+                        _onClick={() =>{
+                            history.push("/beer/detail")
+                        }
                     }/>
                 )):""}
                 </List>
@@ -82,7 +98,6 @@ const MyBeer = ()=>{
 
 export default MyBeer;
 
-
 const Grid = styled.div`
     display: flex;
     height: 754px;
@@ -90,43 +105,31 @@ const Grid = styled.div`
     flex-direction: column;
 `;
 
+const ButtonContainerWrap = styled.div`
+    display: flex;
+    width: 312px;
+    margin: 0 auto;
+    margin-bottom: 17px;
+    justify-content: space-between;
+`;
+
 const Wrap = styled.div`
     width: 360px;
     margin: 0 auto;
-    margin-top: 105px;
-    display: block;
+    margin-top: 65px;
 `;
 
-const ButtonContainer = styled.button`
-    float: left;
-    width: 148px;
-    height: 30x;
-    margin: 0px 8px;
-    padding: 16px;
-
-    border: none;
-    border-bottom: 2px solid #fff;
-    background-color: #fff;
-    :focus {
-        border: none;
-        border-bottom: 2px solid #212121;
-    };
+const SliderWrap = styled.div`
+    margin: 0 0 20px 0px;
 `;
 
 const List = styled.div`
-    width: 320px;
-    margin: 0 16px;
+    width: 312px;
+    margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
 `;
 
-const SliderWrap = styled.div`
-    margin: 0 0 20px 35px;
-`;
-
 const Container = styled.div`
     margin-top: 60px;
-`
-const MyReview = styled.div`
-
 `

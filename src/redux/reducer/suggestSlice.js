@@ -1,35 +1,28 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { signUp, logIn } from "../async/user";
+import { suggestComment, suggestBeer } from "../async/suggest";
 
 const initialState = {
-  userList: null,
-  currentUser: null,
-  isLoading: false,
-  isDone: false,
-  isError: false,
+    suggestComment: null,
+    suggestBeer: null,
+    isLoading: false,
+    isDone: false,
+    isError: false,
 };
 
-const userSlice = createSlice({
-  name: "user",
+const suggestSlice = createSlice({
+  name: "suggest",
   initialState,
-  reducers: {
-    logOut: (state, action) => {
-      sessionStorage.removeItem("token");
-      window.location.replace("/");
-    },
-  },
   extraReducers: (builder) =>
     builder
-        .addCase(signUp.fulfilled, (state, action) => {
-          if(action.payload.message === "existed user"){
-            window.alert("이미 존재하는 아이디입니다!")
-          }
+        .addCase(suggestComment.pending, (state, action) => {
         })
-        .addCase(logIn.pending, (state, action) => {
+        .addCase(suggestComment.fulfilled, (state, action) => {
         })
-        .addCase(logIn.fulfilled, (state, action) => {
-          sessionStorage.setItem("token", action.payload.token);
-          window.location.reload("/");
+        .addCase(suggestBeer.pending, (state, action) => {
+        })
+        .addCase(suggestBeer.fulfilled, (state, action) => {
+            console.log(action.payload);
+            window.alert("건의가 완료되었습니다")
         })
       // 공통
       .addMatcher(
@@ -62,6 +55,4 @@ const userSlice = createSlice({
       ),
 });
 
-export const { logOut } = userSlice.actions;
-
-export default userSlice;
+export default suggestSlice;

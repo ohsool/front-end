@@ -28,7 +28,7 @@ const MainInput = (props) => {
         if(!session){
             window.alert("로그인이 필요한 서비스입니다!")
         }else{
-            history.push("/beer/list")
+            history.push("/mybeer")
         }
     }
 
@@ -50,7 +50,7 @@ const MainInput = (props) => {
                         나의 맥주 도감
                     </LinkBox>
                 </Wrap>
-                {is_login == false ? 
+                {is_login === false ? 
                 (<ButtonWrap>
                     <LoginButton onClick={openModal}>LOGIN</LoginButton>
                     <LoginButton>JOIN</LoginButton>

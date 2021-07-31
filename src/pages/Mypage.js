@@ -1,10 +1,8 @@
-import React,{useState} from 'react';
+import React,{ useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { logOut } from "../redux/reducer/userSlice";
 import { useDispatch } from "react-redux";
-import {Route,Switch} from "react-router-dom";
 import {history} from "../redux/configureStore";
-
 
 import MyPageModal from "../componentsMypage/MyPageModal";
 import Header from "../Header";
@@ -12,13 +10,21 @@ import arrow from "../share/arrow.png";
 
 const MyPage = (props) => {
     const dispatch = useDispatch();
+    const session = sessionStorage.getItem("token");
     const [modalOpen, setModalOpen] = useState(false);
-    const [input, setInput] = useState();
     const [modal_info, setModal_Info] = useState({
         suggestTitle: "",
         titlePlaceholder: "",
         commentPlaceholder: "",
     });
+
+    useEffect(() => {
+        if(!session){
+            window.alert("로그인이 필요한 서비스입니다!")
+            history.push("/")
+        }
+    }, []);
+
     const openModal = () => {
         setModalOpen(true);
       };
@@ -30,16 +36,13 @@ const MyPage = (props) => {
             commentPlaceholder: "",
         });
     };
-    const onChange = (e) => {
-        setInput(e.target.value)
-    }
-    const EnterSubmit = (e) => {
-        if(e.key == "Enter"){
-            console.log("input:",input);
-            setInput("");
-            closeModal();
+
+    const confirmLogout = () => {
+        if(window.confirm("로그아웃 하시겠어요?")){
+            dispatch(logOut());
         }
     }
+
     return (
         <>
         <Container>
@@ -75,15 +78,11 @@ const MyPage = (props) => {
                 </MoveBoxWrap>
                 <MyPageModal
                         suggestInfo={modal_info}
-                        EnterSubmit={EnterSubmit}
-                        onChange={onChange}
-                        chat={input}
                         open={modalOpen}
                         close={closeModal}
                 ></MyPageModal>
-                <LogOutButton onClick={() => {
-                    dispatch(logOut());
-                }}>로그아웃</LogOutButton>
+                <LogOutButton 
+                    onClick={confirmLogout}>로그아웃</LogOutButton>
             </PageMoveWrap>
         </Container>
         </>

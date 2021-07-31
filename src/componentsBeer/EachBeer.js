@@ -1,84 +1,75 @@
-//DrinkDetail에 들어갈 내용
-import React,{useState} from 'react';
+import React, { useState } from "react";
 import styled from "styled-components";
-import  HeartButton  from "./HeartButton";
+import HeartButton from "./HeartButton";
 
-
-const EachBeer=(props)=> {
+const EachBeer = (props) => {
     const [toggle, setToggle] = useState(false);
     
     const { _onClick ,name, eng_name, hash_tag} = props; 
-    return (
-        <>
-        <Container onClick={_onClick}>
-            <Img/>
-            <NameText>{name}</NameText>
-            <HeartButton
-                _onClick={(e) => {
-                toggle ? setToggle(false) : setToggle(true);
-                e.preventDefault();
-                e.stopPropagation();              
-            }}
-            is_like={toggle}
-          />
-            <EngNameText>{eng_name}</EngNameText>
-            
-            <TasteTag>#{hash_tag}</TasteTag>
-        </Container>   
-        </>
+    return(
+        <React.Fragment>
+            <RecommendBeerWrap onClick={_onClick}>
+                <BeerImage></BeerImage>
+                <BeerInfoWrap>
+                    <BeerTitle>{name}</BeerTitle>
+                    <HeartButton
+                        _onClick={(e) => {
+                        toggle ? setToggle(false) : setToggle(true);
+                        e.preventDefault();
+                        e.stopPropagation();              
+                    }}
+                    is_like={toggle}
+                    />
+                    <p>{eng_name}</p>
+                    {hash_tag.map((p, idx) => (
+                        <TasteTag>#{hash_tag[idx]}</TasteTag>
+                    ))}
+                </BeerInfoWrap>
+            </RecommendBeerWrap>
+        </React.Fragment>
     )
 }
 
-export default EachBeer
+export default EachBeer;
 
-EachBeer.detaultProps = {
-    _onClick: ()=>{}
-}
+const RecommendBeerWrap = styled.div`
+    width: 148px;
+    margin-bottom: 20px;
+    margin-right: 16px;
+`;
 
-
-const Container = styled.div`
-    margin: 10px;
-    text-align:left;
-    span{
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 1;
-        overflow: hidden;
-        margin: 0 6px;
-          
-    }
-`
-
-const Img = styled.div`
+const BeerImage = styled.div`
     width: 148px;
     height: 148px;
-    border: none;
-    border-radius: 10px;
-    background-color: #F6F6F6;
+    border-radius: 13px;
+    background-color: #F7F7F7;
+`;
 
-`
+const BeerInfoWrap = styled.div`
+    margin: 10px 5px 0 5px;
+    & p {
+        margin: 0;
+        font-size: 12px;
+    }
+`;
 
-const NameText = styled.span`
-    font-weight: bold;
-    font-size: 14px;
-    line-height: 20px;
+const BeerTitle = styled.p`
+    margin: 0;
     display: inline;
+    font-size: 14px;
+    font-weight: bold;
+`;
 
-`
-const EngNameText = styled.span`
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 17px;
-`
 const TasteTag = styled.div`
     display: inline-block;
-    width: 36px;
+    margin-right: 3px;
+    padding: 0 6px;
     height: 16px;
     border: 0.5px solid #888888;
     box-sizing: border-box;
     border-radius: 33px;
     font-size: 10px;
-    text-align:center;
     line-height: 14px;
-    color: #555;
+    text-align: center;
+    color: #333333;
 `;

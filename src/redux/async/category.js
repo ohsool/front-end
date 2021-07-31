@@ -5,21 +5,18 @@ import { headerAxios, nonHeaderAxios } from "./moduleAxios";
 export const getCategory = createAsyncThunk(
   "category/getCategory",
   async (data, thunkAPI) => {
-    console.log("BeerCategory data", data)
-    const response = await nonHeaderAxios.post(`/api/beerCategory`, data);
-    console.log(response)
 
-    //return response.data.result;
+    const response = await nonHeaderAxios.get(`/api/beerCategory`, data);
+
+    return response.data;
   }
 );
-
-/*
-export const getBeer = createAsyncThunk(
-    "user/logIn", 
+//특정카테고리 맥주 가져오기
+export const getCategoryBeer = createAsyncThunk(
+    "category/getCategoryBeer", 
     async (data, thunkAPI) => {
-    console.log("Login data", data)
-    const response = await nonHeaderAxios.post(`api/user/auth`, data);
-    console.log("Login response", response.data);
+
+    const response = await nonHeaderAxios.get(`/api/beerCategory/:beerCategoryId`, data);
+    
   return response.data;
 });
-*/

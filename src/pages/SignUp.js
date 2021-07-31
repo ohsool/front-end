@@ -1,9 +1,9 @@
 import React, {useState} from "react";
 import styled from "styled-components";
-import { history } from "../redux/configureStore";
 import {useDispatch} from "react-redux";
 import {signUp} from "../redux/async/user";
 import { emailCheck, pwdReg} from "../share/checkReg";
+
 
 const SignUp = (props) => {
     const dispatch = useDispatch();
@@ -46,7 +46,7 @@ const SignUp = (props) => {
         })
     }
     const submitEnterSignUp = (e) => {
-        if(e.key == "Enter"){
+        if(e.key === "Enter"){
             submitSignUp();
         }
     }
@@ -143,7 +143,8 @@ const InputWrap = styled.div`
 
 const InputSignUP = styled.input`
     width: 312px;
-    height: 50px;
+    height: 35px;
+    padding-top: 15px;
     margin-bottom: 15px;
     background-color: transparent;
     border-top: none;

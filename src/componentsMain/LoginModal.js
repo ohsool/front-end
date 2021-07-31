@@ -29,7 +29,7 @@ const LoginModal = (props) => {
         });
     }
     const submitEnterSignUp = (e) => {
-        if(e.key == "Enter"){
+        if(e.key === "Enter"){
             onSubmit();
         }
     }
@@ -118,7 +118,7 @@ const ModalWrap = styled.div`
     }
     position: absolute;
     animation: scaleUp 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
-    margin-top: 100px;
+    bottom: 50px;
     width: 300px;
     display: flex;
     justify-content: center;

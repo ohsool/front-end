@@ -1,67 +1,48 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { history } from "../redux/configureStore";
-import { Link } from "react-router-dom";
+
 import Slider from './Slider';
 import EachBeer from "./EachBeer";
-
 import { getCategory } from "../redux/async/category";
+import { getAllBeer } from "../redux/async/beer";
 
 const BeerList = () =>{
     const dispatch = useDispatch();
-    dispatch(getCategory());
-    /*
-    const beerType = [
-        {name: "전체"},
-        {name: "필스너"},
-        {name: "페일에일"},
-        {name: "IPA"},
-        {name: "둔켈"},
-        {name: "스카우트"},
-        {name: "복"},
-    ]
-     console.log(beerType[0]["name"]);
-*/
+    
+    // useEffect(() => {
+    //     dispatch(getAllBeer());
+    //     dispatch(getCategory());
+    // }, []);
     const beers = [
     {
         category: 'lager',
         name: '곰표 밀맥주' , 
         eng_name: 'Gompyo Wheat Beer',
-        //hash_tag: ['달달', '과일향', '상큼함']},
-        hash_tag: '달달'},
+        hash_tag: ['달달', '과일향', '상큼함']},
     {
         category: 'lager',
         name: 'Y끼리 IPA', 
         eng_name: 'IPA with Y',
-        hash_tag: '달달'},
+        hash_tag: ['달달', '과일향', '상큼함']},
     {
         name: '곰표 밀맥주' , 
         eng_name: 'Gompyo Wheat Beer',
-        //hash_tag: ['달달', '과일향', '상큼함']},
-        hash_tag: '달달'},
-    {
-        name: 'Y끼리 IPA', 
-        eng_name: 'IPA with Y',
-        hash_tag: '달달'},
+        hash_tag: ['달달', '과일향', '상큼함']},
     {
         name: '곰표 밀맥주' , 
         eng_name: 'Gompyo Wheat Beer',
-        //hash_tag: ['달달', '과일향', '상큼함']},
-        hash_tag: '달달'},
-    {
-        name: 'Y끼리 IPA', 
-        eng_name: 'IPA with Y',
-        hash_tag: '달달'},
+        hash_tag: ['달달', '과일향', '상큼함']},
     {
         name: '곰표 밀맥주' , 
         eng_name: 'Gompyo Wheat Beer',
-        //hash_tag: ['달달', '과일향', '상큼함']},
-        hash_tag: '달달'},
+        hash_tag: ['달달', '과일향', '상큼함']},
     {
+        category: 'lager',
         name: 'Y끼리 IPA', 
         eng_name: 'IPA with Y',
-        hash_tag: '달달'},     
+        hash_tag: ['달달', '과일향', '상큼함']},
 /*    {
         name: '아잉거 셀러브레이터 도펠 보크', 
         eng_name: 'Ayinger Celebrator Doppelbock',
@@ -80,15 +61,14 @@ const BeerList = () =>{
 
                     <Slider
                         items={[
-                            "전체",
-                            "아메리칸 라거",
-                            "필스너",
-                            "페일에일",
-                            "복",
-                            "스카우트",
-                            "바우젠",
+                            "All",
+                            "Lager",
+                            "Pilsner",
+                            "Pale Ale",
                             "IPA",
-                            "둔켈" 
+                            "Weizen",
+                            "Dunkel",
+                            "Stout",
                         ]}
                         
                     />
@@ -140,7 +120,6 @@ const Grid = styled.div`
 `
 const TopNav = styled.div`
     margin-top: 60px;
-    text-align: center;
     color: #483834;
     ul {
         display: flex;
@@ -156,23 +135,25 @@ const TopNav = styled.div`
 const Search = styled.div`
     width: 360px;
     & > input{
-        width: 312px;
+        width: 292px;
         height: 30px;
         border:none;
         margin: 10px 24px;
         background: #F6F6F6;
         border-radius: 18px;
+        outline: none;
+        padding-left: 20px;
         ::placeholder,
         ::-webkit-input-placeholder {
             position: absolute;
             color: #888888;
-            margin: 7px 24px;
+            margin-top: 7px
         }
     }
 `
 const List = styled.div`
-    width: 320px;
-    margin: 0 16px;
+    width: 312px;
+    margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
 `;
