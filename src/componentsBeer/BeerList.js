@@ -23,38 +23,19 @@ const BeerList = () =>{
             <Container>
                 <Grid>
                     <TopNav>
-
-                    <Slider
-                        items={items}
-                        
-                    />
+                    <Slider items={items}/>
                     </TopNav>
-
                     <Search>
                         <input placeholder="검색어를 입력하세요."/>
                     </Search>
-
                     <List>
                         {beers?.length > 0 ? beers.map((item, idx) => (
                             <EachBeer key={idx} {...item} 
-                            _onClick={() =>
-                                history.push("/beer/detail")
-                            }
+                            
                             />
                         )):""}
                     </List>
                 </Grid>
-    
-{/*
-                    {beerType.length>0? beerType.map((item, idx)=>{
-                        <BeerTypeName key={idx}
-                            _onClick={() =>
-                                history.push(`/beers/list/${item.name}`)
-                            }
-                        >{item.name}</BeerTypeName>
-                        
-                    }): ""}
-*/}
             </Container>
         </React.Fragment>
     )

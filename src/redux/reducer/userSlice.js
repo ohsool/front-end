@@ -25,7 +25,7 @@ const userSlice = createSlice({
             window.alert("이미 존재하는 아이디입니다!")
             return;
           }
-          // window.location.reload("/");
+          window.location.reload("/");
         })
         .addCase(logIn.pending, (state, action) => {
         })
