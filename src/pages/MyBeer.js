@@ -26,14 +26,14 @@ const MyBeer = ()=>{
     const mydogam = [
         {
             category: 'lager',
-            name: '곰표 밀맥주' , 
-            eng_name: 'Gompyo Wheat Beer',
-            hash_tag: ['달달', '과일향', '상큼함']},
+            name_koeran: '곰표 밀맥주' , 
+            name_english: 'Gompyo Wheat Beer',
+            hashtag: ['달달', '과일향', '상큼함']},
         {
             category: 'lager',
-            name: 'Y끼리 IPA',
-            eng_name: 'IPA with Y',
-            hash_tag: ['달달', '과일향', '상큼함']},
+            name_korean: 'Y끼리 IPA',
+            name_english: 'IPA with Y',
+            hashtag: ['달달', '과일향', '상큼함']},
     ];      
     return (
         <React.Fragment>

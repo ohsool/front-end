@@ -7,7 +7,7 @@ import Slider from './Slider';
 import EachBeer from "./EachBeer";
 import { getCategory } from "../redux/async/category";
 import { getAllBeer } from "../redux/async/beer";
-import { beerReview } from "../redux/async/review";
+
 
 const BeerList = () =>{
     const dispatch = useDispatch();
@@ -41,12 +41,8 @@ const BeerList = () =>{
             <Container>
                 <Grid>
                     <TopNav>
-
-                    <Slider
-                        items={items}                        
-                    />
+                    <Slider items={items}/>
                     </TopNav>
-
                     <Search>
                         <input 
                             onChange={onChange}
@@ -56,18 +52,14 @@ const BeerList = () =>{
                         </input>
 
                     </Search>
-
                     <List>
                         {beers?.length > 0 ? beers.map((item, idx) => (
                             <EachBeer key={idx} {...item} 
-                            _onClick={() =>
-                                history.push("/beer/detail")
-                            }
+                            
                             />
                         )):""}
                     </List>
                 </Grid>
-    
             </Container>
         </React.Fragment>
     )

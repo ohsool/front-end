@@ -1,24 +1,34 @@
-import React,{useState} from "react";
+import React,{useState, useEffect} from "react";
 import styled from "styled-components";
 import {history} from "../redux/configureStore";
+import { useDispatch } from "react-redux";
 
 import HeartButton from "./HeartButton";
 import TasteGraph from "./TasteGraph";
 import EachReview from "./EachReview";
+import { useSelector } from "react-redux";
+import { getReview } from "../redux/async/review";
 
-const BeerDetail = () =>{
+const BeerDetail = (props) =>{
+    const dispatch = useDispatch();
     const [toggle, setToggle] = useState(false);
     const heart_detail = "detail"
-    const beer_detail = 
-        {
-            _id: "beer1",
-            name: "곰표 밀맥주",
-            eng_name: "Gompyo Wheat beer",
-            hash_tag: ["달달","과일향","상큼함"],
-            introduce: "",
-            store: ["GS25 편의점", "현대백화점 식품관"],
-            other_store: ["CU 편의점 여의도역 R점"],
-        }
+    const beers = useSelector(state => state.beer.beerList.beers);
+    const index = beers.findIndex((p) => p._id === props.match.params.beerId);
+
+    //const reviews = useSelector(state => state.review.reviewList.reviews);
+    //const onebeer_index = reviews.findIndex((p) => p._id === props.match.params.beerId)
+
+    //console.log("review:", onebeer_index)
+
+
+    useEffect(() => {
+        dispatch(getReview());
+    }, []);
+    
+
+    const beer = beers[index];
+    
     const reviews = [
         {
             nickname: "닉네임",
@@ -45,22 +55,19 @@ const BeerDetail = () =>{
             rate: "4.0",
             review : "UserReview"
         },
-
-
     ];   
-    
     
     return(
         <React.Fragment>
             <Container>
                 <Grid>
                     <Img>
-                        {/*<img src="/"/>*/}
+                        <img src="" />
                     </Img>
 
                     <Wrap>
                         <Horizion>
-                        <span style={{ fontWeight: "700", fontSize: "20px", lineHeight: "29px"}}>{beer_detail.name}</span>
+                        <span style={{ fontWeight: "700", fontSize: "20px", lineHeight: "29px"}}>{beers[index]?.name_korean}</span>
                         <div style={{ width: "38px", height: "38px", display: "flex", position: "absolute", right: "24px"}}>
                             <HeartButton
                                 heart_detail={heart_detail}
@@ -73,8 +80,8 @@ const BeerDetail = () =>{
                             />
                         </div>
                         </Horizion>
-                        <span>{beer_detail.eng_name}</span>
-                        {beer_detail["hash_tag"].map((item, idx)=>(
+                        <span>{beers[index]?.name_english}</span>
+                        {beers[index]?.hashtag.map((item, idx)=>(
                             <TasteTag>
                                 <span>#{item}</span>
                             </TasteTag>
@@ -141,7 +148,7 @@ const BeerDetail = () =>{
                             )): ""}
                             <span style={{ textAlign:"center", paddingBottom: "20px",  fontWeight: "700", fontSize: "14px", lineHeight: "20.27px", fontStyle: "bold"
                             }} onClick={()=>{
-                                history.push("/beer/review")
+                                history.push("/beer/review", {beer})
                             }}>전체보기</span>
                         </Gradient>
 
@@ -188,8 +195,9 @@ const Img = styled.div`
     height: 380px;
     border-radius: 10px;
     background-color: #F6F6F6;
-    img{ 
-        //들어갈 예정
+    & > img{ 
+        width: 360px;
+        height: 380px;
     }
 
 `

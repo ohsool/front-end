@@ -11,18 +11,23 @@ import { writeReview } from "../redux/async/review";
 const ReviewWriteModal = (props) => {
     const dispatch = useDispatch();
 
-    const { open, close } = props;
+    const { open, close, beer } = props;
     const taste_data = ["쓴맛", "청량감", "향", "단맛", "고소한맛"];
     
 
     const [review, setReview] = useState("");
-    const [starScore, setStarScore] = useState(5);
+    const [starScore, setStarScore] = useState(0);
     let arr = Array(5);
     const [featuresList, setFeaturesList] = useState(arr.fill(0));
-    
+
     const submitReview = () => {
+        if(review === "" || starScore === 0 || featuresList.includes(0)){
+            window.alert("답하지 않은 문항이 있어요!")
+            return
+        }
+        
         dispatch(writeReview({
-            "beer": "",//beer_id,
+            "beer": beer["name_korean"],//beer_id,
             "myFeatures": {
                 "bitter": featuresList[0], 
                 "crispy": featuresList[1], 
@@ -34,6 +39,7 @@ const ReviewWriteModal = (props) => {
             "rate": starScore,
             "review": review
             }));
+        window.alert("작성 완료!🍻")
         history.replace("/beer/list");
 
     }
@@ -68,17 +74,20 @@ const ReviewWriteModal = (props) => {
                     </SuggestTitle>
                     <CloseIcon onClick={close}/>
                     <BeerInfo>
-                            <BeerImage/>
+                            <BeerImage>
+                                <img src={beer["image"]}/>
+                            </BeerImage>
                             <BeerTextarea 
                                     onChange={onChange}
                                     review={review}
+                                    placeholder={"맥주에 대한 평가와 소감을 적어주세요.(최대 48자)"}
                             >
 
                             </BeerTextarea>
                     </BeerInfo>
                     <ScoreWrap>
                             <Div> {/* 별점 묶음 */}
-                                <span style={{margin: "0 auto",fontWeight: "bold"}}>별점</span>
+                                <span style={{margin: "0 auto", fontWeight: "bold"}}>별점</span>
                                 <StarRate
                                     setStarScore={setStarScore}
                                 />
@@ -128,6 +137,9 @@ const Background = styled.div`
     z-index: 9999;
     display: flex;
     justify-content: center;
+    img={
+
+    }
 `;
 
 const ModalWrap = styled.div`
@@ -208,6 +220,10 @@ const BeerImage = styled.div`
     width: 100px;
     height: 100px;
     background-color: #FFFFFF;
+    & > img{
+        width: 100px;
+        height: 100px; 
+    }
 `;
 
 const BeerTextarea = styled.textarea`

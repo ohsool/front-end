@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import HeartButton from "./HeartButton";
+import {history} from "../redux/configureStore";
 
 const EachBeer = (props) => {
     const [toggle, setToggle] = useState(false);
     
-    const { _onClick ,name_korean, name_english, hashtag, image} = props; 
+    const { _onClick ,name_korean, name_english, hashtag, image, _id, item} = props;
     return(
         <React.Fragment>
-            <RecommendBeerWrap onClick={_onClick}>
+            <RecommendBeerWrap onClick={() => {
+                history.push(`/beer/detail/${_id}`)
+            }}>
                 <BeerImage>
                     <img src={image}>
                     </img>

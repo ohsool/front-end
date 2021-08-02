@@ -6,7 +6,7 @@ import StarBorderIcon from "@material-ui/icons/StarBorder";
 
 
 const StarButton = ({setStarScore}) =>{
-    const [score, setScore] = useState(5);
+    const [score, setScore] = useState(0);
 
     const totalStarCount = 5;
     

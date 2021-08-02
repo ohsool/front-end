@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { writeReview} from "../async/review";
+import { getReview, writeReview} from "../async/review";
 const initialState = {
+    reviewList: [],
     writeReview: null,
     isLoading: false,
     isDone: false,
@@ -12,15 +13,18 @@ const reviewSlice = createSlice({
   initialState,
   extraReducers: (builder) =>
     builder
+        .addCase(getReview.pending, (state, action) => {
+            state.reviewList = [];
+        })
+        .addCase(getReview.fulfilled, (state, action) => {
+            state.reviewList = action.payload;
+        })
+        .addCase(getReview.rejected, (state, action) => {
+            console.log("reviewList rejected: 리뷰목록 불러오기에 실패했습니다");
+        })
         .addCase(writeReview.pending, (state, action) => {
         })
         .addCase(writeReview.fulfilled, (state, action) => {
-        })
-        .addCase(writeReview.pending, (state, action) => {
-        })
-        .addCase(writeReview.fulfilled, (state, action) => {
-            console.log(action.payload);
-            window.alert("리뷰 작성이 완료되었습니다")
         })
       // 공통
       .addMatcher(
