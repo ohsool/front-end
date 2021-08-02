@@ -81,17 +81,23 @@ const ReviewList = (props)=>{
             rate: "4.0",
             review : "UserReview"
         },
-
+        {
+            nickname: "닉네임",
+            rate: "4.0",
+            review : "UserReview"
+        },
     ];
     return (
         <React.Fragment>
             <Container>
+                <Wrap>
                 <MoveBoxWrap
                         onClick={() => {
                             openModal();
                         }}>
                         <span>후기 작성하기</span>
                 </MoveBoxWrap>
+                </Wrap>
                 <Grid>
                     {reviews.length > 0 ? reviews.map((item, idx) => (
                         <EachReview key={idx} {...item}/> 
@@ -123,15 +129,20 @@ const Grid = styled.div`
     width: 360px;
     margin: 0 auto;
 `
+const Wrap = styled.div`
+    position: fixed;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    bottom: 0;
+    z-index: 99;
+`;
 
 const MoveBoxWrap = styled.div`
     width: 360px;
     height: 40px;
     background-color: #F6F6F6;
     border-radius: 10px 10px 0 0;
-    position: fixed;
-    bottom: 0;
-    z-index: 99;
     & > span{
         line-height: 40px;
         margin-left: 24px;

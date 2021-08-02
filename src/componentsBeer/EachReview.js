@@ -6,7 +6,6 @@ import {useDispatch} from "react-redux";
 const EachReview=(props)=> {
     const is_user = true;//본인 게시글이면 (magazine-result플젝의 PostList 참고))
     const { nickname, date, rate, review, idx} = props; 
-    console.log("key", idx);
     const dispatch = useDispatch();
     return (
         <>
