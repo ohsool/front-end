@@ -1,36 +1,26 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getMyDogam, getMyReview } from "../async/beer";
-
+import { writeReview} from "../async/review";
 const initialState = {
-    mydogam: [],
-    beerOne: null,
+    writeReview: null,
     isLoading: false,
     isDone: false,
     isError: false,
 };
 
-const beerSlice = createSlice({
-  name: "mybeer",
+const reviewSlice = createSlice({
+  name: "review",
   initialState,
   extraReducers: (builder) =>
     builder
-        .addCase(getMyDogam.pending, (state, action) => {
-            state.beerList = [];
+        .addCase(writeReview.pending, (state, action) => {
         })
-        .addCase(getMyDogam.fulfilled, (state, action) => {
-            state.beerList = action.payload;
+        .addCase(writeReview.fulfilled, (state, action) => {
         })
-        .addCase(getMyDogam.rejected, (state, action) => {
-            console.log("getMyDogam rejected: 나 도감 불러오기에 실패했습니다");
+        .addCase(writeReview.pending, (state, action) => {
         })
-        .addCase(getMyReview.pending, (state, action) => {
-            state.beerOne = null;
-        })
-        .addCase(getMyReview.fulfilled, (state, action) => {
-            state.beerOne = action.payload;
-        })
-        .addCase(getMyReview.rejected, (state, action) => {
-            console.log("getMyReview rejected: 나 리뷰 불러오기에 실패했습니다");
+        .addCase(writeReview.fulfilled, (state, action) => {
+            console.log(action.payload);
+            window.alert("리뷰 작성이 완료되었습니다")
         })
       // 공통
       .addMatcher(
@@ -62,4 +52,5 @@ const beerSlice = createSlice({
         }
       ),
 });
-export default beerSlice;
+
+export default reviewSlice;

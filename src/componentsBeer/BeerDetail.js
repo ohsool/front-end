@@ -131,7 +131,7 @@ const BeerDetail = () =>{
                     <hr/>
 
                     <Wrap>
-                        <span style={{ fontWeight: "700",paddingBottom: "14px"}}>리뷰</span>
+                    <span style={{ fontWeight: "700",paddingBottom: "14px"}}>리뷰</span>
                         <Gradient>
                             {reviews.length > 0 ? reviews.map((item, idx) => (
                                 idx < 4 ? <EachReview key={idx} {...item}/> : null
@@ -239,7 +239,7 @@ const TasteTag = styled.div`
 const Gradient = styled.div`
     position: absolute;
     z-index: 100;
-    background: linear-gradient(rgba( 155, 155, 155, 0.1 ), rgba( 155, 155, 155, 1 ));
+    
 
 
 `

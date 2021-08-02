@@ -5,11 +5,12 @@ import {useDispatch} from "react-redux";
 
 const EachReview=(props)=> {
     const is_user = true;//본인 게시글이면 (magazine-result플젝의 PostList 참고))
-    const { nickname, date, rate, review} = props; 
+    const { nickname, date, rate, review, index} = props; 
+    console.log("key",index);
 
     const dispatch = useDispatch();
     return (
-        <>
+        <React.Fragment>
         <Container>
             <Grid>
                 <GridHorizon>
@@ -49,7 +50,7 @@ const EachReview=(props)=> {
                 </ReviewText>
             </Grid>
         </Container>   
-        </>
+        </React.Fragment>
     )
 }
 

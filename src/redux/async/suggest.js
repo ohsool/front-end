@@ -13,8 +13,9 @@ export const suggestComment = createAsyncThunk(
 );
 
 // 맥주 추천
-export const suggestBeer = createAsyncThunk("/api/recommendation",
-async (data, thunkAPI) => {
+export const suggestBeer = createAsyncThunk(
+  "/api/recommendation",
+  async (data, thunkAPI) => {
     console.log("beer action", data);
     // const response = await suggestAxios.post(`api/user/auth`, data);
 

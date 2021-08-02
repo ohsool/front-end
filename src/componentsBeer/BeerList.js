@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { history } from "../redux/configureStore";
@@ -7,14 +7,31 @@ import Slider from './Slider';
 import EachBeer from "./EachBeer";
 import { getCategory } from "../redux/async/category";
 import { getAllBeer } from "../redux/async/beer";
+import { beerReview } from "../redux/async/review";
 
 const BeerList = () =>{
     const dispatch = useDispatch();
+    const [input, setInput] = useState();
     
-    // useEffect(() => {
-    //     dispatch(getAllBeer());
-    //     dispatch(getCategory());
-    // }, []);
+     /*useEffect(() => {
+         dispatch(getAllBeer());
+         dispatch(getCategory());
+     }, []);
+    */
+    const onChange = (e) =>{
+        setInput(e.target.value);
+    }
+
+    const EnterSubmit = (e) =>{
+        if(e.key === "Enter"){
+            //dispatch(searchReview(input));
+            setInput("");
+            console.log("입력된: ",input);
+        }
+
+
+    }
+
     const beers = [
     {
         category: 'lager',
@@ -75,7 +92,13 @@ const BeerList = () =>{
                     </TopNav>
 
                     <Search>
-                        <input placeholder="검색어를 입력하세요."/>
+                        <input 
+                            onChange={onChange}
+                            onKeyPress={EnterSubmit}
+                            placeholder="검색어를 입력하세요."
+                        >
+                        </input>
+
                     </Search>
 
                     <List>
@@ -89,16 +112,6 @@ const BeerList = () =>{
                     </List>
                 </Grid>
     
-{/*
-                    {beerType.length>0? beerType.map((item, idx)=>{
-                        <BeerTypeName key={idx}
-                            _onClick={() =>
-                                history.push(`/beers/list/${item.name}`)
-                            }
-                        >{item.name}</BeerTypeName>
-                        
-                    }): ""}
-*/}
             </Container>
         </React.Fragment>
     )

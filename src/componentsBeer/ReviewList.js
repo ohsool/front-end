@@ -129,7 +129,7 @@ const Grid = styled.div`
 
 const MoveBoxWrap = styled.div`
     margin: 0 auto;
-    width: 320px;
+    width: 360px;
     height: 40px;
     background-color: #F6F6F6;
     border-radius: 10px 10px 0 0;
