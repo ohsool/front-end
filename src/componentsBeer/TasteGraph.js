@@ -1,34 +1,37 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import { Radar } from 'react-chartjs-2';
 
-import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis } from 'recharts';
+const data = {
+  labels: ['고소한맛', '쓴맛', '단맛', '청량감', '향'],
+  datasets: [
+    {
+        label: "맥주 맛 평점",
+        data: [2, 5, 3, 4, 4],
+        backgroundColor: 'rgba(255, 196, 79, 0.5)',  //rgba(255, 255, 255, 0.2)
+        borderColor: '#FFC44F',
+        borderWidth: 3,
+    },
+  ],
+};
+const options = {
+    scales: {
+        angles: {
+            display: false,
+        },
+        r: {
+            max: 5,
+            min: 0,
+            ticks: {
+                stepSize: 1,
+            }
+        }
+    },
+};
 
-const TasteGraph = (props) => {
-    const data = [
-        { subject: '쓴맛', A: 0, B: 1, fullMark: 1 },
-        { subject: '청량감', A: 5, B: 2, fullMark: 3 },
-        { subject: '향', A: 3, B: 3, fullMark: 4 },
-        { subject: '단맛', A: 2, B: 5, fullMark: 5 },
-        { subject: '고소한맛', A: 4, B: 2, fullMark: 3 },
-      ];
-    return(
-        <React.Fragment>
-            <Grid>
-                <RadarChart cx={130} cy={135} outerRadius={70} width={265} height={265} data={data}>
-                    <PolarGrid/>
-                    <PolarAngleAxis style={{fontSize: "14px", color: "white"}} dataKey="subject" />
-                    <PolarRadiusAxis  orient="middle" angle={67.5}/>
-                    <Radar strokeWidth={2} name="standard" dataKey="A" stroke="gray" fill="gray" fillOpacity={0.4} />
-                </RadarChart>
-            </Grid>
-
-        </React.Fragment>
-    )
-}
+const TasteGraph = (props) => (
+  <>
+    <Radar data={data} options={options} />
+  </>
+);
 
 export default TasteGraph;
-
-const Grid = styled.div`
-    margin: auto;
-
-`

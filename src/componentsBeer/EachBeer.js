@@ -5,13 +5,16 @@ import HeartButton from "./HeartButton";
 const EachBeer = (props) => {
     const [toggle, setToggle] = useState(false);
     
-    const { _onClick ,name, eng_name, hash_tag} = props; 
+    const { _onClick ,name_korean, name_english, hashtag, image} = props; 
     return(
         <React.Fragment>
             <RecommendBeerWrap onClick={_onClick}>
-                <BeerImage></BeerImage>
+                <BeerImage>
+                    <img src={image}>
+                    </img>
+                </BeerImage>
                 <BeerInfoWrap>
-                    <BeerTitle>{name}</BeerTitle>
+                    <BeerTitle>{name_korean}</BeerTitle>
                     <HeartButton
                         _onClick={(e) => {
                         toggle ? setToggle(false) : setToggle(true);
@@ -20,9 +23,9 @@ const EachBeer = (props) => {
                     }}
                     is_like={toggle}
                     />
-                    <p>{eng_name}</p>
-                    {hash_tag.map((p, idx) => (
-                        <TasteTag>#{hash_tag[idx]}</TasteTag>
+                    <p>{name_english}</p>
+                    {hashtag.map((p, idx) => (
+                        <TasteTag>#{hashtag[idx]}</TasteTag>
                     ))}
                 </BeerInfoWrap>
             </RecommendBeerWrap>
@@ -43,6 +46,11 @@ const BeerImage = styled.div`
     height: 148px;
     border-radius: 13px;
     background-color: #F7F7F7;
+    background-size: cover;
+    & > img{
+        width:148px;
+        height: 148px;
+    }
 `;
 
 const BeerInfoWrap = styled.div`

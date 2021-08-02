@@ -35,10 +35,9 @@ const beerSlice = createSlice({
         })
         //검색기능
         .addCase(searchReview.pending, (state, action) => {
-            state.beerOne = null;
         })
         .addCase(searchReview.fulfilled, (state, action) => {
-            state.searchList = action.payload;
+            //console.log(action.payload);
         })
         .addCase(searchReview.rejected, (state, action) => {
             console.log("searchReview rejected: 맥주 검색에 실패했습니다");

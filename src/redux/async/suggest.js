@@ -14,10 +14,10 @@ export const suggestComment = createAsyncThunk(
 
 // 맥주 추천
 export const suggestBeer = createAsyncThunk(
-  "/api/recommendation",
+  "/api/suggestBeer",
   async (data, thunkAPI) => {
-    console.log("beer action", data);
-    // const response = await suggestAxios.post(`api/user/auth`, data);
 
-  return ;
+    const response = await suggestAxios.post(`api/recommendation`, data);
+
+  return response.data;
 });

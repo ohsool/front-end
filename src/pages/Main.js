@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
 import MainLogo from "../componentsMain/MainLogo";
@@ -26,5 +26,6 @@ const Grid = styled.div`
     background-color: #C4C4C4;
     background-image: url(${mainbeer});
     background-size: cover;
+    z-index: -10;
     flex-direction: column;
 `;

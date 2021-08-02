@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { history } from "../redux/configureStore";
 
 import Slider from './Slider';
@@ -11,13 +11,16 @@ import { beerReview } from "../redux/async/review";
 
 const BeerList = () =>{
     const dispatch = useDispatch();
+    const beers = useSelector(state => state.beer.beerList.beers);
+    const items = useSelector(state => state.category.categoryList.beerCategories);
+    
+    useEffect(() => {
+        dispatch(getAllBeer());
+        dispatch(getCategory());
+    }, []);
+
     const [input, setInput] = useState();
     
-     /*useEffect(() => {
-         dispatch(getAllBeer());
-         dispatch(getCategory());
-     }, []);
-    */
     const onChange = (e) =>{
         setInput(e.target.value);
     }
@@ -32,43 +35,6 @@ const BeerList = () =>{
 
     }
 
-    const beers = [
-    {
-        category: 'lager',
-        name: '곰표 밀맥주' , 
-        eng_name: 'Gompyo Wheat Beer',
-        hash_tag: ['달달', '과일향', '상큼함']},
-    {
-        category: 'lager',
-        name: 'Y끼리 IPA', 
-        eng_name: 'IPA with Y',
-        hash_tag: ['달달', '과일향', '상큼함']},
-    {
-        name: '곰표 밀맥주' , 
-        eng_name: 'Gompyo Wheat Beer',
-        hash_tag: ['달달', '과일향', '상큼함']},
-    {
-        name: '곰표 밀맥주' , 
-        eng_name: 'Gompyo Wheat Beer',
-        hash_tag: ['달달', '과일향', '상큼함']},
-    {
-        name: '곰표 밀맥주' , 
-        eng_name: 'Gompyo Wheat Beer',
-        hash_tag: ['달달', '과일향', '상큼함']},
-    {
-        category: 'lager',
-        name: 'Y끼리 IPA', 
-        eng_name: 'IPA with Y',
-        hash_tag: ['달달', '과일향', '상큼함']},
-/*    {
-        name: '아잉거 셀러브레이터 도펠 보크', 
-        eng_name: 'Ayinger Celebrator Doppelbock',
-        hash_tag: '달달'}
-    , 
-*/
-    ];
-   
-
 
     return(
         <React.Fragment>
@@ -77,17 +43,7 @@ const BeerList = () =>{
                     <TopNav>
 
                     <Slider
-                        items={[
-                            "All",
-                            "Lager",
-                            "Pilsner",
-                            "Pale Ale",
-                            "IPA",
-                            "Weizen",
-                            "Dunkel",
-                            "Stout",
-                        ]}
-                        
+                        items={items}                        
                     />
                     </TopNav>
 
@@ -102,7 +58,7 @@ const BeerList = () =>{
                     </Search>
 
                     <List>
-                        {beers.length > 0 ? beers.map((item, idx) => (
+                        {beers?.length > 0 ? beers.map((item, idx) => (
                             <EachBeer key={idx} {...item} 
                             _onClick={() =>
                                 history.push("/beer/detail")

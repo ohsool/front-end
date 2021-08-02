@@ -5,9 +5,7 @@ import {useDispatch} from "react-redux";
 
 const EachReview=(props)=> {
     const is_user = true;//본인 게시글이면 (magazine-result플젝의 PostList 참고))
-    const { nickname, date, rate, review, index} = props; 
-    console.log("key",index);
-
+    const { nickname, date, rate, review, idx} = props; 
     const dispatch = useDispatch();
     return (
         <React.Fragment>
@@ -61,7 +59,7 @@ const Container = styled.div`
     height: 100px;
     background-color: #FDF9F0;
     border-radius: 5px;
-    margin: 5px 0;
+    margin: 5px auto;
 
 `
 

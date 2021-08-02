@@ -5,7 +5,7 @@ import {history} from "../redux/configureStore";
 import HeartButton from "./HeartButton";
 import TasteGraph from "./TasteGraph";
 import EachReview from "./EachReview";
-//import axios from "Axios";
+
 const BeerDetail = () =>{
     const [toggle, setToggle] = useState(false);
     const heart_detail = "detail"
@@ -134,11 +134,14 @@ const BeerDetail = () =>{
                     <span style={{ fontWeight: "700",paddingBottom: "14px"}}>리뷰</span>
                         <Gradient>
                             {reviews.length > 0 ? reviews.map((item, idx) => (
-                                idx < 4 ? <EachReview key={idx} {...item}/> : null
-                            )):""}
+                                idx < 4 ? (<React.Fragment>
+                                    <EachReview key={idx} idx={idx} {...item}/>
+                                    
+                                    </React.Fragment>) : null
+                            )): ""}
                             <span style={{ textAlign:"center", paddingBottom: "20px",  fontWeight: "700", fontSize: "14px", lineHeight: "20.27px", fontStyle: "bold"
                             }} onClick={()=>{
-                                history.push("/beer/detail/review")
+                                history.push("/beer/review")
                             }}>전체보기</span>
                         </Gradient>
 
@@ -203,7 +206,7 @@ const Horizion = styled.div`
 `
 
 const Graph = styled.div`
-    margin: 14px 15px;
+    margin: 14px auto;
     display: flex;
     width: 313px;
     height: 313px;
@@ -239,7 +242,8 @@ const TasteTag = styled.div`
 const Gradient = styled.div`
     position: absolute;
     z-index: 100;
-    
-
-
-`
+    -webkit-mask-size: 312px 420px;
+    -webkit-mask-image: -webkit-gradient(linear, center bottom, center top;
+    color-stop(1.00,  rgba(0,0,0,1));
+    color-stop(0.00,  rgba(0,0,0,0)));
+`;

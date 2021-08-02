@@ -4,28 +4,19 @@ import styled from "styled-components";
 import StarIcon from "@material-ui/icons/Star";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
 
-const StarButton = (props) =>{
 
-      //별점
-      const [score, setScore] = useState(0);
-      const starCount = score; //평점
-      const [star_review, setStar_Review] = useState({
-          rate: 5,
-        });
-      const totalStarCount = 5;
-      
-      const removeCount = totalStarCount - starCount;
-  
-    const handleScore = (score) => {
-      setStar_Review({
-        ...star_review,
-        rate: score,
-      });
-      console.log("score",score,"star_review",star_review)
-    };
+const StarButton = ({setStarScore}) =>{
+    const [score, setScore] = useState(5);
 
-  
+    const totalStarCount = 5;
+    
+    const starCount = score;
 
+  const removeCount = totalStarCount - starCount;
+
+  const handleScore = (score) => {
+    setStarScore(score);
+  };
   return (
     <Container>
       <div>
@@ -33,22 +24,23 @@ const StarButton = (props) =>{
           return (
             <StarIcon 
               key={index}
-              style={{ color: "#FFB521", width: "25px", height: "25px"}}
-              onClick={()=>{
+              style={{ color: "#FFB521", width: "40px", height: "40px"}}
+              onClick={() => {
                 setScore(index + 1);
                 handleScore(index + 1);
-              }}></StarIcon>
+              }}
+            ></StarIcon>
           );
         })}
         {[...Array(removeCount)].map((n, index) => {
           return (
             <StarBorderIcon
-              key={index}
-              style={{ color: "#FFB521", width: "25px", height: "25px"}}
-              onClick={()=>{
-                setScore(score+index + 1);
-                handleScore(score + index + 1);}
-              }></StarBorderIcon>
+              style={{ color: "#FFB521", width: "40px", height: "40px"}}
+              onClick={() => {
+                setScore(score + index + 1);
+                handleScore(score + index + 1);
+              }}
+            ></StarBorderIcon>
           );
         })}
       </div>
@@ -59,5 +51,5 @@ export default StarButton;
 
 
 const Container = styled.div`
-  margin-bottom: 30px;
+  margin-top: 20px;
 `;
