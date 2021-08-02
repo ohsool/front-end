@@ -8,7 +8,11 @@ const SelectBar =()=>{
 
     return (
       <div style={{width: "200px", marginTop: "35px"}}>
-      <ProgressBar percent={cur_position} filledBackground="#FFC44F">
+      <ProgressBar 
+            percent={cur_position} 
+            filledBackground="#FFC44F"
+            height="10px"
+            >
         {arr.length > 0 ? arr.map(() => (
           <Step>
           {({ accomplished, position, index }) => ( //accomplished는 도달 여부 T/F, position은 현재 %(예를 들어 2번째를 클릭하면 20%)

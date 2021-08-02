@@ -15,4 +15,5 @@ export const nonHeaderAxios = axios.create({
 
 export const suggestAxios = axios.create({
     baseURL: `http://3.35.222.23`,
+    headers: headers,
 });

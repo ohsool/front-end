@@ -16,7 +16,12 @@ const MyPageModal = (props) => {
     const EnterSubmit = (e) => {
         if(e.key === "Enter"){
             if(suggestInfo.suggestTitle === "맥주 건의하기"){
-                dispatch(suggestBeer(chat));
+                dispatch(suggestBeer({
+                    title: suggestInfo.suggestTitle,
+                    description: chat,
+                    location: "여삼빌딩",
+                    image: "맥주",
+                }));
                 setChat("");
                 close();
             }
@@ -77,8 +82,8 @@ const ModalWrap = styled.div`
     background-color: #FFFFFF;
     border-radius: 10px 10px 0 0;
     bottom: 0px;
-    width: 360px;
-    height: 310px;
+    width: 100%;
+    padding-bottom: 20px;
     display: flex;
     flex-direction: column;
     @keyframes scaleUp {

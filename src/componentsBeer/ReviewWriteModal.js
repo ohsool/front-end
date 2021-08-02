@@ -33,7 +33,6 @@ const ReviewWriteModal = (props) => {
                         <span>리뷰 쓰기</span>
                     </SuggestTitle>
                     <CloseIcon onClick={close}/>
-
                     <BeerInfo>
                             <BeerImage/>
                             <BeerTextarea 
@@ -44,7 +43,6 @@ const ReviewWriteModal = (props) => {
 
                             </BeerTextarea>
                     </BeerInfo>
-
                     <ScoreWrap>
                             <Div> {/* 별점 묶음 */}
                                 <span style={{margin: "0 auto",fontWeight: "bold"}}>별점</span>
@@ -66,7 +64,6 @@ const ReviewWriteModal = (props) => {
                                 </TasteScore>
                             </TasteScoreWrap>
                             </div>
-                        
                         <ReviewButton>
                             <button>도감 작성하기</button>
                         </ReviewButton>
@@ -91,19 +88,18 @@ const Background = styled.div`
     right: 0;
     background-color: rgba(0,0,0,0.50);
     animation: fadeIn .5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
-    z-index: 10;
+    z-index: 9999;
     display: flex;
     justify-content: center;
 `;
 
 const ModalWrap = styled.div`
-    position: absolute;
+    position: fixed;
     animation: scaleUp 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
     background-color: #FDF9F0;
     border-radius: 10px 10px 0 0;
     bottom: 0px;
     width: 360px;
-    height: 650px;
     display: flex;
     flex-direction: column;
     @keyframes scaleUp {
@@ -148,7 +144,7 @@ const CloseIcon = styled.div`
 
 
 const TasteFlavorWrap = styled.div`
-    margin: 35px;
+    margin-left: 35px;
     display: inline-block;
     width: 59px;
     height: 238px;
@@ -164,33 +160,31 @@ const TasteFlavorWrap = styled.div`
 
 
 const BeerInfo = styled.div`
-    width: 360px;
+    width: 328px;
     display: flex;
-    border-radius: 10px;
-    margin: 0px auto;
-    margin-top: 60px;
+    margin: 10px auto;
 `;
 
 const BeerImage = styled.div`
-    margin: 10px;
     border-radius: 10px;
+    margin: 0 10px;
     width: 100px;
     height: 100px;
     background-color: #FFFFFF;
-
 `;
 
 const BeerTextarea = styled.textarea`
-        width: 208px;
-        padding: 10px;
-        height: 79;
-        resize:none;
-        border-radius: 10px;
-   
+    outline: none;
+    width: 188px;
+    padding: 10px;
+    height: 80px;
+    resize:none;
+    border-radius: 10px;
+    border: none;
 `;
 
 const Div = styled.div`
-    margin: 5px auto;
+    margin: 10px auto;
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -203,8 +197,10 @@ const ReviewButton = styled.div`
         width: 308px;
         height: 45px;
         border-radius: 50px;
-        border: 1px solid #FFC44F;
-        background-color: #fff;
+        border: 2px solid #FFC44F;
+        color: #FFC44F;
+        font-weight: bold;
+        background-color: transparent;
     }
 
 `

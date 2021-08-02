@@ -42,14 +42,12 @@ const ReviewWrite = () =>{
 
     return (
         <React.Fragment>
-            
                 <MoveBoxWrap
                     onClick={() => {
                         openModal();
                     }}>
                     <span>후기 작성하기</span>
                 </MoveBoxWrap>
-
                 <ReviewWriteModal
                         suggestInfo={modal_info}
                         EnterSubmit={EnterSubmit}

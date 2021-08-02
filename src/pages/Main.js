@@ -26,5 +26,6 @@ const Grid = styled.div`
     background-color: #C4C4C4;
     background-image: url(${mainbeer});
     background-size: cover;
+    z-index: -10;
     flex-direction: column;
 `;

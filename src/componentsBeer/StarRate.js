@@ -30,7 +30,7 @@ const StarButton = () =>{
           return (
             <StarIcon 
               key={index}
-              style={{ color: "#FFB521", width: "25px", height: "25px"}}
+              style={{ color: "#FFB521", width: "40px", height: "40px"}}
               onClick={() => {
                 setScore(index + 1);
                 handleScore(index + 1);
@@ -41,7 +41,7 @@ const StarButton = () =>{
         {[...Array(removeCount)].map((n, index) => {
           return (
             <StarBorderIcon
-              style={{ color: "#FFB521", width: "25px", height: "25px"}}
+              style={{ color: "#FFB521", width: "40px", height: "40px"}}
               onClick={() => {
                 setScore(score + index + 1);
                 handleScore(score + index + 1);
@@ -57,6 +57,7 @@ export default StarButton;
 
 
 const Container = styled.div`
-  margin-bottom: 30px;
+  margin-top: 20px;
+
 `;
 

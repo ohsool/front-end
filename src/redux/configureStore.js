@@ -4,10 +4,11 @@ import { combineReducers } from "redux";
 import { createBrowserHistory } from "history";
 import { connectRouter } from "connected-react-router";
 
-import userSlice from "./reducer/userSlice";
-import suggestSlice from "./reducer/suggestSlice";
-import beerSlice from "./reducer/beerSlice";
-import categorySlice from "./reducer/categorySlice";
+import {
+    userSlice, 
+    suggestSlice, 
+    beerSlice, 
+    categorySlice} from "./reducer/SliceIndex";
 
 export const history = createBrowserHistory();
 
