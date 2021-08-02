@@ -22,10 +22,10 @@ const BeerType = ({ items, beerId }) => {
         <Container>
             <StyledSlider {...settings}>
                 {/* beer/list/${item} 이런 식으로 URL이 들어간다. */}
-                {true && items.map((item, idx) => (
+                {true && items?.map((item, idx) => (
                     <div /*className={beerId === item ? "clicked" : "non-clicked" */
-                        onClick={()=> history.push(`beer/list`) } key={idx}>
-                        {item}
+                        onClick={()=> history.push(`/beer/list/`) } key={idx}>
+                        {item.name}
                     </div>
                 ))}
             </StyledSlider>

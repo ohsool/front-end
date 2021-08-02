@@ -9,7 +9,7 @@ const ReviewWriteModal = (props) => {
     const { open, close, EnterSubmit, onChange, chat } = props;
     const taste_data = ["쓴맛", "단맛", "고소한맛", "청량감", "향"];
     const [starScore, setStarScore] = useState(5);
-    console.log("Modal_starscore", starScore);
+    
     //별점
     // const [score, setScore] = useState(5);
     // const totalStarCount = 5;   
