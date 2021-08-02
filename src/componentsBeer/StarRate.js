@@ -5,7 +5,7 @@ import StarIcon from "@material-ui/icons/Star";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
 
 
-const StarButton = () =>{
+const StarButton = ({setStarScore}) =>{
     const [score, setScore] = useState(5);
 
     const totalStarCount = 5;
@@ -22,6 +22,7 @@ const StarButton = () =>{
       ...review,
       rate: score,
     });
+    setStarScore(score);
   };
   return (
     <Container>

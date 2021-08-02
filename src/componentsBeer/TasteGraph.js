@@ -6,7 +6,7 @@ const data = {
   datasets: [
     {
         label: "맥주 맛 평점",
-        data: [1, 5, 3, 4, 4],
+        data: [2, 5, 3, 4, 4],
         backgroundColor: 'rgba(255, 196, 79, 0.5)',  //rgba(255, 255, 255, 0.2)
         borderColor: '#FFC44F',
         borderWidth: 3,
@@ -24,7 +24,7 @@ const options = {
             ticks: {
                 stepSize: 1,
             }
-    }
+        }
     },
 };
 

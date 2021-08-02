@@ -1,4 +1,4 @@
-import React ,{useState} from "react";
+import React ,{useEffect, useState} from "react";
 import styled from "styled-components";
 import "./ReviewWriteModal.css";
 import StarIcon from "@material-ui/icons/Star";
@@ -8,21 +8,23 @@ import StarRate from "./StarRate";
 const ReviewWriteModal = (props) => {
     const { open, close, EnterSubmit, onChange, chat } = props;
     const taste_data = ["쓴맛", "단맛", "고소한맛", "청량감", "향"];
+    const [starScore, setStarScore] = useState(5);
+    console.log("Modal_starscore", starScore);
     //별점
-    const [score, setScore] = useState(5);
-    const totalStarCount = 5;   
-    const starCount = score;
-    const [review, setReview] = useState({ rate: 5});
+    // const [score, setScore] = useState(5);
+    // const totalStarCount = 5;   
+    // const starCount = score;
+    // const [review, setReview] = useState({ rate: 5});
 
     
-    const removeCount = totalStarCount - starCount;
+    // const removeCount = totalStarCount - starCount;
 
-    const handleScore = (score) => {
-        setReview({
-        ...review,
-        rate: score,
-        });
-    };
+    // const handleScore = (score) => {
+    //     setReview({
+    //     ...review,
+    //     rate: score,
+    //     });
+    // };
 
     return(
         <React.Fragment>
@@ -46,7 +48,9 @@ const ReviewWriteModal = (props) => {
                     <ScoreWrap>
                             <Div> {/* 별점 묶음 */}
                                 <span style={{margin: "0 auto",fontWeight: "bold"}}>별점</span>
-                                <StarRate/>
+                                <StarRate
+                                    setStarScore={setStarScore}
+                                />
                             </Div>
 
                             <div>
@@ -65,7 +69,7 @@ const ReviewWriteModal = (props) => {
                             </TasteScoreWrap>
                             </div>
                         <ReviewButton>
-                            <button>도감 작성하기</button>
+                            <button onClick={() => {}}>도감 작성하기</button>
                         </ReviewButton>
 
                     </ScoreWrap>
