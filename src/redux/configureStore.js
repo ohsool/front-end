@@ -24,10 +24,10 @@ const middlewares = [];
 
 const env = process.env.NODE_ENV;
 
-if (env === "development") {
-    const { logger } = require("redux-logger");
-    middlewares.push(logger);
-  }
+// if (env === "development") {
+//     const { logger } = require("redux-logger");
+//     middlewares.push(logger);
+//   }
 
 export const store = configureStore({
   reducer,

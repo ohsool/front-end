@@ -1,0 +1,23 @@
+.whiteButton{
+    margin-top: 25px;
+    width: 312px;
+    height: 45px;
+    font-weight: bold;
+    bottom: 81px;
+    border: 1px solid #FFB521;
+    background-color: transparent;
+    border-radius: 24px;
+    color: #FFB521;
+}
+
+.yellowButton{
+    margin-top: 25px;
+    width: 312px;
+    height: 45px;
+    font-weight: bold;
+    bottom: 81px;
+    border: none;
+    background-color: #FFB521;
+    border-radius: 24px;
+    color: #151515;
+}

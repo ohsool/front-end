@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getAllBeer, getOneBeer,searchReview } from "../async/beer";
+import { getAllBeer, getOneBeer, searchReview, likeBeer, unLikeBeer  } from "../async/beer";
 
 const initialState = {
     beerList: [],
@@ -25,10 +25,10 @@ const beerSlice = createSlice({
             console.log("beerList rejected: 맥주목록 불러오기에 실패했습니다");
         })
         .addCase(getOneBeer.pending, (state, action) => {
-            state.beerOne = null;
+            state.beerOne = {};
         })
         .addCase(getOneBeer.fulfilled, (state, action) => {
-            state.beerOne = action.payload;
+            state.beerOne = action.payload.beer;
         })
         .addCase(getOneBeer.rejected, (state, action) => {
             console.log("getOneBeer rejected: 맥주항목 불러오기에 실패했습니다")
@@ -41,6 +41,18 @@ const beerSlice = createSlice({
         })
         .addCase(searchReview.rejected, (state, action) => {
             console.log("searchReview rejected: 맥주 검색에 실패했습니다");
+        })
+        .addCase(likeBeer.pending, (state, action) => {
+        })
+        .addCase(likeBeer.fulfilled, (state, action) => {
+        })
+        .addCase(likeBeer.rejected, (state, action) => {
+        })
+        .addCase(unLikeBeer.pending, (state, action) => {
+        })
+        .addCase(unLikeBeer.fulfilled, (state, action) => {
+        })
+        .addCase(unLikeBeer.rejected, (state, action) => {
         })
       // 공통
       .addMatcher(

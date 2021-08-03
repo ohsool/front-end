@@ -17,7 +17,8 @@ export const logIn = createAsyncThunk("user/logIn",
 async (data, thunkAPI) => {
 
     const response = await nonHeaderAxios.post(`api/user/auth`, data);
-
+    
+    console.log(response.data);
   return response.data;
   }
 );

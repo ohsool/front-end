@@ -1,12 +1,14 @@
 import React, {useState} from "react";
 import styled from "styled-components";
+
 import {useDispatch} from "react-redux";
 import {signUp} from "../redux/async/user";
 import { emailCheck, pwdReg} from "../share/checkReg";
-
+import "../share/style/loginButton.css";
 
 const SignUp = (props) => {
     const dispatch = useDispatch();
+    const [is_typed, setIs_Typed] = useState(false);
     const [signup_info, setSignUp_Info] = useState({
         email: "",
         nickname: "",
@@ -25,16 +27,17 @@ const SignUp = (props) => {
             return;
         }
 
+        if(!pwdReg(password)){
+            window.alert("비밀번호를 4자 이상 입력해주세요!");
+            return;
+        }
+        
         if(password !== confirmPassword){
             window.alert("비밀번호 및 비밀번호확인이 다릅니다!");
             return;
         }
         if(!emailCheck(email)){
             window.alert("이메일 형식으로 입력해주세요!")
-            return;
-        }
-        if(!pwdReg(password)){
-            window.alert("비밀번호를 4자 이상 입력해주세요!");
             return;
         }
         dispatch(signUp(signup_info));
@@ -50,6 +53,15 @@ const SignUp = (props) => {
             submitSignUp();
         }
     }
+
+    const onKeyUp = () => {    //비밀번호 및 이메일 양식 맞을 때 버튼색 변화
+        if(emailCheck(email) && pwdReg(password) && pwdReg(confirmPassword) ){
+            setIs_Typed(true);
+        }else{
+            setIs_Typed(false);
+        }
+    }
+
     return(
         <React.Fragment>
             <SignUpWrap>
@@ -84,14 +96,16 @@ const SignUp = (props) => {
                             type="password"
                             onKeyPress={submitEnterSignUp}
                             onChange={onChange}
+                            onKeyUp={onKeyUp}
                             name="confirmPassword"
                             value={confirmPassword}
                             placeholder="비밀번호를 한번 더 입력해주세요"
                         ></InputSignUP>
-                        <SignUpButton 
+                        <button 
+                            className={is_typed ? "yellowButton" : "whiteButton"}
                             onClick={submitSignUp}>
                             가입하기
-                        </SignUpButton>
+                        </button>
                     </InputWrap>
             </Container>
             </SignUpWrap>
@@ -150,7 +164,7 @@ const InputSignUP = styled.input`
     border-top: none;
     border-left: none;
     border-right: none;
-    border-bottom: 2px solid #FFD074;
+    border-bottom: 0.5px solid #C4C4C4;
     outline: none;
     ::placeholder,
     ::-webkit-input-placeholder {

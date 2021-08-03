@@ -8,7 +8,7 @@ import EachBeer from "./EachBeer";
 import { getCategory } from "../redux/async/category";
 import { getAllBeer } from "../redux/async/beer";
 import { getReview } from "../redux/async/review";
-import Loader from "../componentsMain/Loader.js";
+import Loader from "../share/Loader.js";
 
 
 const BeerList = (props) =>{

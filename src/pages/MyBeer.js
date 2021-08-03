@@ -6,7 +6,7 @@ import Slider from "../componentsBeer/Slider";
 import EachBeer from "../componentsBeer/EachBeer";
 import MyReview from "../componentsMypage/MyReview";
 import Header from "../Header";
-import "./myBeer.css";
+import "../share/style/myBeer.css";
 import WritedReview from "../componentsMypage/WritedReview";
 
 const MyBeer = ()=>{

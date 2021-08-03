@@ -1,20 +1,19 @@
-import React,{useState, useEffect} from "react";
+import React,{useEffect, useState} from "react";
 import styled from "styled-components";
-import {history} from "../redux/configureStore";
-import { useDispatch } from "react-redux";
+import { history } from "../redux/configureStore";
+import { useSelector, useDispatch } from "react-redux";
+import { getOneBeer } from "../redux/async/beer";
 
 import HeartButton from "./HeartButton";
 import TasteGraph from "./TasteGraph";
 import EachReview from "./EachReview";
-import { useSelector } from "react-redux";
 import { getReview } from "../redux/async/review";
 
 const BeerDetail = (props) =>{
     const dispatch = useDispatch();
     const [toggle, setToggle] = useState(false);
     const heart_detail = "detail"
-    const beers = useSelector(state => state.beer.beerList.beers);
-    const index = beers.findIndex((p) => p._id === props.match.params.beerId);
+    const beerOne = useSelector(state => state.beer.beerOne);
 
     //const reviews = useSelector(state => state.review.reviewList.reviews);
     //const onebeer_index = reviews.findIndex((p) => p._id === props.match.params.beerId)
@@ -26,9 +25,10 @@ const BeerDetail = (props) =>{
         dispatch(getReview());
     }, []);
     
-
-    const beer = beers[index];
-    
+    useEffect(() => {
+        dispatch(getOneBeer(props.match.params.beerId));
+        
+    }, []);
     const reviews = [
         {
             nickname: "닉네임",
@@ -62,35 +62,31 @@ const BeerDetail = (props) =>{
             <Container>
                 <Grid>
                     <Img>
-                        <img src={beers[index].image} />
+                        <img src={beerOne.image} />
                     </Img>
-
                     <Wrap>
                         <Horizion>
-                        <span style={{ fontWeight: "700", fontSize: "20px", lineHeight: "29px"}}>{beers[index]?.name_korean}</span>
+                        <span style={{ fontWeight: "700", fontSize: "20px", lineHeight: "29px"}}>{beerOne.name_korean}</span>
                         <div style={{ width: "38px", height: "38px", display: "flex", position: "absolute", right: "24px"}}>
                             <HeartButton
                                 heart_detail={heart_detail}
                                 _onClick={(e) => {
-                                    toggle ? setToggle(false) : setToggle(true);
                                     e.preventDefault();
-                                    e.stopPropagation();              
+                                    e.stopPropagation();
+                                    toggle ? setToggle(false) : setToggle(true);
                                 }}
                                 is_like={toggle}                 
                             />
                         </div>
                         </Horizion>
-                        <span>{beers[index]?.name_english}</span>
-                        {beers[index]?.hashtag.map((item, idx)=>(
+                        <span>{beerOne.name_english}</span>
+                        {beerOne.hashtag?.map((item, idx)=>(
                             <TasteTag>
                                 <span>#{item}</span>
                             </TasteTag>
-                        ))}
-
-                        
+                        ))}       
                     </Wrap>
                     <hr/>
-
                     <Wrap>
                         <span style={{ fontWeight: "700"}}>맥주소개</span>
                         <span style={{ fontWeight: "500", fontSize: "14px", lineHeight: "20px",padding: "14px 0", minHeight: "60px"
@@ -98,30 +94,21 @@ const BeerDetail = (props) =>{
                             밀맥주 맛에 Tropical Fruit의
                             달콤함이 어우러진 곰표 우리나라 밀맥주
                         </span>
-
                     </Wrap>
-
                     <hr/>
-
                     <Wrap>
-                        <span style={{ fontWeight: "700"}}>그래프</span>
-                        
+                        <span style={{ fontWeight: "700"}}>그래프</span>                      
                     </Wrap>
                     <Graph>
-                        <TasteGraph/>
+                        <TasteGraph beers={beerOne}/>
                     </Graph>
-
                     <hr/>
-
                     <Wrap>
                         <span style={{ fontWeight: "700",paddingBottom: "14px"}}>판매처</span>
                         <div style={{display: "flex"}}>
                         <button/> 
                         <span style={{ fontWeight: "300", fontSize: "12px", lineHeight: "146%"}}>GS25 편의점</span>
                         </div>    
-                        
-
-
                     </Wrap>
                     <hr/>
                     
@@ -148,18 +135,12 @@ const BeerDetail = (props) =>{
                             )): ""}
                             <span style={{ textAlign:"center", paddingBottom: "20px",  fontWeight: "700", fontSize: "14px", lineHeight: "20.27px", fontStyle: "bold"
                             }} onClick={()=>{
-                                history.push("/beer/review", {beer})
+                                history.push("/beer/review", {beerOne})
                             }}>전체보기</span>
-                        </Gradient>
-
-                            
-
+                        </Gradient>  
                     </Wrap>
                 </Grid>
             </Container>
-
-
-
         </React.Fragment>
 
     )
@@ -188,7 +169,6 @@ const Grid = styled.div`
     margin: 0 auto;
     margin-top: 40px;
 `
-
 
 const Img = styled.div`
     width: 360px;

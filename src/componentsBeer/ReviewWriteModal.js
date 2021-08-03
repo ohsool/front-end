@@ -1,6 +1,6 @@
 import React ,{useState,useEffect} from "react";
 import styled from "styled-components";
-import "./ReviewWriteModal.css";
+import "../share/style/ReviewWriteModal.css";
 import SelectBar from "./SelectBar";
 import StarRate from "./StarRate";
 import { history } from "../redux/configureStore";
@@ -52,23 +52,6 @@ const ReviewWriteModal = (props) => {
             return
         }
     }
-    
-
-    //별점
-    // const [score, setScore] = useState(5);
-    // const totalStarCount = 5;   
-    // const starCount = score;
-    // const [review, setReview] = useState({ rate: 5});
-
-    
-    // const removeCount = totalStarCount - starCount;
-
-    // const handleScore = (score) => {
-    //     setReview({
-    //     ...review,
-    //     rate: score,
-    //     });
-    // };
 
     return(
         <React.Fragment>
