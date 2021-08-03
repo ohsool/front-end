@@ -18,12 +18,12 @@ const MyPage = (props) => {
         commentPlaceholder: "",
     });
 
-    // useEffect(() => {
-    //     if(!session){
-    //         window.alert("로그인이 필요한 서비스입니다!")
-    //         history.push("/")
-    //     }
-    // }, []);
+    useEffect(() => {
+        if(!session){
+            window.alert("로그인이 필요한 서비스입니다!")
+            history.push("/")
+        }
+    }, []);
 
     const openModal = () => {
         setModalOpen(true);

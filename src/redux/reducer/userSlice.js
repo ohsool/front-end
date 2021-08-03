@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { signUp, logIn } from "../async/user";
+import { signUp, logIn, userInfo } from "../async/user";
 
 const initialState = {
   userList: null,
@@ -20,23 +20,31 @@ const userSlice = createSlice({
   },
   extraReducers: (builder) =>
     builder
-        .addCase(signUp.fulfilled, (state, action) => {
-          if(action.payload.message === "existed user"){
-            window.alert("이미 존재하는 아이디입니다!")
-            return;
-          }
-          window.location.reload("/");
-        })
-        .addCase(logIn.pending, (state, action) => {
-        })
-        .addCase(logIn.fulfilled, (state, action) => {
-          sessionStorage.setItem("token", action.payload.token);
-          state.currentUser = action.payload.token;
-          window.location.replace("/");
-        })
-        .addCase(logIn.rejected, (state, action) => {
-          window.alert("아이디나 비밀번호가 틀립니다!")
-        })
+      .addCase(signUp.fulfilled, (state, action) => {
+        if(action.payload.message === "existed user"){
+          window.alert("이미 존재하는 아이디입니다!")
+          return;
+        }
+        window.location.reload("/");
+      })
+      .addCase(logIn.pending, (state, action) => {
+      })
+      .addCase(logIn.fulfilled, (state, action) => {
+        sessionStorage.setItem("token", action.payload.token);
+        window.location.replace("/");
+      })
+      .addCase(logIn.rejected, (state, action) => {
+        window.alert("아이디나 비밀번호가 틀립니다!")
+      })
+      .addCase(userInfo.pending, (state, action) => {
+        state.currentUser = {};
+      })
+      .addCase(userInfo.fulfilled, (state, action) => {
+        state.currentUser = action.payload;
+      })
+      .addCase(userInfo.rejected, (state, action) => {
+        console.log("유저정보 불러오기에 실패했습니다")
+      })
       // 공통
       .addMatcher(
         (action) => {

@@ -7,6 +7,7 @@ import Slider from './Slider';
 import EachBeer from "./EachBeer";
 import { getCategory } from "../redux/async/category";
 import { getAllBeer } from "../redux/async/beer";
+import { userInfo } from "../redux/async/user"
 
 
 const BeerList = () =>{
@@ -17,8 +18,8 @@ const BeerList = () =>{
     useEffect(() => {
         dispatch(getAllBeer());
         dispatch(getCategory());
+        dispatch(userInfo());
     }, []);
-
     const [input, setInput] = useState();
     
     const onChange = (e) =>{
@@ -50,12 +51,10 @@ const BeerList = () =>{
                             placeholder="검색어를 입력하세요."
                         >
                         </input>
-
                     </Search>
                     <List>
                         {beers?.length > 0 ? beers.map((item, idx) => (
                             <EachBeer key={idx} item={item} 
-                            
                             />
                         )):""}
                     </List>

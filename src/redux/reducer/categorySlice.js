@@ -19,7 +19,9 @@ const categorySlice = createSlice({
             state.categoryList = [];
           })
           .addCase(getCategory.fulfilled, (state, action) => {
-            state.categoryList = action.payload;
+            const new_list = action.payload.beerCategories;
+            new_list.push("all");
+            state.categoryList = new_list;
           })
           .addCase(getCategory.rejected, (state, action) => {
           })

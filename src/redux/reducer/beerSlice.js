@@ -47,12 +47,14 @@ const beerSlice = createSlice({
         .addCase(likeBeer.fulfilled, (state, action) => {
         })
         .addCase(likeBeer.rejected, (state, action) => {
+          console.log("like failed");
         })
         .addCase(unLikeBeer.pending, (state, action) => {
         })
         .addCase(unLikeBeer.fulfilled, (state, action) => {
         })
         .addCase(unLikeBeer.rejected, (state, action) => {
+          console.log("unlike failed");
         })
       // 공통
       .addMatcher(

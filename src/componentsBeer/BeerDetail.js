@@ -2,7 +2,7 @@ import React,{useEffect, useState} from "react";
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
 import { useSelector, useDispatch } from "react-redux";
-import { getOneBeer } from "../redux/async/beer";
+import { getOneBeer, likeBeer, unLikeBeer } from "../redux/async/beer";
 
 import HeartButton from "./HeartButton";
 import TasteGraph from "./TasteGraph";
@@ -14,21 +14,27 @@ const BeerDetail = (props) =>{
     const [toggle, setToggle] = useState(false);
     const heart_detail = "detail"
     const beerOne = useSelector(state => state.beer.beerOne);
-
-    //const reviews = useSelector(state => state.review.reviewList.reviews);
-    //const onebeer_index = reviews.findIndex((p) => p._id === props.match.params.beerId)
-
-    //console.log("review:", onebeer_index)
-
-
-    useEffect(() => {
-        dispatch(getReview());
-    }, []);
+    const nickname = useSelector(state => state.user.currentUser.nickname);
     
     useEffect(() => {
         dispatch(getOneBeer(props.match.params.beerId));
-        
+        dispatch(getReview());
     }, []);
+    useEffect(() => {
+        if(beerOne?.like_array?.includes(nickname)){
+            setToggle(true);
+        }
+    })
+    const clickLike = () => {
+        if(toggle === true){
+            dispatch(unLikeBeer(beerOne._id));
+             setToggle(false)
+        }else{
+            dispatch(likeBeer(beerOne._id));
+            setToggle(true);
+        }
+    }
+
     const reviews = [
         {
             nickname: "닉네임",
@@ -62,25 +68,25 @@ const BeerDetail = (props) =>{
             <Container>
                 <Grid>
                     <Img>
-                        <img src={beerOne.image} />
+                        <img src={beerOne?.image} />
                     </Img>
                     <Wrap>
                         <Horizion>
-                        <span style={{ fontWeight: "700", fontSize: "20px", lineHeight: "29px"}}>{beerOne.name_korean}</span>
+                        <span style={{ fontWeight: "700", fontSize: "20px", lineHeight: "29px"}}>{beerOne?.name_korean}</span>
                         <div style={{ width: "38px", height: "38px", display: "flex", position: "absolute", right: "24px"}}>
                             <HeartButton
                                 heart_detail={heart_detail}
                                 _onClick={(e) => {
                                     e.preventDefault();
                                     e.stopPropagation();
-                                    toggle ? setToggle(false) : setToggle(true);
+                                    clickLike();
                                 }}
                                 is_like={toggle}                 
                             />
                         </div>
                         </Horizion>
-                        <span>{beerOne.name_english}</span>
-                        {beerOne.hashtag?.map((item, idx)=>(
+                        <span>{beerOne?.name_english}</span>
+                        {beerOne?.hashtag?.map((item, idx)=>(
                             <TasteTag>
                                 <span>#{item}</span>
                             </TasteTag>
@@ -100,7 +106,7 @@ const BeerDetail = (props) =>{
                         <span style={{ fontWeight: "700"}}>그래프</span>                      
                     </Wrap>
                     <Graph>
-                        <TasteGraph beers={beerOne}/>
+                        <TasteGraph beers={beerOne?.features}/>
                     </Graph>
                     <hr/>
                     <Wrap>

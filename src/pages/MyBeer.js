@@ -16,20 +16,22 @@ const MyBeer = ()=>{
         setIs_Dogam(true);
     }, [])
 
-    // useEffect(() => {
-    //     if(!session){
-    //         window.alert("로그인이 필요한 서비스입니다!")
-    //         history.push("/")
-    //     }
-    // }, []);
+    useEffect(() => {
+        if(!session){
+            window.alert("로그인이 필요한 서비스입니다!")
+            history.push("/")
+        }
+    }, []);
 
     const mydogam = [
         {
+            image: "",
             category: 'lager',
             name_koeran: '곰표 밀맥주' , 
             name_english: 'Gompyo Wheat Beer',
             hashtag: ['달달', '과일향', '상큼함']},
         {
+            image: "",
             category: 'lager',
             name_korean: 'Y끼리 IPA',
             name_english: 'IPA with Y',

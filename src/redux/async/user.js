@@ -22,3 +22,14 @@ async (data, thunkAPI) => {
   return response.data;
   }
 );
+
+//유저 정보 불러오기
+export const userInfo = createAsyncThunk(
+  "user/userInfo",
+  async (data, thunkAPI) => {
+
+    const response = await headerAxios.get(`/api/user/me`);
+
+    return response.data;
+  }
+)
