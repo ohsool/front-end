@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getAllBeer, getOneBeer, likeBeer, unLikeBeer } from "../async/beer";
+import { getAllBeer, getOneBeer, searchReview, likeBeer, unLikeBeer  } from "../async/beer";
 
 const initialState = {
     beerList: [],
-    beerOne: {},
+    beerOne: null,
+    searchList: [],
     isLoading: false,
     isDone: false,
     isError: false,
@@ -30,7 +31,16 @@ const beerSlice = createSlice({
             state.beerOne = action.payload.beer;
         })
         .addCase(getOneBeer.rejected, (state, action) => {
-            console.log("getOneBeer rejected: 맥주항목 불러오기에 실패했습니다");
+            console.log("getOneBeer rejected: 맥주항목 불러오기에 실패했습니다")
+        })
+        //검색기능
+        .addCase(searchReview.pending, (state, action) => {
+        })
+        .addCase(searchReview.fulfilled, (state, action) => {
+            //console.log(action.payload);
+        })
+        .addCase(searchReview.rejected, (state, action) => {
+            console.log("searchReview rejected: 맥주 검색에 실패했습니다");
         })
         .addCase(likeBeer.pending, (state, action) => {
         })

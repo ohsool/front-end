@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { history } from "../redux/configureStore";
@@ -7,6 +7,7 @@ import Slider from './Slider';
 import EachBeer from "./EachBeer";
 import { getCategory } from "../redux/async/category";
 import { getAllBeer } from "../redux/async/beer";
+
 
 const BeerList = () =>{
     const dispatch = useDispatch();
@@ -18,6 +19,23 @@ const BeerList = () =>{
         dispatch(getCategory());
     }, []);
 
+    const [input, setInput] = useState();
+    
+    const onChange = (e) =>{
+        setInput(e.target.value);
+    }
+
+    const EnterSubmit = (e) =>{
+        if(e.key === "Enter"){
+            //dispatch(searchReview(input));
+            setInput("");
+            console.log("입력된: ",input);
+        }
+
+
+    }
+
+
     return(
         <React.Fragment>
             <Container>
@@ -26,7 +44,13 @@ const BeerList = () =>{
                     <Slider items={items}/>
                     </TopNav>
                     <Search>
-                        <input placeholder="검색어를 입력하세요."/>
+                        <input 
+                            onChange={onChange}
+                            onKeyPress={EnterSubmit}
+                            placeholder="검색어를 입력하세요."
+                        >
+                        </input>
+
                     </Search>
                     <List>
                         {beers?.length > 0 ? beers.map((item, idx) => (

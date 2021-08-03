@@ -7,13 +7,23 @@ import { getOneBeer } from "../redux/async/beer";
 import HeartButton from "./HeartButton";
 import TasteGraph from "./TasteGraph";
 import EachReview from "./EachReview";
+import { getReview } from "../redux/async/review";
 
 const BeerDetail = (props) =>{
     const dispatch = useDispatch();
     const [toggle, setToggle] = useState(false);
     const heart_detail = "detail"
-
     const beerOne = useSelector(state => state.beer.beerOne);
+
+    //const reviews = useSelector(state => state.review.reviewList.reviews);
+    //const onebeer_index = reviews.findIndex((p) => p._id === props.match.params.beerId)
+
+    //console.log("review:", onebeer_index)
+
+
+    useEffect(() => {
+        dispatch(getReview());
+    }, []);
     
     useEffect(() => {
         dispatch(getOneBeer(props.match.params.beerId));
@@ -46,7 +56,6 @@ const BeerDetail = (props) =>{
             review : "UserReview"
         },
     ];   
-    
     
     return(
         <React.Fragment>
@@ -116,7 +125,7 @@ const BeerDetail = (props) =>{
                     <hr/>
 
                     <Wrap>
-                        <span style={{ fontWeight: "700",paddingBottom: "14px"}}>리뷰</span>
+                    <span style={{ fontWeight: "700",paddingBottom: "14px"}}>리뷰</span>
                         <Gradient>
                             {reviews.length > 0 ? reviews.map((item, idx) => (
                                 idx < 4 ? (<React.Fragment>
@@ -126,7 +135,7 @@ const BeerDetail = (props) =>{
                             )): ""}
                             <span style={{ textAlign:"center", paddingBottom: "20px",  fontWeight: "700", fontSize: "14px", lineHeight: "20.27px", fontStyle: "bold"
                             }} onClick={()=>{
-                                history.push("/beer/review")
+                                history.push("/beer/review", {beerOne})
                             }}>전체보기</span>
                         </Gradient>  
                     </Wrap>
@@ -222,7 +231,7 @@ const Gradient = styled.div`
     position: absolute;
     z-index: 100;
     -webkit-mask-size: 312px 420px;
-    -webkit-mask-image: -webkit-gradient(linear, center bottom, center top, 
-    color-stop(1.00,  rgba(0,0,0,1)),
+    -webkit-mask-image: -webkit-gradient(linear, center bottom, center top;
+    color-stop(1.00,  rgba(0,0,0,1));
     color-stop(0.00,  rgba(0,0,0,0)));
 `;

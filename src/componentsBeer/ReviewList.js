@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useState, useEffect} from "react";
 import styled from "styled-components";
 
 import EachReview from "../componentsBeer/EachReview";
@@ -7,37 +7,34 @@ import {history} from "../redux/configureStore";
 
 import ReviewWriteModal from "../componentsBeer/ReviewWriteModal";
 import Header from "../Header";
-
+import { useLocation } from "react-router-dom";
+import { AssignmentReturnedSharp } from "@material-ui/icons";
 
 const ReviewList = (props)=>{
     const dispatch = useDispatch();
     const [modalOpen, setModalOpen] = useState(false);
-    const [input, setInput] = useState();
-    const [modal_info, setModal_Info] = useState({
-        suggestTitle: "",
-        titlePlaceholder: "",
-        commentPlaceholder: "",
-    });
+    const session = sessionStorage.getItem("token");
+
+    const location = useLocation(); 
+    const beer_detail = location.state?.beer;
+
     const openModal = () => {
         setModalOpen(true);
       };
     const closeModal = () => {
         setModalOpen(false);
-        setModal_Info({
-            suggestTitle: "",
-            titlePlaceholder: "",
-            commentPlaceholder: "",
-        });
     };
-    const onChange = (e) => {
-        setInput(e.target.value)
-    }
-    const EnterSubmit = (e) => {
-        if(e.key == "Enter"){
-            console.log("input:",input);
-            setInput("");
-            closeModal();
+
+    const loginConfirm = ()=>{
+        if(!session){
+            if(window.confirm("로그인이 필요한 서비스입니다. 로그인하시겠습니까?")){
+                history.push("/")
+                return
+            }else{
+                window.location.reload()///beer/review:id
+            }
         }
+
     }
 
     const reviews = [
@@ -93,6 +90,7 @@ const ReviewList = (props)=>{
                 <Wrap>
                 <MoveBoxWrap
                         onClick={() => {
+                            loginConfirm();
                             openModal();
                         }}>
                         <span>후기 작성하기</span>
@@ -105,12 +103,10 @@ const ReviewList = (props)=>{
                 </Grid>
 
                 <ReviewWriteModal
-                    suggestInfo={modal_info}
-                    EnterSubmit={EnterSubmit}
-                    onChange={onChange}
-                    chat={input}
                     open={modalOpen}
                     close={closeModal}
+                    beer={beer_detail}
+                    
                 ></ReviewWriteModal>               
             </Container>
 

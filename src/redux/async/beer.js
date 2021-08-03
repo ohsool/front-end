@@ -1,7 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { headerAxios, nonHeaderAxios } from "./moduleAxios";
 
-// 불편사항
 export const getAllBeer = createAsyncThunk(
   "beer/getAllBeer",
   async (data, thunkAPI) => {
@@ -15,7 +14,6 @@ export const getAllBeer = createAsyncThunk(
 export const getOneBeer = createAsyncThunk(
     "beer/getOneBeer",
     async (data, thunkAPI) => {
-
     const response = await nonHeaderAxios.get(`/api/beer/${data}`);
     
     return response.data;
@@ -41,6 +39,12 @@ export  const unLikeBeer = createAsyncThunk(
   }
 )
 
-
-
-
+//추가된 코드
+//맥주 검색
+export const searchReview = createAsyncThunk(
+  "beer/searchReview",
+  async (data, thunkAPI) => {
+    const response = await nonHeaderAxios.post(`/api/beer/search`, data);
+    return response.data;
+  }
+)

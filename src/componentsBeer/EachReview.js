@@ -8,7 +8,7 @@ const EachReview=(props)=> {
     const { nickname, date, rate, review, idx} = props; 
     const dispatch = useDispatch();
     return (
-        <>
+        <React.Fragment>
         <Container>
             <Grid>
                 <GridHorizon>
@@ -48,7 +48,7 @@ const EachReview=(props)=> {
                 </ReviewText>
             </Grid>
         </Container>   
-        </>
+        </React.Fragment>
     )
 }
 
