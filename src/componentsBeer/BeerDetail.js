@@ -3,28 +3,39 @@ import styled from "styled-components";
 import { history } from "../redux/configureStore";
 import { useSelector, useDispatch } from "react-redux";
 import { getOneBeer, likeBeer, unLikeBeer } from "../redux/async/beer";
+import { userInfo } from "../redux/async/user";
 
 import HeartButton from "./HeartButton";
 import TasteGraph from "./TasteGraph";
 import EachReview from "./EachReview";
 import { getReview } from "../redux/async/review";
+import Loader from "../share/Loader";
 
 const BeerDetail = (props) =>{
-    const dispatch = useDispatch();
     const [toggle, setToggle] = useState(false);
     const heart_detail = "detail"
+    const [loading, setLoading] = useState(false);
     const beerOne = useSelector(state => state.beer.beerOne);
     const userId = useSelector(state => state.user.currentUser.userId);
+    const dispatch = useDispatch();
     
     useEffect(() => {
-        dispatch(getOneBeer(props.match.params.beerId));
-        dispatch(getReview());
+        async function getData() {
+            await dispatch(getOneBeer(props.match.params.beerId));
+            // dispatch(getReview());
+            await dispatch(userInfo());
+        }
+        console.log("beer detail rendering")
+        return getData();
     }, []);
     useEffect(() => {
+        if(beerOne){
         if(beerOne?.like_array?.includes(userId)){
             setToggle(true);
+           }
         }
-    }, [toggle])
+    }, [beerOne]);
+
     const clickLike = () => {
         if(toggle === true){
             dispatch(unLikeBeer(beerOne._id));
@@ -62,7 +73,7 @@ const BeerDetail = (props) =>{
             review : "UserReview"
         },
     ];   
-    
+
     return(
         <React.Fragment>
             <Container>
@@ -237,7 +248,7 @@ const Gradient = styled.div`
     position: absolute;
     z-index: 100;
     -webkit-mask-size: 312px 420px;
-    -webkit-mask-image: -webkit-gradient(linear, center bottom, center top;
-    color-stop(1.00,  rgba(0,0,0,1));
+    -webkit-mask-image: -webkit-gradient(linear, center bottom, center top,
+    color-stop(1.00,  rgba(0,0,0,1)),
     color-stop(0.00,  rgba(0,0,0,0)));
 `;

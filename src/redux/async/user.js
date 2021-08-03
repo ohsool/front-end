@@ -33,3 +33,49 @@ export const userInfo = createAsyncThunk(
     return response.data;
   }
 )
+
+export const checkEmail = createAsyncThunk(
+  "user/checkEmail",
+  async (data, thunkAPI) => {
+    const server_email = {
+      email: data,
+    }
+    const response = await nonHeaderAxios.get(`/api/user/email`, server_email);
+    
+    return response.data;
+  }
+)
+
+export const checkNickname = createAsyncThunk(
+  "user/checkNickname",
+  async (data, thunkAPI) => {
+    const server_nickname ={
+      nickname: data
+    }
+    const response = await nonHeaderAxios.get(`/api/user/nickname`, server_nickname);
+
+    return response.data;
+  }
+)
+
+//카카오 로그인
+export const kakaoLogin = createAsyncThunk(
+  "user/kakaoLogin",
+  async (data, thunkAPI) => {
+    
+    const response = await nonHeaderAxios.post(`/api/user/kakao`);
+
+    return response.data;
+  }
+)
+
+//구글 로그인
+export const googleLogin = createAsyncThunk(
+  "user/googleLogin",
+  async (data, thunkAPI) => {
+    
+    const response = await nonHeaderAxios.post(`/api/user/google`);
+
+    return response.data;
+  }
+)

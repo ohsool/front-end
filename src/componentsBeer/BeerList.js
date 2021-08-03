@@ -22,9 +22,9 @@ const BeerList = (props) =>{
     
     useEffect(() => {
         async function getData() {
-            await dispatch(getAllBeer())
-            await dispatch(getCategory())
-            await dispatch(userInfo())
+            await dispatch(getAllBeer());
+            await dispatch(getCategory());
+            await dispatch(userInfo());
             setIs_Loading(true);
         }
         return getData();

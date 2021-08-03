@@ -1,9 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { signUp, logIn, userInfo } from "../async/user";
+import { 
+  signUp, 
+  logIn, 
+  userInfo, 
+  kakaoLogin, 
+  googleLogin,
+  checkEmail,
+  checkNickname,
+} from "../async/user";
 
 const initialState = {
   userList: null,
-  currentUser: null,
+  currentUser: [],
+  checkEmail: null,
+  checkNickname: null,
   isLoading: false,
   isDone: false,
   isError: false,
@@ -27,6 +37,18 @@ const userSlice = createSlice({
         }
         window.location.reload("/");
       })
+      .addCase(checkEmail.fulfilled, (state, action) => {
+        state.checkEmail = action.payload.message;
+      })
+      .addCase(checkEmail.rejected, (state, action) => {
+        console.log("email doublecheck failed");
+      })
+      .addCase(checkNickname.fulfilled, (state, action) => {
+        state.checkNickname = action.payload.message;
+      })
+      .addCase(checkNickname.rejected, (state, action) => {
+        console.log("nickname doublecheck failed")
+      })
       .addCase(logIn.pending, (state, action) => {
       })
       .addCase(logIn.fulfilled, (state, action) => {
@@ -37,13 +59,23 @@ const userSlice = createSlice({
         window.alert("아이디나 비밀번호가 틀립니다!")
       })
       .addCase(userInfo.pending, (state, action) => {
-        state.currentUser = {};
+        state.currentUser = [];
       })
       .addCase(userInfo.fulfilled, (state, action) => {
         state.currentUser = action.payload;
       })
       .addCase(userInfo.rejected, (state, action) => {
-        console.log("유저정보 불러오기에 실패했습니다")
+        console.log("유저정보 불러오기에 실패했습니다");
+      })
+      .addCase(kakaoLogin.fulfilled, (state, action) => {
+      })
+      .addCase(kakaoLogin.rejected, (state, action) => {
+        window.alert("로그인에 실패하였습니다.")
+      })
+      .addCase(googleLogin.fulfilled, (state, action) => {
+      })
+      .addCase(googleLogin.rejected, (state, action) => {
+        window.alert("로그인에 실패하였습니다.")
       })
       // 공통
       .addMatcher(
