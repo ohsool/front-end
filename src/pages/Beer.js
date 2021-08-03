@@ -11,6 +11,7 @@ const Beer = (props) => {
         <>  
             <Header/>
             <Route path="/beer/list/" exact component={BeerList}/>
+            <Route path="/beer/list/:beerCategoryId" component={BeerList}/>
             <Route path="/beer/detail/:beerId" component={BeerDetail}/>
             <Route path="/beer/review/" component={ReviewList}/>
         </>

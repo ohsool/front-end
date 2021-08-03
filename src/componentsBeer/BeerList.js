@@ -7,19 +7,37 @@ import Slider from './Slider';
 import EachBeer from "./EachBeer";
 import { getCategory } from "../redux/async/category";
 import { getAllBeer } from "../redux/async/beer";
+import { getReview } from "../redux/async/review";
+import Loader from "../componentsMain/Loader.js";
 
 
-const BeerList = () =>{
+const BeerList = (props) =>{
     const dispatch = useDispatch();
+    const [is_Loading, setIs_Loading] = useState(false);
+    const get_category_id = props.match.params.beerCategoryId;
+    const is_all = get_category_id ? false : true;
+
     const beers = useSelector(state => state.beer.beerList.beers);
     const items = useSelector(state => state.category.categoryList.beerCategories);
+    const category_beers = beers?.filter((p) => p.categoryId === get_category_id);
+
+    console.log("beers", beers);
+    //console.log("items",items);
+    console.log("category_id",get_category_id);
+    console.log("category_beers_list",category_beers);
     
     useEffect(() => {
-        dispatch(getAllBeer());
-        dispatch(getCategory());
-    }, []);
+        async function getData() {
+            await dispatch(getAllBeer())
+            await dispatch(getCategory())
+            setIs_Loading(true);
+        }
+        return getData()
 
-    const [input, setInput] = useState();
+    },[]);
+    
+
+    const [input, setInput] = useState();//검색 입력
     
     const onChange = (e) =>{
         setInput(e.target.value);
@@ -31,36 +49,46 @@ const BeerList = () =>{
             setInput("");
             console.log("입력된: ",input);
         }
-
-
     }
 
 
     return(
         <React.Fragment>
-            <Container>
-                <Grid>
-                    <TopNav>
-                    <Slider items={items}/>
-                    </TopNav>
-                    <Search>
-                        <input 
-                            onChange={onChange}
-                            onKeyPress={EnterSubmit}
-                            placeholder="검색어를 입력하세요."
-                        >
-                        </input>
+            {is_Loading ? (
+                <>
 
-                    </Search>
-                    <List>
-                        {beers?.length > 0 ? beers.map((item, idx) => (
-                            <EachBeer key={idx} {...item} 
-                            
-                            />
-                        )):""}
-                    </List>
-                </Grid>
-            </Container>
+                    <Container>
+                        <Grid>
+                            <TopNav>
+                            <Slider items={items}/>
+                            </TopNav>
+                            <Search>
+                                <input 
+                                    onChange={onChange}
+                                    onKeyPress={EnterSubmit}
+                                    placeholder="검색어를 입력하세요."
+                                ></input>
+
+                            </Search>
+                            {is_all? (
+                                <List>
+                                    {beers?.length > 0 ? beers.map((item, idx) => (
+                                        <EachBeer key={idx} {...item}/>
+                                    )):""}
+                                </List>
+                            ): ( 
+                                <List>
+                                    {category_beers?.length > 0 ? category_beers.map((item, idx) => (
+                                        <EachBeer key={idx} {...item}/>
+                                    )):""}
+                                </List>
+                            )}
+                        </Grid>
+                    </Container>
+                </>
+            ):(
+                <Loader/>
+            )}
         </React.Fragment>
     )
 

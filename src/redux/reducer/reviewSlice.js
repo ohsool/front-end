@@ -1,12 +1,27 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getReview, writeReview} from "../async/review";
+
 const initialState = {
     reviewList: [],
-    writeReview: null,
     isLoading: false,
     isDone: false,
     isError: false,
 };
+
+const initialReview = {
+  "beer": "",//beername
+  "myFeatures": {
+                "bitter": 0, 
+                "crispy": 0, 
+                "flavor": 0, 
+                "sweet": 0, 
+                "nutty": 0
+  },
+  "location": "default",
+  "rate": 0,
+  "review": ""
+};
+
 
 const reviewSlice = createSlice({
   name: "review",

@@ -2,18 +2,18 @@ import React,{useState, useEffect} from "react";
 import styled from "styled-components";
 
 import EachReview from "../componentsBeer/EachReview";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import {history} from "../redux/configureStore";
 
 import ReviewWriteModal from "../componentsBeer/ReviewWriteModal";
 import Header from "../Header";
 import { useLocation } from "react-router-dom";
-import { AssignmentReturnedSharp } from "@material-ui/icons";
 
 const ReviewList = (props)=>{
     const dispatch = useDispatch();
     const [modalOpen, setModalOpen] = useState(false);
-    const session = sessionStorage.getItem("token");
+    const session = sessionStorage.getItem("token"); //로그인 여부 확인용
+    //const currentUser = useSelector((state) => state.user.currentUser);
 
     const location = useLocation(); 
     const beer_detail = location.state?.beer;
@@ -24,17 +24,18 @@ const ReviewList = (props)=>{
     const closeModal = () => {
         setModalOpen(false);
     };
+    //
+
 
     const loginConfirm = ()=>{
-        if(!session){
+        if(session){
+            openModal();
+        }else{
             if(window.confirm("로그인이 필요한 서비스입니다. 로그인하시겠습니까?")){
                 history.push("/")
                 return
-            }else{
-                window.location.reload()///beer/review:id
             }
         }
-
     }
 
     const reviews = [
@@ -91,7 +92,6 @@ const ReviewList = (props)=>{
                 <MoveBoxWrap
                         onClick={() => {
                             loginConfirm();
-                            openModal();
                         }}>
                         <span>후기 작성하기</span>
                 </MoveBoxWrap>

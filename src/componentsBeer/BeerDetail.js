@@ -62,7 +62,7 @@ const BeerDetail = (props) =>{
             <Container>
                 <Grid>
                     <Img>
-                        <img src="" />
+                        <img src={beers[index].image} />
                     </Img>
 
                     <Wrap>

@@ -5,12 +5,12 @@ const headers = {
 };
 
 export const headerAxios = axios.create({
-    baseURL: `http://13.125.211.98/`,
+    baseURL: `https://오늘의술.shop`,
     headers: headers,
 });
 
 export const nonHeaderAxios = axios.create({
-    baseURL: `http://13.125.211.98/`,
+    baseURL: `https://오늘의술.shop`,
 });
 
 export const suggestAxios = axios.create({
