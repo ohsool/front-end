@@ -6,10 +6,11 @@ const TasteGraph = ({ beers }) => {
   const [scores, setScores] = useState([]);
 
   useEffect(() => {
-    if(beers){
-      setLabels(Object.keys(beers));
-      setScores(Object.values(beers));
+    async function getData() {
+        await setLabels(Object.keys(beers));
+        await setScores(Object.values(beers));
     }
+    return getData();
   }, []);   // 렌더링 횟수 줄이기
 
   const data = {

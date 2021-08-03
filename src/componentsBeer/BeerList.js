@@ -5,6 +5,7 @@ import { history } from "../redux/configureStore";
 
 import Slider from './Slider';
 import EachBeer from "./EachBeer";
+import Loader from "../share/Loader.js";
 import { getCategory } from "../redux/async/category";
 import { getAllBeer } from "../redux/async/beer";
 import { userInfo } from "../redux/async/user"
@@ -20,10 +21,13 @@ const BeerList = (props) =>{
     const category_beers = beers?.filter((p) => p.categoryId === get_category_id);
     
     useEffect(() => {
-        dispatch(getAllBeer());
-        dispatch(getCategory());
-        dispatch(userInfo());
-        setIs_Loading(true);
+        async function getData() {
+            await dispatch(getAllBeer())
+            await dispatch(getCategory())
+            await dispatch(userInfo())
+            setIs_Loading(true);
+        }
+        return getData();
     }, []);
     const [input, setInput] = useState();
     
@@ -60,13 +64,13 @@ const BeerList = (props) =>{
                             {is_all? (
                                 <List>
                                     {beers?.length > 0 ? beers.map((item, idx) => (
-                                        <EachBeer key={idx} {...item}/>
+                                        <EachBeer key={idx} item={item}/>
                                     )):""}
                                 </List>
                             ): ( 
                                 <List>
                                     {category_beers?.length > 0 ? category_beers.map((item, idx) => (
-                                        <EachBeer key={idx} {...item}/>
+                                        <EachBeer key={idx} item={item}/>
                                     )):""}
                                 </List>
                             )}

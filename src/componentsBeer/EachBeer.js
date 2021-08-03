@@ -11,7 +11,7 @@ import HeartButton from "./HeartButton";
 const EachBeer = (props) => {
     const dispatch = useDispatch();
     const { _onClick ,item } = props;
-    const id = useSelector(state => state.user.currentUser.id);
+    const id = useSelector(state => state.user.currentUser.userId);
     const [toggle, setToggle] = useState(false);
 
     useEffect(() => {
@@ -34,7 +34,7 @@ const EachBeer = (props) => {
                 history.push(`/beer/detail/${item._id}`)
             }}>
                 <BeerImage>
-                    <img src={item?.image}>
+                    <img src={item.image}>
                     </img>
                 </BeerImage>
                 <BeerInfoWrap>

@@ -52,6 +52,7 @@ const beerSlice = createSlice({
         .addCase(unLikeBeer.pending, (state, action) => {
         })
         .addCase(unLikeBeer.fulfilled, (state, action) => {
+          
         })
         .addCase(unLikeBeer.rejected, (state, action) => {
           console.log("unlike failed");

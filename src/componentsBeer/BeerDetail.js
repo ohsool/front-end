@@ -14,17 +14,17 @@ const BeerDetail = (props) =>{
     const [toggle, setToggle] = useState(false);
     const heart_detail = "detail"
     const beerOne = useSelector(state => state.beer.beerOne);
-    const nickname = useSelector(state => state.user.currentUser.nickname);
+    const userId = useSelector(state => state.user.currentUser.userId);
     
     useEffect(() => {
         dispatch(getOneBeer(props.match.params.beerId));
         dispatch(getReview());
     }, []);
     useEffect(() => {
-        if(beerOne?.like_array?.includes(nickname)){
+        if(beerOne?.like_array?.includes(userId)){
             setToggle(true);
         }
-    })
+    }, [toggle])
     const clickLike = () => {
         if(toggle === true){
             dispatch(unLikeBeer(beerOne._id));
