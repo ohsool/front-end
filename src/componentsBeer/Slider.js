@@ -1,14 +1,13 @@
 //slide효과를 위한 컴포넌트
 import React from "react";
 import styled from "styled-components";
+import {history} from "../redux/configureStore";
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import {history} from "../redux/configureStore";
-
-const BeerType = ({ items, beerId }) => {
+const BeerType = ({ items, beerCategoryId }) => {
     const settings = {
         infinite: true,
         speed: 200,
@@ -17,14 +16,17 @@ const BeerType = ({ items, beerId }) => {
         variableWidth: true, // slider 간격조정
         arrows: false,
     };
-    
+    console.log("Silder.js ==> items",items)
     return (
         <Container>
             <StyledSlider {...settings}>
-                {/* beer/list/${item} 이런 식으로 URL이 들어간다. */}
                 {true && items?.map((item, idx) => (
                     <div /*className={beerId === item ? "clicked" : "non-clicked" */
-                        onClick={()=> history.push(`/beer/list/`) } key={idx}>
+                        onClick={()=> {
+                            const beerCategoryId = item._id;
+                            history.push(`/beer/list/${beerCategoryId}`);
+                        }
+                    } key={idx}>
                         {item.name}
                     </div>
                 ))}

@@ -32,8 +32,6 @@ const BeerList = () =>{
             setInput("");
             console.log("입력된: ",input);
         }
-
-
     }
 
 

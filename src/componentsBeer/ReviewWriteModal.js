@@ -1,12 +1,13 @@
-import React ,{useState} from "react";
+import React ,{useState,useEffect} from "react";
 import styled from "styled-components";
 import "../share/style/ReviewWriteModal.css";
 import SelectBar from "./SelectBar";
 import StarRate from "./StarRate";
 import { history } from "../redux/configureStore";
-import { useDispatch } from "react-redux";
+import { useDispatch , useSelector} from "react-redux";
 
 import { writeReview } from "../redux/async/review";
+
 
 const ReviewWriteModal = (props) => {
     const dispatch = useDispatch();
@@ -14,11 +15,11 @@ const ReviewWriteModal = (props) => {
     const { open, close, beer } = props;
     const taste_data = ["쓴맛", "청량감", "향", "단맛", "고소한맛"];
     
-
     const [review, setReview] = useState("");
     const [starScore, setStarScore] = useState(0);
     let arr = Array(5);
     const [featuresList, setFeaturesList] = useState(arr.fill(0));
+
 
     const submitReview = () => {
         if(review === "" || starScore === 0 || featuresList.includes(0)){
@@ -38,7 +39,7 @@ const ReviewWriteModal = (props) => {
             "location": "default",
             "rate": starScore,
             "review": review
-            }));
+        }));
         window.alert("작성 완료!🍻")
         history.replace("/beer/list");
 
@@ -46,6 +47,10 @@ const ReviewWriteModal = (props) => {
 
     const onChange = (e) => {
         setReview(e.target.value);
+        if(review.length>5){
+            
+            return
+        }
     }
 
     return(
@@ -65,9 +70,7 @@ const ReviewWriteModal = (props) => {
                                     onChange={onChange}
                                     review={review}
                                     placeholder={"맥주에 대한 평가와 소감을 적어주세요.(최대 48자)"}
-                            >
-
-                            </BeerTextarea>
+                            ></BeerTextarea>
                     </BeerInfo>
                     <ScoreWrap>
                             <Div> {/* 별점 묶음 */}
