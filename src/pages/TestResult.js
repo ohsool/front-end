@@ -9,7 +9,7 @@ const TestResult = (props) => {
     return (
         <React.Fragment>
             <TestHeader/>
-            <Grid>  
+                <Grid>  
                     <BackgroundCateImage/>
                     <Wrap>
                         <ResultInfo/>
@@ -26,7 +26,7 @@ const TestResult = (props) => {
                     >다시 하기
                         <img src="https://image.flaticon.com/icons/png/512/724/724863.png"></img>
                     </ReButton>
-            </Grid>
+                </Grid>
             <Testdiv></Testdiv>
         </React.Fragment>
     )

@@ -1,28 +1,30 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+
 import {history} from "../redux/configureStore";
 import { useSelector, useDispatch } from "react-redux";
 import {likeBeer, unLikeBeer} from "../redux/async/beer";
+
 
 import HeartButton from "./HeartButton";
 
 const EachBeer = (props) => {
     const dispatch = useDispatch();
     const { _onClick ,item } = props;
-    const session = useSelector((state) => state.user.currentUser)      
+    const id = useSelector(state => state.user.currentUser.userId);
     const [toggle, setToggle] = useState(false);
 
     useEffect(() => {
-        if(item.like_array.includes(session) === true){
+        if(item.like_array?.includes(id)){
             setToggle(true);
         }
     })
     const clickLike = () => {
-        if(toggle){
-            dispatch(likeBeer());
-            setToggle(false)
+        if(toggle === true){
+            dispatch(unLikeBeer(item._id));
+             setToggle(false)
         }else{
-            dispatch(unLikeBeer());
+            dispatch(likeBeer(item._id));
             setToggle(true);
         }
     }
@@ -32,7 +34,7 @@ const EachBeer = (props) => {
                 history.push(`/beer/detail/${item._id}`)
             }}>
                 <BeerImage>
-                    <img src={item.image}>
+                    <img src={item.image} alt="beer_image">
                     </img>
                 </BeerImage>
                 <BeerInfoWrap>
@@ -49,7 +51,7 @@ const EachBeer = (props) => {
                     {item.hashtag.map((p, idx) => (
                         <TasteTag>#{p.split("_")[0]}</TasteTag>
                     ))}
-                </BeerInfoWrap>
+                    </BeerInfoWrap>
             </RecommendBeerWrap>
         </React.Fragment>
     )

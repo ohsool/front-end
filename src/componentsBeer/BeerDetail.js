@@ -2,33 +2,43 @@ import React,{useEffect, useState} from "react";
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
 import { useSelector, useDispatch } from "react-redux";
-import { getOneBeer } from "../redux/async/beer";
+import { getOneBeer, likeBeer, unLikeBeer } from "../redux/async/beer";
+import { getReview } from "../redux/async/review";
 
 import HeartButton from "./HeartButton";
 import TasteGraph from "./TasteGraph";
 import EachReview from "./EachReview";
-import { getReview } from "../redux/async/review";
 
 const BeerDetail = (props) =>{
     const dispatch = useDispatch();
     const [toggle, setToggle] = useState(false);
-    const heart_detail = "detail"
+    const heart_detail = "detail";
     const beerOne = useSelector(state => state.beer.beerOne);
-
-    //const reviews = useSelector(state => state.review.reviewList.reviews);
-    //const onebeer_index = reviews.findIndex((p) => p._id === props.match.params.beerId)
-
-    //console.log("review:", onebeer_index)
-
-
-    useEffect(() => {
-        dispatch(getReview());
-    }, []);
+    const userId = useSelector(state => state.user.currentUser.userId);
+    //const beer_info = useSelector(state => state.review.reviewList.myBeers);//err : TypeError: Cannot read property 'reviewList' of undefined
+    //beer_info의 review키 가진거로..[{...review:"얌얌"},{...review:"냠냠"},{...review:"yumyum"}...]
     
+    console.log("beerOne==>",beerOne?.name_korean)
     useEffect(() => {
         dispatch(getOneBeer(props.match.params.beerId));
-        
-    }, []);
+        dispatch(getReview({beer: beerOne?.name_korean}));//괄호안에 {name: beerOne?.name_korean} ??
+    }, [beerOne]);
+
+    useEffect(() => {
+        if(beerOne?.like_array?.includes(userId)){
+            setToggle(true);
+        }
+    }, [toggle])
+    const clickLike = () => {
+        if(toggle === true){
+            dispatch(unLikeBeer(beerOne._id));
+             setToggle(false)
+        }else{
+            dispatch(likeBeer(beerOne._id));
+            setToggle(true);
+        }
+    }
+
     const reviews = [
         {
             nickname: "닉네임",
@@ -56,31 +66,31 @@ const BeerDetail = (props) =>{
             review : "UserReview"
         },
     ];   
-    
+  
     return(
         <React.Fragment>
             <Container>
                 <Grid>
                     <Img>
-                        <img src={beerOne.image} />
+                        <img src={beerOne?.image} />
                     </Img>
                     <Wrap>
                         <Horizion>
-                        <span style={{ fontWeight: "700", fontSize: "20px", lineHeight: "29px"}}>{beerOne.name_korean}</span>
+                        <span style={{ fontWeight: "700", fontSize: "20px", lineHeight: "29px"}}>{beerOne?.name_korean}</span>
                         <div style={{ width: "38px", height: "38px", display: "flex", position: "absolute", right: "24px"}}>
                             <HeartButton
                                 heart_detail={heart_detail}
                                 _onClick={(e) => {
                                     e.preventDefault();
                                     e.stopPropagation();
-                                    toggle ? setToggle(false) : setToggle(true);
+                                    clickLike();
                                 }}
                                 is_like={toggle}                 
                             />
                         </div>
                         </Horizion>
-                        <span>{beerOne.name_english}</span>
-                        {beerOne.hashtag?.map((item, idx)=>(
+                        <span>{beerOne?.name_english}</span>
+                        {beerOne?.hashtag?.map((item, idx)=>(
                             <TasteTag>
                                 <span>#{item}</span>
                             </TasteTag>
@@ -100,7 +110,8 @@ const BeerDetail = (props) =>{
                         <span style={{ fontWeight: "700"}}>그래프</span>                      
                     </Wrap>
                     <Graph>
-                        <TasteGraph beers={beerOne}/>
+                        {/*<TasteGraph beers={beerOne?.features}/>*/}
+
                     </Graph>
                     <hr/>
                     <Wrap>
@@ -127,15 +138,15 @@ const BeerDetail = (props) =>{
                     <Wrap>
                     <span style={{ fontWeight: "700",paddingBottom: "14px"}}>리뷰</span>
                         <Gradient>
-                            {reviews.length > 0 ? reviews.map((item, idx) => (
+                            {reviews?.length > 0 ? reviews?.map((item, idx) => (
                                 idx < 4 ? (<React.Fragment>
-                                    <EachReview key={idx} idx={idx} {...item}/>
+                                    <EachReview key={idx} index={idx} item={item}/>{/*item에  {..."review":"yumyum"}*/}
                                     
                                     </React.Fragment>) : null
                             )): ""}
                             <span style={{ textAlign:"center", paddingBottom: "20px",  fontWeight: "700", fontSize: "14px", lineHeight: "20.27px", fontStyle: "bold"
                             }} onClick={()=>{
-                                history.push("/beer/review", {beerOne})
+                                history.push(`/beer/review/${beerOne._id}`, { reviews, userId })
                             }}>전체보기</span>
                         </Gradient>  
                     </Wrap>

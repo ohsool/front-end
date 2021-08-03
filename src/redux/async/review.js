@@ -1,13 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { headerAxios, nonHeaderAxios } from "./moduleAxios";
 
-//전체 맥주 리뷰 가지고 오기
+//해당 맥주 리뷰 가지고 오기
 export const getReview = createAsyncThunk(
   "review/getReview",
   async (data, thunkAPI) => {
-
-    const response = await nonHeaderAxios.get(`/api/mybeer/all`);
-
+    console.log("data==>",data);
+    const response = await nonHeaderAxios.get(`/api/mybeer/beer`, data); //data : {"beer": "하이네켄"}
     return response.data;
   }
 );
@@ -16,14 +15,28 @@ export const getReview = createAsyncThunk(
 export const writeReview = createAsyncThunk(
   "review/writeReview",
   async (data, thunkAPI) => {
-    const response = await headerAxios.post(`/api/mybeer`, data);    
+    const response = await headerAxios.post(`/api/mybeer`, data); 
     return response.data;
   }
 );
 
 //수정
+export const editReview = createAsyncThunk(
+  "review/editReview",
+  async (data,  thunkAPI) => {
+    const response = await headerAxios.put(`/api/mybeer/${data}`);    
+    return response.data;
+  }
+);
 
 
 //삭제
+export const deleteReview = createAsyncThunk(
+  "review/deleteReview",
+  async (data, mybeerId, thunkAPI) => {
+    const response = await headerAxios.delete(`/api/mybeer/${data}`);    
+    return response.data;
+  }
+);
 
 

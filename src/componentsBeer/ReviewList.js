@@ -4,19 +4,19 @@ import styled from "styled-components";
 import EachReview from "../componentsBeer/EachReview";
 import { useSelector, useDispatch } from "react-redux";
 import {history} from "../redux/configureStore";
+import { getOneBeer } from "../redux/async/beer";
+import { getReview } from "../redux/async/review";
 
 import ReviewWriteModal from "../componentsBeer/ReviewWriteModal";
 import Header from "../Header";
-import { useLocation } from "react-router-dom";
 
 const ReviewList = (props)=>{
     const dispatch = useDispatch();
     const [modalOpen, setModalOpen] = useState(false);
     const session = sessionStorage.getItem("token"); //로그인 여부 확인용
-    //const currentUser = useSelector((state) => state.user.currentUser);
-
-    const location = useLocation(); 
-    const beer_detail = location.state?.beer;
+    const beerOne = useSelector(state => state.beer.beerOne);
+    const userId = useSelector(state => state.user.currentUser.userId);
+    const beer_info = useSelector(state => state.review.reviewList.myBeers);//err : TypeError: Cannot read property 'reviewList' of undefined
 
     const openModal = () => {
         setModalOpen(true);
@@ -24,7 +24,11 @@ const ReviewList = (props)=>{
     const closeModal = () => {
         setModalOpen(false);
     };
-    //
+
+    useEffect(() => {
+        dispatch(getOneBeer(props.match.params.beerId));
+        dispatch(getReview({beer: beerOne?.name_korean}));
+    }, []);
 
 
     const loginConfirm = ()=>{
@@ -37,7 +41,7 @@ const ReviewList = (props)=>{
             }
         }
     }
-
+{/*
     const reviews = [
         {
             nickname: "닉네임",
@@ -85,6 +89,7 @@ const ReviewList = (props)=>{
             review : "UserReview"
         },
     ];
+*/}
     return (
         <React.Fragment>
             <Container>
@@ -97,16 +102,25 @@ const ReviewList = (props)=>{
                 </MoveBoxWrap>
                 </Wrap>
                 <Grid>
-                    {reviews.length > 0 ? reviews.map((item, idx) => (
-                        <EachReview key={idx} {...item}/> 
-                    )):""}            
+                    {beer_info.length > 0 ? beer_info.map((item, idx) => {
+                        if( item.userId === userId){
+                            return (
+                                <EachReview key={idx} item = {item} is_me/> 
+                            )    
+                        }else{
+                            return (
+                                <EachReview key={idx} item = {item}/> 
+                            )
+                        }
+                    
+                
+                    }):""}            
                 </Grid>
 
                 <ReviewWriteModal
                     open={modalOpen}
                     close={closeModal}
-                    beer={beer_detail}
-                    
+                    beer={beerOne}                    
                 ></ReviewWriteModal>               
             </Container>
 

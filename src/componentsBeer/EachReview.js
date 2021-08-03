@@ -2,11 +2,16 @@
 import React,{useState} from 'react';
 import styled from "styled-components";
 import {useDispatch} from "react-redux";
+import {deleteReview} from "../redux/async/review";
 
 const EachReview=(props)=> {
     const is_user = true;//본인 게시글이면 (magazine-result플젝의 PostList 참고))
-    const { nickname, date, rate, review, idx} = props; 
+    const { item, index, is_me} = props; 
     const dispatch = useDispatch();
+
+
+    console.log("item", item); //item에서 nickname, date, rate, review 가져옴
+
     return (
         <React.Fragment>
         <Container>
@@ -15,11 +20,11 @@ const EachReview=(props)=> {
                     <Div>
                     <NicknameText>
                         <span style={{ fontWeight: "700", fontSize: "14px", lineHeight: "20.27px"}}>
-                            {nickname}</span>
+                            {/*{item.nickname}*/} 닉네임</span>
                     </NicknameText>
                     <DateText>
                         <span style={{ fontWeight: "300", fontSize: "10px", lineHeight: "14.48px"}}>
-                            {date}5분 전
+                            {item.date}5분 전
                         </span>
                     </DateText>
                     </Div>
@@ -28,26 +33,37 @@ const EachReview=(props)=> {
                         <StarImg/>
                         <RateText>
                             <span style={{fontWeight: "300", fontSize: "10px", lineHeight: "14.48px"}}>
-                                ({rate})</span>
+                                ({item.rate})</span>
                         </RateText>
-                            {is_user? 
+                            {is_me && (
                                 <>
-                                <EditButton onClick={()=>dispatch()}/>
-                                <DeleteButton onClick = {()=>dispatch()}/>
+                                <EditButton onClick={(e) => {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                }}/>
+                                <DeleteButton onClick = {(e) => {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    if(window.confirm("정말로 삭제하시나요?")){
+                                        dispatch(deleteReview(item.beerid));
+                                        return
+                                    }
+                                }}/>
                                 </>
-                            : null}
+                            )}
                     </Div>
 
                 </GridHorizon>
                 <ReviewText>
                     <span style={{ display: "block", width: "280px",fontWeight: "300", fontSize: "12px", lineHeight: "17.38px"}}>
                     
-                        {review}
+                        {item.review}
 
                     </span>               
                 </ReviewText>
             </Grid>
-        </Container>   
+        </Container> 
+
         </React.Fragment>
     )
 }

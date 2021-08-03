@@ -9,17 +9,17 @@ const initialState = {
 };
 
 const initialReview = {
-  "beer": "",//beername
-  "myFeatures": {
+  beer: "",//beername
+  myFeatures: {
                 "bitter": 0, 
                 "crispy": 0, 
                 "flavor": 0, 
                 "sweet": 0, 
                 "nutty": 0
   },
-  "location": "default",
-  "rate": 0,
-  "review": ""
+  location: "default",
+  rate: 0,
+  review: ""
 };
 
 

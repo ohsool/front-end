@@ -5,10 +5,10 @@ import { history } from "../redux/configureStore";
 
 import Slider from './Slider';
 import EachBeer from "./EachBeer";
+import Loader from "../share/Loader.js";
 import { getCategory } from "../redux/async/category";
 import { getAllBeer } from "../redux/async/beer";
-import { getReview } from "../redux/async/review";
-import Loader from "../share/Loader.js";
+import { userInfo } from "../redux/async/user"
 
 
 const BeerList = (props) =>{
@@ -16,28 +16,20 @@ const BeerList = (props) =>{
     const [is_Loading, setIs_Loading] = useState(false);
     const get_category_id = props.match.params.beerCategoryId;
     const is_all = get_category_id ? false : true;
-
     const beers = useSelector(state => state.beer.beerList.beers);
-    const items = useSelector(state => state.category.categoryList.beerCategories);
+    const items = useSelector(state => state.category.categoryList.beerCategories); //undefine
     const category_beers = beers?.filter((p) => p.categoryId === get_category_id);
-
-    console.log("beers", beers);
-    //console.log("items",items);
-    console.log("category_id",get_category_id);
-    console.log("category_beers_list",category_beers);
     
     useEffect(() => {
         async function getData() {
             await dispatch(getAllBeer())
             await dispatch(getCategory())
+            await dispatch(userInfo())
             setIs_Loading(true);
         }
-        return getData()
-
-    },[]);
-    
-
-    const [input, setInput] = useState();//검색 입력
+        return getData();
+    }, []);
+    const [input, setInput] = useState();
     
     const onChange = (e) =>{
         setInput(e.target.value);
@@ -56,7 +48,6 @@ const BeerList = (props) =>{
         <React.Fragment>
             {is_Loading ? (
                 <>
-
                     <Container>
                         <Grid>
                             <TopNav>
@@ -73,13 +64,13 @@ const BeerList = (props) =>{
                             {is_all? (
                                 <List>
                                     {beers?.length > 0 ? beers.map((item, idx) => (
-                                        <EachBeer key={idx} {...item}/>
+                                        <EachBeer key={idx} item={item}/>
                                     )):""}
                                 </List>
                             ): ( 
                                 <List>
                                     {category_beers?.length > 0 ? category_beers.map((item, idx) => (
-                                        <EachBeer key={idx} {...item}/>
+                                        <EachBeer key={idx} item={item}/>
                                     )):""}
                                 </List>
                             )}

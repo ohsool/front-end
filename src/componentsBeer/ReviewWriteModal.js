@@ -6,7 +6,8 @@ import StarRate from "./StarRate";
 import { history } from "../redux/configureStore";
 import { useDispatch , useSelector} from "react-redux";
 
-import { writeReview } from "../redux/async/review";
+import { writeReview, editReview} from "../redux/async/review";
+
 
 
 const ReviewWriteModal = (props) => {
@@ -20,29 +21,53 @@ const ReviewWriteModal = (props) => {
     let arr = Array(5);
     const [featuresList, setFeaturesList] = useState(arr.fill(0));
 
+    console.log("beer",beer)
 
-    const submitReview = () => {
+    const addReview = () => {
         if(review === "" || starScore === 0 || featuresList.includes(0)){
             window.alert("답하지 않은 문항이 있어요!")
             return
         }
-        
         dispatch(writeReview({
-            "beer": beer["name_korean"],//beer_id,
-            "myFeatures": {
-                "bitter": featuresList[0], 
-                "crispy": featuresList[1], 
-                "flavor": featuresList[2], 
-                "sweet": featuresList[3], 
-                "nutty": featuresList[4]
+            beer: beer["name_korean"],//beer_id,
+            myFeatures: {
+                bitter: featuresList[0], 
+                crispy: featuresList[1], 
+                flavor: featuresList[2], 
+                sweet: featuresList[3], 
+                nutty: featuresList[4]
             },
-            "location": "default",
-            "rate": starScore,
-            "review": review
+            location: "default",
+            rate: starScore,
+            review: review
         }));
         window.alert("작성 완료!🍻")
-        history.replace("/beer/list");
+        history.replace(`/beer/list`);
+        //history.replace(`/beer/detail/${beer?.beerId}`);
 
+    }
+    const updateReview = () => {
+
+        if(review === "" || starScore === 0 || featuresList.includes(0)){
+            window.alert("답하지 않은 문항이 있어요!")
+            return
+        }
+        dispatch(editReview({
+            beer: beer["name_korean"],//beer_id,
+            myFeatures: {
+                bitter: featuresList[0], 
+                crispy: featuresList[1], 
+                flavor: featuresList[2], 
+                sweet: featuresList[3], 
+                nutty: featuresList[4]
+            },
+            location: "default",
+            rate: starScore,
+            review: review
+        }));
+        window.alert("수정 완료!🍻")
+        history.replace(`/beer/list`);
+        //history.replace(`/beer/detail/${beer?.beerId}`);
     }
 
     const onChange = (e) => {
@@ -64,7 +89,7 @@ const ReviewWriteModal = (props) => {
                     <CloseIcon onClick={close}/>
                     <BeerInfo>
                             <BeerImage>
-                                <img src={beer["image"]}/>
+                                <img src={beer?.image}/>
                             </BeerImage>
                             <BeerTextarea 
                                     onChange={onChange}
@@ -97,7 +122,7 @@ const ReviewWriteModal = (props) => {
                             </div>
                         <ReviewButton>
                             <button onClick={() => {
-                                submitReview()
+                                addReview()
                             }}>도감 작성하기</button>
                         </ReviewButton>
 

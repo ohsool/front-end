@@ -4,23 +4,24 @@ import { Radar } from 'react-chartjs-2';
 const TasteGraph = ({ beers }) => {
   const [labels, setLabels] = useState([]);
   const [scores, setScores] = useState([]);
-
+  
   useEffect(() => {
-    if(beers.features){
-      setLabels(Object.keys(beers?.features));
-      setScores(Object.values(beers?.features));
+    async function getData() {
+        await setLabels(Object.keys(beers));
+        await setScores(Object.values(beers));
     }
-  }, [beers.features]);   // 렌더링 횟수 줄이기
+    return getData();
+  }, []);   // 렌더링 횟수 줄이기
 
   const data = {
     labels: labels,
     datasets: [
       {
-          label: "맥주맛평점",
-          data: scores,
-          backgroundColor: 'rgba(255, 196, 79, 0.5)',  //rgba(255, 255, 255, 0.2)
-          borderColor: '#FFC44F',
-          borderWidth: 3,
+        label: "맥주맛평점",
+        data: scores,
+        backgroundColor: 'rgba(255, 196, 79, 0.5)',  //rgba(255, 255, 255, 0.2)
+        borderColor: '#FFC44F',
+        borderWidth: 3,
       },
     ],
   };
