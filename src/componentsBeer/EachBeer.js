@@ -1,34 +1,53 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import HeartButton from "./HeartButton";
 import {history} from "../redux/configureStore";
+import { useSelector, useDispatch } from "react-redux";
+import {likeBeer, unLikeBeer} from "../redux/async/beer";
+
+import HeartButton from "./HeartButton";
 
 const EachBeer = (props) => {
+    const dispatch = useDispatch();
+    const { _onClick ,item } = props;
+    const session = useSelector((state) => state.user.currentUser)      
     const [toggle, setToggle] = useState(false);
-    
-    const { _onClick ,name_korean, name_english, hashtag, image, _id, item} = props;
+
+    useEffect(() => {
+        if(item.like_array.includes(session) === true){
+            setToggle(true);
+        }
+    })
+    const clickLike = () => {
+        if(toggle){
+            dispatch(likeBeer());
+            setToggle(false)
+        }else{
+            dispatch(unLikeBeer());
+            setToggle(true);
+        }
+    }
     return(
         <React.Fragment>
             <RecommendBeerWrap onClick={() => {
-                history.push(`/beer/detail/${_id}`)
+                history.push(`/beer/detail/${item._id}`)
             }}>
                 <BeerImage>
-                    <img src={image}>
+                    <img src={item.image}>
                     </img>
                 </BeerImage>
                 <BeerInfoWrap>
-                    <BeerTitle>{name_korean}</BeerTitle>
+                    <BeerTitle>{item.name_korean}</BeerTitle>
                     <HeartButton
                         _onClick={(e) => {
-                        toggle ? setToggle(false) : setToggle(true);
-                        e.preventDefault();
-                        e.stopPropagation();              
+                            clickLike();
+                            e.preventDefault();
+                            e.stopPropagation();              
                     }}
                     is_like={toggle}
                     />
-                    <p>{name_english}</p>
-                    {hashtag.map((p, idx) => (
-                        <TasteTag>#{hashtag[idx]}</TasteTag>
+                    <p>{item.name_english}</p>
+                    {item.hashtag.map((p, idx) => (
+                        <TasteTag>#{p.split("_")[0]}</TasteTag>
                     ))}
                 </BeerInfoWrap>
             </RecommendBeerWrap>

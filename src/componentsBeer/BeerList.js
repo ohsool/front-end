@@ -30,7 +30,7 @@ const BeerList = () =>{
                     </Search>
                     <List>
                         {beers?.length > 0 ? beers.map((item, idx) => (
-                            <EachBeer key={idx} {...item} 
+                            <EachBeer key={idx} item={item} 
                             
                             />
                         )):""}

@@ -4,7 +4,7 @@ import { history } from "../redux/configureStore";
 
 import { CSSTransitionGroup } from 'react-transition-group';
 import { TestQuestion, TestButton} from "../componentsTest/TestIndex";
-import "./testStyle.css";
+import "../share/style/testStyle.css";
 import Header from "../Header";
 
 const Test = (props) => {

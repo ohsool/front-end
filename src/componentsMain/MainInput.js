@@ -2,19 +2,11 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { history } from "../redux/configureStore";
-import LoginModal from "./LoginModal";
+import Login from "../pages/Login";
 
 const MainInput = (props) => {
-    const [modalOpen, setModalOpen] = useState(false);
     const [is_login, setIs_Login] = useState(false);
     const session = sessionStorage.getItem("token");
-
-    const openModal = () => {
-        setModalOpen(true);
-      };
-    const closeModal = () => {
-        setModalOpen(false);
-    };
 
     useEffect(()=> {
         if(session){
@@ -52,15 +44,17 @@ const MainInput = (props) => {
                 </Wrap>
                 {is_login === false ? 
                 (<ButtonWrap>
-                    <LoginButton onClick={openModal}>LOGIN</LoginButton>
-                    <LoginButton>JOIN</LoginButton>
+                    <LoginButton 
+                        onClick={() => {
+                            history.push("/signup")
+                    }}>JOIN</LoginButton>
+                    <LoginButton
+                        onClick={() => {
+                            history.push("/login")
+                    }}>LOGIN</LoginButton>
                 </ButtonWrap>)
                 : null
                 }
-                <LoginModal
-                open={modalOpen}
-                close={closeModal}
-                ></LoginModal>
             </LinkWrap>
         </React.Fragment>
     )

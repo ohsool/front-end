@@ -31,7 +31,11 @@ const userSlice = createSlice({
         })
         .addCase(logIn.fulfilled, (state, action) => {
           sessionStorage.setItem("token", action.payload.token);
-          window.location.reload("/");
+          state.currentUser = action.payload.token;
+          window.location.replace("/");
+        })
+        .addCase(logIn.rejected, (state, action) => {
+          window.alert("아이디나 비밀번호가 틀립니다!")
         })
       // 공통
       .addMatcher(

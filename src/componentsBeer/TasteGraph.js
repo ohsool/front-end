@@ -1,19 +1,31 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Radar } from 'react-chartjs-2';
 
-const data = {
-  labels: ['고소한맛', '쓴맛', '단맛', '청량감', '향'],
-  datasets: [
-    {
-        label: "맥주 맛 평점",
-        data: [2, 5, 3, 4, 4],
-        backgroundColor: 'rgba(255, 196, 79, 0.5)',  //rgba(255, 255, 255, 0.2)
-        borderColor: '#FFC44F',
-        borderWidth: 3,
-    },
-  ],
-};
-const options = {
+const TasteGraph = ({ beers }) => {
+  const [labels, setLabels] = useState([]);
+  const [scores, setScores] = useState([]);
+
+  useEffect(() => {
+    if(beers.features){
+      setLabels(Object.keys(beers?.features));
+      setScores(Object.values(beers?.features));
+    }
+  }, [beers.features]);   // 렌더링 횟수 줄이기
+
+  const data = {
+    labels: labels,
+    datasets: [
+      {
+          label: "맥주맛평점",
+          data: scores,
+          backgroundColor: 'rgba(255, 196, 79, 0.5)',  //rgba(255, 255, 255, 0.2)
+          borderColor: '#FFC44F',
+          borderWidth: 3,
+      },
+    ],
+  };
+  
+  const options = {
     scales: {
         angles: {
             display: false,
@@ -26,12 +38,12 @@ const options = {
             }
         }
     },
+  };
+  return(
+    <>
+      <Radar data={data} options={options} />
+    </>
+  )
 };
-
-const TasteGraph = (props) => (
-  <>
-    <Radar data={data} options={options} />
-  </>
-);
 
 export default TasteGraph;

@@ -1,30 +1,12 @@
 import React ,{useEffect, useState} from "react";
 import styled from "styled-components";
-import "./ReviewWriteModal.css";
-import StarIcon from "@material-ui/icons/Star";
-import StarBorderIcon from "@material-ui/icons/StarBorder";
+import "../share/style/ReviewWriteModal.css";
 import SelectBar from "./SelectBar";
 import StarRate from "./StarRate";
 const ReviewWriteModal = (props) => {
     const { open, close, EnterSubmit, onChange, chat } = props;
     const taste_data = ["쓴맛", "단맛", "고소한맛", "청량감", "향"];
     const [starScore, setStarScore] = useState(5);
-    
-    //별점
-    // const [score, setScore] = useState(5);
-    // const totalStarCount = 5;   
-    // const starCount = score;
-    // const [review, setReview] = useState({ rate: 5});
-
-    
-    // const removeCount = totalStarCount - starCount;
-
-    // const handleScore = (score) => {
-    //     setReview({
-    //     ...review,
-    //     rate: score,
-    //     });
-    // };
 
     return(
         <React.Fragment>
