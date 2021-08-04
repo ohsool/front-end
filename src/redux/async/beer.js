@@ -26,8 +26,8 @@ export  const likeBeer = createAsyncThunk(
   async (data, thunkAPI) => {
 
     const response = await headerAxios.put(`/api/beer/like/${data}`)
-    console.log("like", response.data);
-    return response.data;
+    console.log("like", response);
+    return response;
   }
 )
 export  const unLikeBeer = createAsyncThunk(

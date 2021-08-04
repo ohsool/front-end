@@ -25,9 +25,9 @@ const BeerDetail = (props) =>{
             // dispatch(getReview());
             await dispatch(userInfo());
         }
-        console.log("beer detail rendering")
         return getData();
     }, []);
+    
     useEffect(() => {
         if(beerOne){
         if(beerOne?.like_array?.includes(userId)){
