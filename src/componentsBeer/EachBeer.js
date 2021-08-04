@@ -11,11 +11,11 @@ import HeartButton from "./HeartButton";
 const EachBeer = (props) => {
     const dispatch = useDispatch();
     const { _onClick ,item } = props;
-    const id = useSelector(state => state.user.currentUser.userId);
+    const userId = useSelector(state => state.user.currentUser.userId);
     const [toggle, setToggle] = useState(false);
 
     useEffect(() => {
-        if(item.like_array?.includes(id)){
+        if(item.like_array?.includes(userId)){
             setToggle(true);
         }
     })

@@ -5,12 +5,11 @@ import {useDispatch} from "react-redux";
 import {deleteReview} from "../redux/async/review";
 
 const EachReview=(props)=> {
-    const is_user = true;//본인 게시글이면 (magazine-result플젝의 PostList 참고))
+    const is_user = true;
     const { item, index, is_me} = props; 
     const dispatch = useDispatch();
 
 
-    console.log("item", item); //item에서 nickname, date, rate, review 가져옴
 
     return (
         <React.Fragment>

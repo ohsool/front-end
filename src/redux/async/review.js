@@ -5,7 +5,7 @@ import { headerAxios, nonHeaderAxios } from "./moduleAxios";
 export const getReview = createAsyncThunk(
   "review/getReview",
   async (data, thunkAPI) => {
-    console.log("data==>",data);
+    console.log("data==>",data);//data==>{beer: undefine};
     const response = await nonHeaderAxios.get(`/api/mybeer/beer`, data); //data : {"beer": "하이네켄"}
     return response.data;
   }

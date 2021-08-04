@@ -1,17 +1,17 @@
+import { getDefaultMiddleware } from '@reduxjs/toolkit';
 import React, { useEffect, useState } from 'react';
 import { Radar } from 'react-chartjs-2';
 
 const TasteGraph = ({ beers }) => {
-  const [labels, setLabels] = useState([]);
-  const [scores, setScores] = useState([]);
-  
+  const [labels, setLabels] = useState();
+  const [scores, setScores] = useState();
+
   useEffect(() => {
-    async function getData() {
-        await setLabels(Object.keys(beers));
-        await setScores(Object.values(beers));
-    }
-    return getData();
-  }, []);   // 렌더링 횟수 줄이기
+      if(beers) {
+        setLabels(Object.keys(beers) ?? ["bitter", "crispy", "flavor", "sweet", "nutty"]);
+        setScores(Object.values(beers) ?? [0, 0, 0, 0, 0]);
+      }
+  }, [beers]);   // 렌더링 횟수 줄이기
 
   const data = {
     labels: labels,

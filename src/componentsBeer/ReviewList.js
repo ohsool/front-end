@@ -13,7 +13,7 @@ import Header from "../Header";
 const ReviewList = (props)=>{
     const dispatch = useDispatch();
     const [modalOpen, setModalOpen] = useState(false);
-    const session = sessionStorage.getItem("token"); //로그인 여부 확인용
+    const session = sessionStorage.getItem("token"); //임시 로그인 여부 확인용
     const beerOne = useSelector(state => state.beer.beerOne);
     const userId = useSelector(state => state.user.currentUser.userId);
     const beer_info = useSelector(state => state.review.reviewList.myBeers);//err : TypeError: Cannot read property 'reviewList' of undefined

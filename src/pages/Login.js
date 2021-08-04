@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { emailCheck, pwdReg } from "../share/checkReg";
 import { history } from "../redux/configureStore";
 import { useDispatch } from "react-redux";
-import { logIn } from "../redux/async/user";
+import { logIn, kakaoLogin, googleLogin } from "../redux/async/user";
 import "../share/style/loginButton.css";
 
 const Login = (props) => {
@@ -87,10 +87,16 @@ const Login = (props) => {
                             로그인하기
                         </button>
                         <div>
-                            <SocialLoginButton>
+                            <SocialLoginButton
+                                onClick={() => {
+                                    dispatch(kakaoLogin());
+                                }}>
                                 카카오톡으로 로그인하기
                             </SocialLoginButton>
-                            <SocialLoginButton>
+                            <SocialLoginButton
+                                onClick={() => {
+                                    dispatch(googleLogin());
+                                }}>
                                 구글로 로그인하기
                             </SocialLoginButton>
                         </div>
