@@ -5,10 +5,7 @@ import { headerAxios, nonHeaderAxios } from "./moduleAxios";
 export const getReview = createAsyncThunk(
   "review/getReview",
   async (data, thunkAPI) => {
-    console.log("beer_reviews >",data);
-    const response = await nonHeaderAxios.get(`/api/mybeer/beer`, data);
-    
-    console.log("get review response:", response)
+    const response = await nonHeaderAxios.get(`/api/mybeer/beer/${data}`);
     return response.data;
   }
 );
@@ -17,9 +14,10 @@ export const getReview = createAsyncThunk(
 export const writeReview = createAsyncThunk(
   "review/writeReview",
   async (data, thunkAPI) => {
-    const response = await headerAxios.post(`/api/mybeer`, data);//post(`/api/mybeer/${beerId}`, data); 
-    console.log("submit review data >", data);
-    console.log("submit review response >",response);//success
+    const beerId = data.beerId;
+    delete data.beerId;
+
+    const response = await headerAxios.post(`/api/mybeer/${beerId}`, data); 
     return response.data;
   }
 );
@@ -28,9 +26,15 @@ export const writeReview = createAsyncThunk(
 export const editReview = createAsyncThunk(
   "review/editReview",
   async (data, thunkAPI) => {
-    const response = await headerAxios.put(`/api/mybeer/${mybeerId}`, data);
+    console.log("before id delete:",data)
+    const mybeerId = data.mybeerId;
+    delete data.mybeerId;
+    console.log("after id delete:",data)
+  
+    const response = await headerAxios.put(`/api/mybeer/${mybeerId}`, data);//fail?
     console.log("edit review response >",response);  
     return response.data;
+  
   }
 );
 
@@ -38,8 +42,9 @@ export const editReview = createAsyncThunk(
 //삭제
 export const deleteReview = createAsyncThunk(
   "review/deleteReview",
-  async (data, mybeerId, thunkAPI) => {
-    const response = await headerAxios.delete(`/api/mybeer/${data}`);    
+  async (data, thunkAPI) => {
+    const response = await headerAxios.delete(`/api/mybeer/${data}`);
+    console.log("delete review response >",response);   
     return response.data;
   }
 );

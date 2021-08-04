@@ -22,14 +22,6 @@ const categorySlice = createSlice({
             const new_list = action.payload.beerCategories;
             new_list.unshift(
               { name: "All"}
-            /*{
-              avgRate: {}, 
-              _id: "", 
-              name: "all", 
-              image: "",
-              features: {},
-              __v: 0
-            }*/
             );
             state.categoryList = new_list;
           })

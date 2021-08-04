@@ -38,13 +38,13 @@ const userSlice = createSlice({
         window.location.reload("/");
       })
       .addCase(checkEmail.fulfilled, (state, action) => {
-        state.checkEmail = action.payload.message;
+        state.checkEmail = action.payload.existed;
       })
       .addCase(checkEmail.rejected, (state, action) => {
         console.log("email doublecheck failed");
       })
       .addCase(checkNickname.fulfilled, (state, action) => {
-        state.checkNickname = action.payload.message;
+        state.checkNickname = action.payload.existed;
       })
       .addCase(checkNickname.rejected, (state, action) => {
         console.log("nickname doublecheck failed")

@@ -1,15 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 
-const WritedReview = (props) => {
+const WritedReview = ({ item }) => {
     return(
         <React.Fragment>
             <WritedBeerInfo>
                 <BeerImage>
                 </BeerImage>
                 <BeerTextWrap>
-                    <p>Nickname</p>
-                    <span>UserReview -------------------------------</span>
+                    <p>{item.userId.nickname}</p>
+                    <span>{item.review}</span>
                 </BeerTextWrap>
             </WritedBeerInfo>
         </React.Fragment>

@@ -15,20 +15,26 @@ const ReviewWriteModal = (props) => {
 
     //item에 기존 리뷰 내용, 별점, features 평점이 들어있다. ex. item.review
     //item, is_edit은 ReviewList에서 전달(수정 상태)
-    const { open, close, beer, item, is_edit } = props; 
+    const { open, close, beerOne, item, is_edit, setReload, mybeerId } = props; 
     const taste_data = ["쓴맛", "청량감", "향", "단맛", "고소한맛"];
     
     const [review, setReview] = useState("");
     const [starScore, setStarScore] = useState(0);
+    
     let arr = Array(5);
     const [featuresList, setFeaturesList] = useState(arr.fill(0));
+
+
+    useEffect(()=>{
+        setReview(item?.review);
+        setStarScore(item?.rate);
+    },[])
     const addReview = () => {
         if(review === "" || starScore === 0 || featuresList.includes(0)){
             window.alert("답하지 않은 문항이 있어요!")
             return
         }
         dispatch(writeReview({
-            beer: beer?.name_korean,//beer_id,
             myFeatures: {
                 bitter: featuresList[0], 
                 crispy: featuresList[1], 
@@ -37,18 +43,19 @@ const ReviewWriteModal = (props) => {
                 nutty: featuresList[4],
             },
             location: "default",
-            rate: starScore,
+            rate: starScore.toFixed(1),
             review: review,
-            //image: beer["image"]
-
+            beerId: beerOne._id
         }));
         window.alert("작성 완료!🍻");
         setReview("");
         setStarScore(0);
         setFeaturesList(arr.fill(0));
+        setReload(true);
+        history.replace(`/beer/review/${beerOne._id}`);
         close();
-        //history.replace(`/beer/list`);
-        //history.replace(`/beer/detail/${beer?.beerId}`);
+        
+    
 
     }
     const updateReview = () => {
@@ -58,7 +65,6 @@ const ReviewWriteModal = (props) => {
             return
         }
         dispatch(editReview({
-            beer: beer["name_korean"],//beer_id,
             myFeatures: {
                 bitter: featuresList[0], 
                 crispy: featuresList[1], 
@@ -67,13 +73,18 @@ const ReviewWriteModal = (props) => {
                 nutty: featuresList[4]
             },
             location: "default",
-            rate: starScore,
-            review: review
+            rate: starScore.toFixed(1),
+            review: review,      
+            mybeerId: mybeerId,
         }));
-        window.alert("수정 완료!🍻")
-        history.replace(`/beer/list`);
+        window.alert("수정 완료!🍻");
+        setReview("");
+        setStarScore(0);
+        setFeaturesList(arr.fill(0)); 
+        //상속받은것들 안됨     
+        //setReload(true);
+        //history.replace(`/beer/review/${beerOne._id}`);
         close();
-        //history.replace(`/beer/detail/${beer?.beerId}`);
     }
 
     const onChange = (e) => {
@@ -91,22 +102,28 @@ const ReviewWriteModal = (props) => {
                     <CloseIcon onClick={close}/>
                     <BeerInfo>
                             <BeerImage>
-                                <img src={beer.image}/>
+                                {is_edit ? (
+                                    <img src={item.beerId.image}/>
+                                ):(
+                                    <img src={beerOne.image}/>
+                                )}
+                                
                             </BeerImage>
                             {is_edit ? ( 
                                  <>
+                                    
                                     <BeerTextarea 
-                                    onChange={onChange}
-                                    review={review}
-                                    placeholder={""}
+                                        onChange={onChange}
+                                        review={review}
+                                        placeholder={""}
                                     >{item.review}</BeerTextarea>
                                  </>
                             ):(
                                 <>
                                     <BeerTextarea 
-                                    onChange={onChange}
-                                    review={review}
-                                    placeholder={"맥주에 대한 평가와 소감을 적어주세요.(최대 48자)"}
+                                        onChange={onChange}
+                                        review={review}
+                                        placeholder={"맥주에 대한 평가와 소감을 적어주세요.(최대 48자)"}
                                     ></BeerTextarea>
                                 </>
                             )}
@@ -117,6 +134,7 @@ const ReviewWriteModal = (props) => {
                                 <span style={{margin: "0 auto", fontWeight: "bold"}}>별점</span>
                                 {is_edit ? ( 
                                     <>
+                                        
                                         <StarRate setStarScore={setStarScore} init_star={item.rate}/>
                                     </>
                                 ):(
@@ -136,7 +154,7 @@ const ReviewWriteModal = (props) => {
                             <TasteScoreWrap> {/* 셀렉트 바 */}
                                 
                                 {is_edit ? ( 
-                                    <>
+                                    <> {/* {setFeaturesList(item.myFeatures)}*/}
                                         {taste_data.map((taste, idx) => (
                                         <SelectBar key={idx} index={idx} setFeaturesList={setFeaturesList} 
                                                 featuresList={featuresList} init_list={item.myFeatures}/>
@@ -157,7 +175,7 @@ const ReviewWriteModal = (props) => {
                         {is_edit ? (
                             <ReviewButton>
                             <button onClick={() => {
-                                updateReview()
+                                updateReview();
                             }}>도감 수정하기</button>
                             </ReviewButton>
                         ):(

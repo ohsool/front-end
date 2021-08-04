@@ -10,9 +10,10 @@ import {deleteReview} from "../redux/async/review";
 import ReviewWriteModal from "../componentsBeer/ReviewWriteModal";
 
 const EachReview=(props)=> {
-    //item에 해당 맥주 리뷰 정보 담김, 해당 리뷰 작성자가 본인이면 is_me 전달, beerOne에 해당 맥주 정보 담김
-    const { item, is_me, beerOne} = props; 
+    //item에 해당 맥주 리뷰 정보 담김, beerOne에 해당 맥주 정보 담김
+    const { item, beerOne, userId} = props; 
     const [modalOpen, setModalOpen] = useState(false);
+    
     const dispatch = useDispatch();
 
     const openModal = () => {
@@ -32,7 +33,7 @@ const EachReview=(props)=> {
                     <Div>
                     <NicknameText>
                         <span style={{ fontWeight: "700", fontSize: "14px", lineHeight: "20.27px"}}>
-                            {item.nickname}</span>
+                            {item.userId.nickname}</span>
                     </NicknameText>
                     <DateText>
                         <span style={{ fontWeight: "300", fontSize: "10px", lineHeight: "14.48px"}}>
@@ -45,26 +46,27 @@ const EachReview=(props)=> {
                         <StarImg/>
                         <RateText>
                             <span style={{fontWeight: "300", fontSize: "10px", lineHeight: "14.48px"}}>
-                                ({item.rate})</span>
+                                ({item.rate.toFixed(1)})</span>
                         </RateText>
-                            {is_me && (
+                            { item.userId._id === userId ? (
                                 <>
                                 <EditButton onClick={(e) => {
                                     e.preventDefault();
                                     e.stopPropagation();
                                     openModal();
-                                }}/>
+                                }}>수정</EditButton>
                                 
                                 <DeleteButton onClick = {(e) => {
                                     e.preventDefault();
                                     e.stopPropagation();
                                     if(window.confirm("정말로 삭제하시나요?")){
-                                        dispatch(deleteReview(item.beerid));
+                                        dispatch(deleteReview(item._id));
                                         return
                                     }
-                                }}/>
+                                }}>삭제</DeleteButton>
                                 </>
-                            )}
+                            ): null}
+                            
                     </Div>
 
                 </GridHorizon>
@@ -80,9 +82,10 @@ const EachReview=(props)=> {
         <ReviewWriteModal
             open={modalOpen}
             close={closeModal}
-            beer={beerOne}
+            beerOne={beerOne}
             item={item}
             is_edit={true}
+            mybeerId={item._id}
         ></ReviewWriteModal> 
 
         </React.Fragment>
