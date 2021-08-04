@@ -30,7 +30,6 @@ const ReviewList = (props)=>{
         dispatch(getReview({beer: beerOne?.name_korean}));
     }, []);
 
-
     const loginConfirm = ()=>{
         if(session){
             openModal();
@@ -102,7 +101,7 @@ const ReviewList = (props)=>{
                 </MoveBoxWrap>
                 </Wrap>
                 <Grid>
-                    {beer_info.length > 0 ? beer_info.map((item, idx) => {
+                    {beer_info?.length > 0 ? beer_info?.map((item, idx) => {
                         if( item.userId === userId){
                             return (
                                 <EachReview key={idx} item = {item} is_me/> 
