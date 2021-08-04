@@ -31,19 +31,19 @@ export const userInfo = createAsyncThunk(
 
     return response.data;
   }
-)
+);
 
 export const checkEmail = createAsyncThunk(
   "user/checkEmail",
   async (data, thunkAPI) => {
     const server_email = {
-      email: data,
+      email: data
     }
     const response = await nonHeaderAxios.post(`/api/user/email`, server_email);
-    // console.log("email doubleCheck response", response.data);
+
     return response.data;
   }
-)
+);
 
 export const checkNickname = createAsyncThunk(
   "user/checkNickname",
@@ -55,7 +55,7 @@ export const checkNickname = createAsyncThunk(
     // console.log("nickname doubleCheck response", response.data);
     return response.data;
   }
-)
+);
 
 //카카오 로그인
 export const kakaoLogin = createAsyncThunk(
@@ -66,7 +66,7 @@ export const kakaoLogin = createAsyncThunk(
 
     return response.data;
   }
-)
+);
 
 //구글 로그인
 export const googleLogin = createAsyncThunk(
@@ -77,4 +77,4 @@ export const googleLogin = createAsyncThunk(
 
     return response.data;
   }
-)
+);

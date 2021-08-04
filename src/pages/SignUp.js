@@ -29,30 +29,30 @@ const SignUp = (props) => {
             setEamil_Check_Text("");
             return;
         }
-        console.log(emailCheck(email), is_email);
-        if(emailCheck(email) === false && is_email !== "success"){
+        if(emailCheck(email) === false || is_email === true){
             setEmail_Double(false);
-            setEamil_Check_Text("올바른 이메일 형식이 아닙니다.");
-        }else{
+            setEamil_Check_Text("사용중이거나 올바른 이메일 형식이 아닙니다.");
+        }
+        if(emailCheck(email) === true && is_email === false){
             setEmail_Double(true);
-            setEamil_Check_Text("사용 가능한 이메일입니다.")
+            setEamil_Check_Text("사용 가능한 이메일입니다.");
         }
 
-    }, [email]);
+    }, [email, is_email]);
 
     useEffect(() => {  //닉네임 중복체크
         if(nickname === ""){
             setNickname_Check_Text("");
             return;
         }
-        if(is_nickname === "fail"){
+        if(is_nickname === false){
             setNickName_Double(false);
             setNickname_Check_Text("이미 사용중인 닉네임입니다.");
         }else{
             setNickName_Double(true);
             setNickname_Check_Text("사용 가능한 닉네임입니다.");
         }
-    }, [is_nickname]);
+    }, [nickname]);
 
     const onChange = (e) => {
         setSignUp_Info({...signup_info, [e.target.name]: e.target.value});
