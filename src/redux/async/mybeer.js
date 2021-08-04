@@ -5,8 +5,10 @@ import { headerAxios} from "./moduleAxios";
 export const getMyDogam = createAsyncThunk(
   "mybeer/getMyDogam",
   async (data, thunkAPI) => {
-    //const response = await headerAxios.get(`/api/백 작업중..`, data);
-    //return response.data;
+
+    const response = await headerAxios.get(`/api/beer/liked`);
+
+    return response.data;
   }
 );
 
@@ -14,7 +16,8 @@ export const getMyDogam = createAsyncThunk(
 export const getMyReview = createAsyncThunk(
     "mybeer/getMyReview", 
     async (data, thunkAPI) => {
-    const response = await headerAxios.get(`/api/mybeer/my`, data);
+
+    const response = await headerAxios.get(`/api/mybeer/my`);
     
   return response.data;
 });

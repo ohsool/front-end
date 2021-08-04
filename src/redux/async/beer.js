@@ -5,7 +5,7 @@ export const getAllBeer = createAsyncThunk(
   "beer/getAllBeer",
   async (data, thunkAPI) => {
 
-    const response = await nonHeaderAxios.get(`/api/beer`);
+    const response = await nonHeaderAxios.get(`/api/beer/list`);
     
     return response.data;
   }
@@ -15,7 +15,7 @@ export const getOneBeer = createAsyncThunk(
     "beer/getOneBeer",
     async (data, thunkAPI) => {
 
-    const response = await nonHeaderAxios.get(`/api/beer/${data}`);
+    const response = await nonHeaderAxios.get(`/api/beer/list/${data}`);
     
     return response.data;
     }

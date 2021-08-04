@@ -29,14 +29,15 @@ const SignUp = (props) => {
             setEamil_Check_Text("");
             return;
         }
-        if(!emailCheck(email)){
+        console.log(emailCheck(email), is_email);
+        if(emailCheck(email) === false && is_email !== "success"){
             setEmail_Double(false);
             setEamil_Check_Text("올바른 이메일 형식이 아닙니다.");
-        }
-        if(is_email === true){
+        }else{
             setEmail_Double(true);
             setEamil_Check_Text("사용 가능한 이메일입니다.")
         }
+
     }, [email]);
 
     useEffect(() => {  //닉네임 중복체크
@@ -51,7 +52,6 @@ const SignUp = (props) => {
             setNickName_Double(true);
             setNickname_Check_Text("사용 가능한 닉네임입니다.");
         }
-        setNickname_Check_Text("이미 사용중인 닉네임입니다.");
     }, [is_nickname]);
 
     const onChange = (e) => {

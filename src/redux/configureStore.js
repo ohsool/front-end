@@ -5,6 +5,7 @@ import { createBrowserHistory } from "history";
 import { connectRouter } from "connected-react-router";
 
 import {
+    mybeerSlice,
     userSlice, 
     suggestSlice, 
     beerSlice, 
@@ -13,6 +14,7 @@ import {
 export const history = createBrowserHistory();
 
 const reducer = combineReducers({
+  mybeer: mybeerSlice.reducer,
   category: categorySlice.reducer,
   beer: beerSlice.reducer,
   suggest: suggestSlice.reducer,
