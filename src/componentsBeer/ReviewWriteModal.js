@@ -13,36 +13,41 @@ import { writeReview, editReview} from "../redux/async/review";
 const ReviewWriteModal = (props) => {
     const dispatch = useDispatch();
 
-    const { open, close, beer } = props;
+    //item에 기존 리뷰 내용, 별점, features 평점이 들어있다. ex. item.review
+    //item, is_edit은 ReviewList에서 전달(수정 상태)
+    const { open, close, beer, item, is_edit } = props; 
     const taste_data = ["쓴맛", "청량감", "향", "단맛", "고소한맛"];
     
     const [review, setReview] = useState("");
     const [starScore, setStarScore] = useState(0);
     let arr = Array(5);
     const [featuresList, setFeaturesList] = useState(arr.fill(0));
-
-    console.log("beer",beer)
-
     const addReview = () => {
         if(review === "" || starScore === 0 || featuresList.includes(0)){
             window.alert("답하지 않은 문항이 있어요!")
             return
         }
         dispatch(writeReview({
-            beer: beer["name_korean"],//beer_id,
+            beer: beer?.name_korean,//beer_id,
             myFeatures: {
                 bitter: featuresList[0], 
                 crispy: featuresList[1], 
                 flavor: featuresList[2], 
                 sweet: featuresList[3], 
-                nutty: featuresList[4]
+                nutty: featuresList[4],
             },
             location: "default",
             rate: starScore,
-            review: review
+            review: review,
+            //image: beer["image"]
+
         }));
-        window.alert("작성 완료!🍻")
-        history.replace(`/beer/list`);
+        window.alert("작성 완료!🍻");
+        setReview("");
+        setStarScore(0);
+        setFeaturesList(arr.fill(0));
+        close();
+        //history.replace(`/beer/list`);
         //history.replace(`/beer/detail/${beer?.beerId}`);
 
     }
@@ -67,15 +72,12 @@ const ReviewWriteModal = (props) => {
         }));
         window.alert("수정 완료!🍻")
         history.replace(`/beer/list`);
+        close();
         //history.replace(`/beer/detail/${beer?.beerId}`);
     }
 
     const onChange = (e) => {
         setReview(e.target.value);
-        if(review.length>5){
-            
-            return
-        }
     }
 
     return(
@@ -89,20 +91,39 @@ const ReviewWriteModal = (props) => {
                     <CloseIcon onClick={close}/>
                     <BeerInfo>
                             <BeerImage>
-                                <img src={beer?.image}/>
+                                <img src={beer.image}/>
                             </BeerImage>
-                            <BeerTextarea 
+                            {is_edit ? ( 
+                                 <>
+                                    <BeerTextarea 
+                                    onChange={onChange}
+                                    review={review}
+                                    placeholder={""}
+                                    >{item.review}</BeerTextarea>
+                                 </>
+                            ):(
+                                <>
+                                    <BeerTextarea 
                                     onChange={onChange}
                                     review={review}
                                     placeholder={"맥주에 대한 평가와 소감을 적어주세요.(최대 48자)"}
-                            ></BeerTextarea>
+                                    ></BeerTextarea>
+                                </>
+                            )}
+
                     </BeerInfo>
                     <ScoreWrap>
                             <Div> {/* 별점 묶음 */}
                                 <span style={{margin: "0 auto", fontWeight: "bold"}}>별점</span>
-                                <StarRate
-                                    setStarScore={setStarScore}
-                                />
+                                {is_edit ? ( 
+                                    <>
+                                        <StarRate setStarScore={setStarScore} init_star={item.rate}/>
+                                    </>
+                                ):(
+                                    <>
+                                        <StarRate setStarScore={setStarScore} init_star={0}/>
+                                    </>
+                                )}
                             </Div>
 
                             <div>
@@ -113,18 +134,39 @@ const ReviewWriteModal = (props) => {
                             </TasteFlavorWrap>
 
                             <TasteScoreWrap> {/* 셀렉트 바 */}
-                                {taste_data.map((taste, idx) => (
-                                    <SelectBar key={idx} index={idx} setFeaturesList={setFeaturesList} featuresList={featuresList}/>
-                                ))}
+                                
+                                {is_edit ? ( 
+                                    <>
+                                        {taste_data.map((taste, idx) => (
+                                        <SelectBar key={idx} index={idx} setFeaturesList={setFeaturesList} 
+                                                featuresList={featuresList} init_list={item.myFeatures}/>
+                                        ))}
+                                    </>
+                                ):(
+                                    <>
+                                        {taste_data.map((taste, idx) => (
+                                            <SelectBar key={idx} index={idx} setFeaturesList={setFeaturesList} 
+                                                featuresList={featuresList} init_list={arr}/>
+                                        ))}
+                                    </>
+                                )}
                                 <TasteScore>
                                 </TasteScore>
                             </TasteScoreWrap>
                             </div>
-                        <ReviewButton>
+                        {is_edit ? (
+                            <ReviewButton>
                             <button onClick={() => {
-                                addReview()
-                            }}>도감 작성하기</button>
-                        </ReviewButton>
+                                updateReview()
+                            }}>도감 수정하기</button>
+                            </ReviewButton>
+                        ):(
+                            <ReviewButton>
+                                <button onClick={() => {
+                                    addReview()
+                                }}>도감 작성하기</button>
+                            </ReviewButton>
+                        )}
 
                     </ScoreWrap>
 

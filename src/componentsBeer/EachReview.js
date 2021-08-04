@@ -1,14 +1,27 @@
 //DrinkDetail에 들어갈 내용
 import React,{useState} from 'react';
 import styled from "styled-components";
+import moment from 'moment';
+import 'moment/locale/ko';
+
 import {useDispatch} from "react-redux";
 import {deleteReview} from "../redux/async/review";
 
+import ReviewWriteModal from "../componentsBeer/ReviewWriteModal";
+
 const EachReview=(props)=> {
-    const is_user = true;
-    const { item, index, is_me} = props; 
+    //item에 해당 맥주 리뷰 정보 담김, 해당 리뷰 작성자가 본인이면 is_me 전달, beerOne에 해당 맥주 정보 담김
+    const { item, is_me, beerOne} = props; 
+    const [modalOpen, setModalOpen] = useState(false);
     const dispatch = useDispatch();
 
+    const openModal = () => {
+        setModalOpen(true);
+      };
+    const closeModal = () => {
+        setModalOpen(false);
+    };
+    const date = moment(item?.date)
 
 
     return (
@@ -19,11 +32,11 @@ const EachReview=(props)=> {
                     <Div>
                     <NicknameText>
                         <span style={{ fontWeight: "700", fontSize: "14px", lineHeight: "20.27px"}}>
-                            {/*{item.nickname}*/} 닉네임</span>
+                            {item.nickname}</span>
                     </NicknameText>
                     <DateText>
                         <span style={{ fontWeight: "300", fontSize: "10px", lineHeight: "14.48px"}}>
-                            {item.date}5분 전
+                        {moment(date).fromNow()}
                         </span>
                     </DateText>
                     </Div>
@@ -39,7 +52,9 @@ const EachReview=(props)=> {
                                 <EditButton onClick={(e) => {
                                     e.preventDefault();
                                     e.stopPropagation();
+                                    openModal();
                                 }}/>
+                                
                                 <DeleteButton onClick = {(e) => {
                                     e.preventDefault();
                                     e.stopPropagation();
@@ -55,13 +70,20 @@ const EachReview=(props)=> {
                 </GridHorizon>
                 <ReviewText>
                     <span style={{ display: "block", width: "280px",fontWeight: "300", fontSize: "12px", lineHeight: "17.38px"}}>
-                    
                         {item.review}
 
                     </span>               
                 </ReviewText>
             </Grid>
         </Container> 
+
+        <ReviewWriteModal
+            open={modalOpen}
+            close={closeModal}
+            beer={beerOne}
+            item={item}
+            is_edit={true}
+        ></ReviewWriteModal> 
 
         </React.Fragment>
     )

@@ -5,8 +5,10 @@ import { headerAxios, nonHeaderAxios } from "./moduleAxios";
 export const getReview = createAsyncThunk(
   "review/getReview",
   async (data, thunkAPI) => {
-    console.log("data==>",data);//data==>{beer: undefine};
-    const response = await nonHeaderAxios.get(`/api/mybeer/beer`, data); //data : {"beer": "하이네켄"}
+    console.log("beer_reviews >",data);
+    const response = await nonHeaderAxios.get(`/api/mybeer/beer`, data);
+    
+    console.log("get review response:", response)
     return response.data;
   }
 );
@@ -15,7 +17,9 @@ export const getReview = createAsyncThunk(
 export const writeReview = createAsyncThunk(
   "review/writeReview",
   async (data, thunkAPI) => {
-    const response = await headerAxios.post(`/api/mybeer`, data); 
+    const response = await headerAxios.post(`/api/mybeer`, data);//post(`/api/mybeer/${beerId}`, data); 
+    console.log("submit review data >", data);
+    console.log("submit review response >",response);//success
     return response.data;
   }
 );
@@ -23,8 +27,9 @@ export const writeReview = createAsyncThunk(
 //수정
 export const editReview = createAsyncThunk(
   "review/editReview",
-  async (data,  thunkAPI) => {
-    const response = await headerAxios.put(`/api/mybeer/${data}`);    
+  async (data, thunkAPI) => {
+    const response = await headerAxios.put(`/api/mybeer/${mybeerId}`, data);
+    console.log("edit review response >",response);  
     return response.data;
   }
 );

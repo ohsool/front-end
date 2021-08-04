@@ -1,6 +1,7 @@
 import React,{useState, useEffect} from "react";
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
+import { getAllBeer } from "../redux/async/beer";
 
 import Slider from "../componentsBeer/Slider";
 import EachBeer from "../componentsBeer/EachBeer";
@@ -8,12 +9,17 @@ import MyReview from "../componentsMypage/MyReview";
 import Header from "../Header";
 import "../share/style/myBeer.css";
 import WritedReview from "../componentsMypage/WritedReview";
+import { useDispatch, useSelector } from "react-redux";
 
 const MyBeer = ()=>{
+    const beers = useSelector(state => state.beer.beerList.beers)
+    const dispatch = useDispatch();
     const [is_Dogam, setIs_Dogam] = useState(true);
     const session = sessionStorage.getItem("token");
+    
     useEffect(()=> {
         setIs_Dogam(true);
+        dispatch(getAllBeer());
     }, [])
 
     useEffect(() => {
@@ -25,17 +31,25 @@ const MyBeer = ()=>{
 
     const mydogam = [
         {
-            image: "",
-            category: 'lager',
-            name_koeran: '곰표 밀맥주' , 
-            name_english: 'Gompyo Wheat Beer',
-            hashtag: ['달달', '과일향', '상큼함']},
-        {
-            image: "",
-            category: 'lager',
-            name_korean: 'Y끼리 IPA',
-            name_english: 'IPA with Y',
-            hashtag: ['달달', '과일향', '상큼함']},
+            "hashtag": [
+            "황금색",
+            "안호이저 부시",
+            "라이트바디"
+            ],
+            "like_array": [],
+            "features": {"bitter": 3,"crispy": 5,"flavor": 2,"sweet": 1,"nutty": 3},
+            "count": 1,
+            "avgRate": 4,
+            "location": [],
+            "location_report": [],
+            "_id": "6107a0b4e7dd0d2b2c84087c",
+            "name_korean": "버드와이저",
+            "name_english": "Budweiser",
+            "image": "https://drive.google.com/uc?export=view&id=1VnjD_a1f1-F5sSxLndE0AfgwjMMbaEtR ",
+            "degree": 5,
+            "categoryId": "6107a097e7dd0d2b2c840863",
+            "__v": 0
+        }
     ];      
     return (
         <React.Fragment>
@@ -75,7 +89,7 @@ const MyBeer = ()=>{
             {is_Dogam == true ? 
                 <List>
                 {mydogam.length > 0 ? mydogam.map((item, idx) => (
-                    <EachBeer key={idx} {...item} 
+                    <EachBeer key={idx} item={item} 
                         _onClick={() =>{
                             history.push("/beer/detail")
                         }

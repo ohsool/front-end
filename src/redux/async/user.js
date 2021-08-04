@@ -18,7 +18,6 @@ async (data, thunkAPI) => {
 
     const response = await nonHeaderAxios.post(`api/user/auth`, data);
     
-    console.log(response.data);
   return response.data;
   }
 );
@@ -40,8 +39,8 @@ export const checkEmail = createAsyncThunk(
     const server_email = {
       email: data,
     }
-    const response = await nonHeaderAxios.get(`/api/user/email`, server_email);
-    
+    const response = await nonHeaderAxios.post(`/api/user/email`, server_email);
+    // console.log("email doubleCheck response", response.data);
     return response.data;
   }
 )
@@ -52,8 +51,8 @@ export const checkNickname = createAsyncThunk(
     const server_nickname ={
       nickname: data
     }
-    const response = await nonHeaderAxios.get(`/api/user/nickname`, server_nickname);
-
+    const response = await nonHeaderAxios.post(`/api/user/nickname`, server_nickname);
+    // console.log("nickname doubleCheck response", response.data);
     return response.data;
   }
 )

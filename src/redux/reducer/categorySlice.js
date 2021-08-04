@@ -20,10 +20,8 @@ const categorySlice = createSlice({
           })
           .addCase(getCategory.fulfilled, (state, action) => {
             const new_list = action.payload.beerCategories;
-            new_list.push(
-              {
-                name: "all"
-              }
+            new_list.unshift(
+              { name: "All"}
             /*{
               avgRate: {}, 
               _id: "", 

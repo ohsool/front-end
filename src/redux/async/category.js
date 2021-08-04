@@ -11,12 +11,12 @@ export const getCategory = createAsyncThunk(
     return response.data;
   }
 );
-//특정카테고리 맥주 가져오기
+//특정카테고리 맥주 가져오기 (사용 x)
 export const getCategoryBeer = createAsyncThunk(
     "category/getCategoryBeer",
     async (data, thunkAPI) => {
 
-    const response = await nonHeaderAxios.get(`/api/beerCategory/:beerCategoryId`, data);
+    const response = await nonHeaderAxios.get(`/api/beerCategory/${data}`);
     
   return response.data;
 });

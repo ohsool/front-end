@@ -1,6 +1,7 @@
 import React,{useState, useEffect} from "react";
 import styled from "styled-components";
 
+
 import EachReview from "../componentsBeer/EachReview";
 import { useSelector, useDispatch } from "react-redux";
 import {history} from "../redux/configureStore";
@@ -11,12 +12,14 @@ import ReviewWriteModal from "../componentsBeer/ReviewWriteModal";
 import Header from "../Header";
 
 const ReviewList = (props)=>{
-    const dispatch = useDispatch();
     const [modalOpen, setModalOpen] = useState(false);
     const session = sessionStorage.getItem("token"); //임시 로그인 여부 확인용
     const beerOne = useSelector(state => state.beer.beerOne);
     const userId = useSelector(state => state.user.currentUser.userId);
-    const beer_info = useSelector(state => state.review.reviewList.myBeers);//err : TypeError: Cannot read property 'reviewList' of undefined
+    const beer_infos = useSelector(state => state.review.reviewList.myBeers);
+    const dispatch = useDispatch();
+
+    console.log("beer_reviews:",beer_infos);
 
     const openModal = () => {
         setModalOpen(true);
@@ -101,10 +104,10 @@ const ReviewList = (props)=>{
                 </MoveBoxWrap>
                 </Wrap>
                 <Grid>
-                    {beer_info?.length > 0 ? beer_info?.map((item, idx) => {
+                    {beer_infos?.length > 0 ? beer_infos?.map((item, idx) => {
                         if( item.userId === userId){
                             return (
-                                <EachReview key={idx} item = {item} is_me/> 
+                                <EachReview key={idx} item = {item} is_me beerOne/> 
                             )    
                         }else{
                             return (
@@ -119,7 +122,8 @@ const ReviewList = (props)=>{
                 <ReviewWriteModal
                     open={modalOpen}
                     close={closeModal}
-                    beer={beerOne}                    
+                    beer={beerOne}
+                    is_edit={false}                   
                 ></ReviewWriteModal>               
             </Container>
 

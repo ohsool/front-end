@@ -9,37 +9,36 @@ import { userInfo } from "../redux/async/user";
 import HeartButton from "./HeartButton";
 import TasteGraph from "./TasteGraph";
 import EachReview from "./EachReview";
-import Loader from "../share/Loader";
 
 const BeerDetail = (props) =>{
     const [toggle, setToggle] = useState(false);
     const heart_detail = "detail"
-    const [loading, setLoading] = useState(false);
     const beerOne = useSelector(state => state.beer.beerOne);
     const userId = useSelector(state => state.user.currentUser.userId);
-    const beer_info = useSelector(state => state.review.reviewList);//err : TypeError: Cannot read property 'reviewList' of undefined
+    const beer_infos = useSelector(state => state.review.reviewList);//err : TypeError: Cannot read property 'reviewList' of undefined
+
+
     const dispatch = useDispatch();
     //beer_info의 review키 가진거로..[{...review:"얌얌"},{...review:"냠냠"},{...review:"yumyum"}...]
     //console.log(beerOne?.name_korean)
     useEffect(() => {
         async function getData() {
-            await dispatch(getOneBeer(props.match.params.beerId));
-            // dispatch(getReview());            
+            await dispatch(getOneBeer(props.match.params.beerId));            
             await dispatch(userInfo());
+            await dispatch(getReview({beer: beerOne?.name_korean}));
         }
-        console.log("beer detail rendering")
         return getData();
     }, []);
-
+    
+/*
     useEffect(() => {
         async function getData() {
             await dispatch(getReview({beer: beerOne?.name_korean}));//괄호안에 {name: beerOne?.name_korean} ??
         }
         console.log("beer detail rendering")
         return getData();
-    }, [beer_info]);
-    
-
+    }, []);
+*/    
     useEffect(() => {
         if(beerOne){
         if(beerOne?.like_array?.includes(userId)){
@@ -155,6 +154,7 @@ const BeerDetail = (props) =>{
                     <Wrap>
                     <span style={{ fontWeight: "700",paddingBottom: "14px"}}>리뷰</span>
                         <Gradient>
+                            {/* beer_infos */}
                             {reviews?.length > 0 ? reviews?.map((item, idx) => (
                                 idx < 4 ? (<React.Fragment>
                                     <EachReview key={idx} index={idx} item={item}/>{/*item에  {..."review":"yumyum"}*/}

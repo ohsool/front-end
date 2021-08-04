@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useRef} from "react";
 import styled from "styled-components";
 
 import {useDispatch, useSelector} from "react-redux";
@@ -22,19 +22,22 @@ const SignUp = (props) => {
         confirmPassword: ""
     });
 
+    const {email, nickname, password, confirmPassword} = signup_info;
+
     useEffect(() => {   //아이디 중복체크
         if(email === ""){
             setEamil_Check_Text("");
             return;
         }
-        if(is_email === "fail"){
+        if(!emailCheck(email)){
             setEmail_Double(false);
             setEamil_Check_Text("올바른 이메일 형식이 아닙니다.");
-        }else{
-            setEmail_Double(true);
-            setEamil_Check_Text("사용 가능한 이메일입니다.");
         }
-    }, [is_email]);
+        if(is_email === true){
+            setEmail_Double(true);
+            setEamil_Check_Text("사용 가능한 이메일입니다.")
+        }
+    }, [email]);
 
     useEffect(() => {  //닉네임 중복체크
         if(nickname === ""){
@@ -42,15 +45,14 @@ const SignUp = (props) => {
             return;
         }
         if(is_nickname === "fail"){
-            setNickName_Double(false)
+            setNickName_Double(false);
             setNickname_Check_Text("이미 사용중인 닉네임입니다.");
         }else{
             setNickName_Double(true);
             setNickname_Check_Text("사용 가능한 닉네임입니다.");
         }
+        setNickname_Check_Text("이미 사용중인 닉네임입니다.");
     }, [is_nickname]);
-
-    const {email, nickname, password, confirmPassword} = signup_info;
 
     const onChange = (e) => {
         setSignUp_Info({...signup_info, [e.target.name]: e.target.value});
