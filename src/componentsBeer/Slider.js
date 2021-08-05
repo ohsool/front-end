@@ -7,7 +7,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const BeerType = ({ items, beerCategoryId }) => {
+const BeerType = ({ items }) => {
     const settings = {
         infinite: true,
         speed: 200,
@@ -16,16 +16,17 @@ const BeerType = ({ items, beerCategoryId }) => {
         variableWidth: true, // slider 간격조정
         arrows: false,
     };
+
     return (
         <Container>
             <StyledSlider {...settings}>
                 {true && items?.map((item, idx) => (
                     <div /*className={beerId === item ? "clicked" : "non-clicked" */
-                        onClick={()=> {
-                            const beerCategoryId = item._id;
-                            history.push(`/beer/list/${beerCategoryId}`);
-                        }
-                    } key={idx}>
+                        onClick={() => {
+                            item.name === "All" ? history.push("/beer/list")
+                            :
+                            history.push(`/beer/list/${item._id}`)
+                        }} key={idx}>
                         {item.name}
                     </div>
                 ))}
@@ -37,7 +38,7 @@ const BeerType = ({ items, beerCategoryId }) => {
 export default BeerType;
 
 const Container = styled.div`
-    margin-left: 35px;
+    margin-left: 10px;
     width: 360px;
     overflow: hidden;
 `;
@@ -49,6 +50,7 @@ const StyledSlider = styled(Slider)`
         position: relative;
         outline: none;
         width: 60px;
+        text-align: center;
     }
 `;
 

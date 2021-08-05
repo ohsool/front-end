@@ -30,7 +30,6 @@ const TestResult = (props) => {
                         <img src="https://image.flaticon.com/icons/png/512/724/724863.png"></img>
                     </ReButton>
                 </Grid>
-            <Testdiv></Testdiv>
         </React.Fragment>
     )
 }
@@ -73,9 +72,4 @@ const ReButton = styled.div`
         width: 11px;
         height: 11px;
     }
-`;
-
-const Testdiv = styled.div`
-    width: 100%;
-    height: 1000px;
 `;

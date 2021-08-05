@@ -37,9 +37,7 @@ const BeerList = (props) =>{
 
     const EnterSubmit = (e) =>{
         if(e.key === "Enter"){
-            //dispatch(searchReview(input));
             setInput("");
-            console.log("입력된: ",input);
         }
     }
 
