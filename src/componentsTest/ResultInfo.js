@@ -6,11 +6,11 @@ const ResultInfo = ({ category }) => {
     return(
         <React.Fragment>
             <BackgroundCateInfo>
-                <p>더운 여름날엔 열대향 가득 IPA!</p>
-                <span>IPA는 이러이러 저러저러해 <br/>산미와 기분좋은 쌉싸한 맛이 특징인 맥주에요!</span>
+                <p>{category?.title}</p>
+                <span>{category?.description}</span>
                 
             </BackgroundCateInfo>
-            <RecommendCategory>오늘의 추천 IPA</RecommendCategory>
+            <RecommendCategory>오늘의 추천 {category?.name}</RecommendCategory>
         </React.Fragment>
     )
 }

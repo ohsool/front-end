@@ -1,11 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import beerTest from "../share/beerTest.jpeg"
 
 const BackgroundCateImage = ({ category }) => {
     return(
         <React.Fragment>
-            <BackgroundImage>
+            <BackgroundImage style={{backgroundImage: `url(${category?.image})`}}>
                 <Wrap>
                     <TextWrap> 
                         <p>당신을 위한 <br/>오늘의 맥주는,</p>
@@ -24,7 +23,6 @@ const BackgroundImage = styled.div`
     width: 100%;
     height: 270px;
     background-color: gray;
-    background-image: url(${beerTest});
     background-size: cover;
     text-aligin: center;
     display: flex;

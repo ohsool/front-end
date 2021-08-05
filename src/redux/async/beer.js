@@ -50,9 +50,9 @@ export const searchReview = createAsyncThunk(
 export const testResult = createAsyncThunk(
   "beer/testResult",
   async (data, thunkAPI) => {
-
+    
     const response = await nonHeaderAxios.post(`/api/user/test`, data);
-
+    
     return response.data;
   }
 )

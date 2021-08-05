@@ -9,21 +9,22 @@ import BackgroundCateImage from "../componentsTest/BackgroundCateImage";
 import { RecommendBeer, ResultInfo, TestHeader } from "../componentsTest/TestIndex";
 
 const TestResult = (props) => {
+    const dispatch = useDispatch();
     const category = useSelector((state) => state.beer.beerToday.category);
     const beerRecommends = useSelector((state) => state.beer.beerToday.recommendations);
     const user = useSelector((state) => state.user.currentUser);
-    const dispatch = useDispatch();
     
-    useEffect(()=> {
-        async function getData(){
-            await dispatch(userInfo());
-            await dispatch(testResult({
-                userId: user.userId,
-                result: user.preference,
-            }));
-        }
-        return getData();
-    }, [])
+    // useEffect(()=> {
+    //     async function getData(){
+    //         await dispatch(userInfo());
+    //         await dispatch(testResult({
+    //             userId: user.userId,
+    //             result: user.preference,
+    //         }));
+    //     }
+    // return getData();
+    // }, []);
+
     return (
         <React.Fragment>
             <TestHeader/>
