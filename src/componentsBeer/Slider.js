@@ -53,4 +53,3 @@ const StyledSlider = styled(Slider)`
         text-align: center;
     }
 `;
-

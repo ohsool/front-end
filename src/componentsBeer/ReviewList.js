@@ -87,6 +87,7 @@ const Container = styled.div`
 const Grid = styled.div`
     width: 360px;
     margin: 0 auto;
+    padding: 45px 0 0 0;
 `
 const Wrap = styled.div`
     position: fixed;

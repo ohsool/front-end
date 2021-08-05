@@ -32,7 +32,7 @@ const reviewSlice = createSlice({
             state.reviewList = [];
         })
         .addCase(getReview.fulfilled, (state, action) => {
-            state.reviewList = action.payload.myBeers;
+            state.reviewList = action.payload.myBeers.reverse();
         })
         .addCase(getReview.rejected, (state, action) => {
             console.log("reviewList rejected: 리뷰목록 불러오기에 실패했습니다");

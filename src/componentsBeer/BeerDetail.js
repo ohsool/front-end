@@ -117,10 +117,10 @@ const BeerDetail = (props) =>{
                     <span style={{ fontWeight: "700",paddingBottom: "14px"}}>리뷰</span>
                         <Gradient>
                             {beer_infos?.length > 0 ? beer_infos?.map((item, idx) => (
-                                idx < 4 ? (<React.Fragment>
-                                    <EachReview key={idx} index={idx} item={item}/>
-                                    
-                                    </React.Fragment>) : null
+                                idx < 4 ? (
+                                    <>
+                                    <EachReview key={idx}  item={item}/>
+                                    </>) : null
                             )): ""}
                             <span style={{ textAlign:"center", paddingBottom: "20px",  fontWeight: "700", fontSize: "14px", lineHeight: "20.27px", fontStyle: "bold"
                             }} onClick={()=>{
@@ -218,7 +218,7 @@ const TasteTag = styled.div`
 
 const Gradient = styled.div`
     position: absolute;
-    z-index: 100;
+    z-index: 1;
     -webkit-mask-size: 312px 420px;
     -webkit-mask-image: -webkit-gradient(linear, center bottom, center top,
     color-stop(1.00,  rgba(0,0,0,1)),

@@ -41,7 +41,7 @@ const MyBeer = (props)=>{
             <Header></Header>
         <Grid>
             <Wrap>  
-            <ButtonContainerWrap> {/* 세밀한 padding 조절은 이후에 ..!=> 수정했습니다! */}
+            <ButtonContainerWrap>
                 <button
                     className={is_Dogam === true ? "clickedButtonContainer" : "buttonContainer"}
                     onClick={()=>{
@@ -69,7 +69,7 @@ const MyBeer = (props)=>{
                 ))}
                 </List>
             : 
-            <Container>  {/* 데이터 이미지가공 까지해서 */}
+                <Container>  {/* 데이터 이미지가공 까지해서 */}
                 {is_Dogam === false ? 
                     myReview.map((item, idx) => (
                         <WritedReview item={item}/>
