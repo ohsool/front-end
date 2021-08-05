@@ -52,7 +52,7 @@ export const checkNickname = createAsyncThunk(
       nickname: data
     }
     const response = await nonHeaderAxios.post(`/api/user/nickname`, server_nickname);
-    // console.log("nickname doubleCheck response", response.data);
+    
     return response.data;
   }
 );

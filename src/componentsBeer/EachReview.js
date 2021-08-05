@@ -62,6 +62,7 @@ const EachReview=(props)=> {
                                     e.stopPropagation();
                                     if(window.confirm("정말로 삭제하시나요?")){
                                         dispatch(deleteReview(item._id));
+                                        window.location.reload();
                                         return
                                     }
                                 }}>삭제</DeleteButton>

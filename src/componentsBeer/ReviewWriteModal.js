@@ -8,36 +8,27 @@ import { useDispatch , useSelector} from "react-redux";
 
 import { writeReview, editReview} from "../redux/async/review";
 
-
-
 const ReviewWriteModal = (props) => {
-    const dispatch = useDispatch();
 
-    //item에 기존 리뷰 내용, 별점, features 평점이 들어있다. ex. item.review
-    //item, is_edit은 ReviewList에서 전달(수정 상태)
     const { open, close, beerOne, item, is_edit, setReload, mybeerId } = props; 
     const taste_data = ["쓴맛", "청량감", "향", "단맛", "고소한맛"];
-    
     const [review, setReview] = useState("");
     const [starScore, setStarScore] = useState(0);
-    
     let arr = Array(5);
     const [featuresList, setFeaturesList] = useState(arr.fill(0));
-    let arr1= Array(5);
-    //arr1 = Object.keys(item?.myFeatures);
     const [list, setList] = useState();
+    const dispatch = useDispatch();
 
     useEffect(() => {
         if(item) {
           setList(Object.values(item?.myFeatures));
         }
     }, [item]);   // 렌더링 횟수 줄이기
-    console.log("list",list)
-    
     useEffect(()=>{
         setReview(item?.review);
         setStarScore(item?.rate);
     },[])
+    
     const addReview = () => {
         if(review === "" || starScore === 0 || featuresList.includes(0)){
             window.alert("답하지 않은 문항이 있어요!")
@@ -69,7 +60,7 @@ const ReviewWriteModal = (props) => {
     }
     const updateReview = () => {
 
-        if(review === "" || starScore === 0 || featuresList.includes(0)){
+        if(review === "" || starScore === 0 ){
             window.alert("답하지 않은 문항이 있어요!")
             return
         }
@@ -90,9 +81,7 @@ const ReviewWriteModal = (props) => {
         setReview("");
         setStarScore(0);
         setFeaturesList(arr.fill(0)); 
-        //상속받은것들 안됨     
-        //setReload(true);
-        //history.replace(`/beer/review/${beerOne._id}`);
+        window.location.reload();
         close();
     }
 
@@ -142,7 +131,6 @@ const ReviewWriteModal = (props) => {
                                 <span style={{margin: "0 auto", fontWeight: "bold"}}>별점</span>
                                 {is_edit ? ( 
                                     <>
-                                        
                                         <StarRate setStarScore={setStarScore} init_star={item.rate}/>
                                     </>
                                 ):(

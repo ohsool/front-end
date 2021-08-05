@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { history } from "../redux/configureStore";
-import Login from "../pages/Login";
 
 const MainInput = (props) => {
     const [is_login, setIs_Login] = useState(false);
@@ -29,7 +28,7 @@ const MainInput = (props) => {
             <LinkWrap>
                 <Wrap>
                     <LinkBox onClick={() => {
-                        history.push("/test/0");
+                        history.push("/test/");
                     }}>
                         당신을 위한 오늘의 맥주는?
                     </LinkBox>

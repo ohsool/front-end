@@ -19,7 +19,7 @@ const SignUp = (props) => {
         email: "",
         nickname: "",
         password: "",
-        confirmPassword: ""
+        confirmPassword: "",
     });
 
     const {email, nickname, password, confirmPassword} = signup_info;

@@ -5,15 +5,13 @@ import {ProgressBar, Step} from "react-step-progress-bar";
 const SelectBar = ({index, setFeaturesList, featuresList, taste, is_edit}) => {
     const [cur_position, setCur_Position] = useState(0);
     const [score, setScore] = useState(0);
-    featuresList[index] = score;
-    setFeaturesList(featuresList)
-    
-    console.log("taste:",taste)
-    console.log("cur_position",cur_position);
 
+    featuresList[index] = score;
+    setFeaturesList(featuresList)  
     
     useEffect(()=>{
       setCur_Position(taste*25-25)
+      setScore(taste)
     },[taste])
 
 /*
@@ -36,9 +34,7 @@ const SelectBar = ({index, setFeaturesList, featuresList, taste, is_edit}) => {
                     onClick={() => {
                       setCur_Position(position);
                       setScore(5-((100-position)/25)); //점수
-                      //handleScore(score);
                     }}
-                    // className={`indexedStep ${accomplished ? "accomplished" : ""}`}
                   />
                 )}
               </Step>
@@ -60,9 +56,8 @@ const SelectBar = ({index, setFeaturesList, featuresList, taste, is_edit}) => {
                   onClick={() => {
                     setCur_Position(position);
                     setScore(5-((100-position)/25)); //점수
-                    //handleScore(score);
                   }}
-                  // className={`indexedStep ${accomplished ? "accomplished" : ""}`}
+              
                 />
               )}
             </Step>

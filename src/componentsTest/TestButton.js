@@ -1,12 +1,33 @@
-import React from "react";
+import React,{ useState } from "react";
 import styled from "styled-components";
 
 const TestButton = ({ goToNext, question }) => {
+
     return (
         <React.Fragment>
             <ButtonWrap>
-                <QuestionButton onClick={() => {}}>{question.answer[0]}</QuestionButton>
-                <ClickedQuestionButton onClick={goToNext}>{question.answer[1]}</ClickedQuestionButton>
+                <QuestionButton 
+                    onClick={() => {
+                        let choice = Object.keys(question.answer[0]).join()
+                        goToNext(choice);
+                    }}>
+                    {Object.values(question.answer[0])}
+                </QuestionButton>
+                <ClickedQuestionButton
+                    onClick={() => {
+                        let choice = Object.keys(question.answer[1]).join()
+                        goToNext(choice);
+                    }}>
+                    {Object.values(question.answer[1])}
+                </ClickedQuestionButton>
+                {question.answer[2] ? 
+                <QuestionButton 
+                    onClick={() => {
+                        let choice = Object.keys(question.answer[2]).join()
+                        goToNext(choice);
+                    }}>
+                    {Object.values(question.answer[2])}
+                </QuestionButton> : ""}
             </ButtonWrap>
         </React.Fragment>
     )
@@ -39,4 +60,5 @@ const ClickedQuestionButton = styled.button`
     background-color: #FFC44F;
     color: #151515;
     font-size: 16px;
+    margin-bottom: 16px;
 `;

@@ -5,7 +5,7 @@ const TestQuestion = ({ question }) => {
     return(
         <React.Fragment>
             <QuestionWrap>
-                <p>{question.questionNum}</p>
+                <p>Question</p>
                 <span>{question.question}</span>
             </QuestionWrap>
         </React.Fragment>

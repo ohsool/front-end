@@ -1,4 +1,3 @@
-import { getDefaultMiddleware } from '@reduxjs/toolkit';
 import React, { useEffect, useState } from 'react';
 import { Radar } from 'react-chartjs-2';
 

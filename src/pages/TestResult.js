@@ -1,33 +1,50 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
+import { useDispatch, useSelector } from "react-redux";
+import { userInfo } from "../redux/async/user";
+import { testResult } from "../redux/async/beer";
 
 import BackgroundCateImage from "../componentsTest/BackgroundCateImage";
 import { RecommendBeer, ResultInfo, TestHeader } from "../componentsTest/TestIndex";
+
 const TestResult = (props) => {
-    const a = [1, 2];
+    const category = useSelector((state) => state.beer.beerToday.category);
+    const beerRecommends = useSelector((state) => state.beer.beerToday.recommendations);
+    const user = useSelector((state) => state.user.currentUser);
+    const dispatch = useDispatch();
+    
+    useEffect(()=> {
+        async function getData(){
+            await dispatch(userInfo());
+            await dispatch(testResult({
+                userId: user.userId,
+                result: user.preference,
+            }));
+        }
+        return getData();
+    }, [])
     return (
         <React.Fragment>
             <TestHeader/>
                 <Grid>  
-                    <BackgroundCateImage/>
+                    <BackgroundCateImage category={category}/>
                     <Wrap>
-                        <ResultInfo/>
+                        <ResultInfo category={category}/>
                         <RecommendBeerWrap>
-                            {a.map((p, idx) => (
-                                <RecommendBeer></RecommendBeer>
+                            {beerRecommends?.map((item, idx) => (
+                                <RecommendBeer item={item}></RecommendBeer>
                             ))}
                         </RecommendBeerWrap>
                     </Wrap>
                     <ReButton
                         onClick={() => {
-                            history.push("/test/0");
+                            history.push("/test/");
                         }}
                     >다시 하기
                         <img src="https://image.flaticon.com/icons/png/512/724/724863.png"></img>
                     </ReButton>
                 </Grid>
-            <Testdiv></Testdiv>
         </React.Fragment>
     )
 }
@@ -70,9 +87,4 @@ const ReButton = styled.div`
         width: 11px;
         height: 11px;
     }
-`;
-
-const Testdiv = styled.div`
-    width: 100%;
-    height: 1000px;
 `;

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const ResultInfo = (props) => {
+const ResultInfo = ({ category }) => {
     
     return(
         <React.Fragment>

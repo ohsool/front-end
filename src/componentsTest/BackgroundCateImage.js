@@ -2,14 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import beerTest from "../share/beerTest.jpeg"
 
-const BackgroundCateImage = (props) => {
+const BackgroundCateImage = ({ category }) => {
     return(
         <React.Fragment>
             <BackgroundImage>
                 <Wrap>
                     <TextWrap> 
-                        <p>당신을 위한 오늘의 맥주는,</p>
-                        <h1>‘IPA’</h1>
+                        <p>당신을 위한 <br/>오늘의 맥주는,</p>
+                        <h1>‘{category?.name}’</h1>
                     </TextWrap>
                     <ShareButton></ShareButton>
                 </Wrap>
@@ -39,7 +39,6 @@ const Wrap = styled.div`
 
 const TextWrap = styled.div`
     display: inline-block;
-    width: 125px;
     margin: 68px 0 0 16px;
     & > p {
         margin: 0;

@@ -2,7 +2,7 @@ import React,{ useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { logOut } from "../redux/reducer/userSlice";
 import { useDispatch } from "react-redux";
-import {history} from "../redux/configureStore";
+import { history } from "../redux/configureStore";
 
 import MyPageModal from "../componentsMypage/MyPageModal";
 import Header from "../Header";
@@ -20,8 +20,10 @@ const MyPage = (props) => {
 
     useEffect(() => {
         if(!session){
-            window.alert("로그인이 필요한 서비스입니다!")
-            history.push("/")
+            if(window.confirm("로그인이 필요한 서비스입니다. 로그인하시겠습니까?")){
+                history.push("/login")
+                return;
+            }
         }
     }, []);
 

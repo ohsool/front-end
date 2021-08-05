@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { history } from "../redux/configureStore";
 
 
 import Slider from './Slider';
@@ -17,10 +16,10 @@ const BeerList = (props) =>{
     const get_category_id = props.match.params.beerCategoryId;
     const is_all = get_category_id ? false : true;
     const beers = useSelector(state => state.beer.beerList.beers);
-    const items = useSelector(state => state.category.categoryList); 
+    const items = useSelector(state => state.category.categoryList);
     const category_beers = beers?.filter((p) => p.categoryId === get_category_id);
     const dispatch = useDispatch();
-
+    
     useEffect(() => {
         async function getData() {
             await dispatch(getAllBeer());
@@ -38,9 +37,7 @@ const BeerList = (props) =>{
 
     const EnterSubmit = (e) =>{
         if(e.key === "Enter"){
-            //dispatch(searchReview(input));
             setInput("");
-            console.log("입력된: ",input);
         }
     }
 

@@ -10,7 +10,6 @@ import { getReview } from "../redux/async/review";
 import { userInfo } from "../redux/async/user";
 
 import ReviewWriteModal from "../componentsBeer/ReviewWriteModal";
-import Header from "../Header";
 
 const ReviewList = (props)=>{
 
@@ -41,7 +40,7 @@ const ReviewList = (props)=>{
             openModal();
         }else{
             if(window.confirm("로그인이 필요한 서비스입니다. 로그인하시겠습니까?")){
-                history.push("/")
+                history.push("/login")
                 return
             }
         }
@@ -88,6 +87,7 @@ const Container = styled.div`
 const Grid = styled.div`
     width: 360px;
     margin: 0 auto;
+    padding: 45px 0 0 0;
 `
 const Wrap = styled.div`
     position: fixed;

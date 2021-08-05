@@ -13,4 +13,12 @@ import StarRate from "./StarRate";
 import TasteGraph from "./TasteGraph";
 
 
-export default {EachReview, HeartButton,ReviewList,ReviewWrite,ReviewWriteModal,SelectBar,Slider,StarRate,TasteGraph};
+export default {EachReview, 
+    HeartButton,
+    ReviewList,
+    ReviewWrite,
+    ReviewWriteModal,
+    SelectBar,
+    Slider,
+    StarRate,
+    TasteGraph};
