@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { userInfo } from "../redux/async/user";
+import { testResult } from "../redux/async/beer";
 
 import BackgroundCateImage from "../componentsTest/BackgroundCateImage";
 import { RecommendBeer, ResultInfo, TestHeader } from "../componentsTest/TestIndex";
@@ -9,6 +11,19 @@ import { RecommendBeer, ResultInfo, TestHeader } from "../componentsTest/TestInd
 const TestResult = (props) => {
     const category = useSelector((state) => state.beer.beerToday.category);
     const beerRecommends = useSelector((state) => state.beer.beerToday.recommendations);
+    const user = useSelector((state) => state.user.currentUser);
+    const dispatch = useDispatch();
+    
+    useEffect(()=> {
+        async function getData(){
+            await dispatch(userInfo());
+            await dispatch(testResult({
+                userId: user.userId,
+                result: user.preference,
+            }));
+        }
+        return getData();
+    }, [])
     return (
         <React.Fragment>
             <TestHeader/>

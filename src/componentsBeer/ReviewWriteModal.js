@@ -110,22 +110,17 @@ const ReviewWriteModal = (props) => {
                                 
                             </BeerImage>
                             {is_edit ? ( 
-                                 <>
-                                    
-                                    <BeerTextarea 
-                                        onChange={onChange}
-                                        review={review}
-                                        placeholder={""}
-                                    >{item.review}</BeerTextarea>
-                                 </>
+                                <BeerTextarea 
+                                    onChange={onChange}
+                                    review={review}
+                                    placeholder={""}
+                                >{item.review}</BeerTextarea>
                             ):(
-                                <>
-                                    <BeerTextarea 
-                                        onChange={onChange}
-                                        review={review}
-                                        placeholder={"맥주에 대한 평가와 소감을 적어주세요.(최대 48자)"}
-                                    ></BeerTextarea>
-                                </>
+                                <BeerTextarea 
+                                    onChange={onChange}
+                                    review={review}
+                                    placeholder={"맥주에 대한 평가와 소감을 적어주세요.(최대 48자)"}
+                                ></BeerTextarea>
                             )}
 
                     </BeerInfo>
@@ -133,45 +128,39 @@ const ReviewWriteModal = (props) => {
                             <Div> {/* 별점 묶음 */}
                                 <span style={{margin: "0 auto", fontWeight: "bold"}}>별점</span>
                                 {is_edit ? ( 
-                                    <>
-                                        
-                                        <StarRate setStarScore={setStarScore} init_star={item.rate}/>
-                                    </>
+                                    <StarRate setStarScore={setStarScore} init_star={item.rate}/>
                                 ):(
-                                    <>
-                                        <StarRate setStarScore={setStarScore} init_star={0}/>
-                                    </>
+                                    <StarRate setStarScore={setStarScore} init_star={0}/>
                                 )}
                             </Div>
+                            </ScoreWrap>
+                    <div>
+                        <TasteFlavorWrap> {/* 질문 유형 */}
+                            {taste_data.map((taste) => 
+                                (<span>{taste}</span>)
+                            )}
+                        </TasteFlavorWrap>
 
-                            <div>
-                            <TasteFlavorWrap> {/* 질문 유형 */}
-                                {taste_data.map((taste) => 
-                                    (<span>{taste}</span>)
-                                )}
-                            </TasteFlavorWrap>
-
-                            <TasteScoreWrap> {/* 셀렉트 바 */}
-                                
-                                {is_edit ? ( 
-                                    <> {/* {setFeaturesList(item.myFeatures)}*/}
-                                        {taste_data.map((taste, idx) => (
-                                        <SelectBar key={idx} index={idx} setFeaturesList={setFeaturesList} 
-                                                featuresList={featuresList} init_list={item.myFeatures}/>
-                                        ))}
-                                    </>
-                                ):(
-                                    <>
-                                        {taste_data.map((taste, idx) => (
-                                            <SelectBar key={idx} index={idx} setFeaturesList={setFeaturesList} 
-                                                featuresList={featuresList} init_list={arr}/>
-                                        ))}
-                                    </>
-                                )}
-                                <TasteScore>
-                                </TasteScore>
-                            </TasteScoreWrap>
-                            </div>
+                        <TasteScoreWrap> {/* 셀렉트 바 */}
+                            {is_edit ? ( 
+                                <> {/* {setFeaturesList(item.myFeatures)}*/}
+                                {taste_data.map((taste, idx) => (
+                                <SelectBar key={idx} index={idx} setFeaturesList={setFeaturesList} 
+                                        featuresList={featuresList} init_list={item.myFeatures}/>
+                                ))}
+                                </>
+                            ):(
+                                <>
+                                {taste_data.map((taste, idx) => (
+                                    <SelectBar key={idx} index={idx} setFeaturesList={setFeaturesList} 
+                                        featuresList={featuresList} init_list={arr}/>
+                                ))}
+                                </>
+                            )}
+                            <TasteScore>
+                            </TasteScore>
+                        </TasteScoreWrap>
+                    </div>
                         {is_edit ? (
                             <ReviewButton>
                             <button onClick={() => {
@@ -185,10 +174,6 @@ const ReviewWriteModal = (props) => {
                                 }}>도감 작성하기</button>
                             </ReviewButton>
                         )}
-
-                    </ScoreWrap>
-
-
                 </ModalWrap>
             </Background>
             : null }
@@ -265,7 +250,7 @@ const CloseIcon = styled.div`
 
 
 const TasteFlavorWrap = styled.div`
-    margin-left: 35px;
+    margin-left: 24px;
     display: inline-block;
     width: 59px;
     height: 238px;
@@ -275,7 +260,7 @@ const TasteFlavorWrap = styled.div`
         font-size: 14px;
         font-weight: 700;
         line-height: 20.27px;
-        margin-bottom 13px;
+        margin-bottom: 13px;
     }
 `;
 
