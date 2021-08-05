@@ -1,12 +1,25 @@
-import React from "react";
+import React,{ useEffect, useState } from "react";
 import styled from "styled-components";
 
 const TestButton = ({ goToNext, question }) => {
+    const [choice, setChoice] = useState();
     return (
         <React.Fragment>
             <ButtonWrap>
-                <QuestionButton onClick={() => {}}>{question.answer[0]}</QuestionButton>
-                <ClickedQuestionButton onClick={goToNext}>{question.answer[1]}</ClickedQuestionButton>
+                <QuestionButton 
+                    onClick={() => {
+                        goToNext(choice);
+                        setChoice(Object.keys(question.answer[0]).join());
+                    }}>
+                    {Object.values(question.answer[0])}
+                </QuestionButton>
+                <ClickedQuestionButton
+                    onClick={() => {
+                        goToNext(choice);
+                        setChoice(Object.keys(question.answer[1]).join());
+                    }}>
+                    {Object.values(question.answer[1])}
+                </ClickedQuestionButton>
             </ButtonWrap>
         </React.Fragment>
     )

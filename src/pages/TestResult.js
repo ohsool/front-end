@@ -4,24 +4,26 @@ import { history } from "../redux/configureStore";
 
 import BackgroundCateImage from "../componentsTest/BackgroundCateImage";
 import { RecommendBeer, ResultInfo, TestHeader } from "../componentsTest/TestIndex";
+import { useSelector } from "react-redux";
 const TestResult = (props) => {
-    const a = [1, 2];
+    const category = useSelector((state) => state.beer.beerToday.category);
+    const beerRecommends = useSelector((state) => state.beer.beerToday.recommendations);
     return (
         <React.Fragment>
             <TestHeader/>
                 <Grid>  
-                    <BackgroundCateImage/>
+                    <BackgroundCateImage category={category}/>
                     <Wrap>
-                        <ResultInfo/>
+                        <ResultInfo category={category}/>
                         <RecommendBeerWrap>
-                            {a.map((p, idx) => (
-                                <RecommendBeer></RecommendBeer>
+                            {beerRecommends?.map((item, idx) => (
+                                <RecommendBeer item={item}></RecommendBeer>
                             ))}
                         </RecommendBeerWrap>
                     </Wrap>
                     <ReButton
                         onClick={() => {
-                            history.push("/test/0");
+                            history.push("/test/");
                         }}
                     >다시 하기
                         <img src="https://image.flaticon.com/icons/png/512/724/724863.png"></img>

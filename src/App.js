@@ -12,7 +12,7 @@ function App() {
       <GlobalStyle/>
       <ConnectedRouter history={history}>
         <Route path="/" exact component={Main}/>
-        <Route path="/test/:question_id" component={Test}/>
+        <Route path="/test" component={Test}/>
         <Route path="/result" component={TestResult}/>
         <Route path="/beer"  component={Beer}/>
         <Route path="/signup" exact component={SignUp}/>

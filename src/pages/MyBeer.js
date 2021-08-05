@@ -3,11 +3,8 @@ import styled from "styled-components";
 import { history } from "../redux/configureStore";
 import { getMyDogam, getMyReview } from "../redux/async/mybeer";
 import { userInfo } from "../redux/async/user";
-import { getAllBeer } from "../redux/async/beer";
 
-import Slider from "../componentsBeer/Slider";
 import EachBeer from "../componentsBeer/EachBeer";
-import MyReview from "../componentsMypage/MyReview";
 import Header from "../Header";
 import "../share/style/myBeer.css";
 import WritedReview from "../componentsMypage/WritedReview";
@@ -22,15 +19,20 @@ const MyBeer = (props)=>{
 
     useEffect(()=> {
         setIs_Dogam(true);
-        dispatch(getMyDogam());
-        dispatch(getMyReview());
-        dispatch(userInfo());
+        async function getData(){
+            await dispatch(getMyDogam());
+            await dispatch(getMyReview());
+            await dispatch(userInfo());
+        }
+        return getData();
     }, [])
 
     useEffect(() => {
         if(!session){
-            window.alert("로그인이 필요한 서비스입니다!")
-            history.push("/")
+            if(window.confirm("로그인이 필요한 서비스입니다. 로그인하시겠습니까?")){
+                history.push("/login")
+                return;
+            }
         }
     }, []);
 
@@ -56,19 +58,6 @@ const MyBeer = (props)=>{
                     내가 쓴 게시물
                 </button>
             </ButtonContainerWrap>
-            <SliderWrap>
-            <Slider
-                    items={[
-                        "All",
-                        "Lager",
-                        "Pilsner",
-                        "Pale Ale",
-                        "IPA",
-                        "Weizen",
-                        "Dunkel",
-                        "Stout",
-                    ]}/>
-            </SliderWrap>
             {is_Dogam === true ? 
                 <List>
                 {mydogam?.map((item, idx) => (
@@ -85,8 +74,7 @@ const MyBeer = (props)=>{
                     myReview.map((item, idx) => (
                         <WritedReview item={item}/>
                     )) :
-                    ""
-                }
+                    ""}
                 </Container>
             }
             </Wrap>
@@ -118,10 +106,6 @@ const Wrap = styled.div`
     width: 360px;
     margin: 0 auto;
     margin-top: 65px;
-`;
-
-const SliderWrap = styled.div`
-    margin: 0 0 20px 0px;
 `;
 
 const List = styled.div`

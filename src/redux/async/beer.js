@@ -4,7 +4,7 @@ import { headerAxios, nonHeaderAxios } from "./moduleAxios";
 export const getAllBeer = createAsyncThunk(
   "beer/getAllBeer",
   async (data, thunkAPI) => {
-
+    
     const response = await nonHeaderAxios.get(`/api/beer/list`);
     
     return response.data;
@@ -39,13 +39,23 @@ export  const unLikeBeer = createAsyncThunk(
     return response.data;
   }
 )
-
 //추가된 코드
 //맥주 검색
 export const searchReview = createAsyncThunk(
   "beer/searchReview",
   async (data, thunkAPI) => {
     const response = await nonHeaderAxios.post(`/api/beer/search`, data);
+    
+    return response.data;
+  }
+)
+
+export const testResult = createAsyncThunk(
+  "beer/testResult",
+  async (data, thunkAPI) => {
+
+    const response = await nonHeaderAxios.post(`/api/user/test`, data);
+
     return response.data;
   }
 )

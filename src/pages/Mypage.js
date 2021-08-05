@@ -20,8 +20,10 @@ const MyPage = (props) => {
 
     useEffect(() => {
         if(!session){
-            window.alert("로그인이 필요한 서비스입니다!")
-            history.push("/")
+            if(window.confirm("로그인이 필요한 서비스입니다. 로그인하시겠습니까?")){
+                history.push("/login")
+                return;
+            }
         }
     }, []);
 

@@ -32,7 +32,7 @@ const ReviewList = (props)=>{
             openModal();
         }else{
             if(window.confirm("로그인이 필요한 서비스입니다. 로그인하시겠습니까?")){
-                history.push("/")
+                history.push("/login")
                 return
             }
         }

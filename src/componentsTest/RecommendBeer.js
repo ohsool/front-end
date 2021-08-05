@@ -1,18 +1,20 @@
 import React from "react";
 import styled from "styled-components";
 
-const RecommendBeer = (props) => {
+const RecommendBeer = ({ item }) => {
     const tag_name = ["달달", "과일향", "상큼함"];
     return(
         <React.Fragment>
             <RecommendBeerWrap>
-                <BeerImage></BeerImage>
+                <BeerImage>
+                    <img src={item.image}></img>
+                </BeerImage>
                 <BeerInfoWrap>
-                    <BeerTitle>Y끼리 IPA</BeerTitle>
+                    <BeerTitle>{item.name_korean}</BeerTitle>
                     <HeartImage src="https://image.flaticon.com/icons/png/512/833/833300.png"></HeartImage>
-                    <p>IPA with Y</p>
-                    {tag_name.map((p, idx) => (
-                        <TasteTag>#{tag_name[idx]}</TasteTag>
+                    <p>{item.name_english}</p>
+                    {item.hashtag.map((p, idx) => (
+                        <TasteTag>#{p.split("_")[0]}</TasteTag>
                     ))}
                 </BeerInfoWrap>
             </RecommendBeerWrap>
@@ -31,6 +33,10 @@ const BeerImage = styled.div`
     height: 148px;
     border-radius: 13px;
     background-color: #F7F7F7;
+    & > img{
+        width: 148px;
+        height: 148px;
+    }
 `;
 
 const BeerInfoWrap = styled.div`
