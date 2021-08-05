@@ -16,7 +16,6 @@ const BeerType = ({ items, beerCategoryId }) => {
         variableWidth: true, // slider 간격조정
         arrows: false,
     };
-    
     return (
         <Container>
             <StyledSlider {...settings}>

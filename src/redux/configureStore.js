@@ -9,7 +9,9 @@ import {
     userSlice, 
     suggestSlice, 
     beerSlice, 
-    categorySlice} from "./reducer/SliceIndex";
+    categorySlice,
+    reviewSlice,
+  } from "./reducer/SliceIndex";
 
 export const history = createBrowserHistory();
 
@@ -18,6 +20,7 @@ const reducer = combineReducers({
   category: categorySlice.reducer,
   beer: beerSlice.reducer,
   suggest: suggestSlice.reducer,
+  review: reviewSlice.reducer,
   user: userSlice.reducer,
   router: connectRouter(history),
 });

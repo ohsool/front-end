@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
+import { useSelector } from "react-redux";
 
 import BackgroundCateImage from "../componentsTest/BackgroundCateImage";
 import { RecommendBeer, ResultInfo, TestHeader } from "../componentsTest/TestIndex";
-import { useSelector } from "react-redux";
+
 const TestResult = (props) => {
     const category = useSelector((state) => state.beer.beerToday.category);
     const beerRecommends = useSelector((state) => state.beer.beerToday.recommendations);

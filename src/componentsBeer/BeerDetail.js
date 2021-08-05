@@ -3,31 +3,30 @@ import styled from "styled-components";
 import { history } from "../redux/configureStore";
 import { useSelector, useDispatch } from "react-redux";
 import { getOneBeer, likeBeer, unLikeBeer } from "../redux/async/beer";
+import { getReview } from "../redux/async/review";
 import { userInfo } from "../redux/async/user";
 
 import HeartButton from "./HeartButton";
 import TasteGraph from "./TasteGraph";
 import EachReview from "./EachReview";
-import { getReview } from "../redux/async/review";
-import Loader from "../share/Loader";
 
 const BeerDetail = (props) =>{
     const [toggle, setToggle] = useState(false);
     const heart_detail = "detail"
-    const [loading, setLoading] = useState(false);
     const beerOne = useSelector(state => state.beer.beerOne);
     const userId = useSelector(state => state.user.currentUser.userId);
+    const beer_infos = useSelector(state => state.review.reviewList);
+    //beer_info map돌려서 review키 가진거로..[{...review:"얌얌"},{...review:"냠냠"},{...review:"yumyum"}...]
     const dispatch = useDispatch();
-    
     useEffect(() => {
         async function getData() {
-            await dispatch(getOneBeer(props.match.params.beerId));
-            // dispatch(getReview());
+            await dispatch(getOneBeer(props.match.params.beerId));            
             await dispatch(userInfo());
+            await dispatch(getReview(props.match.params.beerId));
         }
         return getData();
     }, []);
-    
+     
     useEffect(() => {
         if(beerOne){
         if(beerOne?.like_array?.includes(userId)){
@@ -41,40 +40,13 @@ const BeerDetail = (props) =>{
             dispatch(unLikeBeer(beerOne._id));
              setToggle(false)
         }else{
-            dispatch(likeBeer(beerOne._id));
+            dispatch(likeBeer(beerOne.beerId));
             setToggle(true);
         }
     }
 
-    const reviews = [
-        {
-            nickname: "닉네임",
-            rate: "4.0",
-            review : "UserReview"
-        },
-        {
-            nickname: "닉네임",
-            rate: "4.0",
-            review : "UserReview"
-        },
-        {
-            nickname: "닉네임",
-            rate: "4.0",
-            review : "UserReview"
-        },
-        {
-            nickname: "닉네임",
-            rate: "4.0",
-            review : "UserReview"
-        },
-        {
-            nickname: "닉네임",
-            rate: "4.0",
-            review : "UserReview"
-        },
-    ];   
-
     return(
+        
         <React.Fragment>
             <Container>
                 <Grid>
@@ -144,15 +116,15 @@ const BeerDetail = (props) =>{
                     <Wrap>
                     <span style={{ fontWeight: "700",paddingBottom: "14px"}}>리뷰</span>
                         <Gradient>
-                            {reviews.length > 0 ? reviews.map((item, idx) => (
+                            {beer_infos?.length > 0 ? beer_infos?.map((item, idx) => (
                                 idx < 4 ? (<React.Fragment>
-                                    <EachReview key={idx} idx={idx} {...item}/>
+                                    <EachReview key={idx} index={idx} item={item}/>
                                     
                                     </React.Fragment>) : null
                             )): ""}
                             <span style={{ textAlign:"center", paddingBottom: "20px",  fontWeight: "700", fontSize: "14px", lineHeight: "20.27px", fontStyle: "bold"
                             }} onClick={()=>{
-                                history.push("/beer/review", {beerOne})
+                                history.push(`/beer/review/${beerOne._id}`, { beer_infos, userId })
                             }}>전체보기</span>
                         </Gradient>  
                     </Wrap>

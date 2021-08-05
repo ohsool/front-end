@@ -1,11 +1,16 @@
 import React from "react";
 import styled from "styled-components";
+import { history } from "../redux/configureStore";
 
 const RecommendBeer = ({ item }) => {
-    const tag_name = ["달달", "과일향", "상큼함"];
+
     return(
         <React.Fragment>
-            <RecommendBeerWrap>
+            <RecommendBeerWrap
+                onClick={() => {
+                    history.push(`/beer/detail/${item._id}`)
+                }}
+            >
                 <BeerImage>
                     <img src={item.image}></img>
                 </BeerImage>

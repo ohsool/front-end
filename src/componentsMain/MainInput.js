@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { history } from "../redux/configureStore";
-import Login from "../pages/Login";
 
 const MainInput = (props) => {
     const [is_login, setIs_Login] = useState(false);

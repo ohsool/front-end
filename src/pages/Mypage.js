@@ -2,7 +2,7 @@ import React,{ useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { logOut } from "../redux/reducer/userSlice";
 import { useDispatch } from "react-redux";
-import {history} from "../redux/configureStore";
+import { history } from "../redux/configureStore";
 
 import MyPageModal from "../componentsMypage/MyPageModal";
 import Header from "../Header";

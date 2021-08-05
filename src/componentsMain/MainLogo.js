@@ -1,7 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import TestHeader from "../componentsTest/TestHeader";
-import Logo from "../share/Logo.jpeg"
 
 const MainLogo = () => {
     return(

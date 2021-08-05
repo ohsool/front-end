@@ -1,12 +1,30 @@
 //DrinkDetail에 들어갈 내용
 import React,{useState} from 'react';
 import styled from "styled-components";
+import moment from 'moment';
+import 'moment/locale/ko';
+
 import {useDispatch} from "react-redux";
+import {deleteReview} from "../redux/async/review";
+
+import ReviewWriteModal from "../componentsBeer/ReviewWriteModal";
 
 const EachReview=(props)=> {
-    const is_user = true;//본인 게시글이면 (magazine-result플젝의 PostList 참고))
-    const { nickname, date, rate, review, idx} = props; 
+    //item에 해당 맥주 리뷰 정보 담김, beerOne에 해당 맥주 정보 담김
+    const { item, beerOne, userId} = props; 
+    const [modalOpen, setModalOpen] = useState(false);
+    
     const dispatch = useDispatch();
+
+    const openModal = () => {
+        setModalOpen(true);
+      };
+    const closeModal = () => {
+        setModalOpen(false);
+    };
+    const date = moment(item?.date)
+
+
     return (
         <React.Fragment>
         <Container>
@@ -15,11 +33,11 @@ const EachReview=(props)=> {
                     <Div>
                     <NicknameText>
                         <span style={{ fontWeight: "700", fontSize: "14px", lineHeight: "20.27px"}}>
-                            {nickname}</span>
+                            {item.userId.nickname}</span>
                     </NicknameText>
                     <DateText>
                         <span style={{ fontWeight: "300", fontSize: "10px", lineHeight: "14.48px"}}>
-                            {date}5분 전
+                        {moment(date).fromNow()}
                         </span>
                     </DateText>
                     </Div>
@@ -28,26 +46,48 @@ const EachReview=(props)=> {
                         <StarImg/>
                         <RateText>
                             <span style={{fontWeight: "300", fontSize: "10px", lineHeight: "14.48px"}}>
-                                ({rate})</span>
+                                ({item.rate.toFixed(1)})</span>
                         </RateText>
-                            {is_user? 
+                            { item.userId._id === userId ? (
                                 <>
-                                <EditButton onClick={()=>dispatch()}/>
-                                <DeleteButton onClick = {()=>dispatch()}/>
+                                <EditButton onClick={(e) => {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    openModal();
+                                }}>수정</EditButton>
+                                
+                                <DeleteButton onClick = {(e) => {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    if(window.confirm("정말로 삭제하시나요?")){
+                                        dispatch(deleteReview(item._id));
+                                        return
+                                    }
+                                }}>삭제</DeleteButton>
                                 </>
-                            : null}
+                            ): null}
+                            
                     </Div>
 
                 </GridHorizon>
                 <ReviewText>
                     <span style={{ display: "block", width: "280px",fontWeight: "300", fontSize: "12px", lineHeight: "17.38px"}}>
-                    
-                        {review}
+                        {item.review}
 
                     </span>               
                 </ReviewText>
             </Grid>
-        </Container>   
+        </Container> 
+
+        <ReviewWriteModal
+            open={modalOpen}
+            close={closeModal}
+            beerOne={beerOne}
+            item={item}
+            is_edit={true}
+            mybeerId={item._id}
+        ></ReviewWriteModal> 
+
         </React.Fragment>
     )
 }

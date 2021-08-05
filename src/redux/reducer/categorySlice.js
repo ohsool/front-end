@@ -20,7 +20,7 @@ const categorySlice = createSlice({
           })
           .addCase(getCategory.fulfilled, (state, action) => {
             const new_list = action.payload.beerCategories;
-            new_list.unshift({name: "All"});
+            new_list.unshift({ name: "All"});
             state.categoryList = new_list;
           })
           .addCase(getCategory.rejected, (state, action) => {

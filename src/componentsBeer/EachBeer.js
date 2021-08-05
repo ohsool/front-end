@@ -34,7 +34,7 @@ const EachBeer = (props) => {
                 history.push(`/beer/detail/${item._id}`)
             }}>
                 <BeerImage>
-                    <img src={item.image}>
+                    <img src={item.image} alt="beer_image">
                     </img>
                 </BeerImage>
                 <BeerInfoWrap>
@@ -51,7 +51,7 @@ const EachBeer = (props) => {
                     {item.hashtag.map((p, idx) => (
                         <TasteTag>#{p.split("_")[0]}</TasteTag>
                     ))}
-                </BeerInfoWrap>
+                    </BeerInfoWrap>
             </RecommendBeerWrap>
         </React.Fragment>
     )

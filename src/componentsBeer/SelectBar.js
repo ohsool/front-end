@@ -2,13 +2,14 @@ import React,{useState} from "react";
 import "react-step-progress-bar/styles.css";
 import {ProgressBar, Step} from "react-step-progress-bar";
 
-const SelectBar = ({index, setFeaturesList, featuresList}) => {
+const SelectBar = ({index, setFeaturesList, featuresList, init_list}) => {
     const arr = [0,0,0,0,0];
     const [cur_position, setCur_Position] = useState();
 
     const [score, setScore] = useState(0);
     featuresList[index] = score;
     setFeaturesList(featuresList)
+    //setFeaturesList(init_list) //수정 작업일 경우 !!!기존 값 저장 되도록...!!
 /*
     const handleScore = (score) => {
         featuresList[index] = score;
