@@ -6,6 +6,7 @@ const WritedReview = ({ item }) => {
         <React.Fragment>
             <WritedBeerInfo>
                 <BeerImage>
+                    <img src={item.beerId.image}/>
                 </BeerImage>
                 <BeerTextWrap>
                     <p>{item.userId.nickname}</p>
@@ -33,6 +34,11 @@ const BeerImage = styled.div`
     width: 80px;
     height: 80px;
     background-color: #FFFFFF;
+
+    & > img{
+        width: 80px;
+        height: 80px; 
+    }
 `;
 
 const BeerTextWrap = styled.div`

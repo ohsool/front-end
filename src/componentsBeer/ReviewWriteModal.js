@@ -23,8 +23,17 @@ const ReviewWriteModal = (props) => {
     
     let arr = Array(5);
     const [featuresList, setFeaturesList] = useState(arr.fill(0));
+    let arr1= Array(5);
+    //arr1 = Object.keys(item?.myFeatures);
+    const [list, setList] = useState();
 
-
+    useEffect(() => {
+        if(item) {
+          setList(Object.values(item?.myFeatures));
+        }
+    }, [item]);   // 렌더링 횟수 줄이기
+    console.log("list",list)
+    
     useEffect(()=>{
         setReview(item?.review);
         setStarScore(item?.rate);
@@ -90,7 +99,6 @@ const ReviewWriteModal = (props) => {
     const onChange = (e) => {
         setReview(e.target.value);
     }
-
     return(
         <React.Fragment>
             {open ? 
@@ -153,18 +161,18 @@ const ReviewWriteModal = (props) => {
 
                             <TasteScoreWrap> {/* 셀렉트 바 */}
                                 
-                                {is_edit ? ( 
+                                {is_edit ? (
                                     <> {/* {setFeaturesList(item.myFeatures)}*/}
-                                        {taste_data.map((taste, idx) => (
+                                        {list.map((taste, idx) => (
                                         <SelectBar key={idx} index={idx} setFeaturesList={setFeaturesList} 
-                                                featuresList={featuresList} init_list={item.myFeatures}/>
+                                                featuresList={featuresList} taste={taste} is_edit={true}/>
                                         ))}
                                     </>
                                 ):(
                                     <>
-                                        {taste_data.map((taste, idx) => (
+                                        {arr.map((taste, idx) => (
                                             <SelectBar key={idx} index={idx} setFeaturesList={setFeaturesList} 
-                                                featuresList={featuresList} init_list={arr}/>
+                                                featuresList={featuresList} taste={taste} is_edit={false}/>
                                         ))}
                                     </>
                                 )}
@@ -199,19 +207,18 @@ const ReviewWriteModal = (props) => {
 export default ReviewWriteModal;
 
 const Background = styled.div`
-    position: absolute;
+    position: fixed;
+    z-index: 9999;
     top: 0;
     left: 0;
     bottom: 0;
     right: 0;
     background-color: rgba(0,0,0,0.50);
     animation: fadeIn .5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
-    z-index: 9999;
+    
     display: flex;
     justify-content: center;
-    img={
-
-    }
+ 
 `;
 
 const ModalWrap = styled.div`
