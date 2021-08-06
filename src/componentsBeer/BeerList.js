@@ -78,7 +78,6 @@ const BeerList = (props) =>{
                                     onKeyPress={EnterSubmit}
                                     placeholder="검색어를 입력하세요."
                                 ></input>
-
                             </Search>
                             {is_all? (
                                 <List>
@@ -110,7 +109,7 @@ export default BeerList;
 const Container = styled.div`
     display: flex;
     height: 754px;
-    background-color: #FFFFFF;
+    background-color: #fff;
     flex-direction: column;
 `;
 const Grid = styled.div`

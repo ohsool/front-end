@@ -133,6 +133,7 @@ const BeerDetail = (props) =>{
                             }} onClick={()=>{
                                 history.push(`/beer/review/${beerOne._id}`, { beer_infos, userId })
                             }}>전체보기</span>
+
                         </Gradient>  
                     </Wrap>
                 </Grid>
@@ -151,7 +152,7 @@ const Container = styled.div`
     height: 754px;
     background-color: #FFFFFF;
     flex-direction: column;
-    span{
+    & > span{
         display: -webkit-box;
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 1;
@@ -172,8 +173,16 @@ const Img = styled.div`
     border-radius: 10px;
     background-color: #F6F6F6;
     & > img{ 
-        width: 360px;
-        height: 380px;
+        width: 315px;
+        height: 315px;
+        margin: 23px 32px;
+    }
+    @media (img: img) {
+        & > img { 
+            width: 315px;
+            height: 315px;
+            margin: 22px 32px;
+         }
     }
 
 `
@@ -249,7 +258,7 @@ const Gradient = styled.div`
     position: absolute;
     z-index: 1;
     margin: 312px 420px;
-    -webkit-mask-image: -webkit-gradient(linear, center bottom, center top,
-    color-stop(1.00,  rgba(0,0,0,1)),
-    color-stop(0.00,  rgba(0,0,0,0)));
+    //-webkit-mask-image: -webkit-gradient(linear, center bottom, center top,
+    //color-stop(1.00,  rgba(0,0,0,1)),
+    //color-stop(0.00,  rgba(0,0,0,0)));
 `;

@@ -1,11 +1,13 @@
 import React from "react";
 import styled from "styled-components";
+import Logo from "../share/Logo.jpeg";
 
 const MainLogo = () => {
     return(
         <React.Fragment>
             <ImageGridcenter>
                 <MainLogoWrap>
+                    <img src={Logo}></img>
                 </MainLogoWrap>
                 <MainLogoText>오늘의술</MainLogoText>
             </ImageGridcenter>
@@ -28,6 +30,10 @@ const MainLogoWrap = styled.div`
     background-size: cover;
     width: 89px;
     height: 61px;
+    & > img {
+        width: 89px;
+        height: 61px;
+    }
 `;
 const MainLogoText = styled.div`
     margin-top: 20px;

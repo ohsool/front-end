@@ -81,8 +81,16 @@ const BeerImage = styled.div`
     background-color: #F7F7F7;
     background-size: cover;
     & > img{
-        width:148px;
-        height: 148px;
+        width:130px;
+        height: 130px;
+        margin: 9px;
+    }
+    @media (img: img) {
+        & > img { 
+            width:130px;
+            height: 130px;
+            margin: 9px;
+         }
     }
     @media (img: img) {
         & > img { 

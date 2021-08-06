@@ -95,7 +95,7 @@ const Wrap = styled.div`
     display: flex;
     justify-content: center;
     bottom: 0;
-    z-index: 99;
+    //z-index: 99;
 `;
 
 const MoveBoxWrap = styled.div`
