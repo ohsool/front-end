@@ -56,7 +56,7 @@ const BeerDetail = (props) =>{
         
         <React.Fragment>
             <Container>
-                <Grid>
+                <div>
                     <Img>
                         <img src={beerOne?.image} />
                     </Img>
@@ -106,7 +106,7 @@ const BeerDetail = (props) =>{
                         <span style={{ fontWeight: "300", fontSize: "12px", lineHeight: "146%"}}>GS25 편의점</span>
                         </div>    
                     </Wrap>
-                    <hr style={{width: "312px", border: "0"}}/>
+                    <hr/>
                     
                     <Wrap>
                         <span style={{ fontWeight: "700" ,paddingBottom: "14px"}}>제보된 판매처</span>
@@ -136,7 +136,7 @@ const BeerDetail = (props) =>{
 
                         </Gradient>  
                     </Wrap>
-                </Grid>
+                </div>
             </Container>
         </React.Fragment>
 
@@ -152,14 +152,13 @@ const Container = styled.div`
     height: 754px;
     background-color: #FFFFFF;
     flex-direction: column;
-    & > span{
+    span{
         display: -webkit-box;
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 1;
         overflow: auto;
         text-align:left;
     }
-
 `;
 const Grid = styled.div`
     width: 360px;
@@ -184,7 +183,6 @@ const Img = styled.div`
             margin: 22px 32px;
          }
     }
-
 `
 const Wrap = styled.div`
     width: 320px;
@@ -194,7 +192,6 @@ const Horizion = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-
 `
 const BeerName= styled.p`
     display: inline-block;
@@ -208,17 +205,6 @@ const BeerName= styled.p`
 
 const BeerContent = styled.div`
     padding: 14px 0;
-    & > p {
-        display: inline-block;
-        margin: 0;
-        width: 250px;
-        overflow: hidden;
-        white-space: nomal;
-        font-weight: 50";
-        font-size: 14px;
-        line-height: 20px;
-        minHeight: 60px;
-    }
 
 `
 
@@ -238,7 +224,6 @@ const ReportButton = styled.button`
     border: 1px solid #FFC44F;
     background-color: #fff;
     margin-top: 16px;
-
 `
 const TasteTag = styled.div`
     display: inline-block;
@@ -256,9 +241,10 @@ const TasteTag = styled.div`
 
 const Gradient = styled.div`
     position: absolute;
+    margin: 0 auto;
     z-index: 1;
     margin: 312px 420px;
-    //-webkit-mask-image: -webkit-gradient(linear, center bottom, center top,
-    //color-stop(1.00,  rgba(0,0,0,1)),
-    //color-stop(0.00,  rgba(0,0,0,0)));
+    background: linear-gradient(linear, center bottom, center top,
+    color-stop(1.00,  rgba(0,0,0,1)),
+    color-stop(0.00,  rgba(0,0,0,0)));
 `;

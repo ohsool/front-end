@@ -109,7 +109,7 @@ export default BeerList;
 const Container = styled.div`
     display: flex;
     height: 754px;
-    background-color: #fff;
+    background-color: #FFFFFF;
     flex-direction: column;
 `;
 const Grid = styled.div`
