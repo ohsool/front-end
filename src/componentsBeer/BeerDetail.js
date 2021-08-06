@@ -262,5 +262,4 @@ const Gradient = styled.div`
     background: linear-gradient(linear, center bottom, center top,
     color-stop(1.00,  rgba(0,0,0,1)),
     color-stop(0.00,  rgba(0,0,0,0)));
-
 `;
