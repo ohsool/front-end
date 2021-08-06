@@ -56,7 +56,7 @@ const BeerDetail = (props) =>{
         
         <React.Fragment>
             <Container>
-                <div>
+                <Grid>
                     <Img>
                         <img src={beerOne?.image} />
                     </Img>
@@ -136,7 +136,7 @@ const BeerDetail = (props) =>{
 
                         </Gradient>  
                     </Wrap>
-                </div>
+                </Grid>
             </Container>
         </React.Fragment>
 
@@ -205,7 +205,9 @@ const BeerName= styled.p`
 
 const BeerContent = styled.div`
     padding: 14px 0;
-
+    margin: 0;
+    width: 250px;
+    
 `
 
 const Graph = styled.div`
@@ -243,7 +245,6 @@ const Gradient = styled.div`
     position: absolute;
     margin: 0 auto;
     z-index: 1;
-    margin: 312px 420px;
     background: linear-gradient(linear, center bottom, center top,
     color-stop(1.00,  rgba(0,0,0,1)),
     color-stop(0.00,  rgba(0,0,0,0)));
