@@ -3,13 +3,12 @@ import styled from "styled-components";
 import "./TestHeader.css";
 
 const TestButton = ({ goToNext, question }) => {
-    const style = {backgroundColor: "#FFC44F"};
-    const [isActive, setIsActive] = useState();
 
     return (
         <React.Fragment>
             <ButtonWrap>
                 <QuestionButton
+                    // className="clickedButton"
                     onClick={() => {
                         let choice = Object.keys(question.answer[0]).join()
                         goToNext(choice);
@@ -17,6 +16,7 @@ const TestButton = ({ goToNext, question }) => {
                     {Object.values(question.answer[0])}
                 </QuestionButton>
                 <QuestionButton
+                    //className="clickedButton"
                     onClick={() => {
                         let choice = Object.keys(question.answer[1]).join()
                         goToNext(choice);
@@ -25,6 +25,7 @@ const TestButton = ({ goToNext, question }) => {
                 </QuestionButton>
                 {question.answer[2] ? 
                 <QuestionButton 
+                    //className="clickedButton"
                     onClick={() => {
                         let choice = Object.keys(question.answer[2]).join()
                         goToNext(choice);
@@ -53,7 +54,10 @@ const QuestionButton = styled.button`
     background-color: #F6F6F6;
     color: #555555;
     font-size: 16px;
-    &:focus{
+    &:active{
         background-color: #FFC44F;
+    }
+    @media (active: active) {
+        &:active { background-color: #FFC44F; }
     }
 `;

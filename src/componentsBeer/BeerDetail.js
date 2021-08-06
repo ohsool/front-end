@@ -176,6 +176,12 @@ const Img = styled.div`
         width: 360px;
         height: 380px;
     }
+    @media (img: img) {
+        & > img { 
+            width: 360px;
+            height: 380px;
+         }
+    }
 
 `
 const Wrap = styled.div`

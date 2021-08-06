@@ -52,7 +52,7 @@ const SignUp = (props) => {
             setNickName_Double(true);
             setNickname_Check_Text("사용 가능한 닉네임입니다.");
         }
-    }, [nickname]);
+    }, [nickname, is_nickname]);
 
     const onChange = (e) => {
         setSignUp_Info({...signup_info, [e.target.name]: e.target.value});
@@ -90,7 +90,6 @@ const SignUp = (props) => {
     } //이메일 중복체크 디스패치
 
     const doubleCheckNickname = () => {
-        console.log("dispatch", nickname);
         dispatch(checkNickname(nickname));
     } //닉네임 중복체크 디스패치
 

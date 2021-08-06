@@ -6,6 +6,7 @@ import { ConnectedRouter } from "connected-react-router";
 import ReactHelmet from "./share/ReactHelmet";
 
 import { Main, Test, Beer, Mypage, TestResult, SignUp, MyBeer, Login } from "./pages/indexPage";
+import Token from "./share/Token";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <GlobalStyle/>
       <ConnectedRouter history={history}>
         <Route path="/" exact component={Main}/>
+        <Route path="/token=:token" component={Token}/>
         <Route path="/test" component={Test}/>
         <Route path="/result" component={TestResult}/>
         <Route path="/beer"  component={Beer}/>

@@ -3,8 +3,6 @@ import {
   signUp, 
   logIn, 
   userInfo, 
-  kakaoLogin, 
-  googleLogin,
   checkEmail,
   checkNickname,
 } from "../async/user";
@@ -33,7 +31,6 @@ const userSlice = createSlice({
       .addCase(signUp.fulfilled, (state, action) => {
         if(action.payload.message === "existed user"){
           window.alert("이미 존재하는 아이디입니다!")
-          return;
         }
         window.location.reload("/");
       })
@@ -41,14 +38,11 @@ const userSlice = createSlice({
         state.checkEmail = action.payload.existed;
       })
       .addCase(checkEmail.rejected, (state, action) => {
-        console.log("email doublecheck failed");
       })
       .addCase(checkNickname.fulfilled, (state, action) => {
-        console.log(action.payload);
         state.checkNickname = action.payload.existed;
       })
       .addCase(checkNickname.rejected, (state, action) => {
-        console.log("nickname doublecheck failed")
       })
       .addCase(logIn.pending, (state, action) => {
       })
@@ -66,16 +60,6 @@ const userSlice = createSlice({
         state.currentUser = action.payload;
       })
       .addCase(userInfo.rejected, (state, action) => {
-      })
-      .addCase(kakaoLogin.fulfilled, (state, action) => {
-      })
-      .addCase(kakaoLogin.rejected, (state, action) => {
-        window.alert("로그인에 실패하였습니다.")
-      })
-      .addCase(googleLogin.fulfilled, (state, action) => {
-      })
-      .addCase(googleLogin.rejected, (state, action) => {
-        window.alert("로그인에 실패하였습니다.")
       })
       // 공통
       .addMatcher(

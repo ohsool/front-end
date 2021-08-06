@@ -48,21 +48,3 @@ export const checkNickname = createAsyncThunk(
     return response.data;
   }
 );
-
-//카카오 로그인
-export const kakaoLogin = createAsyncThunk(
-  "user/kakaoLogin",
-  async (data, thunkAPI) => {   
-    const response = await nonHeaderAxios.post(`/api/user/kakao`);
-    return response.data;
-  }
-);
-
-//구글 로그인
-export const googleLogin = createAsyncThunk(
-  "user/googleLogin",
-  async (data, thunkAPI) => {   
-    const response = await nonHeaderAxios.post(`/api/user/google`);
-    return response.data;
-  }
-);
