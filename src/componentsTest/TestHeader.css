@@ -15,3 +15,24 @@
     font-weight: bold;
     cursor: pointer;
 }
+
+.clickedButton{
+    width: 312px;
+    height: 82px;
+    border: none;
+    border-radius: 18px;
+    background-color: #FFC44F;
+    color: #151515;
+    font-size: 16px;
+    margin-bottom: 16px;
+}
+.nonClickedButton{
+    width: 312px;
+    height: 82px;
+    border: none;
+    margin-bottom: 16px;
+    border-radius: 18px;
+    background-color: #F6F6F6;
+    color: #555555;
+    font-size: 16px;
+}
