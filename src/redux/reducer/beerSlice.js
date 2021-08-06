@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getAllBeer, getOneBeer, searchReview, likeBeer, unLikeBeer, testResult } from "../async/beer";
+import { getAllBeer, getOneBeer, getSearchWord, likeBeer, unLikeBeer, testResult } from "../async/beer";
 
 const initialState = {
     beerList: [],
@@ -33,11 +33,14 @@ const beerSlice = createSlice({
         .addCase(getOneBeer.rejected, (state, action) => {
         })
         //검색기능
-        .addCase(searchReview.pending, (state, action) => {
+        .addCase(getSearchWord.pending, (state, action) => {
+            state.searchList = [];
         })
-        .addCase(searchReview.fulfilled, (state, action) => {
+        .addCase(getSearchWord.fulfilled, (state, action) => {
+            state.searchList = action.payload;
         })
-        .addCase(searchReview.rejected, (state, action) => {
+        .addCase(getSearchWord.rejected, (state, action) => {
+            console.log("getSearchWord rejected: 맥주 검색에 실패했습니다");
         })
         .addCase(likeBeer.pending, (state, action) => {
         })

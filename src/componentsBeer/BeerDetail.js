@@ -85,11 +85,11 @@ const BeerDetail = (props) =>{
                     <hr/>
                     <Wrap>
                         <span style={{ fontWeight: "700"}}>맥주소개</span>
-                        <span style={{ fontWeight: "500", fontSize: "14px", lineHeight: "20px",padding: "14px 0", minHeight: "60px"
-                            }}>스위트하게~위트있게~
+                        <BeerContent>
+                            스위트하게~위트있게~
                             밀맥주 맛에 Tropical Fruit의
                             달콤함이 어우러진 곰표 우리나라 밀맥주
-                        </span>
+                        </BeerContent>
                     </Wrap>
                     <hr/>
                     <Wrap>
@@ -106,7 +106,7 @@ const BeerDetail = (props) =>{
                         <span style={{ fontWeight: "300", fontSize: "12px", lineHeight: "146%"}}>GS25 편의점</span>
                         </div>    
                     </Wrap>
-                    <hr/>
+                    <hr style={{width: "312px", border: "0"}}/>
                     
                     <Wrap>
                         <span style={{ fontWeight: "700" ,paddingBottom: "14px"}}>제보된 판매처</span>
@@ -114,7 +114,7 @@ const BeerDetail = (props) =>{
                         <button/> 
                         <span style={{ fontWeight: "300", fontSize: "12px", lineHeight: "146%"}}>GS25 편의점</span>
                         </div>
-                        
+
                         <ReportButton>장소 제보하기</ReportButton>
 
                     </Wrap>
@@ -133,6 +133,7 @@ const BeerDetail = (props) =>{
                             }} onClick={()=>{
                                 history.push(`/beer/review/${beerOne._id}`, { beer_infos, userId })
                             }}>전체보기</span>
+
                         </Gradient>  
                     </Wrap>
                 </Grid>
@@ -196,14 +197,29 @@ const Horizion = styled.div`
 
 `
 const BeerName= styled.p`
-    display: inline;
+    display: inline-block;
     font-size: 20px;
     font-weight: bold;
     margin: 0;
     width: 250px;
     overflow: hidden;
     white-space: nomal;
-    display:inline-block;
+`
+
+const BeerContent = styled.div`
+    padding: 14px 0;
+    & > p {
+        display: inline-block;
+        margin: 0;
+        width: 250px;
+        overflow: hidden;
+        white-space: nomal;
+        font-weight: 50";
+        font-size: 14px;
+        line-height: 20px;
+        minHeight: 60px;
+    }
+
 `
 
 const Graph = styled.div`
@@ -224,10 +240,8 @@ const ReportButton = styled.button`
     margin-top: 16px;
 
 `
-
 const TasteTag = styled.div`
     display: inline-block;
-    margin: 5px 0px;
     margin-right: 3px;
     padding: 0 6px;
     height: 16px;
@@ -235,16 +249,18 @@ const TasteTag = styled.div`
     box-sizing: border-box;
     border-radius: 33px;
     font-size: 10px;
-    line-height: 16px;
-    color: #555;
-
+    line-height: 14px;
+    text-align: center;
+    color: #333333;
 `;
 
 const Gradient = styled.div`
     position: absolute;
+    margin: 0 auto;
     z-index: 1;
-    -webkit-mask-size: 312px 420px;
-    -webkit-mask-image: -webkit-gradient(linear, center bottom, center top,
+    margin: 312px 420px;
+    background: linear-gradient(linear, center bottom, center top,
     color-stop(1.00,  rgba(0,0,0,1)),
     color-stop(0.00,  rgba(0,0,0,0)));
+
 `;
