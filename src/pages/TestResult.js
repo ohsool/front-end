@@ -2,21 +2,13 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
-import { userInfo } from "../redux/async/user";
-import { testResult } from "../redux/async/beer"; // undefined 값 디스패치할때 american lager반환함
 
 import BackgroundCateImage from "../componentsTest/BackgroundCateImage";
 import { RecommendBeer, ResultInfo, TestHeader } from "../componentsTest/TestIndex";
 
 const TestResult = (props) => {
-    const dispatch = useDispatch();
     const category = useSelector((state) => state.beer.beerToday.category);
     const beerRecommends = useSelector((state) => state.beer.beerToday.recommendations);
-    const user = useSelector((state) => state.user.currentUser);
-    
-    useEffect(()=> {
-     dispatch(userInfo());
-    }, []);
 
     return (
         <React.Fragment>

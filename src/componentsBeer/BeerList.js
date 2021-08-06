@@ -19,8 +19,6 @@ const BeerList = (props) =>{
     const category_beers = beers?.filter((p) => p.categoryId === get_category_id);
     const words = useSelector(state => state.beer.searchList.words);
 
-
-    console.log("get words result: ",words)
     const [word, setWord] = useState("");//실시간으로 입력하는 단어담김
 
     const dispatch = useDispatch();

@@ -35,7 +35,6 @@ const reviewSlice = createSlice({
             state.reviewList = action.payload.myBeers.reverse();
         })
         .addCase(getReview.rejected, (state, action) => {
-            console.log("reviewList rejected: 리뷰목록 불러오기에 실패했습니다");
         })
         .addCase(writeReview.pending, (state, action) => {
         })

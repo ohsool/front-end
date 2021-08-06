@@ -12,7 +12,6 @@ import { userInfo } from "../redux/async/user";
 import ReviewWriteModal from "../componentsBeer/ReviewWriteModal";
 
 const ReviewList = (props)=>{
-
     const [modalOpen, setModalOpen] = useState(false);
     const [reload, setReload] = useState(false);
     const beerOne = useSelector(state => state.beer.beerOne);
@@ -95,7 +94,6 @@ const Wrap = styled.div`
     display: flex;
     justify-content: center;
     bottom: 0;
-    z-index: 99;
 `;
 
 const MoveBoxWrap = styled.div`
