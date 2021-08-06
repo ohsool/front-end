@@ -133,7 +133,7 @@ const ArrowImage = styled.img`
 
 const LogOutButton = styled.button`
     position: absolute;
-    width: 59px;
+    width: 61px;
     height: 23px;
     bottom: 50px;
     left: 50%;

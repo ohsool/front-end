@@ -84,6 +84,12 @@ const BeerImage = styled.div`
         width:148px;
         height: 148px;
     }
+    @media (img: img) {
+        & > img { 
+            width:148px;
+            height: 148px;
+         }
+    }
 `;
 
 const BeerInfoWrap = styled.div`
