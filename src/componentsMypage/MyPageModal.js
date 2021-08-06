@@ -106,11 +106,6 @@ const SuggestInput = styled.textarea`
     border: none;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
-    // ::-webkit-input-placeholder {
-    // width: 180px;
-    // color: #888888;
-    // position: absolute;
-    // }
 `;
 
 const SuggestTitle = styled.div`

@@ -8,7 +8,6 @@ const TestButton = ({ goToNext, question }) => {
         <React.Fragment>
             <ButtonWrap>
                 <QuestionButton
-                    // className="clickedButton"
                     onClick={() => {
                         let choice = Object.keys(question.answer[0]).join()
                         goToNext(choice);
@@ -16,7 +15,6 @@ const TestButton = ({ goToNext, question }) => {
                     {Object.values(question.answer[0])}
                 </QuestionButton>
                 <QuestionButton
-                    //className="clickedButton"
                     onClick={() => {
                         let choice = Object.keys(question.answer[1]).join()
                         goToNext(choice);
@@ -25,7 +23,6 @@ const TestButton = ({ goToNext, question }) => {
                 </QuestionButton>
                 {question.answer[2] ? 
                 <QuestionButton 
-                    //className="clickedButton"
                     onClick={() => {
                         let choice = Object.keys(question.answer[2]).join()
                         goToNext(choice);

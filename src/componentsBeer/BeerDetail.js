@@ -172,13 +172,15 @@ const Img = styled.div`
     border-radius: 10px;
     background-color: #F6F6F6;
     & > img{ 
-        width: 360px;
-        height: 380px;
+        width: 315px;
+        height: 315px;
+        margin: 23px 32px;
     }
     @media (img: img) {
         & > img { 
-            width: 360px;
-            height: 380px;
+            width: 315px;
+            height: 315px;
+            margin: 22px 32px;
          }
     }
 

@@ -56,7 +56,6 @@ const BeerList = (props) =>{
                                     onKeyPress={EnterSubmit}
                                     placeholder="검색어를 입력하세요."
                                 ></input>
-
                             </Search>
                             {is_all? (
                                 <List>
