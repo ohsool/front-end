@@ -39,12 +39,8 @@ const beerSlice = createSlice({
         .addCase(getSearchWord.fulfilled, (state, action) => {
             state.searchList = action.payload;
         })
-<<<<<<< HEAD
         .addCase(getSearchWord.rejected, (state, action) => {
             console.log("getSearchWord rejected: 맥주 검색에 실패했습니다");
-=======
-        .addCase(searchReview.rejected, (state, action) => {
->>>>>>> a92553810835c9fd759526335a439ef675c1ed08
         })
         .addCase(likeBeer.pending, (state, action) => {
         })
