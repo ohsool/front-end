@@ -62,7 +62,6 @@ const BeerDetail = (props) =>{
                     </Img>
                     <Wrap>
                         <Horizion>
-                        <div style={{width: "360px"}}>
                         <BeerName>{beerOne?.name_korean}</BeerName>
                         <div style={{ width: "38px", height: "38px", display: "flex"}}>
                             <HeartButton
@@ -74,7 +73,6 @@ const BeerDetail = (props) =>{
                                 }}
                                 is_like={toggle}                
                             />
-                        </div>
                         </div>
                         </Horizion>
                         <span>{beerOne?.name_english}</span>
@@ -179,7 +177,6 @@ const Img = styled.div`
     }
 
 `
-
 const Wrap = styled.div`
     width: 320px;
     margin: 20px 24px;
@@ -194,10 +191,11 @@ const BeerName= styled.p`
     display: inline;
     font-size: 20px;
     font-weight: bold;
+    margin: 0;
     width: 250px;
     overflow: hidden;
     white-space: nomal;
-    display:block;
+    display:inline-block;
 `
 
 const Graph = styled.div`
