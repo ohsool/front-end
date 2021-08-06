@@ -133,7 +133,6 @@ const BeerDetail = (props) =>{
                             }} onClick={()=>{
                                 history.push(`/beer/review/${beerOne._id}`, { beer_infos, userId })
                             }}>전체보기</span>
-
                         </Gradient>  
                     </Wrap>
                 </Grid>
@@ -175,12 +174,6 @@ const Img = styled.div`
     & > img{ 
         width: 360px;
         height: 380px;
-    }
-    @media (img: img) {
-        & > img { 
-            width: 360px;
-            height: 380px;
-         }
     }
 
 `
@@ -254,11 +247,9 @@ const TasteTag = styled.div`
 
 const Gradient = styled.div`
     position: absolute;
-    margin: 0 auto;
     z-index: 1;
     margin: 312px 420px;
-    background: linear-gradient(linear, center bottom, center top,
+    -webkit-mask-image: -webkit-gradient(linear, center bottom, center top,
     color-stop(1.00,  rgba(0,0,0,1)),
     color-stop(0.00,  rgba(0,0,0,0)));
-
 `;

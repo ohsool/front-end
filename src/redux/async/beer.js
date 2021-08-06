@@ -43,6 +43,17 @@ export const getSearchWord = createAsyncThunk(
     return response.data;
   }
 )
+export const checkNickname = createAsyncThunk(
+  "user/checkNickname",
+  async (data, thunkAPI) => {
+    const server_nickname ={
+      nickname: data
+    }
+    const response = await nonHeaderAxios.post(`/api/user/nickname`, server_nickname);   
+    return response.data;
+  }
+);
+
 
 export const testResult = createAsyncThunk(
   "beer/testResult",
