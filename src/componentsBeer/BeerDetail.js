@@ -191,13 +191,12 @@ const Horizion = styled.div`
 
 `
 const BeerName= styled.p`
-    display: inline;
+    display: inline-block;
     font-size: 20px;
     font-weight: bold;
     width: 250px;
     overflow: hidden;
     white-space: nomal;
-    display:block;
 `
 
 const Graph = styled.div`
