@@ -55,6 +55,7 @@ const BeerDetail = (props) =>{
                     </Img>
                     <Wrap>
                         <Horizion>
+                        <div style={{width: "360px"}}>
                         <span style={{ fontWeight: "700", fontSize: "20px", lineHeight: "29px"}}>{beerOne?.name_korean}</span>
                         <div style={{ width: "38px", height: "38px", display: "flex", position: "absolute", right: "24px"}}>
                             <HeartButton
@@ -66,6 +67,7 @@ const BeerDetail = (props) =>{
                                 }}
                                 is_like={toggle}                 
                             />
+                        </div>
                         </div>
                         </Horizion>
                         <span>{beerOne?.name_english}</span>
