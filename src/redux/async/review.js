@@ -40,7 +40,9 @@ export const editReview = createAsyncThunk(
 export const deleteReview = createAsyncThunk(
   "review/deleteReview",
   async (data, thunkAPI) => {
-    const response = await headerAxios.delete(`/api/mybeer/${data}`);  
+    
+    const response = await headerAxios.delete(`/api/mybeer/${data}`);
+
     return response.data;
   }
 );

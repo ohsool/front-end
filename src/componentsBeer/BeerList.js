@@ -120,12 +120,6 @@ const Search = styled.div`
         border-radius: 18px;
         outline: none;
         padding-left: 20px;
-        ::placeholder,
-        ::-webkit-input-placeholder {
-            position: absolute;
-            color: #888888;
-            margin-top: 7px
-        }
     }
 `
 const List = styled.div`

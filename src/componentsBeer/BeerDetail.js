@@ -44,7 +44,7 @@ const BeerDetail = (props) =>{
                 setToggle(true);
             }
         }else{
-            if(window.confirm("로그인 후 이용 가능합니다. 로그인 하시겠습니까?")){
+            if(window.confirm("로그인이 필요한 서비스입니다. 로그인하시겠습니까?")){
                 history.push("/login");
                 return
             }
@@ -62,7 +62,7 @@ const BeerDetail = (props) =>{
                     </Img>
                     <Wrap>
                         <Horizion>
-                        <span style={{ fontWeight: "700", fontSize: "20px", lineHeight: "29px"}}>{beerOne?.name_korean}</span>
+                        <BeerName>{beerOne?.name_korean}</BeerName>
                         <div style={{ width: "38px", height: "38px", display: "flex"}}>
                             <HeartButton
                                 heart_detail={heart_detail}
@@ -71,8 +71,7 @@ const BeerDetail = (props) =>{
                                     e.stopPropagation();
                                     clickLike();
                                 }}
-                                is_like={toggle} 
-                                userId = {userId}                
+                                is_like={toggle}                
                             />
                         </div>
                         </Horizion>
@@ -188,6 +187,15 @@ const Horizion = styled.div`
     align-items: center;
     justify-content: space-between;
 
+`
+const BeerName= styled.p`
+    display: inline;
+    font-size: 20px;
+    font-weight: bold;
+    width: 250px;
+    overflow: hidden;
+    white-space: nomal;
+    display:block;
 `
 
 const Graph = styled.div`

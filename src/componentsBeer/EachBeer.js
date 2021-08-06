@@ -19,13 +19,22 @@ const EachBeer = (props) => {
             setToggle(true);
         }
     })
+
+   
     const clickLike = () => {
-        if(toggle === true){
-            dispatch(unLikeBeer(item._id));
-             setToggle(false)
+        if(userId){
+            if(toggle === true){
+                dispatch(unLikeBeer(item._id));
+                setToggle(false)
+            }else{
+                dispatch(likeBeer(item._id));
+                setToggle(true);
+            }
         }else{
-            dispatch(likeBeer(item._id));
-            setToggle(true);
+            if(window.confirm("로그인이 필요한 서비스입니다. 로그인하시겠습니까?")){
+                history.push("/login");
+                return
+            }
         }
     }
     return(
@@ -38,7 +47,7 @@ const EachBeer = (props) => {
                     </img>
                 </BeerImage>
                 <BeerInfoWrap>
-                    <BeerTitle>{item.name_korean}</BeerTitle>
+                    <BeerName>{item.name_korean}</BeerName>
                     <HeartButton
                         _onClick={(e) => {
                             clickLike();
@@ -49,7 +58,7 @@ const EachBeer = (props) => {
                     />
                     <p>{item.name_english}</p>
                     {item.hashtag.map((p, idx) => (
-                        <TasteTag>#{p.split("_")[0]}</TasteTag>
+                        <TasteTag>#{p}</TasteTag>
                     ))}
                     </BeerInfoWrap>
             </RecommendBeerWrap>
@@ -85,11 +94,17 @@ const BeerInfoWrap = styled.div`
     }
 `;
 
-const BeerTitle = styled.p`
+const BeerName = styled.p`
     margin: 0;
     display: inline;
     font-size: 14px;
     font-weight: bold;
+    width: 100px;
+    overflow: hidden;
+    white-space: nowrap;
+    display:block;
+    text-overflow:ellipsis
+
 `;
 
 const TasteTag = styled.div`

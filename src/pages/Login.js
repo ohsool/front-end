@@ -163,26 +163,7 @@ const InputLogin = styled.input`
     border-right: none;
     border-bottom: 0.5px solid #C4C4C4;
     outline: none;
-    ::placeholder,
-    ::-webkit-input-placeholder {
-        position: absolute;
-        bottom: 9px;
-        font-size: 14px;
-        color: #C4C4C4;
-    }
 `;
-
-// const LoginButton = styled.button`
-//     margin-top: 25px;
-//     width: 312px;
-//     height: 45px;
-//     font-weight: bold;
-//     bottom: 81px;
-//     border: 1px solid #FFB521;
-//     background-color: transparent;
-//     border-radius: 24px;
-//     color: #FFB521;
-// `;
 
 const SocialLoginButton = styled.button`
     margin-bottom: 10px;
