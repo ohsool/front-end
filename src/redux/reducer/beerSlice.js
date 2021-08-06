@@ -38,7 +38,6 @@ const beerSlice = createSlice({
         .addCase(searchReview.pending, (state, action) => {
         })
         .addCase(searchReview.fulfilled, (state, action) => {
-            //console.log(action.payload);
         })
         .addCase(searchReview.rejected, (state, action) => {
             console.log("searchReview rejected: 맥주 검색에 실패했습니다");
@@ -48,15 +47,12 @@ const beerSlice = createSlice({
         .addCase(likeBeer.fulfilled, (state, action) => {
         })
         .addCase(likeBeer.rejected, (state, action) => {
-          console.log("error", action.payload);
-          console.log("like failed");
         })
         .addCase(unLikeBeer.pending, (state, action) => {
         })
         .addCase(unLikeBeer.fulfilled, (state, action) => {
         })
         .addCase(unLikeBeer.rejected, (state, action) => {
-          console.log("unlike failed");
         })
         .addCase(testResult.pending, (state, action) => {
           state.beerToday = [];
@@ -65,7 +61,6 @@ const beerSlice = createSlice({
           state.beerToday = action.payload;
         })
         .addCase(testResult.rejected, (state, action) => {
-          console.log("맥주 불러오기에 실패했습니다!");
         })
       // 공통
       .addMatcher(

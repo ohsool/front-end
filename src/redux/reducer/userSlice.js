@@ -44,6 +44,7 @@ const userSlice = createSlice({
         console.log("email doublecheck failed");
       })
       .addCase(checkNickname.fulfilled, (state, action) => {
+        console.log(action.payload);
         state.checkNickname = action.payload.existed;
       })
       .addCase(checkNickname.rejected, (state, action) => {
@@ -65,7 +66,6 @@ const userSlice = createSlice({
         state.currentUser = action.payload;
       })
       .addCase(userInfo.rejected, (state, action) => {
-        console.log("유저정보 불러오기에 실패했습니다");
       })
       .addCase(kakaoLogin.fulfilled, (state, action) => {
       })
