@@ -21,7 +21,7 @@ const BeerType = ({ items }) => {
         <Container>
             <StyledSlider {...settings}>
                 {true && items?.map((item, idx) => (
-                    <div /*className={beerId === item ? "clicked" : "non-clicked" */
+                    <div 
                         onClick={() => {
                             item.name === "All" ? history.push("/beer/list")
                             :
@@ -53,4 +53,3 @@ const StyledSlider = styled(Slider)`
         text-align: center;
     }
 `;
-

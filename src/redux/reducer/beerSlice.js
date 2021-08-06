@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getAllBeer, getOneBeer, searchReview, likeBeer, unLikeBeer, testResult } from "../async/beer";
+import { getAllBeer, getOneBeer, getSearchWord, likeBeer, unLikeBeer, testResult } from "../async/beer";
 
 const initialState = {
     beerList: [],
@@ -23,7 +23,6 @@ const beerSlice = createSlice({
             state.beerList = action.payload;
         })
         .addCase(getAllBeer.rejected, (state, action) => {
-            console.log("beerList rejected: 맥주목록 불러오기에 실패했습니다");
         })
         .addCase(getOneBeer.pending, (state, action) => {
             state.beerOne = {};
@@ -32,31 +31,28 @@ const beerSlice = createSlice({
             state.beerOne = action.payload.beer;
         })
         .addCase(getOneBeer.rejected, (state, action) => {
-            console.log("getOneBeer rejected: 맥주항목 불러오기에 실패했습니다")
         })
         //검색기능
-        .addCase(searchReview.pending, (state, action) => {
+        .addCase(getSearchWord.pending, (state, action) => {
+            state.searchList = [];
         })
-        .addCase(searchReview.fulfilled, (state, action) => {
-            //console.log(action.payload);
+        .addCase(getSearchWord.fulfilled, (state, action) => {
+            state.searchList = action.payload;
         })
-        .addCase(searchReview.rejected, (state, action) => {
-            console.log("searchReview rejected: 맥주 검색에 실패했습니다");
+        .addCase(getSearchWord.rejected, (state, action) => {
+            console.log("getSearchWord rejected: 맥주 검색에 실패했습니다");
         })
         .addCase(likeBeer.pending, (state, action) => {
         })
         .addCase(likeBeer.fulfilled, (state, action) => {
         })
         .addCase(likeBeer.rejected, (state, action) => {
-          console.log("error", action.payload);
-          console.log("like failed");
         })
         .addCase(unLikeBeer.pending, (state, action) => {
         })
         .addCase(unLikeBeer.fulfilled, (state, action) => {
         })
         .addCase(unLikeBeer.rejected, (state, action) => {
-          console.log("unlike failed");
         })
         .addCase(testResult.pending, (state, action) => {
           state.beerToday = [];
@@ -65,7 +61,6 @@ const beerSlice = createSlice({
           state.beerToday = action.payload;
         })
         .addCase(testResult.rejected, (state, action) => {
-          console.log("맥주 불러오기에 실패했습니다!");
         })
       // 공통
       .addMatcher(

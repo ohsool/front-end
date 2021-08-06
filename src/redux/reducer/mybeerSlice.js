@@ -21,7 +21,6 @@ const beerSlice = createSlice({
             state.mydogam = action.payload.likedList;
         })
         .addCase(getMyDogam.rejected, (state, action) => {
-            console.log("getMyDogam rejected: 나의 도감 불러오기에 실패했습니다");
         })
         .addCase(getMyReview.pending, (state, action) => {
             state.myReview = null;
@@ -30,7 +29,6 @@ const beerSlice = createSlice({
             state.myReview = action.payload.mybeers;
         })
         .addCase(getMyReview.rejected, (state, action) => {
-            console.log("getMyReview rejected: 나의 리뷰 불러오기에 실패했습니다");
         })
       // 공통
       .addMatcher(

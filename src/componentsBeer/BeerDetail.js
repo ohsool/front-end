@@ -16,7 +16,6 @@ const BeerDetail = (props) =>{
     const beerOne = useSelector(state => state.beer.beerOne);
     const userId = useSelector(state => state.user.currentUser.userId);
     const beer_infos = useSelector(state => state.review.reviewList);
-    //beer_info map돌려서 review키 가진거로..[{...review:"얌얌"},{...review:"냠냠"},{...review:"yumyum"}...]
     const dispatch = useDispatch();
     useEffect(() => {
         async function getData() {
@@ -36,13 +35,21 @@ const BeerDetail = (props) =>{
     }, [beerOne]);
 
     const clickLike = () => {
-        if(toggle === true){
-            dispatch(unLikeBeer(beerOne._id));
-             setToggle(false)
+        if(userId){
+            if(toggle === true){
+                dispatch(unLikeBeer(beerOne._id));
+                 setToggle(false)
+            }else{
+                dispatch(likeBeer(beerOne.beerId));
+                setToggle(true);
+            }
         }else{
-            dispatch(likeBeer(beerOne.beerId));
-            setToggle(true);
+            if(window.confirm("로그인이 필요한 서비스입니다. 로그인하시겠습니까?")){
+                history.push("/login");
+                return
+            }
         }
+
     }
 
     return(
@@ -55,8 +62,8 @@ const BeerDetail = (props) =>{
                     </Img>
                     <Wrap>
                         <Horizion>
-                        <span style={{ fontWeight: "700", fontSize: "20px", lineHeight: "29px"}}>{beerOne?.name_korean}</span>
-                        <div style={{ width: "38px", height: "38px", display: "flex", position: "absolute", right: "24px"}}>
+                        <BeerName>{beerOne?.name_korean}</BeerName>
+                        <div style={{ width: "38px", height: "38px", display: "flex"}}>
                             <HeartButton
                                 heart_detail={heart_detail}
                                 _onClick={(e) => {
@@ -64,7 +71,7 @@ const BeerDetail = (props) =>{
                                     e.stopPropagation();
                                     clickLike();
                                 }}
-                                is_like={toggle}                 
+                                is_like={toggle}                
                             />
                         </div>
                         </Horizion>
@@ -78,11 +85,11 @@ const BeerDetail = (props) =>{
                     <hr/>
                     <Wrap>
                         <span style={{ fontWeight: "700"}}>맥주소개</span>
-                        <span style={{ fontWeight: "500", fontSize: "14px", lineHeight: "20px",padding: "14px 0", minHeight: "60px"
-                            }}>스위트하게~위트있게~
+                        <BeerContent>
+                            스위트하게~위트있게~
                             밀맥주 맛에 Tropical Fruit의
                             달콤함이 어우러진 곰표 우리나라 밀맥주
-                        </span>
+                        </BeerContent>
                     </Wrap>
                     <hr/>
                     <Wrap>
@@ -99,7 +106,7 @@ const BeerDetail = (props) =>{
                         <span style={{ fontWeight: "300", fontSize: "12px", lineHeight: "146%"}}>GS25 편의점</span>
                         </div>    
                     </Wrap>
-                    <hr/>
+                    <hr style={{width: "312px", border: "0"}}/>
                     
                     <Wrap>
                         <span style={{ fontWeight: "700" ,paddingBottom: "14px"}}>제보된 판매처</span>
@@ -107,7 +114,7 @@ const BeerDetail = (props) =>{
                         <button/> 
                         <span style={{ fontWeight: "300", fontSize: "12px", lineHeight: "146%"}}>GS25 편의점</span>
                         </div>
-                        
+
                         <ReportButton>장소 제보하기</ReportButton>
 
                     </Wrap>
@@ -117,10 +124,10 @@ const BeerDetail = (props) =>{
                     <span style={{ fontWeight: "700",paddingBottom: "14px"}}>리뷰</span>
                         <Gradient>
                             {beer_infos?.length > 0 ? beer_infos?.map((item, idx) => (
-                                idx < 4 ? (<React.Fragment>
-                                    <EachReview key={idx} index={idx} item={item}/>
-                                    
-                                    </React.Fragment>) : null
+                                idx < 4 ? (
+                                    <>
+                                    <EachReview key={idx}  item={item}/>
+                                    </>) : null
                             )): ""}
                             <span style={{ textAlign:"center", paddingBottom: "20px",  fontWeight: "700", fontSize: "14px", lineHeight: "20.27px", fontStyle: "bold"
                             }} onClick={()=>{
@@ -170,15 +177,39 @@ const Img = styled.div`
     }
 
 `
-
 const Wrap = styled.div`
-    width: 274px;
+    width: 320px;
     margin: 20px 24px;
 `
 const Horizion = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+`
+const BeerName= styled.p`
+    display: inline-block;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+    width: 250px;
+    overflow: hidden;
+    white-space: nomal;
+`
+
+const BeerContent = styled.div`
+    padding: 14px 0;
+    & > p {
+        display: inline-block;
+        margin: 0;
+        width: 250px;
+        overflow: hidden;
+        white-space: nomal;
+        font-weight: 50";
+        font-size: 14px;
+        line-height: 20px;
+        minHeight: 60px;
+    }
 
 `
 
@@ -200,10 +231,8 @@ const ReportButton = styled.button`
     margin-top: 16px;
 
 `
-
 const TasteTag = styled.div`
     display: inline-block;
-    margin: 5px 0px;
     margin-right: 3px;
     padding: 0 6px;
     height: 16px;
@@ -211,15 +240,15 @@ const TasteTag = styled.div`
     box-sizing: border-box;
     border-radius: 33px;
     font-size: 10px;
-    line-height: 16px;
-    color: #555;
-
+    line-height: 14px;
+    text-align: center;
+    color: #333333;
 `;
 
 const Gradient = styled.div`
     position: absolute;
-    z-index: 100;
-    -webkit-mask-size: 312px 420px;
+    z-index: 1;
+    margin: 312px 420px;
     -webkit-mask-image: -webkit-gradient(linear, center bottom, center top,
     color-stop(1.00,  rgba(0,0,0,1)),
     color-stop(0.00,  rgba(0,0,0,0)));

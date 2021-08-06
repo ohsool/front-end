@@ -7,9 +7,8 @@ import Slider from './Slider';
 import EachBeer from "./EachBeer";
 import Loader from "../share/Loader.js";
 import { getCategory } from "../redux/async/category";
-import { getAllBeer } from "../redux/async/beer";
-import { userInfo } from "../redux/async/user"
-
+import { getAllBeer, getSearchWord } from "../redux/async/beer";
+import { userInfo } from "../redux/async/user";
 
 const BeerList = (props) =>{
     const [is_Loading, setIs_Loading] = useState(false);
@@ -18,6 +17,12 @@ const BeerList = (props) =>{
     const beers = useSelector(state => state.beer.beerList.beers);
     const items = useSelector(state => state.category.categoryList);
     const category_beers = beers?.filter((p) => p.categoryId === get_category_id);
+    const words = useSelector(state => state.beer.searchList.words);
+
+
+    console.log("get words result: ",words)
+    const [word, setWord] = useState("");//실시간으로 입력하는 단어담김
+
     const dispatch = useDispatch();
     
     useEffect(() => {
@@ -29,17 +34,33 @@ const BeerList = (props) =>{
         }
         return getData();
     }, []);
-    const [input, setInput] = useState();
+
+    useEffect(()=>{
+        async function getData() {
+            await dispatch(getSearchWord(word));
+            setWord(word);
+        }
+        return getData();
+    },[])
     
     const onChange = (e) =>{
-        setInput(e.target.value);
+        setWord(e.target.value);
+    }
+
+    const searchWord = () =>{
+        console.log("dispatch word", word);
+        dispatch(getSearchWord(word));
+
     }
 
     const EnterSubmit = (e) =>{
         if(e.key === "Enter"){
-            setInput("");
+            //setWord();
+            //해당 단어관련 맥주를 list로 만들어 맵돌려서 EachBeer 보여준다.
+            //
         }
     }
+
 
     return(
         <React.Fragment>
@@ -53,6 +74,7 @@ const BeerList = (props) =>{
                             <Search>
                                 <input 
                                     onChange={onChange}
+                                    onKeyUp={searchWord}
                                     onKeyPress={EnterSubmit}
                                     placeholder="검색어를 입력하세요."
                                 ></input>
@@ -120,12 +142,6 @@ const Search = styled.div`
         border-radius: 18px;
         outline: none;
         padding-left: 20px;
-        ::placeholder,
-        ::-webkit-input-placeholder {
-            position: absolute;
-            color: #888888;
-            margin-top: 7px
-        }
     }
 `
 const List = styled.div`

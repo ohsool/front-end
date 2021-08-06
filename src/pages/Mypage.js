@@ -23,6 +23,8 @@ const MyPage = (props) => {
             if(window.confirm("로그인이 필요한 서비스입니다. 로그인하시겠습니까?")){
                 history.push("/login")
                 return;
+            }else{
+                history.goBack("/")
             }
         }
     }, []);
@@ -131,7 +133,7 @@ const ArrowImage = styled.img`
 
 const LogOutButton = styled.button`
     position: absolute;
-    width: 59px;
+    width: 61px;
     height: 23px;
     bottom: 50px;
     left: 50%;

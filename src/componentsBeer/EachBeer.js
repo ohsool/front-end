@@ -19,13 +19,22 @@ const EachBeer = (props) => {
             setToggle(true);
         }
     })
+
+   
     const clickLike = () => {
-        if(toggle === true){
-            dispatch(unLikeBeer(item._id));
-             setToggle(false)
+        if(userId){
+            if(toggle === true){
+                dispatch(unLikeBeer(item._id));
+                setToggle(false)
+            }else{
+                dispatch(likeBeer(item._id));
+                setToggle(true);
+            }
         }else{
-            dispatch(likeBeer(item._id));
-            setToggle(true);
+            if(window.confirm("로그인이 필요한 서비스입니다. 로그인하시겠습니까?")){
+                history.push("/login");
+                return
+            }
         }
     }
     return(
@@ -38,20 +47,20 @@ const EachBeer = (props) => {
                     </img>
                 </BeerImage>
                 <BeerInfoWrap>
-                    <BeerTitle>{item.name_korean}</BeerTitle>
-                    <HeartButton
-                        _onClick={(e) => {
-                            clickLike();
-                            e.preventDefault();
-                            e.stopPropagation();              
-                    }}
-                    is_like={toggle}
-                    />
+                        <BeerName>{item.name_korean}</BeerName>
+                        <HeartButton 
+                            _onClick={(e) => {
+                                clickLike();
+                                e.preventDefault();
+                                e.stopPropagation();              
+                        }}
+                        is_like={toggle}
+                        />
                     <p>{item.name_english}</p>
                     {item.hashtag.map((p, idx) => (
-                        <TasteTag>#{p.split("_")[0]}</TasteTag>
+                        <TasteTag>#{p}</TasteTag>
                     ))}
-                    </BeerInfoWrap>
+                </BeerInfoWrap>
             </RecommendBeerWrap>
         </React.Fragment>
     )
@@ -75,9 +84,16 @@ const BeerImage = styled.div`
         width:148px;
         height: 148px;
     }
+    @media (img: img) {
+        & > img { 
+            width:148px;
+            height: 148px;
+         }
+    }
 `;
 
 const BeerInfoWrap = styled.div`
+    width: 134px;
     margin: 10px 5px 0 5px;
     & p {
         margin: 0;
@@ -85,11 +101,15 @@ const BeerInfoWrap = styled.div`
     }
 `;
 
-const BeerTitle = styled.p`
-    margin: 0;
-    display: inline;
+
+const BeerName = styled.p`
+    display: inline-block;
     font-size: 14px;
     font-weight: bold;
+    width: 100px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow:ellipsis
 `;
 
 const TasteTag = styled.div`

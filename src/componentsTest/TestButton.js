@@ -1,27 +1,31 @@
-import React,{ useState } from "react";
+import React,{ useEffect, useState } from "react";
 import styled from "styled-components";
+import "./TestHeader.css";
 
 const TestButton = ({ goToNext, question }) => {
 
     return (
         <React.Fragment>
             <ButtonWrap>
-                <QuestionButton 
+                <QuestionButton
+                    // className="clickedButton"
                     onClick={() => {
                         let choice = Object.keys(question.answer[0]).join()
                         goToNext(choice);
                     }}>
                     {Object.values(question.answer[0])}
                 </QuestionButton>
-                <ClickedQuestionButton
+                <QuestionButton
+                    //className="clickedButton"
                     onClick={() => {
                         let choice = Object.keys(question.answer[1]).join()
                         goToNext(choice);
                     }}>
                     {Object.values(question.answer[1])}
-                </ClickedQuestionButton>
+                </QuestionButton>
                 {question.answer[2] ? 
                 <QuestionButton 
+                    //className="clickedButton"
                     onClick={() => {
                         let choice = Object.keys(question.answer[2]).join()
                         goToNext(choice);
@@ -50,15 +54,10 @@ const QuestionButton = styled.button`
     background-color: #F6F6F6;
     color: #555555;
     font-size: 16px;
-`;
-
-const ClickedQuestionButton = styled.button`
-    width: 312px;
-    height: 82px;
-    border: none;
-    border-radius: 18px;
-    background-color: #FFC44F;
-    color: #151515;
-    font-size: 16px;
-    margin-bottom: 16px;
+    &:active{
+        background-color: #FFC44F;
+    }
+    @media (active: active) {
+        &:active { background-color: #FFC44F; }
+    }
 `;

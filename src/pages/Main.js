@@ -22,7 +22,7 @@ const Grid = styled.div`
     text-align: center; 
     align-items: center;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     background-color: #C4C4C4;
     background-image: url(${mainbeer});
     background-size: cover;

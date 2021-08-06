@@ -45,14 +45,14 @@ const SignUp = (props) => {
             setNickname_Check_Text("");
             return;
         }
-        if(is_nickname === false){
+        if(is_nickname === true){
             setNickName_Double(false);
             setNickname_Check_Text("이미 사용중인 닉네임입니다.");
         }else{
             setNickName_Double(true);
             setNickname_Check_Text("사용 가능한 닉네임입니다.");
         }
-    }, [nickname]);
+    }, [nickname, is_nickname]);
 
     const onChange = (e) => {
         setSignUp_Info({...signup_info, [e.target.name]: e.target.value});
@@ -224,11 +224,4 @@ const InputSignUP = styled.input`
     border-right: none;
     border-bottom: 0.5px solid #C4C4C4;
     outline: none;
-    ::placeholder,
-    ::-webkit-input-placeholder {
-        position: absolute;
-        bottom: 9px;
-        font-size: 14px;
-        color: #C4C4C4;
-    }
 `;

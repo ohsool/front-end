@@ -23,7 +23,7 @@ export  const likeBeer = createAsyncThunk(
   "beer/likeBeer",
   async (data, thunkAPI) => {
     const response = await headerAxios.put(`/api/beer/like/${data}`)
-    console.log("like", response);
+    
     return response;
   }
 )
@@ -31,21 +31,29 @@ export  const unLikeBeer = createAsyncThunk(
   "beer/unLikeBeer",
   async (data, thunkAPI) => {
     const response = await headerAxios.put(`/api/beer/unlike/${data}`)
-    console.log("unlike", response.data);
+    
     return response.data;
   }
 )
-//추가된 코드
-//맥주 검색
-export const searchReview = createAsyncThunk(
-  "beer/searchReview",
+export const getSearchWord = createAsyncThunk(
+  "beer/getSearchResult",
   async (data, thunkAPI) => {
-
     const response = await nonHeaderAxios.get(`/api/search?word=${data}`);
     
     return response.data;
   }
 )
+export const checkNickname = createAsyncThunk(
+  "user/checkNickname",
+  async (data, thunkAPI) => {
+    const server_nickname ={
+      nickname: data
+    }
+    const response = await nonHeaderAxios.post(`/api/user/nickname`, server_nickname);   
+    return response.data;
+  }
+);
+
 
 export const testResult = createAsyncThunk(
   "beer/testResult",

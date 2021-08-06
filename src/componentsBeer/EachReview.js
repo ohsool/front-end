@@ -10,7 +10,6 @@ import {deleteReview} from "../redux/async/review";
 import ReviewWriteModal from "../componentsBeer/ReviewWriteModal";
 
 const EachReview=(props)=> {
-    //item에 해당 맥주 리뷰 정보 담김, beerOne에 해당 맥주 정보 담김
     const { item, beerOne, userId} = props; 
     const [modalOpen, setModalOpen] = useState(false);
     
@@ -54,6 +53,7 @@ const EachReview=(props)=> {
                                     e.preventDefault();
                                     e.stopPropagation();
                                     openModal();
+                                    
                                 }}>수정</EditButton>
                                 
                                 <DeleteButton onClick = {(e) => {
@@ -61,6 +61,7 @@ const EachReview=(props)=> {
                                     e.stopPropagation();
                                     if(window.confirm("정말로 삭제하시나요?")){
                                         dispatch(deleteReview(item._id));
+                                        window.location.reload();
                                         return
                                     }
                                 }}>삭제</DeleteButton>
