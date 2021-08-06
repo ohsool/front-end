@@ -14,12 +14,6 @@ const SelectBar = ({index, setFeaturesList, featuresList, taste, is_edit}) => {
       setScore(taste)
     },[taste])
 
-/*
-    const handleScore = (score) => {
-        featuresList[index] = score;
-        setFeaturesList(featuresList)
-    };
-*/
     return (
       <React.Fragment>
       { is_edit ? (
@@ -28,12 +22,12 @@ const SelectBar = ({index, setFeaturesList, featuresList, taste, is_edit}) => {
             <ProgressBar percent={cur_position} filledBackground="#FFC44F">
               {featuresList.map((p,index) => (
                 <Step key={index}>
-                {({ accomplished, position, index ,percent, children}) => ( //accomplished는 도달 여부 T/F, position은 현재 %(예를 들어 2번째를 클릭하면 20%)
+                {({ accomplished, position, index ,percent, children}) => ( 
                   <div 
                     style={{width: "20px", height: "20px", borderRadius: "50%", backgroundColor: `${accomplished ? "#ffC44F" : "#D3D3D3"}`}}
                     onClick={() => {
                       setCur_Position(position);
-                      setScore(5-((100-position)/25)); //점수
+                      setScore(5-((100-position)/25)); 
                     }}
                   />
                 )}
@@ -50,12 +44,12 @@ const SelectBar = ({index, setFeaturesList, featuresList, taste, is_edit}) => {
           <ProgressBar percent={cur_position} filledBackground="#FFC44F">
             {featuresList.map((p,index) => (
               <Step key={index}>
-              {({ accomplished, position, index ,percent, children}) => ( //accomplished는 도달 여부 T/F, position은 현재 %(예를 들어 2번째를 클릭하면 20%)
+              {({ accomplished, position, index ,percent, children}) => ( 
                 <div 
                   style={{width: "20px", height: "20px", borderRadius: "50%", backgroundColor: `${accomplished ? "#ffC44F" : "#D3D3D3"}`}}
                   onClick={() => {
                     setCur_Position(position);
-                    setScore(5-((100-position)/25)); //점수
+                    setScore(5-((100-position)/25)); 
                   }}
               
                 />

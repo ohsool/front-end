@@ -23,7 +23,7 @@ const ReviewWriteModal = (props) => {
         if(item) {
           setList(Object.values(item?.myFeatures));
         }
-    }, [item]);   // 렌더링 횟수 줄이기
+    }, [item]);
     useEffect(()=>{
         setReview(item?.review);
         setStarScore(item?.rate);

@@ -16,7 +16,6 @@ const BeerDetail = (props) =>{
     const beerOne = useSelector(state => state.beer.beerOne);
     const userId = useSelector(state => state.user.currentUser.userId);
     const beer_infos = useSelector(state => state.review.reviewList);
-    //beer_info map돌려서 review키 가진거로..[{...review:"얌얌"},{...review:"냠냠"},{...review:"yumyum"}...]
     const dispatch = useDispatch();
     useEffect(() => {
         async function getData() {
@@ -36,13 +35,21 @@ const BeerDetail = (props) =>{
     }, [beerOne]);
 
     const clickLike = () => {
-        if(toggle === true){
-            dispatch(unLikeBeer(beerOne._id));
-             setToggle(false)
+        if(userId){
+            if(toggle === true){
+                dispatch(unLikeBeer(beerOne._id));
+                 setToggle(false)
+            }else{
+                dispatch(likeBeer(beerOne.beerId));
+                setToggle(true);
+            }
         }else{
-            dispatch(likeBeer(beerOne.beerId));
-            setToggle(true);
+            if(window.confirm("로그인 후 이용 가능합니다. 로그인 하시겠습니까?")){
+                history.push("/login");
+                return
+            }
         }
+
     }
 
     return(
@@ -56,7 +63,7 @@ const BeerDetail = (props) =>{
                     <Wrap>
                         <Horizion>
                         <span style={{ fontWeight: "700", fontSize: "20px", lineHeight: "29px"}}>{beerOne?.name_korean}</span>
-                        <div style={{ width: "38px", height: "38px", display: "flex", position: "absolute", right: "24px"}}>
+                        <div style={{ width: "38px", height: "38px", display: "flex"}}>
                             <HeartButton
                                 heart_detail={heart_detail}
                                 _onClick={(e) => {
@@ -64,7 +71,8 @@ const BeerDetail = (props) =>{
                                     e.stopPropagation();
                                     clickLike();
                                 }}
-                                is_like={toggle}                 
+                                is_like={toggle} 
+                                userId = {userId}                
                             />
                         </div>
                         </Horizion>
@@ -172,7 +180,7 @@ const Img = styled.div`
 `
 
 const Wrap = styled.div`
-    width: 274px;
+    width: 320px;
     margin: 20px 24px;
 `
 const Horizion = styled.div`

@@ -10,7 +10,6 @@ import {deleteReview} from "../redux/async/review";
 import ReviewWriteModal from "../componentsBeer/ReviewWriteModal";
 
 const EachReview=(props)=> {
-    //item에 맥주의 한개 리뷰 정보 담김, beerOne에 해당 맥주 정보 담김
     const { item, beerOne, userId} = props; 
     const [modalOpen, setModalOpen] = useState(false);
     

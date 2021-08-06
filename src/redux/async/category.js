@@ -11,7 +11,7 @@ export const getCategory = createAsyncThunk(
     return response.data;
   }
 );
-//특정카테고리 맥주 가져오기 (사용 x)
+//특정카테고리 맥주 가져오기 
 export const getCategoryBeer = createAsyncThunk(
     "category/getCategoryBeer",
     async (data, thunkAPI) => {

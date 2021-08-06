@@ -10,7 +10,7 @@ const TasteGraph = ({ beers }) => {
         setLabels(Object.keys(beers) ?? ["bitter", "crispy", "flavor", "sweet", "nutty"]);
         setScores(Object.values(beers) ?? [0, 0, 0, 0, 0]);
       }
-  }, [beers]);   // 렌더링 횟수 줄이기
+  }, [beers]); 
 
   const data = {
     labels: labels,
@@ -18,7 +18,7 @@ const TasteGraph = ({ beers }) => {
       {
         label: "맥주맛평점",
         data: scores,
-        backgroundColor: 'rgba(255, 196, 79, 0.5)',  //rgba(255, 255, 255, 0.2)
+        backgroundColor: 'rgba(255, 196, 79, 0.5)', 
         borderColor: '#FFC44F',
         borderWidth: 3,
       },

@@ -5,9 +5,7 @@ import { headerAxios, nonHeaderAxios } from "./moduleAxios";
 export const suggestComment = createAsyncThunk(
   "suggest/suggestComment",
   async (data, thunkAPI) => {
-
-    const response = await nonHeaderAxios.post(`/api/complaint`, data);
-    
+    const response = await nonHeaderAxios.post(`/api/complaint`, data);  
     return response.data;
   }
 );
@@ -16,8 +14,6 @@ export const suggestComment = createAsyncThunk(
 export const suggestBeer = createAsyncThunk(
   "/api/suggestBeer",
   async (data, thunkAPI) => {
-
     const response = await nonHeaderAxios.post(`api/recommendation`, data);
-
   return response.data;
 });

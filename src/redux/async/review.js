@@ -22,29 +22,25 @@ export const writeReview = createAsyncThunk(
   }
 );
 
-//수정
+//맥주 리뷰 수정
 export const editReview = createAsyncThunk(
   "review/editReview",
   async (data, thunkAPI) => {
-    console.log("before id delete:",data)
     const mybeerId = data.mybeerId;
     delete data.mybeerId;
-    console.log("after id delete:",data)
   
-    const response = await headerAxios.put(`/api/mybeer/${mybeerId}`, data);//fail?
-    console.log("edit review response >",response);  
+    const response = await headerAxios.put(`/api/mybeer/${mybeerId}`, data);
     return response.data;
   
   }
 );
 
 
-//삭제
+//맥주 리뷰 삭제
 export const deleteReview = createAsyncThunk(
   "review/deleteReview",
   async (data, thunkAPI) => {
-    const response = await headerAxios.delete(`/api/mybeer/${data}`);
-    console.log("delete review response >",response);   
+    const response = await headerAxios.delete(`/api/mybeer/${data}`);  
     return response.data;
   }
 );

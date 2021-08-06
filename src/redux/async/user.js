@@ -5,9 +5,7 @@ import { headerAxios, nonHeaderAxios } from "./moduleAxios";
 export const signUp = createAsyncThunk(
   "user/signUp",
   async (data, thunkAPI) => {
-
     const response = await nonHeaderAxios.post(`/api/user`, data);
-
     return response.data;
   }
 );
@@ -15,9 +13,7 @@ export const signUp = createAsyncThunk(
 // 로그인
 export const logIn = createAsyncThunk("user/logIn",
 async (data, thunkAPI) => {
-
-    const response = await nonHeaderAxios.post(`api/user/auth`, data);
-    
+    const response = await nonHeaderAxios.post(`api/user/auth`, data);   
   return response.data;
   }
 );
@@ -26,9 +22,7 @@ async (data, thunkAPI) => {
 export const userInfo = createAsyncThunk(
   "user/userInfo",
   async (data, thunkAPI) => {
-
     const response = await headerAxios.get(`/api/user/me`);
-
     return response.data;
   }
 );
@@ -40,7 +34,6 @@ export const checkEmail = createAsyncThunk(
       email: data
     }
     const response = await nonHeaderAxios.post(`/api/user/email`, server_email);
-
     return response.data;
   }
 );
@@ -51,8 +44,7 @@ export const checkNickname = createAsyncThunk(
     const server_nickname ={
       nickname: data
     }
-    const response = await nonHeaderAxios.post(`/api/user/nickname`, server_nickname);
-    
+    const response = await nonHeaderAxios.post(`/api/user/nickname`, server_nickname);   
     return response.data;
   }
 );
@@ -60,10 +52,8 @@ export const checkNickname = createAsyncThunk(
 //카카오 로그인
 export const kakaoLogin = createAsyncThunk(
   "user/kakaoLogin",
-  async (data, thunkAPI) => {
-    
+  async (data, thunkAPI) => {   
     const response = await nonHeaderAxios.post(`/api/user/kakao`);
-
     return response.data;
   }
 );
@@ -71,10 +61,8 @@ export const kakaoLogin = createAsyncThunk(
 //구글 로그인
 export const googleLogin = createAsyncThunk(
   "user/googleLogin",
-  async (data, thunkAPI) => {
-    
+  async (data, thunkAPI) => {   
     const response = await nonHeaderAxios.post(`/api/user/google`);
-
     return response.data;
   }
 );

@@ -13,17 +13,6 @@ const TestResult = (props) => {
     const category = useSelector((state) => state.beer.beerToday.category);
     const beerRecommends = useSelector((state) => state.beer.beerToday.recommendations);
     const user = useSelector((state) => state.user.currentUser);
-    
-    // useEffect(()=> {
-    //     async function getData(){
-    //         await dispatch(userInfo());
-    //         await dispatch(testResult({
-    //             userId: user.userId,
-    //             result: user.preference,
-    //         }));
-    //     }
-    // return getData();
-    // }, []);
 
     return (
         <React.Fragment>
