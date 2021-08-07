@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet';
 const ReactHelmet = ({ keywords, description, title, favicon }) => {
 	return (
 		<Helmet>
+
 			<meta name="description" content={description} />
 			<meta name="keywords" content={keywords} />
 			<title>{title}</title>

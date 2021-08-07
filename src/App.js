@@ -1,6 +1,6 @@
-import React from "react";
-import {createGlobalStyle} from "styled-components";
-import {Route} from "react-router-dom";
+import React,{useEffect} from "react";
+import { createGlobalStyle } from "styled-components";
+import { Route } from "react-router-dom";
 import { history } from "./redux/configureStore";
 import { ConnectedRouter } from "connected-react-router";
 import ReactHelmet from "./share/ReactHelmet";
@@ -9,6 +9,7 @@ import { Main, Test, Beer, Mypage, TestResult, SignUp, MyBeer, Login } from "./p
 import Token from "./share/Token";
 
 function App() {
+
   return (
     <React.Fragment>
       <ReactHelmet 
@@ -17,10 +18,8 @@ function App() {
                 title="ohsool" 
                 favicon="/image/android-icon-144x144.jpg"
       />
-      <GlobalStyle/>
       <ConnectedRouter history={history}>
         <Route path="/" exact component={Main}/>
-        <Route path="/token=:token" component={Token}/>
         <Route path="/test" component={Test}/>
         <Route path="/result" component={TestResult}/>
         <Route path="/beer"  component={Beer}/>
@@ -28,7 +27,9 @@ function App() {
         <Route path="/login" exact component={Login}/>
         <Route path="/mypage" component={Mypage}/>
         <Route path="/mybeer" component={MyBeer}/>
+        <Route path="/token=:token" component={Token}/>
       </ConnectedRouter>
+      <GlobalStyle/>
     </React.Fragment>   
   );
 }

@@ -18,7 +18,7 @@ const EachBeer = (props) => {
         if(item.like_array?.includes(userId)){
             setToggle(true);
         }
-    })
+    }, []);
 
    
     const clickLike = () => {

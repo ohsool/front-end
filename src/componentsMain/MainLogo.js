@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Logo from "../share/Logo.jpeg";
+import Logo from "../share/image/mainLogo.png";
 
 const MainLogo = () => {
     return(
@@ -23,18 +23,18 @@ const ImageGridcenter = styled.div`
     margin: 0 auto;
     margin-top: 115px;
 `;
-
 const MainLogoWrap = styled.div`
     display: inline-block;
-    border: 2px solid #FFFFFF;
     background-size: cover;
     width: 89px;
     height: 61px;
     & > img {
         width: 89px;
         height: 61px;
+        background: none;
     }
 `;
+
 const MainLogoText = styled.div`
     margin-top: 20px;
     width: 123px;

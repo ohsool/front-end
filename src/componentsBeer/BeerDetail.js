@@ -1,5 +1,5 @@
-import React,{useEffect, useState} from "react";
-import styled from "styled-components";
+import React, {useEffect, useState} from "react";
+import styled from "styled-components/macro";
 import { history } from "../redux/configureStore";
 import { useSelector, useDispatch } from "react-redux";
 import { getOneBeer, likeBeer, unLikeBeer } from "../redux/async/beer";
@@ -27,12 +27,13 @@ const BeerDetail = (props) =>{
     }, []);
      
     useEffect(() => {
-        if(beerOne){
-        if(beerOne?.like_array?.includes(userId)){
-            setToggle(true);
-           }
+        async function getLikeData(){
+            if(beerOne?.like_array?.includes(userId)){
+                setToggle(true);
+               }
         }
-    }, [beerOne]);
+        return getLikeData();
+    });
 
     const clickLike = () => {
         if(userId){
@@ -53,27 +54,26 @@ const BeerDetail = (props) =>{
     }
 
     return(
-        
         <React.Fragment>
             <Container>
                 <Grid>
-                    <Img>
+                    <BeerImage>
                         <img src={beerOne?.image} />
-                    </Img>
+                    </BeerImage>
                     <Wrap>
                         <Horizion>
                         <BeerName>{beerOne?.name_korean}</BeerName>
-                        <div style={{ width: "38px", height: "38px", display: "flex"}}>
+                        <HeartWrap>
                             <HeartButton
                                 heart_detail={heart_detail}
                                 _onClick={(e) => {
-                                    e.preventDefault();
-                                    e.stopPropagation();
+                                    // e.preventDefault();
+                                    // e.stopPropagation();
                                     clickLike();
                                 }}
                                 is_like={toggle}                
                             />
-                        </div>
+                        </HeartWrap>
                         </Horizion>
                         <span>{beerOne?.name_english}</span>
                         {beerOne?.hashtag?.map((item, idx)=>(
@@ -115,7 +115,7 @@ const BeerDetail = (props) =>{
                         <span style={{ fontWeight: "300", fontSize: "12px", lineHeight: "146%"}}>GS25 편의점</span>
                         </div>
 
-                        <ReportButton>장소 제보하기</ReportButton>
+                        <PlaceButton>장소 제보하기</PlaceButton>
 
                     </Wrap>
                     <hr/>
@@ -133,19 +133,15 @@ const BeerDetail = (props) =>{
                             }} onClick={()=>{
                                 history.push(`/beer/review/${beerOne._id}`, { beer_infos, userId })
                             }}>전체보기</span>
-
-                        </Gradient>  
-                    </Wrap>
+                        </Gradient>
+                    </Wrap>  
                 </Grid>
             </Container>
         </React.Fragment>
-
     )
-
 }
 
 export default BeerDetail;
-
 
 const Container = styled.div`
     display: flex;
@@ -164,9 +160,9 @@ const Grid = styled.div`
     width: 360px;
     margin: 0 auto;
     margin-top: 40px;
-`
+`;
 
-const Img = styled.div`
+const BeerImage = styled.div`
     width: 360px;
     height: 380px;
     border-radius: 10px;
@@ -183,16 +179,23 @@ const Img = styled.div`
             margin: 22px 32px;
          }
     }
-`
+`;
 const Wrap = styled.div`
     width: 320px;
     margin: 20px 24px;
-`
+`;
+
+const HeartWrap = styled.div`
+    width: 38px;
+    height: 38px;
+    display: flex;
+`;
+
 const Horizion = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-`
+`;
 const BeerName= styled.p`
     display: inline-block;
     font-size: 20px;
@@ -201,32 +204,32 @@ const BeerName= styled.p`
     width: 250px;
     overflow: hidden;
     white-space: nomal;
-`
+`;
 
 const BeerContent = styled.div`
     padding: 14px 0;
     margin: 0;
     width: 250px;
-    
-`
+`;
 
 const Graph = styled.div`
     margin: 14px auto;
     display: flex;
     width: 313px;
     height: 313px;
-    border: 2px solid #FFC44F; 
+    border: 2px solid #FFC44F;
     border-radius: 10px;
-`
+`;
 
-const ReportButton = styled.button`
+const PlaceButton = styled.button`
     width: 308px;
     height: 45px;
     border-radius: 50;
     border: 1px solid #FFC44F;
     background-color: #fff;
     margin-top: 16px;
-`
+`;
+
 const TasteTag = styled.div`
     display: inline-block;
     margin-right: 3px;
@@ -244,8 +247,15 @@ const TasteTag = styled.div`
 const Gradient = styled.div`
     position: absolute;
     margin: 0 auto;
+<<<<<<< HEAD
     z-index: 1;
     -webkit-mask-image: -webkit-gradient(linear, center bottom, center top,
     color-stop(1.00,  rgba(0,0,0,1)),
     color-stop(0.00,  rgba(0,0,0,0)));
+=======
+    -webkit-mask-size: 312px 420px; 
+    -webkit-mask-image: -webkit-gradient(linear, center bottom, center top,
+    color-stop(1.00, rgba(0,0,0,1)), 
+    color-stop(0.00, rgba(0,0,0,0)));
+>>>>>>> da873ce1d3ac6ce298ba1362a5379792e94e6da5
 `;

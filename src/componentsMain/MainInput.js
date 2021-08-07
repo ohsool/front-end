@@ -81,6 +81,7 @@ const LinkBox = styled.div`
     border: 1px solid #FFFFFF;
     border-radius: 22.5px;
     color: #FFFFFF;
+    z-index: 9999;
 `;
 
 const ButtonWrap = styled.div`

@@ -3,14 +3,16 @@ import styled from 'styled-components';
 
 import MainLogo from "../componentsMain/MainLogo";
 import MainInput from '../componentsMain/MainInput';
-import mainbeer from "../share/mainbeer.jpeg";
+import mainbeer from "../share/image/mainbeer.jpeg";
 const Main = (props) => {
 
     return (
         <React.Fragment>
             <Grid>
-                <MainLogo/>
-                <MainInput/>
+                <GridStyle>
+                    <MainLogo/>
+                    <MainInput/>
+                </GridStyle>
             </Grid>
         </React.Fragment>
     )
@@ -26,6 +28,12 @@ const Grid = styled.div`
     background-color: #C4C4C4;
     background-image: url(${mainbeer});
     background-size: cover;
-    z-index: -10;
     flex-direction: column;
+`;
+
+const GridStyle = styled.div`
+    position: absolute;
+    width: 100%;
+    min-height: 100vh;
+    background: rgba(12, 12, 12, 0.2);
 `;

@@ -20,7 +20,7 @@ const BeerList = (props) =>{
     const words = useSelector(state => state.beer.searchList.words);//["버드와이저","오번"]
     const [is_search,setIs_Search] = useState(false)
     const [word, setWord] = useState([]);//실시간으로 입력하는 단어담김
-    const [search_beer, setSearch_Beer] = useState([]);
+    const [search_beer, setSearch_Beer] = useState({});
     const [search_result,setSearch_Result] = useState([]);//검색 결과 맥주들 정보 담김
 
     const dispatch = useDispatch();
@@ -76,16 +76,17 @@ const BeerList = (props) =>{
             console.log("단어",words);
             //한국어로 검색
             words.map((w)=>{
-                arr = beers?.filter((p) => p.name_korean.includes(w))[0] //{...}
-                setSearch_Beer([...search_beer, arr]);
-                //setSearch_Result(search_result=>[...search_result,search_beer])
+                arr =  beers?.filter((p) => p.name_korean.includes(w))[0]//{...}
+                setSearch_Beer(beers?.filter((p) => p.name_korean.includes(w))[0]);
+                setSearch_Result(search_result=>[...search_result,search_beer])
+                setSearch_Beer({});
                 //setSearch_Beer(beers?.filter((p) => p.name_korean.includes(w))))
 
-                console.log("arr",arr);
+                console.log("search_beer",search_beer);
                 console.log("search_result",search_result);
                 setIs_Search(true);//검색 결과 보여준다음에는 false로 바꿈    
             })
-            setSearch_Result(search_beer);
+            //setSearch_Result(search_beer);
             console.log("kor_result list:",search_result)
 
         }else{

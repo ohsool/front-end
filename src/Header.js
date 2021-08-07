@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import myIcon from "./share/image/HeaderIcon.png";
 
 import { history } from "./redux/configureStore";
 const Header = (props) => {
@@ -13,7 +14,8 @@ const Header = (props) => {
                     onClick={() => {
                         history.push("/")
                     }}>오늘의술</HeaderLogo>
-                    <UserImage onClick={() => {
+                    <UserImage style={{backgroundImage: `url(${myIcon})`}}
+                        onClick={() => {
                         history.push("/mypage")
                     }}></UserImage>
             </HeaderBox>
@@ -36,7 +38,7 @@ const HeaderBox = styled.div`
     top: 0;
     height: 45px;
     justify-content: center;
-    background-color: transparent;
+    background-color: white;
     display: flex;
     z-index: 10;
 `;
@@ -54,7 +56,6 @@ const UserImage = styled.div`
     position: absolute;
     width: 24px;
     height: 24px;
-    border: 1px solid #000000;
     top: 10px;
     right: 12px;
 `;
