@@ -32,7 +32,7 @@ const BeerList = (props) =>{
         }
         return getData();
     }, []);
-
+/*
     useEffect(()=>{
         async function getData() {
             await dispatch(getSearchWord(word));
@@ -40,17 +40,17 @@ const BeerList = (props) =>{
         }
         return getData();
     },[])
-    
+*/    
     const onChange = (e) =>{
         setWord(e.target.value);
     }
-
+/*
     const searchWord = () =>{
         console.log("dispatch word", word);
         dispatch(getSearchWord(word));
 
     }
-
+*/
     const EnterSubmit = (e) =>{
         if(e.key === "Enter"){
             //setWord();
@@ -72,7 +72,7 @@ const BeerList = (props) =>{
                             <Search>
                                 <input 
                                     onChange={onChange}
-                                    onKeyUp={searchWord}
+                                    //onKeyUp={searchWord}
                                     onKeyPress={EnterSubmit}
                                     placeholder="검색어를 입력하세요."
                                 ></input>

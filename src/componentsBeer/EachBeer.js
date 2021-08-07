@@ -18,7 +18,7 @@ const EachBeer = (props) => {
         if(item.like_array?.includes(userId)){
             setToggle(true);
         }
-    })
+    }, []);
 
    
     const clickLike = () => {
@@ -90,6 +90,12 @@ const BeerImage = styled.div`
             width:130px;
             height: 130px;
             margin: 9px;
+         }
+    }
+    @media (img: img) {
+        & > img { 
+            width:148px;
+            height: 148px;
          }
     }
 `;

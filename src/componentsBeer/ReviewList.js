@@ -94,6 +94,10 @@ const Wrap = styled.div`
     display: flex;
     justify-content: center;
     bottom: 0;
+<<<<<<< HEAD
+=======
+    //z-index: 99;
+>>>>>>> 4dc95b488a02bb7d20fa4249efa265ea00001998
 `;
 
 const MoveBoxWrap = styled.div`

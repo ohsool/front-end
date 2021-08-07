@@ -23,6 +23,7 @@ const TestButton = ({ goToNext, question }) => {
                 </QuestionButton>
                 {question.answer[2] ? 
                 <QuestionButton 
+                    //className="clickedButton"
                     onClick={() => {
                         let choice = Object.keys(question.answer[2]).join()
                         goToNext(choice);

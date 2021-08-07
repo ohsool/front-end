@@ -3,20 +3,6 @@ import styled from "styled-components";
 import Logo from "../share/Logo.jpeg";
 
 const MainLogo = () => {
-    const MainLogoWrap = styled.div`
-    display: inline-block;
-    border: 2px solid #FFFFFF;
-    background-size: cover;
-    background: none;
-    background-image: url(${Logo});
-    width: 89px;
-    height: 61px;
-    // & > img {
-    //     width: 89px;
-    //     height: 61px;
-    //     background: none;
-    // }
-`;
     return(
         <React.Fragment>
             <ImageGridcenter>
@@ -36,6 +22,18 @@ const ImageGridcenter = styled.div`
     height: 141px;
     margin: 0 auto;
     margin-top: 115px;
+`;
+const MainLogoWrap = styled.div`
+    display: inline-block;
+    border: 2px solid #FFFFFF;
+    background-size: cover;
+    width: 89px;
+    height: 61px;
+    // & > img {
+    //     width: 89px;
+    //     height: 61px;
+    //     background: none;
+    // }
 `;
 
 const MainLogoText = styled.div`

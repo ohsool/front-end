@@ -27,12 +27,13 @@ const BeerDetail = (props) =>{
     }, []);
      
     useEffect(() => {
-        if(beerOne){
-        if(beerOne?.like_array?.includes(userId)){
-            setToggle(true);
-           }
+        async function getLikeData(){
+            if(beerOne?.like_array?.includes(userId)){
+                setToggle(true);
+               }
         }
-    }, [beerOne]);
+        return getLikeData();
+    });
 
     const clickLike = () => {
         if(userId){
@@ -57,7 +58,7 @@ const BeerDetail = (props) =>{
             <Container>
                 <Grid>
                     <BeerImage>
-                        {/* <img src={beerOne?.image} /> */}
+                        <img src={beerOne?.image} />
                     </BeerImage>
                     <Wrap>
                         <Horizion>
@@ -105,7 +106,7 @@ const BeerDetail = (props) =>{
                         <span style={{ fontWeight: "300", fontSize: "12px", lineHeight: "146%"}}>GS25 편의점</span>
                         </div>    
                     </Wrap>
-                    <hr style={{width: "312px", border: "0"}}/>
+                    <hr/>
                     
                     <Wrap>
                         <span style={{ fontWeight: "700" ,paddingBottom: "14px"}}>제보된 판매처</span>
@@ -128,17 +129,19 @@ const BeerDetail = (props) =>{
                                     <EachReview key={idx}  item={item}/>
                                     </>) : null
                             )): ""}
-                        </Gradient>
-                    </Wrap>
-                    <span style={{ textAlign:"center", paddingBottom: "20px",  fontWeight: "700", fontSize: "14px", lineHeight: "20.27px", fontStyle: "bold"
+                            <span style={{ textAlign:"center", paddingBottom: "20px",  fontWeight: "700", fontSize: "14px", lineHeight: "20.27px", fontStyle: "bold"
                             }} onClick={()=>{
                                 history.push(`/beer/review/${beerOne._id}`, { beer_infos, userId })
-                    }}>전체보기</span>  
+                            }}>전체보기</span>
+                        </Gradient>
+                    </Wrap>  
                 </Grid>
             </Container>
         </React.Fragment>
     )
 }
+
+export default BeerDetail;
 
 const Container = styled.div`
     display: flex;
@@ -193,7 +196,6 @@ const Horizion = styled.div`
     align-items: center;
     justify-content: space-between;
 `;
-
 const BeerName= styled.p`
     display: inline-block;
     font-size: 20px;
@@ -206,17 +208,8 @@ const BeerName= styled.p`
 
 const BeerContent = styled.div`
     padding: 14px 0;
-    & > p {
-        display: inline-block;
-        margin: 0;
-        width: 250px;
-        overflow: hidden;
-        white-space: nomal;
-        font-weight: 50";
-        font-size: 14px;
-        line-height: 20px;
-        minHeight: 60px;
-    }
+    margin: 0;
+    width: 250px;
 `;
 
 const Graph = styled.div`
@@ -224,7 +217,7 @@ const Graph = styled.div`
     display: flex;
     width: 313px;
     height: 313px;
-    border: 2px solid #FFC44F; 
+    border: 2px solid #FFC44F;
     border-radius: 10px;
 `;
 
@@ -254,9 +247,8 @@ const TasteTag = styled.div`
 const Gradient = styled.div`
     position: absolute;
     margin: 0 auto;
-    background: linear-gradient(linear, center bottom, center top,
-    color-stop(1.00,  rgba(0,0,0,1)),
-    color-stop(0.00,  rgba(0,0,0,0)));
+    -webkit-mask-size: 312px 420px; 
+    -webkit-mask-image: -webkit-gradient(linear, center bottom, center top,
+    color-stop(1.00, rgba(0,0,0,1)), 
+    color-stop(0.00, rgba(0,0,0,0)));
 `;
-
-export default BeerDetail;
