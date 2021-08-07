@@ -152,7 +152,7 @@ const Container = styled.div`
     height: 754px;
     background-color: #FFFFFF;
     flex-direction: column;
-    span{
+    & > span{
         display: -webkit-box;
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 1;
@@ -222,7 +222,7 @@ const Graph = styled.div`
 const ReportButton = styled.button`
     width: 308px;
     height: 45px;
-    border-radius: 50px;
+    border-radius: 50;
     border: 1px solid #FFC44F;
     background-color: #fff;
     margin-top: 16px;
@@ -245,7 +245,7 @@ const Gradient = styled.div`
     position: absolute;
     margin: 0 auto;
     z-index: 1;
-    background: linear-gradient(linear, center bottom, center top,
+    -webkit-mask-image: -webkit-gradient(linear, center bottom, center top,
     color-stop(1.00,  rgba(0,0,0,1)),
     color-stop(0.00,  rgba(0,0,0,0)));
 `;
