@@ -32,4 +32,4 @@ const HeartDetail = styled.img`
   box-sizing: border-box;
 `;
 
-export default HeartButton;
+export default React.memo(HeartButton);

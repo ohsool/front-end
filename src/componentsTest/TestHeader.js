@@ -14,6 +14,7 @@ const TestHeader = (props) => {
     useEffect(()=>{
         window.addEventListener('scroll', updateScroll);
     }, [scrollPosition]);
+
     return (
         <React.Fragment>
             <HeaderWrap>

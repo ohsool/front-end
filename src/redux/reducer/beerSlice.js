@@ -1,4 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createSelector } from "@reduxjs/toolkit";
+
 import { getAllBeer, getOneBeer, getSearchWord, likeBeer, unLikeBeer, testResult } from "../async/beer";
 
 const initialState = {
@@ -11,7 +12,7 @@ const initialState = {
     isError: false,
 };
 
-const beerSlice = createSlice({
+export const beerSlice = createSlice({
   name: "beer",
   initialState,
   extraReducers: (builder) =>
@@ -41,18 +42,6 @@ const beerSlice = createSlice({
         })
         .addCase(getSearchWord.rejected, (state, action) => {
             console.log("getSearchWord rejected: 맥주 검색에 실패했습니다");
-        })
-        .addCase(likeBeer.pending, (state, action) => {
-        })
-        .addCase(likeBeer.fulfilled, (state, action) => {
-        })
-        .addCase(likeBeer.rejected, (state, action) => {
-        })
-        .addCase(unLikeBeer.pending, (state, action) => {
-        })
-        .addCase(unLikeBeer.fulfilled, (state, action) => {
-        })
-        .addCase(unLikeBeer.rejected, (state, action) => {
         })
         .addCase(testResult.pending, (state, action) => {
           state.beerToday = [];
@@ -92,4 +81,33 @@ const beerSlice = createSlice({
         }
       ),
 });
-export default beerSlice;
+
+const beer_list = (state) => state.beer.beerList.beers;
+
+const beer_One = (state) => state.beer.beerOne;
+
+const beerSearch = (state) => state.beer.searchList;
+
+const beer_Today = (state) => state.beer.beerToday.category;
+
+const beer_recommend = (state) => state.beer.beerToday.recommendations;
+
+export const getBeerList = createSelector([beer_list], beerList => {
+  return beerList;
+}); //전체 맥주리스트
+
+export const oneBeer = createSelector(beer_One, beer_One => {
+  return beer_One;
+}); // 맥주 1개데이터 
+
+export const getSearchList = createSelector(beerSearch, beerSearch => {
+  return beerSearch;
+}); //맥주 검색
+
+export const recommendCate = createSelector(beer_Today, beer_Today => {
+  return beer_Today;
+});
+
+export const recommendBeerToday = createSelector(beer_recommend, beer_recommend => {
+  return beer_recommend;
+});

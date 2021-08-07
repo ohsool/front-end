@@ -93,7 +93,7 @@ const EachReview=(props)=> {
     )
 }
 
-export default EachReview;
+export default React.memo(EachReview);
 
 const Container = styled.div`
     width: 312px;

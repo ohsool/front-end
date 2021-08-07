@@ -15,9 +15,12 @@ export const writeReview = createAsyncThunk(
   "review/writeReview",
   async (data, thunkAPI) => {
     const beerId = data.beerId;
+    console.log(data);
     delete data.beerId;
+    console.log(data);
 
     const response = await headerAxios.post(`/api/mybeer/${beerId}`, data); 
+    console.log(response.data);
     return response.data;
   }
 );

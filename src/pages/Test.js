@@ -4,6 +4,7 @@ import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 import { testResult } from "../redux/async/beer"
 import { userInfo } from "../redux/async/user";
+import { User } from "../redux/reducer/userSlice";
 
 import { CSSTransitionGroup } from 'react-transition-group';
 import { TestQuestion, TestButton } from "../componentsTest/TestIndex";
@@ -12,17 +13,14 @@ import Header from "../Header";
 import {question} from "../componentsTest/Question";
 
 const Test = (props) => {
-    const user = useSelector((state) => state.user.currentUser);
+    const userId = useSelector(User);
     const dispatch = useDispatch();
     const [pageAnimation, setPageAnimation] = useState(false); //테스트 페이지 애니메이션 상태
     const [index, setIndex] = useState(0);
-    
+
     useEffect(()=> {
-        async function getData(){
-            await dispatch(userInfo());
-        }
-        return getData();
-    }, [])
+        dispatch(userInfo());
+    }, []);
 
     useEffect(() => {
         setPageAnimation(true);
@@ -36,7 +34,7 @@ const Test = (props) => {
         //각 맥주종류들이 결과값으로나오면 그 카테고리의 결과페이지로 이동
         if(choice === "AmericanLager"){
             dispatch(testResult({
-                userId: user.userId,
+                userId: userId,
                 result: "American Lager",
             }));
             history.push(`/result/${choice}`);
@@ -44,7 +42,7 @@ const Test = (props) => {
         }
         if(choice === "Pilsner"){
             dispatch(testResult({
-                userId: user.userId,
+                userId: userId,
                 result: "Pilsner",
             }));
             history.push(`/result/${choice}`);
@@ -52,7 +50,7 @@ const Test = (props) => {
         }
         if(choice === "PaleAle"){
             dispatch(testResult({
-                userId: user.userId,
+                userId: userId,
                 result: "Pale Ale",
             }));
             history.push(`/result/${choice}`);
@@ -60,7 +58,7 @@ const Test = (props) => {
         }
         if(choice === "IPA"){
             dispatch(testResult({
-                userId: user.userId,
+                userId: userId,
                 result: "IPA",
             }));
             history.push(`/result/${choice}`);
@@ -68,7 +66,7 @@ const Test = (props) => {
         }
         if(choice === "Weizen"){
             dispatch(testResult({
-                userId: user.userId,
+                userId: userId,
                 result: "Weizen",
             }));
             history.push(`/result/${choice}`);
@@ -76,7 +74,7 @@ const Test = (props) => {
         }
         if(choice === "Dunkel"){
             dispatch(testResult({
-                userId: user.userId,
+                userId: userId,
                 result: "Dunkel",
             }));
             history.push(`/result/${choice}`);
@@ -84,7 +82,7 @@ const Test = (props) => {
         }
         if(choice === "Stout"){
             dispatch(testResult({
-                userId: user.userId,
+                userId: userId,
                 result: "Stout",
             }));
             history.push(`/result/${choice}`);
@@ -92,7 +90,7 @@ const Test = (props) => {
         }
         if(choice === "Bock"){
             dispatch(testResult({
-                userId: user.userId,
+                userId: userId,
                 result: "Bock",
             }));
             history.push(`/result/${choice}`);
@@ -116,7 +114,7 @@ const Test = (props) => {
     )
 };
 
-export default Test;
+export default React.memo(Test);
 
 const Grid = styled.div`
     display: flex;

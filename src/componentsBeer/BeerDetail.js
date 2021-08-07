@@ -5,6 +5,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { getOneBeer, likeBeer, unLikeBeer } from "../redux/async/beer";
 import { getReview } from "../redux/async/review";
 import { userInfo } from "../redux/async/user";
+import { oneBeer } from "../redux/reducer/beerSlice";
+import { getReviewList } from "../redux/reducer/reviewSlice";
+import { User } from "../redux/reducer/userSlice";
 
 import HeartButton from "./HeartButton";
 import TasteGraph from "./TasteGraph";
@@ -14,19 +17,24 @@ import mapIcon from "../share/image/mapIcon.png";
 const BeerDetail = (props) =>{
     const [toggle, setToggle] = useState(false);
     const heart_detail = "detail"
-    const beerOne = useSelector(state => state.beer.beerOne);
-    const userId = useSelector(state => state.user.currentUser.userId);
-    const beer_infos = useSelector(state => state.review.reviewList);
+    const beerOne = useSelector(oneBeer);
+    const userId = useSelector(User);
+    const beer_infos = useSelector(getReviewList);
     const dispatch = useDispatch();
-    console.log("detail Rendering");
+
     useEffect(() => { //맥주 정보, 사용자정보 및 리뷰정보 불러오기
-        async function getData() {
-            await dispatch(getOneBeer(props.match.params.beerId));            
-            await dispatch(userInfo());
-            await dispatch(getReview(props.match.params.beerId));
-        }
-        return getData();
+        dispatch(getOneBeer(props.match.params.beerId)); 
+        dispatch(getReview(props.match.params.beerId));
     }, []);
+
+    useEffect(() => {
+        async function getUserData(){
+            await dispatch(userInfo());
+        }
+        return () => {
+            getUserData();
+        }
+    }, [userInfo]);
      
     useEffect(() => { //좋아요된 상태면 좋아요눌린걸로 아니면 false그대로
         async function getLikeData(){
@@ -71,8 +79,8 @@ const BeerDetail = (props) =>{
                             <HeartButton
                                 heart_detail={heart_detail}
                                 _onClick={(e) => {
-                                    // e.preventDefault();
-                                    // e.stopPropagation();
+                                    e.preventDefault();
+                                    e.stopPropagation();
                                     clickLike();
                                 }}
                                 is_like={toggle}                
@@ -143,7 +151,7 @@ const BeerDetail = (props) =>{
     )
 }
 
-export default BeerDetail;
+export default React.memo(BeerDetail, TasteGraph);
 
 const Container = styled.div`
     display: flex;

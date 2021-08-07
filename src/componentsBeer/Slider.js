@@ -35,7 +35,7 @@ const BeerType = ({ items }) => {
     );
 }
 
-export default BeerType;
+export default React.memo(BeerType);
 
 const Container = styled.div`
     margin-left: 10px;

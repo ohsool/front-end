@@ -24,9 +24,7 @@ export const getOneBeer = createAsyncThunk(
 export  const likeBeer = createAsyncThunk(
   "beer/likeBeer",
   async (data, thunkAPI) => {
-    const beers = thunkAPI.getState().beer.beerList.beers
-    const index = beers.findIndex((p)=> p._id === data);
-    console.log("like", beers[index].like_array);
+    
     const response = await headerAxios.put(`/api/beer/like/${data}`)
     
     return response.data;

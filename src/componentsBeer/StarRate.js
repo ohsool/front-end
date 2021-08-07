@@ -47,7 +47,7 @@ const StarButton = ({setStarScore, init_star}) =>{
     </Container>
   )
 }
-export default StarButton;
+export default React.memo(StarButton);
 
 
 const Container = styled.div`

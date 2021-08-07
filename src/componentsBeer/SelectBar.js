@@ -67,5 +67,5 @@ const SelectBar = ({index, setFeaturesList, featuresList, taste, is_edit}) => {
 
 };
 
-export default SelectBar;
+export default React.memo(SelectBar);
 //https://pierreericgarcia.github.io/react-step-progress-bar/docs/custom-step-guide

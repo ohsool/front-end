@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { history } from "../redux/configureStore";
 import { getMyDogam, getMyReview } from "../redux/async/mybeer";
 import { userInfo } from "../redux/async/user";
+import { likeList, myReviewList } from "../redux/reducer/mybeerSlice";
 
 import EachBeer from "../componentsBeer/EachBeer";
 import Header from "../Header";
@@ -11,8 +12,8 @@ import WritedReview from "../componentsMypage/WritedReview";
 import { useDispatch, useSelector } from "react-redux";
 
 const MyBeer = (props)=>{
-    const mydogam = useSelector(state => state.mybeer.mydogam); //좋아요한 맥주 리스트
-    const myReview = useSelector(state => state.mybeer.myReview); //사용자가 단 리뷰리스트
+    const mydogam = useSelector(likeList); //좋아요한 맥주 리스트
+    const myReview = useSelector(myReviewList); //사용자가 단 리뷰리스트
     const [is_Dogam, setIs_Dogam] = useState(true); //맥주리스트인지 리뷰리스트인지
     const session = sessionStorage.getItem("token");
     const dispatch = useDispatch();

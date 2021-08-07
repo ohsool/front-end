@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-
+import { getBeerList } from "../redux/reducer/beerSlice";
+import { categories } from "../redux/reducer/categorySlice";
 
 import Slider from './Slider';
 import EachBeer from "./EachBeer";
@@ -14,23 +15,19 @@ const BeerList = (props) =>{
     const [is_Loading, setIs_Loading] = useState(false);
     const get_category_id = props.match.params.beerCategoryId;
     const is_all = get_category_id ? false : true;
-    const beers = useSelector(state => state.beer.beerList.beers);
-    const items = useSelector(state => state.category.categoryList);
+    const beers = useSelector(getBeerList);
+    const items = useSelector(categories);
     const category_beers = beers?.filter((p) => p.categoryId === get_category_id);
     const words = useSelector(state => state.beer.searchList.words);
-
     const [word, setWord] = useState("");//실시간으로 입력하는 단어담김
 
     const dispatch = useDispatch();
-    
+
     useEffect(() => {
-        async function getData() {
-            await dispatch(getAllBeer());
-            await dispatch(getCategory());
-            await dispatch(userInfo());
+            dispatch(getAllBeer());
+            dispatch(getCategory());
+            dispatch(userInfo());
             setIs_Loading(true);
-        }
-        return getData();
     }, []);
 /*
     useEffect(()=>{
@@ -98,10 +95,8 @@ const BeerList = (props) =>{
             )}
         </React.Fragment>
     )
-
-
 }
-export default BeerList;
+export default React.memo(BeerList);
 
 
 const Container = styled.div`

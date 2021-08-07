@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Radar } from 'react-chartjs-2';
 
 const TasteGraph = ({ beers }) => {
   const [labels, setLabels] = useState();
   const [scores, setScores] = useState();
-  console.log("graph rendering", beers);
+
   useEffect(() => { //평점정보 불러오기
       if(beers) {
         //맛 종류 5가지 불러오기

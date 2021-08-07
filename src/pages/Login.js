@@ -45,6 +45,14 @@ const Login = (props) => {
         }
     }
 
+    const onKeyUp = () => { //이메일 비밀번호 입력시 버튼 색 변화
+        if(emailCheck(email) === true && pwdReg(password) === true ){
+            setIs_Typed(true);
+        }else{
+            setIs_Typed(false);
+        }
+    }
+
     return(
         <React.Fragment>
             <LoginWrap>
@@ -68,6 +76,7 @@ const Login = (props) => {
                             onChange={onChange}
                             name="password"
                             value={password}
+                            onKeyUp={onKeyUp}
                             placeholder="비밀번호"
                         ></InputLogin>
                         <button 

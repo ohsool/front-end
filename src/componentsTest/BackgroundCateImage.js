@@ -22,7 +22,7 @@ const BackgroundCateImage = ({ category }) => {
     )
 }
 
-export default BackgroundCateImage;
+export default React.memo(BackgroundCateImage);
 
 const BackgroundImage = styled.div`
     width: 100%;
