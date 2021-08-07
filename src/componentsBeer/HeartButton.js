@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-import heart_red from "../share/heart_red.jpeg";
-import heart_black from "../share/heart_black.png";
+import heart_red from "../share/image/heart_red.jpeg";
+import heart_black from "../share/image/heart_black.png";
 
 const HeartButton = ({_onClick, heart_detail, is_like }) => {
   const icon_url = is_like? heart_red : heart_black;

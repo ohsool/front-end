@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from "react";
 import styled from "styled-components";
+import myIconWhite from "../share/image/testHeaderIcon.png";
+import myIconBlack from "../share/image/HeaderIcon.png";
 
 import { history } from "../redux/configureStore";
 import "./TestHeader.css"
@@ -22,6 +24,7 @@ const TestHeader = (props) => {
                     history.push("/")
                     }}>오늘의술</WhiteHeaderLogo>
                     <WhiteUserImage
+                        style={{backgroundImage: `url(${myIconWhite})`}}
                         onClick={() => {
                             history.push("/mypage")
                         }}
@@ -34,7 +37,12 @@ const TestHeader = (props) => {
                     onClick={() => {
                     history.push("/")
                     }}>오늘의술</BlackHeaderLogo>
-                    <BlackUserImage></BlackUserImage>
+                    <BlackUserImage
+                        style={{backgroundImage: `url(${myIconBlack})`}}
+                        onClick={() => {
+                            history.push("/mypage")
+                        }}
+                    ></BlackUserImage>
                     </HeaderBox>
                     )
                  }
@@ -83,7 +91,6 @@ const WhiteUserImage = styled.div`
     position: absolute;
     width: 24px;
     height: 24px;
-    border: 1px solid #FFFFFF;
     top: 10px;
     right: 12px;
 `;
@@ -92,7 +99,6 @@ const BlackUserImage = styled.div`
     position: absolute;
     width: 24px;
     height: 24px;
-    border: 1px solid #000000;
     top: 10px;
     right: 12px;
 `;

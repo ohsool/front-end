@@ -6,7 +6,7 @@ import { history } from "../redux/configureStore";
 
 import MyPageModal from "../componentsMypage/MyPageModal";
 import Header from "../Header";
-import arrow from "../share/arrow.png";
+import arrow from "../share/image/mypagearrow.png";
 
 const MyPage = (props) => {
     const dispatch = useDispatch();
@@ -111,10 +111,9 @@ const PageMoveWrap = styled.div`
 const MoveBoxWrap = styled.div`
     display: inline-block;
     margin: 0 auto;
-    width: 320px;
+    width: 312px;
     height: 40px;
-    background-color: #F6F6F6;
-    border-radius: 5px;
+    border-bottom: 0.5px solid #C4C4C4;
     margin-bottom: 16px;
     & > span{
         line-height: 40px;
@@ -126,9 +125,9 @@ const MoveBoxWrap = styled.div`
 
 const ArrowImage = styled.img`
     float: right;
-    margin: 8px;
-    width: 24px;
-    height: 24px;
+    margin: 14px;
+    width: 12px;
+    height: 7px;
 `;
 
 const LogOutButton = styled.button`
