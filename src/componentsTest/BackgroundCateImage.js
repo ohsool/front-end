@@ -6,7 +6,7 @@ const BackgroundCateImage = ({ category }) => {
     return(
         <React.Fragment>
             <BackgroundImage style={{backgroundImage: `url(${category?.image})`}}>
-                <BackgroundImageStyle> </BackgroundImageStyle>
+                <BackgroundImageStyle> {/*이미지 블러처리*/}
                 <Wrap>
                     <TextWrap> 
                         <p>당신을 위한 <br/>오늘의 맥주는,</p>
@@ -16,6 +16,7 @@ const BackgroundCateImage = ({ category }) => {
                         style={{backgroundImage: `url(${shareButton})`}}
                     ></ShareButton>
                 </Wrap>
+                </BackgroundImageStyle>
             </BackgroundImage>
         </React.Fragment>
     )
@@ -34,6 +35,8 @@ const BackgroundImage = styled.div`
 
 const BackgroundImageStyle = styled.div`
     position: absolute;
+    display: flex;
+    justify-content: center;
     width: 100%;
     height: 270px;
     opacity: 0.8;
@@ -69,4 +72,5 @@ const ShareButton = styled.div`
     height: 24px;
     margin: 63px 12px 0 0;
     float: right;
+    cursor: pointer;
 `;

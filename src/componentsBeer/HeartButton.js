@@ -12,10 +12,10 @@ const HeartButton = ({_onClick, heart_detail, is_like }) => {
   return (
     <React.Fragment>
       {heart_detail !== "detail" ? (
-      <Heart onClick={_onClick} src={icon_url}></Heart>
+      <Heart onClick={_onClick} src={icon_url}></Heart> //beerList 하트이미지
       ) :
       (
-      <HeartDetail onClick={_onClick} src={icon_url_detal}></HeartDetail>
+      <HeartDetail onClick={_onClick} src={icon_url_detal}></HeartDetail> //beerDetail 하트이미지
       )}
     </React.Fragment>
   );

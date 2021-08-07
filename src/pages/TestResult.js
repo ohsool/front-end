@@ -7,7 +7,9 @@ import BackgroundCateImage from "../componentsTest/BackgroundCateImage";
 import { RecommendBeer, ResultInfo, TestHeader } from "../componentsTest/TestIndex";
 
 const TestResult = (props) => {
+    //테스트 후 나온 결과(카테고리)
     const category = useSelector((state) => state.beer.beerToday.category);
+    //테스트 후 나온 결과(맥주추천)
     const beerRecommends = useSelector((state) => state.beer.beerToday.recommendations);
 
     return (

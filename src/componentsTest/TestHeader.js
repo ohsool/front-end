@@ -4,7 +4,7 @@ import myIconWhite from "../share/image/testHeaderIcon.png";
 import myIconBlack from "../share/image/HeaderIcon.png";
 
 import { history } from "../redux/configureStore";
-import "./TestHeader.css"
+import "../share/style/TestHeader.css";
 
 const TestHeader = (props) => {
     const [scrollPosition, setScrollPosition] = useState(0);
@@ -93,6 +93,7 @@ const WhiteUserImage = styled.div`
     height: 24px;
     top: 10px;
     right: 12px;
+    cursor: pointer;
 `;
 
 const BlackUserImage = styled.div`
@@ -101,4 +102,5 @@ const BlackUserImage = styled.div`
     height: 24px;
     top: 10px;
     right: 12px;
+    cursor: pointer;
 `;

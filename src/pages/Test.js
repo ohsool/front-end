@@ -14,7 +14,7 @@ import {question} from "../componentsTest/Question";
 const Test = (props) => {
     const user = useSelector((state) => state.user.currentUser);
     const dispatch = useDispatch();
-    const [pageAnimation, setPageAnimation] = useState(false);
+    const [pageAnimation, setPageAnimation] = useState(false); //테스트 페이지 애니메이션 상태
     const [index, setIndex] = useState(0);
     
     useEffect(()=> {
@@ -28,10 +28,12 @@ const Test = (props) => {
         setPageAnimation(true);
     }, []);
     
+    // choice = 버튼 눌렀을때 value받아오는 부분
     const goToNext = (choice) => {
-        if(choice){
+        if(choice){ //question_id하고 choice가 같은 데이터 불러와서 index번호 찾기
             setIndex(question.findIndex((p) => p.question_id === choice));
         }
+        //각 맥주종류들이 결과값으로나오면 그 카테고리의 결과페이지로 이동
         if(choice === "AmericanLager"){
             dispatch(testResult({
                 userId: user.userId,
@@ -98,10 +100,10 @@ const Test = (props) => {
         }
     }
     return (
-        <CSSTransitionGroup
+        <CSSTransitionGroup //페이지 이동 애니메이션
             transitionName="worksTransition"
             transitionAppear={pageAnimation} 
-            key={index}
+            key={index} //index가 바뀔때마다 애니메이션
             transitionAppearTimeout={500}>
             <Header/>
             <Grid>

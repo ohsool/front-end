@@ -20,11 +20,11 @@ const SignUp = (props) => {
         nickname: "",
         password: "",
         confirmPassword: "",
-    });
+    }); //회원정보 입력 
 
     const {email, nickname, password, confirmPassword} = signup_info;
 
-    useEffect(() => {   //아이디 중복체크
+    useEffect(() => {   //아이디 중복및 형식 체크
         if(email === ""){
             setEamil_Check_Text("");
             return;
@@ -57,28 +57,31 @@ const SignUp = (props) => {
     const onChange = (e) => {
         setSignUp_Info({...signup_info, [e.target.name]: e.target.value});
     }
+
     const submitSignUp = () => {
         if(email === "" && nickname === "" && password === "" && confirmPassword === "" ){
             window.alert("아이디, 닉네임, 비밀번호를 입력하세요!")
             return;
-        }
+        } //공란 체크
 
         if(!pwdReg(password)){
             window.alert("비밀번호를 4자 이상 입력해주세요!");
             return;
-        }
+        } //비밀번호 형식체크
         
         if(password !== confirmPassword){
             window.alert("비밀번호 및 비밀번호확인이 다릅니다!");
             return;
-        }
-        dispatch(signUp(signup_info));
+        } //비밀번호 체크
+
+        dispatch(signUp(signup_info)); //회원가입 회원정보 디스패치
+
         setSignUp_Info({
             email: "",
             nickname: "",
             password: "",
             confirmPassword: ""
-        })
+        }) //인풋 초기화
     }
     const submitEnterSignUp = (e) => {
         if(e.key === "Enter"){
