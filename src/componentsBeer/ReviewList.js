@@ -1,22 +1,24 @@
 import React,{useState, useEffect} from "react";
 import styled from "styled-components";
 
-
 import EachReview from "../componentsBeer/EachReview";
 import { useSelector, useDispatch } from "react-redux";
 import {history} from "../redux/configureStore";
 import { getOneBeer } from "../redux/async/beer";
 import { getReview } from "../redux/async/review";
 import { userInfo } from "../redux/async/user";
+import { getReviewList } from "../redux/reducer/reviewSlice";
+import { oneBeer } from "../redux/reducer/beerSlice";
+import { User } from "../redux/reducer/userSlice";
 
 import ReviewWriteModal from "../componentsBeer/ReviewWriteModal";
 
 const ReviewList = (props)=>{
     const [modalOpen, setModalOpen] = useState(false);
     const [reload, setReload] = useState(false);
-    const beerOne = useSelector(state => state.beer.beerOne);
-    const userId = useSelector(state => state.user.currentUser.userId); 
-    const beer_infos = useSelector(state => state.review.reviewList);
+    const beerOne = useSelector(oneBeer);
+    const userId = useSelector(User); 
+    const beer_infos = useSelector(getReviewList);
     const dispatch = useDispatch();
     const openModal = () => {
         setModalOpen(true);
@@ -26,13 +28,10 @@ const ReviewList = (props)=>{
     };
 
     useEffect(() => {
-        async function getData() {
-            await dispatch(getOneBeer(props.match.params.beerId));
-            await dispatch(userInfo());
-            await dispatch(getReview(props.match.params.beerId));
-        }
-        return getData();
-    }, [reload]);
+            dispatch(getOneBeer(props.match.params.beerId));
+            dispatch(userInfo());
+            dispatch(getReview(props.match.params.beerId));
+    }, []);
 
     const loginConfirm = ()=>{
         if(userId){
@@ -76,7 +75,7 @@ const ReviewList = (props)=>{
     )
 }
 
-export default ReviewList;
+export default React.memo(ReviewList);
 
 const Container = styled.div`
     display: flex;
@@ -94,10 +93,6 @@ const Wrap = styled.div`
     display: flex;
     justify-content: center;
     bottom: 0;
-<<<<<<< HEAD
-=======
-    //z-index: 99;
->>>>>>> 4dc95b488a02bb7d20fa4249efa265ea00001998
 `;
 
 const MoveBoxWrap = styled.div`

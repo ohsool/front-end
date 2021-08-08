@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSelector, createSlice } from "@reduxjs/toolkit";
 import { getMyDogam, getMyReview } from "../async/mybeer";
 
 const initialState = {
@@ -61,3 +61,15 @@ const beerSlice = createSlice({
       ),
 });
 export default beerSlice;
+
+const liked_list = (state) => state.mybeer.mydogam;
+
+const myReview_list = (state) => state.mybeer.myReview;
+
+export const likeList = createSelector(liked_list, liked_list => {
+  return liked_list;
+});
+
+export const myReviewList = createSelector(myReview_list, myReview_list => {
+  return myReview_list;
+});

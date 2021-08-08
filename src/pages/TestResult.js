@@ -2,16 +2,17 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
+import { recommendCate, recommendBeerToday } from "../redux/reducer/beerSlice";
 
 
 import BackgroundCateImage from "../componentsTest/BackgroundCateImage";
 import { RecommendBeer, ResultInfo, TestHeader } from "../componentsTest/TestIndex";
 
 const TestResult = (props) => {
-    const category = useSelector((state) => state.beer.beerToday.category);//오늘의 맥주 설명
-    const beerRecommends = useSelector((state) => state.beer.beerToday.recommendations);
-    
-   
+    //테스트 후 나온 결과(카테고리)
+    const category = useSelector(recommendCate);
+    //테스트 후 나온 결과(맥주추천)
+    const beerRecommends = useSelector(recommendBeerToday);
 
     return (
         <React.Fragment>
@@ -21,7 +22,7 @@ const TestResult = (props) => {
                     <BackgroundCateImage category={category}/>
                     <Wrap>
                         <ResultInfo category={category}/>
-                        <RecommendBeerWrap>
+                        <RecommendBeerWrap>{/* 해당 카테고리 맥주 2종 추천 */}
                             {beerRecommends?.map((item, idx) => (
                                 <RecommendBeer item={item}></RecommendBeer>
                             ))}

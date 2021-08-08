@@ -15,7 +15,7 @@ const BeerTextarea = ({onChange, review, placeholder, })=>{
         </React.Fragment>
     )
 }
-export default BeerTextarea;
+export default React.memo(BeerTextarea);
 
 const Textarea = styled.div`
     & textarea = {

@@ -1,16 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Radar } from 'react-chartjs-2';
 
 const TasteGraph = ({ beers }) => {
   const [labels, setLabels] = useState();
   const [scores, setScores] = useState();
 
-  useEffect(() => {
+  useEffect(() => { //평점정보 불러오기
       if(beers) {
+        //맛 종류 5가지 불러오기
         setLabels(Object.keys(beers) ?? ["bitter", "crispy", "flavor", "sweet", "nutty"]);
+        //맛마다 평점 정보 받아오기
         setScores(Object.values(beers) ?? [0, 0, 0, 0, 0]);
       }
-  }, [beers]); 
+  }, [beers]);
 
   const data = {
     labels: labels,
@@ -31,10 +33,10 @@ const TasteGraph = ({ beers }) => {
             display: false,
         },
         r: {
-            max: 5,
-            min: 0,
+            max: 5, //그래프의 최대값
+            min: 0, //그래프의 최소 값(중앙)
             ticks: {
-                stepSize: 1,
+                stepSize: 1, //그래프간격마다 점수
             }
         }
     },
@@ -46,4 +48,4 @@ const TasteGraph = ({ beers }) => {
   )
 };
 
-export default TasteGraph;
+export default React.memo(TasteGraph);

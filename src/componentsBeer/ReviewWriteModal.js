@@ -192,7 +192,7 @@ const ReviewWriteModal = (props) => {
     )
 }
 
-export default ReviewWriteModal;
+export default React.memo(ReviewWriteModal);
 
 const Background = styled.div`
     position: fixed;

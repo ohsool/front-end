@@ -6,11 +6,11 @@ const WritedReview = ({ item }) => {
         <React.Fragment>
             <WritedBeerInfo>
                 <BeerImage>
-                    <img src={item.beerId.image}></img>
+                    <img src={item?.beerId?.image}></img>
                 </BeerImage>
                 <BeerTextWrap>
-                    <p>{item.userId.nickname}</p>
-                    <span>{item.review}</span>
+                    <p>{item?.userId?.nickname}</p>
+                    <span>{item?.review}</span>
                 </BeerTextWrap>
             </WritedBeerInfo>
         </React.Fragment>

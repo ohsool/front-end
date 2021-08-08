@@ -8,7 +8,6 @@ const Header = (props) => {
     return (
         <React.Fragment>
             <HeaderWrap>
-            
             <HeaderBox>
                     <HeaderLogo 
                     onClick={() => {
@@ -30,15 +29,20 @@ const HeaderWrap = styled.div`
     width: 100%;
     display: flex;
     justify-content: center;
+    background-color: white;
+    position: fixed;
+    top: 0;
+    height: 45px;
+    background-color: white;
 `;
 
 const HeaderBox = styled.div`
     width: 360px;
-    position: fixed;
-    top: 0;
-    height: 45px;
+    // position: fixed;
+    // top: 0;
+    // height: 45px;
     justify-content: center;
-    background-color: white;
+    // background-color: white;
     display: flex;
     z-index: 10;
 `;

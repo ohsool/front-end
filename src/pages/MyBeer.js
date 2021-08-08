@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { history } from "../redux/configureStore";
 import { getMyDogam, getMyReview } from "../redux/async/mybeer";
 import { userInfo } from "../redux/async/user";
+import { likeList, myReviewList } from "../redux/reducer/mybeerSlice";
 
 import EachBeer from "../componentsBeer/EachBeer";
 import Header from "../Header";
@@ -11,18 +12,18 @@ import WritedReview from "../componentsMypage/WritedReview";
 import { useDispatch, useSelector } from "react-redux";
 
 const MyBeer = (props)=>{
-    const mydogam = useSelector(state => state.mybeer.mydogam);
-    const myReview = useSelector(state => state.mybeer.myReview);
-    const [is_Dogam, setIs_Dogam] = useState(true);
+    const mydogam = useSelector(likeList); //좋아요한 맥주 리스트
+    const myReview = useSelector(myReviewList); //사용자가 단 리뷰리스트
+    const [is_Dogam, setIs_Dogam] = useState(true); //맥주리스트인지 리뷰리스트인지
     const session = sessionStorage.getItem("token");
     const dispatch = useDispatch();
 
     useEffect(()=> {
         setIs_Dogam(true);
         async function getData(){
-            await dispatch(getMyDogam());
-            await dispatch(getMyReview());
-            await dispatch(userInfo());
+            await dispatch(getMyDogam()); //좋아요한 맥주 리스트 디스패치
+            await dispatch(getMyReview()); //사용자가 쓴 리뷰리스트 디스패치
+            await dispatch(userInfo()); //현재 로그인한사용자 정보 (새로고침시 상태 날라가는 것 방지)
         }
         return getData();
     }, [])
@@ -45,14 +46,14 @@ const MyBeer = (props)=>{
             <Wrap>  
             <ButtonContainerWrap>
                 <button
-                    className={is_Dogam === true ? "clickedButtonContainer" : "buttonContainer"}
+                    className={is_Dogam === true ? "clickedButtonContainer" : "buttonContainer"} //클릭시 css변경
                     onClick={()=>{
                         setIs_Dogam(true)
                     }}>
                     맥주 도감
                 </button>
                 <button 
-                    className={is_Dogam === false ? "clickedButtonContainer" : "buttonContainer"}
+                    className={is_Dogam === false ? "clickedButtonContainer" : "buttonContainer"} //클릭시 css변경
                     onClick={()=>{
                         setIs_Dogam(false)
                     }
@@ -73,7 +74,7 @@ const MyBeer = (props)=>{
             : 
                 <Container>  {/* 데이터 이미지가공 까지해서 */}
                 {is_Dogam === false ? 
-                    myReview.map((item, idx) => (
+                    myReview?.map((item, idx) => (
                         <WritedReview item={item}/>
                     )) :
                     ""}

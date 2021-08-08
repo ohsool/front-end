@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createSelector } from "@reduxjs/toolkit";
 import { getCategory, getCategoryBeer } from "../async/category";
 
 const initialState = {
@@ -66,3 +66,14 @@ const categorySlice = createSlice({
   
   export default categorySlice;
   
+  const getCategoryList = (state) => state.category.categoryList; //맥주 카테고리 리스트
+
+  const getCategoryBeerList = (state) => state.category.categoryBeerList; //카테고리별 맥주리스트
+  
+  export const categories = createSelector(getCategoryList, getCategoryList => {
+    return getCategoryList;
+  });
+
+  export const categoryBeer = createSelector(getCategoryBeerList, getCategoryBeerList => {
+    return getCategoryBeerList;
+  });

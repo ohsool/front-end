@@ -5,37 +5,47 @@ import { useSelector, useDispatch } from "react-redux";
 import { getOneBeer, likeBeer, unLikeBeer } from "../redux/async/beer";
 import { getReview } from "../redux/async/review";
 import { userInfo } from "../redux/async/user";
+import { oneBeer } from "../redux/reducer/beerSlice";
+import { getReviewList } from "../redux/reducer/reviewSlice";
+import { User } from "../redux/reducer/userSlice";
 
 import HeartButton from "./HeartButton";
 import TasteGraph from "./TasteGraph";
 import EachReview from "./EachReview";
+import mapIcon from "../share/image/mapIcon.png";
 
 const BeerDetail = (props) =>{
     const [toggle, setToggle] = useState(false);
     const heart_detail = "detail"
-    const beerOne = useSelector(state => state.beer.beerOne);
-    const userId = useSelector(state => state.user.currentUser.userId);
-    const beer_infos = useSelector(state => state.review.reviewList);
+    const beerOne = useSelector(oneBeer);
+    const userId = useSelector(User);
+    const beer_infos = useSelector(getReviewList);
     const dispatch = useDispatch();
-    useEffect(() => {
-        async function getData() {
-            await dispatch(getOneBeer(props.match.params.beerId));            
-            await dispatch(userInfo());
-            await dispatch(getReview(props.match.params.beerId));
-        }
-        return getData();
+
+    useEffect(() => { //맥주 정보, 사용자정보 및 리뷰정보 불러오기
+        dispatch(getOneBeer(props.match.params.beerId)); 
+        dispatch(getReview(props.match.params.beerId));
     }, []);
-     
+
     useEffect(() => {
+        async function getUserData(){
+            await dispatch(userInfo());
+        }
+        return () => {
+            getUserData();
+        }
+    }, [userInfo]);
+     
+    useEffect(() => { //좋아요된 상태면 좋아요눌린걸로 아니면 false그대로
         async function getLikeData(){
             if(beerOne?.like_array?.includes(userId)){
                 setToggle(true);
-               }
+            }
         }
         return getLikeData();
-    });
+    }, []);
 
-    const clickLike = () => {
+    const clickLike = () => { //좋아요 및 좋아요 취소 기능
         if(userId){
             if(toggle === true){
                 dispatch(unLikeBeer(beerOne._id));
@@ -44,10 +54,12 @@ const BeerDetail = (props) =>{
                 dispatch(likeBeer(beerOne.beerId));
                 setToggle(true);
             }
-        }else{
+        }else{ //로그인 안한 유저가 좋아요 눌렀을때 눌리는 것 방지
             if(window.confirm("로그인이 필요한 서비스입니다. 로그인하시겠습니까?")){
                 history.push("/login");
-                return
+                return;
+            }else{
+                history.goBack();
             }
         }
 
@@ -67,8 +79,8 @@ const BeerDetail = (props) =>{
                             <HeartButton
                                 heart_detail={heart_detail}
                                 _onClick={(e) => {
-                                    // e.preventDefault();
-                                    // e.stopPropagation();
+                                    e.preventDefault();
+                                    e.stopPropagation();
                                     clickLike();
                                 }}
                                 is_like={toggle}                
@@ -86,9 +98,7 @@ const BeerDetail = (props) =>{
                     <Wrap>
                         <span style={{ fontWeight: "700"}}>맥주소개</span>
                         <BeerContent>
-                            스위트하게~위트있게~
-                            밀맥주 맛에 Tropical Fruit의
-                            달콤함이 어우러진 곰표 우리나라 밀맥주
+                            맥주 설명!!!
                         </BeerContent>
                     </Wrap>
                     <hr/>
@@ -102,7 +112,7 @@ const BeerDetail = (props) =>{
                     <Wrap>
                         <span style={{ fontWeight: "700",paddingBottom: "14px"}}>판매처</span>
                         <div style={{display: "flex"}}>
-                        <button/> 
+                        <MapIcon style={{backgroundImage: `url(${mapIcon})`}}/> 
                         <span style={{ fontWeight: "300", fontSize: "12px", lineHeight: "146%"}}>GS25 편의점</span>
                         </div>    
                     </Wrap>
@@ -111,7 +121,7 @@ const BeerDetail = (props) =>{
                     <Wrap>
                         <span style={{ fontWeight: "700" ,paddingBottom: "14px"}}>제보된 판매처</span>
                         <div style={{display: "flex"}}>
-                        <button/> 
+                        <MapIcon style={{backgroundImage: `url(${mapIcon})`}}/> 
                         <span style={{ fontWeight: "300", fontSize: "12px", lineHeight: "146%"}}>GS25 편의점</span>
                         </div>
 
@@ -141,7 +151,7 @@ const BeerDetail = (props) =>{
     )
 }
 
-export default BeerDetail;
+export default React.memo(BeerDetail, TasteGraph);
 
 const Container = styled.div`
     display: flex;
@@ -157,32 +167,32 @@ const Container = styled.div`
     }
 `;
 const Grid = styled.div`
-    width: 360px;
+    width: 100%;
     margin: 0 auto;
     margin-top: 40px;
 `;
 
 const BeerImage = styled.div`
-    width: 360px;
+    width: 100%;
     height: 380px;
-    border-radius: 10px;
+    text-align: center;
     background-color: #F6F6F6;
     & > img{ 
         width: 315px;
         height: 315px;
-        margin: 23px 32px;
+        margin: 23px auto;
     }
     @media (img: img) {
         & > img { 
             width: 315px;
             height: 315px;
-            margin: 22px 32px;
+            margin: 22px auto;
          }
     }
 `;
 const Wrap = styled.div`
     width: 320px;
-    margin: 20px 24px;
+    margin: 20px auto;
 `;
 
 const HeartWrap = styled.div`
@@ -219,6 +229,12 @@ const Graph = styled.div`
     height: 313px;
     border: 2px solid #FFC44F;
     border-radius: 10px;
+`;
+
+const MapIcon = styled.div`
+    width: 8px;
+    height: 12px;
+    margin-right: 5px;
 `;
 
 const PlaceButton = styled.button`

@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSelector, createSlice } from "@reduxjs/toolkit";
 import { 
   signUp, 
   logIn, 
@@ -99,3 +99,9 @@ const userSlice = createSlice({
 export const { logOut } = userSlice.actions;
 
 export default userSlice;
+
+const current_User = (state) => state.user.currentUser.userId;
+
+export const User = createSelector(current_User, current_User => {
+  return current_User;
+});

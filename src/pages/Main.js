@@ -9,7 +9,7 @@ const Main = (props) => {
     return (
         <React.Fragment>
             <Grid>
-                <GridStyle>
+                <GridStyle> 
                     <MainLogo/>
                     <MainInput/>
                 </GridStyle>
@@ -31,7 +31,8 @@ const Grid = styled.div`
     flex-direction: column;
 `;
 
-const GridStyle = styled.div`
+//배경어둡게 처리
+const GridStyle = styled.div` 
     position: absolute;
     width: 100%;
     min-height: 100vh;

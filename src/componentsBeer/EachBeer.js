@@ -4,24 +4,25 @@ import styled from "styled-components";
 import {history} from "../redux/configureStore";
 import { useSelector, useDispatch } from "react-redux";
 import {likeBeer, unLikeBeer} from "../redux/async/beer";
+import { User } from "../redux/reducer/userSlice";
 
 
 import HeartButton from "./HeartButton";
 
 const EachBeer = (props) => {
     const dispatch = useDispatch();
-    const { _onClick ,item } = props;
-    const userId = useSelector(state => state.user.currentUser.userId);
+    const { item } = props;
+    const userId = useSelector(User);
     const [toggle, setToggle] = useState(false);
 
-    useEffect(() => {
+    useEffect(() => { //좋아요 눌렀는지 아닌지 판별
         if(item.like_array?.includes(userId)){
             setToggle(true);
         }
     }, []);
 
    
-    const clickLike = () => {
+    const clickLike = () => { //좋아요 토글 함수
         if(userId){
             if(toggle === true){
                 dispatch(unLikeBeer(item._id));
@@ -66,7 +67,7 @@ const EachBeer = (props) => {
     )
 }
 
-export default EachBeer;
+export default React.memo(EachBeer);
 
 const RecommendBeerWrap = styled.div`
     width: 148px;

@@ -1,8 +1,8 @@
 import React,{ useEffect, useState } from "react";
 import styled from "styled-components";
-import "./TestHeader.css";
+import "../share/style/TestHeader.css";
 
-const TestButton = ({ goToNext, question }) => {
+const TestButton = ({ goToNext, question }) => { //goToNext 함수 및 question 정보
 
     return (
         <React.Fragment>

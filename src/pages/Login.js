@@ -14,7 +14,7 @@ const Login = (props) => {
     const [login_info, setLogin_Info] = useState({
         email: "",
         password: "",
-    });
+    }); //로그인 정보
     const {email, password} = login_info;
 
     useEffect(() => {
@@ -28,12 +28,12 @@ const Login = (props) => {
     }
 
     const submitLogin = () => {
-        if(email === "" && password === ""){
+        if(email === "" && password === ""){  //공란 체크
             window.alert("아이디 혹은 비밀번호를 입력하세요.");
             return;
         }
-        dispatch(logIn(login_info))
-        setLogin_Info({
+        dispatch(logIn(login_info)) //로그인 정보 디스패치
+        setLogin_Info({  //로그인인풋 초기화
             email: "",
             password: ""
         });
@@ -45,7 +45,7 @@ const Login = (props) => {
         }
     }
 
-    const onKeyUp = () => {
+    const onKeyUp = () => { //이메일 비밀번호 입력시 버튼 색 변화
         if(emailCheck(email) === true && pwdReg(password) === true ){
             setIs_Typed(true);
         }else{
@@ -74,9 +74,9 @@ const Login = (props) => {
                         <InputLogin 
                             type="password"
                             onChange={onChange}
-                            onKeyUp={onKeyUp}
                             name="password"
                             value={password}
+                            onKeyUp={onKeyUp}
                             placeholder="비밀번호"
                         ></InputLogin>
                         <button 

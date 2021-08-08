@@ -7,7 +7,7 @@ const MainInput = (props) => {
     const [is_login, setIs_Login] = useState(false);
     const session = sessionStorage.getItem("token");
 
-    useEffect(()=> {
+    useEffect(()=> {  //로그인해있는지 체크
         if(session){
             setIs_Login(true);
         }else{
@@ -15,7 +15,7 @@ const MainInput = (props) => {
         }
     }, [is_login]);
 
-    const goBeerDogam = () => {
+    const goBeerDogam = () => { //세션에 token없으면 로그인페이지로
         if(!session){
             window.alert("로그인이 필요한 서비스입니다!")
         }else{

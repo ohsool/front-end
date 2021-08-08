@@ -20,4 +20,4 @@ const Beer = (props) => {
 
 }
 
-export default Beer;
+export default React.memo(Beer);

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-
+import { getBeerList } from "../redux/reducer/beerSlice";
+import { categories } from "../redux/reducer/categorySlice";
 
 import Slider from './Slider';
 import EachBeer from "./EachBeer";
@@ -14,8 +15,8 @@ const BeerList = (props) =>{
     const [is_Loading, setIs_Loading] = useState(false);
     const get_category_id = props.match.params.beerCategoryId;
     const is_all = get_category_id ? false : true;
-    const beers = useSelector(state => state.beer.beerList.beers);
-    const items = useSelector(state => state.category.categoryList);
+    const beers = useSelector(getBeerList);
+    const items = useSelector(categories);
     const category_beers = beers?.filter((p) => p.categoryId === get_category_id);
     const words = useSelector(state => state.beer.searchList.words);//["버드와이저","오번"]
     const [is_search,setIs_Search] = useState(false)
@@ -24,16 +25,12 @@ const BeerList = (props) =>{
     const [search_result,setSearch_Result] = useState([]);//검색 결과 맥주들 정보 담김
 
     const dispatch = useDispatch();
-    
+
     useEffect(() => {
-        async function getData() {
-            await dispatch(getAllBeer());
-            await dispatch(getCategory());
-            await dispatch(userInfo());
+            dispatch(getAllBeer());
+            dispatch(getCategory());
+            dispatch(userInfo());
             setIs_Loading(true);
-            
-        }
-        return getData();
     }, []);
 
     useEffect(()=>{
@@ -90,7 +87,7 @@ const BeerList = (props) =>{
             console.log("kor_result list:",search_result)
 
         }else{
-            window.alert("잘못입력하셨습니다.");
+            window.alert("잘못 입력 하셨습니다.");
     
         }
 
@@ -158,10 +155,8 @@ const BeerList = (props) =>{
             )}
         </React.Fragment>
     )
-
-
 }
-export default BeerList;
+export default React.memo(BeerList);
 
 
 const Container = styled.div`
