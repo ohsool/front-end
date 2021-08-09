@@ -18,7 +18,7 @@ export const question =
         question_id: "crispy",
         questionNum: "",
         question: "청량감이 좋은게 있나요 아닌가요",
-        answer: [{"American Lager" : "YES"}, {"Pilsner": "NO"}]
+        answer: [{"Lager" : "YES"}, {"Pilsner": "NO"}]
     },
     {
         id: 4,

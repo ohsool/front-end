@@ -19,7 +19,7 @@ const TestResult = (props) => {
     const beerRecommends = useSelector(recommendBeerToday);
 
     useEffect(() => {
-        if(categoryParams === "American Lager" 
+        if(categoryParams === "Lager" 
         || categoryParams === "Pilsner" 
         || categoryParams === "Pale Ale" 
         || categoryParams === "IPA" 

@@ -32,7 +32,7 @@ const Test = (props) => {
             setIndex(question.findIndex((p) => p.question_id === choice));
         }
         //각 맥주종류들이 결과값으로나오면 그 카테고리의 결과페이지로 이동
-        if(choice === "American Lager" || choice === "Pilsner"
+        if(choice === "Lager" || choice === "Pilsner"
         || choice === "Pale Ale"
         || choice === "IPA" 
         || choice === "Weizen"
