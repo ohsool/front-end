@@ -14,16 +14,16 @@ import { userInfo } from "../redux/async/user";
 const BeerList = (props) =>{
     const [is_Loading, setIs_Loading] = useState(false);
     const get_category_id = props.match.params.beerCategoryId;
-    const is_all = get_category_id ? false : true;
+    const [is_all,SetIs_All] = useState(get_category_id ? false : true);
     const beers = useSelector(getBeerList);
     const items = useSelector(categories);
     const category_beers = beers?.filter((p) => p.categoryId === get_category_id);
     const words = useSelector(state => state.beer.searchList.words);//["버드와이저","오번"]
     const [is_search,setIs_Search] = useState(false)
     const [word, setWord] = useState([]);//실시간으로 입력하는 단어담김
-    const [search_beer, setSearch_Beer] = useState([]);
-    const [search_result,setSearch_Result] = useState([]);//검색 결과 맥주들 정보 담김
+    const [search_beers, setSearch_Beers] = useState([]);
 
+    console.log("search_beer",search_beers);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -31,16 +31,15 @@ const BeerList = (props) =>{
             dispatch(getCategory());
             dispatch(userInfo());
             setIs_Loading(true);
+            
     }, []);
 
     useEffect(()=>{
-        async function getData() {
-            await dispatch(getSearchWord(word));
-            setWord(word);
-            setIs_Search(false);
+        if(is_search){
+            SetIs_All()
         }
-        return getData();
-    },[])
+        setIs_Search(false);
+    },[is_search])
  
 
     
@@ -58,36 +57,28 @@ const BeerList = (props) =>{
         let beer = [];
         if(check_eng.test(word)){
             //영어로 검색
-            words.map((w)=>{
-                beer = beers?.filter((p) => p.name_english.includes(w));
-                setSearch_Result(search_result=>search_result.concat(beer))
-                console.log("eng_result each:",beer)
-                setIs_Search(true);
+            words?.map((w)=>{
+                beer =  beers?.filter((p) => p.name_english.includes(w))[0]//{...}
+                console.log("beer",beer)
+                setSearch_Beers(search_beer=>[...search_beer,beer]);
+                setIs_Search(true);//검색 결과 보여준다음에는 false로 바꿈   );
+                SetIs_All(false);
             })
-            console.log("eng_result list:",search_result)
 
         }else if(check_kor.test(word)){
-            console.log("단어",words);
+            console.log("words",words);
             //한국어로 검색
             words?.map((w)=>{
                 beer =  beers?.filter((p) => p.name_korean.includes(w))[0]//{...}
                 console.log("beer",beer)
-                setSearch_Beer(beers?.filter((p) => p.name_korean.includes(w))[0]);
-                //console.log("search_beer",search_beer);
-                setSearch_Result(search_result=>[...search_result,search_beer])
-                //setSearch_Beer({});
-                //setSearch_Beer(beers?.filter((p) => p.name_korean.includes(w))))
-
-                
-                setIs_Search(true);//검색 결과 보여준다음에는 false로 바꿈    
+                setSearch_Beers(search_beer=>[...search_beer,beer]);
+                setIs_Search(true);//검색 결과 보여준다음에는 false로 바꿈 
+                SetIs_All(false);
+                   
             })
-            //setSearch_Result(search_beer);
             
-            console.log("kor_result list:",search_result)
-
         }else{
             window.alert("잘못 입력 하셨습니다.");
-    
         }
 
         
@@ -96,12 +87,7 @@ const BeerList = (props) =>{
     const EnterSubmit = (e) =>{
         if(e.key === "Enter"){
             findBeer();
-            //beers?.filter((p) => p.categoryId === get_category_id);
-            //setWord();
-            //해당 단어관련 맥주를 list로 만들어 맵돌려서 EachBeer 보여준다.
-            //
         }
-        //console.log("search_beer",search_beer);
     }
 
 
@@ -123,17 +109,17 @@ const BeerList = (props) =>{
                                 ></input>
                             </Search>
 
-                            {is_all? (
+                            {is_search? (
                                 <List>
-                                    {beers?.length > 0 ? beers.map((item, idx) => (
+                                    {search_beers?.length > 0 ? search_beers.map((item, idx) => (
                                         <EachBeer key={idx} item={item}/>
                                     )):""}
                                 </List>
                             ): (
                                 <>
-                                    {is_search ? (
+                                    { is_all ? (
                                         <List>
-                                        {search_result?.length > 0 ? search_result.map((item, idx) => (
+                                        {beers?.length > 0 ? beers.map((item, idx) => (
                                             <EachBeer key={idx} item={item}/>
                                         )):""}
                                         </List>
