@@ -29,7 +29,8 @@ export  const likeBeer = createAsyncThunk(
     
     return response.data;
   }
-)
+);
+
 export  const unLikeBeer = createAsyncThunk(
   "beer/unLikeBeer",
   async (data, thunkAPI) => {
@@ -38,7 +39,8 @@ export  const unLikeBeer = createAsyncThunk(
 
     return response.data;
   }
-)
+);
+
 export const getSearchWord = createAsyncThunk(
   "beer/getSearchResult",
   async (data, thunkAPI) => {
@@ -47,7 +49,8 @@ export const getSearchWord = createAsyncThunk(
     
     return response.data;
   }
-)
+);
+
 export const checkNickname = createAsyncThunk(
   "user/checkNickname",
   async (data, thunkAPI) => {
@@ -68,4 +71,14 @@ export const testResult = createAsyncThunk(
     
     return response.data;
   }
-)
+);
+
+export const testShare = createAsyncThunk(
+  "beer/testShare",
+  async (data, thunkAPI) => {
+
+    const response = await nonHeaderAxios.post(`/api/beercategory/result`, data);
+
+    return response.data;
+  }
+);

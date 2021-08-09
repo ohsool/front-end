@@ -1,11 +1,12 @@
 import { createSlice, createSelector } from "@reduxjs/toolkit";
 
-import { getAllBeer, getOneBeer, getSearchWord, likeBeer, unLikeBeer, testResult } from "../async/beer";
+import { getAllBeer, getOneBeer, getSearchWord, testShare, testResult } from "../async/beer";
 
 const initialState = {
     beerList: [],
     beerOne: null,
     beerToday: [],
+    beerShare: [],
     searchList: [],
     isLoading: false,
     isDone: false,
@@ -50,6 +51,14 @@ export const beerSlice = createSlice({
           state.beerToday = action.payload;
         })
         .addCase(testResult.rejected, (state, action) => {
+        })
+        .addCase(testShare.pending, (state, action) => {
+          state.beerToday = [];
+        })
+        .addCase(testShare.fulfilled, (state, action) => {
+          state.beerToday = action.payload;
+        })
+        .addCase(testShare.rejected, (state, action) => {
         })
       // 공통
       .addMatcher(

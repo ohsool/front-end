@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
+import { testShare } from "../redux/async/beer";
 import { recommendCate, recommendBeerToday } from "../redux/reducer/beerSlice";
 
 
@@ -9,16 +10,29 @@ import BackgroundCateImage from "../componentsTest/BackgroundCateImage";
 import { RecommendBeer, ResultInfo, TestHeader } from "../componentsTest/TestIndex";
 
 const TestResult = (props) => {
+    const dispatch = useDispatch();
+    const categoryParams = props.match.params.category;
+
     //테스트 후 나온 결과(카테고리)
     const category = useSelector(recommendCate);
     //테스트 후 나온 결과(맥주추천)
     const beerRecommends = useSelector(recommendBeerToday);
-    const Kakao = window.Kakao;
-    /*
-    useEffect(()=>{
-        Kakao.init("");
-    },[])
-    */
+
+    useEffect(() => {
+        if(categoryParams === "Lager" 
+        || categoryParams === "Pilsner" 
+        || categoryParams === "Pale Ale" 
+        || categoryParams === "IPA" 
+        || categoryParams === "Weizen"
+        || categoryParams === "Dunkel" 
+        || categoryParams === "Stout" 
+        || categoryParams === "Bock"){
+        dispatch(testShare({
+            result: categoryParams
+        }));
+    }
+    }, []);
+
     return (
         <React.Fragment>
            
@@ -38,7 +52,7 @@ const TestResult = (props) => {
                             history.push("/test/");
                         }}
                     >다시 하기
-                        <img src="https://image.flaticon.com/icons/png/512/724/724863.png"></img>
+                        {/* <img src="https://image.flaticon.com/icons/png/512/724/724863.png"></img> */}
                     </ReButton>
                 </Grid>
         </React.Fragment>
