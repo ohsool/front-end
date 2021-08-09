@@ -20,10 +20,9 @@ const BeerList = (props) =>{
     const category_beers = beers?.filter((p) => p.categoryId === get_category_id);
     const [is_Loading, setIs_Loading] = useState(false);
     const [is_search, setIs_Search] = useState(false)
-    const [word, setWord] = useState([]); //실시간으로 입력하는 단어담김
+    const [word, setWord] = useState(""); //실시간으로 입력하는 단어담김
     const [search_beer, setSearch_Beer] = useState([]);
     const dispatch = useDispatch();
-    console.log("SearchList", search_beer);
 
     useEffect(() => {
             dispatch(getAllBeer());
@@ -78,6 +77,36 @@ const BeerList = (props) =>{
         }
     }
 
+    const beerListFilter = () => {
+        if(is_search){
+            return (
+                <List>
+                    {search_beer?.length > 0 ? search_beer.map((item, idx) => (
+                        <EachBeer key={idx} item={item}/>
+                    )):""}
+                </List>
+            );
+        }else{
+            if(is_all){
+                return (
+                <List>
+                    {beers?.length > 0 ? beers.map((item, idx) => (
+                        <EachBeer key={idx} item={item}/>
+                    )):""}
+                </List>
+                );
+            }else{
+                return(
+                    <List>
+                    {category_beers?.length > 0 ? category_beers.map((item, idx) => (
+                        <EachBeer key={idx} item={item}/>
+                    )):""}
+                    </List>
+                );
+            }
+        }
+    };
+
 
     return(
         <React.Fragment>
@@ -86,7 +115,9 @@ const BeerList = (props) =>{
                     <Container>
                         <Grid>
                             <TopNav>
-                            <Slider items={items}/>
+                            <Slider
+                                setIs_Search={setIs_Search}
+                                items={items}/>
                             </TopNav>
                             <Search>
                                 <input 
@@ -96,31 +127,7 @@ const BeerList = (props) =>{
                                     placeholder="검색어를 입력하세요."
                                 ></input>
                             </Search>
-
-                            {is_all? (
-                                <List>
-                                    {beers?.length > 0 ? beers.map((item, idx) => (
-                                        <EachBeer key={idx} item={item}/>
-                                    )):""}
-                                </List>
-                            ): (
-                                <>
-                                    {is_search ? (
-                                        <List>
-                                        {search_beer?.length > 0 ? search_beer.map((item, idx) => (
-                                            <EachBeer key={idx} item={item}/>
-                                        )):""}
-                                        </List>
-                                    ):(
-                                        <List>
-                                        {category_beers?.length > 0 ? category_beers.map((item, idx) => (
-                                            <EachBeer key={idx} item={item}/>
-                                        )):""}
-                                        </List>
-                                    )} 
-                                
-                                </>
-                            )}
+                            {beerListFilter()}
                         </Grid>
                     </Container>
                 </>

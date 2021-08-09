@@ -7,7 +7,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const BeerType = ({ items }) => {
+const BeerType = ({ items, setIs_Search }) => {
     const settings = {
         infinite: true,
         speed: 200,
@@ -23,6 +23,7 @@ const BeerType = ({ items }) => {
                 {true && items?.map((item, idx) => (
                     <div 
                         onClick={() => {
+                            setIs_Search(false);
                             item.name === "All" ? history.push("/beer/list")
                             :
                             history.push(`/beer/list/${item._id}`)
