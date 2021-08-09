@@ -32,7 +32,7 @@ const reviewSlice = createSlice({
             state.reviewList = [];
         })
         .addCase(getReview.fulfilled, (state, action) => {
-            state.reviewList = action.payload.myBeers.reverse();
+            state.reviewList = action.payload.myBeers?.reverse();
         })
         .addCase(getReview.rejected, (state, action) => {
         })

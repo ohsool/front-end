@@ -12,7 +12,8 @@ const MyPage = (props) => {
     const dispatch = useDispatch();
     const session = sessionStorage.getItem("token");
     const [modalOpen, setModalOpen] = useState(false);
-    const [modal_info, setModal_Info] = useState({
+
+    const [modal_info, setModal_Info] = useState({ //건의하기 modal창 text정보
         suggestTitle: "",
         titlePlaceholder: "",
         commentPlaceholder: "",
@@ -29,10 +30,11 @@ const MyPage = (props) => {
         }
     }, []);
 
-    const openModal = () => {
+    const openModal = () => { //modal창 오픈
         setModalOpen(true);
       };
-    const closeModal = () => {
+
+    const closeModal = () => { // 모달창 닫기 및 텍스트 초기화
         setModalOpen(false);
         setModal_Info({
             suggestTitle: "",
@@ -41,7 +43,7 @@ const MyPage = (props) => {
         });
     };
 
-    const confirmLogout = () => {
+    const confirmLogout = () => { // 로그아웃
         if(window.confirm("로그아웃 하시겠어요?")){
             dispatch(logOut());
         }
