@@ -21,7 +21,7 @@ const BeerList = (props) =>{
     const words = useSelector(state => state.beer.searchList.words);//["버드와이저","오번"]
     const [is_search,setIs_Search] = useState(false)
     const [word, setWord] = useState([]);//실시간으로 입력하는 단어담김
-    const [search_beer, setSearch_Beer] = useState({});
+    const [search_beer, setSearch_Beer] = useState([]);
     const [search_result,setSearch_Result] = useState([]);//검색 결과 맥주들 정보 담김
 
     const dispatch = useDispatch();
@@ -46,25 +46,22 @@ const BeerList = (props) =>{
     
     const onChange = (e) =>{
         setWord(e.target.value);
-        console.log("word", word)
     }
 
     const searchWord = () =>{
         dispatch(getSearchWord(word));
         console.log("dispatch word", word);
-
-
     }
     const findBeer = ()=>{
         const check_eng = /[a-zA-Z]/; // 영어체크
         const check_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글체크
-        let arr = [];
+        let beer = [];
         if(check_eng.test(word)){
             //영어로 검색
             words.map((w)=>{
-                arr = beers?.filter((p) => p.name_english.includes(w));
-                setSearch_Result(search_result=>search_result.concat(arr))
-                console.log("eng_result each:",arr)
+                beer = beers?.filter((p) => p.name_english.includes(w));
+                setSearch_Result(search_result=>search_result.concat(beer))
+                console.log("eng_result each:",beer)
                 setIs_Search(true);
             })
             console.log("eng_result list:",search_result)
@@ -72,18 +69,20 @@ const BeerList = (props) =>{
         }else if(check_kor.test(word)){
             console.log("단어",words);
             //한국어로 검색
-            words.map((w)=>{
-                arr =  beers?.filter((p) => p.name_korean.includes(w))[0]//{...}
+            words?.map((w)=>{
+                beer =  beers?.filter((p) => p.name_korean.includes(w))[0]//{...}
+                console.log("beer",beer)
                 setSearch_Beer(beers?.filter((p) => p.name_korean.includes(w))[0]);
+                //console.log("search_beer",search_beer);
                 setSearch_Result(search_result=>[...search_result,search_beer])
-                setSearch_Beer({});
+                //setSearch_Beer({});
                 //setSearch_Beer(beers?.filter((p) => p.name_korean.includes(w))))
 
-                console.log("search_beer",search_beer);
-                console.log("search_result",search_result);
+                
                 setIs_Search(true);//검색 결과 보여준다음에는 false로 바꿈    
             })
             //setSearch_Result(search_beer);
+            
             console.log("kor_result list:",search_result)
 
         }else{
@@ -102,6 +101,7 @@ const BeerList = (props) =>{
             //해당 단어관련 맥주를 list로 만들어 맵돌려서 EachBeer 보여준다.
             //
         }
+        //console.log("search_beer",search_beer);
     }
 
 
