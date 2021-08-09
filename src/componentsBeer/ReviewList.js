@@ -19,7 +19,9 @@ const ReviewList = (props)=>{
     const beerOne = useSelector(oneBeer);
     const userId = useSelector(User); 
     const beer_infos = useSelector(getReviewList);
+
     const dispatch = useDispatch();
+    
     const openModal = () => {
         setModalOpen(true);
       };
@@ -39,7 +41,7 @@ const ReviewList = (props)=>{
         }else{
             if(window.confirm("로그인이 필요한 서비스입니다. 로그인하시겠습니까?")){
                 history.push("/login")
-                return
+                return;
             }
         }
     }
@@ -106,4 +108,5 @@ const MoveBoxWrap = styled.div`
         font-size: 12px;
         font-weight: bold;
     }
+    cursor: pointer;
 `;

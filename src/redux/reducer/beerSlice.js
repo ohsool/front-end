@@ -18,21 +18,11 @@ export const beerSlice = createSlice({
   initialState,
   extraReducers: (builder) =>
     builder
-        .addCase(getAllBeer.pending, (state, action) => {
-            state.beerList = [];
-        })
         .addCase(getAllBeer.fulfilled, (state, action) => {
             state.beerList = action.payload;
         })
-        .addCase(getAllBeer.rejected, (state, action) => {
-        })
-        .addCase(getOneBeer.pending, (state, action) => {
-            state.beerOne = {};
-        })
         .addCase(getOneBeer.fulfilled, (state, action) => {
             state.beerOne = action.payload.beer;
-        })
-        .addCase(getOneBeer.rejected, (state, action) => {
         })
         //검색기능
         .addCase(getSearchWord.fulfilled, (state, action) => {
@@ -41,16 +31,10 @@ export const beerSlice = createSlice({
         .addCase(getSearchWord.rejected, (state, action) => {
             console.log("getSearchWord rejected: 맥주 검색에 실패했습니다");
         })
-        .addCase(testResult.pending, (state, action) => {
-          state.beerToday = [];
-        })
         .addCase(testResult.fulfilled, (state, action) => {
           state.beerToday = action.payload;
         })
         .addCase(testResult.rejected, (state, action) => {
-        })
-        .addCase(testShare.pending, (state, action) => {
-          state.beerToday = [];
         })
         .addCase(testShare.fulfilled, (state, action) => {
           state.beerToday = action.payload;

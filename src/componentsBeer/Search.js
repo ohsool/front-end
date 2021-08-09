@@ -7,18 +7,23 @@ import { getSearchList } from "../redux/reducer/beerSlice";
 import remove from "../share/image/remove.png";
 
 const Search = (props) => {
-    const { setSearch_Beer,beers,setIs_Search } = props;
-
-    const [word, setWord] = useState(); //실시간으로 입력하는 단어담김
+    const { setSearch_Beer, 
+            beers, 
+            setIs_Search, 
+            search_beer } = props;
+    const check_eng = /[a-zA-Z]/; // 영어체크
+    const check_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글체크
+    const [word, setWord] = useState(""); //실시간으로 입력하는 단어담김
     const words = useSelector(getSearchList); //["버드와이저","오번"]
-    const [modalOpen, setModalOpen] = useState(false);
     
+/*
     const openModal = () => {
         setModalOpen(true);
       };
     const closeModal = () => {
         setModalOpen(false);
     };
+    */
     const dispatch = useDispatch();
 
     const onChange = (e) =>{
@@ -42,46 +47,39 @@ const Search = (props) => {
         }
     }
 
+
     const findBeer = ()=>{
-        const check_eng = /[a-zA-Z]/; // 영어체크
-        const check_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글체크
         setSearch_Beer([]);
 
-        if(check_eng.test(word)){
-            //영어로 검색
+        if(check_eng.test(word)){//영어로 검색           
             words.map((w)=>{
-                setSearch_Beer(search_beer => [...search_beer, beers?.filter((p) => p.name_korean.includes(w))[0]]);
+                setSearch_Beer(search_beer => [...search_beer,
+                beers?.filter((p) => p.name_korean.includes(w))[0]]);
                 setIs_Search(true);
             })
-
-        }else if(check_kor.test(word)){
-            //한국어로 검색
+        }else if(check_kor.test(word)){//한국어로 검색            
             words.map((w)=>{
-                setSearch_Beer(search_beer => [...search_beer, beers?.filter((p) => p.name_korean.includes(w))[0]]);
-                setIs_Search(true);   
+                setSearch_Beer(search_beer => [...search_beer,
+                beers?.filter((p) => p.name_korean.includes(w))[0]]);
+                // setSearch_Beer();
+                setIs_Search(true);
             })
-
         }else{
             window.alert("잘못 입력 하셨습니다.");
         }
     }
     const findBeerbyClick = (name)=>{
-        const check_eng = /[a-zA-Z]/; // 영어체크
-        const check_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글체크
         setSearch_Beer([]);
-        if(check_eng.test(word)){
-            //영어로 검색
-            setSearch_Beer(search_beer => [...search_beer, beers?.filter((p) => p.name_korean.includes(name))[0]]);
-        }else if(check_kor.test(word)){
-            //한국어로 검색
-            setSearch_Beer(search_beer => [...search_beer, beers?.filter((p) => p.name_korean.includes(name))[0]]);
+        if(check_eng.test(word)){//영어로 검색            
+            setSearch_Beer(search_beer => [...search_beer, 
+            beers?.filter((p) => p.name_korean.includes(name))[0]]);
+        }else if(check_kor.test(word)){ //한국어로 검색           
+            setSearch_Beer(search_beer => [...search_beer, 
+            beers?.filter((p) => p.name_korean.includes(name))[0]]);
         }
-        setIs_Search(true); 
-        
+        setIs_Search(true);        
     }
-
-
-    
+  
     return (
         <React.Fragment>
             <SearchInput>
@@ -90,9 +88,9 @@ const Search = (props) => {
                     onKeyUp={searchWord}
                     onKeyPress={EnterSubmit}
                     placeholder="검색어를 입력하세요."
-                    onClick={()=>{
+                    /*onClick={()=>{
                         openModal();
-                    }}
+                    }}*/
                 ></input>
                 
             </SearchInput>
@@ -102,7 +100,8 @@ const Search = (props) => {
                 <SearchModal>
                     <CloseIcon
                         style={{backgroundImage: `url(${remove})`}}
-                        onClick={()=>{closeModal()}}>
+                        //onClick={()=>{closeModal()}}
+                    >
                     </CloseIcon>
                     <div style={{paddingLeft: "40px"}}>
                     {words?.length > 0 ? words.map((item, idx) => {
@@ -126,7 +125,7 @@ const Search = (props) => {
 
 
 }
-export default Search;
+export default React.memo(Search);
 
 const SearchInput = styled.div`
     width: 360px;
@@ -151,7 +150,7 @@ const SearchModal = styled.div`
     background-color: #FFFFFF;
     
     //글자 라인 수 제한하기
-    overflow: hidden;
+    overflow: scroll;
     display: -webkit-box;
     min-height: 70px;
     -webkit-line-clamp: 7;

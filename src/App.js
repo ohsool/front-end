@@ -13,7 +13,7 @@ function App() {
   const Kakao = window.Kakao;
 
   useEffect(() => {// 만약 공유 기능이 2개이상으로 바뀌면 kakao.link.createdefaultbutton 사용하기 (그때는 내용에 container가 포함 되어있아야한다)
-      Kakao.init("4375d7eeea1b60606b9373188689f220");
+      //Kakao.init("");
   }, []);
 
   return (

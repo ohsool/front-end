@@ -14,16 +14,10 @@ const beerSlice = createSlice({
   initialState,
   extraReducers: (builder) =>
     builder
-        .addCase(getMyDogam.pending, (state, action) => {
-            state.mydogam = [];
-        })
         .addCase(getMyDogam.fulfilled, (state, action) => {
             state.mydogam = action.payload.likedList;
         })
         .addCase(getMyDogam.rejected, (state, action) => {
-        })
-        .addCase(getMyReview.pending, (state, action) => {
-            state.myReview = null;
         })
         .addCase(getMyReview.fulfilled, (state, action) => {
             state.myReview = action.payload.mybeers;

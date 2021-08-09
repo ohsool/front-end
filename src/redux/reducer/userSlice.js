@@ -57,9 +57,6 @@ const userSlice = createSlice({
       .addCase(logIn.rejected, (state, action) => {
         window.alert("아이디나 비밀번호가 틀립니다!")
       })
-      .addCase(userInfo.pending, (state, action) => {
-        state.currentUser = [];
-      })
       .addCase(userInfo.fulfilled, (state, action) => {
         state.currentUser = action.payload;
       })

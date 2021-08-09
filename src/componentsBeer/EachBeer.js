@@ -40,8 +40,9 @@ const EachBeer = (props) => {
     }
     return(
         <React.Fragment>
-            <RecommendBeerWrap onClick={() => {
-                history.push(`/beer/detail/${item._id}`)
+            <RecommendBeerWrap 
+            onClick={() => {
+                history.push(`/beer/detail/${item._id}`, item.like_array);
             }}>
                 <BeerImage>
                     <img src={item.image} alt="beer_image">

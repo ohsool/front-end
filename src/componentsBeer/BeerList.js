@@ -22,7 +22,7 @@ const BeerList = (props) =>{
     const [is_search, setIs_Search] = useState(false)
     const [search_beer, setSearch_Beer] = useState([]);
     const dispatch = useDispatch();
-
+    console.log("beerList Rendering")
     useEffect(() => {
         dispatch(getAllBeer());
         dispatch(getCategory());

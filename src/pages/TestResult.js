@@ -43,7 +43,7 @@ const TestResult = (props) => {
                         <ResultInfo category={category}/>
                         <RecommendBeerWrap>{/* 해당 카테고리 맥주 2종 추천 */}
                             {beerRecommends?.map((item, idx) => (
-                                <RecommendBeer item={item}></RecommendBeer>
+                                <RecommendBeer key={idx} item={item}></RecommendBeer>
                             ))}
                         </RecommendBeerWrap>
                     </Wrap>

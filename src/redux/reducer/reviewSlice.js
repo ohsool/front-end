@@ -28,11 +28,8 @@ const reviewSlice = createSlice({
   initialState,
   extraReducers: (builder) =>
     builder
-        .addCase(getReview.pending, (state, action) => {
-            state.reviewList = [];
-        })
         .addCase(getReview.fulfilled, (state, action) => {
-            state.reviewList = action.payload.mybeers?.reverse();
+            state.reviewList = action.payload.mybeers.reverse();
         })
         .addCase(getReview.rejected, (state, action) => {
         })
@@ -76,5 +73,7 @@ export default reviewSlice;
 const review_list = (state) => state.review.reviewList;
 
 export const getReviewList = createSelector(review_list, review_list => {
+
   return review_list;
+
 }); //전체 맥주리스트

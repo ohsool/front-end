@@ -9,7 +9,7 @@ const Header = (props) => {
         <React.Fragment>
             <HeaderWrap>
             <HeaderBox>
-                    <GoBack style={{backgroundImage: `url(${myIcon})`}}
+                    <GoBack
                     onClick={()=>{ 
                         history.goBack()
                     }}></GoBack>
@@ -42,20 +42,18 @@ const HeaderWrap = styled.div`
 
 const HeaderBox = styled.div`
     width: 360px;
-    // position: fixed;
-    // top: 0;
-    // height: 45px;
-    justify-content: center;
+    display: flex;
+
+    justify-content: space-between;
     // background-color: white;
     display: flex;
     z-index: 10;
 `;
 const GoBack = styled.div`
-    position: absolute;
     width: 24px;
     height: 24px;
-    top: 10px;
-    left: 12px;
+    margin: 10px 0 0 12px;
+    border: 1px solid #C4C4C4;
     cursor: pointer;
 `;
 
@@ -69,10 +67,8 @@ const HeaderLogo = styled.div`
 `;
 
 const UserImage = styled.div`
-    position: absolute;
     width: 24px;
     height: 24px;
-    top: 10px;
-    right: 12px;
+    margin: 10px 12px 0 0;
     cursor: pointer;
 `;
