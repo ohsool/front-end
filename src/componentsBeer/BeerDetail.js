@@ -51,7 +51,7 @@ const BeerDetail = (props) =>{
                 dispatch(unLikeBeer(beerOne._id));
                  setToggle(false)
             }else{
-                dispatch(likeBeer(beerOne.beerId));
+                dispatch(likeBeer(beerOne._id));
                 setToggle(true);
             }
         }else{ //로그인 안한 유저가 좋아요 눌렀을때 눌리는 것 방지

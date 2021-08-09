@@ -21,7 +21,7 @@ function App() {
       <ConnectedRouter history={history}>
         <Route path="/" exact component={Main}/>
         <Route path="/test" component={Test}/>
-        <Route path="/result" component={TestResult}/>
+        <Route path="/result/:category" component={TestResult}/>
         <Route path="/beer"  component={Beer}/>
         <Route path="/signup" exact component={SignUp}/>
         <Route path="/login" exact component={Login}/>

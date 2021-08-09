@@ -1,49 +1,49 @@
-import React,{useEffect} from "react";
+import React,{ useEffect, useState } from "react";
 import styled from "styled-components";
 import shareButton from "../share/image/share.png"
 
 const BackgroundCateImage = ({ category }) => {
 
-    console.log("category",category);
-    console.log("description",)
-    const Kakao = window.Kakao;
-
-    useEffect(() => {// 만약 공유 기능이 2개이상으로 바뀌면 kakao.link.createdefaultbutton 사용하기 (그때는 내용에 container가 포함 되어있아야한다)
-        Kakao.init("4375d7eeea1b60606b9373188689f220");
-    }, []);
+    // const Kakao = window.Kakao;
+    // const [key, setKey] = useState("");
+    // useEffect(() => {// 만약 공유 기능이 2개이상으로 바뀌면 kakao.link.createdefaultbutton 사용하기 (그때는 내용에 container가 포함 되어있아야한다)
+    //     setKey("");
+    //     setKey("4375d7eeea1b60606b9373188689f220");
+    //     Kakao.init(key);
+    // }, []);
   
-    const shareKakao = () => {
-        Kakao.Link.sendDefault({
-        objectType: "feed",
-        content: {
-              title: ("오늘의 맥주는 "+category.name+"!🍺"),
-              description: category.description.substr(0,45)+"..🥂",
-              imageUrl: category.image,
-              imageWidth: 160,
-              imageHeight: 120,
-              link: {
-                webUrl: window.location.href,
-                mobileWebUrl: window.location.href,
-              },
-            },
-            buttons: [
-                {
-                  title: '자세히 보기',
-                  link: {
-                    webUrl: window.location.href ,
-                    mobileWebUrl: window.location.href ,
-                  },
-                },
-                {
-                  title: '테스트하러 가기',
-                  link: {
-                    webUrl: 'http://ohsool.com',
-                    mobileWebUrl: 'http://ohsool.com',
-                  },
-                },
-            ],
-        });
-      }
+    // const shareKakao = () => {
+    //     Kakao.Link.sendDefault({
+    //     objectType: "feed",
+    //     content: {
+    //           title: ("오늘의 맥주는 "+category.name+"!🍺"),
+    //           description: category.description.substr(0,45)+"..🥂",
+    //           imageUrl: category.image,
+    //           imageWidth: 160,
+    //           imageHeight: 120,
+    //           link: {
+    //             webUrl: window.location.href,
+    //             mobileWebUrl: window.location.href,
+    //           },
+    //         },
+    //         buttons: [
+    //             {
+    //               title: '자세히 보기',
+    //               link: {
+    //                 webUrl: window.location.href ,
+    //                 mobileWebUrl: window.location.href ,
+    //               },
+    //             },
+    //             {
+    //               title: '테스트하러 가기',
+    //               link: {
+    //                 webUrl: 'http://ohsool.com',
+    //                 mobileWebUrl: 'http://ohsool.com',
+    //               },
+    //             },
+    //         ],
+    //     });
+    //   }
     return(
         <React.Fragment>
             <BackgroundImage style={{backgroundImage: `url(${category?.image})`}}>
@@ -57,7 +57,7 @@ const BackgroundCateImage = ({ category }) => {
                     <ShareButton
                         id="kakao-link-btn"
                         style={{backgroundImage: `url(${shareButton})`}}
-                        onClick={shareKakao}
+                        // onClick={shareKakao}
                     ></ShareButton>
 
                 </Wrap>

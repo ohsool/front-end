@@ -32,70 +32,19 @@ const Test = (props) => {
             setIndex(question.findIndex((p) => p.question_id === choice));
         }
         //각 맥주종류들이 결과값으로나오면 그 카테고리의 결과페이지로 이동
-        if(choice === "AmericanLager"){
-            dispatch(testResult({
-                userId: userId,
-                result: "American Lager",
-            }));
-            history.push(`/result/${choice}`);
-            return;
-        }
-        if(choice === "Pilsner"){
-            dispatch(testResult({
-                userId: userId,
-                result: "Pilsner",
-            }));
-            history.push(`/result/${choice}`);
-            return;
-        }
-        if(choice === "PaleAle"){
-            dispatch(testResult({
-                userId: userId,
-                result: "Pale Ale",
-            }));
-            history.push(`/result/${choice}`);
-            return;
-        }
-        if(choice === "IPA"){
-            dispatch(testResult({
-                userId: userId,
-                result: "IPA",
-            }));
-            history.push(`/result/${choice}`);
-            return;
-        }
-        if(choice === "Weizen"){
-            dispatch(testResult({
-                userId: userId,
-                result: "Weizen",
-            }));
-            history.push(`/result/${choice}`);
-            return;
-        }
-        if(choice === "Dunkel"){
-            dispatch(testResult({
-                userId: userId,
-                result: "Dunkel",
-            }));
-            history.push(`/result/${choice}`);
-            return;
-        }
-        if(choice === "Stout"){
-            dispatch(testResult({
-                userId: userId,
-                result: "Stout",
-            }));
-            history.push(`/result/${choice}`);
-            return;
-        }
-        if(choice === "Bock"){
-            dispatch(testResult({
-                userId: userId,
-                result: "Bock",
-            }));
-            history.push(`/result/${choice}`);
-            return;
-        }
+        if(choice === "American Lager" || choice === "Pilsner"
+        || choice === "Pale Ale"
+        || choice === "IPA" 
+        || choice === "Weizen"
+        || choice === "Dunkel" 
+        || choice === "Stout" 
+        || choice === "Bock"){
+        dispatch(testResult({
+            userId: userId,
+            result: choice,
+        }));
+        history.push(`/result/${choice}`);
+    }
     }
     return (
         <CSSTransitionGroup //페이지 이동 애니메이션
