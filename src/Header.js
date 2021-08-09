@@ -62,4 +62,5 @@ const UserImage = styled.div`
     height: 24px;
     top: 10px;
     right: 12px;
+    cursor: pointer;
 `;

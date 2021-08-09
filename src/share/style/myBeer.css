@@ -10,6 +10,7 @@
     border: none;
     border-bottom: 2.5px solid #FFFFFF;
     background-color: #FFFFFF;
+    cursor: pointer;
 }
 
 .clickedButtonContainer{
@@ -22,4 +23,5 @@
     background-color: #fff;
     border: none;
     border-bottom: 2.5px solid #212121;
+    cursor: pointer;
 }
