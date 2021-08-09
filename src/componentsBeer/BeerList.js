@@ -38,8 +38,8 @@ const BeerList = (props) =>{
     const searchWord = () =>{
         dispatch(getSearchWord(word));
     }
-
     const findBeer = ()=>{
+        setSearch_Beer([]);
         const check_eng = /[a-zA-Z]/; // 영어체크
         const check_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글체크
         let arr = [];
@@ -63,8 +63,8 @@ const BeerList = (props) =>{
 
         }else{
             window.alert("잘못 입력 하셨습니다.");
-    
         }
+        console.log(search_beer);
     }
 
     const EnterSubmit = (e) =>{

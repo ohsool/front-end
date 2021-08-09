@@ -9,7 +9,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 const BeerType = ({ items, setIs_Search }) => {
     const settings = {
-        infinite: true,
+        infinite: false,
         speed: 200,
         slidesToShow: 5,//show
         slidesToScroll: 3,//scroll
