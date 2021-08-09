@@ -38,7 +38,7 @@ export const beerSlice = createSlice({
             state.searchList = [];
         })
         .addCase(getSearchWord.fulfilled, (state, action) => {
-            state.searchList = action.payload;
+            state.searchList = action.payload.words;
         })
         .addCase(getSearchWord.rejected, (state, action) => {
             console.log("getSearchWord rejected: 맥주 검색에 실패했습니다");

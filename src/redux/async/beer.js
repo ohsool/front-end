@@ -42,6 +42,7 @@ export  const unLikeBeer = createAsyncThunk(
 export const getSearchWord = createAsyncThunk(
   "beer/getSearchResult",
   async (data, thunkAPI) => {
+
     const response = await nonHeaderAxios.get(`/api/search?word=${data}`);
     
     return response.data;
