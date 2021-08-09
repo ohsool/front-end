@@ -35,9 +35,6 @@ export const beerSlice = createSlice({
         .addCase(getOneBeer.rejected, (state, action) => {
         })
         //검색기능
-        .addCase(getSearchWord.pending, (state, action) => {
-            state.searchList = [];
-        })
         .addCase(getSearchWord.fulfilled, (state, action) => {
             state.searchList = action.payload.words;
         })

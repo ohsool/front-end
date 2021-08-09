@@ -134,7 +134,7 @@ const BeerDetail = (props) =>{
                             {beer_infos?.length > 0 ? beer_infos?.map((item, idx) => (
                                 idx < 4 ? (
                                     <>
-                                    <EachReview key={idx}  item={item}/>
+                                    <EachReview key={idx} item={item} userId={userId}/>
                                     </>) : null
                             )): ""}
                         </Gradient>
@@ -261,7 +261,7 @@ const TasteTag = styled.div`
 `;
 
 const Gradient = styled.div`
-    position: absolute;
+    //position: absolute;
     margin: 0 auto;
     z-index: 1;
     -webkit-mask-size: 312px 420px; 
