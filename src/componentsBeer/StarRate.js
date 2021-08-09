@@ -7,12 +7,9 @@ import StarBorderIcon from "@material-ui/icons/StarBorder";
 
 const StarButton = ({setStarScore, init_star}) =>{
     const [score, setScore] = useState(init_star);
-
-    const totalStarCount = 5;
-    
+    const totalStarCount = 5;   
     const starCount = score;
-
-  const removeCount = totalStarCount - starCount;
+    const removeCount = totalStarCount - starCount;
 
   const handleScore = (score) => {
     setStarScore(score);

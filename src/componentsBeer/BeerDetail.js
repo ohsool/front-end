@@ -58,8 +58,6 @@ const BeerDetail = (props) =>{
             if(window.confirm("로그인이 필요한 서비스입니다. 로그인하시겠습니까?")){
                 history.push("/login");
                 return;
-            }else{
-                history.goBack();
             }
         }
 
@@ -87,12 +85,12 @@ const BeerDetail = (props) =>{
                             />
                         </HeartWrap>
                         </Horizion>
-                        <span>{beerOne?.name_english}</span>
+                        <p style={{margin: "0px"}}>{beerOne?.name_english}</p>
                         {beerOne?.hashtag?.map((item, idx)=>(
                             <TasteTag>
                                 <span>#{item}</span>
                             </TasteTag>
-                        ))}       
+                        ))}    
                     </Wrap>
                     <hr/>
                     <Wrap>
@@ -110,16 +108,16 @@ const BeerDetail = (props) =>{
                     </Graph>
                     <hr/>
                     <Wrap>
-                        <span style={{ fontWeight: "700",paddingBottom: "14px"}}>판매처</span>
+                        <p style={{ fontWeight: "700",paddingBottom: "7px"}}>판매처</p>
                         <div style={{display: "flex"}}>
                         <MapIcon style={{backgroundImage: `url(${mapIcon})`}}/> 
                         <span style={{ fontWeight: "300", fontSize: "12px", lineHeight: "146%"}}>GS25 편의점</span>
                         </div>    
                     </Wrap>
-                    <hr/>
+                    <hr style={{ margin: "0 24px" }}/>
                     
                     <Wrap>
-                        <span style={{ fontWeight: "700" ,paddingBottom: "14px"}}>제보된 판매처</span>
+                        <p style={{ fontWeight: "700" ,paddingBottom: "14px"}}>제보된 판매처</p>
                         <div style={{display: "flex"}}>
                         <MapIcon style={{backgroundImage: `url(${mapIcon})`}}/> 
                         <span style={{ fontWeight: "300", fontSize: "12px", lineHeight: "146%"}}>GS25 편의점</span>
@@ -131,7 +129,7 @@ const BeerDetail = (props) =>{
                     <hr/>
 
                     <Wrap>
-                    <span style={{ fontWeight: "700",paddingBottom: "14px"}}>리뷰</span>
+                    <p style={{ fontWeight: "700",paddingBottom: "14px"}}>리뷰</p>
                         <Gradient>
                             {beer_infos?.length > 0 ? beer_infos?.map((item, idx) => (
                                 idx < 4 ? (
@@ -139,11 +137,13 @@ const BeerDetail = (props) =>{
                                     <EachReview key={idx}  item={item}/>
                                     </>) : null
                             )): ""}
-                            <span style={{ textAlign:"center", paddingBottom: "20px",  fontWeight: "700", fontSize: "14px", lineHeight: "20.27px", fontStyle: "bold"
+                        </Gradient>
+                        <div style={{textAlign: "center"}}>
+                        <span style={{ paddingBottom: "20px",  fontWeight: "700", fontSize: "14px", lineHeight: "20.27px", fontStyle: "bold"
                             }} onClick={()=>{
                                 history.push(`/beer/review/${beerOne._id}`, { beer_infos, userId })
-                            }}>전체보기</span>
-                        </Gradient>
+                        }}>전체보기</span>
+                        </div>
                     </Wrap>  
                 </Grid>
             </Container>
@@ -263,15 +263,9 @@ const TasteTag = styled.div`
 const Gradient = styled.div`
     position: absolute;
     margin: 0 auto;
-<<<<<<< HEAD
     z-index: 1;
-    -webkit-mask-image: -webkit-gradient(linear, center bottom, center top,
-    color-stop(1.00,  rgba(0,0,0,1)),
-    color-stop(0.00,  rgba(0,0,0,0)));
-=======
     -webkit-mask-size: 312px 420px; 
     -webkit-mask-image: -webkit-gradient(linear, center bottom, center top,
     color-stop(1.00, rgba(0,0,0,1)), 
     color-stop(0.00, rgba(0,0,0,0)));
->>>>>>> da873ce1d3ac6ce298ba1362a5379792e94e6da5
 `;

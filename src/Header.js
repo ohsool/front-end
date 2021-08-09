@@ -9,6 +9,10 @@ const Header = (props) => {
         <React.Fragment>
             <HeaderWrap>
             <HeaderBox>
+                    <GoBack style={{backgroundImage: `url(${myIcon})`}}
+                    onClick={()=>{ 
+                        history.goBack()
+                    }}></GoBack>
                     <HeaderLogo 
                     onClick={() => {
                         history.push("/")
@@ -45,6 +49,14 @@ const HeaderBox = styled.div`
     // background-color: white;
     display: flex;
     z-index: 10;
+`;
+const GoBack = styled.div`
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 10px;
+    left: 12px;
+    cursor: pointer;
 `;
 
 const HeaderLogo = styled.div`
