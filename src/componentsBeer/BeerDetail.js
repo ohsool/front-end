@@ -9,6 +9,7 @@ import { oneBeer } from "../redux/reducer/beerSlice";
 import { getReviewList } from "../redux/reducer/reviewSlice";
 import { User } from "../redux/reducer/userSlice";
 
+import MapModal from "./MapModal";
 import HeartButton from "./HeartButton";
 import TasteGraph from "./TasteGraph";
 import EachReview from "./EachReview";
@@ -20,6 +21,7 @@ const BeerDetail = (props) =>{
     const beerOne = useSelector(oneBeer);
     const userId = useSelector(User);
     const beer_infos = useSelector(getReviewList);
+    const [modalOpen, setModalOpen] = useState(false);
     const dispatch = useDispatch();
 
     useEffect(() => { //맥주 정보, 사용자정보 및 리뷰정보 불러오기
@@ -28,22 +30,24 @@ const BeerDetail = (props) =>{
     }, []);
 
     useEffect(() => {
-        async function getUserData(){
-            await dispatch(userInfo());
+        dispatch(userInfo());
+        if(props.location.state.includes(userId)){
+            setToggle(true);
         }
-        return () => {
-            getUserData();
-        }
-    }, [userInfo]);
-     
-    useEffect(() => { //좋아요된 상태면 좋아요눌린걸로 아니면 false그대로
-        async function getLikeData(){
-            if(beerOne?.like_array?.includes(userId)){
-                setToggle(true);
-            }
-        }
-        return getLikeData();
     }, []);
+
+    useEffect(() => { //좋아요된 상태면 좋아요눌린걸로 아니면 false그대로
+        if(beerOne?.like_array?.includes(userId)){
+            setToggle(true);
+        }
+    }, [userId]);
+
+    const openModal = () => {
+        setModalOpen(true);
+      };
+    const closeModal = () => {
+        setModalOpen(false);
+    };
 
     const clickLike = () => { //좋아요 및 좋아요 취소 기능
         if(userId){
@@ -60,7 +64,6 @@ const BeerDetail = (props) =>{
                 return;
             }
         }
-
     }
 
     return(
@@ -123,8 +126,15 @@ const BeerDetail = (props) =>{
                         <span style={{ fontWeight: "300", fontSize: "12px", lineHeight: "146%"}}>GS25 편의점</span>
                         </div>
 
-                        <PlaceButton>장소 제보하기</PlaceButton>
-
+                        <PlaceButton 
+                            onClick={() => {
+                                openModal();
+                            }}
+                        >장소 제보하기</PlaceButton>
+                        <MapModal 
+                        open={modalOpen}
+                        close={closeModal}
+                        ></MapModal>
                     </Wrap>
                     <hr/>
 
@@ -138,7 +148,7 @@ const BeerDetail = (props) =>{
                                     </>) : null
                             )): ""}
                         </Gradient>
-                        <div style={{textAlign: "center"}}>
+                        <div style={{textAlign: "center", cursor: "pointer"}}>
                         <span style={{ paddingBottom: "20px",  fontWeight: "700", fontSize: "14px", lineHeight: "20.27px", fontStyle: "bold"
                             }} onClick={()=>{
                                 history.push(`/beer/review/${beerOne._id}`, { beer_infos, userId })
@@ -261,7 +271,6 @@ const TasteTag = styled.div`
 `;
 
 const Gradient = styled.div`
-    position: absolute;
     margin: 0 auto;
     z-index: 1;
     -webkit-mask-size: 312px 420px; 

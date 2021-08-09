@@ -19,7 +19,7 @@ const RecommendBeer = ({ item }) => {
                     <HeartImage src="https://image.flaticon.com/icons/png/512/833/833300.png"></HeartImage>
                     <p>{item.name_english}</p>
                     {item.hashtag.map((p, idx) => (
-                        <TasteTag>#{p.split("_")[0]}</TasteTag>
+                        <TasteTag key={idx}>#{p.split("_")[0]}</TasteTag>
                     ))}
                 </BeerInfoWrap>
             </RecommendBeerWrap>

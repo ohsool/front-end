@@ -23,15 +23,11 @@ const categorySlice = createSlice({
             new_list.unshift({ name: "All"});
             state.categoryList = new_list;
           })
-          .addCase(getCategory.rejected, (state, action) => {
-          })
           .addCase(getCategoryBeer.pending, (state, action) => {
             state.categoryBeerList = [];
           })
           .addCase(getCategoryBeer.fulfilled, (state, action) => {
             state.categoryBeerList = action.payload;
-          })
-          .addCase(getCategoryBeer.rejected, (state, action) => {
           })
         // 공통
         .addMatcher(

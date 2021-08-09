@@ -6,11 +6,15 @@ import { getSearchList } from "../redux/reducer/beerSlice";
 
 
 const Search = (props) => {
-    const { setSearch_Beer,beers,setIs_Search,search_beer } = props;
-
+    const { setSearch_Beer, 
+            beers, 
+            setIs_Search, 
+            search_beer } = props;
+    const check_eng = /[a-zA-Z]/; // 영어체크
+    const check_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글체크
     const [word, setWord] = useState(""); //실시간으로 입력하는 단어담김
     const words = useSelector(getSearchList); //["버드와이저","오번"]
-
+    
     const dispatch = useDispatch();
 
     const onChange = (e) =>{
@@ -28,37 +32,30 @@ const Search = (props) => {
         setWord(e.target.value); //동일 단어 검색시, 검색결과 더해짐 방지
     }
 
+
     const findBeer = ()=>{
-        const check_eng = /[a-zA-Z]/; // 영어체크
-        const check_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글체크
-        let arr = [];
         setSearch_Beer([]);
 
         if(check_eng.test(word)){
             //영어로 검색
             words.map((w)=>{
-                arr = beers?.filter((p) => p.name_english.includes(w))[0];
-                setSearch_Beer(search_beer => [...search_beer, arr]);
+                setSearch_Beer(search_beer => [...search_beer,
+                beers?.filter((p) => p.name_korean.includes(w))[0]]);
                 setIs_Search(true);
             })
 
         }else if(check_kor.test(word)){
             //한국어로 검색
             words.map((w)=>{
-                arr =  beers?.filter((p) => p.name_korean.includes(w))[0]//{...}
-                console.log("arr",arr)
-                setSearch_Beer(search_beer => [...search_beer, arr]);
-                console.log("searchBeer", search_beer)
+                setSearch_Beer(search_beer => [...search_beer,
+                beers?.filter((p) => p.name_korean.includes(w))[0]]);
+                // setSearch_Beer();
                 setIs_Search(true);
-                 
             })
-
         }else{
             window.alert("잘못 입력 하셨습니다.");
-    
         }
     }
-    
     
     return (
         <React.Fragment>
@@ -79,7 +76,7 @@ const Search = (props) => {
 
 
 }
-export default Search;
+export default React.memo(Search);
 
 const SearchInput = styled.div`
     width: 360px;
