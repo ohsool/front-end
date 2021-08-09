@@ -158,7 +158,7 @@ const Container = styled.div`
     height: 754px;
     background-color: #FFFFFF;
     flex-direction: column;
-    span{
+    & > span{
         display: -webkit-box;
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 1;
@@ -240,7 +240,7 @@ const MapIcon = styled.div`
 const PlaceButton = styled.button`
     width: 308px;
     height: 45px;
-    border-radius: 50px;
+    border-radius: 50;
     border: 1px solid #FFC44F;
     background-color: #fff;
     margin-top: 16px;
@@ -263,8 +263,15 @@ const TasteTag = styled.div`
 const Gradient = styled.div`
     position: absolute;
     margin: 0 auto;
+<<<<<<< HEAD
+    z-index: 1;
+    -webkit-mask-image: -webkit-gradient(linear, center bottom, center top,
+    color-stop(1.00,  rgba(0,0,0,1)),
+    color-stop(0.00,  rgba(0,0,0,0)));
+=======
     -webkit-mask-size: 312px 420px; 
     -webkit-mask-image: -webkit-gradient(linear, center bottom, center top,
     color-stop(1.00, rgba(0,0,0,1)), 
     color-stop(0.00, rgba(0,0,0,0)));
+>>>>>>> da873ce1d3ac6ce298ba1362a5379792e94e6da5
 `;

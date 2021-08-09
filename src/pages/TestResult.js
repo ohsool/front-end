@@ -4,6 +4,7 @@ import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 import { recommendCate, recommendBeerToday } from "../redux/reducer/beerSlice";
 
+
 import BackgroundCateImage from "../componentsTest/BackgroundCateImage";
 import { RecommendBeer, ResultInfo, TestHeader } from "../componentsTest/TestIndex";
 
@@ -15,12 +16,13 @@ const TestResult = (props) => {
 
     return (
         <React.Fragment>
+           
             <TestHeader/>
                 <Grid>  
                     <BackgroundCateImage category={category}/>
                     <Wrap>
                         <ResultInfo category={category}/>
-                        <RecommendBeerWrap>
+                        <RecommendBeerWrap>{/* 해당 카테고리 맥주 2종 추천 */}
                             {beerRecommends?.map((item, idx) => (
                                 <RecommendBeer item={item}></RecommendBeer>
                             ))}

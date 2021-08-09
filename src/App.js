@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { createGlobalStyle } from "styled-components";
 import { Route } from "react-router-dom";
 import { history } from "./redux/configureStore";
@@ -9,6 +9,7 @@ import { Main, Test, Beer, Mypage, TestResult, SignUp, MyBeer, Login } from "./p
 import Token from "./share/Token";
 
 function App() {
+
   return (
     <React.Fragment>
       <ReactHelmet 

@@ -5,6 +5,7 @@ import MainLogo from "../componentsMain/MainLogo";
 import MainInput from '../componentsMain/MainInput';
 import mainbeer from "../share/image/mainbeer.jpeg";
 const Main = (props) => {
+
     return (
         <React.Fragment>
             <Grid>

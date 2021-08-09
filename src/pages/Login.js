@@ -16,7 +16,7 @@ const Login = (props) => {
         password: "",
     }); //로그인 정보
     const {email, password} = login_info;
-
+    
     useEffect(() => {
         if(session){
             history.push("/")
