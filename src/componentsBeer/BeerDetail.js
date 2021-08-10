@@ -9,11 +9,15 @@ import { oneBeer } from "../redux/reducer/beerSlice";
 import { getReviewList } from "../redux/reducer/reviewSlice";
 import { User } from "../redux/reducer/userSlice";
 
-import MapModal from "./MapModal";
+import {MapModal,HeartButton,TasteGraph,EachReview} from "./BeerIndex";
+/*import MapModal from "./MapModal";
 import HeartButton from "./HeartButton";
 import TasteGraph from "./TasteGraph";
 import EachReview from "./EachReview";
+*/
+
 import mapIcon from "../share/image/mapIcon.png";
+
 
 const BeerDetail = (props) =>{
     const [toggle, setToggle] = useState(false);

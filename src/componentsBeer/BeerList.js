@@ -4,9 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getBeerList, getSearchList } from "../redux/reducer/beerSlice";
 import { categories } from "../redux/reducer/categorySlice";
 
-import Slider from "./Slider";
-import Search from "./Search";
-import EachBeer from "./EachBeer";
+import {Slider,Search,EachBeer} from "./BeerIndex";
 import Loader from "../share/Loader.js";
 import { getCategory } from "../redux/async/category";
 import { getAllBeer, getSearchWord } from "../redux/async/beer";

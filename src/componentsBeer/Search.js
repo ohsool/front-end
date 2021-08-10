@@ -9,36 +9,24 @@ import remove from "../share/image/remove.png";
 const Search = (props) => {
     const { setSearch_Beer, 
             beers, 
-            setIs_Search, 
-            search_beer } = props;
+            setIs_Search
+            } = props;
     const check_eng = /[a-zA-Z]/; // 영어체크
     const check_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글체크
     const [word, setWord] = useState(""); //실시간으로 입력하는 단어담김
     const words = useSelector(getSearchList); //["버드와이저","오번"]
-    
-/*
-    const openModal = () => {
-        setModalOpen(true);
-      };
-    const closeModal = () => {
-        setModalOpen(false);
-    };
-    */
     const dispatch = useDispatch();
 
     const onChange = (e) =>{
-
         if(e.target.value == ''){//검색어 지웠을 때 검색목록 사라지도록 
             setWord(null) 
         }else{
             setWord(e.target.value);
-        }
-    
+        }    
     }
 
     const searchWord = () =>{
-        dispatch(getSearchWord(word));
-        
+        dispatch(getSearchWord(word)); 
     }
 
     const EnterSubmit = (e) =>{
@@ -50,7 +38,6 @@ const Search = (props) => {
 
     const findBeer = ()=>{
         setSearch_Beer([]);
-
         if(check_eng.test(word)){//영어로 검색           
             words.map((w)=>{
                 setSearch_Beer(search_beer => [...search_beer,
@@ -88,9 +75,6 @@ const Search = (props) => {
                     onKeyUp={searchWord}
                     onKeyPress={EnterSubmit}
                     placeholder="검색어를 입력하세요."
-                    /*onClick={()=>{
-                        openModal();
-                    }}*/
                 ></input>
                 
             </SearchInput>
@@ -98,11 +82,6 @@ const Search = (props) => {
                      
             { words.length !== 0 ?
                 <SearchModal>
-                    <CloseIcon
-                        style={{backgroundImage: `url(${remove})`}}
-                        //onClick={()=>{closeModal()}}
-                    >
-                    </CloseIcon>
                     <div style={{paddingLeft: "40px"}}>
                     {words?.length > 0 ? words.map((item, idx) => {
                         return (
@@ -153,7 +132,7 @@ const SearchModal = styled.div`
     overflow: scroll;
     display: -webkit-box;
     min-height: 70px;
-    -webkit-line-clamp: 7;
+    -webkit-line-clamp: 5;
     -webkit-box-orient: vertical;
 
 `

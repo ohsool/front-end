@@ -3,16 +3,12 @@ import styled from "styled-components/macro";
 import {history} from "../redux/configureStore";
 import moment from 'moment';
 import 'moment/locale/ko';
-
-import StarRate from "../componentsBeer/StarRate";
+import {TasteGraph,StarRate} from "../componentsBeer/BeerIndex";
 import Header from "../Header";
-import TasteGraph from '../componentsBeer/TasteGraph';
 
 const MyReview = (props) =>{
     const item = props.location.state;
     const date = moment(item?.date)
-
- 
 
     // 별점, 그래프, 리뷰 정보
     return(
