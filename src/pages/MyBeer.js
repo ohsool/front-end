@@ -75,7 +75,12 @@ const MyBeer = (props)=>{
                 <Container>  {/* 데이터 이미지가공 까지해서 */}
                 {is_Dogam === false ? 
                     myReview?.map((item, idx) => (
-                        <WritedReview item={item}/>
+                        <WritedReview key={idx} item={item}
+                            onClick={()=>{
+                                console.log("Click!")
+                                //history.push(`/review/${item._id}`, item)
+                            }}
+                        />
                     )) :
                     ""}
                 </Container>

@@ -1,10 +1,12 @@
-import React from "react";
+import React,{useEffect} from "react";
 import styled from "styled-components";
+import {history} from "../redux/configureStore";
 
-const WritedReview = ({ item }) => {
+const WritedReview = ({item}) =>   {  
+
     return(
         <React.Fragment>
-            <WritedBeerInfo>
+            <WritedBeerInfo >
                 <BeerImage>
                     <img src={item?.beerId?.image}></img>
                 </BeerImage>
