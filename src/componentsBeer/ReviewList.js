@@ -1,7 +1,8 @@
 import React,{useState, useEffect} from "react";
 import styled from "styled-components";
 
-import EachReview from "../componentsBeer/EachReview";
+import {EachReview,ReviewWriteModal} from "../componentsBeer/BeerIndex";
+
 import { useSelector, useDispatch } from "react-redux";
 import {history} from "../redux/configureStore";
 import { getOneBeer } from "../redux/async/beer";
@@ -11,7 +12,7 @@ import { getReviewList } from "../redux/reducer/reviewSlice";
 import { oneBeer } from "../redux/reducer/beerSlice";
 import { User } from "../redux/reducer/userSlice";
 
-import ReviewWriteModal from "../componentsBeer/ReviewWriteModal";
+
 
 const ReviewList = (props)=>{
     const [modalOpen, setModalOpen] = useState(false);

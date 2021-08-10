@@ -8,6 +8,7 @@ import { User } from "../redux/reducer/userSlice";
 
 
 import HeartButton from "./HeartButton";
+//import HeartButton from "./BeerIndex";
 
 const EachBeer = (props) => {
     const dispatch = useDispatch();
