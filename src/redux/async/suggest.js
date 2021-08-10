@@ -17,7 +17,17 @@ export const suggestBeer = createAsyncThunk(
   "/api/suggestBeer",
   async (data, thunkAPI) => {
 
-    const response = await headerAxios.post(`api/recommendation`, data);
+    const response = await headerAxios.post(`/api/recommendation`, data);
 
   return response.data;
 });
+
+export const mapReport = createAsyncThunk(
+  "/api/mapReport",
+  async (data, thunkAPI) => {
+    console.log(data);
+    // const reponse = await headerAxios.post(`/api`, data);
+
+    // return response.data
+  }
+)

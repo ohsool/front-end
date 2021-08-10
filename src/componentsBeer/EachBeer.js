@@ -11,12 +11,12 @@ import HeartButton from "./HeartButton";
 
 const EachBeer = (props) => {
     const dispatch = useDispatch();
-    const { item } = props;
+    const { item, categoryId } = props;
     const userId = useSelector(User);
     const [toggle, setToggle] = useState(false);
 
     useEffect(() => { //좋아요 눌렀는지 아닌지 판별
-        if(item.like_array?.includes(userId)){
+        if(item.like_array.includes(userId)){
             setToggle(true);
         }
     }, []);
@@ -68,7 +68,7 @@ const EachBeer = (props) => {
     )
 }
 
-export default React.memo(EachBeer);
+export default EachBeer;
 
 const RecommendBeerWrap = styled.div`
     width: 148px;
