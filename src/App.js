@@ -5,17 +5,22 @@ import { history } from "./redux/configureStore";
 import { ConnectedRouter } from "connected-react-router";
 import ReactHelmet from "./share/ReactHelmet";
 
-import { Main, Test, Beer, Mypage, TestResult, SignUp, MyBeer, Login } from "./pages/indexPage";
+import { Main, Test, Beer, Mypage, TestResult, SignUp, MyBeer, Login , MyReview} from "./pages/indexPage";
 import Token from "./share/Token";
 
 function App() {
 
   const Kakao = window.Kakao;
 
-  useEffect(() => {// 만약 공유 기능이 2개이상으로 바뀌면 kakao.link.createdefaultbutton 사용하기 (그때는 내용에 container가 포함 되어있아야한다)
-      //Kakao.init("");
-  }, []);
+useEffect(() => {// 만약 공유 기능이 2개이상으로 바뀌면 kakao.link.createdefaultbutton 사용하기 (그때는 내용에 container가 포함 되어있아야한다)
+    Kakao.init("05e106dead8f4edabc80bafcaef225ce");
+}, []);
 
+/*
+  useEffect(() => {// 만약 공유 기능이 2개이상으로 바뀌면 kakao.link.createdefaultbutton 사용하기 (그때는 내용에 container가 포함 되어있아야한다)
+      Kakao.init("apiKey 자리");
+  }, []);
+*/
   return (
     <React.Fragment>
       <ReactHelmet 
@@ -28,12 +33,13 @@ function App() {
         <Route path="/" exact component={Main}/>
         <Route path="/test" component={Test}/>
         <Route path="/result/:category" component={TestResult}/>
-        <Route path="/beer"  component={Beer}/>
+        <Route path="/beer" component={Beer}/>
         <Route path="/signup" exact component={SignUp}/>
         <Route path="/login" exact component={Login}/>
         <Route path="/mypage" component={Mypage}/>
         <Route path="/mybeer" component={MyBeer}/>
         <Route path="/token=:token" component={Token}/>
+        <Route path="/review/:reviewId" component={ MyReview }/>
       </ConnectedRouter>
       <GlobalStyle/>
     </React.Fragment>   

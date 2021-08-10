@@ -11,15 +11,17 @@ import HeartButton from "./HeartButton";
 
 const EachBeer = (props) => {
     const dispatch = useDispatch();
-    const { item, categoryId } = props;
+    const { item } = props;
     const userId = useSelector(User);
     const [toggle, setToggle] = useState(false);
 
     useEffect(() => { //좋아요 눌렀는지 아닌지 판별
         if(item.like_array.includes(userId)){
             setToggle(true);
+        }else{
+            setToggle(false);
         }
-    }, []);
+    }, [item]);
 
    
     const clickLike = () => { //좋아요 토글 함수
@@ -82,6 +84,7 @@ const BeerImage = styled.div`
     border-radius: 13px;
     background-color: #F7F7F7;
     background-size: cover;
+    cursor: pointer;
     & > img{
         width:130px;
         height: 130px;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { getBeerList, getSearchList } from "../redux/reducer/beerSlice";
+import { getBeerList } from "../redux/reducer/beerSlice";
 import { categories } from "../redux/reducer/categorySlice";
 
 import Slider from "./Slider";
@@ -9,15 +9,14 @@ import Search from "./Search";
 import EachBeer from "./EachBeer";
 import Loader from "../share/Loader.js";
 import { getCategory } from "../redux/async/category";
-import { getAllBeer, getSearchWord } from "../redux/async/beer";
+import { getAllBeer} from "../redux/async/beer";
 import { userInfo } from "../redux/async/user";
 
 const BeerList = (props) =>{
     const get_category_id = props.match.params.beerCategoryId;
     const beers = useSelector(getBeerList);
     const items = useSelector(categories);
-    const [category_beers, setCategory_beers] = useState();
-    // const category_beers = beers?.filter((p) => p.categoryId === get_category_id);
+    const category_beers = beers?.filter((p) => p.categoryId === get_category_id);
     const [is_Loading, setIs_Loading] = useState(false);
     const [is_search, setIs_Search] = useState(false)
     const [search_beer, setSearch_Beer] = useState([]);
@@ -30,40 +29,35 @@ const BeerList = (props) =>{
         setIs_Loading(true);
     }, []);
 
-    useEffect(() => {
-        setCategory_beers(beers?.filter((p) => p.categoryId === get_category_id))
-    }, [get_category_id]);
- 
-    const beerListFilter = () => {
-        if(is_search){
+    const searchBeerList = () => {
+        return(
+            <List>
+                {search_beer?.length > 0 ? search_beer.map((item, idx) => (
+                    <EachBeer key={idx} item={item}/>
+                )):""}
+            </List>
+        );
+    }
+
+    const allBeerList = () => {
+        if(!get_category_id){
             return (
-                <List>
-                    {search_beer?.length > 0 ? search_beer.map((item, idx) => (
-                        <EachBeer key={idx} item={item}/>
-                    )):""}
-                </List>
+            <List>
+                {beers?.map((item, idx) => (
+                    <EachBeer key={idx} item={item}/>
+                ))}
+            </List>
             );
         }else{
-            if(!get_category_id){
-                return (
+            return(
                 <List>
-                    {beers?.map((item, idx) => (
-                        <EachBeer key={idx} item={item}/>
-                    ))}
+                {category_beers?.map((item, idx) => (
+                    <EachBeer key={idx} item={item} categoryId={get_category_id}/>
+                ))}
                 </List>
-                );
-            }else{
-                return(
-                    <List>
-                    {category_beers?.map((item, idx) => (
-                        <EachBeer key={idx} item={item} categoryId={get_category_id}/>
-                    ))}
-                    </List>
-                );
-            }
+            );
         }
-    };
-
+    }
 
     return(
         <React.Fragment>
@@ -82,7 +76,9 @@ const BeerList = (props) =>{
                                 setIs_Search={setIs_Search}
                                 search_beer = {search_beer}
                             ></Search>
-                            {beerListFilter()}
+                            {is_search ? searchBeerList()
+                            : allBeerList()
+                        }
                         </Grid>
                     </Container>
                 </>

@@ -132,6 +132,7 @@ const BeerDetail = (props) =>{
                             }}
                         >장소 제보하기</PlaceButton>
                         <MapModal 
+                        beerId={props.match.params.beerId}
                         open={modalOpen}
                         close={closeModal}
                         ></MapModal>

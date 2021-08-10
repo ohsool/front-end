@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { mapReport } from "../redux/async/suggest";
 
-const MapImage = (props) => {
+const MapImage = ({beerId}) => {
         const kakao = window.kakao;
         const container = useRef(null);
         const inputRef = useRef(null);
@@ -16,7 +16,13 @@ const MapImage = (props) => {
         }, []);
 
         const ReportPlace = () => {
-            dispatch(mapReport(clickReport));
+            const mapData = {
+                beerId: beerId,
+                name: clickReport.place_name,
+                address: clickReport.address_name,
+                url: clickReport.place_url,
+              }
+            dispatch(mapReport(mapData));
         }
 
         function findLocation(place) {  // Find my location. or not, 여삼빌딩

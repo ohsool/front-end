@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { suggestComment, suggestBeer } from "../async/suggest";
+import { suggestComment, suggestBeer, mapReport } from "../async/suggest";
 
 const initialState = {
     suggestComment: null,
     suggestBeer: null,
+    reportedPlace: null,
     isLoading: false,
     isDone: false,
     isError: false,
@@ -22,8 +23,13 @@ const suggestSlice = createSlice({
         })
         .addCase(suggestBeer.fulfilled, (state, action) => {
             console.log(action.payload);
-            window.alert("건의가 완료되었습니다")
         })
+        .addCase(mapReport.fulfilled, (state, action) => {
+            console.log(action.payload);
+        })
+        .addCase(mapReport.rejected, (state, action) => {
+          console.log("요청에 실패했습니다.");
+      })
       // 공통
       .addMatcher(
         (action) => {

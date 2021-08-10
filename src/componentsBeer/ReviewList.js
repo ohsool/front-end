@@ -15,7 +15,6 @@ import ReviewWriteModal from "../componentsBeer/ReviewWriteModal";
 
 const ReviewList = (props)=>{
     const [modalOpen, setModalOpen] = useState(false);
-    const [reload, setReload] = useState(false);
     const beerOne = useSelector(oneBeer);
     const userId = useSelector(User); 
     const beer_infos = useSelector(getReviewList);
@@ -68,8 +67,7 @@ const ReviewList = (props)=>{
                     open={modalOpen}
                     close={closeModal}
                     beerOne={beerOne}
-                    is_edit={false} 
-                    setReload={setReload}
+                    is_edit={false}
                 ></ReviewWriteModal>              
             </Container>
 

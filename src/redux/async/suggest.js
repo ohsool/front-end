@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { headerAxios } from "./moduleAxios";
+import { headerAxios, nonHeaderAxios } from "./moduleAxios";
 
 // 불편사항
 export const suggestComment = createAsyncThunk(
@@ -25,9 +25,9 @@ export const suggestBeer = createAsyncThunk(
 export const mapReport = createAsyncThunk(
   "/api/mapReport",
   async (data, thunkAPI) => {
-    console.log(data);
-    // const reponse = await headerAxios.post(`/api`, data);
-
-    // return response.data
+    
+    const response = await nonHeaderAxios.post(`/api/beer/report-location`, data);
+    
+    return response.data;
   }
 )
