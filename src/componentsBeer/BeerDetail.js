@@ -254,6 +254,7 @@ const PlaceButton = styled.button`
     border: 1px solid #FFC44F;
     background-color: #fff;
     margin-top: 16px;
+    cursor: pointer;
 `;
 
 const TasteTag = styled.div`

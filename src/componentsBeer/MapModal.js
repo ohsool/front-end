@@ -61,7 +61,7 @@ const ModalWrap = styled.div`
 
 const MapImageWrap = styled.div`
     margin: 0 auto;
-    border: 1px solid black;
+    box-shadow: 3px 3px 3px 3px;
     width: 340px;
     height: 360px;
     background-color: #FFFFFF;
