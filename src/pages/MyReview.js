@@ -1,52 +1,63 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import styled from "styled-components/macro";
-import { history } from "../redux/configureStore";
-import { useSelector, useDispatch } from "react-redux";
-import Header from "../Header";
-import { getMyReview } from "../redux/async/mybeer";
-import { myReviewList } from "../redux/reducer/mybeerSlice";
+import {history} from "../redux/configureStore";
+import moment from 'moment';
+import 'moment/locale/ko';
 
+import StarRate from "../componentsBeer/StarRate";
+import Header from "../Header";
 import TasteGraph from '../componentsBeer/TasteGraph';
 
 const MyReview = (props) =>{
+    const item = props.location.state;
+    const date = moment(item?.date)
 
-    console.log("item",props);
-    const reviewId = props.match.params.beerId;
-    const myReview = useSelector(myReviewList); //사용자가 단 리뷰리스트
-    
-    const dispatch = useDispatch();
-    console.log("reviewId",reviewId)
-    console.log("myReview",myReview);
-
-    useEffect(() => {
-        dispatch(getMyReview());
-    }, []);
+ 
 
     // 별점, 그래프, 리뷰 정보
     return(
         <React.Fragment>
             <Header/>
             <Container>
+                <Div style={{margin: "70px auto 20px"}}>
+                <BeerImage>
+                        <img src={item?.beerId?.image}></img>
+                </BeerImage>
+                </Div>
+                
+                <ReviewText>
+                    <span>{moment(date).fromNow()}</span>
+                    <p>{item?.review}</p>
+                </ReviewText>
+                <Line/>
                 <Grid>
-                    <hr/>
-                    <p>
-                        테스트
-                    </p>
+                    <Wrap>
+                        <span style={{ fontWeight: "700"}}>별점</span>                      
+                    </Wrap>
+                    <Div>
+                    <StarRate init_star={item.rate}/>
+                    </Div>
+                    <Line/>
                     <Wrap>
                         <span style={{ fontWeight: "700"}}>그래프</span>                      
                     </Wrap>
                     <Graph>
-                       {/*<TasteGraph beers={item?.mybeers.myFeatures}/>*/}
+                       <TasteGraph beers={item?.myFeatures}/>
                     </Graph>
-                    <hr/>
-
-                    
+                    <Line/>
+                    <div style={{textAlign: "center"}}>
+                    <GoBackButton onClick={()=>{
+                        history.goBack();
+                    }}>
+                        마이비어 가기
+                    </GoBackButton>
+                    </div>
                 </Grid>
             </Container>
         </React.Fragment>
     )
 }
-export default (MyReview, TasteGraph);
+export default React.memo(MyReview, TasteGraph);
 
 const Container = styled.div`
     display: flex;
@@ -63,31 +74,63 @@ const Container = styled.div`
 `;
 const Grid = styled.div`
     width: 100%;
-    margin: 0 auto;
-    margin-top: 40px;
 `;
 
+
 const BeerImage = styled.div`
-    width: 100%;
-    height: 380px;
-    text-align: center;
-    background-color: #F6F6F6;
-    & > img{ 
-        width: 315px;
-        height: 315px;
-        margin: 23px auto;
+    margin: 10px;
+    border-radius: 10px;
+    width: 150px;
+    height: 150px;
+    background-color: #FFFFFF;
+    & > img{
+        width: 150px;
+        height: 150px;
     }
     @media (img: img) {
         & > img { 
-            width: 315px;
-            height: 315px;
-            margin: 22px auto;
+            width: 150px;
+            height: 150px;
          }
     }
 `;
+
+const ReviewText = styled.div`
+    margin: 0 auto;
+    width: 312px;
+    & > p {
+        margin: 0;
+        font-size: 14px;
+        padding: 10px 0px;
+
+    }
+    & > span{
+        font-size: 12px;
+        font-weight: 300;
+        height: 46px;
+    }
+    padding: 10px;
+    min-height: 120px;
+    resize:none;
+    background-color: #F6F6F6;
+    border-radius: 10px;
+
+`;
+
+const Div = styled.div`
+    display: flex;
+    flex-direction: column;
+    text-align: center;  
+`
+const Line = styled.hr`
+    width: 360px;
+    text-align: center;
+    border:0.5px solid #c4c4c4;
+`
+
 const Wrap = styled.div`
     width: 320px;
-    margin: 20px auto;
+    margin: 30px 10xp;
 `;
 
 const Graph = styled.div`
@@ -99,17 +142,12 @@ const Graph = styled.div`
     border-radius: 10px;
 `;
 
-
-const TasteTag = styled.div`
-    display: inline-block;
-    margin-right: 3px;
-    padding: 0 6px;
-    height: 16px;
-    border: 0.5px solid #888888;
-    box-sizing: border-box;
-    border-radius: 33px;
-    font-size: 10px;
-    line-height: 14px;
-    text-align: center;
-    color: #333333;
+const GoBackButton = styled.button`
+    width: 160px;
+    height: 45px;
+    border-radius: 50px;
+    border: 1px solid #FFC44F;
+    background-color: #fff;
+    margin-top: 16px;
+    cursor: pointer;
 `;

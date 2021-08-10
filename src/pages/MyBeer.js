@@ -76,10 +76,6 @@ const MyBeer = (props)=>{
                 {is_Dogam === false ? 
                     myReview?.map((item, idx) => (
                         <WritedReview key={idx} item={item}
-                            onClick={()=>{
-                                console.log("Click!")
-                                //history.push(`/review/${item._id}`, item)
-                            }}
                         />
                     )) :
                     ""}

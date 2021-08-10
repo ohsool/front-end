@@ -6,7 +6,11 @@ const WritedReview = ({item}) =>   {
 
     return(
         <React.Fragment>
-            <WritedBeerInfo >
+            <WritedBeerInfo 
+                onClick={()=>{
+                    history.push(`/review/${item._id}`, item)
+                }}
+            >
                 <BeerImage>
                     <img src={item?.beerId?.image}></img>
                 </BeerImage>

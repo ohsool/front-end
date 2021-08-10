@@ -95,21 +95,21 @@ const BeerDetail = (props) =>{
                             </TasteTag>
                         ))}    
                     </Wrap>
-                    <hr/>
+                    <Line/>
                     <Wrap>
                         <span style={{ fontWeight: "700"}}>맥주소개</span>
                         <BeerContent>
                             맥주 설명!!!
                         </BeerContent>
                     </Wrap>
-                    <hr/>
+                    <Line/>
                     <Wrap>
                         <span style={{ fontWeight: "700"}}>그래프</span>                      
                     </Wrap>
                     <Graph>
                         <TasteGraph beers={beerOne?.features}/>
                     </Graph>
-                    <hr/>
+                    <Line/>
                     <Wrap>
                         <p style={{ fontWeight: "700",paddingBottom: "7px"}}>판매처</p>
                         <div style={{display: "flex"}}>
@@ -117,8 +117,7 @@ const BeerDetail = (props) =>{
                         <span style={{ fontWeight: "300", fontSize: "12px", lineHeight: "146%"}}>GS25 편의점</span>
                         </div>    
                     </Wrap>
-                    <hr style={{ margin: "0 24px" }}/>
-                    
+                    <LineShort/>                    
                     <Wrap>
                         <p style={{ fontWeight: "700" ,paddingBottom: "14px"}}>제보된 판매처</p>
                         <div style={{display: "flex"}}>
@@ -136,7 +135,7 @@ const BeerDetail = (props) =>{
                         close={closeModal}
                         ></MapModal>
                     </Wrap>
-                    <hr/>
+                    <Line/>
 
                     <Wrap>
                     <p style={{ fontWeight: "700",paddingBottom: "14px"}}>리뷰</p>
@@ -205,6 +204,16 @@ const Wrap = styled.div`
     margin: 20px auto;
 `;
 
+const Line = styled.hr`
+    width: 360px;
+    text-align: center;
+    border:0.5px solid #c4c4c4;
+`
+const LineShort = styled.hr`
+    width: 312px;
+    text-align: center;
+    border:0.5px solid #c4c4c4;
+`
 const HeartWrap = styled.div`
     width: 38px;
     height: 38px;
@@ -272,10 +281,6 @@ const TasteTag = styled.div`
 `;
 
 const Gradient = styled.div`
-<<<<<<< HEAD
-    //position: absolute;
-=======
->>>>>>> 810c226105e94e6c94555d4e3a52b93d4a694d14
     margin: 0 auto;
     z-index: 1;
     -webkit-mask-size: 312px 420px; 

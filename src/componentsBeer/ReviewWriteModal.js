@@ -10,7 +10,7 @@ import { writeReview, editReview} from "../redux/async/review";
 
 const ReviewWriteModal = (props) => {
 
-    const { open, close, beerOne, item, is_edit, /*setReload,*/ mybeerId } = props; 
+    const { open, close, beerOne, item, is_edit, mybeerId } = props; 
     const taste_data = ["쓴맛", "청량감", "향", "단맛", "고소한맛"];
     const [review, setReview] = useState("");
     const [starScore, setStarScore] = useState(0);
@@ -51,7 +51,6 @@ const ReviewWriteModal = (props) => {
         setReview("");
         setStarScore(0);
         setFeaturesList(arr.fill(0));
-        //setReload(true);
         history.replace(`/beer/review/${beerOne._id}`);
         close();
         
@@ -289,8 +288,7 @@ const Div = styled.div`
     margin: 10px auto;
     display: flex;
     flex-direction: column;
-    text-align: center;
-    
+    text-align: center;  
 `
 const ReviewButton = styled.div`
     width: 308px;
