@@ -77,8 +77,7 @@ const BeerList = (props) =>{
                                 beers={beers}
                                 setIs_Search={setIs_Search}
                                 search_beer = {search_beer}
-                            >
-                            </Search>
+                            ></Search>
                             {beerListFilter()}
                         </Grid>
                     </Container>

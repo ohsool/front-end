@@ -10,7 +10,7 @@ import { writeReview, editReview} from "../redux/async/review";
 
 const ReviewWriteModal = (props) => {
 
-    const { open, close, beerOne, item, is_edit, setReload, mybeerId } = props; 
+    const { open, close, beerOne, item, is_edit, /*setReload,*/ mybeerId } = props; 
     const taste_data = ["쓴맛", "청량감", "향", "단맛", "고소한맛"];
     const [review, setReview] = useState("");
     const [starScore, setStarScore] = useState(0);
@@ -51,7 +51,7 @@ const ReviewWriteModal = (props) => {
         setReview("");
         setStarScore(0);
         setFeaturesList(arr.fill(0));
-        setReload(true);
+        //setReload(true);
         history.replace(`/beer/review/${beerOne._id}`);
         close();
         
@@ -59,7 +59,6 @@ const ReviewWriteModal = (props) => {
 
     }
     const updateReview = () => {
-
         if(review === "" || starScore === 0 ){
             window.alert("답하지 않은 문항이 있어요!")
             return
@@ -258,23 +257,6 @@ const CloseIcon = styled.div`
 `;
 
 
-
-const TasteFlavorWrap = styled.div`
-    margin-left: 35px;
-    display: inline-block;
-    width: 59px;
-    height: 238px;
-    & > span {
-        margin: 28px 0;
-        display: block;
-        font-size: 14px;
-        font-weight: 700;
-        line-height: 20.27px;
-        margin-bottom 13px;
-    }
-`;
-
-
 const BeerInfo = styled.div`
     width: 328px;
     display: flex;
@@ -324,11 +306,26 @@ const ReviewButton = styled.div`
     }
 
 `
+const TasteFlavorWrap = styled.div`
+    margin-left: 30px;
+    display: inline-block;
+    width: 59px;
+    height: 238px;
+    & > span {
+        margin: 28px 0 13px 0;
+        display: block;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 20.27px;
+        margin-bottom 13px;
+    }
+`;
+
 const TasteScoreWrap = styled.div`
     width: 200px;
     height: 240px;
     display: inline-block;
-    margin: 0 0 0 6px;
+    margin: 0 0 0 47px;
 `;
 
 const TasteScore = styled.div`

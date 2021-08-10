@@ -18,7 +18,7 @@ const SelectBar = ({index, setFeaturesList, featuresList, taste, is_edit}) => {
       <React.Fragment>
       { is_edit ? (
         <>
-            <div style={{width: "200px", marginTop: "35px"}} >
+            <div style={{width: "200px", marginBottom: "40px"}} >
             <ProgressBar percent={cur_position} filledBackground="#FFC44F">
               {featuresList.map((p,index) => (
                 <Step key={index}>

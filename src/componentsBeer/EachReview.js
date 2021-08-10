@@ -3,6 +3,9 @@ import React,{useState} from 'react';
 import styled from "styled-components";
 import moment from 'moment';
 import 'moment/locale/ko';
+import star from "../share/image/star.png";
+import edit from "../share/image/edit.png";
+import remove from "../share/image/remove.png";
 
 import {useDispatch} from "react-redux";
 import {deleteReview} from "../redux/async/review";
@@ -30,33 +33,36 @@ const EachReview=(props)=> {
             <Grid>
                 <GridHorizon>
                     <Div>
-                    <NicknameText>
-                        <span style={{ fontWeight: "700", fontSize: "14px", lineHeight: "20.27px"}}>
-                            {item.userId.nickname}</span>
-                    </NicknameText>
-                    <DateText>
-                        <span style={{ fontWeight: "300", fontSize: "10px", lineHeight: "14.48px"}}>
-                        {moment(date).fromNow()}
-                        </span>
-                    </DateText>
+                        <NicknameText>
+                            <span style={{ fontWeight: "700", fontSize: "14px", lineHeight: "20.27px"}}>
+                                {item.userId.nickname}</span>
+                        </NicknameText>
+                        <DateText>
+                            <span style={{ fontWeight: "300", fontSize: "10px", lineHeight: "14.48px"}}>
+                            {moment(date).fromNow()}
+                            </span>
+                        </DateText>
                     </Div>
 
                     <Div>
-                        <StarImg/>
+                        <StarImg style={{backgroundImage: `url(${star})`}}/>
                         <RateText>
                             <span style={{fontWeight: "300", fontSize: "10px", lineHeight: "14.48px"}}>
                                 ({item.rate.toFixed(1)})</span>
                         </RateText>
                             { item.userId._id === userId ? (
                                 <>
-                                <EditButton onClick={(e) => {
-                                    e.preventDefault();
-                                    e.stopPropagation();
-                                    openModal();
-                                    
-                                }}>수정</EditButton>
+                                <EditButton 
+                                    style={{backgroundImage: `url(${edit})`}}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        e.stopPropagation();
+                                        openModal();
+                                }}></EditButton>
                                 
-                                <DeleteButton onClick = {(e) => {
+                                <DeleteButton
+                                    style={{backgroundImage: `url(${remove})`}} 
+                                    onClick = {(e) => {
                                     e.preventDefault();
                                     e.stopPropagation();
                                     if(window.confirm("정말로 삭제하시나요?")){
@@ -64,7 +70,7 @@ const EachReview=(props)=> {
                                         window.location.reload();
                                         return
                                     }
-                                }}>삭제</DeleteButton>
+                                }}></DeleteButton>
                                 </>
                             ): null}
                             
@@ -120,8 +126,10 @@ const GridHorizon = styled.div`
 const Div = styled.div`
     display: flex;
     padding: 0 2px;
+    align-items: center
 
 `
+
 const NicknameText =styled.div`
     padding: 2px;
     span{
@@ -142,7 +150,7 @@ const DateText =styled.div`
 
 `
 const RateText = styled.div`
-    padding: 2px; 
+    margin: 0 7px 0 1px; 
     span{
         font-weight: 500;
         font-style: light;
@@ -150,21 +158,27 @@ const RateText = styled.div`
     }
 `
 
-
 const StarImg =styled.div`
-    img{
+    width: 16px;
+    height: 16px;
+    float: left;
+    cursor: pointer;
+`;
 
-    }
+const EditButton =styled.div`
+    margin: 2px;
+    width: 16px;
+    height: 16px;
+    float: left;
+    cursor: pointer;
 
 `
 
-const EditButton =styled.button`
-    padding: 2px;
-
-`
-
-const DeleteButton =styled.button`
-    padding: 2px;
+const DeleteButton =styled.div`
+    margin: 2px;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
 
 
 `
