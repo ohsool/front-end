@@ -1,5 +1,5 @@
 //slide효과를 위한 컴포넌트
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import {history} from "../redux/configureStore";
 
@@ -11,9 +11,9 @@ const BeerType = ({ items, setIs_Search }) => {
     const settings = {
         infinite: false,
         speed: 200,
-        slidesToShow: 5,//show
-        slidesToScroll: 3,//scroll
-        variableWidth: true, // slider 간격조정
+        slidesToShow: 5,
+        slidesToScroll: 3,
+        variableWidth: true,
         arrows: false,
     };
 

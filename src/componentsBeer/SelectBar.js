@@ -1,3 +1,4 @@
+//맥주 맛 점수를 매기기 위한 컴포넌트
 import React,{useState, useEffect} from "react";
 import "react-step-progress-bar/styles.css";
 import {ProgressBar, Step} from "react-step-progress-bar";
@@ -19,10 +20,10 @@ const SelectBar = ({index, setFeaturesList, featuresList, taste, is_edit}) => {
       { is_edit ? (
         <>
             <div style={{width: "200px", marginBottom: "40px"}} >
-            <ProgressBar percent={cur_position} filledBackground="#FFC44F">
-              {featuresList.map((p,index) => (
-                <Step key={index}>
-                {({ accomplished, position, index ,percent, children}) => ( 
+            <ProgressBar percent={cur_position} filledBackground="#FFC44F">{/* 프로그래스바 */}
+              {featuresList.map((p,index) => ( // 5개의 선택지가 있으며 선택지(position)이 20%씩 증가
+                <Step key={index}> 
+                {({ accomplished, position}) => ( 
                   <div 
                     style={{width: "20px", height: "20px", borderRadius: "50%", backgroundColor: `${accomplished ? "#ffC44F" : "#D3D3D3"}`}}
                     onClick={() => {
@@ -34,10 +35,8 @@ const SelectBar = ({index, setFeaturesList, featuresList, taste, is_edit}) => {
               </Step>
               ))}   
             </ProgressBar>
-            </div>
-            
+            </div>  
         </>
-  
         ):(
         <>
           <div style={{width: "200px", marginTop: "35px"}} >
@@ -68,4 +67,3 @@ const SelectBar = ({index, setFeaturesList, featuresList, taste, is_edit}) => {
 };
 
 export default React.memo(SelectBar);
-//https://pierreericgarcia.github.io/react-step-progress-bar/docs/custom-step-guide

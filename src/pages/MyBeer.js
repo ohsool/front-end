@@ -28,7 +28,7 @@ const MyBeer = (props)=>{
         return getData();
     }, [])
 
-/*
+
     useEffect(() => {
         if(!session){
             if(window.confirm("로그인이 필요한 서비스입니다. 로그인하시겠습니까?")){
@@ -39,7 +39,7 @@ const MyBeer = (props)=>{
             }
         }
     }, []);
-*/
+
     return (
         <React.Fragment>
             <Header></Header>

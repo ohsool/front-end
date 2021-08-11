@@ -7,15 +7,14 @@ import {TasteGraph,StarRate} from "../componentsBeer/BeerIndex";
 import Header from "../Header";
 
 const MyReview = (props) =>{
-    const item = props.location.state;
+    const item = props.location.state; //
     const date = moment(item?.date);
 
-    // 별점, 그래프, 리뷰 정보
     return(
         <React.Fragment>
             <Header/>
             <Container>
-                <Div style={{margin: "70px 20px"}}>
+                <Div>
 
                 <Title><span>내가 쓴 게시물</span></Title>
                 <WritedBeerInfo >
@@ -114,7 +113,8 @@ const BeerTextWrap = styled.div`
 const Div = styled.div`
     display: flex;
     flex-direction: column;
-    text-align: left;  
+    text-align: left; 
+    margin: 70px 20px;
     margin: 14px auto;
     & > span{
         float: left;

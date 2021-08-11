@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { headerAxios, nonHeaderAxios } from "./moduleAxios";
 
+//모든 맥주 정보 가지고 오기
 export const getAllBeer = createAsyncThunk(
   "beer/getAllBeer",
   async (data, thunkAPI) => {
@@ -10,6 +11,7 @@ export const getAllBeer = createAsyncThunk(
   }
 );
 
+//특정 맥주 정보 가지고 오기
 export const getOneBeer = createAsyncThunk(
     "beer/getOneBeer",
     async (data, thunkAPI) => {
@@ -20,6 +22,7 @@ export const getOneBeer = createAsyncThunk(
     }
 );
 
+//특정 맥주 좋아요 적용
 export  const likeBeer = createAsyncThunk(
   "beer/likeBeer",
   async (data, thunkAPI) => {
@@ -30,6 +33,7 @@ export  const likeBeer = createAsyncThunk(
   }
 );
 
+//특정 맥주 좋아요 취소
 export  const unLikeBeer = createAsyncThunk(
   "beer/unLikeBeer",
   async (data, thunkAPI) => {
@@ -40,6 +44,7 @@ export  const unLikeBeer = createAsyncThunk(
   }
 );
 
+//한글, 영어 맥주명으로 검색하기
 export const getSearchWord = createAsyncThunk(
   "beer/getSearchResult",
   async (data, thunkAPI) => {

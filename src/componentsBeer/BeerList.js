@@ -14,10 +14,10 @@ const BeerList = (props) =>{
     const get_category_id = props.match.params.beerCategoryId;
     const beers = useSelector(getBeerList);
     const items = useSelector(categories);
-    const category_beers = beers?.filter((p) => p.categoryId === get_category_id);
-    const [is_Loading, setIs_Loading] = useState(false);
-    const [is_search, setIs_Search] = useState(false)
-    const [search_beer, setSearch_Beer] = useState([]);
+    const category_beers = beers?.filter((p) => p.categoryId === get_category_id); //전체 맥주 리스트에서 동일 카테고리 맥주 필터링
+    const [is_Loading, setIs_Loading] = useState(false); //로딩 여부 판별
+    const [is_search, setIs_Search] = useState(false) 
+    const [search_beer, setSearch_Beer] = useState([]); //검색한 맥주 정보
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -68,14 +68,13 @@ const BeerList = (props) =>{
                                 setIs_Search={setIs_Search}
                                 items={items}/>
                             </TopNav>
-                            <Search
+                            <Search //맥주 검색 부분
                                 setSearch_Beer = {setSearch_Beer}
                                 beers={beers}
                                 setIs_Search={setIs_Search}
-                                search_beer = {search_beer}
                             ></Search>
-                            {is_search ? searchBeerList()
-                            : allBeerList()
+                            {is_search ? searchBeerList() //검색된 맥주 리스트 출력
+                            : allBeerList() //타입별 맥주 리스트 출력
                         }
                         </Grid>
                     </Container>

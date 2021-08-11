@@ -22,6 +22,7 @@ export const suggestBeer = createAsyncThunk(
   return response.data;
 });
 
+//맥주 장소 제보하기
 export const mapReport = createAsyncThunk(
   "/api/mapReport",
   async (data, thunkAPI) => {

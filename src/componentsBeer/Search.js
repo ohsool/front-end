@@ -12,11 +12,11 @@ const Search = (props) => {
     const check_eng = /[a-zA-Z]/; // 영어체크
     const check_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글체크
     const [word, setWord] = useState(""); //실시간으로 입력하는 단어담김
-    const words = useSelector(getSearchList); //["버드와이저","오번"]
+    const words = useSelector(getSearchList);
     const dispatch = useDispatch();
 
     const onChange = (e) =>{
-        if(e.target.value === ''){//검색어 지웠을 때 검색목록 사라지도록 
+        if(e.target.value === ''){//검색어 지웠을 때 검색목록 사라지도록 함
             setWord(null) 
         }else{
             setWord(e.target.value);
