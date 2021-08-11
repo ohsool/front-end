@@ -7,48 +7,35 @@ import {TasteGraph,StarRate} from "../componentsBeer/BeerIndex";
 import Header from "../Header";
 
 const MyReview = (props) =>{
-    const item = props.location.state;
+    const item = props.location.state; //
     const date = moment(item?.date);
 
-    // 별점, 그래프, 리뷰 정보
     return(
         <React.Fragment>
             <Header/>
             <Container>
-                <Div style={{margin: "70px auto 20px"}}>
-                <BeerImage>
+                <Div>
+
+                <Title><span>내가 쓴 게시물</span></Title>
+                <WritedBeerInfo >
+                    <BeerImage>
                         <img src={item?.beerId?.image}></img>
-                </BeerImage>
-                </Div>
-                
-                <ReviewText>
-                    <span>{moment(date).fromNow()}</span>
-                    <p>{item?.review}</p>
-                </ReviewText>
-                <Line/>
-                <Grid>
-                    <Wrap>
-                        <span style={{ fontWeight: "700"}}>별점</span>                      
-                    </Wrap>
-                    <Div>
+                    </BeerImage>
+                    <BeerTextWrap>
+                        <span>{item?.review}</span>
+                    </BeerTextWrap>
+                </WritedBeerInfo>
+                <Text><span>별점</span></Text>                      
+                <div style={{textAlign: "center", margin: "-10px 0 10px 0"}}>
                     <StarRate init_star={item.rate}/>
-                    </Div>
-                    <Line/>
-                    <Wrap>
-                        <span style={{ fontWeight: "700"}}>그래프</span>                      
-                    </Wrap>
-                    <Graph>
-                       <TasteGraph beers={item?.myFeatures}/>
-                    </Graph>
-                    <Line/>
-                    <div style={{textAlign: "center"}}>
-                    <GoBackButton onClick={()=>{
-                        history.goBack();
-                    }}>
-                        마이비어 가기
-                    </GoBackButton>
-                    </div>
-                </Grid>
+                </div>
+                <Graph>
+                    <TasteGraph beers={item?.myFeatures}/>
+                </Graph>
+                <div style={{textAlign: "center"}}>
+                </div>
+                </Div>
+
             </Container>
         </React.Fragment>
     )
@@ -68,66 +55,72 @@ const Container = styled.div`
         text-align:left;
     }
 `;
-const Grid = styled.div`
-    width: 100%;
-`;
 
+const Title = styled.div`
+
+    & > span{
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 20.27px;
+
+    } 
+    
+`
+
+const Text = styled.div`
+    margin: 0;
+    text-align: center;
+    & > span{
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 20.27px;
+    }
+
+`
+const WritedBeerInfo = styled.div`
+    display: flex;
+`;
 
 const BeerImage = styled.div`
-    margin: 10px;
+    margin:  10px 5px;
+    width: 100px;
+    height: 100px;
     border-radius: 10px;
-    width: 150px;
-    height: 150px;
     background-color: #FFFFFF;
+    border: 1px solid #c4c4c4;
     & > img{
-        width: 150px;
-        height: 150px;
-    }
-    @media (img: img) {
-        & > img { 
-            width: 150px;
-            height: 150px;
-         }
+        width: 100px;
+        height: 100px;
     }
 `;
 
-const ReviewText = styled.div`
-    margin: 0 auto;
-    width: 312px;
-    & > p {
-        margin: 0;
-        font-size: 14px;
-        padding: 10px 0px;
-
-    }
+const BeerTextWrap = styled.div`
+    margin: 10px 5px;
+    width: 208px;
+    height: 100px;
+    
+    border-radius: 10px;
+    border: 1px solid #c4c4c4;
     & > span{
+        float: left;
+        margin: 10px;
         font-size: 12px;
         font-weight: 300;
-        height: 46px;
+        line-height: 17.38px;
     }
-    padding: 10px;
-    min-height: 120px;
-    resize:none;
-    background-color: #F6F6F6;
-    border-radius: 10px;
-
 `;
 
 const Div = styled.div`
     display: flex;
     flex-direction: column;
-    text-align: center;  
+    text-align: left; 
+    margin: 70px 20px;
+    margin: 14px auto;
+    & > span{
+        float: left;
+        font-weight: 700;
+    }
 `
-const Line = styled.hr`
-    width: 360px;
-    text-align: center;
-    border:0.5px solid #c4c4c4;
-`
-
-const Wrap = styled.div`
-    width: 320px;
-    margin: 30px 10xp;
-`;
 
 const Graph = styled.div`
     margin: 14px auto;
@@ -138,12 +131,3 @@ const Graph = styled.div`
     border-radius: 10px;
 `;
 
-const GoBackButton = styled.button`
-    width: 160px;
-    height: 45px;
-    border-radius: 50px;
-    border: 1px solid #FFC44F;
-    background-color: #fff;
-    margin-top: 16px;
-    cursor: pointer;
-`;

@@ -23,6 +23,7 @@ const ReviewWriteModal = (props) => {
           setList(Object.values(item?.myFeatures));
         }
     }, [item]);
+
     useEffect(()=>{
         setReview(item?.review);
         setStarScore(item?.rate);
@@ -50,11 +51,7 @@ const ReviewWriteModal = (props) => {
         setReview("");
         setStarScore(0);
         setFeaturesList(arr.fill(0));
-        history.replace(`/beer/review/${beerOne._id}`);
         close();
-        
-    
-
     }
     const updateReview = () => {
         if(review === "" || starScore === 0 ){
@@ -77,8 +74,7 @@ const ReviewWriteModal = (props) => {
         window.alert("수정 완료!🍻");
         setReview("");
         setStarScore(0);
-        setFeaturesList(arr.fill(0)); 
-        window.location.reload();
+        setFeaturesList(arr.fill(0));
         close();
     }
 
@@ -167,9 +163,9 @@ const ReviewWriteModal = (props) => {
                             </div>
                         {is_edit ? (
                             <ReviewButton>
-                            <button onClick={() => {
-                                updateReview();
-                            }}>도감 수정하기</button>
+                                <button onClick={() => {
+                                    updateReview();
+                                }}>도감 수정하기</button>
                             </ReviewButton>
                         ):(
                             <ReviewButton>
@@ -200,7 +196,6 @@ const Background = styled.div`
     right: 0;
     background-color: rgba(0,0,0,0.50);
     animation: fadeIn .5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
-    
     display: flex;
     justify-content: center;
  

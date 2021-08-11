@@ -2,7 +2,6 @@ import React,{useState, useEffect} from "react";
 import styled from "styled-components";
 
 import {EachReview,ReviewWriteModal} from "../componentsBeer/BeerIndex";
-
 import { useSelector, useDispatch } from "react-redux";
 import {history} from "../redux/configureStore";
 import { getOneBeer } from "../redux/async/beer";
@@ -12,13 +11,11 @@ import { getReviewList } from "../redux/reducer/reviewSlice";
 import { oneBeer } from "../redux/reducer/beerSlice";
 import { User } from "../redux/reducer/userSlice";
 
-
-
 const ReviewList = (props)=>{
     const [modalOpen, setModalOpen] = useState(false);
-    const beerOne = useSelector(oneBeer);
+    const beerOne = useSelector(oneBeer); 
     const userId = useSelector(User); 
-    const beer_infos = useSelector(getReviewList);
+    const beer_infos = useSelector(getReviewList); //해당 맥주 리뷰 목록을 불러옴 
 
     const dispatch = useDispatch();
     
@@ -30,9 +27,8 @@ const ReviewList = (props)=>{
     };
 
     useEffect(() => {
-            dispatch(getOneBeer(props.match.params.beerId));
+            dispatch(getOneBeer(props.match.params.beerId)); 
             dispatch(userInfo());
-            dispatch(getReview(props.match.params.beerId));
     }, []);
 
     const loginConfirm = ()=>{

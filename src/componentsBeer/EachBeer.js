@@ -6,9 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {likeBeer, unLikeBeer} from "../redux/async/beer";
 import { User } from "../redux/reducer/userSlice";
 
-
 import HeartButton from "./HeartButton";
-//import HeartButton from "./BeerIndex";
 
 const EachBeer = (props) => {
     const dispatch = useDispatch();

@@ -14,7 +14,7 @@ import ReviewWriteModal from "../componentsBeer/ReviewWriteModal";
 
 const EachReview=(props)=> {
     const { item, beerOne, userId} = props; 
-    const [modalOpen, setModalOpen] = useState(false);
+    const [modalOpen, setModalOpen] = useState(false); //수정 버튼 클릭시 리뷰 수정 모달 띄우기
     
     const dispatch = useDispatch();
 
@@ -50,7 +50,7 @@ const EachReview=(props)=> {
                             <span style={{fontWeight: "300", fontSize: "10px", lineHeight: "14.48px"}}>
                                 ({item.rate.toFixed(1)})</span>
                         </RateText>
-                            { item.userId._id === userId ? (
+                            { item.userId._id === userId ? ( //작성자와 user가 동일한 경우 수정/삭제 버튼 활성화
                                 <>
                                 <EditButton 
                                     style={{backgroundImage: `url(${edit})`}}
@@ -67,7 +67,7 @@ const EachReview=(props)=> {
                                     e.stopPropagation();
                                     if(window.confirm("정말로 삭제하시나요?")){
                                         dispatch(deleteReview(item._id));
-                                        window.location.reload();
+                                        window.alert("삭제되었습니다.😊");
                                         return
                                     }
                                 }}></DeleteButton>
@@ -184,7 +184,6 @@ const DeleteButton =styled.div`
 `
 
 const ReviewText = styled.div`
-    
     margin: 5px;
     max-height: 51px;
     line-height: 17px;

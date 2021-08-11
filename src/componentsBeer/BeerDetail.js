@@ -205,7 +205,7 @@ const Wrap = styled.div`
 const Line = styled.hr`
     width: 360px;
     text-align: center;
-    border:0.5px solid #c4c4c4;
+    border:0.2px solid #c4c4c4;
 `
 const LineShort = styled.hr`
     width: 312px;
@@ -257,7 +257,7 @@ const MapIcon = styled.div`
 const PlaceButton = styled.button`
     width: 308px;
     height: 45px;
-    border-radius: 50;
+    border-radius: 50px;
     border: 1px solid #FFC44F;
     background-color: #fff;
     margin-top: 16px;
