@@ -36,6 +36,7 @@ const ReviewList = (props)=>{
 
     useEffect(()=>{
         dispatch(getReview(props.match.params.beerId));
+        console.log("review page rendering..")
     },[beer_infos])
 
     const loginConfirm = ()=>{

@@ -218,7 +218,7 @@ const Wrap = styled.div`
 const Line = styled.hr`
     width: 360px;
     text-align: center;
-    border:0.5px solid #c4c4c4;
+    border:0.2px solid #c4c4c4;
 `
 const LineShort = styled.hr`
     width: 312px;

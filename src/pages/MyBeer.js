@@ -15,7 +15,7 @@ const MyBeer = (props)=>{
     const mydogam = useSelector(likeList); //좋아요한 맥주 리스트
     const myReview = useSelector(myReviewList); //사용자가 단 리뷰리스트
     const [is_Dogam, setIs_Dogam] = useState(true); //맥주리스트인지 리뷰리스트인지
-    //const session = sessionStorage.getItem("token");
+    const session = sessionStorage.getItem("token");
     const dispatch = useDispatch();
 
     useEffect(()=> {
@@ -27,14 +27,16 @@ const MyBeer = (props)=>{
         }
         return getData();
     }, [])
+
 /*
     useEffect(() => {
         if(!session){
             if(window.confirm("로그인이 필요한 서비스입니다. 로그인하시겠습니까?")){
                 history.push("/login")
                 return;
+            }else{
+                history.goBack("/")
             }
-            history.goBack()      
         }
     }, []);
 */
