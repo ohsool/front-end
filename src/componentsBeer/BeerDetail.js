@@ -9,12 +9,7 @@ import { oneBeer } from "../redux/reducer/beerSlice";
 import { getReviewList } from "../redux/reducer/reviewSlice";
 import { User } from "../redux/reducer/userSlice";
 
-import {MapModal,HeartButton,TasteGraph,EachReview} from "./BeerIndex";
-/*import MapModal from "./MapModal";
-import HeartButton from "./HeartButton";
-import TasteGraph from "./TasteGraph";
-import EachReview from "./EachReview";
-*/
+import { MapModal, HeartButton, TasteGraph, EachReview} from "./BeerIndex";
 
 import mapIcon from "../share/image/mapIcon.png";
 
@@ -29,18 +24,10 @@ const BeerDetail = (props) =>{
     const dispatch = useDispatch();
 
     useEffect(() => { //맥주 정보, 사용자정보 및 리뷰정보 불러오기
-        dispatch(getOneBeer(props.match.params.beerId)); 
+        dispatch(getOneBeer(props.match.params.beerId));
         dispatch(getReview(props.match.params.beerId));
         dispatch(userInfo());
     }, [dispatch, props.match.params.beerId]);
-
-    useEffect(() => {
-        if(props.location.state?.includes(userId) === true){
-            setToggle(true);
-        }else{
-            setToggle(false);
-        }
-    }, []);
 
     useEffect(() => { //좋아요된 상태면 좋아요눌린걸로 아니면 false그대로
         if(beerOne && userId){

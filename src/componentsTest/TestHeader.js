@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 import myIconWhite from "../share/image/testHeaderIcon.png";
 import myIconBlack from "../share/image/HeaderIcon.png";
@@ -8,6 +8,7 @@ import "../share/style/TestHeader.css";
 
 const TestHeader = (props) => {
     const [scrollPosition, setScrollPosition] = useState(0);
+
     const updateScroll = () => {
         setScrollPosition(window.scrollY || document.documentElement.scrollTop);
     }

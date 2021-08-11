@@ -18,11 +18,11 @@ const Test = (props) => {
     const [pageAnimation, setPageAnimation] = useState(false); //테스트 페이지 애니메이션 상태
     const [index, setIndex] = useState(0);
 
-    useEffect(()=> {
+    useEffect(()=> { //유저 정보(아이디, 닉네임 등) 불러오기위한 디스패치
         dispatch(userInfo());
     }, []);
 
-    useEffect(() => {
+    useEffect(() => { //테스트마다 페이지 이동 애니메이션 적용
         setPageAnimation(true);
     }, []);
     
@@ -32,7 +32,8 @@ const Test = (props) => {
             setIndex(question.findIndex((p) => p.question_id === choice));
         }
         //각 맥주종류들이 결과값으로나오면 그 카테고리의 결과페이지로 이동
-        if(choice === "Lager" || choice === "Pilsner"
+        if(choice === "Lager" 
+        || choice === "Pilsner"
         || choice === "Pale Ale"
         || choice === "IPA" 
         || choice === "Weizen"
@@ -56,7 +57,7 @@ const Test = (props) => {
             <Grid>
                 <TestWrap>
                     <TestQuestion question={question[index]}/>
-                    <TestButton goToNext={goToNext} question={question[index]}/>
+                    <TestButton goToNext={goToNext} question={question[index].answer}/>
                 </TestWrap>
             </Grid>
         </CSSTransitionGroup>

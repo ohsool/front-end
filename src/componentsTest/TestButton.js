@@ -2,33 +2,33 @@ import React,{ useEffect, useState } from "react";
 import styled from "styled-components";
 import "../share/style/TestHeader.css";
 
-const TestButton = ({ goToNext, question }) => { //goToNext 함수 및 question 정보
+const TestButton = ({ goToNext, question }) => { //goToNext 함수 및 question context API
 
     return (
         <React.Fragment>
             <ButtonWrap>
                 <QuestionButton
                     onClick={() => {
-                        let choice = Object.keys(question.answer[0]).join()
+                        let choice = Object.keys(question[0]).join()
                         goToNext(choice);
                     }}>
-                    {Object.values(question.answer[0])}
+                    {Object.values(question[0])}
                 </QuestionButton>
                 <QuestionButton
                     onClick={() => {
-                        let choice = Object.keys(question.answer[1]).join()
+                        let choice = Object.keys(question[1]).join()
                         goToNext(choice);
                     }}>
-                    {Object.values(question.answer[1])}
+                    {Object.values(question[1])}
                 </QuestionButton>
-                {question.answer[2] ? 
+                {question[2] ? 
                 <QuestionButton 
                     //className="clickedButton"
                     onClick={() => {
-                        let choice = Object.keys(question.answer[2]).join()
+                        let choice = Object.keys(question[2]).join()
                         goToNext(choice);
                     }}>
-                    {Object.values(question.answer[2])}
+                    {Object.values(question[2])}
                 </QuestionButton> : ""}
             </ButtonWrap>
         </React.Fragment>

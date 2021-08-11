@@ -252,6 +252,7 @@ const CloseIcon = styled.div`
     width: 16px;
     height: 16px;
     border: 1px solid black;
+    cursor: pointer;
 `;
 
 
@@ -299,7 +300,8 @@ const ReviewButton = styled.div`
         border: 2px solid #FFC44F;
         color: #FFC44F;
         font-weight: bold;
-        background-color: transparent;
+        background-color: #FFFFFF;
+        cursor: pointer;
     }
 
 `

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const TestQuestion = ({ question }) => {
+const TestQuestion = ({ question }) => { //question 객체 context API
     return(
         <React.Fragment>
             <QuestionWrap>
