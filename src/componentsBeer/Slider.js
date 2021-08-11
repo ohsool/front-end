@@ -24,9 +24,10 @@ const BeerType = ({ items, setIs_Search }) => {
                     <div 
                         onClick={() => {
                             setIs_Search(false);
-                            item.name === "All" ? history.push("/beer/list")
-                            :
                             history.push(`/beer/list/${item._id}`)
+                            // item.name === "All" ? history.push("/beer/list")
+                            // :
+                            // history.push(`/beer/list/${item._id}`)
                         }} key={idx}>
                         {item.name}
                     </div>

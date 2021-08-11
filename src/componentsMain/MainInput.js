@@ -33,7 +33,7 @@ const MainInput = (props) => {
                         당신을 위한 오늘의 맥주는?
                     </LinkBox>
                     <LinkBox onClick={() => {
-                        history.push("/beer/list")
+                        history.push("/beer/list/all")
                     }}>
                         대한민국의 모든 맥주
                     </LinkBox>
