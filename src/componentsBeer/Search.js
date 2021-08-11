@@ -1,10 +1,8 @@
-import React,{useState,useEffect} from "react";
+import React,{ useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { getSearchWord } from "../redux/async/beer";
 import { getSearchList } from "../redux/reducer/beerSlice";
-
-import remove from "../share/image/remove.png";
 
 const Search = (props) => {
     const { setSearch_Beer, 
@@ -18,7 +16,7 @@ const Search = (props) => {
     const dispatch = useDispatch();
 
     const onChange = (e) =>{
-        if(e.target.value == ''){//검색어 지웠을 때 검색목록 사라지도록 
+        if(e.target.value === ''){//검색어 지웠을 때 검색목록 사라지도록 
             setWord(null) 
         }else{
             setWord(e.target.value);

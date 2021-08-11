@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Radar } from 'react-chartjs-2';
 
 const TasteGraph = ({ beers }) => {

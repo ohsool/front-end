@@ -1,7 +1,7 @@
 import React ,{useState,useEffect} from "react";
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
-import { useDispatch , useSelector} from "react-redux";
+import { useDispatch } from "react-redux";
 
 import "../share/style/ReviewWriteModal.css";
 import { StarRate, SelectBar} from "./BeerIndex";

@@ -7,7 +7,7 @@ import { categories } from "../redux/reducer/categorySlice";
 import {Slider,Search,EachBeer} from "./BeerIndex";
 import Loader from "../share/Loader.js";
 import { getCategory } from "../redux/async/category";
-import { getAllBeer} from "../redux/async/beer";
+import { getAllBeer } from "../redux/async/beer";
 import { userInfo } from "../redux/async/user";
 
 const BeerList = (props) =>{
