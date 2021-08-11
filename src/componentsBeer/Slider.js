@@ -1,5 +1,5 @@
 //slide효과를 위한 컴포넌트
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import {history} from "../redux/configureStore";
 
@@ -52,5 +52,11 @@ const StyledSlider = styled(Slider)`
         outline: none;
         width: 60px;
         text-align: center;
+        cursor: pointer;
+        :focus{
+            font-weight: 700;
+            color: black;
+            text-decoration: underline;
+        }
     }
 `;

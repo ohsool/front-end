@@ -16,13 +16,12 @@ const Login = (props) => {
         password: "",
     }); //로그인 정보
     const {email, password} = login_info;
-    /*
+
     useEffect(() => {
         if(session){
             history.push("/")
         }
-    }, []);*/
-    console.log("login props",props)
+    }, []);
 
     const onChange = (e) => {
         setLogin_Info({...login_info, [e.target.name]: e.target.value});
@@ -38,7 +37,6 @@ const Login = (props) => {
             email: "",
             password: ""
         });
-        //history.goBack(-2);
     }
 
     const submitEnterLogin = (e) => {

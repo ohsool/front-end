@@ -15,7 +15,7 @@ export const getCategory = createAsyncThunk(
 export const getCategoryBeer = createAsyncThunk(
     "category/getCategoryBeer",
     async (data, thunkAPI) => {
-
+      console.log("Categorybeer dispatch", data);
     const response = await nonHeaderAxios.get(`/api/beerCategory/${data}`);
     
   return response.data;

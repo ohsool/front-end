@@ -25,11 +25,13 @@ const Heart = styled.img`
   width: 16px;
   height: 16px;
   float: right;
+  cursor: pointer;
 `;
 const HeartDetail = styled.img`
   width: 38px;
   height: 38px;
   box-sizing: border-box;
+  cursor: pointer;
 `;
 
 export default React.memo(HeartButton);

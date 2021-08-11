@@ -4,7 +4,7 @@ import MapImage from "./MapImage";
 
 
 const MyPageModal = (props) => {
-    const { open, close } = props;
+    const { open, close, beerId } = props;
 
     return(
         <React.Fragment>
@@ -15,7 +15,7 @@ const MyPageModal = (props) => {
                     <CloseIcon
                         onClick={close}>
                     </CloseIcon>
-                        <MapImage></MapImage>
+                        <MapImage beerId={beerId} ></MapImage>
                     </MapImageWrap>
                 </ModalWrap>
             </Background>

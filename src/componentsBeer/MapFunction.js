@@ -1,4 +1,4 @@
-/*export function findLocation(place) {  // Find my location. or not, 여삼빌딩
+export function findLocation(place) {  // Find my location. or not, 여삼빌딩
     if ("geolocation" in navigator) {  // if i can get my address
         navigator.geolocation.getCurrentPosition((position) => {
             const lat = position.coords.latitude;
@@ -71,4 +71,3 @@ function choose(place) {
 
     alert(`You chose ${place.place_name}`);
 }
-*/

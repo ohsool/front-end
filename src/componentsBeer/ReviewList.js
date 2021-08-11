@@ -32,8 +32,11 @@ const ReviewList = (props)=>{
     useEffect(() => {
             dispatch(getOneBeer(props.match.params.beerId));
             dispatch(userInfo());
-            dispatch(getReview(props.match.params.beerId));
     }, []);
+
+    useEffect(()=>{
+        dispatch(getReview(props.match.params.beerId));
+    },[beer_infos])
 
     const loginConfirm = ()=>{
         if(userId){

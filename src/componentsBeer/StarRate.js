@@ -21,7 +21,7 @@ const StarButton = ({setStarScore, init_star}) =>{
           return (
             <StarIcon 
               key={index}
-              style={{ color: "#FFB521", width: "40px", height: "40px"}}
+              style={{ color: "#FFB521", width: "35px", height: "35px"}}
               onClick={() => {
                 setScore(index + 1);
                 handleScore(index + 1);
@@ -32,7 +32,7 @@ const StarButton = ({setStarScore, init_star}) =>{
         {[...Array(removeCount)].map((n, index) => {
           return (
             <StarBorderIcon
-              style={{ color: "#FFB521", width: "40px", height: "40px"}}
+              style={{ color: "#FFB521", width: "35px", height: "35px"}}
               onClick={() => {
                 setScore(score + index + 1);
                 handleScore(score + index + 1);

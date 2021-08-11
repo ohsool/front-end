@@ -15,11 +15,12 @@ const EachBeer = (props) => {
     const [toggle, setToggle] = useState(false);
 
     useEffect(() => { //좋아요 눌렀는지 아닌지 판별
-        if(item.like_array?.includes(userId)){
+        if(item.like_array.includes(userId)){
             setToggle(true);
+        }else{
+            setToggle(false);
         }
-    }, []);
-
+    }, [item]);
    
     const clickLike = () => { //좋아요 토글 함수
         if(userId){
@@ -67,7 +68,7 @@ const EachBeer = (props) => {
     )
 }
 
-export default React.memo(EachBeer);
+export default EachBeer;
 
 const RecommendBeerWrap = styled.div`
     width: 148px;
@@ -81,6 +82,7 @@ const BeerImage = styled.div`
     border-radius: 13px;
     background-color: #F7F7F7;
     background-size: cover;
+    cursor: pointer;
     & > img{
         width:130px;
         height: 130px;

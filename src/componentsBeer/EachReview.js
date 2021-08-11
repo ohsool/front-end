@@ -67,7 +67,7 @@ const EachReview=(props)=> {
                                     e.stopPropagation();
                                     if(window.confirm("정말로 삭제하시나요?")){
                                         dispatch(deleteReview(item._id));
-                                        window.location.reload();
+                                        window.alert("삭제되었습니다.😊");
                                         return
                                     }
                                 }}></DeleteButton>
@@ -184,7 +184,6 @@ const DeleteButton =styled.div`
 `
 
 const ReviewText = styled.div`
-    
     margin: 5px;
     max-height: 51px;
     line-height: 17px;

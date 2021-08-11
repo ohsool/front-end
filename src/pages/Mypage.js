@@ -18,7 +18,7 @@ const MyPage = (props) => {
         titlePlaceholder: "",
         commentPlaceholder: "",
     });
-
+/*
     useEffect(() => {
         if(!session){
             if(window.confirm("로그인이 필요한 서비스입니다. 로그인하시겠습니까?")){
@@ -27,7 +27,7 @@ const MyPage = (props) => {
             }
         }
     }, []);
-
+*/
     const openModal = () => { //modal창 오픈
         setModalOpen(true);
       };

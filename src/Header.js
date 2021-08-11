@@ -4,7 +4,18 @@ import myIcon from "./share/image/HeaderIcon.png";
 
 import { history } from "./redux/configureStore";
 const Header = (props) => {
+    const session = sessionStorage.getItem("token");
 
+    const comfirm_login = ()=>{
+        if(!session){
+            if(window.confirm("로그인이 필요한 서비스입니다. 로그인하시겠습니까?")){
+                history.push("/login");
+                return;
+            }
+        }else{
+            history.push("/mypage");
+        }
+    }
     return (
         <React.Fragment>
             <HeaderWrap>
@@ -19,7 +30,7 @@ const Header = (props) => {
                     }}>오늘의술</HeaderLogo>
                     <UserImage style={{backgroundImage: `url(${myIcon})`}}
                         onClick={() => {
-                        history.push("/mypage")
+                            comfirm_login();
                     }}></UserImage>
             </HeaderBox>
             </HeaderWrap>
