@@ -8,7 +8,7 @@ const Beer = (props) => {
     return (
         <React.Fragment>
             <Header/>
-            <Route path="/beer/list/" exact component={BeerList}/>
+            {/* <Route path="/beer/list/" exact component={BeerList}/> */}
             <Route path="/beer/list/:beerCategoryId" exact component={BeerList}/>
             <Route path="/beer/detail/:beerId" component={BeerDetail}/>
             <Route path="/beer/review/:beerId" component={ReviewList}/>

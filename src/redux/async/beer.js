@@ -4,8 +4,7 @@ import { headerAxios, nonHeaderAxios } from "./moduleAxios";
 export const getAllBeer = createAsyncThunk(
   "beer/getAllBeer",
   async (data, thunkAPI) => {
-
-    const response = await nonHeaderAxios.get(`/api/beer/list/all`);
+    const response = await nonHeaderAxios.get(`/api/beer/list/${data}`);
     
     return response.data;
   }

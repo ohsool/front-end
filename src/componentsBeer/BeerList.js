@@ -21,7 +21,7 @@ const BeerList = (props) =>{
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getAllBeer());
+        dispatch(getAllBeer("all"));
         dispatch(getCategory());
         dispatch(userInfo());
         setIs_Loading(true);
@@ -38,7 +38,7 @@ const BeerList = (props) =>{
     }
 
     const allBeerList = () => {
-        if(!get_category_id){
+        if(get_category_id === "all"){
             return (
             <List>
                 {beers?.map((item, idx) => (
