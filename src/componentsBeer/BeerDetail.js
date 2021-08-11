@@ -263,7 +263,7 @@ const MapIcon = styled.div`
 const PlaceButton = styled.button`
     width: 308px;
     height: 45px;
-    border-radius: 50;
+    border-radius: 50px;
     border: 1px solid #FFC44F;
     background-color: #fff;
     margin-top: 16px;

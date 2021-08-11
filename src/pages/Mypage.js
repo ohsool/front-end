@@ -9,9 +9,9 @@ import Header from "../Header";
 import arrow from "../share/image/mypagearrow.png";
 
 const MyPage = (props) => {
-    const dispatch = useDispatch();
     const session = sessionStorage.getItem("token");
     const [modalOpen, setModalOpen] = useState(false);
+    const dispatch = useDispatch();
 
     const [modal_info, setModal_Info] = useState({ //건의하기 modal창 text정보
         suggestTitle: "",
@@ -22,10 +22,8 @@ const MyPage = (props) => {
     useEffect(() => {
         if(!session){
             if(window.confirm("로그인이 필요한 서비스입니다. 로그인하시겠습니까?")){
-                history.push("/login")
+                history.push("/login");
                 return;
-            }else{
-                history.goBack("/")
             }
         }
     }, []);

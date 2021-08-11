@@ -53,6 +53,7 @@ const userSlice = createSlice({
       .addCase(logIn.fulfilled, (state, action) => {
         sessionStorage.setItem("token", action.payload.token);
         window.location.replace("/");
+        //history.goBack();
       })
       .addCase(logIn.rejected, (state, action) => {
         window.alert("아이디나 비밀번호가 틀립니다!")
