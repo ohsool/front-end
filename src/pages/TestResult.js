@@ -18,10 +18,10 @@ const TestResult = (props) => {
     const category = useSelector(recommendCate);
     //테스트 후 나온 결과(맥주추천)
     const beerRecommends = useSelector(recommendBeerToday);
-
+    console.log("Rendering");
     useEffect(() => {
         dispatch(userInfo());
-    }, [])
+    }, []);
 
     useEffect(() => {
         if(categoryParams === "Lager" 
@@ -102,4 +102,5 @@ const ReButton = styled.div`
         width: 11px;
         height: 11px;
     }
+    cursor: pointer;
 `;

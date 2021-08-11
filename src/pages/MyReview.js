@@ -53,7 +53,7 @@ const MyReview = (props) =>{
         </React.Fragment>
     )
 }
-export default React.memo(MyReview, TasteGraph);
+export default React.memo(MyReview);
 
 const Container = styled.div`
     display: flex;

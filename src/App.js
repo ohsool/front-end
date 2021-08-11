@@ -16,11 +16,6 @@ useEffect(() => {// 만약 공유 기능이 2개이상으로 바뀌면 kakao.lin
     Kakao.init("AppKey");
 }, []);
 
-/*
-  useEffect(() => {// 만약 공유 기능이 2개이상으로 바뀌면 kakao.link.createdefaultbutton 사용하기 (그때는 내용에 container가 포함 되어있아야한다)
-      Kakao.init("apiKey 자리");
-  }, []);
-*/
   return (
     <React.Fragment>
       <ReactHelmet 
@@ -39,7 +34,7 @@ useEffect(() => {// 만약 공유 기능이 2개이상으로 바뀌면 kakao.lin
         <Route path="/mypage" component={Mypage}/>
         <Route path="/mybeer" component={MyBeer}/>
         <Route path="/token=:token" component={Token}/>
-        <Route path="/review/:reviewId" component={ MyReview }/>
+        <Route path="/review/:reviewId" component={MyReview}/>
       </ConnectedRouter>
       <GlobalStyle/>
     </React.Fragment>   
