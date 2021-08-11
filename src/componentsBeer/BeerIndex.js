@@ -4,7 +4,6 @@ import BeerTextarea from "./BeerTextarea";
 import EachBeer from "./EachBeer";
 import MapModal from "./MapModal";
 import Search from "./Search";
-
 import EachReview from "./EachReview";
 import HeartButton from "./HeartButton";
 import ReviewList from "./ReviewList";
@@ -21,7 +20,6 @@ export {BeerDetail,
     EachBeer,
     MapModal,
     Search,
-
     EachReview, 
     HeartButton,
     ReviewList,

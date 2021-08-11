@@ -36,6 +36,7 @@ const reviewSlice = createSlice({
         .addCase(writeReview.pending, (state, action) => {
         })
         .addCase(writeReview.fulfilled, (state, action) => {
+          console.log(action.payload)
         })
       // 공통
       .addMatcher(

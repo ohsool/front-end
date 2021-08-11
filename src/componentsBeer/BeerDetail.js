@@ -31,20 +31,26 @@ const BeerDetail = (props) =>{
     useEffect(() => { //맥주 정보, 사용자정보 및 리뷰정보 불러오기
         dispatch(getOneBeer(props.match.params.beerId)); 
         dispatch(getReview(props.match.params.beerId));
-    }, []);
+        dispatch(userInfo());
+    }, [dispatch, props.match.params.beerId]);
 
     useEffect(() => {
-        dispatch(userInfo());
-        if(props.location.state.includes(userId)){
+        if(props.location.state?.includes(userId) === true){
             setToggle(true);
+        }else{
+            setToggle(false);
         }
     }, []);
 
     useEffect(() => { //좋아요된 상태면 좋아요눌린걸로 아니면 false그대로
-        if(beerOne?.like_array?.includes(userId)){
-            setToggle(true);
+        if(beerOne && userId){
+            if(beerOne.like_array.includes(userId)){
+                setToggle(true);
+            }else{
+                setToggle(false);
+            }
         }
-    }, [userId]);
+    }, [beerOne, userId]);
 
     const openModal = () => {
         setModalOpen(true);
@@ -251,7 +257,7 @@ const Graph = styled.div`
     display: flex;
     width: 313px;
     height: 313px;
-    border: 2px solid #FFC44F;
+    border: 2px solid #C4C4C4;
     border-radius: 10px;
 `;
 

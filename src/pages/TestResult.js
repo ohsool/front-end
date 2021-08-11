@@ -4,10 +4,11 @@ import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 import { testShare } from "../redux/async/beer";
 import { recommendCate, recommendBeerToday } from "../redux/reducer/beerSlice";
-
+import { userInfo } from "../redux/async/user";
 
 import BackgroundCateImage from "../componentsTest/BackgroundCateImage";
-import { RecommendBeer, ResultInfo, TestHeader } from "../componentsTest/TestIndex";
+import { ResultInfo, TestHeader } from "../componentsTest/TestIndex";
+import { EachBeer } from "../componentsBeer/BeerIndex"
 
 const TestResult = (props) => {
     const dispatch = useDispatch();
@@ -17,6 +18,10 @@ const TestResult = (props) => {
     const category = useSelector(recommendCate);
     //테스트 후 나온 결과(맥주추천)
     const beerRecommends = useSelector(recommendBeerToday);
+
+    useEffect(() => {
+        dispatch(userInfo());
+    }, [])
 
     useEffect(() => {
         if(categoryParams === "Lager" 
@@ -43,7 +48,7 @@ const TestResult = (props) => {
                         <ResultInfo category={category}/>
                         <RecommendBeerWrap>{/* 해당 카테고리 맥주 2종 추천 */}
                             {beerRecommends?.map((item, idx) => (
-                                <RecommendBeer key={idx} item={item}></RecommendBeer>
+                                <EachBeer key={idx} item={item}></EachBeer>
                             ))}
                         </RecommendBeerWrap>
                     </Wrap>

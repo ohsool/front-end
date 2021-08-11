@@ -134,7 +134,7 @@ const Graph = styled.div`
     display: flex;
     width: 313px;
     height: 313px;
-    border: 2px solid #FFC44F;
+    border: 2px solid #C4C4C4;
     border-radius: 10px;
 `;
 
