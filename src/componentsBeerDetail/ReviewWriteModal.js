@@ -4,7 +4,7 @@ import { history } from "../redux/configureStore";
 import { useDispatch } from "react-redux";
 
 import "../share/style/ReviewWriteModal.css";
-import { StarRate, SelectBar} from "./BeerIndex";
+import { StarRate, SelectBar} from "./BeerDetailIndex";
 import { writeReview, editReview} from "../redux/async/review";
 
 const ReviewWriteModal = (props) => {
@@ -43,7 +43,8 @@ const ReviewWriteModal = (props) => {
                 nutty: featuresList[4],
             },
             location: "default",
-            rate: starScore.toFixed(1),
+            //rate: starScore.toFixed(1),
+            rate: starScore,
             review: review,
             beerId: beerOne._id
         }));
@@ -67,7 +68,8 @@ const ReviewWriteModal = (props) => {
                 nutty: featuresList[4]
             },
             location: "default",
-            rate: starScore.toFixed(1),
+            //rate: starScore.toFixed(1),
+            rate: starScore,
             review: review,      
             mybeerId: mybeerId,
         }));
@@ -101,7 +103,6 @@ const ReviewWriteModal = (props) => {
                             </BeerImage>
                             {is_edit ? ( 
                                  <>
-                                    
                                     <BeerTextarea 
                                         onChange={onChange}
                                         review={review}
@@ -157,8 +158,6 @@ const ReviewWriteModal = (props) => {
                                         ))}
                                     </>
                                 )}
-                                <TasteScore>
-                                </TasteScore>
                             </TasteScoreWrap>
                             </div>
                         {is_edit ? (
@@ -226,6 +225,7 @@ const ScoreWrap = styled.div`
     width: 360px;
     box-sizing: border-box;
     margin: 0 auto;
+
 `;
 const SuggestTitle = styled.div`
     height: 50px;
@@ -280,14 +280,14 @@ const BeerTextarea = styled.textarea`
 `;
 
 const Div = styled.div`
-    margin: 10px auto;
+    margin: 5px auto;
     display: flex;
     flex-direction: column;
     text-align: center;  
 `
 const ReviewButton = styled.div`
     width: 308px;
-    margin: 8px auto;
+    margin: 20px auto;
     button{
         width: 308px;
         height: 45px;
@@ -311,7 +311,7 @@ const TasteFlavorWrap = styled.div`
         font-size: 14px;
         font-weight: 700;
         line-height: 20.27px;
-        margin-bottom 13px;
+        margin-bottom: 13px;
     }
 `;
 
@@ -319,11 +319,5 @@ const TasteScoreWrap = styled.div`
     width: 200px;
     height: 240px;
     display: inline-block;
-    margin: 0 0 0 47px;
-`;
-
-const TasteScore = styled.div`
-    width: 190px;
-    height: 30px;
-    margin-bottom: 13px;
+    margin: 0 0 0px 47px;
 `;

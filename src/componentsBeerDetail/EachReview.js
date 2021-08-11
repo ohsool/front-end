@@ -10,7 +10,7 @@ import remove from "../share/image/remove.png";
 import {useDispatch} from "react-redux";
 import {deleteReview} from "../redux/async/review";
 
-import ReviewWriteModal from "../componentsBeer/ReviewWriteModal";
+import ReviewWriteModal from "../componentsBeerDetail/ReviewWriteModal";
 
 const EachReview=(props)=> {
     const { item, beerOne, userId} = props; 
