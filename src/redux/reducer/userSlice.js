@@ -10,6 +10,8 @@ import {history} from "../configureStore"
 
 const initialState = {
   userList: null,
+  is_login: null,
+  is_signup: null,
   currentUser: [],
   checkEmail: null,
   checkNickname: null,
@@ -30,13 +32,7 @@ const userSlice = createSlice({
   extraReducers: (builder) =>
     builder
       .addCase(signUp.fulfilled, (state, action) => {
-        if(action.payload.message === "success"){
-          window.location.href = "/"
-        }
-        if(action.payload.message === "existed user"){
-          window.alert("이미 존재하는 아이디입니다!")
-        }
-        //window.location.reload("/");
+        state.is_signup = action.payload.message;
       })
       .addCase(checkEmail.fulfilled, (state, action) => {
         state.checkEmail = action.payload.existed;
@@ -52,8 +48,7 @@ const userSlice = createSlice({
       })
       .addCase(logIn.fulfilled, (state, action) => {
         sessionStorage.setItem("token", action.payload.token);
-        window.location.replace("/");
-        //history.goBack();
+        state.is_login = action.payload.message;
       })
       .addCase(logIn.rejected, (state, action) => {
         window.alert("아이디나 비밀번호가 틀립니다!")
@@ -100,6 +95,18 @@ export default userSlice;
 
 const current_User = (state) => state.user.currentUser.userId;
 
+const is_login = (state) => state.user.is_login;
+
+const is_signup = (state) => state.user.is_signup;
+
 export const User = createSelector(current_User, current_User => {
   return current_User;
+});
+
+export const is_Login = createSelector(is_login, is_login => {
+  return is_login
+});
+
+export const is_Signup = createSelector(is_signup, is_signup => {
+  return is_signup
 });

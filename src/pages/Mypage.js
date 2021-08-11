@@ -139,5 +139,6 @@ const LogOutButton = styled.button`
     transform: translate(-30px, 0);
     border: none;
     background-color: transparent;
-    color: #FFC44F
+    color: #FFC44F;
+    cursor: pointer;
 `;

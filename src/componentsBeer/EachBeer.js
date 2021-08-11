@@ -20,7 +20,8 @@ const EachBeer = (props) => {
         }else{
             setToggle(false);
         }
-    }, [item]);
+    }, [item, userId]);
+
    
     const clickLike = () => { //좋아요 토글 함수
         if(userId){

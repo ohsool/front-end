@@ -3,14 +3,17 @@ import styled from "styled-components";
 
 import {useDispatch, useSelector} from "react-redux";
 import { signUp, checkEmail, checkNickname } from "../redux/async/user";
+import { is_Signup } from "../redux/reducer/userSlice";
 import { emailCheck, pwdReg} from "../share/checkReg";
+import { history } from "../redux/configureStore";
 import "../share/style/loginButton.css";
 
 const SignUp = (props) => {
     const dispatch = useDispatch();
     const [is_typed, setIs_Typed] = useState(false);
-    const is_email = useSelector(state => state.user.checkEmail);
-    const is_nickname = useSelector(state => state.user.checkNickname);
+    const is_email = useSelector(state => state.user.checkEmail); //이메일중복체크 서버에서 응답
+    const is_nickname = useSelector(state => state.user.checkNickname); // 닉네임 중복체크 서버에서 응답
+    const is_signup = useSelector(is_Signup); //회원가입 된 지 서버에서 체크
     const [email_check_text, setEamil_Check_Text] = useState("");
     const [nickname_check_text, setNickname_Check_Text] = useState("");
     const [email_double, setEmail_Double] = useState("");
@@ -24,8 +27,15 @@ const SignUp = (props) => {
 
     const {email, nickname, password, confirmPassword} = signup_info;
 
+    useEffect(() => { //회원가입 후 응답이 오면 로그인페이지로 이동
+        if(is_signup === "success"){
+            alert("회원가입이 완료되었습니다!");
+            history.push("/login");
+        }
+    }, [is_signup]);
+
     useEffect(() => {   //아이디 중복및 형식 체크
-        if(email === ""){
+        if(email === ""){  // 인풋이 비어있으면 인풋 밑의 글자 초기화
             setEamil_Check_Text("");
             return;
         }

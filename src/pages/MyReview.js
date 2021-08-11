@@ -30,7 +30,6 @@ const MyReview = (props) =>{
                 <div style={{textAlign: "center", margin: "-10px 0 10px 0"}}>
                     <StarRate init_star={item.rate}/>
                 </div>
-                <Text><span>그래프</span></Text>                      
                 <Graph>
                     <TasteGraph beers={item?.myFeatures}/>
                 </Graph>
@@ -42,7 +41,7 @@ const MyReview = (props) =>{
         </React.Fragment>
     )
 }
-export default React.memo(MyReview, TasteGraph);
+export default React.memo(MyReview);
 
 const Container = styled.div`
     display: flex;

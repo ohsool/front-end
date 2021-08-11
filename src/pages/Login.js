@@ -3,27 +3,29 @@ import styled from "styled-components";
 
 import { emailCheck, pwdReg } from "../share/checkReg";
 import { history } from "../redux/configureStore";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logIn } from "../redux/async/user";
+import { is_Login } from "../redux/reducer/userSlice";
 import "../share/style/loginButton.css";
 
 const Login = (props) => {
     const dispatch = useDispatch();
-    const session = sessionStorage.getItem("token");
+    const is_login = useSelector(is_Login);
     const [is_typed, setIs_Typed] = useState(false);
     const [login_info, setLogin_Info] = useState({
         email: "",
         password: "",
     }); //로그인 정보
+
     const {email, password} = login_info;
-
-    useEffect(() => {
-        if(session){
-            history.push("/")
+    
+    useEffect(() => { //로그인 요청후 응답이 성공으로 오면 이전 화면으로 되돌아가게 함
+        if(is_login === "success"){
+            history.goBack();
         }
-    }, []);
+    }, [is_login]);
 
-    const onChange = (e) => {
+    const onChange = (e) => {  // 로그인 아이디, 비밀번호 인풋값
         setLogin_Info({...login_info, [e.target.name]: e.target.value});
     }
 
@@ -175,4 +177,5 @@ const SocialLoginButton = styled.button`
     background-color: transparent;
     border-radius: 24px;
     color: #555555;
+    cursor: pointer;
 `;
