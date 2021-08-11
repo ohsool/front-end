@@ -28,7 +28,8 @@ const ReviewWriteModal = (props) => {
         setReview(item?.review);
         setStarScore(item?.rate);
     },[])
-    
+
+
     const addReview = () => {
         if(review === "" || starScore === 0 || featuresList.includes(0)){
             window.alert("답하지 않은 문항이 있어요!")
@@ -162,13 +163,15 @@ const ReviewWriteModal = (props) => {
                             </div>
                         {is_edit ? (
                             <ReviewButton>
-                                <button onClick={() => {
+                                <button 
+                                onClick={() => {
                                     updateReview();
                                 }}>도감 수정하기</button>
                             </ReviewButton>
                         ):(
                             <ReviewButton>
-                                <button onClick={() => {
+                                <button
+                                onClick={() => {
                                     addReview()
                                 }}>도감 작성하기</button>
                             </ReviewButton>
