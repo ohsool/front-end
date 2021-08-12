@@ -7,6 +7,7 @@ import {BeerList} from '../componentsBeer/BeerIndex';
 import {BeerDetail,ReviewList} from '../componentsBeerDetail/BeerDetailIndex';
 
 const Beer = (props) => {
+
     return (
         <React.Fragment>
             <Header/>

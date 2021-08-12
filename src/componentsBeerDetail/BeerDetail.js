@@ -19,6 +19,7 @@ const BeerDetail = (props) =>{
     const [toggle, setToggle] = useState(false);
     const heart_detail = "detail"
     const beerOne = useSelector(oneBeer);
+    const hashtag = beerOne?.hashtag;
     const userId = useSelector(User);
     const beer_infos = useSelector(getReviewList);
     const dispatch = useDispatch();
@@ -29,7 +30,7 @@ const BeerDetail = (props) =>{
         dispatch(userInfo());
     }, [dispatch, props.match.params.beerId]);
 
-    useEffect(() => { //좋아요된 상태면 좋아요눌린걸로 아니면 false그대로
+    useEffect(() => { //좋아요된 상태면 좋아요 눌린걸로 아니면 false그대로
         if(beerOne && userId){
             if(beerOne.like_array.includes(userId)){
                 setToggle(true);
@@ -79,9 +80,8 @@ const BeerDetail = (props) =>{
                         </HeartWrap>
                         </Horizion>
                         <p style={{margin: "0px"}}>{beerOne?.name_english}</p>
-                        {beerOne?.hashtag?.map((item, idx)=>(
-                            idx < 3 ? "" :
-                            <TasteTag key={idx}>
+                        {hashtag?.map((item, idx)=>(
+                            idx < 3 ? "": <TasteTag>
                                 <span>#{item}</span>
                             </TasteTag>
                         ))}    
@@ -89,9 +89,16 @@ const BeerDetail = (props) =>{
                     <Line/>
                     <Wrap>
                         <span style={{ fontWeight: "700"}}>맥주소개</span>
+                        {hashtag ?
                         <BeerContent>
-                            맥주 설명!!!
-                        </BeerContent>
+                            <p>
+                                <span>{beerOne?.name_korean}</span> 맥주는 <span>'{hashtag[1]}'</span> 도수를 지닌 <span>{hashtag[0]}</span> 맥주입니다.
+                                <span>{hashtag[2]}</span>이 매력적인 친구죠.🍺
+                                <br/>
+                                <br/>
+                                퇴근 후 <span>{beerOne?.name_korean}</span> 한잔 어때요?
+                            </p>
+                        </BeerContent> :null}
                     </Wrap>
                     <Line/>
                     <Wrap>
@@ -226,6 +233,19 @@ const BeerContent = styled.div`
     padding: 14px 0;
     margin: 0;
     width: 250px;
+    & > p{
+        font-weight: 500;
+        font-style: normal;
+        font-size: 14px;
+        line-height: 20.27px;
+        & > span {
+            font-weight: 650;
+            font-style: normal;
+            font-size: 14.5px;
+            line-height: 21px;
+        }        
+    }
+   
 `;
 
 const Graph = styled.div`

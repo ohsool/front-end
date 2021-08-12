@@ -60,11 +60,13 @@ const EachBeer = (props) => {
                         is_like={toggle}
                         />
                     <p>{item.name_english}</p>
+                    
                 </BeerInfoWrap>
+
                 {item.hashtag.map((p, idx) => (
-                        idx < 3 ? "" :
-                        <TasteTag>#{p}</TasteTag>
-                ))}
+                    idx < 3 ? "":
+                        <TasteTag key={idx}>#{p}</TasteTag>
+                    ))}
             </RecommendBeerWrap>
         </React.Fragment>
     )
@@ -111,6 +113,9 @@ const BeerInfoWrap = styled.div`
     & p {
         margin: 0;
         font-size: 12px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow:ellipsis
     }
 `;
 

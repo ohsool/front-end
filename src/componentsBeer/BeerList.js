@@ -72,6 +72,7 @@ const BeerList = (props) =>{
                                 setSearch_Beer = {setSearch_Beer}
                                 beers={beers}
                                 setIs_Search={setIs_Search}
+                                search_beer={search_beer}
                             ></Search>
                             {is_search ? searchBeerList() //검색된 맥주 리스트 출력
                             : allBeerList() //타입별 맥주 리스트 출력
