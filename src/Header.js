@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import myIcon from "./share/image/HeaderIcon.png";
+import Back from "./share/image/Back.png";
 
 import { history } from "./redux/configureStore";
 import { getCookie } from "./share/Cookie";
@@ -21,9 +22,9 @@ const Header = (props) => {
         <React.Fragment>
             <HeaderWrap>
             <HeaderBox>
-                    <GoBack
+                    <GoBack style={{backgroundImage: `url(${Back})`}}
                     onClick={()=>{ 
-                        history.goBack()
+                        history.goBack();
                     }}></GoBack>
                     <HeaderLogo 
                     onClick={() => {
@@ -57,15 +58,14 @@ const HeaderBox = styled.div`
     display: flex;
 
     justify-content: space-between;
-    // background-color: white;
     display: flex;
     z-index: 10;
 `;
 const GoBack = styled.div`
     width: 24px;
     height: 24px;
+    background-size: cover;
     margin: 10px 0 0 12px;
-    border: 1px solid #C4C4C4;
     cursor: pointer;
 `;
 

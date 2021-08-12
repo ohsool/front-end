@@ -1,12 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { headerAxios, nonHeaderAxios } from "./moduleAxios";
+import { axiosInstance } from "./moduleAxios";
 
 //해당 맥주 리뷰 가지고 오기
 export const getReview = createAsyncThunk(
   "review/getReview",
   async (data, thunkAPI) => {
 
-    const response = await nonHeaderAxios.get(`/api/mybeer/beer/${data}`);
+    const response = await axiosInstance.get(`/api/mybeer/beer/${data}`);
     
     return response.data;
   }
@@ -19,7 +19,7 @@ export const writeReview = createAsyncThunk(
     const beerId = data.beerId;
     delete data.beerId;
 
-    const response = await headerAxios.post(`/api/mybeer/${beerId}`, data); 
+    const response = await axiosInstance.post(`/api/mybeer/${beerId}`, data); 
 
     return response.data;
   }
@@ -32,7 +32,7 @@ export const editReview = createAsyncThunk(
     const mybeerId = data.mybeerId;
     delete data.mybeerId;
   
-    const response = await headerAxios.put(`/api/mybeer/${mybeerId}`, data);
+    const response = await axiosInstance.put(`/api/mybeer/${mybeerId}`, data);
     return response.data;
   
   }
@@ -44,7 +44,7 @@ export const deleteReview = createAsyncThunk(
   "review/deleteReview",
   async (data, thunkAPI) => {
     
-    const response = await headerAxios.delete(`/api/mybeer/${data}`);
+    const response = await axiosInstance.delete(`/api/mybeer/${data}`);
 
     return response.data;
   }

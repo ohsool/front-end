@@ -1,14 +1,15 @@
 import React,{useState, useEffect} from "react";
 import styled from "styled-components";
 
-import {EachReview,ReviewWriteModal} from "../componentsBeerDetail/BeerDetailIndex";
 import { useSelector, useDispatch } from "react-redux";
 import {history} from "../redux/configureStore";
+import { getReview } from "../redux/async/review";
 import { getOneBeer } from "../redux/async/beer";
 import { userInfo } from "../redux/async/user";
 import { getReviewList } from "../redux/reducer/reviewSlice";
 import { oneBeer } from "../redux/reducer/beerSlice";
 import { User } from "../redux/reducer/userSlice";
+import {EachReview,ReviewWriteModal} from "../componentsBeerDetail/BeerDetailIndex";
 
 const ReviewList = (props)=>{
     const [modalOpen, setModalOpen] = useState(false);
@@ -26,6 +27,7 @@ const ReviewList = (props)=>{
     };
 
     useEffect(() => {
+            dispatch(getReview(props.match.params.beerId));
             dispatch(getOneBeer(props.match.params.beerId)); 
             dispatch(userInfo());
     }, []);
