@@ -1,11 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { headerAxios, nonHeaderAxios } from "./moduleAxios";
+import { axiosInstance } from "./moduleAxios";
 
 // 회원 가입
 export const signUp = createAsyncThunk(
   "user/signUp",
   async (data, thunkAPI) => {
-    const response = await nonHeaderAxios.post(`/api/user`, data);
+    const response = await axiosInstance.post(`/api/user`, data);
     return response.data;
   }
 );
@@ -14,7 +14,7 @@ export const signUp = createAsyncThunk(
 export const logIn = createAsyncThunk(
   "user/logIn",
   async (data, thunkAPI) => {
-    const response = await nonHeaderAxios.post(`api/user/auth`, data);   
+    const response = await axiosInstance.post(`api/user/auth`, data);   
     return response.data;
   }
 );
@@ -23,7 +23,7 @@ export const logIn = createAsyncThunk(
 export const userInfo = createAsyncThunk(
   "user/userInfo",
   async (data, thunkAPI) => {
-    const response = await headerAxios.get(`/api/user/me`);
+    const response = await axiosInstance.get(`/api/user/me`);
     return response.data;
   }
 );
@@ -34,7 +34,7 @@ export const checkEmail = createAsyncThunk(
     const server_email = {
       email: data
     }
-    const response = await nonHeaderAxios.post(`/api/user/email`, server_email);
+    const response = await axiosInstance.post(`/api/user/email`, server_email);
     return response.data;
   }
 );
@@ -45,7 +45,7 @@ export const checkNickname = createAsyncThunk(
     const server_nickname ={
       nickname: data
     }
-    const response = await nonHeaderAxios.post(`/api/user/nickname`, server_nickname);   
+    const response = await axiosInstance.post(`/api/user/nickname`, server_nickname);   
     return response.data;
   }
 );

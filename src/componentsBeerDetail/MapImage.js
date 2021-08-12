@@ -1,29 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import { mapReport } from "../redux/async/suggest";
 
-const MapImage = ({beerId}) => {
+const MapImage = ({setClickReport}) => {
         const kakao = window.kakao;
         const container = useRef(null);
         const inputRef = useRef(null);
         const dispatch = useDispatch();
-        const [clickReport, setClickReport] = useState();
         let map;
         const infowindow = new kakao.maps.InfoWindow({zIndex:1});
 
         useEffect(() => {
             findLocation();
         }, []);
-
-        const ReportPlace = () => {
-            const mapData = {
-                beerId: beerId,
-                name: clickReport.place_name,
-                address: clickReport.address_name,
-                url: clickReport.place_url,
-              }
-            dispatch(mapReport(mapData));
-        }
 
         function findLocation(place) {  // Find my location. or not, 여삼빌딩
 
@@ -110,11 +98,10 @@ const MapImage = ({beerId}) => {
         <React.Fragment>
             <input ref={inputRef}></input>
             <button onClick={searchbtnclicked} style={{width: "40px", height: "20px", cursor: "pointer"}}>검색</button>
-            <button onClick={ReportPlace} style={{width: "40px", height: "20px"}}>제보</button>
             <div 
                 className= "map"
                 ref={container}
-                style={{width:"340px", height:"340px"}}></div>
+                style={{width:"100vw", height:"525px"}}></div>
         </React.Fragment>
     )
 }

@@ -1,12 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { headerAxios, nonHeaderAxios } from "./moduleAxios";
+import { axiosInstance } from "./moduleAxios";
 
 // 불편사항
 export const suggestComment = createAsyncThunk(
   "suggest/suggestComment",
   async (data, thunkAPI) => {
 
-    const response = await headerAxios.post(`/api/complaint`, data);
+    const response = await axiosInstance.post(`/api/complaint`, data);
     
     return response.data;
   }
@@ -17,7 +17,7 @@ export const suggestBeer = createAsyncThunk(
   "/api/suggestBeer",
   async (data, thunkAPI) => {
 
-    const response = await headerAxios.post(`/api/recommendation`, data);
+    const response = await axiosInstance.post(`/api/recommendation`, data);
 
   return response.data;
 });
@@ -27,7 +27,7 @@ export const mapReport = createAsyncThunk(
   "/api/mapReport",
   async (data, thunkAPI) => {
     
-    const response = await nonHeaderAxios.post(`/api/beer/report-location`, data);
+    const response = await axiosInstance.post(`/api/beer/report-location`, data);
     
     return response.data;
   }

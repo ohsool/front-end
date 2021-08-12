@@ -19,7 +19,7 @@ const BeerList = (props) =>{
     const [is_search, setIs_Search] = useState(false) 
     const [search_beer, setSearch_Beer] = useState([]); //검색한 맥주 정보
     const dispatch = useDispatch();
-
+    
     useEffect(() => {
         dispatch(getAllBeer("all"));
         dispatch(getCategory());
@@ -72,6 +72,7 @@ const BeerList = (props) =>{
                                 setSearch_Beer = {setSearch_Beer}
                                 beers={beers}
                                 setIs_Search={setIs_Search}
+                                search_beer={search_beer}
                             ></Search>
                             {is_search ? searchBeerList() //검색된 맥주 리스트 출력
                             : allBeerList() //타입별 맥주 리스트 출력

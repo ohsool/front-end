@@ -20,20 +20,23 @@ const secretAPIkey = () => {
 
 const key = secretAPIkey();
 
-export const headerAxios = axios.create({
-    baseURL: `https://오늘의술.shop/${key}`,
+export const axiosInstance = axios.create({
+    baseURL: `https://오늘의술.shop`,
+    headers: {
+        "content-type": "application/json;charset=UTF-8",
+        accept: "application/json,",
+    }
 });
 
-export const nonHeaderAxios = axios.create({
-    baseURL: `https://오늘의술.shop/${key}`,
-});
+// export const nonHeaderAxios = axios.create({
+//     baseURL: `https://오늘의술.shop/${key}`,
+// });
 
-headerAxios.interceptors.request.use(
+axiosInstance.interceptors.request.use(
     function (config){
         const token = getCookie("_osid");
-
         config.headers.common["Authorization"] = `Bearer ${token}`;
-        
+        config.headers.common["Secretkey"] = key;
         return config
     }
 );

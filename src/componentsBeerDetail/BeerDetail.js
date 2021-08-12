@@ -10,7 +10,7 @@ import { getReviewList } from "../redux/reducer/reviewSlice";
 import { User } from "../redux/reducer/userSlice";
 
 import {HeartButton}  from "../componentsBeer/BeerIndex";
-import { MapModal, TasteGraph, EachReview} from "./BeerDetailIndex";
+import { TasteGraph, EachReview} from "./BeerDetailIndex";
 
 import mapIcon from "../share/image/mapIcon.png";
 
@@ -22,7 +22,6 @@ const BeerDetail = (props) =>{
     const hashtag = beerOne?.hashtag;
     const userId = useSelector(User);
     const beer_infos = useSelector(getReviewList);
-    const [modalOpen, setModalOpen] = useState(false);
     const dispatch = useDispatch();
 
     useEffect(() => { //맥주 정보, 사용자정보 및 리뷰정보 불러오기
@@ -40,13 +39,6 @@ const BeerDetail = (props) =>{
             }
         }
     }, [beerOne, userId]);
-
-    const openModal = () => {
-        setModalOpen(true);
-      };
-    const closeModal = () => {
-        setModalOpen(false);
-    };
 
     const clickLike = () => { //좋아요 및 좋아요 취소 기능
         if(userId){
@@ -133,14 +125,9 @@ const BeerDetail = (props) =>{
 
                         <PlaceButton 
                             onClick={() => {
-                                openModal();
+                                history.push("/place", beerOne._id)
                             }}
                         >장소 제보하기</PlaceButton>
-                        <MapModal 
-                        beerId={props.match.params.beerId}
-                        open={modalOpen}
-                        close={closeModal}
-                        ></MapModal>
                     </Wrap>
                     <Line/>
 

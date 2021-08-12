@@ -7,10 +7,11 @@ import ReactHelmet from "./share/ReactHelmet";
 
 import { Main, Test, Beer, Mypage, TestResult, SignUp, MyBeer, Login , MyReview} from "./pages/indexPage";
 import Token from "./share/Token";
+import PlaceBeer from "./componentsBeerDetail/PlaceBeer";
 
-function App() {
+function App(props) {
 
-  const Kakao = window.Kakao;
+const Kakao = window.Kakao;
 
 useEffect(() => {// 만약 공유 기능이 2개이상으로 바뀌면 kakao.link.createdefaultbutton 사용하기 (그때는 내용에 container가 포함 되어있아야한다)
     Kakao.init("05e106dead8f4edabc80bafcaef225ce");
@@ -35,6 +36,7 @@ useEffect(() => {// 만약 공유 기능이 2개이상으로 바뀌면 kakao.lin
         <Route path="/mybeer" component={MyBeer}/>
         <Route path="/token=:token" component={Token}/>
         <Route path="/review/:reviewId" component={MyReview}/>
+        <Route path="/place" component={PlaceBeer}/>
       </ConnectedRouter>
       <GlobalStyle/>
     </React.Fragment>   

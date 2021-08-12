@@ -57,7 +57,7 @@ const Login = (props) => {
 
     return(
         <React.Fragment>
-            <LoginWrap>
+            <LoginWrap onKeyPress={submitEnterLogin}>
                 <Container>
                     <Wrap>
                         <WelcomeWrap>
@@ -84,7 +84,6 @@ const Login = (props) => {
                         <button 
                             className = {is_typed ? "yellowButton" : "whiteButton"}
                             onClick={submitLogin}
-                            onKeyPress={submitEnterLogin}
                             >
                             로그인하기
                         </button>

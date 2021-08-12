@@ -65,7 +65,7 @@ const EachBeer = (props) => {
 
                 {item.hashtag.map((p, idx) => (
                     idx < 3 ? "":
-                        <TasteTag>#{p}</TasteTag>
+                        <TasteTag key={idx}>#{p}</TasteTag>
                     ))}
             </RecommendBeerWrap>
         </React.Fragment>

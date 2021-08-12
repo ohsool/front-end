@@ -1,6 +1,5 @@
 import BeerDetail from "./BeerDetail";
 import BeerTextarea from "./BeerTextarea";
-import MapModal from "./MapModal";
 import EachReview from "./EachReview";
 import ReviewList from "./ReviewList";
 import ReviewWriteModal from "./ReviewWriteModal";
@@ -11,7 +10,6 @@ import TasteGraph from "./TasteGraph";
 
 export {BeerDetail,
     BeerTextarea,
-    MapModal,
     EachReview, 
     ReviewList,
     ReviewWriteModal,
