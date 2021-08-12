@@ -3,7 +3,7 @@ import styled from "styled-components/macro";
 import {history} from "../redux/configureStore";
 import moment from 'moment';
 import 'moment/locale/ko';
-import {TasteGraph,StarRate} from "../componentsBeer/BeerIndex";
+import {TasteGraph,StarRate} from "../componentsBeerDetail/BeerDetailIndex";
 import Header from "../Header";
 
 const MyReview = (props) =>{

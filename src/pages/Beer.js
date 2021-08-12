@@ -2,7 +2,9 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Header from "../Header";
 
-import {BeerList,BeerDetail,ReviewList} from '../componentsBeer/BeerIndex';
+import {BeerList} from '../componentsBeer/BeerIndex';
+
+import {BeerDetail,ReviewList} from '../componentsBeerDetail/BeerDetailIndex';
 
 const Beer = (props) => {
     return (

@@ -1,43 +1,40 @@
 import React,{  useState } from "react";
 import styled from "styled-components";
-
-import StarIcon from "@material-ui/icons/Star";
-import StarBorderIcon from "@material-ui/icons/StarBorder";
-
-
+import star_filled from "../share/image/star_filled.png";
+import star_empty from "../share/image/star_empty.png";
 const StarButton = ({setStarScore, init_star}) =>{
-    const [score, setScore] = useState(init_star);
+    const [score, setScore] = useState(init_star); //별점
     const totalStarCount = 5;   
-    const starCount = score;
+    const starCount = score; 
     const removeCount = totalStarCount - starCount;
-
   const handleScore = (score) => {
     setStarScore(score);
   };
   return (
     <Container>
-      <div>
+      <div style={{display:"flex"}}>
         {[...Array(starCount)].map((n, index) => {
           return (
-            <StarIcon 
+            <StarFilled
               key={index}
-              style={{ color: "#FFB521", width: "40px", height: "40px"}}
+              style={{backgroundImage: `url(${star_filled})`}}
               onClick={() => {
                 setScore(index + 1);
                 handleScore(index + 1);
               }}
-            ></StarIcon>
+            ></StarFilled>
           );
         })}
         {[...Array(removeCount)].map((n, index) => {
           return (
-            <StarBorderIcon
-              style={{ color: "#FFB521", width: "40px", height: "40px"}}
+            <StarEmpty
+              key={index}
+              style={{backgroundImage: `url(${star_empty})`}}
               onClick={() => {
                 setScore(score + index + 1);
                 handleScore(score + index + 1);
               }}
-            ></StarBorderIcon>
+            ></StarEmpty>
           );
         })}
       </div>
@@ -45,8 +42,16 @@ const StarButton = ({setStarScore, init_star}) =>{
   )
 }
 export default React.memo(StarButton);
-
-
 const Container = styled.div`
-  margin-top: 20px;
+  margin: 7px auto;
 `;
+const StarFilled = styled.div`
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+`
+const StarEmpty = styled.div`
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+`

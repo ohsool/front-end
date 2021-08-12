@@ -1,11 +1,10 @@
 import React,{useState, useEffect} from "react";
 import styled from "styled-components";
 
-import {EachReview,ReviewWriteModal} from "../componentsBeer/BeerIndex";
+import {EachReview,ReviewWriteModal} from "../componentsBeerDetail/BeerDetailIndex";
 import { useSelector, useDispatch } from "react-redux";
 import {history} from "../redux/configureStore";
 import { getOneBeer } from "../redux/async/beer";
-import { getReview } from "../redux/async/review";
 import { userInfo } from "../redux/async/user";
 import { getReviewList } from "../redux/reducer/reviewSlice";
 import { oneBeer } from "../redux/reducer/beerSlice";

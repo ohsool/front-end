@@ -9,7 +9,8 @@ import { oneBeer } from "../redux/reducer/beerSlice";
 import { getReviewList } from "../redux/reducer/reviewSlice";
 import { User } from "../redux/reducer/userSlice";
 
-import { MapModal, HeartButton, TasteGraph, EachReview} from "./BeerIndex";
+import {HeartButton}  from "../componentsBeer/BeerIndex";
+import { MapModal, TasteGraph, EachReview} from "./BeerDetailIndex";
 
 import mapIcon from "../share/image/mapIcon.png";
 
