@@ -1,12 +1,11 @@
-import React,{ useState, useEffect } from "react";
+import React,{ useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { getSearchWord } from "../redux/async/beer";
 import { getSearchList } from "../redux/reducer/beerSlice";
 
 const Search = (props) => {
-    const { setSearch_Beer,
-            search_beer,
+    const { setSearch_Beer, 
             beers, 
             setIs_Search
             } = props;
@@ -14,27 +13,17 @@ const Search = (props) => {
     const check_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글체크
     const [word, setWord] = useState(""); //실시간으로 입력하는 단어담김
     const words = useSelector(getSearchList);
-    const [show_recent_words, setShow_Recent_Words] = useState(false);//최근 검색어 보여줄지, 실시간 자동완성 검색어 보여줄지
-    const [recent_words, setRecent_Words] = useState(localStorage.getItem("recent_words").split(','));//검색한 글자 최근 검색 리스트에 추가
-
     const dispatch = useDispatch();
-
-    useEffect(()=>{
-        if(recent_words === null){
-            setRecent_Words("");
-        }
-    },[recent_words])
 
     const onChange = (e) =>{
         if(e.target.value === ''){//검색어 지웠을 때 검색목록 사라지도록 함
-            setWord(null);
+            setWord(null) 
         }else{
             setWord(e.target.value);
-            setShow_Recent_Words(false);
         }    
     }
 
-    const searchWord = () =>{//실시간으로 자동완성 된 값 불러옴   
+    const searchWord = () =>{
         dispatch(getSearchWord(word)); 
     }
 
@@ -45,29 +34,26 @@ const Search = (props) => {
     }
 
 
-    const findBeer = ()=>{//엔터 키를 누른 경우 해당 단어로 검색
+    const findBeer = ()=>{
         setSearch_Beer([]);
-        if(check_eng.test(word) && show_recent_words === false){//영어로 검색           
+        if(check_eng.test(word)){//영어로 검색           
             words.map((w)=>{
                 setSearch_Beer(search_beer => [...search_beer,
                 beers?.filter((p) => p.name_korean.includes(w))[0]]);
                 setIs_Search(true);
             })
-        }else if(check_kor.test(word) && show_recent_words === false){//한국어로 검색            
+        }else if(check_kor.test(word)){//한국어로 검색            
             words.map((w)=>{
                 setSearch_Beer(search_beer => [...search_beer,
                 beers?.filter((p) => p.name_korean.includes(w))[0]]);
+                // setSearch_Beer();
                 setIs_Search(true);
             })
         }else{
             window.alert("잘못 입력 하셨습니다.");
         }
-        setRecent_Words(recent_words =>[...recent_words, word]);//최근 검색어 리스트에 저장
-        localStorage.setItem("recent_words", recent_words.concat(word) );//최근 검색어 리스트에 저장
-
-        
     }
-    const findBeerbyClick = (name)=>{//특정 맥주명을 누른 경우 해당 맥주 명으로 검색
+    const findBeerbyClick = (name)=>{
         setSearch_Beer([]);
         if(check_eng.test(word)){//영어로 검색            
             setSearch_Beer(search_beer => [...search_beer, 
@@ -76,32 +62,13 @@ const Search = (props) => {
             setSearch_Beer(search_beer => [...search_beer, 
             beers?.filter((p) => p.name_korean.includes(name))[0]]);
         }
-        setIs_Search(true);
-        localStorage.setItem("recent_words", recent_words.concat(search_beer[0]?.name_korean));//최근 검색어 리스트에 저장
-        //최근 검색어 리스트에 저장
-        //모달 close
+        setIs_Search(true);        
     }
-
-    const showRecentWords = () => {
-        console.log(recent_words)
-        return (
-                <SearchModal>
-                    {recent_words?.length > 0 ? recent_words?.map((item, idx) => {
-                        return (
-                        <p key={idx} onClick={()=>{
-                            findBeer(item);
-                            }}>{item}</p> 
-                        )       
-                    }):""}                                          
-                </SearchModal>
-        )
-    }
-    
+  
     return (
         <React.Fragment>
             <SearchInput>
-                <input
-                    onClick={showRecentWords}  //?
+                <input 
                     onChange={onChange}
                     onKeyUp={searchWord}
                     onKeyPress={EnterSubmit}
@@ -110,19 +77,22 @@ const Search = (props) => {
                 
             </SearchInput>
 
-  
+                     
             { words.length !== 0 ?
-                    <SearchModal>
+                <SearchModal>
+                    <div style={{paddingLeft: "40px"}}>
                     {words?.length > 0 ? words.map((item, idx) => {
                         return (
-                        <p key={idx} onClick={()=>{
-                            findBeerbyClick(item);
-                            }}>{item}</p> 
+                            <p
+                               key={idx} onClick={()=>{
+                               findBeerbyClick(item);
+                            }}>{item}
+                            </p> 
                         )       
-                    }):""}                                          
-                    </SearchModal>
-            : null }
-
+                    }):""}            
+                    </div>
+                </SearchModal>
+                : null }
 
 
 
@@ -150,23 +120,17 @@ const SearchInput = styled.div`
 `
 
 const SearchModal = styled.div`
-    display: inline-block;
-    padding-left: 26px;
-    height: 100vh; 
+    position: absolute;
+    margin : 0 auto;    
+    width: 360px;
     background-color: #FFFFFF;
     
     //글자 라인 수 제한하기
-    overflow: hidden;
+    overflow: scroll;
     display: -webkit-box;
+    min-height: 70px;
     -webkit-line-clamp: 5;
     -webkit-box-orient: vertical;
-
-    & > p {
-        font-weight: 500;
-        font-size: 14px;
-        line-height: 20.51px;
-    }
-
 `
 
 const CloseIcon = styled.div`

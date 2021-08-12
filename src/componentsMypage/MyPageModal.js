@@ -48,7 +48,7 @@ const MyPageModal = (props) => {
                     </SuggestTitle>
                     <CloseIcon
                         onClick={close}
-                    >
+                    >x
                     </CloseIcon>
                     <SuggestInput
                         value={chat}
