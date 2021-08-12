@@ -2,21 +2,22 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { history } from "../redux/configureStore";
+import { getCookie } from "../share/Cookie";
 
 const MainInput = (props) => {
     const [is_login, setIs_Login] = useState(false);
-    const session = sessionStorage.getItem("token");
+    const cookie = getCookie("_osid");
 
     useEffect(()=> {  //로그인해있는지 체크
-        if(session){
+        if(cookie){
             setIs_Login(true);
         }else{
             setIs_Login(false);
         }
     }, [is_login]);
 
-    const goBeerDogam = () => { //세션에 token없으면 로그인페이지로
-        if(!session){
+    const goBeerDogam = () => { //쿠키에 token없으면 로그인페이지로
+        if(!cookie){
             window.alert("로그인이 필요한 서비스입니다!")
         }else{
             history.push("/mybeer")

@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import {history} from "../redux/configureStore";
 import { useSelector, useDispatch } from "react-redux";
-import {likeBeer, unLikeBeer} from "../redux/async/beer";
+import { likeBeer, unLikeBeer} from "../redux/async/beer";
 import { User } from "../redux/reducer/userSlice";
 
 import HeartButton from "./HeartButton";

@@ -1,6 +1,14 @@
 import { createSlice, createSelector } from "@reduxjs/toolkit";
 
-import { getAllBeer, getOneBeer, getSearchWord, testShare, testResult } from "../async/beer";
+import { 
+  getAllBeer, 
+  getOneBeer, 
+  getSearchWord, 
+  testShare, 
+  testResult,
+  likeBeer,
+  unLikeBeer,
+} from "../async/beer";
 
 const initialState = {
     beerList: [],
@@ -30,10 +38,19 @@ export const beerSlice = createSlice({
         })
         .addCase(getSearchWord.rejected, (state, action) => {
         })
-        .addCase(testResult.fulfilled, (state, action) => {
-          state.beerToday = action.payload;
+        .addCase(likeBeer.fulfilled, (state, action) => {
+          const index = action.payload.index;
+          const likes_array = action.payload.response.likes;
+          state.beerList.beers[index].like_array = likes_array;
         })
-        .addCase(testResult.rejected, (state, action) => {
+        .addCase(likeBeer.rejected, (state, action) => {
+        })
+        .addCase(unLikeBeer.fulfilled, (state, action) => {
+          const index = action.payload.index;
+          const likes_array = action.payload.response.likes;
+          state.beerList.beers[index].like_array = likes_array;
+        })
+        .addCase(unLikeBeer.rejected, (state, action) => {
         })
         .addCase(testShare.fulfilled, (state, action) => {
           state.beerToday = action.payload;

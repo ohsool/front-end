@@ -1,4 +1,5 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
+import { setCookie, removeCookie } from "../../share/Cookie";
 import { 
   signUp, 
   logIn, 
@@ -25,7 +26,7 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     logOut: (state, action) => {
-      sessionStorage.removeItem("token");
+      removeCookie("_osid");
       window.location.replace("/");
     },
   },
@@ -47,7 +48,7 @@ const userSlice = createSlice({
       .addCase(logIn.pending, (state, action) => {
       })
       .addCase(logIn.fulfilled, (state, action) => {
-        sessionStorage.setItem("token", action.payload.token);
+        setCookie("_osid", action.payload.token);
         state.is_login = action.payload.message;
       })
       .addCase(logIn.rejected, (state, action) => {
