@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import styled from "styled-components";
 import { useDispatch } from "react-redux";
 
 const MapImage = ({setClickReport}) => {
@@ -88,6 +89,12 @@ const MapImage = ({setClickReport}) => {
             findLocation(place);
         }
 
+        const SearchPlace = (e) => {
+            if(e.key === "Enter"){
+                searchbtnclicked();
+            }
+        }
+
         function choose(place) {
             // alert(`You chose ${place.place_name}`);
             console.log(place);      
@@ -96,14 +103,36 @@ const MapImage = ({setClickReport}) => {
 
     return(
         <React.Fragment>
-            <input ref={inputRef}></input>
-            <button onClick={searchbtnclicked} style={{width: "40px", height: "20px", cursor: "pointer"}}>검색</button>
+            <InputWrap onKeyPress={SearchPlace}>
+                <InputPlace ref={inputRef}></InputPlace>
+            </InputWrap>
             <div 
                 className= "map"
                 ref={container}
-                style={{width:"100vw", height:"525px"}}></div>
+                style={{width:"100vw", height:"365px"}}></div>
         </React.Fragment>
     )
 }
 
 export default MapImage;
+
+const InputWrap = styled.div`
+    margin-top: 40px;
+    width: 100%;
+    height: 70px;
+    text-align: center;
+`;
+
+const InputPlace = styled.input`
+    width: 312px;
+    height: 30px;
+    margin-top: 20px;
+    background-color: #F7F7F7;
+    border: none;
+    outline: none;
+    border-radius: 18px;
+    padding-left: 24px;
+    color: #151515;
+    font-size: 12px;
+    font-weight: 500;
+`;
