@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import {history} from "../redux/configureStore";
 import { useSelector, useDispatch } from "react-redux";
-import {likeBeer, unLikeBeer} from "../redux/async/beer";
+import { likeBeer, unLikeBeer} from "../redux/async/beer";
 import { User } from "../redux/reducer/userSlice";
 
 import HeartButton from "./HeartButton";
@@ -60,10 +60,13 @@ const EachBeer = (props) => {
                         is_like={toggle}
                         />
                     <p>{item.name_english}</p>
-                    {item.hashtag.map((p, idx) => (
+                    
+                </BeerInfoWrap>
+
+                {item.hashtag.map((p, idx) => (
+                    idx < 3 ? "":
                         <TasteTag>#{p}</TasteTag>
                     ))}
-                </BeerInfoWrap>
             </RecommendBeerWrap>
         </React.Fragment>
     )
@@ -110,6 +113,9 @@ const BeerInfoWrap = styled.div`
     & p {
         margin: 0;
         font-size: 12px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow:ellipsis
     }
 `;
 

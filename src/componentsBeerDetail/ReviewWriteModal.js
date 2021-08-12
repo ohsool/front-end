@@ -30,7 +30,7 @@ const ReviewWriteModal = (props) => {
     },[])
 
 
-    const addReview = () => {
+    const addReview = () => { //리뷰 작성시
         if(review === "" || starScore === 0 || featuresList.includes(0)){
             window.alert("답하지 않은 문항이 있어요!")
             return

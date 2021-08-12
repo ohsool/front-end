@@ -23,7 +23,6 @@ const TestButton = ({ goToNext, question }) => { //goToNext 함수 및 question 
                 </QuestionButton>
                 {question[2] ? 
                 <QuestionButton 
-                    //className="clickedButton"
                     onClick={() => {
                         let choice = Object.keys(question[2]).join()
                         goToNext(choice);

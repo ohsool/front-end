@@ -22,13 +22,10 @@ const suggestSlice = createSlice({
         .addCase(suggestBeer.pending, (state, action) => {
         })
         .addCase(suggestBeer.fulfilled, (state, action) => {
-            console.log(action.payload);
         })
         .addCase(mapReport.fulfilled, (state, action) => {
-            console.log(action.payload);
         })
         .addCase(mapReport.rejected, (state, action) => {
-          console.log("요청에 실패했습니다.");
       })
       // 공통
       .addMatcher(

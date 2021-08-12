@@ -3,11 +3,12 @@ import styled from "styled-components";
 import myIcon from "./share/image/HeaderIcon.png";
 
 import { history } from "./redux/configureStore";
+import { getCookie } from "./share/Cookie";
 const Header = (props) => {
-    const session = sessionStorage.getItem("token");
+    const is_login = getCookie("_osid");
 
     const comfirm_login = ()=>{
-        if(!session){
+        if(!is_login){
             if(window.confirm("로그인이 필요한 서비스입니다. 로그인하시겠습니까?")){
                 history.push("/login");
                 return;

@@ -26,10 +26,15 @@ export const getOneBeer = createAsyncThunk(
 export  const likeBeer = createAsyncThunk(
   "beer/likeBeer",
   async (data, thunkAPI) => {
-    
+    const beers = thunkAPI.getState().beer.beerList.beers
+    const index = beers.findIndex((p) => p._id === data);
+
     const response = await headerAxios.put(`/api/beer/like/${data}`)
-    
-    return response.data;
+    const like_Data = {
+      index: index,
+      response: response.data
+    }
+    return like_Data;
   }
 );
 
@@ -37,10 +42,17 @@ export  const likeBeer = createAsyncThunk(
 export  const unLikeBeer = createAsyncThunk(
   "beer/unLikeBeer",
   async (data, thunkAPI) => {
-
+    const beers = thunkAPI.getState().beer.beerList.beers
+    const index = beers.findIndex((p) => p._id === data);
+    
     const response = await headerAxios.put(`/api/beer/unlike/${data}`)
 
-    return response.data;
+    const unLike_Data = {
+      index: index,
+      response: response.data
+    }
+
+    return unLike_Data;
   }
 );
 
