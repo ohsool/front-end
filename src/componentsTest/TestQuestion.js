@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const TestQuestion = ({ question }) => { //question 객체 context API
     return(
         <React.Fragment>
             <QuestionWrap>
-                <p>Question</p>
-                <span>{question.question}</span>
+                <p>Q.</p>
+                {question.question.split("\n").map((line) => (
+                    <span>{line}</span>
+                ))}
             </QuestionWrap>
         </React.Fragment>
     )
@@ -16,7 +18,7 @@ export default TestQuestion;
 
 const QuestionWrap = styled.div`
     font-family: "GmarketSansM";
-    width: 192px;
+    width: 320px;
     margin: 0 0 0 26px;
     & > p {
         font-size: 35px;
@@ -24,6 +26,7 @@ const QuestionWrap = styled.div`
         margin: 0 0 20px 0;
     }
     & > span {
+        display: block;
         font-size: 25px;
         font-weight: normal;
     }

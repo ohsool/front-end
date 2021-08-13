@@ -13,9 +13,8 @@ import {deleteReview} from "../redux/async/review";
 import ReviewWriteModal from "../componentsBeerDetail/ReviewWriteModal";
 
 const EachReview=(props)=> {
-    const { item, beerOne, userId} = props; 
+    const { item, beerOne, userId } = props; 
     const [modalOpen, setModalOpen] = useState(false); //수정 버튼 클릭시 리뷰 수정 모달 띄우기
-    
     const dispatch = useDispatch();
 
     const openModal = () => {
@@ -24,10 +23,7 @@ const EachReview=(props)=> {
     const closeModal = () => {
         setModalOpen(false);
     };
-
-    //moment(new Date());
-    const date = moment(item?.date)
-
+    const date = moment(item.date)
 
     return (
         <React.Fragment>
@@ -69,8 +65,7 @@ const EachReview=(props)=> {
                                     e.stopPropagation();
                                     if(window.confirm("정말로 삭제하시나요?")){
                                         dispatch(deleteReview(item._id));
-                                        window.alert("삭제되었습니다.😊");
-                                        return
+                                        return;
                                     }
                                 }}></DeleteButton>
                                 </>
@@ -81,7 +76,7 @@ const EachReview=(props)=> {
                 </GridHorizon>
                 <ReviewText>
                     <span style={{ display: "block", width: "280px",fontWeight: "300", fontSize: "12px", lineHeight: "17.38px"}}>
-                        {item.review}
+                        {item?.review}
 
                     </span>               
                 </ReviewText>

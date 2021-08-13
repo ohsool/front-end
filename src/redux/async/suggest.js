@@ -16,9 +16,9 @@ export const suggestComment = createAsyncThunk(
 export const suggestBeer = createAsyncThunk(
   "/api/suggestBeer",
   async (data, thunkAPI) => {
-
+    
     const response = await axiosInstance.post(`/api/recommendation`, data);
-
+    
   return response.data;
 });
 

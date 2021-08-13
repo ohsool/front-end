@@ -15,8 +15,8 @@ const ReviewList = (props)=>{
     const [modalOpen, setModalOpen] = useState(false);
     const beerOne = useSelector(oneBeer); 
     const userId = useSelector(User); 
-    const beer_infos = useSelector(getReviewList); //해당 맥주 리뷰 목록을 불러옴 
-
+    const beer_infos = useSelector(getReviewList); //해당 맥주 리뷰 목록을 불러옴
+    const is_comment = beer_infos.find((p) => p.userId._id === userId);
     const dispatch = useDispatch();
     
     const openModal = () => {
@@ -34,7 +34,11 @@ const ReviewList = (props)=>{
 
     const loginConfirm = ()=>{
         if(userId){
+            if(is_comment){
+                alert("이미 댓글을 작성하셨습니다!")
+            }else{
             openModal();
+        }
         }else{
             if(window.confirm("로그인이 필요한 서비스입니다. 로그인하시겠습니까?")){
                 history.push("/login")
@@ -55,10 +59,10 @@ const ReviewList = (props)=>{
                 </Wrap>
                 <Grid>
                     {beer_infos?.length > 0 ? beer_infos?.map((item, idx) => {
-                        return (
-                            <EachReview key={idx} item = {item} userId={userId}/> 
-                        )       
-                    }):""}            
+                        return(
+                            <EachReview key={idx} item={item} userId={userId}/>       
+                        )
+                        }):""}            
                 </Grid>
 
                 <ReviewWriteModal

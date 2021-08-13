@@ -6,7 +6,7 @@ import { history } from "../redux/configureStore";
 
 import MyPageModal from "../componentsMypage/MyPageModal";
 import Header from "../Header";
-import arrow from "../share/image/mypagearrow.png";
+import arrow from "../share/image/suggestarrow.png";
 
 const MyPage = (props) => {
     const session = sessionStorage.getItem("token");
@@ -117,13 +117,13 @@ const MoveBoxWrap = styled.div`
 const ArrowImage = styled.img`
     float: right;
     margin: 14px;
-    width: 12px;
-    height: 7px;
+    width: 5px;
+    height: 10px;
 `;
 
 const LogOutButton = styled.button`
     position: absolute;
-    width: 61px;
+    width: 70px;
     height: 23px;
     bottom: 50px;
     left: 50%;

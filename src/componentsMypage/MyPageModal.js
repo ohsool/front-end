@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import { useDispatch } from "react-redux";
 import {suggestBeer, suggestComment} from "../redux/async/suggest";
+import closeIcon from "../share/image/suggestclose.png"
 
 const MyPageModal = (props) => {
     const dispatch = useDispatch();
@@ -19,7 +20,7 @@ const MyPageModal = (props) => {
         if(e.key === "Enter"){
             if(suggestInfo.suggestTitle === "맥주 건의하기"){
                 dispatch(suggestBeer({
-                    title: suggestInfo.suggestTitle,
+                    beer: "맥주종류",
                     description: chat,
                     location: "여삼빌딩",
                     image: "맥주",
@@ -47,8 +48,9 @@ const MyPageModal = (props) => {
                         <span>{suggestInfo.suggestTitle}</span>
                     </SuggestTitle>
                     <CloseIcon
+                        style={{backgroundImage: `url(${closeIcon})`}}
                         onClick={close}
-                    >x
+                    >
                     </CloseIcon>
                     <SuggestInput
                         value={chat}
@@ -126,7 +128,8 @@ const CloseIcon = styled.div`
     position: absolute;
     right: 24px;
     top: 22px;
+    background-size: cover;
+    box-sizing: border-box;
     width: 16px;
     height: 16px;
-    border: 1px solid black;
 `;
