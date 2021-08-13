@@ -96,7 +96,7 @@ const BeerDetail = (props) =>{
                                 <span>{hashtag[2]}</span>이 매력적인 친구죠.🍺
                                 <br/>
                                 <br/>
-                                퇴근 후 <span>{beerOne?.name_korean}</span> 한잔 어때요?
+                                퇴근 후 <span>{beerOne?.name_korean}</span> 한잔 어떠세요?
                             </p>
                         </BeerContent> :null}
                     </Wrap>
@@ -232,7 +232,7 @@ const BeerName= styled.p`
 const BeerContent = styled.div`
     padding: 14px 0;
     margin: 0;
-    width: 250px;
+    width: 300px;
     & > p{
         font-weight: 500;
         font-style: normal;

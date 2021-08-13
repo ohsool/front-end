@@ -107,6 +107,7 @@ export const oneBeer = createSelector(beer_One, beer_One => {
 }); // 맥주 1개데이터 
 
 export const getSearchList = createSelector(beerSearch, beerSearch => {
+  console.log("beer", beerSearch);
   return beerSearch.slice(0,5);
 }); //맥주 검색
 

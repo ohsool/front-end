@@ -19,6 +19,8 @@ const BeerList = (props) =>{
     const [is_search, setIs_Search] = useState(false) 
     const [search_beer, setSearch_Beer] = useState([]); //검색한 맥주 정보
     const dispatch = useDispatch();
+
+    console.log("searchBeer",search_beer);
     
     useEffect(() => {
         dispatch(getAllBeer("all"));
@@ -30,7 +32,7 @@ const BeerList = (props) =>{
     const searchBeerList = () => {
         return(
             <List>
-                {search_beer?.length > 0 ? search_beer.map((item, idx) => (
+                {search_beer?.length > 0 ? search_beer?.map((item, idx) => (
                     <EachBeer key={idx} item={item}/>
                 )):""}
             </List>
