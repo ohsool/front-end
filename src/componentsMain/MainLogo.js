@@ -36,7 +36,7 @@ const MainLogoWrap = styled.div`
 `;
 
 const MainLogoText = styled.div`
-    font-family: "GmarketSansL";
+    font-family: "GmarketSansM";
     margin-top: 20px;
     width: 125px;
     height: 32px;

@@ -2,7 +2,8 @@ import { createSlice, createSelector } from "@reduxjs/toolkit";
 
 import { 
   getAllBeer, 
-  getOneBeer, 
+  getOneBeer,
+  getBeerInfinity,
   getSearchWord, 
   testShare, 
   testResult,
@@ -12,6 +13,7 @@ import {
 
 const initialState = {
     beerList: [],
+    testBeerList: [],
     beerOne: null,
     beerToday: [],
     beerShare: [],
@@ -31,6 +33,9 @@ export const beerSlice = createSlice({
         })
         .addCase(getOneBeer.fulfilled, (state, action) => {
             state.beerOne = action.payload.beer;
+        })
+        .addCase(getBeerInfinity.fulfilled, (state, action) => {
+          state.testBeerList.push(...action.payload.beers);
         })
         //검색기능
         .addCase(getSearchWord.fulfilled, (state, action) => {
@@ -98,6 +103,8 @@ const beer_Today = (state) => state.beer.beerToday.category;
 
 const beer_recommend = (state) => state.beer.beerToday.recommendations;
 
+const beer_Infinity = (state) => state.beer.testBeerList;
+
 export const getBeerList = createSelector([beer_list], beerList => {
   return beerList;
 }); //전체 맥주리스트
@@ -116,4 +123,8 @@ export const recommendCate = createSelector(beer_Today, beer_Today => {
 
 export const recommendBeerToday = createSelector(beer_recommend, beer_recommend => {
   return beer_recommend;
+});
+
+export const InfinityBeer = createSelector(beer_Infinity, beer_Infinity => {
+  return beer_Infinity;
 });
