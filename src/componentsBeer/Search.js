@@ -70,7 +70,6 @@ const Search = (props) => {
             <SearchInput>
                 <input
                     onClick={()=>{
-                        console.log("onClick!")
                         setOpen_Modal(true)
                         //showRecentWords();
                     }} 
