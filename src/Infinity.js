@@ -9,11 +9,11 @@ const Infinity = () => {
     const [loading, setLoading] = useState(false);
     const [paging, setPaging] = useState(0)
     const [beerLength, setBeerLength] = useState(0);
-    console.log("beerLength", beerLength);
     const beers = useSelector(InfinityBeer);
     const dispatch = useDispatch();
+
     const getInfinityList = () => {
-        if(paging === 6){
+        if(paging >= 6){
             return;
         }
         dispatch(getBeerInfinity(paging))
@@ -30,17 +30,24 @@ const Infinity = () => {
         }
        }, 300);
     useEffect(() => {
-        setBeerLength(beers.length);
         if(paging === 0){
             dispatch(getBeerInfinity(paging));
             setPaging(paging+1);
         }
-    // scroll event listener 등록
-    window.addEventListener("scroll", _handleScroll);
-    return () => {
-        // scroll event listener 해제
-        window.removeEventListener("scroll", _handleScroll);
-    };
+    }, []);
+
+    useEffect(() => {
+        setBeerLength(beers.length);
+        if(beerLength % 8 !== 0){
+            return;
+        }
+        if(loading){
+            return;
+        }
+        window.addEventListener("scroll", _handleScroll); // scroll event listener 등록
+        return () => {
+            window.removeEventListener("scroll", _handleScroll); // scroll event listener 해제
+        };
     }, [paging]);
 
     return (

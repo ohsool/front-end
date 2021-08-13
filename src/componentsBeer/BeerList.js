@@ -22,21 +22,30 @@ const BeerList = (props) =>{
     const [is_Loading, setIs_Loading] = useState(false); //로딩 여부 판별
     const [is_search, setIs_Search] = useState(false) 
     const [search_beer, setSearch_Beer] = useState([]); //검색한 맥주 정보
-    const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
     const [paging, setPaging] = useState(0)
+    const [beerLength, setBeerLength] = useState(0);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(getAllBeer("all"));
         dispatch(getCategory());
         dispatch(userInfo());
-        setIs_Loading(true);
-    }, []);
-
-    useEffect(() => {
         if(paging === 0){
             dispatch(getBeerInfinity(paging));
             setPaging(paging+1);
+        }
+        setIs_Loading(true);
+    }, []);
+
+
+    useEffect(() => {
+        setBeerLength(beersIF.length);
+        if(beerLength % 8 !== 0){
+            return;
+        }
+        if(loading){
+            return;
         }
         window.addEventListener("scroll", _handleScroll); // scroll event listener 등록
         return () => {
@@ -45,12 +54,10 @@ const BeerList = (props) =>{
     }, [paging]);
 
     const getInfinityList = () => {
-        if(paging === 6){
+        if(paging > 6){
             return;
         }
-        setLoading(true);
         dispatch(getBeerInfinity(paging))
-        setLoading(false);
     };
 
     const _handleScroll = _.throttle(() => {
