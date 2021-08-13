@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 import myIconWhite from "../share/image/testHeaderIcon.png";
 import myIconBlack from "../share/image/HeaderIcon.png";
+import _ from "lodash";
 
 import { history } from "../redux/configureStore";
 import "../share/style/TestHeader.css";
@@ -9,11 +10,11 @@ import "../share/style/TestHeader.css";
 const TestHeader = (props) => {
     const [scrollPosition, setScrollPosition] = useState(0);
 
-    const updateScroll = () => {
+    const _updateScroll = _.throttle(() => {
         setScrollPosition(window.scrollY || document.documentElement.scrollTop);
-    }
+    }, 300);
     useEffect(()=>{
-        window.addEventListener('scroll', updateScroll);
+        window.addEventListener('scroll', _updateScroll);
     }, [scrollPosition]);
 
     return (

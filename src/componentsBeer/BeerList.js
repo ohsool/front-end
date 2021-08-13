@@ -35,6 +35,12 @@ const BeerList = (props) =>{
         setIs_Loading(true);
     }, []);
 
+    useEffect(()=>{
+        if(!is_search){
+            setOpen_Modal(false);
+        }
+    },[is_search])
+
     useEffect(() => {
         if(paging === 0){
             dispatch(getBeerInfinity(paging));
@@ -67,7 +73,7 @@ const BeerList = (props) =>{
        }, 300);
 
     const searchBeerList = () => {
-        //setOpen_Modal(false);
+        
         return(
             <List>
                 {search_beer?.length > 0 ? search_beer?.map((item, idx) => (

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { history } from "../redux/configureStore";
 import { getCookie, setCookie } from "./Cookie";
 const Token = (props) => {
-    //const [socialToken, setSocialToken] = useState("");
 
     useEffect(() =>{
         setCookie("_osid", props.match.params.token);

@@ -2,6 +2,7 @@ import React ,{useState,useEffect} from "react";
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
 import { useDispatch } from "react-redux";
+import remove from "../share/image/remove.png";
 
 import "../share/style/ReviewWriteModal.css";
 import { StarRate, SelectBar} from "./BeerDetailIndex";
@@ -92,7 +93,9 @@ const ReviewWriteModal = (props) => {
                     <SuggestTitle onClick={close}>
                         <span>리뷰 쓰기</span>
                     </SuggestTitle>
-                    <CloseIcon onClick={close}/>
+                    <CloseIcon 
+                     style={{backgroundImage: `url(${remove})`}}
+                    onClick={close}/>
                     <BeerInfo>
                             <BeerImage>
                                 {is_edit ? (
@@ -249,7 +252,6 @@ const CloseIcon = styled.div`
     top: 22px;
     width: 16px;
     height: 16px;
-    border: 1px solid black;
     cursor: pointer;
 `;
 

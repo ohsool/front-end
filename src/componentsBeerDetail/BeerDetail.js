@@ -92,6 +92,8 @@ const BeerDetail = (props) =>{
                             <p>
                                 <span>{beerOne?.name_korean}</span> 맥주는 <span>'{hashtag[1]}'</span> 도수를 지닌 <span>{hashtag[0]}</span> 맥주입니다.
                                 <span>{hashtag[2]}</span>이 매력적인 친구죠.🍺
+                                최근 떠오르는 맥주 중 하나로 요즘 같은 무더운 여름날 인기있는 맥주입니다.
+                                
                                 <br/>
                                 <br/>
                                 퇴근 후 <span>{beerOne?.name_korean}</span> 한잔 어떠세요?

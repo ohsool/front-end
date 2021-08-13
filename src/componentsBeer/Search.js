@@ -7,24 +7,15 @@ const Search = (props) => {
     const { setSearch_Beer,
             search_beer,
             beers, 
-            setIs_Search
+            setIs_Search,
             } = props;
     const check_eng = /[a-zA-Z]/; // 영어체크
     const check_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글체크
     const [word, setWord] = useState(""); //실시간으로 입력하는 단어담김
     const words = useSelector(getSearchList);
     const [show_recent_words, setShow_Recent_Words] = useState(false);//최근 검색어 보여줄지, 실시간 자동완성 검색어 보여줄지
-    //const [recent_words, setRecent_Words] = useState(localStorage.getItem("recent_words").split(','));//검색한 글자 최근 검색 리스트에 추가
     const [openModal,setOpen_Modal] = useState(false);
-
-
     const dispatch = useDispatch();
-    /*
-    useEffect(()=>{
-        if(recent_words === null){
-            setRecent_Words("");
-        }
-    },[recent_words])*/
     const onChange = (e) =>{
         if(e.target.value === ''){//검색어 지웠을 때 검색목록 사라지도록 함
             setWord(null);
@@ -40,6 +31,7 @@ const Search = (props) => {
     const EnterSubmit = (e) =>{
         if(e.key === "Enter"){
             findBeer();
+            setOpen_Modal(false);
         }
     }
     const findBeer = ()=>{//엔터 키를 누른 경우 해당 단어로 검색
@@ -59,9 +51,6 @@ const Search = (props) => {
         }else{
             window.alert("잘못 입력 하셨습니다.");
         }
-        setOpen_Modal(false);
-        //setRecent_Words(recent_words =>[...recent_words, word]);//최근 검색어 리스트에 저장
-        //localStorage.setItem("recent_words", recent_words.concat(word) );//최근 검색어 리스트에 저장
     }
     const findBeerbyClick = (name)=>{//특정 맥주명을 누른 경우 해당 맥주 명으로 검색
         setSearch_Beer([]);
@@ -73,32 +62,15 @@ const Search = (props) => {
             beers?.filter((p) => p.name_korean.includes(name))[0]]);
         }
         setIs_Search(true);
+        setOpen_Modal(false);
         //localStorage.setItem("recent_words", recent_words.concat(search_beer[0]?.name_korean));//최근 검색어 리스트에 저장
-
     }
-    const showModal=()=>{
-        if(words.length !== 0 ){ //자동완성 목록
-            return(
-                <SearchModal>
-                    {words?.length > 0 ? words.map((item, idx) => {
-                        return (
-                            <>
-                                <p key={idx} onClick={()=>{
-                                    findBeer(item);
-                                    }}>{item}</p> 
-                            </>
-                        )       
-                    }):""}                                          
-                </SearchModal>
-            )
-        }
-    }
-
     return (
         <React.Fragment>
             <SearchInput>
                 <input
                     onClick={()=>{
+                        console.log("onClick!")
                         setOpen_Modal(true)
                         //showRecentWords();
                     }} 
@@ -109,7 +81,15 @@ const Search = (props) => {
                 ></input>
             </SearchInput>
             { openModal ? 
-                showModal()
+                <SearchModal>
+                {words?.length > 0 ? words.map((item, idx) => {
+                    return (
+                    <p key={idx} onClick={()=>{
+                        findBeerbyClick(item);
+                        }}>{item}</p> 
+                    )       
+                }):""}                                          
+                </SearchModal>
             :null}
         </React.Fragment>
     )
