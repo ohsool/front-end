@@ -1,5 +1,5 @@
 import { createSlice, createSelector } from "@reduxjs/toolkit";
-import { getReview, writeReview} from "../async/review";
+import { getReview, writeReview, deleteReview } from "../async/review";
 
 const initialState = {
     reviewList: [],
@@ -36,7 +36,11 @@ const reviewSlice = createSlice({
         .addCase(writeReview.pending, (state, action) => {
         })
         .addCase(writeReview.fulfilled, (state, action) => {
-          state.reviewList.unshift(action.payload.myBeer);
+          state.reviewList.unshift(action.payload.mybeer);
+        })
+        .addCase(deleteReview.fulfilled, (state, action) => {
+          state.reviewList.splice(action.payload, 1);
+          window.alert("삭제되었습니다.😊");
         })
       // 공통
       .addMatcher(
