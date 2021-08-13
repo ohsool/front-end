@@ -14,13 +14,13 @@ const Search = (props) => {
     const [word, setWord] = useState(""); //실시간으로 입력하는 단어담김
     const words = useSelector(getSearchList);
     const [show_recent_words, setShow_Recent_Words] = useState(false);//최근 검색어 보여줄지, 실시간 자동완성 검색어 보여줄지
-    const [recent_words, setRecent_Words] = useState(localStorage.getItem("recent_words").split(','));//검색한 글자 최근 검색 리스트에 추가
+    const [recent_words, setRecent_Words] = useState(localStorage.getItem("recent_words"));//검색한 글자 최근 검색 리스트에 추가
     const dispatch = useDispatch();
     useEffect(()=>{
         if(recent_words === null){
             setRecent_Words("");
         }
-    },[recent_words])
+    }, [recent_words]);
     const onChange = (e) =>{
         if(e.target.value === ''){//검색어 지웠을 때 검색목록 사라지도록 함
             setWord(null);
