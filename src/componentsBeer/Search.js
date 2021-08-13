@@ -14,13 +14,14 @@ const Search = (props) => {
     const [word, setWord] = useState(""); //실시간으로 입력하는 단어담김
     const words = useSelector(getSearchList);
     const [show_recent_words, setShow_Recent_Words] = useState(false);//최근 검색어 보여줄지, 실시간 자동완성 검색어 보여줄지
-    const [recent_words, setRecent_Words] = useState(localStorage.getItem("recent_words"));//검색한 글자 최근 검색 리스트에 추가
+    //const [recent_words, setRecent_Words] = useState(localStorage.getItem("recent_words").split(','));//검색한 글자 최근 검색 리스트에 추가
     const dispatch = useDispatch();
+    /*
     useEffect(()=>{
         if(recent_words === null){
             setRecent_Words("");
         }
-    }, [recent_words]);
+    },[recent_words])*/
     const onChange = (e) =>{
         if(e.target.value === ''){//검색어 지웠을 때 검색목록 사라지도록 함
             setWord(null);
@@ -55,8 +56,8 @@ const Search = (props) => {
         }else{
             window.alert("잘못 입력 하셨습니다.");
         }
-        setRecent_Words(recent_words =>[...recent_words, word]);//최근 검색어 리스트에 저장
-        localStorage.setItem("recent_words", recent_words.concat(word) );//최근 검색어 리스트에 저장
+        //setRecent_Words(recent_words =>[...recent_words, word]);//최근 검색어 리스트에 저장
+        //localStorage.setItem("recent_words", recent_words.concat(word) );//최근 검색어 리스트에 저장
     }
     const findBeerbyClick = (name)=>{//특정 맥주명을 누른 경우 해당 맥주 명으로 검색
         setSearch_Beer([]);
@@ -68,9 +69,8 @@ const Search = (props) => {
             beers?.filter((p) => p.name_korean.includes(name))[0]]);
         }
         setIs_Search(true);
-        localStorage.setItem("recent_words", recent_words.concat(search_beer[0]?.name_korean));//최근 검색어 리스트에 저장
-        //최근 검색어 리스트에 저장
-        //모달 close
+        //localStorage.setItem("recent_words", recent_words.concat(search_beer[0]?.name_korean));//최근 검색어 리스트에 저장
+
     }
 /*
     const showRecentWords = () => {
@@ -136,7 +136,7 @@ const SearchInput = styled.div`
 const SearchModal = styled.div`
     display: inline-block;
     padding-left: 26px;
-    height: 100vh; 
+    //height: 100vh; 
     background-color: #FFFFFF;
     //글자 라인 수 제한하기
     overflow: hidden;

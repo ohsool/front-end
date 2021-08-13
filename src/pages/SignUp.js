@@ -200,7 +200,8 @@ const Wrap = styled.div`
 `;
 
 const WelcomeWrap = styled.div`
-    width: 192px;
+    font-family: "GmarketSansM";
+    width: 210px;
     margin-top: 90px;
     & > p {
         font-weight: 400;
