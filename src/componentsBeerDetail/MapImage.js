@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
+import imagesrc from "../share/image/marker.png";
 
 const MapImage = ({setClickReport}) => {
         const kakao = window.kakao;
@@ -60,8 +61,21 @@ const MapImage = ({setClickReport}) => {
         }
 
         function displayMarker(place) {  // show markers of searched places
+            
+            //마커이미지 설정
+            const imageSrc = imagesrc, // 마커이미지 주소
+                imageSize = new kakao.maps.Size(24.56, 33.4), // 마커이미지의 크기
+                imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+            
+             const markerImage = new kakao.maps.MarkerImage(
+                imageSrc,
+                imageSize,
+                imageOption
+            );   
+
             const marker = new kakao.maps.Marker({
                 map: map,
+                image: markerImage,
                 position: new kakao.maps.LatLng(place.y, place.x)
             });
 

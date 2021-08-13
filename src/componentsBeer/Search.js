@@ -39,7 +39,7 @@ const Search = (props) => {
         if(check_eng.test(word) && show_recent_words === false){//영어로 검색           
             words.map((w)=>{
                 setSearch_Beer(search_beer => [...search_beer,
-                beers?.filter((p) => p.name_korean.includes(w))[0]]);
+                beers?.filter((p) => p.name_english.includes(w))[0]]);
                 setIs_Search(true);
             })
         }else if(check_kor.test(word) && show_recent_words === false){//한국어로 검색            
@@ -56,7 +56,7 @@ const Search = (props) => {
         setSearch_Beer([]);
         if(check_eng.test(word)){//영어로 검색            
             setSearch_Beer(search_beer => [...search_beer, 
-            beers?.filter((p) => p.name_korean.includes(name))[0]]);
+            beers?.filter((p) => p.name_english.includes(name))[0]]);
         }else if(check_kor.test(word)){ //한국어로 검색           
             setSearch_Beer(search_beer => [...search_beer, 
             beers?.filter((p) => p.name_korean.includes(name))[0]]);
