@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import _ from "lodash";
 import { useDispatch, useSelector } from "react-redux";
+import _ from "lodash";
 import { getBeerInfinity } from "./redux/async/beer";
 import { InfinityBeer } from "./redux/reducer/beerSlice";
 
 const Infinity = () => {
     const [loading, setLoading] = useState(false);
     const [paging, setPaging] = useState(0)
-
+    const [beerLength, setBeerLength] = useState(0);
+    console.log("beerLength", beerLength);
     const beers = useSelector(InfinityBeer);
     const dispatch = useDispatch();
-
     const getInfinityList = () => {
-        setLoading(true);
+        if(paging === 6){
+            return;
+        }
         dispatch(getBeerInfinity(paging))
-        setLoading(false);
     };
 
     const _handleScroll = _.throttle(() => {
@@ -29,6 +30,7 @@ const Infinity = () => {
         }
        }, 300);
     useEffect(() => {
+        setBeerLength(beers.length);
         if(paging === 0){
             dispatch(getBeerInfinity(paging));
             setPaging(paging+1);
