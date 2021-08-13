@@ -70,6 +70,7 @@ const GoBack = styled.div`
 `;
 
 const HeaderLogo = styled.div`
+    font-family: "GmarketSansM";
     display: inline-block;
     font-size: 20px;
     line-height: 45px;

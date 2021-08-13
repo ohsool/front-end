@@ -24,6 +24,7 @@ const EachReview=(props)=> {
     const closeModal = () => {
         setModalOpen(false);
     };
+    //moment(new Date());
     const date = moment(item?.date)
 
 

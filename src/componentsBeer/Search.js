@@ -15,6 +15,9 @@ const Search = (props) => {
     const words = useSelector(getSearchList);
     const [show_recent_words, setShow_Recent_Words] = useState(false);//최근 검색어 보여줄지, 실시간 자동완성 검색어 보여줄지
     //const [recent_words, setRecent_Words] = useState(localStorage.getItem("recent_words").split(','));//검색한 글자 최근 검색 리스트에 추가
+    const [openModal,setOpen_Modal] = useState(false);
+
+
     const dispatch = useDispatch();
     /*
     useEffect(()=>{
@@ -56,6 +59,7 @@ const Search = (props) => {
         }else{
             window.alert("잘못 입력 하셨습니다.");
         }
+        setOpen_Modal(false);
         //setRecent_Words(recent_words =>[...recent_words, word]);//최근 검색어 리스트에 저장
         //localStorage.setItem("recent_words", recent_words.concat(word) );//최근 검색어 리스트에 저장
     }
@@ -72,31 +76,30 @@ const Search = (props) => {
         //localStorage.setItem("recent_words", recent_words.concat(search_beer[0]?.name_korean));//최근 검색어 리스트에 저장
 
     }
-/*
-    const showRecentWords = () => {
-        console.log("word.lenght",words.length);
-        console.log("recent_words",recent_words);
-        if(words.length === 0){
-            return (
-                    <SearchModal>
-                        {recent_words?.length > 0 ? recent_words?.map((item, idx) => {
-                            return (
-                            <p key={idx} onClick={()=>{
-                                findBeerbyClick(item);
-                                }}>{item}</p> 
-                            )       
-                        }):""}                                          
-                    </SearchModal>
+    const showModal=()=>{
+        if(words.length !== 0 ){ //자동완성 목록
+            return(
+                <SearchModal>
+                    {words?.length > 0 ? words.map((item, idx) => {
+                        return (
+                            <>
+                                <p key={idx} onClick={()=>{
+                                    findBeer(item);
+                                    }}>{item}</p> 
+                            </>
+                        )       
+                    }):""}                                          
+                </SearchModal>
             )
         }
     }
- */   
+
     return (
         <React.Fragment>
             <SearchInput>
                 <input
                     onClick={()=>{
-                        console.log("onClick!")
+                        setOpen_Modal(true)
                         //showRecentWords();
                     }} 
                     onChange={onChange}
@@ -105,17 +108,9 @@ const Search = (props) => {
                     placeholder="검색어를 입력하세요."
                 ></input>
             </SearchInput>
-            { words.length !== 0 ?
-                    <SearchModal>
-                    {words?.length > 0 ? words.map((item, idx) => {
-                        return (
-                        <p key={idx} onClick={()=>{
-                            findBeerbyClick(item);
-                            }}>{item}</p> 
-                        )       
-                    }):""}                                          
-                    </SearchModal>
-            : null }
+            { openModal ? 
+                showModal()
+            :null}
         </React.Fragment>
     )
 }
@@ -136,7 +131,7 @@ const SearchInput = styled.div`
 const SearchModal = styled.div`
     display: inline-block;
     padding-left: 26px;
-    //height: 100vh; 
+    height: 100vh; 
     background-color: #FFFFFF;
     //글자 라인 수 제한하기
     overflow: hidden;

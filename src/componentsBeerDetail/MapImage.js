@@ -97,7 +97,7 @@ const MapImage = ({setClickReport}) => {
 
         function choose(place) {
             // alert(`You chose ${place.place_name}`);
-            console.log(place);      
+            //console.log(place);      
         }
 
 

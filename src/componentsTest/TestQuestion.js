@@ -15,6 +15,7 @@ const TestQuestion = ({ question }) => { //question 객체 context API
 export default TestQuestion;
 
 const QuestionWrap = styled.div`
+    font-family: "GmarketSansM";
     width: 192px;
     margin: 0 0 0 26px;
     & > p {

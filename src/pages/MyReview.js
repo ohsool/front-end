@@ -57,16 +57,14 @@ const Container = styled.div`
 `;
 
 const Title = styled.div`
-
+    margin-top: 40px;
     & > span{
         font-weight: 700;
         font-size: 14px;
         line-height: 20.27px;
 
     } 
-    
 `
-
 const Text = styled.div`
     margin: 0;
     text-align: center;
