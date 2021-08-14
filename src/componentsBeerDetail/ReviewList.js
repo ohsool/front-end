@@ -54,7 +54,7 @@ const ReviewList = (props)=>{
                         onClick={() => {
                             loginConfirm();
                         }}>
-                        <span>후기 작성하기</span>
+                        <span>맥주도감 작성하기</span>
                 </MoveBoxWrap>
                 </Wrap>
                 <Grid>
