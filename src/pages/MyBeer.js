@@ -52,7 +52,7 @@ const MyBeer = (props)=>{
                     onClick={()=>{
                         setIs_Dogam(true)
                     }}>
-                    맥주 도감
+                    좋아요한 맥주
                 </button>
                 <button 
                     className={is_Dogam === false ? "clickedButtonContainer" : "buttonContainer"} //클릭시 css변경
@@ -60,7 +60,7 @@ const MyBeer = (props)=>{
                         setIs_Dogam(false)
                     }
                     }>
-                    내가 쓴 게시물
+                    내가 쓴 맥주도감
                 </button>
             </ButtonContainerWrap>
             {is_Dogam === true ? 

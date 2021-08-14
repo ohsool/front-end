@@ -91,7 +91,7 @@ const ReviewWriteModal = (props) => {
             <Background>
                 <ModalWrap>
                     <SuggestTitle onClick={close}>
-                        <span>리뷰 쓰기</span>
+                        <span>맥주도감 쓰기</span>
                     </SuggestTitle>
                     <CloseIcon 
                      style={{backgroundImage: `url(${remove})`}}
