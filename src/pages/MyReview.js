@@ -26,7 +26,7 @@ const MyReview = (props) =>{
                     </BeerTextWrap>
                 </WritedBeerInfo>
                 <Text><span>별점</span></Text>                      
-                <div style={{textAlign: "center", margin: "-10px 0 10px 0"}}>
+                <div style={{margin: "0 auto"}}>
                     <StarRate init_star={item.rate}/>
                 </div>
                 <Graph>
