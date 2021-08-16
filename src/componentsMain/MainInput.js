@@ -38,9 +38,9 @@ const MainInput = (props) => {
                     }}>
                         대한민국의 모든 맥주
                     </LinkBox>
-                    <LinkBox onClick={goBeerDogam}>
+                    <LinkBox2 onClick={goBeerDogam}>
                         나의 맥주 도감
-                    </LinkBox>
+                    </LinkBox2>
                 </Wrap>
                 {is_login === false ? 
                 (<ButtonWrap>
@@ -77,7 +77,22 @@ const LinkBox = styled.div`
     width: 276px;
     height: 45px;
     line-height: 45px;
-    margin: 0 0 20px 0;
+    margin: 0 0 16px 0;
+    background-color: transparent;
+    border: 1px solid #FFFFFF;
+    border-radius: 22.5px;
+    color: #FFFFFF;
+    z-index: 9999;
+    cursor: pointer;
+`;
+
+const LinkBox2 = styled.div`
+    display: flex;
+    justify-content: center;
+    width: 276px;
+    height: 45px;
+    line-height: 45px;
+    margin: 0 0 30px 0;
     background-color: transparent;
     border: 1px solid #FFFFFF;
     border-radius: 22.5px;
@@ -88,7 +103,7 @@ const LinkBox = styled.div`
 
 const ButtonWrap = styled.div`
     margin: 0 auto;
-    width: 143px;
+    width: 161px;
     display: flex;
     justify-content: space-between;
 `;
@@ -99,4 +114,5 @@ const LoginButton = styled.button`
     color: #FFFFFF;
     font-size: 14px;
     font-weight: bold;
+    cursor: pointer;
 `;

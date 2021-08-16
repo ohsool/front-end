@@ -18,8 +18,7 @@ const BeerTextarea = ({onChange, review, placeholder, })=>{
 export default React.memo(BeerTextarea);
 
 const Textarea = styled.div`
-    & textarea = {
-        
+    & textarea = {       
         width: 208px;
         padding: 10px;
         height: 79;

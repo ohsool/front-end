@@ -18,6 +18,8 @@ const PlaceBeer = (props) => {
           }
         if(window.confirm(`${clickReport.place_name}을 제보하시겠어요?`)){
             dispatch(mapReport(mapData));
+            alert("제보되었습니다!");
+
         }else{
             alert("취소되었습니다!");
         }
@@ -52,23 +54,29 @@ const PlaceBeer = (props) => {
                     </div>
                 </PlaceInfo> : ""}
                 <div style={{textAlign: "center"}}>
-                    <button onClick={ReportPlace}>장소 제보하기</button>
-                </div>
+                    <PlaceButton onClick={ReportPlace}>
+                        장소 제보하기
+                    </PlaceButton>
+            </div>
             </PlaceInfoWrap>
+
+
         </React.Fragment>
     )
 }
 
 export default PlaceBeer;
 
+
+
 const MapWrap = styled.div`
     width: 100%;
-    height: 365px;
+    height:510px;
 `;
 
 const PlaceInfoWrap = styled.div`
     position: absolute;
-    top: 475px;
+    top: 510px;
     width: 100%;
     height: 160px;
     & > div > button {
@@ -90,4 +98,19 @@ const PlaceInfo = styled.div`
     & > div{
         margin: 20px 0 20px 24px;
     }
+`;
+const PlaceButton = styled.button`
+    text-align: center;
+    color: #FFC44F;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 45px;
+    width: 308px;
+    height: 45px;
+    margin: 0 auto;
+    margin-top: -10px;
+    background-color: transparent;
+    border: 1px solid #FFC44F;
+    border-radius: 22.5px;
+    cursor: pointer;
 `;

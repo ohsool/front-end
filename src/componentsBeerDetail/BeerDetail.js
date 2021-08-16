@@ -63,21 +63,25 @@ const BeerDetail = (props) =>{
                         <img src={beerOne?.image} />
                     </BeerImage>
                     <Wrap>
-                        <Horizion>
-                        <BeerName>{beerOne?.name_korean}</BeerName>
-                        <HeartWrap>
-                            <HeartButton
-                                heart_detail={heart_detail}
-                                _onClick={(e) => {
-                                    e.preventDefault();
-                                    e.stopPropagation();
-                                    clickLike();
-                                }}
-                                is_like={toggle}                
-                            />
-                        </HeartWrap>
-                        </Horizion>
-                        <p style={{margin: "0px"}}>{beerOne?.name_english}</p>
+                        <JustifyAlign>
+                            <div>
+                            <BeerName>{beerOne?.name_korean}</BeerName>
+                            <BeerNameEng>{beerOne?.name_english}</BeerNameEng>
+                            </div>
+
+                            <HeartWrap>
+                                <HeartButton
+                                    heart_detail={heart_detail}
+                                    _onClick={(e) => {
+                                        e.preventDefault();
+                                        e.stopPropagation();
+                                        clickLike();
+                                    }}
+                                    is_like={toggle}                
+                                />
+                            </HeartWrap>
+                        </JustifyAlign>
+
                         {hashtag?.map((item, idx)=>(
                             idx < 3 ? "": <TasteTag>
                                 <span>#{item}</span>
@@ -102,7 +106,7 @@ const BeerDetail = (props) =>{
                     </Wrap>
                     <Line/>
                     <Wrap>
-                        <span style={{ fontWeight: "700"}}>그래프</span>                      
+                        <span style={{ fontWeight: "700"}}>Taste 그래프</span>                      
                     </Wrap>
                     <Graph>
                         <TasteGraph beers={beerOne?.features}/>
@@ -218,12 +222,8 @@ const HeartWrap = styled.div`
     display: flex;
 `;
 
-const Horizion = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-`;
-const BeerName= styled.p`
+
+const BeerName = styled.p`
     display: inline-block;
     font-size: 20px;
     font-weight: bold;
@@ -233,6 +233,12 @@ const BeerName= styled.p`
     white-space: nomal;
 `;
 
+const BeerNameEng = styled.p`
+    margin: 0;
+    bold: bolder;
+    margin-top: -5px;
+
+`
 const BeerContent = styled.div`
     padding: 14px 0;
     margin: 0;
@@ -253,10 +259,10 @@ const BeerContent = styled.div`
 
 const Graph = styled.div`
     margin: 20px auto;
-    paddin
+    padding: 24px;
     display: flex;
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: 250px;
     border: 2px solid #C4C4C4;
     border-radius: 10px;
 `;
@@ -280,11 +286,6 @@ const PlaceButton = styled.button`
     background-color: transparent;
     border: 1px solid #FFC44F;
     border-radius: 22.5px;
-    & > img{
-        margin-left: 4px;
-        width: 11px;
-        height: 11px;
-    }
     cursor: pointer;
 `;
 
@@ -310,3 +311,9 @@ const Gradient = styled.div`
     color-stop(1.00, rgba(0,0,0,1)), 
     color-stop(0.00, rgba(0,0,0,0)));
 `;
+
+const JustifyAlign = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+`

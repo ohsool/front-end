@@ -91,6 +91,7 @@ const Wrap = styled.div`
 `;
 
 const TextWrap = styled.div`
+    font-family: "GmarketSansM";
     display: inline-block;
     margin: 68px 0 0 16px;
     & > p {

@@ -15,25 +15,24 @@ const MyReview = (props) =>{
             <Header/>
             <Container>
                 <Div>
-
-                <Title><span>내가 쓴 게시물</span></Title>
-                <WritedBeerInfo >
-                    <BeerImage>
-                        <img src={item?.beerId?.image}></img>
-                    </BeerImage>
-                    <BeerTextWrap>
-                        <span>{item?.review}</span>
-                    </BeerTextWrap>
-                </WritedBeerInfo>
-                <Text><span>별점</span></Text>                      
-                <div style={{margin: "0 auto"}}>
-                    <StarRate init_star={item.rate}/>
-                </div>
-                <Graph>
-                    <TasteGraph beers={item?.myFeatures}/>
-                </Graph>
-                <div style={{textAlign: "center"}}>
-                </div>
+                    <Title><span>내가 쓴 게시물</span></Title>
+                    <WritedBeerInfo >
+                        <BeerImage>
+                            <img src={item?.beerId?.image}></img>
+                        </BeerImage>
+                        <BeerTextWrap>
+                            <span>{item?.review}</span>
+                        </BeerTextWrap>
+                    </WritedBeerInfo>
+                    <Text><span>별점</span></Text>                      
+                    <div style={{margin: "0 auto"}}>
+                        <StarRate init_star={item.rate}/>
+                    </div>
+                    <Graph>
+                        <TasteGraph beers={item?.myFeatures}/>
+                    </Graph>
+                    <div style={{textAlign: "center"}}>
+                    </div>
                 </Div>
 
             </Container>
@@ -55,9 +54,20 @@ const Container = styled.div`
         text-align:left;
     }
 `;
+const Div = styled.div`
+    display: flex;
+    flex-direction: column;
+    text-align: legt; 
+    margin: 70px 20px;
+    
+    & > span{
+        float: left;
+        font-weight: 700;
+    }
+`
 
 const Title = styled.div`
-    margin-top: 40px;
+    padding-left: 30px;
     & > span{
         font-weight: 700;
         font-size: 14px;
@@ -66,7 +76,7 @@ const Title = styled.div`
     } 
 `
 const Text = styled.div`
-    margin: 0;
+    margin: 20px 0 0 0;;
     text-align: center;
     & > span{
         font-size: 14px;
@@ -77,6 +87,8 @@ const Text = styled.div`
 `
 const WritedBeerInfo = styled.div`
     display: flex;
+    padding-left: 20px;
+    
 `;
 
 const BeerImage = styled.div`
@@ -108,24 +120,13 @@ const BeerTextWrap = styled.div`
     }
 `;
 
-const Div = styled.div`
-    display: flex;
-    flex-direction: column;
-    text-align: left; 
-    margin: 70px 20px;
-    margin: 14px auto;
-    & > span{
-        float: left;
-        font-weight: 700;
-    }
-`
 
 const Graph = styled.div`
-    margin: 14px auto;
+    margin: 20px auto;
+    padding: 24px;
     display: flex;
-    width: 313px;
-    height: 313px;
+    width: 270px;
+    height: 270px;
     border: 2px solid #C4C4C4;
     border-radius: 10px;
 `;
-

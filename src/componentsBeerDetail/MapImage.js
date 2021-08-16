@@ -118,12 +118,17 @@ const MapImage = ({setClickReport}) => {
     return(
         <React.Fragment>
             <InputWrap onKeyPress={SearchPlace}>
-                <InputPlace ref={inputRef}></InputPlace>
+                <SearchInput 
+                ><input 
+                ref={inputRef}
+                placeholder="검색어를 입력하세요"
+                /></SearchInput>
             </InputWrap>
             <div 
                 className= "map"
                 ref={container}
-                style={{width:"100vw", height:"365px"}}></div>
+                style={{width:"100vw", height:"400px"}}>
+            </div>
         </React.Fragment>
     )
 }
@@ -133,20 +138,19 @@ export default MapImage;
 const InputWrap = styled.div`
     margin-top: 40px;
     width: 100%;
-    height: 70px;
-    text-align: center;
 `;
 
-const InputPlace = styled.input`
-    width: 312px;
-    height: 30px;
-    margin-top: 20px;
-    background-color: #F7F7F7;
-    border: none;
-    outline: none;
-    border-radius: 18px;
-    padding-left: 24px;
-    color: #151515;
-    font-size: 12px;
-    font-weight: 500;
-`;
+const SearchInput = styled.div`
+    width: 360px;
+    & > input{
+        width: 292px;
+        height: 30px;
+        border:none;
+        margin: 20px 24px;
+        background: #F6F6F6;
+        border-radius: 18px;
+        outline: none;
+        padding-left: 20px;
+    }
+    margin: 0 auto;
+`

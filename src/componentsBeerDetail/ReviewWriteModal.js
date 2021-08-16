@@ -32,7 +32,7 @@ const ReviewWriteModal = (props) => {
 
 
     const addReview = () => { //리뷰 작성시
-        if(review === "" || starScore === 0 || featuresList.includes(0)){
+        if(review === "" || starScore === 0 ){
             window.alert("답하지 않은 문항이 있어요!")
             return
         }
@@ -166,17 +166,20 @@ const ReviewWriteModal = (props) => {
                             </div>
                         {is_edit ? (
                             <ReviewButton>
-                                <button 
+                                <button
                                 onClick={() => {
                                     updateReview();
-                                }}>도감 수정하기</button>
+                                }}>도감 수정하기
+                                </button>
                             </ReviewButton>
                         ):(
                             <ReviewButton>
                                 <button
                                 onClick={() => {
                                     addReview()
-                                }}>도감 작성하기</button>
+                                }}>
+                                도감 작성하기
+                                </button>
                             </ReviewButton>
                         )}
 
@@ -291,22 +294,23 @@ const Div = styled.div`
     text-align: center;  
 `
 const ReviewButton = styled.div`
-    width: 308px;
+    text-align:center;
     margin: 20px auto;
-    button{
+    & > button{
         width: 308px;
         height: 45px;
-        border-radius: 50px;
-        border: 2px solid #FFC44F;
+        border-radius: 22.5px;
+        border: 1px solid #FFC44F;
         color: #FFC44F;
         font-weight: bold;
         background-color: #FFFFFF;
         cursor: pointer;
     }
-
 `
 const TasteFlavorWrap = styled.div`
+    margin-top: -20px;
     margin-left: 30px;
+    margin-bottom: 20px;
     display: inline-block;
     width: 59px;
     height: 238px;
@@ -324,5 +328,5 @@ const TasteScoreWrap = styled.div`
     width: 200px;
     height: 240px;
     display: inline-block;
-    margin: 0 0 0px 47px;
+    margin: -20px 0 0 47px;
 `;

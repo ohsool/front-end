@@ -52,7 +52,7 @@ const MyPage = (props) => {
                         setModal_Info({
                             suggestTitle: "맥주 건의하기",
                             titlePlaceholder: "맥주 이름을 입력해주세요",
-                            commentPlaceholder: "맥주의 특징이나 추천하는 이유를 입력해주세요!",
+                            commentPlaceholder: "맥주에 대한 설명을 적어주세요!",
                         })
                         openModal();
                     }}>
@@ -64,7 +64,7 @@ const MyPage = (props) => {
                         setModal_Info({
                             suggestTitle: "관리자에게 건의하기",
                             titlePlaceholder: "제목을 입력하세요",
-                            commentPlaceholder: "불편한 사항이나 건의할 내용을 입력해주세요!",
+                            commentPlaceholder: "건의할 내용을 적어주세요!",
                         })
                         openModal();
                     }}>
@@ -77,7 +77,11 @@ const MyPage = (props) => {
                         close={closeModal}
                 ></MyPageModal>
                 <LogOutButton
-                    onClick={confirmLogout}>로그아웃</LogOutButton>
+                    style={{fontFamily: "Noto Sans KR"}}
+                    onClick={confirmLogout}
+                >
+                    로그아웃
+                </LogOutButton>
             </PageMoveWrap>
         </Container>
         </>
@@ -108,8 +112,8 @@ const MoveBoxWrap = styled.div`
     margin-bottom: 16px;
     & > span{
         line-height: 40px;
-        margin-left: 24px;
-        font-size: 12px;
+        margin-left: 10px;
+        font-size: 14px;
         font-weight: bold;
     }
 `;
@@ -122,14 +126,17 @@ const ArrowImage = styled.img`
 `;
 
 const LogOutButton = styled.button`
-    position: absolute;
-    width: 70px;
-    height: 23px;
-    bottom: 50px;
-    left: 50%;
-    transform: translate(-30px, 0);
-    border: none;
-    background-color: transparent;
-    color: #FFC44F;
-    cursor: pointer;
+        position: absolute;
+        width: 90px;
+        height: 23px;
+        bottom: 50px;
+        left: 50%;
+        transform: translate(-30px, 0);
+        border: none;
+        background-color: transparent;
+        color: #FFC44F;
+        cursor: pointer;
+        font-weight: 700;
+        font-size: 16px;
+        font-family : inherit;
 `;

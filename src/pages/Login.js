@@ -81,7 +81,7 @@ const Login = (props) => {
                             onKeyUp={onKeyUp}
                             placeholder="비밀번호"
                         ></InputLogin>
-                        <button 
+                        <button
                             className = {is_typed ? "yellowButton" : "whiteButton"}
                             onClick={submitLogin}
                             >
@@ -178,4 +178,5 @@ const SocialLoginButton = styled.button`
     border-radius: 24px;
     color: #555555;
     cursor: pointer;
+    font-family : inherit;
 `;

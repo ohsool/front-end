@@ -48,13 +48,15 @@ const MyBeer = (props)=>{
             <Wrap>  
             <ButtonContainerWrap>
                 <button
+                    style={{fontFamily:"Noto Sans KR"}}
                     className={is_Dogam === true ? "clickedButtonContainer" : "buttonContainer"} //클릭시 css변경
                     onClick={()=>{
                         setIs_Dogam(true)
                     }}>
                     좋아요한 맥주
                 </button>
-                <button 
+                <button
+                    style={{fontFamily:"Noto Sans KR"}}
                     className={is_Dogam === false ? "clickedButtonContainer" : "buttonContainer"} //클릭시 css변경
                     onClick={()=>{
                         setIs_Dogam(false)
@@ -98,6 +100,7 @@ const Grid = styled.div`
     height: 754px;
     background-color: #FFFFFF;
     flex-direction: column;
+    
 `;
 
 const ButtonContainerWrap = styled.div`

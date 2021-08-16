@@ -52,10 +52,12 @@ const BeerTextWrap = styled.div`
     & > p {
         margin: 0;
         font-size: 14px;
+        font-weight: 700;
+        font-height: 20px;
     }
     & > span{
         font-size: 12px;
         font-weight: 300;
-        height: 46px;
+        font-height: 46px;
     }
 `;

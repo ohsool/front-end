@@ -19,9 +19,10 @@ const BeerType = ({ items, setIs_Search }) => {
 
     return (
         <Container>
-            <StyledSlider {...settings}>
+            <StyledSlider 
+            {...settings}>
                 {true && items?.map((item, idx) => (
-                    <div 
+                    <div  
                         onClick={() => {
                             setIs_Search(false);
                             history.push(`/beer/list/${item._id}`)
@@ -51,7 +52,8 @@ const StyledSlider = styled(Slider)`
     .slick-slide div {
         position: relative;
         outline: none;
-        width: 60px;
+        //width: 60px;
+        padding: 0 7px;
         text-align: center;
         cursor: pointer;
         :focus{

@@ -103,9 +103,9 @@ const ModalWrap = styled.div`
 `;
 
 const SuggestInput = styled.textarea`
-    height: 211px;
-    width: 296px;
-    padding: 15px;
+    height: 226px;
+    width: 312px;
+    padding: 22.6px 15px;
     margin: 0 auto;
     border: none;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
@@ -120,7 +120,7 @@ const SuggestTitle = styled.div`
         position: absolute;
         margin: 20px 0 0 24px;
         font-size: 14px;
-        font-weight: bold;
+        font-weight: 700;
     }
 `;
 

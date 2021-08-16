@@ -50,23 +50,27 @@ const EachBeer = (props) => {
                     </img>
                 </BeerImage>
                 <BeerInfoWrap>
-                        <BeerName>{item.name_korean}</BeerName>
-                        <HeartButton 
-                            _onClick={(e) => {
-                                clickLike();
-                                e.preventDefault();
-                                e.stopPropagation();              
+                    <JustifyAlign>
+                    <BeerName>{item.name_korean}</BeerName>
+                    <HeartButton
+                        _onClick={(e) => {
+                            clickLike();
+                            e.preventDefault();
+                            e.stopPropagation();              
                         }}
                         is_like={toggle}
-                        />
+                    />
+                    </JustifyAlign>
+                        
                     <p>{item.name_english}</p>
-                    
-                </BeerInfoWrap>
-
-                {item.hashtag.map((p, idx) => (
+                    {item.hashtag.map((p, idx) => (
                     idx < 3 ? "":
                         <TasteTag key={idx}>#{p}</TasteTag>
                     ))}
+                    
+                </BeerInfoWrap>
+
+
             </RecommendBeerWrap>
         </React.Fragment>
     )
@@ -143,3 +147,9 @@ const TasteTag = styled.div`
     text-align: center;
     color: #333333;
 `;
+
+const JustifyAlign = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+`
