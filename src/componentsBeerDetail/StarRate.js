@@ -2,7 +2,7 @@ import React,{  useState } from "react";
 import styled from "styled-components";
 import star_filled from "../share/image/star_filled.png";
 import star_empty from "../share/image/star_empty.png";
-const StarButton = ({setStarScore, init_star}) =>{
+const StarButton = ({setStarScore, init_star, is_my}) =>{
     const [score, setScore] = useState(init_star); //별점
     const totalStarCount = 5;   
     const starCount = score; 
@@ -11,6 +11,27 @@ const StarButton = ({setStarScore, init_star}) =>{
     setStarScore(score);
   };
   return (
+    is_my ?  <Container>
+      <div style={{display:"flex"}}>
+        {[...Array(starCount)].map((n, index) => {
+          return (
+            <StarFilled
+              key={index}
+              style={{backgroundImage: `url(${star_filled})`}}
+            ></StarFilled>
+          );
+        })}
+        {[...Array(removeCount)].map((n, index) => {
+          return (
+            <StarEmpty
+              key={index}
+              style={{backgroundImage: `url(${star_empty})`}}
+            ></StarEmpty>
+          );
+        })}
+      </div>
+    </Container>
+:
     <Container>
       <div style={{display:"flex"}}>
         {[...Array(starCount)].map((n, index) => {

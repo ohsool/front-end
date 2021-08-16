@@ -146,19 +146,18 @@ const ReviewWriteModal = (props) => {
                             </TasteFlavorWrap>
 
                             <TasteScoreWrap> {/* 셀렉트 바 */}
-                                
                                 {is_edit ? (
                                     <> {/* {setFeaturesList(item.myFeatures)}*/}
                                         {list.map((taste, idx) => (
                                         <SelectBar key={idx} index={idx} setFeaturesList={setFeaturesList} 
-                                                featuresList={featuresList} taste={taste} is_edit={true}/>
+                                            featuresList={featuresList} taste={taste} is_edit={true}/>
                                         ))}
                                     </>
                                 ):(
                                     <>
                                         {arr.map((taste, idx) => (
-                                            <SelectBar key={idx} index={idx} setFeaturesList={setFeaturesList} 
-                                                featuresList={featuresList} taste={taste} is_edit={false}/>
+                                        <SelectBar key={idx} index={idx} setFeaturesList={setFeaturesList} 
+                                            featuresList={featuresList} taste={taste} is_edit={false}/>
                                         ))}
                                     </>
                                 )}
@@ -308,19 +307,18 @@ const ReviewButton = styled.div`
     }
 `
 const TasteFlavorWrap = styled.div`
-    margin-top: -20px;
+    //margin-top: 20px;
     margin-left: 30px;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
     display: inline-block;
     width: 59px;
-    height: 238px;
+    height: 200px;
     & > span {
         margin: 28px 0 13px 0;
         display: block;
         font-size: 14px;
         font-weight: 700;
         line-height: 20.27px;
-        margin-bottom: 13px;
     }
 `;
 
@@ -328,5 +326,5 @@ const TasteScoreWrap = styled.div`
     width: 200px;
     height: 240px;
     display: inline-block;
-    margin: -20px 0 0 47px;
+    margin: 20px 0 0 47px;
 `;

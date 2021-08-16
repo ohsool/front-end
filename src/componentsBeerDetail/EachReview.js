@@ -46,7 +46,7 @@ const EachReview=(props)=> {
                         <StarImg style={{backgroundImage: `url(${star})`}}/>
                         <RateText>
                             <span style={{fontWeight: "300", fontSize: "10px", lineHeight: "14.48px"}}>
-                                ({item.rate.toFixed(1)})</span>
+                                ({item.rate})</span>
                         </RateText>
                             { item.userId._id === userId ? ( //작성자와 user가 동일한 경우 수정/삭제 버튼 활성화
                                 <>

@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components/macro";
+import styled from "styled-components";
 import {history} from "../redux/configureStore";
 import moment from 'moment';
 import 'moment/locale/ko';
@@ -9,10 +9,12 @@ import Header from "../Header";
 const MyReview = (props) =>{
     const item = props.location.state; //
     const date = moment(item?.date);
+    const is_my = true;
 
     return(
         <React.Fragment>
             <Header/>
+            <Grid>
             <Container>
                 <Div>
                     <Title><span>내가 쓴 게시물</span></Title>
@@ -26,7 +28,11 @@ const MyReview = (props) =>{
                     </WritedBeerInfo>
                     <Text><span>별점</span></Text>                      
                     <div style={{margin: "0 auto"}}>
-                        <StarRate init_star={item.rate}/>
+                        <StarRate 
+                        style={{//touchAction: "none",
+                                pointerEvents : "none"
+                              }}
+                        init_star={item.rate} is_my={is_my}/>
                     </div>
                     <Graph>
                         <TasteGraph beers={item?.myFeatures}/>
@@ -34,12 +40,19 @@ const MyReview = (props) =>{
                     <div style={{textAlign: "center"}}>
                     </div>
                 </Div>
+                
 
             </Container>
+            </Grid>
         </React.Fragment>
     )
 }
 export default React.memo(MyReview);
+
+const Grid = styled.div`
+    width: 100%;
+`;
+
 
 const Container = styled.div`
     display: flex;
@@ -67,7 +80,8 @@ const Div = styled.div`
 `
 
 const Title = styled.div`
-    padding-left: 30px;
+    padding-left: -100px;
+    text-aligh: left;
     & > span{
         font-weight: 700;
         font-size: 14px;
@@ -87,8 +101,7 @@ const Text = styled.div`
 `
 const WritedBeerInfo = styled.div`
     display: flex;
-    padding-left: 20px;
-    
+    margin: 0 auto;
 `;
 
 const BeerImage = styled.div`

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import styled from "styled-components/macro";
+import styled from "styled-components";
 import { history } from "../redux/configureStore";
 import { useSelector, useDispatch } from "react-redux";
 import { getOneBeer, likeBeer, unLikeBeer } from "../redux/async/beer";
@@ -206,15 +206,13 @@ const Line = styled.hr`
     width: 360px;
     text-align: center;
     border: 0;
-    border:solid #c4c4c4;
-    border-width: 0.5px;
+    border:0.5px solid #c4c4c4;
 `
 const LineShort = styled.hr`
     width: 312px;
     text-align: center;
     border: 0;
-    border:solid #c4c4c4;
-    border-width: 0.5px;
+    border:0.5px solid #c4c4c4;
 `
 const HeartWrap = styled.div`
     width: 38px;
@@ -236,7 +234,11 @@ const BeerName = styled.p`
 const BeerNameEng = styled.p`
     margin: 0;
     bold: bolder;
-    margin-top: -5px;
+    margin-top: -2px;
+    margin-bottom: 2px;
+
+    font-size: 14px;
+    font-weight: 500;
 
 `
 const BeerContent = styled.div`
