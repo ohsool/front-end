@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components/macro";
+import styled from "styled-components";
 import {history} from "../redux/configureStore";
 import moment from 'moment';
 import 'moment/locale/ko';
@@ -15,24 +15,25 @@ const MyReview = (props) =>{
             <Header/>
             <Container>
                 <Div>
-                    <Title><span>내가 쓴 게시물</span></Title>
-                    <WritedBeerInfo >
-                        <BeerImage>
-                            <img src={item?.beerId?.image}></img>
-                        </BeerImage>
-                        <BeerTextWrap>
-                            <span>{item?.review}</span>
-                        </BeerTextWrap>
-                    </WritedBeerInfo>
-                    <Text><span>별점</span></Text>                      
-                    <div style={{margin: "0 auto"}}>
-                        <StarRate init_star={item.rate}/>
-                    </div>
-                    <Graph>
-                        <TasteGraph beers={item?.myFeatures}/>
-                    </Graph>
-                    <div style={{textAlign: "center"}}>
-                    </div>
+
+                <Title><span>내가 쓴 게시물</span></Title>
+                <WritedBeerInfo >
+                    <BeerImage>
+                        <img src={item?.beerId?.image}></img>
+                    </BeerImage>
+                    <BeerTextWrap>
+                        <span>{item?.review}</span>
+                    </BeerTextWrap>
+                </WritedBeerInfo>
+                <Text><span>별점</span></Text>
+                <div style={{margin: "0 auto"}}>
+                    <StarRate init_star={item.rate}/>
+                </div>
+                <Graph>
+                    <TasteGraph beers={item?.myFeatures}/>
+                </Graph>
+                <div style={{textAlign: "center"}}>
+                </div>
                 </Div>
 
             </Container>

@@ -16,6 +16,7 @@ const Search = (props) => {
     const [show_recent_words, setShow_Recent_Words] = useState(false);//최근 검색어 보여줄지, 실시간 자동완성 검색어 보여줄지
     const [openModal,setOpen_Modal] = useState(false);
     const dispatch = useDispatch();
+    
     const onChange = (e) =>{
         if(e.target.value === ''){//검색어 지웠을 때 검색목록 사라지도록 함
             setWord(null);

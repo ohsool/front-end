@@ -1,22 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=&libraries=services"></script>
-    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=05e106dead8f4edabc80bafcaef225ce&libraries=services"></script>
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
+    <meta name="description" content="Web site created using create-react-app" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="apple-touch-icon" sizes="192x192" href="ohsoolIcon150.png">
+    <link rel="apple-touch-icon" sizes="512x512" href="ohsoolIcon512.png">
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -27,11 +26,59 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+    <style type="text/css">
+      body {
+          margin: 0;
+          padding: 0;
+          font-family: sans-serif;
+      }
+      .navbar {
+          background-color: #FFC44F;
+      }
+      .navbar h3 {
+          display: inline-block;
+          text-align: left;
+          padding: 10px;
+          color: black;
+          text-decoration: none;
+      }
+      .navbar a {
+          display: inline-block;
+          padding: 10px;
+          text-align: center;
+          color: #fff;
+          text-decoration: none;
+      }
+      .page-info {
+          padding: 10px;
+      }
+  </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    
-    <div id="root"></div>
+    <div id="root">
+        <div class="navbar">
+          <a href="/">오늘의 술</a>
+      </div>
+      <p class="page-info">
+          로딩중입니다...
+      </p>
+    </div>
+    <script>
+      if ('serviceWorker' in navigator) {
+          window.addEventListener('load', function() {
+              navigator.serviceWorker.register('worker.js').then(function(registration) {
+                  console.log('Worker registration successful', registration.scope);
+              }, function(err) {
+                  console.log('Worker registration failed', err);
+              }).catch(function(err) {
+                  console.log(err);
+              });
+          });
+      } else {
+          console.log('Service Worker is not supported by browser.');
+      }
+    </script>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

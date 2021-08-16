@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { history } from "../redux/configureStore";
-import { getCookie, setCookie } from "./Cookie";
+import { setCookie } from "./Cookie";
 const Token = (props) => {
 
     useEffect(() =>{

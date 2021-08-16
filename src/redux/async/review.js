@@ -34,7 +34,6 @@ export const editReview = createAsyncThunk(
   
     const response = await axiosInstance.put(`/api/mybeer/${mybeerId}`, data);
     return response.data;
-  
   }
 );
 

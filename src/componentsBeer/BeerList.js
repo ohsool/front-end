@@ -27,7 +27,6 @@ const BeerList = (props) =>{
     const [paging, setPaging] = useState(0)
     const [openModal, setOpen_Modal] = useState(false);
 
-
     useEffect(() => {
         dispatch(getAllBeer("all"));
         dispatch(getCategory());
@@ -39,7 +38,7 @@ const BeerList = (props) =>{
         if(!is_search){
             setOpen_Modal(false);
         }
-    },[is_search])
+    },[is_search]);
 
     useEffect(() => {
         if(paging === 0){
@@ -52,12 +51,12 @@ const BeerList = (props) =>{
         };
     }, [paging]);
 
-    const getInfinityList = () => {
-        if(paging === 6){
+    const getInfinityList = async () => {
+        if(paging >= 6){
             return;
         }
         setLoading(true);
-        dispatch(getBeerInfinity(paging))
+        await dispatch(getBeerInfinity(paging));
         setLoading(false);
     };
 
@@ -70,7 +69,7 @@ const BeerList = (props) =>{
           setPaging(paging+1);
           getInfinityList();
         }
-       }, 300);
+       }, 1000);
 
     const searchBeerList = () => {
         
@@ -87,11 +86,14 @@ const BeerList = (props) =>{
         //setOpen_Modal(false);
         if(get_category_id === "all"){
             return (
-            <List>
-                {beersIF?.map((item, idx) => (
-                    <EachBeer key={idx} item={item}/>
-                ))}
-            </List>
+                <>
+                <List>
+                    {beersIF?.map((item, idx) => (
+                        <EachBeer key={idx} item={item}/>
+                    ))}
+                </List>
+            {loading ? <h1>맥주목록을 불러오는 중입니다.</h1> : ""}
+            </>
             );
         }else{
             return(

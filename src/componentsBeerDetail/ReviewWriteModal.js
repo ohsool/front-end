@@ -255,6 +255,13 @@ const CloseIcon = styled.div`
     top: 22px;
     width: 16px;
     height: 16px;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    border: 1px solid black;
+=======
+>>>>>>> 04ea47672e52bce68e048be418e9b30b10c5d667
+>>>>>>> endol
     cursor: pointer;
 `;
 
