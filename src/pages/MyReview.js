@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components/macro";
+import styled from "styled-components";
 import {history} from "../redux/configureStore";
 import moment from 'moment';
 import 'moment/locale/ko';
@@ -25,8 +25,8 @@ const MyReview = (props) =>{
                         <span>{item?.review}</span>
                     </BeerTextWrap>
                 </WritedBeerInfo>
-                <Text><span>별점</span></Text>                      
-                <div style={{textAlign: "center", margin: "-10px 0 10px 0"}}>
+                <Text><span>별점</span></Text>
+                <div style={{margin: "0 auto"}}>
                     <StarRate init_star={item.rate}/>
                 </div>
                 <Graph>

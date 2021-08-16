@@ -1,6 +1,6 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
-import logo from "../share/image/heart_red.jpeg";
+import logo from "../share/image/loader.png";
 
 const Loader = () => {
     return (

@@ -22,30 +22,28 @@ const BeerList = (props) =>{
     const [is_Loading, setIs_Loading] = useState(false); //로딩 여부 판별
     const [is_search, setIs_Search] = useState(false) 
     const [search_beer, setSearch_Beer] = useState([]); //검색한 맥주 정보
+    const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
     const [paging, setPaging] = useState(0)
-    const [beerLength, setBeerLength] = useState(0);
-    const dispatch = useDispatch();
+    const [openModal, setOpen_Modal] = useState(false);
 
     useEffect(() => {
         dispatch(getAllBeer("all"));
         dispatch(getCategory());
         dispatch(userInfo());
-        if(paging === 0){
-            dispatch(getBeerInfinity(paging));
-            setPaging(paging+1);
-        }
         setIs_Loading(true);
     }, []);
 
+    useEffect(()=>{
+        if(!is_search){
+            setOpen_Modal(false);
+        }
+    },[is_search]);
 
     useEffect(() => {
-        setBeerLength(beersIF.length);
-        if(beerLength % 8 !== 0){
-            return;
-        }
-        if(loading){
-            return;
+        if(paging === 0){
+            dispatch(getBeerInfinity(paging));
+            setPaging(paging+1);
         }
         window.addEventListener("scroll", _handleScroll); // scroll event listener 등록
         return () => {
@@ -53,11 +51,13 @@ const BeerList = (props) =>{
         };
     }, [paging]);
 
-    const getInfinityList = () => {
-        if(paging > 6){
+    const getInfinityList = async () => {
+        if(paging >= 6){
             return;
         }
-        dispatch(getBeerInfinity(paging))
+        setLoading(true);
+        await dispatch(getBeerInfinity(paging));
+        setLoading(false);
     };
 
     const _handleScroll = _.throttle(() => {
@@ -69,12 +69,13 @@ const BeerList = (props) =>{
           setPaging(paging+1);
           getInfinityList();
         }
-       }, 300);
+       }, 1000);
 
     const searchBeerList = () => {
+        
         return(
             <List>
-                {search_beer?.length > 0 ? search_beer.map((item, idx) => (
+                {search_beer?.length > 0 ? search_beer?.map((item, idx) => (
                     <EachBeer key={idx} item={item}/>
                 )):""}
             </List>
@@ -84,11 +85,14 @@ const BeerList = (props) =>{
     const allBeerList = () => {
         if(get_category_id === "all"){
             return (
-            <List>
-                {beersIF?.map((item, idx) => (
-                    <EachBeer key={idx} item={item}/>
-                ))}
-            </List>
+                <>
+                <List>
+                    {beersIF?.map((item, idx) => (
+                        <EachBeer key={idx} item={item}/>
+                    ))}
+                </List>
+            {loading ? <h1>맥주목록을 불러오는 중입니다.</h1> : ""}
+            </>
             );
         }else{
             return(
@@ -117,6 +121,8 @@ const BeerList = (props) =>{
                                 beers={beers}
                                 setIs_Search={setIs_Search}
                                 search_beer={search_beer}
+                                openModal={openModal}
+                                setOpen_Modal={setOpen_Modal}
                             ></Search>
                             {is_search ? searchBeerList() //검색된 맥주 리스트 출력
                             : allBeerList() //타입별 맥주 리스트 출력
