@@ -28,7 +28,6 @@ const MapImage = ({setClickReport}) => {
                 const lat = 37.4995482;
                 const long = 127.0291611;
                 makeMap(place, lat, long);
-         //   }
         }
 
         function makeMap(place, lat, long) {  // Make kakaomap
@@ -111,7 +110,6 @@ const MapImage = ({setClickReport}) => {
 
         function choose(place) {
             // alert(`You chose ${place.place_name}`);
-            //console.log(place);      
         }
 
 

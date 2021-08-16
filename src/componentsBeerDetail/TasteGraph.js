@@ -8,7 +8,6 @@ const TasteGraph = ({ beers }) => {
   useEffect(() => { //평점정보 불러오기
       if(beers) {
         //맛 종류 5가지 불러오기
-        //setLabels(Object.keys(beers) ?? ["쓴맛", "청량감", "flavor", "sweet", "nutty"]);
         setLabels(["쓴맛", "청량감", "향", "단맛", "고소한맛"]);
         //맛마다 평점 정보 받아오기
         setScores(Object.values(beers) ?? [0, 0, 0, 0, 0]);

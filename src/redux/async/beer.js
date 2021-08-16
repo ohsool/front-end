@@ -18,7 +18,6 @@ export const getOneBeer = createAsyncThunk(
     async (data, thunkAPI) => {
 
     const response = await axiosInstance.get(`/api/beer/list/${data}`);
-
     return response.data;
     }
 );
@@ -62,7 +61,6 @@ export  const unLikeBeer = createAsyncThunk(
       index: index,
       response: response.data
     }
-
     return unLike_Data;
   }
 );

@@ -35,7 +35,8 @@ export const beerSlice = createSlice({
             state.beerOne = action.payload.beer;
         })
         .addCase(getBeerInfinity.fulfilled, (state, action) => {
-          state.testBeerList.push(...action.payload.beers);
+          // state.testBeerList.push(...action.payload.beers);
+          state.testBeerList = [...state.testBeerList, ...action.payload.beers];
         })
         //검색기능
         .addCase(getSearchWord.fulfilled, (state, action) => {

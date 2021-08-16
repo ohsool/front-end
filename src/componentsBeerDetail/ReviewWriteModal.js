@@ -57,8 +57,8 @@ const ReviewWriteModal = (props) => {
         close();
     }
     const updateReview = () => {
-        if(review === "" || starScore === 0 ){
-            window.alert("답하지 않은 문항이 있어요!")
+        if(review === ""){
+            window.alert("리뷰를 작성해주세요!")
             return
         }
         dispatch(editReview({
@@ -124,7 +124,6 @@ const ReviewWriteModal = (props) => {
                             )}
 
                     </BeerInfo>
-                    <ScoreWrap>
                             <Div> {/* 별점 묶음 */}
                                 <span style={{margin: "0 auto", fontWeight: "bold"}}>별점</span>
                                 {is_edit ? ( 
@@ -138,30 +137,34 @@ const ReviewWriteModal = (props) => {
                                 )}
                             </Div>
 
-                            <div>
+                            <div style={{width: "360px", height: "240px"}}>
                             <TasteFlavorWrap> {/* 질문 유형 */}
                                 {taste_data.map((taste) => 
                                     (<span>{taste}</span>)
                                 )}
                             </TasteFlavorWrap>
 
-                            <TasteScoreWrap> {/* 셀렉트 바 */}
                                 {is_edit ? (
                                     <> {/* {setFeaturesList(item.myFeatures)}*/}
+                                        <TasteScoreWrapEdit> {/* 셀렉트 바 */}
+
                                         {list.map((taste, idx) => (
                                         <SelectBar key={idx} index={idx} setFeaturesList={setFeaturesList} 
                                             featuresList={featuresList} taste={taste} is_edit={true}/>
                                         ))}
+                                        </TasteScoreWrapEdit>
                                     </>
                                 ):(
                                     <>
+                                        <TasteScoreWrapAdd>
                                         {arr.map((taste, idx) => (
                                         <SelectBar key={idx} index={idx} setFeaturesList={setFeaturesList} 
                                             featuresList={featuresList} taste={taste} is_edit={false}/>
                                         ))}
+                                        </TasteScoreWrapAdd>
                                     </>
                                 )}
-                            </TasteScoreWrap>
+                            
                             </div>
                         {is_edit ? (
                             <ReviewButton>
@@ -182,7 +185,6 @@ const ReviewWriteModal = (props) => {
                             </ReviewButton>
                         )}
 
-                    </ScoreWrap>
 
 
                 </ModalWrap>
@@ -307,12 +309,12 @@ const ReviewButton = styled.div`
     }
 `
 const TasteFlavorWrap = styled.div`
-    //margin-top: 20px;
+    position: absolute;
+    margin-top: -12px;
     margin-left: 30px;
     margin-bottom: 0px;
     display: inline-block;
-    width: 59px;
-    height: 200px;
+    
     & > span {
         margin: 28px 0 13px 0;
         display: block;
@@ -322,9 +324,18 @@ const TasteFlavorWrap = styled.div`
     }
 `;
 
-const TasteScoreWrap = styled.div`
+const TasteScoreWrapEdit = styled.div`
+    float: right;
     width: 200px;
     height: 240px;
     display: inline-block;
-    margin: 20px 0 0 47px;
+    margin: 20px 30px 0 47px;
+`;
+
+const TasteScoreWrapAdd = styled.div`
+    float: right;
+    width: 200px;
+    height: 240px;
+    display: inline-block;
+    margin: -20px 30px 0 47px;
 `;
