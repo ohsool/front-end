@@ -1,0 +1,53 @@
+.whiteButton{
+    margin-top: 25px;
+    width: 312px;
+    height: 45px;
+    font-weight: bold;
+    border: 1px solid #FFB521;
+    background-color: transparent;
+    border-radius: 24px;
+    color: #FFB521;
+    cursor: pointer;
+}
+
+.yellowButton{
+    margin-top: 25px;
+    width: 312px;
+    height: 45px;
+    font-weight: bold;
+    border: none;
+    background-color: #FFB521;
+    border-radius: 24px;
+    color: #151515;
+    cursor: pointer;
+}
+
+.inputCheckDoubleEmailRed{
+    position: absolute;
+    margin-top: -13px;
+    margin-left: 10px;
+    font-size: 10px;
+    color: #FF1010;
+}
+.inputCheckDoubleEmailGreen{
+    position: absolute;
+    margin-top: -13px;
+    margin-left: 10px;
+    font-size: 10px;
+    color: green;
+}
+
+.inputCheckDoubleNicknameRed{
+    position: absolute;
+    margin-top: -13px;
+    margin-left: 10px;
+    font-size: 10px;
+    color: #FF1010;
+}
+.inputCheckDoubleNicknameGreen{
+    position: absolute;
+    margin-top: -13px;
+    margin-left: 10px;
+    font-size: 10px;
+    color: green;
+}
