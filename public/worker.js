@@ -1,7 +1,10 @@
+//declare var window: Window & typeof globalThis;
+//declare var self;
 let CACHE_NAME = 'pwa-task-manager';
 let urlsToCache = [
     '/',
 ];
+
 // Install a service worker
 self.addEventListener('install', event => {
     // Perform install steps

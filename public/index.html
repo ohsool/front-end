@@ -23,6 +23,7 @@
     <meta name="twitter:image" content="./share/image/mainbeer.jpeg" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:description" content="안녕하세요. 맥주 추천사이트 오늘의 술, 오술입니다. 오술에서 다양한 종류의 맥주를 비교해보세요." />
+    
 
     <!--
       manifest.json provides metadata used when your web app is installed on a
@@ -55,16 +56,16 @@
       if ('serviceWorker' in navigator) {
           window.addEventListener('load', function() {
               navigator.serviceWorker.register('worker.js').then(function(registration) {
-                  console.log('Worker registration successful', registration.scope);
+                
               }, function(err) {
                   console.log('Worker registration failed', err);
               }).catch(function(err) {
                   console.log(err);
               });
           });
-      } else {
+      } /*else {
           console.log('Service Worker is not supported by browser.');
-      }
+      }*/
     </script>
     <!--
       This HTML file is a template.

@@ -7,7 +7,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const BeerType = ({ items, setIs_Search, setOpen_Modal }) => {
+const BeerType = ({ items, setOpen_Modal, setIs_Search }) => {
     const settings = {
         infinite: false,
         speed: 200,
@@ -23,8 +23,8 @@ const BeerType = ({ items, setIs_Search, setOpen_Modal }) => {
                 {true && items?.map((item, idx) => (
                     <div  
                         onClick={() => {
-                            setOpen_Modal(false);
                             setIs_Search(false);
+                            setOpen_Modal(false); //카테고리 클릭시 검색 모달 닫기
                             history.push(`/beer/list/${item._id}`)
                             // item.name === "All" ? history.push("/beer/list")
                             // :
@@ -41,8 +41,8 @@ const BeerType = ({ items, setIs_Search, setOpen_Modal }) => {
 export default React.memo(BeerType);
 
 const Container = styled.div`
-    margin-left: 10px;
-    width: 360px;
+    margin: 0 6px;
+    width: 336px;
     overflow: hidden;
 `;
 
@@ -52,9 +52,8 @@ const StyledSlider = styled(Slider)`
     .slick-slide div {
         // position: relative;
         outline: none;
-        height: 17px;
-        // width: 60px;
-        padding: 0 7px;
+        //width: 60px;
+        padding: 0 6px;
         text-align: center;
         cursor: pointer;
         :focus{

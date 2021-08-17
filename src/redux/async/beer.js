@@ -18,6 +18,7 @@ export const getOneBeer = createAsyncThunk(
     async (data, thunkAPI) => {
 
     const response = await axiosInstance.get(`/api/beer/list/${data}`);
+    
     return response.data;
     }
 );

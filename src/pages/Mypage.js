@@ -127,7 +127,7 @@ const ArrowImage = styled.img`
     height: 10px;
 `;
 
-const LogOutButton = styled.button`
+const LogOutButton = styled.div`
         position: absolute;
         width: 90px;
         height: 23px;
