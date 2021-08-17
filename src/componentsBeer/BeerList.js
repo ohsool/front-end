@@ -67,6 +67,7 @@ const BeerList = (props) =>{
                         <Grid>
                             <TopNav>
                             <Slider
+                                setOpen_Modal={setOpen_Modal}
                                 setIs_Search={setIs_Search}
                                 items={items}/>
                             </TopNav>
