@@ -9,25 +9,29 @@ import Header from "../Header";
 const MyReview = (props) =>{
     const item = props.location.state; //
     const date = moment(item?.date);
+    const is_my = true;
 
     return(
         <React.Fragment>
             <Header/>
+            
             <Container>
+            <Grid>
                 <Div>
-
-                <Title><span>내가 쓴 게시물</span></Title>
-                <WritedBeerInfo >
-                    <BeerImage>
-                        <img src={item?.beerId?.image}></img>
-                    </BeerImage>
-                    <BeerTextWrap>
-                        <span>{item?.review}</span>
-                    </BeerTextWrap>
-                </WritedBeerInfo>
+                <div style={{margin: "0 auto"}}>
+                    <Title><span>내가 쓴 게시물</span></Title>
+                    <WritedBeerInfo >
+                        <BeerImage>
+                            <img src={item?.beerId?.image}></img>
+                        </BeerImage>
+                        <BeerTextWrap>
+                            <span>{item?.review}</span>
+                        </BeerTextWrap>
+                    </WritedBeerInfo>
+                </div>
                 <Text><span>별점</span></Text>
                 <div style={{margin: "0 auto"}}>
-                    <StarRate init_star={item.rate}/>
+                    <StarRate init_star={item.rate} is_my={is_my}/>
                 </div>
                 <Graph>
                     <TasteGraph beers={item?.myFeatures}/>
@@ -35,12 +39,16 @@ const MyReview = (props) =>{
                 <div style={{textAlign: "center"}}>
                 </div>
                 </Div>
-
+                
+                </Grid>
             </Container>
+            
         </React.Fragment>
     )
 }
 export default React.memo(MyReview);
+
+
 
 const Container = styled.div`
     display: flex;
@@ -55,11 +63,17 @@ const Container = styled.div`
         text-align:left;
     }
 `;
+const Grid = styled.div`
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 40px;
+`;
+
 const Div = styled.div`
     display: flex;
     flex-direction: column;
     text-align: legt; 
-    margin: 70px 20px;
+    margin: 20px;
     
     & > span{
         float: left;
@@ -68,12 +82,11 @@ const Div = styled.div`
 `
 
 const Title = styled.div`
-    padding-left: 30px;
+    padding-left: 10px;
     & > span{
         font-weight: 700;
         font-size: 14px;
         line-height: 20.27px;
-
     } 
 `
 const Text = styled.div`
@@ -84,11 +97,10 @@ const Text = styled.div`
         font-weight: 700;
         line-height: 20.27px;
     }
-
 `
 const WritedBeerInfo = styled.div`
     display: flex;
-    padding-left: 20px;
+    //padding-left: 20px;
     
 `;
 

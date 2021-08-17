@@ -100,8 +100,7 @@ const BeerDetail = (props) =>{
                                 
                                 <br/>
                                 <br/>
-                                퇴근 후 <span>{beerOne?.name_korean}</span> 한잔 어때요?
-                                최근 떠오르는 맥주 중 하나로 요즘 같은 무더운 여름날 인기있는 맥주입니다.
+                                퇴근 후 <span>{beerOne?.name_korean}</span> 한잔 어떠세요?
                             </p>
                         </BeerContent> :null}
                     </Wrap>
@@ -206,36 +205,16 @@ const Wrap = styled.div`
 const Line = styled.hr`
     width: 360px;
     text-align: center;
-<<<<<<< HEAD
     border: 0;
     border:solid #c4c4c4;
     border-width: 0.5px;
-=======
-<<<<<<< HEAD
-    border:0.2px solid #c4c4c4;
-=======
-    border: 0;
-    border:solid #c4c4c4;
-    border-width: 0.5px;
->>>>>>> 04ea47672e52bce68e048be418e9b30b10c5d667
->>>>>>> endol
 `
 const LineShort = styled.hr`
     width: 312px;
     text-align: center;
-<<<<<<< HEAD
     border: 0;
     border:solid #c4c4c4;
     border-width: 0.5px;
-=======
-<<<<<<< HEAD
-    border:0.5px solid #c4c4c4;
-=======
-    border: 0;
-    border:solid #c4c4c4;
-    border-width: 0.5px;
->>>>>>> 04ea47672e52bce68e048be418e9b30b10c5d667
->>>>>>> endol
 `
 const HeartWrap = styled.div`
     width: 38px;
@@ -258,25 +237,13 @@ const BeerNameEng = styled.p`
     margin: 0;
     bold: bolder;
     margin-top: -5px;
-
 `
 const BeerContent = styled.div`
     padding: 14px 0;
     margin: 0;
-<<<<<<< HEAD
     width: 300px;
     & > p{
         margin-bottom: -0.2em; 
-=======
-<<<<<<< HEAD
-    width: 250px;
-    & > p{
-=======
-    width: 300px;
-    & > p{
-        margin-bottom: -0.2em; 
->>>>>>> 04ea47672e52bce68e048be418e9b30b10c5d667
->>>>>>> endol
         font-weight: 500;
         font-style: normal;
         font-size: 14px;
@@ -284,40 +251,17 @@ const BeerContent = styled.div`
         & > span {
             font-weight: 650;
             font-style: normal;
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-            font-size: 14.5px;
-            line-height: 21px;
-=======
->>>>>>> 04ea47672e52bce68e048be418e9b30b10c5d667
->>>>>>> endol
         }        
     }
    
 `;
 
 const Graph = styled.div`
-<<<<<<< HEAD
     margin: 20px auto;
     padding: 24px;
     display: flex;
     width: 250px;
     height: 250px;
-=======
-<<<<<<< HEAD
-    margin: 14px auto;
-    display: flex;
-    width: 313px;
-    height: 313px;
-=======
-    margin: 20px auto;
-    paddin
-    display: flex;
-    width: 300px;
-    height: 300px;
->>>>>>> 04ea47672e52bce68e048be418e9b30b10c5d667
->>>>>>> endol
     border: 2px solid #C4C4C4;
     border-radius: 10px;
 `;
@@ -329,27 +273,6 @@ const MapIcon = styled.div`
 `;
 
 const PlaceButton = styled.button`
-<<<<<<< HEAD
-    text-align: center;
-    color: #FFC44F;
-    font-size: 14px;
-    font-weight: bold;
-    line-height: 45px;
-=======
-<<<<<<< HEAD
->>>>>>> endol
-    width: 308px;
-    height: 45px;
-    margin: 0 auto;
-    margin-top: 30px;
-    background-color: transparent;
-    border: 1px solid #FFC44F;
-<<<<<<< HEAD
-    border-radius: 22.5px;
-=======
-    background-color: #fff;
-    margin-top: 16px;
-=======
     text-align: center;
     color: #FFC44F;
     font-size: 14px;
@@ -362,13 +285,6 @@ const PlaceButton = styled.button`
     background-color: transparent;
     border: 1px solid #FFC44F;
     border-radius: 22.5px;
-    & > img{
-        margin-left: 4px;
-        width: 11px;
-        height: 11px;
-    }
->>>>>>> 04ea47672e52bce68e048be418e9b30b10c5d667
->>>>>>> endol
     cursor: pointer;
 `;
 

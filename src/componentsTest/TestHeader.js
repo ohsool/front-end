@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 import myIconWhite from "../share/image/testHeaderIcon.png";
 import myIconBlack from "../share/image/HeaderIcon.png";
+import Back from "../share/image/Back.png";
 import _ from "lodash";
 
 import { history } from "../redux/configureStore";
@@ -21,11 +22,12 @@ const TestHeader = (props) => {
         <React.Fragment>
             <HeaderWrap>
             {scrollPosition < 270 ? 
-                (<HeaderBox>
-                <WhiteHeaderLogo 
-                    onClick={() => {
-                    history.push("/")
-                    }}>오늘의술</WhiteHeaderLogo>
+                (<HeaderBox>             
+                    <WhiteHeaderLogo 
+                        onClick={() => {
+                        history.push("/")
+                        }}>오늘의술
+                    </WhiteHeaderLogo>
                     <WhiteUserImage
                         style={{backgroundImage: `url(${myIconWhite})`}}
                         onClick={() => {
@@ -72,6 +74,16 @@ const HeaderBox = styled.div`
     display: flex;
     z-index: 10;
 `;
+
+const GoBack = styled.div`
+    width: 24px;
+    height: 24px;
+    background-size: cover;
+    margin: 10px 0 0 12px;
+    cursor: pointer;
+`;
+
+
 const BlackHeaderLogo = styled.div`
     display: inline-block;
     font-size: 20px;
