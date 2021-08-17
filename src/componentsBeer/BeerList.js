@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { categories } from "../redux/reducer/categorySlice";
-import _ from "lodash";
-import { InfinityBeer } from "../redux/reducer/beerSlice";
 import { getBeerList } from "../redux/reducer/beerSlice";
 import BeerListAll from "./BeerListAll";
 import {Slider,Search,EachBeer} from "./BeerIndex";
@@ -78,8 +76,8 @@ const BeerList = (props) =>{
                         <Grid>
                             <TopNav>
                             <Slider
-                                setIs_Search={setIs_Search}
                                 setOpen_Modal={setOpen_Modal}
+                                setIs_Search={setIs_Search}
                                 items={items}/>
                             </TopNav>
                             <Search //맥주 검색 부분

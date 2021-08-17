@@ -13,9 +13,6 @@ const InfinityChildren = (props) => {
     const beersIF = useSelector(InfinityBeer);
 
     const getInfinityList = async () => {
-        if(paging >= 6){
-            return;
-        }
         setLoading(true);
         await dispatch(getBeerInfinity(paging));
         setLoading(false);
@@ -27,15 +24,22 @@ const InfinityChildren = (props) => {
         const clientHeight = document.documentElement.clientHeight;
         if (scrollTop + clientHeight + 40 >= scrollHeight && loading === false) {
           // 페이지 끝에 도달하면 추가 데이터를 받아온다
+          if(paging >= 6){
+            return;
+            }
           setPaging(paging + 1);
           getInfinityList();
         }
     }, 700);
-
+    console.log(paging);
+    console.log(beersIF.length);
     useEffect(() => {
         if(paging === 0 && beersIF.length === 0){
             dispatch(getBeerInfinity(paging));
             setPaging(paging+1);
+        }
+        if(beersIF.length !== 0 ){
+        setPaging(beersIF.length/8)
         }
     }, []);
 
