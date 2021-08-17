@@ -51,6 +51,7 @@ const QuestionButton = styled.button`
     background-color: #F6F6F6;
     color: #555555;
     font-size: 16px;
+    cursor: pointer;
     &:active{
         background-color: #FFC44F;
     }

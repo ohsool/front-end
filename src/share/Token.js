@@ -1,10 +1,14 @@
+import { set } from "lodash";
 import React, { useEffect } from "react";
 import { history } from "../redux/configureStore";
 import { setCookie } from "./Cookie";
 const Token = (props) => {
-
+    const tokens = props.match.params.tokens;
+    const refresh = tokens.split("&")[0];
+    const access = tokens.split("&")[1].split("=")[1];
     useEffect(() =>{
-        setCookie("_osid", props.match.params.token);
+        setCookie("_osid", access);
+        setCookie("_osidRe", refresh);
         history.push("/")
     }, []);
     return(

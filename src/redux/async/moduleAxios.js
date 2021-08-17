@@ -1,12 +1,6 @@
 import axios from "axios";
 import crypto from "crypto";
-import { getCookie } from "../../share/Cookie";
-
-const token = sessionStorage.getItem("token");
-
-const headers = {
-    Authorization: `Bearer ${token}`,
-};
+import { getCookie, setCookie } from "../../share/Cookie";
 
 const secretAPIkey = () => {
     const time = new Date();
@@ -28,15 +22,14 @@ export const axiosInstance = axios.create({
     }
 });
 
-// export const nonHeaderAxios = axios.create({
-//     baseURL: `https://오늘의술.shop/${key}`,
-// });
 
 axiosInstance.interceptors.request.use(
     function (config){
-        const token = getCookie("_osid");
-        config.headers.common["Authorization"] = `Bearer ${token}`;
+        const accessToken = getCookie("_osid");
+        const refreshToken = getCookie("_osidRe");
+        config.headers.common["access"] = `Bearer ${accessToken}`;
+        config.headers.common["refresh"] = `Bearer ${refreshToken}`;
         config.headers.common["Secretkey"] = key;
-        return config
+        return config;
     }
 );

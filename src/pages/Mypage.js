@@ -9,7 +9,6 @@ import Header from "../Header";
 import arrow from "../share/image/suggestarrow.png";
 
 const MyPage = (props) => {
-    const session = sessionStorage.getItem("token");
     const [modalOpen, setModalOpen] = useState(false);
     const dispatch = useDispatch();
 
@@ -110,6 +109,7 @@ const MoveBoxWrap = styled.div`
     height: 40px;
     border-bottom: 0.5px solid #C4C4C4;
     margin-bottom: 16px;
+    cursor: pointer;
     & > span{
         line-height: 40px;
         margin-left: 10px;

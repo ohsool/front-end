@@ -11,10 +11,9 @@ const BeerType = ({ items, setIs_Search }) => {
     const settings = {
         infinite: false,
         speed: 200,
-        slidesToShow: 5,
+        slidesToShow: 5.5,
         slidesToScroll: 3,
         variableWidth: true,
-        arrows: false,
     };
 
     return (
@@ -50,7 +49,7 @@ const StyledSlider = styled(Slider)`
     color: #C4C4C4;
     font-size: 14px;
     .slick-slide div {
-        position: relative;
+        // position: relative;
         outline: none;
         //width: 60px;
         padding: 0 6px;
