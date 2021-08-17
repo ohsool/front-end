@@ -15,17 +15,43 @@
     font-weight: bold;
     cursor: pointer;
 }
-.clickedButton{
-    width: 312px;
-    height: 82px;
-    border: none;
-    margin-bottom: 16px;
-    border-radius: 18px;
-    background-color: #F6F6F6;
-    color: #555555;
-    font-size: 16px;
+
+.headerTest{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: transparent;
+    position: fixed;
+    top: 0;
+    height: 45px;
 }
 
-.clickedButton:active{
-    background-color: #FFC44F;
+.iphoneHeaderTest{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: transparent;
+    position: fixed;
+    top: 0;
+    height: 85px;
+}
+
+.header{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    position: fixed;
+    top: 0;
+    height: 45px;
+}
+
+.iphoneHeader{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    position: fixed;
+    top: 0;
+    height: 85px;
 }

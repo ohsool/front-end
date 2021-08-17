@@ -33,3 +33,9 @@ axiosInstance.interceptors.request.use(
         return config;
     }
 );
+
+axiosInstance.interceptors.request.use(
+    (response) => {
+        return response;
+    }
+)

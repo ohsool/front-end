@@ -1,8 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import shareButton from "../share/image/share.png"
+import TestHeader from "./TestHeader";
 
 const BackgroundCateImage = ({ category }) => {
+    const is_iphone = navigator.userAgent.toLowerCase();
 
     const Kakao = window.Kakao;
   
@@ -42,7 +44,8 @@ const BackgroundCateImage = ({ category }) => {
         <React.Fragment>
             <BackgroundImage style={{backgroundImage: `url(${category?.image})`}}>
                 <BackgroundImageStyle> {/*이미지 블러처리*/}
-                <Wrap>
+                <TestHeader></TestHeader>
+                <Wrap style={is_iphone.indexOf("iphone") !== -1 ? {marginTop: "40px"} : {marginTop: "0px"}}>
                     <TextWrap> 
                         <p>당신을 위한 <br/>오늘의 맥주는,</p>
                         <h1>‘{category?.name}’</h1>
@@ -73,7 +76,6 @@ const BackgroundImage = styled.div`
 `;
 
 const BackgroundImageStyle = styled.div`
-    position: absolute;
     display: flex;
     justify-content: center;
     width: 100%;

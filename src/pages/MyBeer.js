@@ -17,6 +17,7 @@ const MyBeer = (props)=>{
     const myReview = useSelector(myReviewList); //사용자가 단 리뷰리스트
     const [is_Dogam, setIs_Dogam] = useState(true); //맥주리스트인지 리뷰리스트인지
     const is_login = getCookie("_osid");
+    const is_iphone = navigator.userAgent.toLowerCase();
     const dispatch = useDispatch();
 
     useEffect(()=> {
@@ -44,7 +45,7 @@ const MyBeer = (props)=>{
     return (
         <React.Fragment>
             <Header></Header>
-        <Grid>
+        <Grid style={is_iphone.indexOf("iphone") !== -1 ? {marginTop: "40px"} : {marginTop: "0px"}}>
             <Wrap>  
             <ButtonContainerWrap>
                 <button

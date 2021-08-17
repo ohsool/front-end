@@ -8,6 +8,7 @@ import Header from "../Header";
 const PlaceBeer = (props) => {
     const dispatch = useDispatch();
     const [clickReport, setClickReport] = useState();
+    const is_iphone = navigator.userAgent.toLowerCase();
     const beerId = props.location.state;
     const ReportPlace = () => {
         if(!clickReport){
@@ -32,10 +33,10 @@ const PlaceBeer = (props) => {
     return(
         <React.Fragment>
             <Header/>
-            <MapWrap>
+            <MapWrap style={is_iphone.indexOf("iphone") !== -1 ? {marginTop: "80px"} : ""}>
                 <MapImage setClickReport={setClickReport}></MapImage>
             </MapWrap>
-            <PlaceInfoWrap>
+            <PlaceInfoWrap style={is_iphone.indexOf("iphone") !== -1 ? {top: "550px"} : ""}>
                 {clickReport ? <PlaceInfo>
                     <div>
                     <span style={{
@@ -58,7 +59,8 @@ const PlaceBeer = (props) => {
                     </div>
                 </PlaceInfo> : ""}
                 <div style={{textAlign: "center"}}>
-                    <PlaceButton onClick={ReportPlace}>
+                    <PlaceButton 
+                    onClick={ReportPlace}>
                         장소 제보하기
                     </PlaceButton>
             </div>

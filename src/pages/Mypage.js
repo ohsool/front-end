@@ -10,6 +10,7 @@ import arrow from "../share/image/suggestarrow.png";
 
 const MyPage = (props) => {
     const [modalOpen, setModalOpen] = useState(false);
+    const is_iphone = navigator.userAgent.toLowerCase();
     const dispatch = useDispatch();
 
     const [modal_info, setModal_Info] = useState({ //건의하기 modal창 text정보
@@ -41,8 +42,9 @@ const MyPage = (props) => {
         <>
         <Container>
             <Header></Header>
-            <PageMoveWrap>
-                <MoveBoxWrap onClick={()=> history.push('/mybeer')}>
+            <PageMoveWrap style={is_iphone.indexOf("iphone") !== -1 ? {marginTop: "123px"} : {marginTop: "83px"}}>
+                <MoveBoxWrap
+                onClick={()=> history.push('/mybeer')}>
                     <span>마이 비어</span>
                     <ArrowImage src={arrow}></ArrowImage>
                 </MoveBoxWrap>
