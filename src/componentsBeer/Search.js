@@ -81,6 +81,7 @@ const Search = (props) => {
                 ></input>
             </SearchInput>
             { openModal ? 
+            <>
                 <SearchModal>
                 {words?.length > 0 ? words.map((item, idx) => {
                     return (
@@ -90,14 +91,30 @@ const Search = (props) => {
                     )       
                 }):""}                                          
                 </SearchModal>
+            </>
             :null}
+            
         </React.Fragment>
     )
 }
 export default React.memo(Search);
 const SearchInput = styled.div`
-    width: 360px;
     & > input{
+        margin: 20px 24px 20px -30px;
+        width: 392px;
+        height: 38px;
+        border:none;        
+        background: #F6F6F6;
+        border-radius: 22.5px;
+        outline: none;
+        padding-left: 30px;
+        padding-top: 6px;
+
+        font-size: 16px;
+        transform: scale(0.75);
+
+
+/*        
         width: 292px;
         height: 30px;
         border:none;
@@ -106,12 +123,18 @@ const SearchInput = styled.div`
         border-radius: 18px;
         outline: none;
         padding-left: 20px;
+        //font-size: 16px;
+*/        
     }
 `
 const SearchModal = styled.div`
     display: inline-block;
+    margin-top: -25px;
     padding-left: 26px;
+    width: 360px;
     height: 100vh; 
+    position: absolute;
+    z-index: 5;
     background-color: #FFFFFF;
     //글자 라인 수 제한하기
     overflow: hidden;

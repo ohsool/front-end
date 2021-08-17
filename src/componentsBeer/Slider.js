@@ -41,8 +41,8 @@ const BeerType = ({ items, setIs_Search }) => {
 export default React.memo(BeerType);
 
 const Container = styled.div`
-    margin-left: 10px;
-    width: 360px;
+    margin: 0 6px;
+    width: 336px;
     overflow: hidden;
 `;
 
@@ -53,7 +53,7 @@ const StyledSlider = styled(Slider)`
         position: relative;
         outline: none;
         //width: 60px;
-        padding: 0 7px;
+        padding: 0 6px;
         text-align: center;
         cursor: pointer;
         :focus{

@@ -23,7 +23,7 @@ const Grid = styled.div`
     text-align: center; 
     align-items: center;
     width: 100%;
-    min-height: 100vh;
+    height: 100vh;
     background-color: #C4C4C4;
     background-image: url(${mainbeer});
     background-size: cover;
@@ -34,6 +34,6 @@ const Grid = styled.div`
 const GridStyle = styled.div` 
     position: absolute;
     width: 100%;
-    min-height: 100vh;
+    height: 100vh;
     background: rgba(12, 12, 12, 0.2);
 `;

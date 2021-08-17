@@ -23,7 +23,7 @@ const EachReview=(props)=> {
     const closeModal = () => {
         setModalOpen(false);
     };
-    const date = moment(item.date)
+    const date = moment(item.date.replace('.','-'))//아이폰 시간 형식 변환
 
     return (
         <React.Fragment>
