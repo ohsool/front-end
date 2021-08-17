@@ -54,7 +54,7 @@ const InfinityChildren = (props) => {
             {beersIF?.map((item, idx) => (
                 <EachBeer key={idx} item={item}/>
             ))}
-            {loading ? <h1>맥주목록 불러오는 중...</h1> : ""}
+            {loading ? <h1>Loading....</h1> : ""}
         </React.Fragment>
     )
 }
