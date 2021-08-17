@@ -24,7 +24,7 @@ export const logIn = createAsyncThunk(
 export const logOut = createAsyncThunk(
   "user/logOut",
   async (data, thunkAPI) => {
-    const refresh = getCookie("_osidRe");
+    
     const response = await axiosInstance.post(`/api/user/logout`);
 
     return response.data;
