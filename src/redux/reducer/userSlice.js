@@ -27,7 +27,7 @@ const userSlice = createSlice({
   reducers: {
     logOut: (state, action) => {
       removeCookie("_osid");
-      window.location.replace("/");
+      window.location.href = "/";
     },
   },
   extraReducers: (builder) =>
@@ -49,6 +49,7 @@ const userSlice = createSlice({
       })
       .addCase(logIn.fulfilled, (state, action) => {
         setCookie("_osid", action.payload.token);
+        //setCookie("Re_osid", action.payload.refreshToken)
         state.is_login = action.payload.message;
       })
       .addCase(logIn.rejected, (state, action) => {

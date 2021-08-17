@@ -32,6 +32,7 @@ const WritedBeerInfo = styled.div`
     background-color: #F6F6F6;
     border-radius: 10px;
     margin: 5px auto;
+    cursor: pointer;
 `;
 
 const BeerImage = styled.div`

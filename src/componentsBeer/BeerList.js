@@ -41,7 +41,7 @@ const BeerList = (props) =>{
     },[is_search]);
 
     useEffect(() => {
-        if(paging === 0){
+        if(paging === 0 && beersIF.length === 0){
             dispatch(getBeerInfinity(paging));
             setPaging(paging+1);
         }
@@ -69,7 +69,7 @@ const BeerList = (props) =>{
           setPaging(paging+1);
           getInfinityList();
         }
-       }, 1000);
+       }, 700);
 
     const searchBeerList = () => {
         
