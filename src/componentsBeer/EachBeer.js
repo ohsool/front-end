@@ -63,15 +63,11 @@ const EachBeer = (props) => {
                     </JustifyAlign>
                         
                     <p>{item.name_english}</p>
-                    <div style={{marginLeft: "2px"}}>
-                    {item.hashtag.map((p, idx) => (
-                    idx < 3 ? "":
-                        <TasteTag key={idx}>#{p}</TasteTag>
-                    ))}
-                    </div>
                 </BeerInfoWrap>
-
-
+                {item.hashtag.map((p, idx) => (
+                idx < 3 ? "":
+                    <TasteTag key={idx}>#{p}</TasteTag>
+                ))}
             </RecommendBeerWrap>
         </React.Fragment>
     )

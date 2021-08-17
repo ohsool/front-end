@@ -7,7 +7,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const BeerType = ({ items, setIs_Search }) => {
+const BeerType = ({ items, setOpen_Modal }) => {
     const settings = {
         infinite: false,
         speed: 200,
@@ -24,6 +24,7 @@ const BeerType = ({ items, setIs_Search }) => {
                     <div  
                         onClick={() => {
                             //setIs_Search(false);
+                            setOpen_Modal(false); //카테고리 클릭시 검색 모달 닫기
                             history.push(`/beer/list/${item._id}`)
                             // item.name === "All" ? history.push("/beer/list")
                             // :

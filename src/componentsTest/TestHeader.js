@@ -1,8 +1,7 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import myIconWhite from "../share/image/testHeaderIcon.png";
 import myIconBlack from "../share/image/HeaderIcon.png";
-import Back from "../share/image/Back.png";
 import _ from "lodash";
 
 import { history } from "../redux/configureStore";

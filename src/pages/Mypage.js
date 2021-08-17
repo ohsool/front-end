@@ -1,4 +1,4 @@
-import React,{ useState, useEffect } from 'react';
+import React,{ useState } from 'react';
 import styled from 'styled-components';
 import { logOut } from "../redux/async/user";
 import { useDispatch } from "react-redux";
@@ -125,7 +125,7 @@ const ArrowImage = styled.img`
     height: 10px;
 `;
 
-const LogOutButton = styled.button`
+const LogOutButton = styled.div`
         position: absolute;
         width: 90px;
         height: 23px;

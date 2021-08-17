@@ -1,15 +1,14 @@
-import React,{ useState, useEffect } from "react";
+import React,{ useState,useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { getSearchWord } from "../redux/async/beer";
 import { getSearchList } from "../redux/reducer/beerSlice";
 import { getBeerList } from "../redux/reducer/beerSlice";
-
 const Search = (props) => {
     const { setSearch_Beer,
-            //search_beer,
-            //beers, 
             setIs_Search,
+            setOpen_Modal,
+            openModal
             } = props;
     const check_eng = /[a-zA-Z]/; // 영어체크
     const check_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글체크
@@ -17,17 +16,24 @@ const Search = (props) => {
     const words = useSelector(getSearchList);
     const beers = useSelector(getBeerList);
     const [show_recent_words, setShow_Recent_Words] = useState(false);//최근 검색어 보여줄지, 실시간 자동완성 검색어 보여줄지
-    const [openModal,setOpen_Modal] = useState(false);
+    //const [openModal,setOpen_Modal] = useState(false);
     const dispatch = useDispatch();
     
+    useEffect(()=>{
+        console.log("words",words)
+        if(word === null || word === "" || words.length===0){//검색창에 아무것도 입력 하지 않은 상태면 검색 모달 닫기 
+            setOpen_Modal(false);
+        }
+    },[word,words])
+    
+
     const onChange = (e) =>{
         if(e.target.value === ''){//검색어 지웠을 때 검색목록 사라지도록 함
             setWord(null);
-            //setShow_Recent_Words(true);
-            setOpen_Modal(false);
+            setShow_Recent_Words(true);
         }else{
             setWord(e.target.value);
-            //setShow_Recent_Words(false);
+            setShow_Recent_Words(false);
         }    
     }
     const searchWord = () =>{//실시간으로 자동완성 된 값 불러옴   
@@ -41,15 +47,13 @@ const Search = (props) => {
     }
     const findBeer = ()=>{//엔터 키를 누른 경우 해당 단어로 검색
         setSearch_Beer([]);
-//        if(check_eng.test(word) && show_recent_words === false){//영어로 검색  
-        if(check_eng.test(word) ){       
+        if(check_eng.test(word) && show_recent_words === false){//영어로 검색           
             words.map((w)=>{
                 setSearch_Beer(search_beer => [...search_beer,
                 beers?.filter((p) => p.name_english.includes(w))[0]]);
                 setIs_Search(true);
             })
-        //}else if(check_kor.test(word) && show_recent_words === false){//한국어로 검색     
-        }else if(check_kor.test(word)){       
+        }else if(check_kor.test(word) && show_recent_words === false){//한국어로 검색            
             words.map((w)=>{
                 setSearch_Beer(search_beer => [...search_beer,
                 beers?.filter((p) => p.name_korean.includes(w))[0]]);
@@ -81,17 +85,17 @@ const Search = (props) => {
                         //showRecentWords();
                     }} 
                     onChange={onChange}
-                    onKeyUp={()=>{
+                    onKeyUp={() => {
                         searchWord();
-                        setOpen_Modal(true)
+                        if(word !== null){
+                            setOpen_Modal(true);
                         }
-                    }
+                    }}
                     onKeyPress={EnterSubmit}
                     placeholder="검색어를 입력하세요."
                 ></input>
             </SearchInput>
             { openModal ? 
-            <>
                 <SearchModal>
                 {words?.length > 0 ? words.map((item, idx) => {
                     return (
@@ -101,38 +105,31 @@ const Search = (props) => {
                     )       
                 }):""}                                          
                 </SearchModal>
-            </>
             :null}
-            
         </React.Fragment>
     )
 }
 export default React.memo(Search);
 const SearchInput = styled.div`
+    width: 360px;
     & > input{
-        margin: 20px 24px 20px -30px;
-        width: 392px;
-        height: 38px;
-        border:none;        
+        width: 292px;
+        height: 30px;
+        border:none;
+        margin: 20px 24px;
         background: #F6F6F6;
-        border-radius: 22.5px;
+        border-radius: 18px;
         outline: none;
-        padding-left: 30px;
-        padding-top: 6px;
-
-        font-size: 16px;
-        transform: scale(0.75);//모바일에서 input 태그 클릭시 zoomin 되는거 방지
+        padding-left: 20px;
     }
 `
-
 const SearchModal = styled.div`
     display: inline-block;
-    margin-top: -25px;
+    position: absolute;
+    z-index; 5;
     padding-left: 26px;
     width: 360px;
-    height: 100vh; 
-    position: absolute;
-    z-index: 5;
+    height: 100vh;
     background-color: #FFFFFF;
     //글자 라인 수 제한하기
     overflow: hidden;

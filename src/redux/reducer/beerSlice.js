@@ -60,12 +60,8 @@ export const beerSlice = createSlice({
           state.testBeerList[indexIf].like_array = likes_array;
           state.beerList.beers[index].like_array = likes_array;
         })
-        .addCase(unLikeBeer.rejected, (state, action) => {
-        })
         .addCase(testShare.fulfilled, (state, action) => {
           state.beerToday = action.payload;
-        })
-        .addCase(testShare.rejected, (state, action) => {
         })
       // 공통
       .addMatcher(

@@ -31,10 +31,6 @@ const reviewSlice = createSlice({
         .addCase(getReview.fulfilled, (state, action) => {
             state.reviewList = action.payload.mybeers.reverse();
         })
-        .addCase(getReview.rejected, (state, action) => {
-        })
-        .addCase(writeReview.pending, (state, action) => {
-        })
         .addCase(writeReview.fulfilled, (state, action) => {
           state.reviewList.unshift(action.payload.mybeer);
         })

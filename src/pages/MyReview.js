@@ -1,14 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import {history} from "../redux/configureStore";
-import moment from 'moment';
-import 'moment/locale/ko';
 import {TasteGraph,StarRate} from "../componentsBeerDetail/BeerDetailIndex";
 import Header from "../Header";
 
 const MyReview = (props) =>{
     const item = props.location.state; //
-    const date = moment(item?.date);
     const is_my = true;
 
     return(

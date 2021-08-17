@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { getBeerList } from "../redux/reducer/beerSlice";
 import { categories } from "../redux/reducer/categorySlice";
 import _ from "lodash";
 import { InfinityBeer } from "../redux/reducer/beerSlice";
-
+import { getBeerList } from "../redux/reducer/beerSlice";
 import BeerListAll from "./BeerListAll";
 import {Slider,Search,EachBeer} from "./BeerIndex";
 import Loader from "../share/Loader.js";
@@ -15,8 +14,8 @@ import { userInfo } from "../redux/async/user";
 
 const BeerList = (props) =>{
     const get_category_id = props.match.params.beerCategoryId;
-    const beers = useSelector(getBeerList);
     const items = useSelector(categories);
+    const beers = useSelector(getBeerList);
     const category_beers = beers?.filter((p) => p.categoryId === get_category_id); //전체 맥주 리스트에서 동일 카테고리 맥주 필터링
     const [is_Loading, setIs_Loading] = useState(false); //로딩 여부 판별
     const [is_search, setIs_Search] = useState(false) 
@@ -31,14 +30,7 @@ const BeerList = (props) =>{
         setIs_Loading(true);
     }, []);
 
-    useEffect(()=>{
-        if(!is_search){
-            setOpen_Modal(false);
-        }
-    },[is_search]);
-
     const searchBeerList = () => {
-        
         return(
             <List>
                 {search_beer?.length > 0 ? search_beer?.map((item, idx) => (
@@ -49,7 +41,6 @@ const BeerList = (props) =>{
     }
 
     const allBeerList = () => {
-        //setOpen_Modal(false);
         if(get_category_id === "all"){
             return (
                 <>
@@ -78,6 +69,7 @@ const BeerList = (props) =>{
                             <TopNav>
                             <Slider
                                 setIs_Search={setIs_Search}
+                                setOpen_Modal={setOpen_Modal}
                                 items={items}/>
                             </TopNav>
                             <Search //맥주 검색 부분
@@ -108,10 +100,12 @@ const Container = styled.div`
     height: 754px;
     background-color: #FFFFFF;
     flex-direction: column;
+    
 `;
 const Grid = styled.div`
     width: 360px;
     margin: 0 auto;
+
 `
 const TopNav = styled.div`
     margin-top: 60px;

@@ -81,12 +81,12 @@ const Login = (props) => {
                             onKeyUp={onKeyUp}
                             placeholder="비밀번호"
                         ></InputLogin>
-                        <button
+                        <div
                             className = {is_typed ? "yellowButton" : "whiteButton"}
                             onClick={submitLogin}
                             >
                             로그인하기
-                        </button>
+                        </div>
                         <div>
                             <SocialLoginButton
                                 onClick={() => {
@@ -98,7 +98,7 @@ const Login = (props) => {
                                 onClick={() => {
                                     window.location.href = "https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount?response_type=code&redirect_uri=https%3A%2F%2FXN--WH1BO80AC4CI9A.shop%2Fapi%2Fuser%2Fgoogle%2Fcallback&scope=email%20profile&client_id=191938571707-m8nhi8j2inb8dn0c0pq99f3gc1hd9sfd.apps.googleusercontent.com&flowName=GeneralOAuthFlow"
                                 }}>
-                                구글로 로그인하기
+                                <span>구글로 로그인하기</span>
                             </SocialLoginButton>
                         </div>
                     </InputWrap>
@@ -167,16 +167,22 @@ const InputLogin = styled.input`
     outline: none;
 `;
 
-const SocialLoginButton = styled.button`
-    margin-bottom: 10px;
+
+const SocialLoginButton = styled.div`
+    display: inline-block;
     width: 312px;
-    height: 45px;
-    font-weight: bold;
-    bottom: 81px;
-    border: 1px solid #555555;
-    background-color: transparent;
-    border-radius: 24px;
+    height: 47px;
+    margin: 5px auto;    
+    padding-top: 12.5px;
+    border: 0.5px solid #555555;
+    box-sizing: border-box;
+    border-radius: 22.5px;
+    font-weight: 700;
+    font-size: 14px;
+    text-align: center;
     color: #555555;
     cursor: pointer;
-    font-family : inherit;
 `;
+
+
+

@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useRef} from "react";
+import React, {useEffect, useState } from "react";
 import styled from "styled-components";
 
 import {useDispatch, useSelector} from "react-redux";
@@ -165,12 +165,12 @@ const SignUp = (props) => {
                             value={confirmPassword}
                             placeholder="비밀번호를 한번 더 입력해주세요"
                         ></InputSignUP>
-                        <button 
+                        <div 
                             style={{marginTop: "100px"}}
                             className={is_typed ? "yellowButton" : "whiteButton"}
                             onClick={submitSignUp}>
                             가입하기
-                        </button>
+                        </div>
                     </InputWrap>
             </Container>
             </SignUpWrap>

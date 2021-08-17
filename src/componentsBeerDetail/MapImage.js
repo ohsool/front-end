@@ -1,13 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
 import imagesrc from "../share/image/marker.png";
 
 const MapImage = ({setClickReport}) => {
         const kakao = window.kakao;
         const container = useRef(null);
         const inputRef = useRef(null);
-        const dispatch = useDispatch();
         let map;
         const infowindow = new kakao.maps.InfoWindow({zIndex:1});
 
@@ -17,7 +15,7 @@ const MapImage = ({setClickReport}) => {
 
         function findLocation(place) {  // Find my location. or not, 여삼빌딩
 
-            if ("geolocation" in navigator) {  // if i can get my address
+         if ("geolocation" in navigator) {  // if i can get my address
                 navigator.geolocation.getCurrentPosition((position) => {
                     const lat = position.coords.latitude;
                     const long = position.coords.longitude;
