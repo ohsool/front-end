@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { getBeerList } from "../redux/reducer/beerSlice";
 import { categories } from "../redux/reducer/categorySlice";
 import _ from "lodash";
-import { getBeerInfinity } from "../redux/async/beer";
 import { InfinityBeer } from "../redux/reducer/beerSlice";
 
+import BeerListAll from "./BeerListAll";
 import {Slider,Search,EachBeer} from "./BeerIndex";
 import Loader from "../share/Loader.js";
 import { getCategory } from "../redux/async/category";
@@ -17,14 +17,11 @@ const BeerList = (props) =>{
     const get_category_id = props.match.params.beerCategoryId;
     const beers = useSelector(getBeerList);
     const items = useSelector(categories);
-    const beersIF = useSelector(InfinityBeer);
     const category_beers = beers?.filter((p) => p.categoryId === get_category_id); //전체 맥주 리스트에서 동일 카테고리 맥주 필터링
     const [is_Loading, setIs_Loading] = useState(false); //로딩 여부 판별
     const [is_search, setIs_Search] = useState(false) 
     const [search_beer, setSearch_Beer] = useState([]); //검색한 맥주 정보
     const dispatch = useDispatch();
-    const [loading, setLoading] = useState(false);
-    const [paging, setPaging] = useState(0)
     const [openModal, setOpen_Modal] = useState(false);
 
     useEffect(() => {
@@ -39,37 +36,6 @@ const BeerList = (props) =>{
             setOpen_Modal(false);
         }
     },[is_search]);
-
-    useEffect(() => {
-        if(paging === 0 && beersIF.length === 0){
-            dispatch(getBeerInfinity(paging));
-            setPaging(paging+1);
-        }
-        window.addEventListener("scroll", _handleScroll); // scroll event listener 등록
-        return () => {
-            window.removeEventListener("scroll", _handleScroll); // scroll event listener 해제
-        };
-    }, [paging]);
-
-    const getInfinityList = async () => {
-        if(paging >= 6){
-            return;
-        }
-        setLoading(true);
-        await dispatch(getBeerInfinity(paging));
-        setLoading(false);
-    };
-
-    const _handleScroll = _.throttle(() => {
-        const scrollHeight = document.documentElement.scrollHeight;
-        const scrollTop = document.documentElement.scrollTop;
-        const clientHeight = document.documentElement.clientHeight;
-        if (scrollTop + clientHeight >= scrollHeight && loading === false) {
-          // 페이지 끝에 도달하면 추가 데이터를 받아온다
-          setPaging(paging+1);
-          getInfinityList();
-        }
-       }, 700);
 
     const searchBeerList = () => {
         
@@ -88,11 +54,8 @@ const BeerList = (props) =>{
             return (
                 <>
                 <List>
-                    {beersIF?.map((item, idx) => (
-                        <EachBeer key={idx} item={item}/>
-                    ))}
+                    <BeerListAll></BeerListAll>
                 </List>
-            {loading ? <h1>맥주목록을 불러오는 중입니다.</h1> : ""}
             </>
             );
         }else{
