@@ -17,17 +17,18 @@ const MapImage = ({setClickReport}) => {
 
         function findLocation(place) {  // Find my location. or not, 여삼빌딩
 
-           /* if ("geolocation" in navigator) {  // if i can get my address
+            if ("geolocation" in navigator) {  // if i can get my address
                 navigator.geolocation.getCurrentPosition((position) => {
                     const lat = position.coords.latitude;
                     const long = position.coords.longitude;
                     
                     makeMap(place, lat, long);
                 });
-            } else {  // if i cannot get my address. 여삼빌딩*/
+            } else {  // if i cannot get my address. 여삼빌딩
                 const lat = 37.4995482;
                 const long = 127.0291611;
                 makeMap(place, lat, long);
+            }
         }
 
         function makeMap(place, lat, long) {  // Make kakaomap
