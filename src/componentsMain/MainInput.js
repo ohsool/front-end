@@ -99,4 +99,5 @@ const LoginButton = styled.button`
     color: #FFFFFF;
     font-size: 14px;
     font-weight: bold;
+    cursor: pointer;
 `;

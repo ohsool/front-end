@@ -2,12 +2,6 @@ import axios from "axios";
 import crypto from "crypto";
 import { getCookie } from "../../share/Cookie";
 
-const token = sessionStorage.getItem("token");
-
-const headers = {
-    Authorization: `Bearer ${token}`,
-};
-
 const secretAPIkey = () => {
     const time = new Date();
     let key = String(time.getDate()) + String(time.getHours()) + String(time.getUTCFullYear()) + String(time.getUTCHours());
@@ -33,9 +27,12 @@ export const axiosInstance = axios.create({
 // });
 
 axiosInstance.interceptors.request.use(
+    // (response) => {
+    //     return response;
+    // }
     function (config){
-        const token = getCookie("_osid");
-        config.headers.common["Authorization"] = `Bearer ${token}`;
+        const accessToken = getCookie("_osid");
+        config.headers.common["Authorization"] = `Bearer ${accessToken}`;
         config.headers.common["Secretkey"] = key;
         return config
     }
