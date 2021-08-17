@@ -5,8 +5,11 @@ import Back from "./share/image/Back.png";
 
 import { history } from "./redux/configureStore";
 import { getCookie } from "./share/Cookie";
+import "./share/style/TestHeader.css";
+
 const Header = (props) => {
     const is_login = getCookie("_osid");
+    const is_iphone = navigator.userAgent.toLowerCase();
 
     const comfirm_login = ()=>{
         if(!is_login){
@@ -20,7 +23,7 @@ const Header = (props) => {
     }
     return (
         <React.Fragment>
-            <HeaderWrap>
+            <div className={is_iphone.indexOf("iphone") !== -1 ? "iphoneHeader" : "header"}>
             <HeaderBox>
                     <GoBack style={{backgroundImage: `url(${Back})`}}
                     onClick={()=>{ 
@@ -35,23 +38,12 @@ const Header = (props) => {
                             comfirm_login();
                     }}></UserImage>
             </HeaderBox>
-            </HeaderWrap>
+            </div>
         </React.Fragment>
     )
 }
 
 export default Header;
-
-const HeaderWrap = styled.div`
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    background-color: white;
-    position: fixed;
-    top: 0;
-    height: 45px;
-    background-color: white;
-`;
 
 const HeaderBox = styled.div`
     width: 360px;

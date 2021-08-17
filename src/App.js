@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import { Route } from "react-router-dom";
 import { history } from "./redux/configureStore";
 import { ConnectedRouter } from "connected-react-router";
@@ -13,7 +13,7 @@ import Infinity from "./Infinity";
 
 function App(props) {
 
-const Kakao = window.Kakao;
+  const Kakao = window.Kakao;
 
 useEffect(() => { // 만약 공유 기능이 2개이상으로 바뀌면 kakao.link.createdefaultbutton 사용하기 (그때는 내용에 container가 포함 되어있아야한다)
     Kakao.init("05e106dead8f4edabc80bafcaef225ce");
@@ -43,9 +43,9 @@ useEffect(() => { // 만약 공유 기능이 2개이상으로 바뀌면 kakao.li
 export default App;
 
 const GlobalStyle = createGlobalStyle`
-  body{
-    margin: 0;
-    font-family: "Noto Sans KR"//, sans-serif;
-    //background-color: #F2F3F7;
-  }
-`;
+        body{
+          margin: 0;
+          font-family: "Noto Sans KR"//, sans-serif;
+          //background-color: #F2F3F7;
+        }
+      `;

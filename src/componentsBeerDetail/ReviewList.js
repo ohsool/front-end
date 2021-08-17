@@ -17,6 +17,7 @@ const ReviewList = (props)=>{
     const userId = useSelector(User); 
     const beer_infos = useSelector(getReviewList); //해당 맥주 리뷰 목록을 불러옴
     const is_comment = beer_infos.find((p) => p.userId._id === userId);
+    const is_iphone = navigator.userAgent.toLowerCase();
     const dispatch = useDispatch();
     
     const openModal = () => {
@@ -48,7 +49,7 @@ const ReviewList = (props)=>{
     }
     return (
         <React.Fragment>
-            <Container>
+            <Container style={is_iphone.indexOf("iphone") !== -1 ? {marginTop: "40px"} : ""}>
                 <Wrap>
                 <MoveBoxWrap
                         onClick={() => {

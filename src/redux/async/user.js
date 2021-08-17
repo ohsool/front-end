@@ -45,12 +45,12 @@ export const userInfo = createAsyncThunk(
       const access = getCookie("_osid");
       setCookie("_osidRe", access);
     }
-    if(response.data.message === "fail" && response.data.error === "all tokens are expired"){
-      removeCookie("osid");
-      removeCookie("_osidRe");
-      alert("로그인기간이 만료되었습니다. 다시 로그인하시겠어요?")
-      history.push("/login");
-    }
+    // if(response.data.message === "fail" && response.data.error === "all tokens are expired"){
+    //   removeCookie("osid");
+    //   removeCookie("_osidRe");
+    //   alert("로그인기간이 만료되었습니다. 다시 로그인하시겠어요?")
+    //   history.push("/login");
+    // }
     return response.data;
   }
 );

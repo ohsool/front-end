@@ -6,13 +6,14 @@ import Header from "../Header";
 const MyReview = (props) =>{
     const item = props.location.state; //
     const is_my = true;
+    const is_iphone = navigator.userAgent.toLowerCase();
 
     return(
         <React.Fragment>
             <Header/>
             
             <Container>
-            <Grid>
+            <Grid style={is_iphone.indexOf("iphone") !== -1 ? {marginTop: "80px"} : ""}>
                 <Div>
                 <div style={{margin: "0 auto"}}>
                     <Title><span>내가 쓴 게시물</span></Title>

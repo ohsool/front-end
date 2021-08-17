@@ -20,6 +20,7 @@ const BeerDetail = (props) =>{
     const hashtag = beerOne?.hashtag;
     const userId = useSelector(User);
     const beer_infos = useSelector(getReviewList);
+    const is_iphone = navigator.userAgent.toLowerCase();
     const dispatch = useDispatch();
 
     useEffect(() => { //맥주 정보, 사용자정보 및 리뷰정보 불러오기
@@ -57,7 +58,7 @@ const BeerDetail = (props) =>{
 
     return(
         <React.Fragment>
-            <Container>
+            <Container style={is_iphone.indexOf("iphone") !== -1 ? {marginTop: "40px"} : ""}>
                 <Grid>
                     <BeerImage>
                         <img src={beerOne?.image} />

@@ -21,6 +21,7 @@ const BeerList = (props) =>{
     const [search_beer, setSearch_Beer] = useState([]); //검색한 맥주 정보
     const dispatch = useDispatch();
     const [openModal, setOpen_Modal] = useState(false);
+    const is_iphone = navigator.userAgent.toLowerCase();
 
     useEffect(() => {
         dispatch(getAllBeer("all"));
@@ -62,7 +63,7 @@ const BeerList = (props) =>{
         <React.Fragment>
             {is_Loading ? (
                 <>
-                    <Container>
+                    <Container style={is_iphone.indexOf("iphone") !== -1 ? {marginTop: "40px"} : ""}>
                         <Grid>
                             <TopNav>
                             <Slider
