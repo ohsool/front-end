@@ -48,8 +48,9 @@ const userSlice = createSlice({
       .addCase(logIn.pending, (state, action) => {
       })
       .addCase(logIn.fulfilled, (state, action) => {
-        setCookie("_osid", action.payload.token);
-        //setCookie("Re_osid", action.payload.refreshToken)
+        // setCookie("_osid", action.payload.token);
+        setCookie("_osid", action.payload.accessToken);
+        setCookie("_osidRe", action.payload.refreshToken);
         state.is_login = action.payload.message;
       })
       .addCase(logIn.rejected, (state, action) => {

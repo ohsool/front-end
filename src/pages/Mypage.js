@@ -9,7 +9,6 @@ import Header from "../Header";
 import arrow from "../share/image/suggestarrow.png";
 
 const MyPage = (props) => {
-    const session = sessionStorage.getItem("token");
     const [modalOpen, setModalOpen] = useState(false);
     const dispatch = useDispatch();
 
