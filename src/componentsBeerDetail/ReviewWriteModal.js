@@ -1,6 +1,5 @@
 import React ,{useState,useEffect} from "react";
 import styled from "styled-components";
-import { history } from "../redux/configureStore";
 import { useDispatch } from "react-redux";
 import remove from "../share/image/remove.png";
 

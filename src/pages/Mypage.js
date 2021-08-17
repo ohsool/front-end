@@ -1,4 +1,4 @@
-import React,{ useState, useEffect } from 'react';
+import React,{ useState } from 'react';
 import styled from 'styled-components';
 import { logOut } from "../redux/async/user";
 import { useDispatch } from "react-redux";

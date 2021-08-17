@@ -3,8 +3,6 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { getBeerList } from "../redux/reducer/beerSlice";
 import { categories } from "../redux/reducer/categorySlice";
-import _ from "lodash";
-import { InfinityBeer } from "../redux/reducer/beerSlice";
 
 import BeerListAll from "./BeerListAll";
 import {Slider,Search,EachBeer} from "./BeerIndex";
@@ -31,14 +29,7 @@ const BeerList = (props) =>{
         setIs_Loading(true);
     }, []);
 
-    useEffect(()=>{
-        if(!is_search){
-            setOpen_Modal(false);
-        }
-    },[is_search]);
-
     const searchBeerList = () => {
-        
         return(
             <List>
                 {search_beer?.length > 0 ? search_beer?.map((item, idx) => (
@@ -49,7 +40,6 @@ const BeerList = (props) =>{
     }
 
     const allBeerList = () => {
-        //setOpen_Modal(false);
         if(get_category_id === "all"){
             return (
                 <>
@@ -68,7 +58,6 @@ const BeerList = (props) =>{
             );
         }
     }
-
     return(
         <React.Fragment>
             {is_Loading ? (

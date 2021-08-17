@@ -1,4 +1,4 @@
-import React,{ useState, useEffect } from "react";
+import React,{ useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { getSearchWord } from "../redux/async/beer";
@@ -75,7 +75,10 @@ const Search = (props) => {
                         //showRecentWords();
                     }} 
                     onChange={onChange}
-                    onKeyUp={searchWord}
+                    onKeyUp={() => {
+                        searchWord();
+                        setOpen_Modal(true)
+                    }}
                     onKeyPress={EnterSubmit}
                     placeholder="검색어를 입력하세요."
                 ></input>

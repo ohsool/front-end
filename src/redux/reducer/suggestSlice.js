@@ -15,18 +15,12 @@ const suggestSlice = createSlice({
   initialState,
   extraReducers: (builder) =>
     builder
-        .addCase(suggestComment.pending, (state, action) => {
-        })
         .addCase(suggestComment.fulfilled, (state, action) => {
-        })
-        .addCase(suggestBeer.pending, (state, action) => {
         })
         .addCase(suggestBeer.fulfilled, (state, action) => {
         })
         .addCase(mapReport.fulfilled, (state, action) => {
         })
-        .addCase(mapReport.rejected, (state, action) => {
-      })
       // 공통
       .addMatcher(
         (action) => {

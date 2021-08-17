@@ -32,14 +32,8 @@ const userSlice = createSlice({
       .addCase(checkEmail.fulfilled, (state, action) => {
         state.checkEmail = action.payload.existed;
       })
-      .addCase(checkEmail.rejected, (state, action) => {
-      })
       .addCase(checkNickname.fulfilled, (state, action) => {
         state.checkNickname = action.payload.existed;
-      })
-      .addCase(checkNickname.rejected, (state, action) => {
-      })
-      .addCase(logIn.pending, (state, action) => {
       })
       .addCase(logIn.fulfilled, (state, action) => {
         setCookie("_osid", action.payload.accessToken);
@@ -58,8 +52,6 @@ const userSlice = createSlice({
       })
       .addCase(userInfo.fulfilled, (state, action) => {
         state.currentUser = action.payload;
-      })
-      .addCase(userInfo.rejected, (state, action) => {
       })
       // 공통
       .addMatcher(

@@ -17,12 +17,8 @@ const beerSlice = createSlice({
         .addCase(getMyDogam.fulfilled, (state, action) => {
             state.mydogam = action.payload.likedList;
         })
-        .addCase(getMyDogam.rejected, (state, action) => {
-        })
         .addCase(getMyReview.fulfilled, (state, action) => {
             state.myReview = action.payload.mybeers;
-        })
-        .addCase(getMyReview.rejected, (state, action) => {
         })
       // 공통
       .addMatcher(
