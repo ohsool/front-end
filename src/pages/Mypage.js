@@ -1,6 +1,6 @@
 import React,{ useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { logOut } from "../redux/reducer/userSlice";
+import { logOut } from "../redux/async/user";
 import { useDispatch } from "react-redux";
 import { history } from "../redux/configureStore";
 

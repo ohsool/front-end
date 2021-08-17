@@ -21,6 +21,16 @@ export const logIn = createAsyncThunk(
   }
 );
 
+export const logOut = createAsyncThunk(
+  "user/logOut",
+  async (data, thunkAPI) => {
+    
+    const response = await axiosInstance.post(`/api/user/logout`);
+
+    return response.data;
+  }
+)
+
 //유저 정보 불러오기
 export const userInfo = createAsyncThunk(
   "user/userInfo",

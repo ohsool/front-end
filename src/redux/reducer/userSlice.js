@@ -6,8 +6,8 @@ import {
   userInfo, 
   checkEmail,
   checkNickname,
+  logOut,
 } from "../async/user";
-import {history} from "../configureStore"
 
 const initialState = {
   userList: null,
@@ -24,12 +24,6 @@ const initialState = {
 const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {
-    logOut: (state, action) => {
-      removeCookie("_osid");
-      window.location.href = "/";
-    },
-  },
   extraReducers: (builder) =>
     builder
       .addCase(signUp.fulfilled, (state, action) => {
@@ -48,13 +42,19 @@ const userSlice = createSlice({
       .addCase(logIn.pending, (state, action) => {
       })
       .addCase(logIn.fulfilled, (state, action) => {
-        // setCookie("_osid", action.payload.token);
         setCookie("_osid", action.payload.accessToken);
         setCookie("_osidRe", action.payload.refreshToken);
         state.is_login = action.payload.message;
       })
       .addCase(logIn.rejected, (state, action) => {
         window.alert("아이디나 비밀번호가 틀립니다!")
+      })
+      .addCase(logOut.pending, (state, action) => {
+      })
+      .addCase(logOut.fulfilled, (state, action) => {
+        removeCookie("_osid");
+        removeCookie("_osidRe");
+        window.location.href = "/";
       })
       .addCase(userInfo.fulfilled, (state, action) => {
         state.currentUser = action.payload;
@@ -91,8 +91,6 @@ const userSlice = createSlice({
         }
       ),
 });
-
-export const { logOut } = userSlice.actions;
 
 export default userSlice;
 
