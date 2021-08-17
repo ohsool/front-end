@@ -7,7 +7,7 @@ import { recommendCate, recommendBeerToday } from "../redux/reducer/beerSlice";
 import { userInfo } from "../redux/async/user";
 
 import BackgroundCateImage from "../componentsTest/BackgroundCateImage";
-import { ResultInfo, TestHeader } from "../componentsTest/TestIndex";
+import { ResultInfo } from "../componentsTest/TestIndex";
 import { EachBeer } from "../componentsBeer/BeerIndex"
 
 const TestResult = (props) => {
@@ -40,8 +40,6 @@ const TestResult = (props) => {
 
     return (
         <React.Fragment>
-           
-            <TestHeader/>
                 <Grid>  
                     <BackgroundCateImage category={category}/>
                     <Wrap>

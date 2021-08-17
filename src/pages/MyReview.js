@@ -13,7 +13,7 @@ const MyReview = (props) =>{
             <Header/>
             
             <Container>
-            <Grid style={is_iphone.indexOf("iphone") !== -1 ? {marginTop: "80px"} : ""}>
+            <Grid style={is_iphone.indexOf("iphone") !== -1 ? {marginTop: "80px"} : {marginTop: "40px"}}>
                 <Div>
                 <div style={{margin: "0 auto"}}>
                     <Title><span>내가 쓴 게시물</span></Title>

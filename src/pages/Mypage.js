@@ -42,7 +42,7 @@ const MyPage = (props) => {
         <>
         <Container>
             <Header></Header>
-            <PageMoveWrap style={is_iphone.indexOf("iphone") !== -1 ? {marginTop: "123px"} : ""}>
+            <PageMoveWrap style={is_iphone.indexOf("iphone") !== -1 ? {marginTop: "123px"} : {marginTop: "83px"}}>
                 <MoveBoxWrap
                 onClick={()=> history.push('/mybeer')}>
                     <span>마이 비어</span>

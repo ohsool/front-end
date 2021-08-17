@@ -49,7 +49,7 @@ const ReviewList = (props)=>{
     }
     return (
         <React.Fragment>
-            <Container style={is_iphone.indexOf("iphone") !== -1 ? {marginTop: "40px"} : ""}>
+            <Container style={is_iphone.indexOf("iphone") !== -1 ? {marginTop: "40px"} : {marginTop: "0px"}}>
                 <Wrap>
                 <MoveBoxWrap
                         onClick={() => {

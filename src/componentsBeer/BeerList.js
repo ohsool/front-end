@@ -63,7 +63,7 @@ const BeerList = (props) =>{
         <React.Fragment>
             {is_Loading ? (
                 <>
-                    <Container style={is_iphone.indexOf("iphone") !== -1 ? {marginTop: "40px"} : ""}>
+                    <Container style={is_iphone.indexOf("iphone") !== -1 ? {marginTop: "40px"} : {marginTop: "0px"}}>
                         <Grid>
                             <TopNav>
                             <Slider

@@ -45,7 +45,7 @@ const MyBeer = (props)=>{
     return (
         <React.Fragment>
             <Header></Header>
-        <Grid style={is_iphone.indexOf("iphone") !== -1 ? {marginTop: "40px"} : ""}>
+        <Grid style={is_iphone.indexOf("iphone") !== -1 ? {marginTop: "40px"} : {marginTop: "0px"}}>
             <Wrap>  
             <ButtonContainerWrap>
                 <button

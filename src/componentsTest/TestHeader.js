@@ -3,12 +3,15 @@ import styled from "styled-components";
 import myIconWhite from "../share/image/testHeaderIcon.png";
 import myIconBlack from "../share/image/HeaderIcon.png";
 import _ from "lodash";
+import backWhite from "../share/image/testHeaderBack.png";
+import backBlack from "../share/image/Back.png";
 
 import { history } from "../redux/configureStore";
 import "../share/style/TestHeader.css";
 
 const TestHeader = (props) => {
     const [scrollPosition, setScrollPosition] = useState(0);
+    const is_iphone = navigator.userAgent.toLowerCase();
 
     const _updateScroll = _.throttle(() => {
         setScrollPosition(window.scrollY || document.documentElement.scrollTop);
@@ -19,9 +22,13 @@ const TestHeader = (props) => {
 
     return (
         <React.Fragment>
-            <HeaderWrap>
+            <div className={is_iphone.indexOf("iphone") !== -1 ? "iphoneHeaderTest" : "headerTest"}>
             {scrollPosition < 270 ? 
                 (<HeaderBox>             
+                    <Back style={{backgroundImage: `url(${backWhite})`}}
+                    onClick={()=>{ 
+                        history.goBack();
+                    }}></Back>
                     <WhiteHeaderLogo 
                         onClick={() => {
                         history.push("/")
@@ -37,7 +44,11 @@ const TestHeader = (props) => {
                     )
                 :
                 (<HeaderBox>
-                <BlackHeaderLogo 
+                    <Back style={{backgroundImage: `url(${backBlack})`}}
+                    onClick={()=>{ 
+                        history.goBack();
+                    }}></Back>
+                    <BlackHeaderLogo 
                     onClick={() => {
                     history.push("/")
                     }}>오늘의술</BlackHeaderLogo>
@@ -50,31 +61,24 @@ const TestHeader = (props) => {
                     </HeaderBox>
                     )
                  }
-            </HeaderWrap>
+            </div>
         </React.Fragment>
     )
 }
 
 export default TestHeader;
 
-const HeaderWrap = styled.div`
-    width: 100%;
-    display: flex;
-    justify-content: center;
-`;
-
 const HeaderBox = styled.div`
     width: 360px;
-    position: fixed;
-    top: 0;
-    height: 45px;
-    justify-content: center;
-    background-color: transparent;
     display: flex;
-    z-index: 10;
+    z-index: 9999;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 0;
+    display: flex;
 `;
 
-const GoBack = styled.div`
+const Back = styled.div`
     width: 24px;
     height: 24px;
     background-size: cover;
@@ -82,8 +86,8 @@ const GoBack = styled.div`
     cursor: pointer;
 `;
 
-
 const BlackHeaderLogo = styled.div`
+    font-family: "GmarketSansM";
     display: inline-block;
     font-size: 20px;
     line-height: 45px;
@@ -93,6 +97,7 @@ const BlackHeaderLogo = styled.div`
 
 `;
 const WhiteHeaderLogo = styled.div`
+    font-family: "GmarketSansM";
     display: inline-block;
     font-size: 20px;
     line-height: 45px;
@@ -102,19 +107,15 @@ const WhiteHeaderLogo = styled.div`
 `;
 
 const WhiteUserImage = styled.div`
-    position: absolute;
     width: 24px;
     height: 24px;
-    top: 10px;
-    right: 12px;
+    margin: 10px 12px 0 0;
     cursor: pointer;
 `;
 
 const BlackUserImage = styled.div`
-    position: absolute;
     width: 24px;
     height: 24px;
-    top: 10px;
-    right: 12px;
+    margin: 10px 12px 0 0;
     cursor: pointer;
 `;
