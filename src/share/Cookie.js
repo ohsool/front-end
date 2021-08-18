@@ -8,8 +8,6 @@ export const setCookie = (name, value) => {
     return cookies.set(name, value, {
         path: "/",
         expires,
-        // secure: true,
-        // httpOnly: true,
     })
 };
 export const setCookieRefresh = (name, value) => {
@@ -18,8 +16,6 @@ export const setCookieRefresh = (name, value) => {
     return cookies.set(name, value, {
         path: "/",
         expires,
-        // secure: true,
-        // httpOnly: true,
     })
 };
 

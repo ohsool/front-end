@@ -7,6 +7,7 @@ import {
   getBeerInfinity,
   getSearchWord, 
   testShare,
+  getHashtagWord,
   testResult,
   likeBeer,
   unLikeBeer,
@@ -16,6 +17,7 @@ const initialState = {
     beerList: [],
     testBeerList: [],
     getCategoryBeer: [],
+    hashtagList: [],
     beerOne: null,
     beerToday: [],
     beerShare: [],
@@ -34,7 +36,8 @@ export const beerSlice = createSlice({
             state.beerList = action.payload;
         })
         .addCase(getBeerCategoryList.fulfilled, (state, action) => {
-            state.beerCategory = action.payload;
+
+            // state.beerCategory = action.payload;
         })
         .addCase(getOneBeer.fulfilled, (state, action) => {
             state.beerOne = action.payload.beer;
@@ -45,6 +48,9 @@ export const beerSlice = createSlice({
         //검색기능
         .addCase(getSearchWord.fulfilled, (state, action) => {
             state.searchList = action.payload.words;
+        })
+        .addCase(getHashtagWord.fulfilled, (state, action) => {
+            state.hashtagList = action.payload.beers;
         })
         .addCase(getSearchWord.rejected, (state, action) => {
         })
@@ -104,6 +110,8 @@ const beer_One = (state) => state.beer.beerOne;
 
 const beerSearch = (state) => state.beer.searchList;
 
+const beerHashtag = (state) => state.beer.hashtagList;
+
 const beer_Today = (state) => state.beer.beerToday.category;
 
 const beer_recommend = (state) => state.beer.beerToday.recommendations;
@@ -117,6 +125,10 @@ export const getBeerList = createSelector([beer_list], beerList => {
 export const oneBeer = createSelector(beer_One, beer_One => {
   return beer_One;
 }); // 맥주 1개데이터 
+
+export const getHashtagList = createSelector(beerHashtag, beerHashtag => {
+  return beerHashtag;
+}); //해시태그로 맥주 검색
 
 export const getSearchList = createSelector(beerSearch, beerSearch => {
   //console.log("beer", beerSearch);

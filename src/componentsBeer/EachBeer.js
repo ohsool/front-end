@@ -4,9 +4,11 @@ import styled from "styled-components";
 import {history} from "../redux/configureStore";
 import { useSelector, useDispatch } from "react-redux";
 import { likeBeer, unLikeBeer} from "../redux/async/beer";
+import { getHashtagWord} from "../redux/async/beer";
 import { User } from "../redux/reducer/userSlice";
 
 import HeartButton from "./HeartButton";
+import { set } from "lodash";
 
 const EachBeer = (props) => {
     const dispatch = useDispatch();
@@ -21,7 +23,6 @@ const EachBeer = (props) => {
             setToggle(false);
         }
     }, [item, userId]);
-
    
     const clickLike = () => { //좋아요 토글 함수
         if(userId){
@@ -39,10 +40,14 @@ const EachBeer = (props) => {
             }
         }
     }
+    const searchHashtagWord = (p) => {
+        dispatch(getHashtagWord(p));
+    }
+
     return(
         <React.Fragment>
             <RecommendBeerWrap 
-            onClick={() => {
+           ><div onClick={() => {
                 history.push(`/beer/detail/${item._id}`, item.like_array);
             }}>
                 <BeerImage>
@@ -64,10 +69,17 @@ const EachBeer = (props) => {
                         
                     <p>{item.name_english}</p>
                 </BeerInfoWrap>
+                </div>
                 {item.hashtag.map((p, idx) => (
                 idx < 3 ? "":
-                    <TasteTag key={idx}>#{p}</TasteTag>
+                    <TasteTag 
+                    onClick={()=>{
+                        searchHashtagWord(p);
+                    }}
+                    key={idx}>#{p}
+                    </TasteTag>
                 ))}
+           
             </RecommendBeerWrap>
         </React.Fragment>
     )
@@ -143,6 +155,7 @@ const TasteTag = styled.div`
     line-height: 14px;
     text-align: center;
     color: #333333;
+    cursor: pointer;
 `;
 
 const JustifyAlign = styled.div`

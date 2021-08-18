@@ -94,11 +94,11 @@ export const getSearchWord = createAsyncThunk(
   }
 );
 
-export const getHashtagBeers = createAsyncThunk(
+export const getHashtagWord = createAsyncThunk(
   "beer/getHashtagResult",
   async (data, thunkAPI) => {
 
-    const response = await axiosInstance.get(`/api/search/hashtag`);
+    const response = await axiosInstance.get(`/api/search/hashtag?hashtag=${data}`);
     
     return response.data;
   }

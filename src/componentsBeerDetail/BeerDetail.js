@@ -124,8 +124,10 @@ const BeerDetail = (props) =>{
                     <Wrap>
                         <p style={{ fontWeight: "700" ,paddingBottom: "7px"}}>제보된 판매처</p>
                         <div style={{display: "flex"}}>
-                        <MapIcon style={{backgroundImage: `url(${mapIcon})`}}/> 
-                        <span style={{ fontWeight: "300", fontSize: "12px", lineHeight: "146%"}}>GS25 편의점</span>
+                        <MapIcon style={{backgroundImage: `url(${mapIcon})`}}/>
+                        {/*{beerOne?.location.length !== 0 ? <span style={{ fontWeight: "300", fontSize: "12px", lineHeight: "146%"}}>{beerOne?.location[0]}</span>
+                            : <span style={{ fontWeight: "300", fontSize: "12px", lineHeight: "146%"}}>제보된 장소 없음</span>
+                        }*/}
                         </div>
 
                         <PlaceButton 
@@ -146,12 +148,14 @@ const BeerDetail = (props) =>{
                                     </>) : null
                             )): ""}
                         </Gradient>
+                        
                         <div style={{textAlign: "center", cursor: "pointer"}}>
                         <span style={{ paddingBottom: "20px",  fontWeight: "700", fontSize: "14px", lineHeight: "20.27px", fontStyle: "bold"
                             }} onClick={()=>{
                                 history.push(`/beer/review/${beerOne._id}`, { beer_infos, userId })
                         }}>전체보기</span>
                         </div>
+                    
                     </Wrap>  
                 </Grid>
             </Container>

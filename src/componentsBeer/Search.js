@@ -2,18 +2,22 @@ import React,{ useState,useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { getSearchWord } from "../redux/async/beer";
-import { getSearchList } from "../redux/reducer/beerSlice";
+//import { getSearchList } from "../redux/reducer/beerSlice";
 import { getBeerList } from "../redux/reducer/beerSlice";
+
 const Search = (props) => {
     const { setSearch_Beer,
             setIs_Search,
+            words,
             setOpen_Modal,
-            openModal
+            openModal,
+            setHashtag
+
             } = props;
     const check_eng = /[a-zA-Z]/; // 영어체크
     const check_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글체크
     const [word, setWord] = useState(""); //실시간으로 입력하는 단어담김
-    const words = useSelector(getSearchList);
+    //const words = useSelector(getSearchList);
     const beers = useSelector(getBeerList);
     const [show_recent_words, setShow_Recent_Words] = useState(false);//최근 검색어 보여줄지, 실시간 자동완성 검색어 보여줄지
     //const [openModal,setOpen_Modal] = useState(false);
@@ -39,12 +43,14 @@ const Search = (props) => {
     const searchWord = () =>{//실시간으로 자동완성 된 값 불러옴   
         dispatch(getSearchWord(word)); 
     }
+    /*
     const EnterSubmit = (e) =>{
         if(e.key === "Enter"){
             findBeer();
             setOpen_Modal(false);
+            setWord("");
         }
-    }
+    }*/
     const findBeer = ()=>{//엔터 키를 누른 경우 해당 단어로 검색
         setSearch_Beer([]);
         if(check_eng.test(word) && show_recent_words === false){//영어로 검색           
@@ -65,6 +71,7 @@ const Search = (props) => {
     }
     const findBeerbyClick = (name)=>{//특정 맥주명을 누른 경우 해당 맥주 명으로 검색
         setSearch_Beer([]);
+        setHashtag([]);
         if(check_eng.test(word)){//영어로 검색            
             setSearch_Beer(search_beer => [...search_beer, 
             beers?.filter((p) => p.name_english.includes(name))[0]]);
@@ -87,11 +94,11 @@ const Search = (props) => {
                     onChange={onChange}
                     onKeyUp={() => {
                         searchWord();
-                        if(word !== null){
+                        if(word !== null){//아무것도 입력 안한상태면 모달 닫기
                             setOpen_Modal(true);
                         }
                     }}
-                    onKeyPress={EnterSubmit}
+                    //onKeyPress={EnterSubmit}
                     placeholder="검색어를 입력하세요."
                 ></input>
             </SearchInput>
