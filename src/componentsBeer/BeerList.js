@@ -11,6 +11,7 @@ import { getCategory } from "../redux/async/category";
 import { getAllBeer } from "../redux/async/beer";
 import { getSearchList } from "../redux/reducer/beerSlice";
 import { userInfo } from "../redux/async/user";
+import _ from 'lodash';
 
 const BeerList = (props) =>{
     const get_category_id = props.match.params.beerCategoryId;
@@ -26,39 +27,32 @@ const BeerList = (props) =>{
     const dispatch = useDispatch();
     const [openModal, setOpen_Modal] = useState(false);
     const is_iphone = navigator.userAgent.toLowerCase();
-    console.log("is_search", is_search);
-    console.log("words", words);
-    console.log("hashtag_beers",hashtag_beers);
 
     useEffect(() => {
         dispatch(getAllBeer("all"));
         dispatch(getCategory());
         dispatch(userInfo());
         setIs_Loading(true);
+        setHashtag([]);
     }, []);
     
     useEffect(()=>{
-        setHashtag(true);
+        setHashtag(hashtag_beers);
         searchBeerList();
-        console.log("해시태그",hashtag);
     },[hashtag_beers])
 
     useEffect(()=>{
-        //setHashtag(false);
         searchBeerList();
     },[words])
 
-
-
     const searchBeerList = () => {
-        //setIs_Search(true);
-        if(hashtag){
+        if(hashtag.length > 0){
             return (
                 <>
-                <p style={{float:"right", marginRight: "30px"}}>총 {hashtag_beers.length}건 검색</p>
+                <p style={{float:"right", marginRight: "30px"}}>총 {hashtag.length}건 검색</p>
                 <List>                    
-                    {hashtag_beers?.length > 0 ? hashtag_beers?.map((item, idx) => (
-                        <EachBeer key={idx} item={item} setHashtag={setHashtag}/>
+                    {hashtag?.length > 0 ? hashtag?.map((item, idx) => (
+                        <EachBeer key={idx} item={item} />
                     )):""}
                 </List>
                 </>
@@ -67,52 +61,57 @@ const BeerList = (props) =>{
             return(
             <List>    
             {search_beer?.length > 0 ? search_beer?.map((item, idx) => (
-                <EachBeer key={idx} item={item} setHashtag={setHashtag}/>
+                <EachBeer key={idx} item={item}/>
             )):""}
             </List>
             );
-        }/*
-        return(
-            <List>    
-                {search_beer?.length > 0 ? search_beer?.map((item, idx) => (
-                    <EachBeer key={idx} item={item} setIs_Search={setIs_Search}/>
-                )):""}
-            </List>
-        );*/
+        }
 
     }
 
-    const allBeerList = () => {
-        
+    const allBeerList = () => {     
         if(get_category_id === "all"){
-            return (
-                <>
-                <List>
-                    <BeerListAll></BeerListAll>
-                </List>
-            </>
-            );
-            
-        }if(hashtag){
-            return (
-                <>
-                <p style={{float:"right", marginRight: "30px"}}>총 {hashtag_beers.length}건 검색</p>
-                <List>    
-                    {hashtag_beers?.length > 0 ? hashtag_beers?.map((item, idx) => (
-                        <EachBeer key={idx} item={item} setHashtag={setHashtag}/>
-                    )):""}
-                </List>
+            if(hashtag.length > 0){
+                return (
+                    <>
+                    <p style={{float:"right", marginRight: "30px"}}>총 {hashtag_beers.length}건 검색</p>
+                    <List>    
+                        {hashtag_beers?.length > 0 ? hashtag_beers?.map((item, idx) => (
+                            <EachBeer key={idx} item={item} />
+                        )):""}
+                    </List>
+                    </>
+                );
+            }else{
+                return (
+                    <>
+                    <List>
+                        <BeerListAll></BeerListAll>
+                    </List>
                 </>
-            );
+                );
+            }            
         }else{
-            //setIs_Search(true);
-            return(
-                <List>
-                {category_beers?.map((item, idx) => (
-                    <EachBeer key={idx} item={item} categoryId={get_category_id} setHashtag={setHashtag} />
-                ))}
-                </List>
-            );
+            if(hashtag.length > 0){
+                return (
+                    <>
+                    <p style={{float:"right", marginRight: "30px"}}>총 {hashtag_beers.length}건 검색</p>
+                    <List>    
+                        {hashtag_beers?.length > 0 ? hashtag_beers?.map((item, idx) => (
+                            <EachBeer key={idx} item={item} />
+                        )):""}
+                    </List>
+                    </>
+                );
+            }else{
+                return(
+                    <List>
+                    {category_beers?.map((item, idx) => (
+                        <EachBeer key={idx} item={item} />
+                    ))}
+                    </List>
+                );
+            }
         }
     }
 

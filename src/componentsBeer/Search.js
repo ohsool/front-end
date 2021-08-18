@@ -71,7 +71,7 @@ const Search = (props) => {
     }
     const findBeerbyClick = (name)=>{//특정 맥주명을 누른 경우 해당 맥주 명으로 검색
         setSearch_Beer([]);
-        setHashtag(false);
+        setHashtag([]);
         if(check_eng.test(word)){//영어로 검색            
             setSearch_Beer(search_beer => [...search_beer, 
             beers?.filter((p) => p.name_english.includes(name))[0]]);

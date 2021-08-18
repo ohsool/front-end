@@ -12,10 +12,9 @@ import { set } from "lodash";
 
 const EachBeer = (props) => {
     const dispatch = useDispatch();
-    const { item, /*setIs_Search*/setHashtag } = props;
+    const { item } = props;
     const userId = useSelector(User);
     const [toggle, setToggle] = useState(false);
-    //const [hashtag, setHashtag] = useState("");
 
     useEffect(() => { //좋아요 눌렀는지 아닌지 판별
         if(item.like_array.includes(userId)){
@@ -24,12 +23,6 @@ const EachBeer = (props) => {
             setToggle(false);
         }
     }, [item, userId]);
-/*
-    useEffect(()=>{
-        console.log("해씨!", hashtag);
-        setIs_Search(true);
-    },[hashtag])
-*/
    
     const clickLike = () => { //좋아요 토글 함수
         if(userId){
@@ -48,10 +41,7 @@ const EachBeer = (props) => {
         }
     }
     const searchHashtagWord = (p) => {
-        //setHashtag(p);
-        //setHashtag(true);
         dispatch(getHashtagWord(p));
-        //setIs_Search(true);
     }
 
     return(
@@ -84,10 +74,7 @@ const EachBeer = (props) => {
                 idx < 3 ? "":
                     <TasteTag 
                     onClick={()=>{
-                        //console.log("해시태그 클릭!")
                         searchHashtagWord(p);
-                        
-                        //setIs_Search(true);
                     }}
                     key={idx}>#{p}
                     </TasteTag>

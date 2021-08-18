@@ -29,9 +29,7 @@ const EachReview=(props)=> {
     //console.log("date",date);
 
     const displayDate = (createdAt) => {
-        console.log("createdAt",typeof createdAt)
-        const milliSeconds = new Date() - moment(createdAt)
-        //console.log("milliSeconds",milliSeconds);
+        const milliSeconds = new Date() - moment(createdAt);
         const seconds = milliSeconds / 1000
 
         if (seconds < 60) return `방금 전`

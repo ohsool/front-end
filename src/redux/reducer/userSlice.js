@@ -42,6 +42,7 @@ const userSlice = createSlice({
       })
       .addCase(logIn.rejected, (state, action) => {
         window.alert("아이디나 비밀번호가 틀립니다!")
+        
       })
       .addCase(logOut.pending, (state, action) => {
       })
