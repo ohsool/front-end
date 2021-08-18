@@ -8,7 +8,10 @@ import BeerListAll from "./BeerListAll";
 import {Slider,Search,EachBeer} from "./BeerIndex";
 import Loader from "../share/Loader.js";
 import { getCategory } from "../redux/async/category";
-import { getAllBeer } from "../redux/async/beer";
+import { 
+    getAllBeer,
+    getBeerCategoryList
+} from "../redux/async/beer";
 import { getSearchList } from "../redux/reducer/beerSlice";
 import { userInfo } from "../redux/async/user";
 
@@ -29,6 +32,7 @@ const BeerList = (props) =>{
     const is_iphone = navigator.userAgent.toLowerCase();
 
     useEffect(() => {
+        dispatch(getBeerCategoryList(get_category_id));
         dispatch(getAllBeer("all"));
         dispatch(getCategory());
         dispatch(userInfo());

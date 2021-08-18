@@ -47,7 +47,6 @@ const EachReview=(props)=> {
         return createdAt.split(' ')[0]
       }
 
-
     return (
         <React.Fragment>
         <Container>

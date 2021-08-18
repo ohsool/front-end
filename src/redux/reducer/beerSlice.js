@@ -3,11 +3,12 @@ import { createSlice, createSelector } from "@reduxjs/toolkit";
 import { 
   getAllBeer, 
   getOneBeer,
+  getBeerCategoryList,
   getBeerInfinity,
-  getSearchWord,
-  testShare, 
-  testResult,
+  getSearchWord, 
+  testShare,
   getHashtagWord,
+  testResult,
   likeBeer,
   unLikeBeer,
 } from "../async/beer";
@@ -15,11 +16,12 @@ import {
 const initialState = {
     beerList: [],
     testBeerList: [],
+    getCategoryBeer: [],
+    hashtagList: [],
     beerOne: null,
     beerToday: [],
     beerShare: [],
     searchList: [],
-    hashtagList: [],
     isLoading: false,
     isDone: false,
     isError: false,
@@ -33,24 +35,24 @@ export const beerSlice = createSlice({
         .addCase(getAllBeer.fulfilled, (state, action) => {
             state.beerList = action.payload;
         })
+        .addCase(getBeerCategoryList.fulfilled, (state, action) => {
+
+            // state.beerCategory = action.payload;
+        })
         .addCase(getOneBeer.fulfilled, (state, action) => {
             state.beerOne = action.payload.beer;
         })
         .addCase(getBeerInfinity.fulfilled, (state, action) => {
-          // state.testBeerList.push(...action.payload.beers);
           state.testBeerList = [...state.testBeerList, ...action.payload.beers];
         })
         //검색기능
         .addCase(getSearchWord.fulfilled, (state, action) => {
             state.searchList = action.payload.words;
         })
-        .addCase(getSearchWord.rejected, (state, action) => {
-        })
-        //해시태그 검색 기능
         .addCase(getHashtagWord.fulfilled, (state, action) => {
-          state.hashtagList = action.payload.beers;
+            state.hashtagList = action.payload.beers;
         })
-        .addCase(getHashtagWord.rejected, (state, action) => {
+        .addCase(getSearchWord.rejected, (state, action) => {
         })
         .addCase(likeBeer.fulfilled, (state, action) => {
           const index = action.payload.index;
@@ -124,13 +126,14 @@ export const oneBeer = createSelector(beer_One, beer_One => {
   return beer_One;
 }); // 맥주 1개데이터 
 
-export const getSearchList = createSelector(beerSearch, beerSearch => {
-  return beerSearch.slice(0,5);
-}); //맥주 검색
-
 export const getHashtagList = createSelector(beerHashtag, beerHashtag => {
   return beerHashtag;
 }); //해시태그로 맥주 검색
+
+export const getSearchList = createSelector(beerSearch, beerSearch => {
+  //console.log("beer", beerSearch);
+  return beerSearch.slice(0,5);
+}); //맥주 검색
 
 export const recommendCate = createSelector(beer_Today, beer_Today => {
   return beer_Today;

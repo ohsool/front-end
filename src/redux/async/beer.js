@@ -27,11 +27,22 @@ export const getBeerInfinity = createAsyncThunk(
   "beer/getBeerInfinity",
   async (data, thunkAPI) => {
 
-    const response = await axiosInstance.get(`api/beer/list/page/${data}`);
+    const response = await axiosInstance.get(`/api/beer/list/page/${data}`);
     
     return response.data;
   }
-)
+);
+
+export const getBeerCategoryList = createAsyncThunk(
+  "beer/getBeerCategoryList",
+  async (data, thunkAPI) => {
+
+    const response = await axiosInstance.get(`/api/list/${data}`);
+
+    console.log(response.data);
+    return response.data
+  }
+);
 
 //특정 맥주 좋아요 적용
 export  const likeBeer = createAsyncThunk(
