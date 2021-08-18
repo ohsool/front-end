@@ -2,27 +2,33 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { categories } from "../redux/reducer/categorySlice";
-import { getBeerList } from "../redux/reducer/beerSlice";
+import { getBeerList } from "../redux/reducer/beerSlice"
+import { getHashtagList } from "../redux/reducer/beerSlice";
 import BeerListAll from "./BeerListAll";
 import {Slider,Search,EachBeer} from "./BeerIndex";
 import Loader from "../share/Loader.js";
 import { getCategory } from "../redux/async/category";
 import { getAllBeer } from "../redux/async/beer";
-import { getHashtagBeers } from "../redux/async/beer";
+import { getSearchList } from "../redux/reducer/beerSlice";
 import { userInfo } from "../redux/async/user";
 
 const BeerList = (props) =>{
     const get_category_id = props.match.params.beerCategoryId;
     const items = useSelector(categories);
     const beers = useSelector(getBeerList);
+    const hashtag_beers = useSelector(getHashtagList);
+    const words = useSelector(getSearchList);
     const category_beers = beers?.filter((p) => p.categoryId === get_category_id); //전체 맥주 리스트에서 동일 카테고리 맥주 필터링
     const [is_Loading, setIs_Loading] = useState(false); //로딩 여부 판별
     const [is_search, setIs_Search] = useState(false);
     const [search_beer, setSearch_Beer] = useState([]); //검색한 맥주 정보
+    const [hashtag, setHashtag] = useState(hashtag_beers);
     const dispatch = useDispatch();
     const [openModal, setOpen_Modal] = useState(false);
     const is_iphone = navigator.userAgent.toLowerCase();
-    const [is_hashtag, setIs_Hashtag] = useState(false);
+    console.log("is_search", is_search);
+    console.log("words", words);
+    console.log("hashtag_beers",hashtag_beers);
 
     useEffect(() => {
         dispatch(getAllBeer("all"));
@@ -30,25 +36,54 @@ const BeerList = (props) =>{
         dispatch(userInfo());
         setIs_Loading(true);
     }, []);
-
+    
+    useEffect(()=>{
+        setHashtag(true);
+        searchBeerList();
+        console.log("해시태그",hashtag);
+    },[hashtag_beers])
 
     useEffect(()=>{
-        dispatch(getHashtagBeers());
-    },[is_hashtag])
+        //setHashtag(false);
+        searchBeerList();
+    },[words])
+
 
 
     const searchBeerList = () => {
+        //setIs_Search(true);
+        if(hashtag){
+            return (
+                <>
+                <p style={{float:"right", marginRight: "30px"}}>총 {hashtag_beers.length}건 검색</p>
+                <List>                    
+                    {hashtag_beers?.length > 0 ? hashtag_beers?.map((item, idx) => (
+                        <EachBeer key={idx} item={item} setHashtag={setHashtag}/>
+                    )):""}
+                </List>
+                </>
+            );
+        }else{
+            return(
+            <List>    
+            {search_beer?.length > 0 ? search_beer?.map((item, idx) => (
+                <EachBeer key={idx} item={item} setHashtag={setHashtag}/>
+            )):""}
+            </List>
+            );
+        }/*
         return(
             <List>    
                 {search_beer?.length > 0 ? search_beer?.map((item, idx) => (
-                    <EachBeer key={idx} item={item} setIs_Hashtag={setIs_Hashtag}/>
+                    <EachBeer key={idx} item={item} setIs_Search={setIs_Search}/>
                 )):""}
             </List>
-        );
+        );*/
 
     }
 
     const allBeerList = () => {
+        
         if(get_category_id === "all"){
             return (
                 <>
@@ -57,11 +92,24 @@ const BeerList = (props) =>{
                 </List>
             </>
             );
+            
+        }if(hashtag){
+            return (
+                <>
+                <p style={{float:"right", marginRight: "30px"}}>총 {hashtag_beers.length}건 검색</p>
+                <List>    
+                    {hashtag_beers?.length > 0 ? hashtag_beers?.map((item, idx) => (
+                        <EachBeer key={idx} item={item} setHashtag={setHashtag}/>
+                    )):""}
+                </List>
+                </>
+            );
         }else{
+            //setIs_Search(true);
             return(
                 <List>
                 {category_beers?.map((item, idx) => (
-                    <EachBeer key={idx} item={item} categoryId={get_category_id}/>
+                    <EachBeer key={idx} item={item} categoryId={get_category_id} setHashtag={setHashtag} />
                 ))}
                 </List>
             );
@@ -78,12 +126,15 @@ const BeerList = (props) =>{
                             <Slider
                                 setOpen_Modal={setOpen_Modal}
                                 setIs_Search={setIs_Search}
+                                setHashtag={setHashtag}
                                 items={items}/>
                             </TopNav>
                             <Search //맥주 검색 부분
                                 setSearch_Beer = {setSearch_Beer}
-                                beers={beers}
+                                //beers={beers}
+                                words={words}
                                 setIs_Search={setIs_Search}
+                                setHashtag={setHashtag}
                                 search_beer={search_beer}
                                 openModal={openModal}
                                 setOpen_Modal={setOpen_Modal}
