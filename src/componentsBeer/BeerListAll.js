@@ -31,8 +31,8 @@ const InfinityChildren = (props) => {
           getInfinityList();
         }
     }, 700);
-    console.log(paging);
-    console.log(beersIF.length);
+    //console.log(paging);
+    //console.log(beersIF.length);
     useEffect(() => {
         if(paging === 0 && beersIF.length === 0){
             dispatch(getBeerInfinity(paging));
