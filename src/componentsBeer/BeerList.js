@@ -32,7 +32,7 @@ const BeerList = (props) =>{
     const is_iphone = navigator.userAgent.toLowerCase();
 
     useEffect(() => {
-        dispatch(getBeerCategoryList(get_category_id));
+        //dispatch(getBeerCategoryList(get_category_id));
         dispatch(getAllBeer("all"));
         dispatch(getCategory());
         dispatch(userInfo());

@@ -125,9 +125,9 @@ const BeerDetail = (props) =>{
                         <p style={{ fontWeight: "700" ,paddingBottom: "7px"}}>제보된 판매처</p>
                         <div style={{display: "flex"}}>
                         <MapIcon style={{backgroundImage: `url(${mapIcon})`}}/>
-                        {/*{beerOne?.location.length !== 0 ? <span style={{ fontWeight: "300", fontSize: "12px", lineHeight: "146%"}}>{beerOne?.location[0]}</span>
+                        {beerOne?.location_report.length !== 0 ? <span style={{ fontWeight: "300", fontSize: "12px", lineHeight: "146%"}}>{beerOne?.location_report[0][1]}</span>
                             : <span style={{ fontWeight: "300", fontSize: "12px", lineHeight: "146%"}}>제보된 장소 없음</span>
-                        }*/}
+                        }
                         </div>
 
                         <PlaceButton 
@@ -149,11 +149,16 @@ const BeerDetail = (props) =>{
                             )): ""}
                         </Gradient>
                         
-                        <div style={{textAlign: "center", cursor: "pointer"}}>
-                        <span style={{ paddingBottom: "20px",  fontWeight: "700", fontSize: "14px", lineHeight: "20.27px", fontStyle: "bold"
-                            }} onClick={()=>{
-                                history.push(`/beer/review/${beerOne._id}`, { beer_infos, userId })
-                        }}>전체보기</span>
+                        <div style={{display: "flex"}}>
+                            <ReviewButton
+                                onClick={()=>{
+                                    history.push(`/beer/review/${beerOne._id}`, { beer_infos, userId })
+                            }}>전체보기</ReviewButton>
+                            <ReviewButton
+                                onClick={()=>{
+                                    alert("아직 적용전 🎅🎄🎁")
+                                }}
+                            >리뷰쓰기</ReviewButton>
                         </div>
                     
                     </Wrap>  
@@ -321,3 +326,18 @@ const JustifyAlign = styled.div`
     justify-content: space-between;
     align-items: center;
 `
+const ReviewButton = styled.button`
+    text-align: center;
+    color: #FFC44F;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 45px;
+    width: 151px;
+    height: 45px;
+    margin: 0 auto;
+    margin-top: 30px;
+    background-color: transparent;
+    border: 1px solid #FFC44F;
+    border-radius: 22.5px;
+    cursor: pointer;
+`;

@@ -22,8 +22,8 @@ export default Main;
 const Grid = styled.div`
     text-align: center; 
     align-items: center;
-    max-width: 400px;
-    height: 100vh;
+    width: 100%;
+    min-height: 100vh;
     background-color: #C4C4C4;
     background-image: url(${mainbeer});
     background-size: cover;

@@ -11,7 +11,7 @@ const BeerType = ({ items, setOpen_Modal, setIs_Search,setHashtag }) => {
     const settings = {
         infinite: false,
         speed: 200,
-        slidesToShow: 5.5,
+        slidesToShow: 5,
         slidesToScroll: 3,
         variableWidth: true,
     };
