@@ -8,6 +8,7 @@ import {Slider,Search,EachBeer} from "./BeerIndex";
 import Loader from "../share/Loader.js";
 import { getCategory } from "../redux/async/category";
 import { getAllBeer } from "../redux/async/beer";
+import { getHashtagBeers } from "../redux/async/beer";
 import { userInfo } from "../redux/async/user";
 
 const BeerList = (props) =>{
@@ -16,11 +17,12 @@ const BeerList = (props) =>{
     const beers = useSelector(getBeerList);
     const category_beers = beers?.filter((p) => p.categoryId === get_category_id); //전체 맥주 리스트에서 동일 카테고리 맥주 필터링
     const [is_Loading, setIs_Loading] = useState(false); //로딩 여부 판별
-    const [is_search, setIs_Search] = useState(false) 
+    const [is_search, setIs_Search] = useState(false);
     const [search_beer, setSearch_Beer] = useState([]); //검색한 맥주 정보
     const dispatch = useDispatch();
     const [openModal, setOpen_Modal] = useState(false);
     const is_iphone = navigator.userAgent.toLowerCase();
+    const [is_hashtag, setIs_Hashtag] = useState(false);
 
     useEffect(() => {
         dispatch(getAllBeer("all"));
@@ -29,14 +31,21 @@ const BeerList = (props) =>{
         setIs_Loading(true);
     }, []);
 
+
+    useEffect(()=>{
+        dispatch(getHashtagBeers());
+    },[is_hashtag])
+
+
     const searchBeerList = () => {
         return(
-            <List>
+            <List>    
                 {search_beer?.length > 0 ? search_beer?.map((item, idx) => (
-                    <EachBeer key={idx} item={item}/>
+                    <EachBeer key={idx} item={item} setIs_Hashtag={setIs_Hashtag}/>
                 )):""}
             </List>
         );
+
     }
 
     const allBeerList = () => {
@@ -104,7 +113,6 @@ const Container = styled.div`
 const Grid = styled.div`
     width: 360px;
     margin: 0 auto;
-
 `
 const TopNav = styled.div`
     margin-top: 60px;

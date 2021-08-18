@@ -83,6 +83,17 @@ export const getSearchWord = createAsyncThunk(
   }
 );
 
+export const getHashtagBeers = createAsyncThunk(
+  "beer/getHashtagResult",
+  async (data, thunkAPI) => {
+
+    const response = await axiosInstance.get(`/api/search/hashtag`);
+    
+    return response.data;
+  }
+);
+
+
 export const checkNickname = createAsyncThunk(
   "user/checkNickname",
   async (data, thunkAPI) => {
@@ -115,3 +126,5 @@ export const testShare = createAsyncThunk(
     return response.data;
   }
 );
+
+
