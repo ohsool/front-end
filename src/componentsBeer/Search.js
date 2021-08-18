@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getSearchWord } from "../redux/async/beer";
 //import { getSearchList } from "../redux/reducer/beerSlice";
 import { getBeerList } from "../redux/reducer/beerSlice";
+import _ from 'lodash';
 
 const Search = (props) => {
     const { setSearch_Beer,
@@ -40,6 +41,14 @@ const Search = (props) => {
             setShow_Recent_Words(false);
         }    
     }
+    /*
+    const handleSearchWord = _.debounce(()=>{
+        _searchWord()
+    },[word])
+
+    const searchWord = () =>{//실시간으로 자동완성 된 값 불러옴   
+        dispatch(getSearchWord(word)); 
+    }*/
     const searchWord = () =>{//실시간으로 자동완성 된 값 불러옴   
         dispatch(getSearchWord(word)); 
     }
@@ -94,6 +103,7 @@ const Search = (props) => {
                     onChange={onChange}
                     onKeyUp={() => {
                         searchWord();
+                        //handleSearchWord()
                         if(word !== null){//아무것도 입력 안한상태면 모달 닫기
                             setOpen_Modal(true);
                         }
