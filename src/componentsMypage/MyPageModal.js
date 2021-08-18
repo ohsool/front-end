@@ -7,33 +7,45 @@ import closeIcon from "../share/image/suggestclose.png"
 
 const MyPageModal = (props) => {
     const dispatch = useDispatch();
-    const [chat, setChat] = useState();
+    // const [chat, setChat] = useState();
+    const [suggestChat, setSuggestChat] = useState({
+        title: "",
+        chat: "",
+    })
+    const {title, chat} = suggestChat
     const { open, close, suggestInfo } = props;
 
     const onChange = (e) => {
-        setChat(e.target.value);
+        setSuggestChat({...suggestChat, [e.target.name]: e.target.value});
     }
 
     // suggestTitle이 맥주 건의하기면은 맥주건의하기로 modal띄우고
     // 아닐경우 관리자에게 건의하기
     const EnterSubmit = (e) => {
+        console.log(suggestChat);
         if(e.key === "Enter"){
             if(suggestInfo.suggestTitle === "맥주 건의하기"){
                 dispatch(suggestBeer({
-                    beer: "맥주종류",
+                    beer: title,
                     description: chat,
                     location: "여삼빌딩",
                     image: "맥주",
                 }));
-                setChat("");
+                setSuggestChat({
+                    title: "",
+                    chat: "",
+                });
                 close();
             }
         else{
             dispatch(suggestComment({
-                title: suggestInfo.suggestTitle,
+                title: title,
                 description: chat
             }));
-            setChat("");
+            setSuggestChat({
+                title: "",
+                chat: "",
+            });
             close();
         }
         }
@@ -44,16 +56,27 @@ const MyPageModal = (props) => {
             {open ?
             <Background>
                 <ModalWrap >
+                    <div style={{margin: "0 auto", width: "318px"}}>
                     <SuggestTitle>
                         <span>{suggestInfo.suggestTitle}</span>
                     </SuggestTitle>
+                    </div>
                     <CloseIcon
                         style={{backgroundImage: `url(${closeIcon})`}}
                         onClick={close}
                     >
                     </CloseIcon>
+                    <SuggestInputTitle
+                        placeholder={suggestInfo.titlePlaceholder}
+                        value={title}
+                        name="title"
+                        onChange={onChange}
+                    >
+
+                    </SuggestInputTitle>
                     <SuggestInput
                         value={chat}
+                        name="chat"
                         onChange={onChange}
                         onKeyPress={EnterSubmit}
                         placeholder={suggestInfo.commentPlaceholder}
@@ -103,13 +126,31 @@ const ModalWrap = styled.div`
 `;
 
 const SuggestInput = styled.textarea`
-    height: 226px;
+    height: 180px;
     width: 312px;
-    padding: 22.6px 15px;
+    padding: 15px;
     margin: 0 auto;
     border: none;
+    outline: none;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
+    box-sizing: border-box;
+    font-size: 12px;
+`;
+
+const SuggestInputTitle = styled.input`
+    width: 312px;
+    height: 40px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 12px;
+    outline: none;
+    margin: 0 auto;
+    border: none;
+    background: #FFFFFF;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    margin-bottom: 10px;
 `;
 
 const SuggestTitle = styled.div`
@@ -118,7 +159,7 @@ const SuggestTitle = styled.div`
     text-align: left;
     & > span {
         position: absolute;
-        margin: 20px 0 0 24px;
+        margin: 20px 0 0 10px;
         font-size: 14px;
         font-weight: 700;
     }

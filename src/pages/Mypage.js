@@ -7,10 +7,10 @@ import { history } from "../redux/configureStore";
 import MyPageModal from "../componentsMypage/MyPageModal";
 import Header from "../Header";
 import arrow from "../share/image/suggestarrow.png";
+import UserPreference from '../componentsMypage/UserPerference';
 
 const MyPage = (props) => {
     const [modalOpen, setModalOpen] = useState(false);
-    const is_iphone = navigator.userAgent.toLowerCase();
     const dispatch = useDispatch();
 
     const [modal_info, setModal_Info] = useState({ //건의하기 modal창 text정보
@@ -42,7 +42,10 @@ const MyPage = (props) => {
         <>
         <Container>
             <Header></Header>
-            <PageMoveWrap style={is_iphone.indexOf("iphone") !== -1 ? {marginTop: "123px"} : {marginTop: "83px"}}>
+            <UserPreference>
+
+            </UserPreference>
+            <PageMoveWrap>
                 <MoveBoxWrap
                 onClick={()=> history.push('/mybeer')}>
                     <span>마이 비어</span>
@@ -52,8 +55,8 @@ const MyPage = (props) => {
                     onClick={() => {
                         setModal_Info({
                             suggestTitle: "맥주 건의하기",
-                            titlePlaceholder: "맥주 이름을 입력해주세요",
-                            commentPlaceholder: "맥주에 대한 설명을 적어주세요!",
+                            titlePlaceholder: "맥주 이름",
+                            commentPlaceholder: "맥주에 대한 설명을 적어주세요.",
                         })
                         openModal();
                     }}>
@@ -64,8 +67,8 @@ const MyPage = (props) => {
                     onClick={() => {
                         setModal_Info({
                             suggestTitle: "관리자에게 건의하기",
-                            titlePlaceholder: "제목을 입력하세요",
-                            commentPlaceholder: "건의할 내용을 적어주세요!",
+                            titlePlaceholder: "제목을 입력해주세요.",
+                            commentPlaceholder: "건의 내용을 입력해주세요.",
                         })
                         openModal();
                     }}>
@@ -101,7 +104,7 @@ const PageMoveWrap = styled.div`
     flex-direction: column;
     test-align: center;
     margin: 0 auto;
-    margin-top: 83px;
+    margin-top: 36px;
 `;
 
 const MoveBoxWrap = styled.div`

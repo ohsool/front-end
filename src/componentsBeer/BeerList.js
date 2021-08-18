@@ -7,8 +7,11 @@ import BeerListAll from "./BeerListAll";
 import {Slider,Search,EachBeer} from "./BeerIndex";
 import Loader from "../share/Loader.js";
 import { getCategory } from "../redux/async/category";
-import { getAllBeer } from "../redux/async/beer";
-import { getHashtagBeers } from "../redux/async/beer";
+import { 
+    getAllBeer, 
+    getHashtagBeers,
+    getBeerCategoryList
+} from "../redux/async/beer";
 import { userInfo } from "../redux/async/user";
 
 const BeerList = (props) =>{
@@ -25,6 +28,7 @@ const BeerList = (props) =>{
     const [is_hashtag, setIs_Hashtag] = useState(false);
 
     useEffect(() => {
+        dispatch(getBeerCategoryList(get_category_id));
         dispatch(getAllBeer("all"));
         dispatch(getCategory());
         dispatch(userInfo());

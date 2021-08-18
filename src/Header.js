@@ -6,9 +6,11 @@ import Back from "./share/image/Back.png";
 import { history } from "./redux/configureStore";
 import { getCookie } from "./share/Cookie";
 import "./share/style/TestHeader.css";
+import { useSelector } from "react-redux";
 
 const Header = (props) => {
     const is_login = getCookie("_osid");
+    const userInfo = useSelector(state => state.user.currentUser);
     const is_iphone = navigator.userAgent.toLowerCase();
 
     const comfirm_login = ()=>{
@@ -29,14 +31,22 @@ const Header = (props) => {
                     onClick={()=>{ 
                         history.goBack();
                     }}></GoBack>
-                    <HeaderLogo 
+                    <HeaderLogo
                     onClick={() => {
                         history.push("/")
-                    }}>오늘의술</HeaderLogo>
-                    <UserImage style={{backgroundImage: `url(${myIcon})`}}
+                    }}><span>오늘의술</span></HeaderLogo>
+                    {userInfo.message === "success" ? 
+                    <UserImage onClick={() => {
+                        history.push("/mypage")
+                    }}>
+                        <span>{userInfo.nickname}</span>
+                        <img></img>
+                    </UserImage>
+                    :
+                    <NoneUserImage style={{backgroundImage: `url(${myIcon})`}}
                         onClick={() => {
                             comfirm_login();
-                    }}></UserImage>
+                    }}></NoneUserImage> }
             </HeaderBox>
             </div>
         </React.Fragment>
@@ -47,14 +57,10 @@ export default Header;
 
 const HeaderBox = styled.div`
     width: 360px;
-    display: flex;
-    justify-content: space-between;
-    position: absolute;
-    bottom: 0;
-    display: flex;
     z-index: 10;
 `;
 const GoBack = styled.div`
+    display: inline-block;
     width: 24px;
     height: 24px;
     background-size: cover;
@@ -64,15 +70,39 @@ const GoBack = styled.div`
 
 const HeaderLogo = styled.div`
     font-family: "GmarketSansM";
-    display: inline-block;
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    margin-left: -38px;
     font-size: 20px;
-    line-height: 45px;
     color: #333333;
     font-weight: bold;
     cursor: pointer;
 `;
 
 const UserImage = styled.div`
+    display: flex;
+    float: right;
+    & > img{
+        margin: 10px 12px 0 0;
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        border-radius: 24px;
+        border: 0.5px solid black;
+        cursor: pointer;
+    }
+    & > span{
+        font-size: 12px;
+        font-weight: normal;
+        margin-right: 10px;
+        line-height: 45px;
+    }
+`;
+
+const NoneUserImage = styled.div`
+    display: flex;
+    float: right;
     width: 24px;
     height: 24px;
     margin: 10px 12px 0 0;

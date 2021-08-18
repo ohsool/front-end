@@ -33,10 +33,10 @@ const PlaceBeer = (props) => {
     return(
         <React.Fragment>
             <Header/>
-            <MapWrap style={is_iphone.indexOf("iphone") !== -1 ? {marginTop: "80px"} : ""}>
+            <MapWrap style={is_iphone.indexOf("iphone") !== -1 ? {marginTop: "80px"} : {marginTop: "40px"}}>
                 <MapImage setClickReport={setClickReport}></MapImage>
             </MapWrap>
-            <PlaceInfoWrap style={is_iphone.indexOf("iphone") !== -1 ? {top: "550px"} : ""}>
+            <PlaceInfoWrap style={is_iphone.indexOf("iphone") !== -1 ? {top: "550px"} : {Top: "510px"}}>
                 {clickReport ? <PlaceInfo>
                     <div>
                     <span style={{

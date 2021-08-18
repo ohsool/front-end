@@ -3,9 +3,10 @@ import { createSlice, createSelector } from "@reduxjs/toolkit";
 import { 
   getAllBeer, 
   getOneBeer,
+  getBeerCategoryList,
   getBeerInfinity,
   getSearchWord, 
-  testShare, 
+  testShare,
   testResult,
   likeBeer,
   unLikeBeer,
@@ -14,6 +15,7 @@ import {
 const initialState = {
     beerList: [],
     testBeerList: [],
+    getCategoryBeer: [],
     beerOne: null,
     beerToday: [],
     beerShare: [],
@@ -31,11 +33,13 @@ export const beerSlice = createSlice({
         .addCase(getAllBeer.fulfilled, (state, action) => {
             state.beerList = action.payload;
         })
+        .addCase(getBeerCategoryList.fulfilled, (state, action) => {
+            state.beerCategory = action.payload;
+        })
         .addCase(getOneBeer.fulfilled, (state, action) => {
             state.beerOne = action.payload.beer;
         })
         .addCase(getBeerInfinity.fulfilled, (state, action) => {
-          // state.testBeerList.push(...action.payload.beers);
           state.testBeerList = [...state.testBeerList, ...action.payload.beers];
         })
         //검색기능

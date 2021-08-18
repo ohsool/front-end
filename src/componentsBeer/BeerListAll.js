@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import styled from "styled-components";
 import { getBeerInfinity } from "../redux/async/beer";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,14 +12,17 @@ const InfinityChildren = (props) => {
     const [paging, setPaging] = useState(0);
     const beersIF = useSelector(InfinityBeer);
 
-    const getInfinityList = async () => {
+    const getInfinityList = useCallback (() => {
+        async function getData(){
+            setLoading(true);
+        await dispatch(getBeerInfinity(paging));
+        setLoading(false);
+        }
         if(paging >= 6){
             return;
         }
-        setLoading(true);
-        await dispatch(getBeerInfinity(paging));
-        setLoading(false);
-    };
+        return getData();
+    }, [paging, beersIF.length]);
 
     const _handleScroll = _.throttle(() => {
         const scrollHeight = document.documentElement.scrollHeight;

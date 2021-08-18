@@ -1,5 +1,6 @@
 import axios from "axios";
 import crypto from "crypto";
+import { gzip } from "zlib";
 import { getCookie, setCookie } from "../../share/Cookie";
 
 const secretAPIkey = () => {
@@ -19,6 +20,7 @@ export const axiosInstance = axios.create({
     headers: {
         "content-type": "application/json;charset=UTF-8",
         accept: "application/json,",
+        // 'Content-Encoding': 'gzip'
     }
 });
 
