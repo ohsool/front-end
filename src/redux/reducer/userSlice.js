@@ -1,5 +1,5 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
-import { setCookie, removeCookie } from "../../share/Cookie";
+import { setCookie, removeCookie, setCookieRefresh } from "../../share/Cookie";
 import { 
   signUp, 
   logIn, 
@@ -37,7 +37,7 @@ const userSlice = createSlice({
       })
       .addCase(logIn.fulfilled, (state, action) => {
         setCookie("_osid", action.payload.accessToken);
-        setCookie("_osidRe", action.payload.refreshToken);
+        setCookieRefresh("_osidRe", action.payload.refreshToken);
         state.is_login = action.payload.message;
       })
       .addCase(logIn.rejected, (state, action) => {

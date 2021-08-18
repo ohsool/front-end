@@ -37,6 +37,7 @@ export const userInfo = createAsyncThunk(
   async (data, thunkAPI) => {
 
     const response = await axiosInstance.get(`/api/user/me`);
+    
     if(response.data.accessToken){
       const refresh = getCookie("_osidRe");
         setCookie("_osid", refresh);
