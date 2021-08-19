@@ -17,10 +17,8 @@ const Search = (props) => {
     const check_eng = /[a-zA-Z]/; // 영어체크
     const check_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글체크
     const [word, setWord] = useState(""); //실시간으로 입력하는 단어담김
-    // const words = useSelector(getSearchList);
     const beers = useSelector(getBeerList);
     const [show_recent_words, setShow_Recent_Words] = useState(false);//최근 검색어 보여줄지, 실시간 자동완성 검색어 보여줄지
-    //const [openModal,setOpen_Modal] = useState(false);
     const dispatch = useDispatch();
     
     useEffect(()=>{
@@ -40,10 +38,13 @@ const Search = (props) => {
             setShow_Recent_Words(false);
         }    
     }
-    
+
     const searchWord = () =>{//실시간으로 자동완성 된 값 불러옴   
         dispatch(getSearchWord(word)); 
     }
+    const searchDebounce = _.debounce(() => {
+        searchWord();
+    }, 300)
 
     const EnterSubmit = (e) =>{
         if(e.key === "Enter"){
@@ -94,7 +95,7 @@ const Search = (props) => {
                     }} 
                     onChange={onChange}
                     onKeyUp={() => {
-                        searchWord();
+                        searchDebounce();
                         //handleSearchWord()
                         if(word !== null){//아무것도 입력 안한상태면 모달 닫기
                             setOpen_Modal(true);
