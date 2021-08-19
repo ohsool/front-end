@@ -9,6 +9,7 @@ import remove from "../share/image/remove.png";
 
 import {useDispatch} from "react-redux";
 import {deleteReview} from "../redux/async/review";
+import { history } from '../redux/configureStore';
 
 import ReviewWriteModal from "../componentsBeerDetail/ReviewWriteModal";
 
@@ -49,7 +50,11 @@ const EachReview=(props)=> {
 
     return (
         <React.Fragment>
-        <Container>
+        <Container
+        onClick={()=>{
+            history.push(`/review/${item._id}`, item, userId)
+        }}
+        >
             <Grid>
                 <GridHorizon>
                     <Div>
@@ -191,7 +196,6 @@ const EditButton =styled.div`
     height: 16px;
     float: left;
     cursor: pointer;
-
 `
 
 const DeleteButton =styled.div`
@@ -199,8 +203,6 @@ const DeleteButton =styled.div`
     width: 16px;
     height: 16px;
     cursor: pointer;
-
-
 `
 
 const ReviewText = styled.div`

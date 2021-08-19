@@ -1,8 +1,22 @@
-import React from "react";
+import React,{useState} from "react";
 import styled from "styled-components";
+import edit from "../share/image/edit.png";
+import remove from "../share/image/remove.png";
 import {history} from "../redux/configureStore";
+import {useDispatch} from "react-redux";
+import {ReviewWriteModal} from "../componentsBeerDetail/BeerDetailIndex";
+import {deleteReview} from "../redux/async/review";
 
-const WritedReview = ({item}) =>   {  
+
+const WritedReview = ({item}) =>   {
+    const [modalOpen, setModalOpen] = useState(false);
+    const dispatch = useDispatch();
+    const openModal = () => {
+        setModalOpen(true);
+      };
+    const closeModal = () => {
+        setModalOpen(false);
+    };
 
     return(
         <React.Fragment>
@@ -15,10 +29,43 @@ const WritedReview = ({item}) =>   {
                     <img src={item?.beerId?.image}></img>
                 </BeerImage>
                 <BeerTextWrap>
-                    <p>{item?.userId?.nickname}</p>
+                    <GridHorizon>
+                        <NicknameText>
+                            {item?.userId?.nickname}
+                        </NicknameText>
+                        <Div>
+                            <EditButton 
+                                style={{backgroundImage: `url(${edit})`}}
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    openModal();
+                            }}></EditButton>
+                            
+                            <DeleteButton
+                                style={{backgroundImage: `url(${remove})`}} 
+                                onClick = {(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                if(window.confirm("정말로 삭제하시나요?")){
+                                    dispatch(deleteReview(item._id));
+                                    return;
+                                }
+                            }}></DeleteButton>
+                        </Div>
+                    </GridHorizon>
                     <span>{item?.review}</span>
                 </BeerTextWrap>
             </WritedBeerInfo>
+
+            <ReviewWriteModal
+                open={modalOpen}
+                close={closeModal}
+                //beerOne={item}
+                item={item}
+                is_edit={true}
+                mybeerId={item._id}//수정시 해당 id로 리뷰 접근
+            ></ReviewWriteModal> 
         </React.Fragment>
     )
 }
@@ -50,15 +97,43 @@ const BeerImage = styled.div`
 const BeerTextWrap = styled.div`
     margin: 14px 0 0 6px;
     width: 194px;
-    & > p {
-        margin: 0;
-        font-size: 14px;
-        font-weight: 700;
-        font-height: 20px;
-    }
     & > span{
         font-size: 12px;
         font-weight: 300;
         font-height: 46px;
     }
 `;
+
+const GridHorizon = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 20px;
+
+`
+const NicknameText = styled.p`
+    margin: 0;
+    font-size: 14px;
+    font-weight: 700;
+    font-height: 20px;
+`
+const Div = styled.div`
+    display: flex;
+    padding: 0 2px;
+    align-items: center
+`
+
+const EditButton =styled.div`
+    margin: 2px;
+    width: 16px;
+    height: 16px;
+    float: left;
+    cursor: pointer;
+`
+
+const DeleteButton =styled.div`
+    margin: 2px;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+`

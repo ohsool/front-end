@@ -22,7 +22,7 @@ const MyPageModal = (props) => {
     // suggestTitle이 맥주 건의하기면은 맥주건의하기로 modal띄우고
     // 아닐경우 관리자에게 건의하기
     const EnterSubmit = (e) => {
-        console.log(suggestChat);
+        //console.log(suggestChat);
         if(e.key === "Enter"){
             if(suggestInfo.suggestTitle === "맥주 건의하기"){
                 dispatch(suggestBeer({

@@ -17,7 +17,6 @@ const ReviewWriteModal = (props) => {
     const [featuresList, setFeaturesList] = useState(arr.fill(0));
     const [list, setList] = useState();
     const dispatch = useDispatch();
-
     useEffect(() => {
         if(item) {
           setList(Object.values(item?.myFeatures));
@@ -31,7 +30,7 @@ const ReviewWriteModal = (props) => {
 
 
     const addReview = () => { //리뷰 작성시
-        if(review === "" || starScore === 0 ){
+        if(review === "" || starScore === undefined ){
             window.alert("답하지 않은 문항이 있어요!")
             return
         }
@@ -44,10 +43,10 @@ const ReviewWriteModal = (props) => {
                 nutty: featuresList[4],
             },
             location: "default",
-            //rate: starScore.toFixed(1),
             rate: starScore,
             review: review,
             beerId: beerOne._id
+
         }));
         window.alert("작성 완료!🍻");
         setReview("");
@@ -56,10 +55,10 @@ const ReviewWriteModal = (props) => {
         close();
     }
     const updateReview = () => {
-        if(review === ""){
+        /*if(review === ""){
             window.alert("리뷰를 작성해주세요!")
             return
-        }
+        }*/
         dispatch(editReview({
             myFeatures: {
                 bitter: featuresList[0], 
@@ -197,7 +196,7 @@ export default React.memo(ReviewWriteModal);
 
 const Background = styled.div`
     position: fixed;
-    z-index: 9999;
+    z-index: 3;
     top: 0;
     left: 0;
     bottom: 0;

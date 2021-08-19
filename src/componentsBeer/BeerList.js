@@ -53,7 +53,7 @@ const BeerList = (props) =>{
         if(hashtag.length > 0){
             return (
                 <>
-                <p style={{float:"right", marginRight: "30px"}}>총 {hashtag.length}건 검색</p>
+                <span style={{float:"right", marginRight: "30px",fontSize:"14px", fontWeight:"500"}}>총 <span style={{color:"#FFC44F",fontWeight:"700"}}>{hashtag.length}</span>건입니다.</span>
                 <List>                    
                     {hashtag?.length > 0 ? hashtag?.map((item, idx) => (
                         <EachBeer key={idx} item={item} />
@@ -78,7 +78,7 @@ const BeerList = (props) =>{
             if(hashtag.length > 0){
                 return (
                     <>
-                    <p style={{float:"right", marginRight: "30px"}}>총 {hashtag_beers.length}건 검색</p>
+                    <span style={{float:"right", marginRight: "30px",fontSize:"14px", fontWeight:"500"}}>총 <span style={{color:"#FFC44F",fontWeight:"700"}}>{hashtag.length}</span>건입니다.</span>
                     <List>    
                         {hashtag_beers?.length > 0 ? hashtag_beers?.map((item, idx) => (
                             <EachBeer key={idx} item={item} />
@@ -99,7 +99,7 @@ const BeerList = (props) =>{
             if(hashtag.length > 0){
                 return (
                     <>
-                    <p style={{float:"right", marginRight: "30px"}}>총 {hashtag_beers.length}건 검색</p>
+                    <span style={{float:"right", marginRight: "30px",fontSize:"14px",fontWeight:"500"}}>총 <span style={{color:"#FFC44F",fontWeight:"700"}}>{hashtag.length}</span>건입니다.</span>
                     <List>    
                         {hashtag_beers?.length > 0 ? hashtag_beers?.map((item, idx) => (
                             <EachBeer key={idx} item={item} />
