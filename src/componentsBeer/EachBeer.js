@@ -47,9 +47,10 @@ const EachBeer = (props) => {
     return(
         <React.Fragment>
             <RecommendBeerWrap 
-           ><div onClick={() => {
+            onClick={() => {
                 history.push(`/beer/detail/${item._id}`, item.like_array);
-            }}>
+            }}
+           >
                 <BeerImage>
                     <img src={item.image} alt="beer_image">
                     </img>
@@ -69,12 +70,13 @@ const EachBeer = (props) => {
                         
                     <p>{item.name_english}</p>
                 </BeerInfoWrap>
-                </div>
                 {item.hashtag.map((p, idx) => (
                 idx < 3 ? "":
                     <TasteTag 
-                    onClick={()=>{
+                    onClick={(e)=>{
                         searchHashtagWord(p);
+                        e.preventDefault();
+                        e.stopPropagation(); 
                     }}
                     key={idx}>#{p}
                     </TasteTag>
