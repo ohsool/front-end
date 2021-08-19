@@ -41,7 +41,9 @@ const Header = (props) => {
                         history.push("/mypage")
                     }}>
                         <span>{userInfo.nickname}</span>
-                        <img></img>
+                        <ImageWrap>
+                            <div style={{backgroundImage: `url(${userInfo.image})`}}></div>
+                        </ImageWrap>
                     </UserImage>
                     :
                     <NoneUserImage style={{backgroundImage: `url(${myIcon})`}}
@@ -85,20 +87,28 @@ const HeaderLogo = styled.div`
 const UserImage = styled.div`
     display: flex;
     float: right;
-    & > img{
-        margin: 10px 12px 0 0;
-        display: inline-block;
-        width: 24px;
-        height: 24px;
-        border-radius: 24px;
-        border: 0.5px solid black;
-        cursor: pointer;
-    }
     & > span{
         font-size: 14px;
         font-weight: normal;
         margin-right: 10px;
         line-height: 45px;
+    }
+`;
+
+const ImageWrap = styled.div`
+    margin: 10px 12px 0 0;
+    display: flex;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 24px;
+    background-color: #F7F7F7;
+    cursor: pointer;
+    & > div {
+        margin-top: 4px;
+        width: 8px;
+        height: 16px;
+        background-size: cover;
     }
 `;
 

@@ -23,14 +23,9 @@ const Grid = styled.div`
     display: flex;
     text-align: center; 
     align-items: center;
-<<<<<<< HEAD
     margin: 0 auto;
     max-width: 400px;
     height: 100vh;
-=======
-    width: 100%;
-    min-height: 100vh;
->>>>>>> 93aff6da5f923d7a5cbe3669f51ef9a5804e90ae
     background-color: #C4C4C4;
     background-image: url(${mainbeer});
     background-size: cover;

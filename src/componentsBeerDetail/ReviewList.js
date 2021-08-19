@@ -81,6 +81,7 @@ const ReviewList = (props)=>{
 export default React.memo(ReviewList);
 
 const Container = styled.div`
+    position: fixed;
     display: flex;
     background-color: #FFFFFF;
     flex-direction: column;

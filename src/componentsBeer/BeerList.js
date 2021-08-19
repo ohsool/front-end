@@ -8,6 +8,7 @@ import BeerListAll from "./BeerListAll";
 import {Slider,Search,EachBeer} from "./BeerIndex";
 import Loader from "../share/Loader.js";
 import { getCategory } from "../redux/async/category";
+import upButton from "../share/image/upArrow.png";
 import _ from "lodash";
 import { 
     getAllBeer,
@@ -44,7 +45,9 @@ const BeerList = (props) =>{
 
     const showTopButton = () => {
         if(scrollHeightInfo > 4000){
-        return (<TopButton onClick={ScrollToTop}>UpButton</TopButton>)
+        return (<TopButton
+                    onClick={ScrollToTop}>
+                </TopButton>)
         }else{
             return null;
         }
@@ -228,11 +231,10 @@ const TopButton = styled.div`
     position: fixed;
     bottom: 10px;
     left: 50%;
-    margin-left: -35px;
-    width: 70px;
-    height: 30px;
-    background-color: black;
-    border: 1px solid black;
-    color: white;
+    margin-left: -25px;
+    width: 50px;
+    height: 50px;
+    background-image: url(${upButton});
+    background-size: cover;
     cursor: pointer;
 `;

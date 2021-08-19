@@ -128,7 +128,6 @@ const Container = styled.div`
     background-color: #FDF9F0;
     border-radius: 5px;
     margin: 5px auto;
-
 `
 
 const Grid = styled.div`

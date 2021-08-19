@@ -196,7 +196,7 @@ const ReviewWriteModal = (props) => {
 export default React.memo(ReviewWriteModal);
 
 const Background = styled.div`
-    position: fixed;
+    position: fixed !important;
     z-index: 9999;
     top: 0;
     left: 0;
@@ -210,7 +210,7 @@ const Background = styled.div`
 `;
 
 const ModalWrap = styled.div`
-    position: fixed;
+    position: fixed !important;
     animation: scaleUp 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
     background-color: #FDF9F0;
     border-radius: 10px 10px 0 0;
