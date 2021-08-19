@@ -55,7 +55,7 @@ const Perference = styled.div`
 `;
 
 const UserInfoWrap = styled.div`
-    padding-top: 16px;
+    margin: 12px 0 0 16px;
     width: 200px;
     height: 46px;
     & > span {

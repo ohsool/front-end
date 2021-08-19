@@ -76,7 +76,7 @@ const BeerDetail = (props) =>{
             <span style={{ fontWeight: "300", fontSize: "12px", lineHeight: "146%"}}>
                 {beerOne?.location_report[0][1]}
             </span>
-            )
+            );
         }else{
             return (
             <span style={{ fontWeight: "300", fontSize: "12px", lineHeight: "146%"}}>
@@ -156,7 +156,6 @@ const BeerDetail = (props) =>{
                         <div style={{display: "flex"}}>
                         <MapIcon style={{backgroundImage: `url(${mapIcon})`}}/>
                         {reportedPlace()}
-                            : <span style={{ fontWeight: "300", fontSize: "12px", lineHeight: "146%"}}>제보된 장소 없음</span>
                         
                         </div>
 
