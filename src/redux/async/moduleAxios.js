@@ -18,8 +18,8 @@ const key = secretAPIkey();
 export const axiosInstance = axios.create({
     baseURL: `https://오늘의술.shop`,
     headers: {
-        "content-type": "application/json;charset=UTF-8",
-        accept: "application/json,",
+        "Content-Type": "application/json;charset=UTF-8",
+        "accept": "application/json,",
         // 'Content-Encoding': 'gzip'
     }
 });

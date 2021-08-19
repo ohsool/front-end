@@ -18,7 +18,7 @@ export const logIn = createAsyncThunk(
   async (data, thunkAPI) => {
 
     const response = await axiosInstance.post(`api/user/auth`, data);   
-
+    console.log(response.data);
     return response.data;
   }
 );
@@ -39,7 +39,6 @@ export const userInfo = createAsyncThunk(
   async (data, thunkAPI) => {
 
     const response = await axiosInstance.get(`/api/user/me`);
-    
     if(response.data.accessToken){
         setCookie("_osid", response.data.accessToken);
     }

@@ -55,6 +55,9 @@ const MyPageModal = (props) => {
         <React.Fragment>
             {open ?
             <Background>
+                <WhiteSpace
+                    onClick={close}
+                ></WhiteSpace>
                 <ModalWrap >
                     <div style={{margin: "0 auto", width: "318px"}}>
                     <SuggestTitle>
@@ -98,9 +101,14 @@ const Background = styled.div`
     right: 0;
     background-color: rgba(0,0,0,0.50);
     animation: fadeIn .5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
-    z-index: 10;
+    z-index: 9999;
     display: flex;
     justify-content: center;
+`;
+
+const WhiteSpace = styled.div`
+    width: 100vw;
+    height: 100vh;
 `;
 
 const ModalWrap = styled.div`

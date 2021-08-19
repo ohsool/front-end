@@ -8,7 +8,6 @@ import { userInfo } from "../redux/async/user";
 import { oneBeer } from "../redux/reducer/beerSlice";
 import { getReviewList } from "../redux/reducer/reviewSlice";
 import { User } from "../redux/reducer/userSlice";
-
 import {HeartButton}  from "../componentsBeer/BeerIndex";
 import { TasteGraph, EachReview} from "./BeerDetailIndex";
 import mapIcon from "../share/image/mapIcon.png";
@@ -43,6 +42,13 @@ const BeerDetail = (props) =>{
         }
     }, [beerOne, userId]);
 
+    const is_Login = () => {
+        if(window.confirm("로그인이 필요한 서비스입니다. 로그인하시겠습니까?")){
+            history.push("/login");
+            return;
+        }
+    }
+
     const clickLike = () => { //좋아요 및 좋아요 취소 기능
         if(userId){
             if(toggle === true){
@@ -53,6 +59,14 @@ const BeerDetail = (props) =>{
                 setToggle(true);
             }
         }else{ //로그인 안한 유저가 좋아요 눌렀을때 눌리는 것 방지
+            is_Login();
+        }
+    }
+
+    const clickPlaceReport = () => {
+        if(userId){
+            history.push("/place", beerOne._id)
+        }else{
             if(window.confirm("로그인이 필요한 서비스입니다. 로그인하시겠습니까?")){
                 history.push("/login");
                 return;
@@ -79,6 +93,23 @@ const BeerDetail = (props) =>{
     const closeModal = () => {
         setModalOpen(false);
     };
+
+    const reportedPlace = () => {
+        if(beerOne?.location_report[0]){
+            return(
+            <span style={{ fontWeight: "300", fontSize: "12px", lineHeight: "146%"}}>
+                {beerOne?.location_report[0][1]}
+            </span>
+            )
+        }else{
+            return (
+            <span style={{ fontWeight: "300", fontSize: "12px", lineHeight: "146%"}}>
+                제보된 장소 없음
+            </span>
+            );
+        }
+    }
+
     return(
         <React.Fragment>
             <Container style={is_iphone.indexOf("iphone") !== -1 ? {marginTop: "40px"} : {marginTop: "0px"}}>
@@ -147,16 +178,12 @@ const BeerDetail = (props) =>{
                     <Wrap>
                         <p style={{ fontWeight: "700" ,paddingBottom: "7px"}}>제보된 판매처</p>
                         <div style={{display: "flex"}}>
-                        <MapIcon style={{backgroundImage: `url(${mapIcon})`}}/>
-                        {beerOne?.location.length !== 0 ? <span style={{ fontWeight: "300", fontSize: "12px", lineHeight: "146%"}}>{beerOne?.location[0][1]}</span>
-                            : <span style={{ fontWeight: "300", fontSize: "12px", lineHeight: "146%"}}>제보된 장소 없음</span>
-                        }
+                        <MapIcon style={{backgroundImage: `url(${mapIcon})`}}/>                        
+                        {reportedPlace()}                        
                         </div>
 
                         <PlaceButton 
-                            onClick={() => {
-                                history.push("/place", beerOne._id)
-                            }}
+                            onClick={clickPlaceReport}
                         >장소 제보하기</PlaceButton>
                     </Wrap>
                     <Line/>

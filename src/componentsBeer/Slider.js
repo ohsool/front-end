@@ -12,7 +12,7 @@ const BeerType = ({ items, setOpen_Modal, setIs_Search,setHashtag }) => {
         infinite: false,
         speed: 200,
         slidesToShow: 5,
-        slidesToScroll: 3,
+        slidesToScroll: 5,
         variableWidth: true,
     };
 

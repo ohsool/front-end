@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import imagesrc from "../share/image/marker.png";
 
@@ -6,16 +6,22 @@ const MapImage = ({setClickReport}) => {
         const kakao = window.kakao;
         const container = useRef(null);
         const inputRef = useRef(null);
+        const [mapState, setMapState] = useState(false);
         let map;
-        const infowindow = new kakao.maps.InfoWindow({zIndex:1});
+
+        const placeView = async () => {
+            await findLocation();
+        }
 
         useEffect(() => {
-            findLocation();
-        }, []);
-
-        function findLocation(place) {  // Find my location. or not, 여삼빌딩
-
-         if ("geolocation" in navigator) {  // if i can get my address
+            if(kakao?.maps !== undefined){
+                setMapState(true);
+            }
+            placeView();
+        }, [mapState]);
+        
+        const findLocation  = (place) => {
+            if ("geolocation" in navigator) {  // if i can get my address
                 navigator.geolocation.getCurrentPosition((position) => {
                     const lat = position.coords.latitude;
                     const long = position.coords.longitude;
@@ -29,7 +35,7 @@ const MapImage = ({setClickReport}) => {
             }
         }
 
-        function makeMap(place, lat, long) {  // Make kakaomap
+        const makeMap = (place, lat, long) => {
             const options = {
                 center: new kakao.maps.LatLng(lat, long),
                 level: 3
@@ -44,7 +50,7 @@ const MapImage = ({setClickReport}) => {
             }
         }
 
-        function placesSearchWithKeyword(data, status, pagination) {  // find places with keywords. callback
+        const placesSearchWithKeyword = (data,status, pagination) => {
             if (status === kakao.maps.services.Status.OK) {
                 const bounds = new kakao.maps.LatLngBounds();
 
@@ -58,9 +64,7 @@ const MapImage = ({setClickReport}) => {
             } 
         }
 
-        function displayMarker(place) {  // show markers of searched places
-            
-            //마커이미지 설정
+        const displayMarker = (place) => {
             const imageSrc = imagesrc, // 마커이미지 주소
                 imageSize = new kakao.maps.Size(24.56, 33.4), // 마커이미지의 크기
                 imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
@@ -77,6 +81,8 @@ const MapImage = ({setClickReport}) => {
                 position: new kakao.maps.LatLng(place.y, place.x)
             });
 
+            const infowindow = new kakao.maps.InfoWindow({zIndex:1});
+
             const placeInfo = () => {
                 infowindow.setContent(`
                 <div style="
@@ -90,7 +96,6 @@ const MapImage = ({setClickReport}) => {
                 placeInfo();
                 infowindow.open(map, marker);
                 setClickReport(place);
-                choose(place);
             });
         }
 
@@ -106,11 +111,6 @@ const MapImage = ({setClickReport}) => {
                 searchbtnclicked();
             }
         }
-
-        function choose(place) {
-            // alert(`You chose ${place.place_name}`);
-        }
-
 
     return(
         <React.Fragment>
@@ -130,7 +130,7 @@ const MapImage = ({setClickReport}) => {
     )
 }
 
-export default MapImage;
+export default React.memo(MapImage);
 
 const InputWrap = styled.div`
     margin-top: 40px;

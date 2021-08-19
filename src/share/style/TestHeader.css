@@ -40,18 +40,20 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    background-color: white;
+    background-color: #FFFFFF;
     position: fixed;
     top: 0;
     height: 45px;
+    z-index: 9000;
 }
 
 .iphoneHeader{
     width: 100%;
     display: flex;
     justify-content: center;
-    background-color: white;
+    background-color: #FFFFFF;
     position: fixed;
     top: 0;
     height: 85px;
+    z-index: 9000;
 }

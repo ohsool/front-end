@@ -10,6 +10,7 @@ const PlaceBeer = (props) => {
     const [clickReport, setClickReport] = useState();
     const is_iphone = navigator.userAgent.toLowerCase();
     const beerId = props.location.state;
+
     const ReportPlace = () => {
         if(!clickReport){
             alert("위치를 선택해주세요!!");

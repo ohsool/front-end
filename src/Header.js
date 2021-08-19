@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import myIcon from "./share/image/HeaderIcon.png";
-import Back from "./share/image/Back.png";
+import Back from "./share/image/Back2.png";
 
 import { history } from "./redux/configureStore";
 import { getCookie } from "./share/Cookie";
@@ -26,12 +26,13 @@ const Header = (props) => {
     return (
         <React.Fragment>
             <div className={is_iphone.indexOf("iphone") !== -1 ? "iphoneHeader" : "header"}>
-            <HeaderBox>
+            <HeaderBox style={is_iphone.indexOf("iphone") !== -1 ? {marginTop: "40px"} : {marginTop: "0"}}>
                     <GoBack style={{backgroundImage: `url(${Back})`}}
                     onClick={()=>{ 
                         history.goBack();
                     }}></GoBack>
                     <HeaderLogo
+                    style={is_iphone.indexOf("iphone") !== -1 ? {top: "52px"} : {top: "12px"}}
                     onClick={() => {
                         history.push("/")
                     }}><span>오늘의술</span></HeaderLogo>
@@ -40,7 +41,9 @@ const Header = (props) => {
                         history.push("/mypage")
                     }}>
                         <span>{userInfo.nickname}</span>
-                        <img></img>
+                        <ImageWrap>
+                            <div style={{backgroundImage: `url(${userInfo.image})`}}></div>
+                        </ImageWrap>
                     </UserImage>
                     :
                     <NoneUserImage style={{backgroundImage: `url(${myIcon})`}}
@@ -58,6 +61,7 @@ export default Header;
 const HeaderBox = styled.div`
     width: 360px;
     z-index: 10;
+    background-color: white;
 `;
 const GoBack = styled.div`
     display: inline-block;
@@ -83,20 +87,28 @@ const HeaderLogo = styled.div`
 const UserImage = styled.div`
     display: flex;
     float: right;
-    & > img{
-        margin: 10px 12px 0 0;
-        display: inline-block;
-        width: 24px;
-        height: 24px;
-        border-radius: 24px;
-        border: 0.5px solid black;
-        cursor: pointer;
-    }
     & > span{
-        font-size: 12px;
+        font-size: 14px;
         font-weight: normal;
         margin-right: 10px;
         line-height: 45px;
+    }
+`;
+
+const ImageWrap = styled.div`
+    margin: 10px 12px 0 0;
+    display: flex;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 24px;
+    background-color: #F7F7F7;
+    cursor: pointer;
+    & > div {
+        margin-top: 4px;
+        width: 8px;
+        height: 16px;
+        background-size: cover;
     }
 `;
 

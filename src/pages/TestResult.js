@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 import { testShare } from "../redux/async/beer";
 import { recommendCate, recommendBeerToday } from "../redux/reducer/beerSlice";
 import { userInfo } from "../redux/async/user";
+import Loader from "../share/Loader";
 
 import BackgroundCateImage from "../componentsTest/BackgroundCateImage";
 import { ResultInfo } from "../componentsTest/TestIndex";
@@ -13,12 +14,18 @@ import { EachBeer } from "../componentsBeer/BeerIndex"
 const TestResult = (props) => {
     const dispatch = useDispatch();
     const categoryParams = props.match.params.category;
+    const [loading, setLoading] = useState(false);
 
     //테스트 후 나온 결과(카테고리)
     const category = useSelector(recommendCate);
     //테스트 후 나온 결과(맥주추천)
     const beerRecommends = useSelector(recommendBeerToday);
-    
+    useEffect(() => {
+        if(category){
+            setLoading(true);
+        }
+    })
+
     useEffect(() => {
         dispatch(userInfo());
     }, []);
@@ -40,7 +47,7 @@ const TestResult = (props) => {
 
     return (
         <React.Fragment>
-                <Grid>  
+            {loading ? <Grid>  
                     <BackgroundCateImage category={category}/>
                     <Wrap>
                         <ResultInfo category={category}/>
@@ -58,6 +65,8 @@ const TestResult = (props) => {
                         {/* <img src="https://image.flaticon.com/icons/png/512/724/724863.png"></img> */}
                     </ReButton>
                 </Grid>
+                :
+                <Loader/>}
         </React.Fragment>
     )
 }

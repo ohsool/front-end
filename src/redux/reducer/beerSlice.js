@@ -55,20 +55,16 @@ export const beerSlice = createSlice({
         .addCase(getSearchWord.rejected, (state, action) => {
         })
         .addCase(likeBeer.fulfilled, (state, action) => {
-          const index = action.payload.index;
           const indexIf = action.payload.indexIf;
           const likes_array = action.payload.response.likes;
           state.testBeerList[indexIf].like_array = likes_array;
-          state.beerList.beers[index].like_array = likes_array;
         })
         .addCase(likeBeer.rejected, (state, action) => {
         })
         .addCase(unLikeBeer.fulfilled, (state, action) => {
-          const index = action.payload.index;
           const indexIf = action.payload.indexIf;
           const likes_array = action.payload.response.likes;
           state.testBeerList[indexIf].like_array = likes_array;
-          state.beerList.beers[index].like_array = likes_array;
         })
         .addCase(testShare.fulfilled, (state, action) => {
           state.beerToday = action.payload;

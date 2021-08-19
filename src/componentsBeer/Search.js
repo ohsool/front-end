@@ -1,24 +1,23 @@
-import React,{ useState,useEffect } from "react";
+import React,{ useState,useEffect, useCallback } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { getSearchWord } from "../redux/async/beer";
-//import { getSearchList } from "../redux/reducer/beerSlice";
+// import { getSearchList } from "../redux/reducer/beerSlice";
 import { getBeerList } from "../redux/reducer/beerSlice";
 import _ from 'lodash';
 
 const Search = (props) => {
     const { setSearch_Beer,
             setIs_Search,
-            words,
             setOpen_Modal,
             openModal,
-            setHashtag
-
+            setHashtag,
+            words
             } = props;
     const check_eng = /[a-zA-Z]/; // 영어체크
     const check_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글체크
     const [word, setWord] = useState(""); //실시간으로 입력하는 단어담김
-    //const words = useSelector(getSearchList);
+    // const words = useSelector(getSearchList);
     const beers = useSelector(getBeerList);
     const [show_recent_words, setShow_Recent_Words] = useState(false);//최근 검색어 보여줄지, 실시간 자동완성 검색어 보여줄지
     //const [openModal,setOpen_Modal] = useState(false);
@@ -29,7 +28,7 @@ const Search = (props) => {
         if(word === null || word === "" || words.length===0){//검색창에 아무것도 입력 하지 않은 상태면 검색 모달 닫기 
             setOpen_Modal(false);
         }
-    },[word,words])
+    },[word, words])
     
 
     const onChange = (e) =>{
@@ -52,14 +51,14 @@ const Search = (props) => {
     const searchWord = () =>{//실시간으로 자동완성 된 값 불러옴   
         dispatch(getSearchWord(word)); 
     }
-    /*
+
     const EnterSubmit = (e) =>{
         if(e.key === "Enter"){
             findBeer();
             setOpen_Modal(false);
-            setWord("");
         }
-    }*/
+    }
+
     const findBeer = ()=>{//엔터 키를 누른 경우 해당 단어로 검색
         setSearch_Beer([]);
         if(check_eng.test(word) && show_recent_words === false){//영어로 검색           
@@ -108,7 +107,7 @@ const Search = (props) => {
                             setOpen_Modal(true);
                         }
                     }}
-                    //onKeyPress={EnterSubmit}
+                    onKeyPress={EnterSubmit}
                     placeholder="검색어를 입력하세요."
                 ></input>
             </SearchInput>
@@ -127,13 +126,14 @@ const Search = (props) => {
     )
 }
 export default React.memo(Search);
+
 const SearchInput = styled.div`
     width: 360px;
     & > input{
         width: 292px;
         height: 30px;
+        margin: 10px 24px;
         border:none;
-        margin: 20px 24px;
         background: #F6F6F6;
         border-radius: 18px;
         outline: none;
@@ -143,7 +143,7 @@ const SearchInput = styled.div`
 const SearchModal = styled.div`
     display: inline-block;
     position: absolute;
-    z-index; 5;
+    z-index: 5;
     padding-left: 26px;
     width: 360px;
     height: 100vh;

@@ -39,7 +39,6 @@ export const getBeerCategoryList = createAsyncThunk(
 
     const response = await axiosInstance.get(`/api/list/${data}`);
 
-    //console.log(response.data);
     return response.data
   }
 );
@@ -48,14 +47,11 @@ export const getBeerCategoryList = createAsyncThunk(
 export  const likeBeer = createAsyncThunk(
   "beer/likeBeer",
   async (data, thunkAPI) => {
-    const beers = thunkAPI.getState().beer.beerList.beers
     const beersIf = thunkAPI.getState().beer.testBeerList;
     const indexIf = beersIf.findIndex((p) => p._id === data);
-    const index = beers.findIndex((p) => p._id === data);
 
     const response = await axiosInstance.put(`/api/beer/like/${data}`)
     const like_Data = {
-      index: index,
       indexIf: indexIf,
       response: response.data
     }
@@ -67,15 +63,12 @@ export  const likeBeer = createAsyncThunk(
 export  const unLikeBeer = createAsyncThunk(
   "beer/unLikeBeer",
   async (data, thunkAPI) => {
-    const beers = thunkAPI.getState().beer.beerList.beers;
     const beersIf = thunkAPI.getState().beer.testBeerList;
     const indexIf = beersIf.findIndex((p) => p._id === data);
-    const index = beers.findIndex((p) => p._id === data);
     
     const response = await axiosInstance.put(`/api/beer/unlike/${data}`)
 
     const unLike_Data = {
-      index: index,
       indexIf: indexIf,
       response: response.data
     }

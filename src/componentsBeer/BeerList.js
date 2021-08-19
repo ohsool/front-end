@@ -8,6 +8,8 @@ import BeerListAll from "./BeerListAll";
 import {Slider,Search,EachBeer} from "./BeerIndex";
 import Loader from "../share/Loader.js";
 import { getCategory } from "../redux/async/category";
+import upButton from "../share/image/upArrow.png";
+import _ from "lodash";
 import { 
     getAllBeer,
     getBeerCategoryList
@@ -27,18 +29,53 @@ const BeerList = (props) =>{
     const [is_search, setIs_Search] = useState(false);
     const [search_beer, setSearch_Beer] = useState([]); //검색한 맥주 정보
     const [hashtag, setHashtag] = useState(hashtag_beers);
+    const [scrollHeightInfo, SetScrollHeightInfo] = useState(0);
     const dispatch = useDispatch();
     const [openModal, setOpen_Modal] = useState(false);
     const is_iphone = navigator.userAgent.toLowerCase();
 
     useEffect(() => {
-        //dispatch(getBeerCategoryList(get_category_id));
+        // dispatch(getBeerCategoryList(get_category_id));
         dispatch(getAllBeer("all"));
         dispatch(getCategory());
         dispatch(userInfo());
-        setIs_Loading(true);
         setHashtag([]);
+        SetScrollHeightInfo(0);
     }, []);
+
+    const showTopButton = () => {
+        if(scrollHeightInfo > 4000){
+        return (<TopButton
+                    onClick={ScrollToTop}>
+                </TopButton>)
+        }else{
+            return null;
+        }
+    }
+    const ScrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        })
+    }
+
+    const _scrollPosition = _.debounce(() => {
+        const scrollHeight = document.documentElement.scrollTop;
+        SetScrollHeightInfo(scrollHeight);
+    }, 200)
+
+    useEffect(() => {
+        window.addEventListener("scroll", _scrollPosition); // scroll event listener 등록
+        return () => {
+            window.removeEventListener("scroll", _scrollPosition); // scroll event listener 해제
+        };
+    }, [scrollHeightInfo]);
+
+    useEffect(() => {
+        if(beers){
+            setIs_Loading(true);
+        }
+    })
     
     useEffect(()=>{
         setHashtag(hashtag_beers);
@@ -145,6 +182,7 @@ const BeerList = (props) =>{
                             {is_search ? searchBeerList() //검색된 맥주 리스트 출력
                             : allBeerList() //타입별 맥주 리스트 출력
                         }
+                        {showTopButton()}
                         </Grid>
                     </Container>
                 </>
@@ -162,7 +200,6 @@ const Container = styled.div`
     height: 754px;
     background-color: #FFFFFF;
     flex-direction: column;
-    
 `;
 const Grid = styled.div`
     width: 360px;
@@ -170,6 +207,9 @@ const Grid = styled.div`
 `
 const TopNav = styled.div`
     margin-top: 60px;
+    background-color: white;
+    max-width: 400px;
+    height: 40px;
     color: #483834;
     ul {
         display: flex;
@@ -180,11 +220,21 @@ const TopNav = styled.div`
         }
     }
 `
-
-
 const List = styled.div`
     width: 312px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+`;
+
+const TopButton = styled.div`
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    margin-left: -25px;
+    width: 50px;
+    height: 50px;
+    background-image: url(${upButton});
+    background-size: cover;
+    cursor: pointer;
 `;
