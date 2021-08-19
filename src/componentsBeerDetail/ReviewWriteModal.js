@@ -55,10 +55,7 @@ const ReviewWriteModal = (props) => {
         close();
     }
     const updateReview = () => {
-        /*if(review === ""){
-            window.alert("리뷰를 작성해주세요!")
-            return
-        }*/
+        
         dispatch(editReview({
             myFeatures: {
                 bitter: featuresList[0], 
@@ -106,6 +103,8 @@ const ReviewWriteModal = (props) => {
                             {is_edit ? ( 
                                  <>
                                     <BeerTextarea 
+                                        tpye="text"
+                                        maxLength="48"
                                         onChange={onChange}
                                         review={review}
                                         placeholder={""}
@@ -114,6 +113,8 @@ const ReviewWriteModal = (props) => {
                             ):(
                                 <>
                                     <BeerTextarea 
+                                        tpye="text"
+                                        maxLength="48"
                                         onChange={onChange}
                                         review={review}
                                         placeholder={"맥주에 대한 평가와 소감을 적어주세요.(최대 48자)"}

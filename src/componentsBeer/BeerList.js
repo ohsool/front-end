@@ -164,6 +164,7 @@ const BeerList = (props) =>{
                         <Grid>
                             <TopNav>
                             <Slider
+                                get_category_id={get_category_id}
                                 setOpen_Modal={setOpen_Modal}
                                 setIs_Search={setIs_Search}
                                 setHashtag={setHashtag}
@@ -209,7 +210,6 @@ const TopNav = styled.div`
     margin-top: 60px;
     background-color: white;
     max-width: 400px;
-    height: 40px;
     color: #483834;
     ul {
         display: flex;

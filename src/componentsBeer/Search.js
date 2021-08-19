@@ -40,14 +40,7 @@ const Search = (props) => {
             setShow_Recent_Words(false);
         }    
     }
-    /*
-    const handleSearchWord = _.debounce(()=>{
-        _searchWord()
-    },[word])
-
-    const searchWord = () =>{//실시간으로 자동완성 된 값 불러옴   
-        dispatch(getSearchWord(word)); 
-    }*/
+    
     const searchWord = () =>{//실시간으로 자동완성 된 값 불러옴   
         dispatch(getSearchWord(word)); 
     }
