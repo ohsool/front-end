@@ -48,7 +48,7 @@ const PreferenceWrap = styled.div`
 `;
 
 const Perference = styled.div`
-    margin-top: 10px;
+    margin-top: 8px;
     width: 21px;
     height: 45px;
     background-size: cover;
