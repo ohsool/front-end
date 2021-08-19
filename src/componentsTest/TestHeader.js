@@ -8,10 +8,23 @@ import backBlack from "../share/image/Back.png";
 
 import { history } from "../redux/configureStore";
 import "../share/style/TestHeader.css";
+import { useSelector } from "react-redux";
 
 const TestHeader = (props) => {
+    const is_login = useSelector(state => state.user.currentUser.message);
     const [scrollPosition, setScrollPosition] = useState(0);
     const is_iphone = navigator.userAgent.toLowerCase();
+
+    const comfirm_login = ()=>{
+        if(is_login === "success"){
+            history.push("/mypage");
+        }else{
+            if(window.confirm("로그인이 필요한 서비스입니다. 로그인하시겠습니까?")){
+                history.push("/login");
+                return;
+            }
+        }
+    }
 
     const _updateScroll = _.throttle(() => {
         setScrollPosition(window.scrollY || document.documentElement.scrollTop);
@@ -36,9 +49,7 @@ const TestHeader = (props) => {
                     </WhiteHeaderLogo>
                     <WhiteUserImage
                         style={{backgroundImage: `url(${myIconWhite})`}}
-                        onClick={() => {
-                            history.push("/mypage")
-                        }}
+                        onClick={comfirm_login}
                     ></WhiteUserImage>
                     </HeaderBox>
                     )

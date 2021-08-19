@@ -48,19 +48,21 @@ const Test = (props) => {
     }
     }
     return (
+        <React.Fragment>
+        <Header/>
         <CSSTransitionGroup //페이지 이동 애니메이션
             transitionName="worksTransition"
-            transitionAppear={pageAnimation} 
+            transitionAppear={pageAnimation}
             key={index} //index가 바뀔때마다 애니메이션
             transitionAppearTimeout={500}>
-            <Header/>
-            <Grid>
+            <Grid className="page">
                 <TestWrap>
                     <TestQuestion question={question[index]}/>
                     <TestButton goToNext={goToNext} question={question[index].answer}/>
                 </TestWrap>
             </Grid>
         </CSSTransitionGroup>
+        </React.Fragment>
     )
 };
 

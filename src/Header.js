@@ -4,23 +4,21 @@ import myIcon from "./share/image/HeaderIcon.png";
 import Back from "./share/image/Back2.png";
 
 import { history } from "./redux/configureStore";
-import { getCookie } from "./share/Cookie";
 import "./share/style/TestHeader.css";
 import { useSelector } from "react-redux";
 
 const Header = (props) => {
-    const is_login = getCookie("_osid");
     const userInfo = useSelector(state => state.user.currentUser);
     const is_iphone = navigator.userAgent.toLowerCase();
 
     const comfirm_login = ()=>{
-        if(!is_login){
+        if(userInfo.message === "success"){
+            history.push("/mypage");
+        }else{
             if(window.confirm("로그인이 필요한 서비스입니다. 로그인하시겠습니까?")){
                 history.push("/login");
                 return;
             }
-        }else{
-            history.push("/mypage");
         }
     }
     return (

@@ -116,7 +116,7 @@ const WhiteSpace = styled.div`
 const ModalWrap = styled.div`
     position: absolute;
     animation: scaleUp 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
-    background-color: #FFFFFF;
+    background-color: #F6F6F6;
     border-radius: 10px 10px 0 0;
     bottom: 0px;
     width: 100%;

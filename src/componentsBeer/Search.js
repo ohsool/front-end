@@ -34,12 +34,7 @@ const Search = (props) => {
         console.log("debounce!");
         dispatch(getSearchWord(word));       
     },300);
-    /*useCallback(()=>{
-        console.log("debounce!")
-        dispatch(getSearchWord(word))
-
-    },[word] );
-   */ 
+ 
     const onChange = (e) =>{     
         if(e.target.value === ''){//검색어 지웠을 때 검색목록 사라지도록 함
             setWord(null);
@@ -47,20 +42,6 @@ const Search = (props) => {
             setWord(e.target.value);
         }    
     }
-    /*
-    const handleSearchWord = _.debounce(()=>{
-        console.log("debounce");
-        searchWord()
-    },200)
-
-    const searchWord = () =>{//실시간으로 자동완성 된 값 불러옴   
-        dispatch(getSearchWord(word)); 
-    }*/
-    
-    /*
-    const searchWord = () =>{//실시간으로 자동완성 된 값 불러옴   
-        dispatch(getSearchWord(word)); 
-    }*/
 
     const EnterSubmit = (e) =>{
         if(e.key === "Enter"){
@@ -112,7 +93,6 @@ const Search = (props) => {
                     onChange={onChange}
                     onKeyUp={() => {
                         searchWord();
-                        //handleSearchWord()
                         if(word !== null){//아무것도 입력 안한상태면 모달 닫기
                             setOpen_Modal(true);
                         }

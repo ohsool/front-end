@@ -32,13 +32,13 @@ export const getBeerInfinity = createAsyncThunk(
     return response.data;
   }
 );
-
+//카테고리별 맥주 가져오기
 export const getBeerCategoryList = createAsyncThunk(
   "beer/getBeerCategoryList",
   async (data, thunkAPI) => {
 
-    const response = await axiosInstance.get(`/api/list/${data}`);
-
+    const response = await axiosInstance.get(`/api/beer/list/category/${data}`);
+    console.log(response.data);
     return response.data
   }
 );

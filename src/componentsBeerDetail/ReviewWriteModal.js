@@ -58,14 +58,7 @@ const ReviewWriteModal = (props) => {
         close();
     }
     const updateReview = () => {
-        /*if(review === ""){
-            alert("리뷰를 작성해주세요!")
-            return
-        }*/
-        if(review.length > 48){
-            alert("글자수는 48 글자를 넘을 수 없어요!");
-            return;
-        }
+        
         dispatch(editReview({
             myFeatures: {
                 bitter: featuresList[0], 
@@ -115,9 +108,9 @@ const ReviewWriteModal = (props) => {
                             </BeerImage>
                             {is_edit ? ( 
                                  <>
-                                    <BeerTextarea
-                                        type="text"
-                                        maxlength='48' 
+                                    <BeerTextarea 
+                                        tpye="text"
+                                        maxLength="48"
                                         onChange={onChange}
                                         review={review}
                                         placeholder={""}
@@ -125,9 +118,9 @@ const ReviewWriteModal = (props) => {
                                  </>
                             ):(
                                 <>
-                                    <BeerTextarea
-                                        type="text"
-                                        maxlength='48' 
+                                    <BeerTextarea 
+                                        tpye="text"
+                                        maxLength="48"
                                         onChange={onChange}
                                         review={review}
                                         placeholder={"맥주에 대한 평가와 소감을 적어주세요.(최대 48자)"}
