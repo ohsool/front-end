@@ -178,9 +178,8 @@ const BeerDetail = (props) =>{
                     <Wrap>
                         <p style={{ fontWeight: "700" ,paddingBottom: "7px"}}>제보된 판매처</p>
                         <div style={{display: "flex"}}>
-                        <MapIcon style={{backgroundImage: `url(${mapIcon})`}}/>
-                        {reportedPlace()}
-                        
+                        <MapIcon style={{backgroundImage: `url(${mapIcon})`}}/>                        
+                        {reportedPlace()}                        
                         </div>
 
                         <PlaceButton 

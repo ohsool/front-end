@@ -22,7 +22,9 @@ const MyReview = (props) =>{
                             <img src={item?.beerId?.image}></img>
                         </BeerImage>
                         <BeerTextWrap>
-                            <span>{item?.review}</span>
+                            <div>
+                                <span>{item?.review}</span>
+                            </div>
                         </BeerTextWrap>
                     </WritedBeerInfo>
                 </div>
@@ -118,9 +120,12 @@ const BeerTextWrap = styled.div`
     margin: 10px 5px;
     width: 208px;
     height: 100px;
-    
+    padding: 
     border-radius: 10px;
     border: 1px solid #c4c4c4;
+    word-break:break-all;
+    word-wrap:break-word;
+
     & > span{
         float: left;
         margin: 10px;

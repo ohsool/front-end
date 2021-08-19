@@ -35,9 +35,10 @@ const reviewSlice = createSlice({
           state.reviewList.unshift(action.payload.mybeer);
         })
         .addCase(editReview.fulfilled, (state, action) => {
+          state.reviewList[action.payload.index].myFeatures = action.payload.myFeatures;
+          state.reviewList[action.payload.index].rate = action.payload.rate;
+          state.reviewList[action.payload.index].review = action.payload.review;
 
-          state.reviewList[action.payload.index] = action.payload.mybeer;
-          //state.reviewList = action.payload.mybeers.reverse();         
         })
         .addCase(deleteReview.fulfilled, (state, action) => {
           state.reviewList.splice(action.payload, 1);

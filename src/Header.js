@@ -41,8 +41,9 @@ const Header = (props) => {
                         history.push("/mypage")
                     }}>
                         <span>{userInfo.nickname}</span>
-                        <ImageWrap>
-                            <div style={{backgroundImage: `url(${userInfo.image})`}}></div>
+                        <ImageWrap
+                            style={{backgroundImage: `url(${userInfo.image})`}}
+                        >
                         </ImageWrap>
                     </UserImage>
                     :
@@ -102,14 +103,8 @@ const ImageWrap = styled.div`
     width: 24px;
     height: 24px;
     border-radius: 24px;
-    background-color: #F7F7F7;
+    background-size: cover;
     cursor: pointer;
-    & > div {
-        margin-top: 4px;
-        width: 8px;
-        height: 16px;
-        background-size: cover;
-    }
 `;
 
 const NoneUserImage = styled.div`
