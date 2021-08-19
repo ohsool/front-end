@@ -1,8 +1,9 @@
 //declare var window: Window & typeof globalThis;
 //declare var self;
-let CACHE_NAME = 'pwa-task-manager';
+let CACHE_NAME = 'ohsool';
 let urlsToCache = [
     '/',
+    "/index.html"
 ];
 
 // Install a service worker

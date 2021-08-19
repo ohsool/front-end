@@ -29,10 +29,12 @@ export const writeReview = createAsyncThunk(
 export const editReview = createAsyncThunk(
   "review/editReview",
   async (data, thunkAPI) => {
+
     const mybeerId = data.mybeerId;
     delete data.mybeerId;
   
     const response = await axiosInstance.put(`/api/mybeer/${mybeerId}`, data);
+
     return response.data;
   }
 );

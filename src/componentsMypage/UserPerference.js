@@ -37,7 +37,7 @@ const Perference = styled.div`
 
 const UserInfoWrap = styled.div`
     margin: 12px 0px 0px 16px;
-    width: 175px;
+    width: 200px;
     height: 46px;
     & > span {
         font-size: 16px;

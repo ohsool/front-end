@@ -20,9 +20,11 @@ const Main = (props) => {
 export default Main;
 
 const Grid = styled.div`
+    display: flex;
     text-align: center; 
     align-items: center;
-    width: 100%;
+    margin: 0 auto;
+    max-width: 400px;
     height: 100vh;
     background-color: #C4C4C4;
     background-image: url(${mainbeer});

@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getSearchWord } from "../redux/async/beer";
 // import { getSearchList } from "../redux/reducer/beerSlice";
 import { getBeerList } from "../redux/reducer/beerSlice";
-import _ from "lodash";
+import _ from 'lodash';
+
 const Search = (props) => {
     const { setSearch_Beer,
             setIs_Search,
@@ -39,8 +40,15 @@ const Search = (props) => {
             setShow_Recent_Words(false);
         }    
     }
+    /*
+    const handleSearchWord = _.debounce(()=>{
+        _searchWord()
+    },[word])
 
-    const searchWord = () => {//실시간으로 자동완성 된 값 불러옴   
+    const searchWord = () =>{//실시간으로 자동완성 된 값 불러옴   
+        dispatch(getSearchWord(word)); 
+    }*/
+    const searchWord = () =>{//실시간으로 자동완성 된 값 불러옴   
         dispatch(getSearchWord(word)); 
     }
 
@@ -71,6 +79,7 @@ const Search = (props) => {
     }
     const findBeerbyClick = (name)=>{//특정 맥주명을 누른 경우 해당 맥주 명으로 검색
         setSearch_Beer([]);
+        setHashtag([]);
         if(check_eng.test(word)){//영어로 검색            
             setSearch_Beer(search_beer => [...search_beer, 
             beers?.filter((p) => p.name_english.includes(name))[0]]);
@@ -93,7 +102,8 @@ const Search = (props) => {
                     onChange={onChange}
                     onKeyUp={() => {
                         searchWord();
-                        if(word !== null){
+                        //handleSearchWord()
+                        if(word !== null){//아무것도 입력 안한상태면 모달 닫기
                             setOpen_Modal(true);
                         }
                     }}
@@ -116,13 +126,14 @@ const Search = (props) => {
     )
 }
 export default React.memo(Search);
+
 const SearchInput = styled.div`
     width: 360px;
     & > input{
         width: 292px;
         height: 30px;
+        margin: 10px 24px;
         border:none;
-        margin: 20px 24px;
         background: #F6F6F6;
         border-radius: 18px;
         outline: none;
@@ -132,7 +143,7 @@ const SearchInput = styled.div`
 const SearchModal = styled.div`
     display: inline-block;
     position: absolute;
-    z-index; 5;
+    z-index: 5;
     padding-left: 26px;
     width: 360px;
     height: 100vh;
