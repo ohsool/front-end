@@ -93,6 +93,7 @@ const RecommendBeerWrap = styled.div`
     width: 148px;
     margin-bottom: 20px;
     margin-right: 16px;
+    //z-index: 1px;
 `;
 
 const BeerImage = styled.div`

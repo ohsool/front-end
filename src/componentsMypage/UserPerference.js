@@ -14,10 +14,9 @@ const UserPreference = (props) => {
     return(
         <React.Fragment>
             <Container style={is_iphone.indexOf("iphone") !== -1 ? {marginTop: "133px"} : {marginTop: "93px"}}>
-                <PreferenceWrap>
-                    <Perference
-                        style={{backgroundImage: `url(${userInfos.image})`}}
-                    ></Perference>
+                <PreferenceWrap
+                style={{backgroundImage: `url(${userInfos.image})`}}
+                >
                 </PreferenceWrap>
                 <UserInfoWrap>
                     <span>안녕하세요 <strong>{userInfos.nickname}</strong>님!</span><br/>
@@ -43,15 +42,8 @@ const PreferenceWrap = styled.div`
     justify-content: center;
     width: 65px;
     height: 65px;
-    background-color: #F7F7F7;
-    border-radius: 65px;
-`;
-
-const Perference = styled.div`
-    margin-top: 8px;
-    width: 21px;
-    height: 45px;
     background-size: cover;
+    border-radius: 65px;
 `;
 
 const UserInfoWrap = styled.div`

@@ -29,13 +29,19 @@ export const writeReview = createAsyncThunk(
 export const editReview = createAsyncThunk(
   "review/editReview",
   async (data, thunkAPI) => {
+    const review = thunkAPI.getState().review.reviewList;
+    const index  = review.findIndex((p) => p._id === data.mybeerId);
+    // myFeatures, location, rate, review
+    const response = await axiosInstance.put(`/api/mybeer/${data.mybeerId}`, data);
 
-    const mybeerId = data.mybeerId;
-    delete data.mybeerId;
-  
-    const response = await axiosInstance.put(`/api/mybeer/${mybeerId}`, data);
+    const dataSlice = {
+      myFeatures: data.myFeatures,
+      rate: data.rate,
+      review: data.review,
+      index: index
+    }
 
-    return response.data;
+    return dataSlice;
   }
 );
 

@@ -1,5 +1,5 @@
 import { createSlice, createSelector } from "@reduxjs/toolkit";
-import { getReview, writeReview, deleteReview } from "../async/review";
+import { getReview, writeReview, editReview, deleteReview } from "../async/review";
 
 const initialState = {
     reviewList: [],
@@ -33,6 +33,12 @@ const reviewSlice = createSlice({
         })
         .addCase(writeReview.fulfilled, (state, action) => {
           state.reviewList.unshift(action.payload.mybeer);
+        })
+        .addCase(editReview.fulfilled, (state, action) => {
+          state.reviewList[action.payload.index].myFeatures = action.payload.myFeatures;
+          state.reviewList[action.payload.index].rate = action.payload.rate;
+          state.reviewList[action.payload.index].review = action.payload.review;
+
         })
         .addCase(deleteReview.fulfilled, (state, action) => {
           state.reviewList.splice(action.payload, 1);

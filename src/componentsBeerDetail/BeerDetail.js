@@ -11,6 +11,8 @@ import { User } from "../redux/reducer/userSlice";
 import {HeartButton}  from "../componentsBeer/BeerIndex";
 import { TasteGraph, EachReview} from "./BeerDetailIndex";
 import mapIcon from "../share/image/mapIcon.png";
+import {ReviewWriteModal} from "../componentsBeerDetail/BeerDetailIndex";
+
 
 const BeerDetail = (props) =>{
     const [toggle, setToggle] = useState(false);
@@ -21,6 +23,8 @@ const BeerDetail = (props) =>{
     const beer_infos = useSelector(getReviewList);
     const is_iphone = navigator.userAgent.toLowerCase();
     const dispatch = useDispatch();
+    const [modalOpen, setModalOpen] = useState(false);
+    const is_comment = beer_infos.find((p) => p.userId._id === userId);
 
     useEffect(() => { //맥주 정보, 사용자정보 및 리뷰정보 불러오기
         dispatch(getOneBeer(props.match.params.beerId));
@@ -69,6 +73,26 @@ const BeerDetail = (props) =>{
             }
         }
     }
+    const loginConfirm = ()=>{
+        if(userId){
+            if(is_comment){
+                alert("이미 멋진 리뷰를 작성하셨습니다!")
+            }else{
+                setModalOpen(true);
+        }
+        }else{
+            if(window.confirm("로그인이 필요한 서비스입니다. 로그인하시겠습니까?")){
+                history.push("/login")
+                return;
+            }
+        }
+    }
+    const openModal = () => {
+        setModalOpen(true);
+      };
+    const closeModal = () => {
+        setModalOpen(false);
+    };
 
     const reportedPlace = () => {
         if(beerOne?.location_report[0]){
@@ -154,9 +178,8 @@ const BeerDetail = (props) =>{
                     <Wrap>
                         <p style={{ fontWeight: "700" ,paddingBottom: "7px"}}>제보된 판매처</p>
                         <div style={{display: "flex"}}>
-                        <MapIcon style={{backgroundImage: `url(${mapIcon})`}}/>
-                        {reportedPlace()}
-                        
+                        <MapIcon style={{backgroundImage: `url(${mapIcon})`}}/>                        
+                        {reportedPlace()}                        
                         </div>
 
                         <PlaceButton 
@@ -167,6 +190,7 @@ const BeerDetail = (props) =>{
 
                     <Wrap>
                     <p style={{ fontWeight: "700",paddingBottom: "14px"}}>리뷰</p>
+                    
                         <Gradient>
                             {beer_infos?.length > 0 ? beer_infos?.map((item, idx) => (
                                 idx < 4 ? (
@@ -179,17 +203,29 @@ const BeerDetail = (props) =>{
                         <div style={{display: "flex"}}>
                             <ReviewButton
                                 onClick={()=>{
-                                    history.push(`/beer/review/${beerOne._id}`, { beer_infos, userId })
+                                    history.push(`/beer/review/${beerOne._id}`, 
+                                   // { beer_infos, userId,setModalOpen, modalOpen, beerOne, is_comment })
+                                    { beer_infos, userId })
                             }}>전체보기</ReviewButton>
                             <ReviewButton
-                                onClick={()=>{
-                                    alert("아직 적용전 🎅🎄🎁")
-                                }}
-                            >리뷰쓰기</ReviewButton>
+                                onClick={() => {
+                                    loginConfirm();
+                                }}>
+                            리뷰쓰기</ReviewButton>
                         </div>
+                        <div style={{marginLeft: "-20px"}}>
+                        <ReviewWriteModal
+                            open={modalOpen}
+                            close={closeModal}
+                            beerOne={beerOne}
+                            is_edit={false}
+                        ></ReviewWriteModal>
+                        </div> 
+                    </Wrap>
+            
                     
-                    </Wrap>  
                 </Grid>
+
             </Container>
         </React.Fragment>
     )
@@ -338,16 +374,22 @@ const TasteTag = styled.div`
     text-align: center;
     color: #333333;
 `;
-
+/*
 const Gradient = styled.div`
     margin: 0 auto;
+    //position: relative;
     z-index: 1;
     -webkit-mask-size: 312px 420px; 
     -webkit-mask-image: -webkit-gradient(linear, center bottom, center top,
     color-stop(1.00, rgba(0,0,0,1)), 
     color-stop(0.00, rgba(0,0,0,0)));
 `;
+*/
 
+const Gradient = styled.div`
+    z-index: 1;
+    margin: 0 auto;
+`
 const JustifyAlign = styled.div`
     display: flex;
     justify-content: space-between;
@@ -368,3 +410,8 @@ const ReviewButton = styled.button`
     border-radius: 22.5px;
     cursor: pointer;
 `;
+
+const ReviewEdit = styled.div`
+    position: absolute;
+    z-index: 2;
+`

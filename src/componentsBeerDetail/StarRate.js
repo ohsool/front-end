@@ -17,7 +17,7 @@ const StarButton = ({setStarScore, init_star, is_my}) =>{
           return (
             <StarFilled
               key={index}
-              style={{backgroundImage: `url(${star_filled})`}}
+              style={{backgroundImage: `url(${star_filled})`,cursor:"unset"}}
             ></StarFilled>
           );
         })}
@@ -25,7 +25,8 @@ const StarButton = ({setStarScore, init_star, is_my}) =>{
           return (
             <StarEmpty
               key={index}
-              style={{backgroundImage: `url(${star_empty})`}}
+              style={{backgroundImage: `url(${star_empty})`,cursor:"unset"}}
+              
             ></StarEmpty>
           );
         })}
