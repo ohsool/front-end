@@ -5,6 +5,8 @@ import { getSearchWord } from "../redux/async/beer";
 // import { getSearchList } from "../redux/reducer/beerSlice";
 import { getBeerList } from "../redux/reducer/beerSlice";
 import _ from 'lodash';
+import remove from "../share/image/remove_gray.png";
+import search from "../share/image/search_gray.png";
 
 const Search = (props) => {
     const { setSearch_Beer,
@@ -17,14 +19,13 @@ const Search = (props) => {
     const check_eng = /[a-zA-Z]/; // 영어체크
     const check_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글체크
     const [word, setWord] = useState(""); //실시간으로 입력하는 단어담김
+    const [input, setInput] = useState(true);
     // const words = useSelector(getSearchList);
     const beers = useSelector(getBeerList);
    // const [show_recent_words, setShow_Recent_Words] = useState(false);//최근 검색어 보여줄지, 실시간 자동완성 검색어 보여줄지
     //const [openModal,setOpen_Modal] = useState(false);
     const dispatch = useDispatch();
-    
     useEffect(()=>{
-        
         if(word === null || word === "" || words.length===0){//검색창에 아무것도 입력 하지 않은 상태면 검색 모달 닫기 
             setOpen_Modal(false);
         }
@@ -47,18 +48,24 @@ const Search = (props) => {
         if(e.key === "Enter"){
             findBeer();
             setOpen_Modal(false);
+            setInput(false);
         }
+    }
+    const clickSearch = () =>{
+        findBeer();
+        setOpen_Modal(false);
+        setInput(false);
     }
 
     const findBeer = ()=>{//엔터 키를 누른 경우 해당 단어로 검색
         setSearch_Beer([]);
-        if(check_eng.test(word) /*&& show_recent_words === false*/){//영어로 검색           
+        if(check_eng.test(word)){//영어로 검색           
             words.map((w)=>{
                 setSearch_Beer(search_beer => [...search_beer,
                 beers?.filter((p) => p.name_english.includes(w))[0]]);
                 setIs_Search(true);
             })
-        }else if(check_kor.test(word) /*&& show_recent_words === false*/){//한국어로 검색            
+        }else if(check_kor.test(word)){//한국어로 검색            
             words.map((w)=>{
                 setSearch_Beer(search_beer => [...search_beer,
                 beers?.filter((p) => p.name_korean.includes(w))[0]]);
@@ -77,6 +84,7 @@ const Search = (props) => {
         }else if(check_kor.test(word)){ //한국어로 검색           
             setSearch_Beer(search_beer => [...search_beer, 
             beers?.filter((p) => p.name_korean.includes(name))[0]]);
+            
         }
         setIs_Search(true);
         setOpen_Modal(false);
@@ -85,13 +93,14 @@ const Search = (props) => {
     return (
         <React.Fragment>
             <SearchInput>
+                {input ? 
                 <input
                     onClick={()=>{
                         setOpen_Modal(true)
-                        //showRecentWords();
                     }} 
                     onChange={onChange}
                     onKeyUp={() => {
+                        setInput(true);
                         searchWord();
                         if(word !== null){//아무것도 입력 안한상태면 모달 닫기
                             setOpen_Modal(true);
@@ -100,6 +109,31 @@ const Search = (props) => {
                     onKeyPress={EnterSubmit}
                     placeholder="검색어를 입력하세요."
                 ></input>
+                :  <input //x버튼 클릭시 input value 글씨 지워짐
+                    value={""}
+                    onClick={()=>{
+                        setInput(true);
+                    }}
+                    placeholder="검색어를 입력하세요."
+                ></input>
+                
+            }
+
+                <ButtonWrap>
+                    
+                    <ImageWrap style={{backgroundImage: `url(${remove})`}}
+                        onClick={()=>{ 
+                            setWord(null);
+                            setInput(false);
+                         }}
+                    />
+                    <ImageWrap style={{backgroundImage: `url(${search})`}}
+                        onClick={()=>{
+                            clickSearch();
+                        }}
+                    
+                    />
+                </ButtonWrap>
             </SearchInput>
             { openModal ? 
                 <SearchModal>
@@ -118,18 +152,33 @@ const Search = (props) => {
 export default React.memo(Search);
 
 const SearchInput = styled.div`
-    width: 360px;
+    width: 312px;
+    margin: 10px 24px;
+    background: #F6F6F6;
+    border-radius: 18px;
+    outline: none;
+
     & > input{
-        width: 292px;
+        width: 220px;
         height: 30px;
-        margin: 10px 24px;
         border:none;
         background: #F6F6F6;
-        border-radius: 18px;
-        outline: none;
-        padding-left: 20px;
+        margin-left: 20px;
     }
 `
+const ButtonWrap = styled.div`
+    display: flex;
+    float: right;
+    margin-right: 8px;
+
+`
+const ImageWrap = styled.div`
+    margin: 8px ;
+    width: 16px;
+    height: 16px;
+    background-size: cover;
+`;
+
 const SearchModal = styled.div`
     display: inline-block;
     position: absolute;
@@ -149,11 +198,3 @@ const SearchModal = styled.div`
         line-height: 20.51px;
     }
 `
-const CloseIcon = styled.div`
-    position: absolute;
-    right: 24px;
-    top: 22px;
-    width: 16px;
-    height: 16px;
-    border: 1px solid black;
-`;
