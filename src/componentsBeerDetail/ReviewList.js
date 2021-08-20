@@ -36,7 +36,7 @@ const ReviewList = (props)=>{
     const loginConfirm = ()=>{
         if(userId){
             if(is_comment){
-                alert("이미 멋진 리뷰를 작성하셨습니다!")
+                alert("이미 댓글을 작성하셨습니다!")
             }else{
             openModal();
         }
@@ -81,7 +81,6 @@ const ReviewList = (props)=>{
 export default React.memo(ReviewList);
 
 const Container = styled.div`
-    //position: fixed;
     display: flex;
     background-color: #FFFFFF;
     flex-direction: column;

@@ -14,9 +14,8 @@ const BeerType = (props) => {
         setOpen_Modal, 
         setIs_Search,
         setHashtag,
-        get_category_id    
+        get_category_id,
     } = props;
-    const [is_Clicked, setIs_Clicked] = useState(true);
 
     const settings = {
         infinite: false,
@@ -30,7 +29,7 @@ const BeerType = (props) => {
     const clickSlider = () => {
         setIs_Search(false);
         setOpen_Modal(false); //카테고리 클릭시 검색 모달 닫기
-        setHashtag(false);
+        setHashtag([]); 
     }
 
     return (
@@ -44,9 +43,11 @@ const BeerType = (props) => {
                             "clickSlider"
                             : "nonClickSlider"
                         }
-                        onClick={() => {
+                        onClick={(e) => {
                             clickSlider();
                             history.push(`/beer/list/${item._id}`)
+                            e.preventDefault();
+                            e.stopPropagation();
                         }} 
                         key={idx}>
                         {item.name}

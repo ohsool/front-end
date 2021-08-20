@@ -4,12 +4,13 @@ import styled from "styled-components";
 const TestQuestion = ({ question }) => { //question 객체 context API
     return(
         <React.Fragment>
+            
             <QuestionWrap>
                 <p>Q.</p>
-                {question.question.split("\n").map((line) => (
-                    <span>{line}</span>
-                ))}
-            </QuestionWrap>
+                    {question.question.split("\n").map((line) => (
+                    <span>{line}</span>))}
+                    <ExplainWrap><span>{question.explain}</span></ExplainWrap>
+                </QuestionWrap>
         </React.Fragment>
     )
 }
@@ -31,3 +32,14 @@ const QuestionWrap = styled.div`
         font-weight: normal;
     }
 `;
+
+const ExplainWrap = styled.div`
+    margin: 10px 26px 0 0;
+    & > span {
+        display: block;
+        font-size: 12px;
+        font-weight: light;
+    }
+
+
+`

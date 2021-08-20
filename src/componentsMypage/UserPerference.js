@@ -48,7 +48,7 @@ const PreferenceWrap = styled.div`
 
 const UserInfoWrap = styled.div`
     margin: 12px 0 0 16px;
-    width: 200px;
+    width: 223px;
     height: 46px;
     & > span {
         font-size: 16px;

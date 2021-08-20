@@ -16,7 +16,7 @@ import {
 const initialState = {
     beerList: [],
     testBeerList: [],
-    getCategoryBeer: [],
+    categoryBeer: [],
     hashtagList: [],
     beerOne: null,
     beerToday: [],
@@ -36,8 +36,7 @@ export const beerSlice = createSlice({
             state.beerList = action.payload;
         })
         .addCase(getBeerCategoryList.fulfilled, (state, action) => {
-
-            // state.beerCategory = action.payload;
+            state.categoryBeer = action.payload.beers;
         })
         .addCase(getOneBeer.fulfilled, (state, action) => {
             state.beerOne = action.payload.beer;
@@ -114,6 +113,8 @@ const beer_recommend = (state) => state.beer.beerToday.recommendations;
 
 const beer_Infinity = (state) => state.beer.testBeerList;
 
+const beer_Category = (state) => state.beer.categoryBeer;
+
 export const getBeerList = createSelector([beer_list], beerList => {
   return beerList;
 }); //전체 맥주리스트
@@ -121,6 +122,10 @@ export const getBeerList = createSelector([beer_list], beerList => {
 export const oneBeer = createSelector(beer_One, beer_One => {
   return beer_One;
 }); // 맥주 1개데이터 
+
+export const beerCategory = createSelector(beer_Category, beer_Category => {
+  return beer_Category;
+})
 
 export const getHashtagList = createSelector(beerHashtag, beerHashtag => {
   return beerHashtag;

@@ -28,26 +28,27 @@ const MyPageModal = (props) => {
                 dispatch(suggestBeer({
                     beer: title,
                     description: chat,
-                    location: "여삼빌딩",
                     image: "맥주",
                 }));
                 setSuggestChat({
                     title: "",
                     chat: "",
                 });
+                alert("맥주 건의하기가 완료되었습니다!")
                 close();
             }
-        else{
-            dispatch(suggestComment({
-                title: title,
-                description: chat
-            }));
-            setSuggestChat({
-                title: "",
-                chat: "",
-            });
-            close();
-        }
+            else{
+                dispatch(suggestComment({
+                    title: title,
+                    description: chat
+                }));
+                setSuggestChat({
+                    title: "",
+                    chat: "",
+                });
+                alert("관리자에게 건의하기가 완료되었습니다!")
+                close();
+            }
         }
     }
 

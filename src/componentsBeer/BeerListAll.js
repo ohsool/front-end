@@ -24,11 +24,11 @@ const InfinityChildren = (props) => {
         return getData();
     }, [paging, beersIF.length]);
 
-    const _handleScroll = _.throttle(() => {
+    const _handleScroll = _.debounce(() => {
         const scrollHeight = document.documentElement.scrollHeight;
         const scrollTop = document.documentElement.scrollTop;
         const clientHeight = document.documentElement.clientHeight;
-        if (scrollTop + clientHeight + 40 >= scrollHeight && loading === false) {
+        if (scrollTop + clientHeight + 60 >= scrollHeight && loading === false) {
           // 페이지 끝에 도달하면 추가 데이터를 받아온다
           setPaging(paging + 1);
           getInfinityList();
@@ -57,20 +57,22 @@ const InfinityChildren = (props) => {
 
     return(
         <React.Fragment>
+            <List>
             {beersIF?.map((item, idx) => (
                 <EachBeer key={idx} item={item}/>
             ))}
-            {loading ? <h1>Loading....</h1> : ""}
+            {loading ? <h1>Loading...</h1>: 
+            ""}
+            </List>
         </React.Fragment>
     )
 }
 
-export default InfinityChildren;
+export default React.memo(InfinityChildren);
 
-const Div = styled.div`
-    display: inline-block;
-    margin: 15px;
-    width: 200px;
-    height: 250px;
-    border: 1px solid black;
+const List = styled.div`
+    width: 312px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
 `;

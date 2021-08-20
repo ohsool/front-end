@@ -8,7 +8,6 @@ import { getHashtagWord} from "../redux/async/beer";
 import { User } from "../redux/reducer/userSlice";
 
 import HeartButton from "./HeartButton";
-import { set } from "lodash";
 
 const EachBeer = (props) => {
     const dispatch = useDispatch();
@@ -87,7 +86,7 @@ const EachBeer = (props) => {
     )
 }
 
-export default EachBeer;
+export default React.memo(EachBeer);
 
 const RecommendBeerWrap = styled.div`
     width: 148px;
@@ -155,7 +154,7 @@ const TasteTag = styled.div`
     box-sizing: border-box;
     border-radius: 33px;
     font-size: 10px;
-    line-height: 14px;
+    line-height: 16px;
     text-align: center;
     color: #333333;
     cursor: pointer;

@@ -27,15 +27,12 @@ const Search = (props) => {
             setOpen_Modal(false);
         }
     },[word, words])
-    
-
-    const onChange = (e) =>{
+ 
+    const onChange = (e) =>{     
         if(e.target.value === ''){//검색어 지웠을 때 검색목록 사라지도록 함
             setWord(null);
-            setShow_Recent_Words(true);
         }else{
             setWord(e.target.value);
-            setShow_Recent_Words(false);
         }    
     }
 
@@ -55,13 +52,13 @@ const Search = (props) => {
 
     const findBeer = ()=>{//엔터 키를 누른 경우 해당 단어로 검색
         setSearch_Beer([]);
-        if(check_eng.test(word) && show_recent_words === false){//영어로 검색           
+        if(check_eng.test(word) /*&& show_recent_words === false*/){//영어로 검색           
             words.map((w)=>{
                 setSearch_Beer(search_beer => [...search_beer,
                 beers?.filter((p) => p.name_english.includes(w))[0]]);
                 setIs_Search(true);
             })
-        }else if(check_kor.test(word) && show_recent_words === false){//한국어로 검색            
+        }else if(check_kor.test(word) /*&& show_recent_words === false*/){//한국어로 검색            
             words.map((w)=>{
                 setSearch_Beer(search_beer => [...search_beer,
                 beers?.filter((p) => p.name_korean.includes(w))[0]]);
@@ -96,7 +93,6 @@ const Search = (props) => {
                     onChange={onChange}
                     onKeyUp={() => {
                         searchDebounce();
-                        //handleSearchWord()
                         if(word !== null){//아무것도 입력 안한상태면 모달 닫기
                             setOpen_Modal(true);
                         }
@@ -140,14 +136,15 @@ const SearchModal = styled.div`
     z-index: 5;
     padding-left: 26px;
     width: 360px;
-    height: 100vh;
     background-color: #FFFFFF;
+    border-bottom: 2px solid #F7F7F7;
     //글자 라인 수 제한하기
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 5;
     -webkit-box-orient: vertical;
     & > p {
+        margin-left: 20px;
         font-weight: 500;
         font-size: 14px;
         line-height: 20.51px;

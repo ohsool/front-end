@@ -30,9 +30,12 @@ const ReviewWriteModal = (props) => {
 
 
     const addReview = () => { //리뷰 작성시
-        if(review === "" || starScore === undefined ){
-            window.alert("답하지 않은 문항이 있어요!")
-            return
+        if(review === "" || starScore === undefined){
+            alert("답하지 않은 문항이 있어요!")
+            return;
+        }else if(review.length > 48){
+            alert("글자수는 48 글자를 넘을 수 없어요!");
+            return;
         }
         dispatch(writeReview({
             myFeatures: {
@@ -48,7 +51,7 @@ const ReviewWriteModal = (props) => {
             beerId: beerOne._id
 
         }));
-        window.alert("작성 완료!🍻");
+        alert("작성 완료!🍻");
         setReview("");
         setStarScore(0);
         setFeaturesList(arr.fill(0));
@@ -79,6 +82,9 @@ const ReviewWriteModal = (props) => {
 
     const onChange = (e) => {
         setReview(e.target.value);
+        if(e.target.value.length >= 48){
+            alert("48글자를 초과할 수 없습니다.")
+        }
     }
     return(
         <React.Fragment>
