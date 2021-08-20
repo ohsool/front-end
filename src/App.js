@@ -45,6 +45,8 @@ const GlobalStyle = createGlobalStyle`
   body{
     margin: 0;
     font-family: 'Noto Sans KR', sans-serif;
-    //background-color: #F2F3F7;
+    // ::-webkit-scrollbar{
+    //   display: none;
+    // }
   }
 `;

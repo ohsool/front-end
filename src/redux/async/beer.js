@@ -38,7 +38,7 @@ export const getBeerCategoryList = createAsyncThunk(
   async (data, thunkAPI) => {
 
     const response = await axiosInstance.get(`/api/beer/list/category/${data}`);
-    console.log(response.data);
+    
     return response.data
   }
 );

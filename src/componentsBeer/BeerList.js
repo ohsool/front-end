@@ -1,21 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { categories } from "../redux/reducer/categorySlice";
 import { getBeerList } from "../redux/reducer/beerSlice"
 import { getHashtagList } from "../redux/reducer/beerSlice";
-import BeerListAll from "./BeerListAll";
-import {Slider,Search,EachBeer} from "./BeerIndex";
+import {
+    Slider,
+    Search,
+    EachBeer,
+    BeerListAll,
+    BeerListCategory,
+    HashTagList} from "./BeerIndex";
 import Loader from "../share/Loader.js";
 import { getCategory } from "../redux/async/category";
 import upButton from "../share/image/upArrow.png";
 import _ from "lodash";
 import { 
     getAllBeer,
-    getBeerCategoryList
 } from "../redux/async/beer";
 import { getSearchList } from "../redux/reducer/beerSlice";
 import { userInfo } from "../redux/async/user";
+import { is_Login } from "../redux/reducer/userSlice";
 
 
 const BeerList = (props) =>{
@@ -24,23 +29,19 @@ const BeerList = (props) =>{
     const beers = useSelector(getBeerList);
     const hashtag_beers = useSelector(getHashtagList);
     const words = useSelector(getSearchList);
-    const category_beers = beers?.filter((p) => p.categoryId === get_category_id); //전체 맥주 리스트에서 동일 카테고리 맥주 필터링
     const [is_Loading, setIs_Loading] = useState(false); //로딩 여부 판별
     const [is_search, setIs_Search] = useState(false);
     const [search_beer, setSearch_Beer] = useState([]); //검색한 맥주 정보
-    const [hashtag, setHashtag] = useState(hashtag_beers);
+    const [hashtag, setHashtag] = useState([]);
     const [scrollHeightInfo, SetScrollHeightInfo] = useState(0);
     const dispatch = useDispatch();
     const [openModal, setOpen_Modal] = useState(false);
     const is_iphone = navigator.userAgent.toLowerCase();
 
     useEffect(() => {
-        // dispatch(getBeerCategoryList(get_category_id));
         dispatch(getAllBeer("all"));
         dispatch(getCategory());
         dispatch(userInfo());
-        setHashtag([]);
-        SetScrollHeightInfo(0);
     }, []);
 
     const showTopButton = () => {
@@ -62,7 +63,7 @@ const BeerList = (props) =>{
     const _scrollPosition = _.debounce(() => {
         const scrollHeight = document.documentElement.scrollTop;
         SetScrollHeightInfo(scrollHeight);
-    }, 200)
+    }, 300)
 
     useEffect(() => {
         window.addEventListener("scroll", _scrollPosition); // scroll event listener 등록
@@ -75,82 +76,44 @@ const BeerList = (props) =>{
         if(beers){
             setIs_Loading(true);
         }
-    })
-    
-    useEffect(()=>{
-        setHashtag(hashtag_beers);
-        searchBeerList();
-    },[hashtag_beers])
+    }, [beers])
 
-    useEffect(()=>{
-        searchBeerList();
-    },[words])
-
-    const searchBeerList = () => {
-        if(hashtag.length > 0){
-            return (
-                <>
-                <span style={{float:"right", marginRight: "30px",fontSize:"14px", fontWeight:"500"}}>총 <span style={{color:"#FFC44F",fontWeight:"700"}}>{hashtag.length}</span>건입니다.</span>
-                <List>                    
-                    {hashtag?.length > 0 ? hashtag?.map((item, idx) => (
-                        <EachBeer key={idx} item={item} />
-                    )):""}
-                </List>
-                </>
-            );
-        }else{
-            return(
-            <List>    
-            {search_beer?.length > 0 ? search_beer?.map((item, idx) => (
-                <EachBeer key={idx} item={item}/>
-            )):""}
-            </List>
-            );
-        }
-
+    const useDidMountEffect = (func, deps) => {
+        const didMount = useRef(false);
+        useEffect(()=>{
+            if(didMount.current){
+                setHashtag(hashtag_beers);
+            } else{
+                didMount.current = true;
+            }
+        },[deps, hashtag_beers]);
     }
 
-    const allBeerList = () => {     
-        if(get_category_id === "all"){
-            if(hashtag.length > 0){
-                return (
-                    <>
-                    <span style={{float:"right", marginRight: "30px",fontSize:"14px", fontWeight:"500"}}>총 <span style={{color:"#FFC44F",fontWeight:"700"}}>{hashtag.length}</span>건입니다.</span>
-                    <List>    
-                        {hashtag_beers?.length > 0 ? hashtag_beers?.map((item, idx) => (
-                            <EachBeer key={idx} item={item} />
-                        )):""}
-                    </List>
-                    </>
-                );
-            }else{
-                return (
-                    <>
-                    <List>
-                        <BeerListAll></BeerListAll>
-                    </List>
-                </>
-                );
-            }            
+    useDidMountEffect(() => {
+    })
+
+    useEffect(()=>{
+        BeerLists();
+    },[words])
+    
+    const BeerLists = () => {
+        if(is_search){
+            return(
+                search_beer?.length > 0 ? 
+                    search_beer?.map((item, idx) => (
+                    <EachBeer key={idx} item={item}/>
+                )): ""
+            )
         }else{
-            if(hashtag.length > 0){
+            if(get_category_id === "all"){
                 return (
-                    <>
-                    <span style={{float:"right", marginRight: "30px",fontSize:"14px",fontWeight:"500"}}>총 <span style={{color:"#FFC44F",fontWeight:"700"}}>{hashtag.length}</span>건입니다.</span>
-                    <List>    
-                        {hashtag_beers?.length > 0 ? hashtag_beers?.map((item, idx) => (
-                            <EachBeer key={idx} item={item} />
-                        )):""}
-                    </List>
-                    </>
-                );
+                    <BeerListAll></BeerListAll>
+                );          
             }else{
                 return(
-                    <List>
-                    {category_beers?.map((item, idx) => (
-                        <EachBeer key={idx} item={item} />
-                    ))}
-                    </List>
+                    <BeerListCategory 
+                        get_category_id={get_category_id}>
+                    </BeerListCategory>
                 );
             }
         }
@@ -180,8 +143,12 @@ const BeerList = (props) =>{
                                 openModal={openModal}
                                 setOpen_Modal={setOpen_Modal}
                             ></Search>
-                            {is_search ? searchBeerList() //검색된 맥주 리스트 출력
-                            : allBeerList() //타입별 맥주 리스트 출력
+                            {hashtag.length > 0 ?
+                            <HashTagList 
+                            hashtag={hashtag}
+                            setHashtag={setHashtag}
+                            ></HashTagList> // 해시태그리스트 출력
+                            : BeerLists() //검색 or 타입별 맥주 출력
                         }
                         {showTopButton()}
                         </Grid>

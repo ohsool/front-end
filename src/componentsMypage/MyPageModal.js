@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 import { useDispatch } from "react-redux";
 import {suggestBeer, suggestComment} from "../redux/async/suggest";
-import closeIcon from "../share/image/suggestclose.png"
 
 const MyPageModal = (props) => {
     const dispatch = useDispatch();
@@ -23,12 +22,43 @@ const MyPageModal = (props) => {
     // 아닐경우 관리자에게 건의하기
     const EnterSubmit = (e) => {
         //console.log(suggestChat);
-        if(e.key === "Enter"){
+        if(e.key === "Enter"){  
+            if(window.confirm("작성한 내용을 보내시겠습니까?")){
+                if(suggestInfo.suggestTitle === "맥주 건의하기"){
+                    dispatch(suggestBeer({
+                        beer: title,
+                        description: chat,
+                        image: "맥주",
+                    }));
+                    setSuggestChat({
+                        title: "",
+                        chat: "",
+                    });
+                    alert("맥주 건의하기가 완료되었습니다!")
+                    close();
+                }
+                else{
+                    dispatch(suggestComment({
+                        title: title,
+                        description: chat
+                    }));
+                    setSuggestChat({
+                        title: "",
+                        chat: "",
+                    });
+                    alert("관리자에게 건의하기가 완료되었습니다!")
+                    close();
+                }
+                return;
+            }            
+        }
+    }
+    const clickSubmit = ()=>{
+        if(window.confirm("작성한 내용을 보내시겠습니까?")){
             if(suggestInfo.suggestTitle === "맥주 건의하기"){
                 dispatch(suggestBeer({
                     beer: title,
                     description: chat,
-                    location: "여삼빌딩",
                     image: "맥주",
                 }));
                 setSuggestChat({
@@ -50,27 +80,28 @@ const MyPageModal = (props) => {
                 alert("관리자에게 건의하기가 완료되었습니다!")
                 close();
             }
+            return;
         }
+        
     }
 
     return(
         <React.Fragment>
             {open ?
             <Background>
-                <WhiteSpace
-                    onClick={close}
-                ></WhiteSpace>
-                <ModalWrap >
-                    <div style={{margin: "0 auto", width: "318px"}}>
-                    <SuggestTitle>
-                        <span>{suggestInfo.suggestTitle}</span>
-                    </SuggestTitle>
-                    </div>
-                    <CloseIcon
-                        style={{backgroundImage: `url(${closeIcon})`}}
+                    <WhiteSpace
                         onClick={close}
-                    >
-                    </CloseIcon>
+                    ></WhiteSpace>
+                    <ModalWrap >
+                    <Div>
+                        <SuggestTitle>
+                            <span>{suggestInfo.suggestTitle}</span>
+                        </SuggestTitle>
+                        <SubmitText onClick={clickSubmit}><span>보내기</span></SubmitText>
+
+                    </Div>
+                    
+                    
                     <SuggestInputTitle
                         placeholder={suggestInfo.titlePlaceholder}
                         value={title}
@@ -162,25 +193,33 @@ const SuggestInputTitle = styled.input`
     border-radius: 10px;
     margin-bottom: 10px;
 `;
+const Div = styled.div`
+    margin: 0 auto;
+    width: 318px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
+`
 const SuggestTitle = styled.div`
     height: 50px;
-    width: 280px;
-    text-align: left;
+    //width: 280px;
+    //text-align: left;
     & > span {
         position: absolute;
-        margin: 20px 0 0 10px;
+        margin: 17px 0 0 10px;
         font-size: 14px;
         font-weight: 700;
     }
 `;
 
-const CloseIcon = styled.div`
-    position: absolute;
-    right: 24px;
-    top: 22px;
-    background-size: cover;
-    box-sizing: border-box;
-    width: 16px;
-    height: 16px;
+const SubmitText= styled.div`
+    & > span{
+        //position: absolute;
+        margin: 20px 15px -5px 0;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 20.27px;
+        color: #C4C4C4;
+    }
 `;

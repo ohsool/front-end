@@ -29,6 +29,9 @@ const userSlice = createSlice({
       .addCase(signUp.fulfilled, (state, action) => {
         state.is_signup = action.payload.message;
       })
+      .addCase(signUp.rejected, (state, action) => {
+        alert("회원가입에 실패했습니다!");
+      })
       .addCase(checkEmail.fulfilled, (state, action) => {
         state.checkEmail = action.payload.existed;
       })
@@ -42,7 +45,6 @@ const userSlice = createSlice({
       })
       .addCase(logIn.rejected, (state, action) => {
         window.alert("아이디나 비밀번호가 틀립니다!")
-        
       })
       .addCase(logOut.fulfilled, (state, action) => {
         removeCookie("_osid");

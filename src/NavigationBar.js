@@ -53,7 +53,7 @@ export default NavigationBar;
 
 const NavBox = styled.div`
     width: 360px;
-    height: 62px;
+    height: 71px;
     z-index: 10;
     background-color: white;
     font-family: "GmarketSansM";

@@ -17,6 +17,8 @@ const EachReview=(props)=> {
     const { item, beerOne, userId } = props; 
     const [modalOpen, setModalOpen] = useState(false); //수정 버튼 클릭시 리뷰 수정 모달 띄우기
     const dispatch = useDispatch();
+    console.log("item.data", item.data);
+    console.log("item",item);
 
     const openModal = () => {
         setModalOpen(true);
@@ -25,29 +27,7 @@ const EachReview=(props)=> {
     const closeModal = () => {
         setModalOpen(false);
     };
-    //console.log("item.date",item.date);
-    //const date = moment(item.date);//아이폰 시간 형식 변환
-    const date = item.date
-    //console.log("date",date);
-
-    const displayDate = (createdAt) => {
-        const milliSeconds = new Date() - moment(createdAt);
-        const seconds = milliSeconds / 1000
-
-        if (seconds < 60) return `방금 전`
-        const minutes = seconds / 60
-        if (minutes < 60) return `${Math.floor(minutes)}분 전`
-        const hours = minutes / 60
-        if (hours < 24) return `${Math.floor(hours)}시간 전`
-        const days = hours / 24
-        if (days < 7) return `${Math.floor(days)}일 전`
-        const weeks = days / 7
-        if (weeks < 5) return `${Math.floor(weeks)}주 전`
-        const months = days / 30
-        if (months < 12) return `${Math.floor(months)}개월 전`
-        //const years = days / 365
-        return createdAt.split(' ')[0]
-      }
+    const date = item.date.replace(/-/g,'/');
 
     return (
         <React.Fragment>
@@ -65,8 +45,7 @@ const EachReview=(props)=> {
                         </NicknameText>
                         <DateText>
                             <span style={{ fontWeight: "300", fontSize: "10px", lineHeight: "14.48px"}}>
-                            {/*{moment(date).fromNow()}*/}
-                            {displayDate(date)}
+                            {moment(date).fromNow()}
                             </span>
                         </DateText>
                     </Div>

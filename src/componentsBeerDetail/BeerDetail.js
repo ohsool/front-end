@@ -11,6 +11,7 @@ import { User } from "../redux/reducer/userSlice";
 import {HeartButton}  from "../componentsBeer/BeerIndex";
 import { TasteGraph, EachReview} from "./BeerDetailIndex";
 import mapIcon from "../share/image/mapIcon.png";
+import writeIcon from "../share/image/review_write.png";
 import {ReviewWriteModal} from "../componentsBeerDetail/BeerDetailIndex";
 
 
@@ -199,8 +200,8 @@ const BeerDetail = (props) =>{
                                     </>) : null
                             )): ""}
                         </Gradient>
-                        
-                        <div style={{display: "flex"}}>
+                        {/*
+                        <div style={{display: "flex", bottom: "300px"}}>
                             <ReviewButton
                                 onClick={()=>{
                                     history.push(`/beer/review/${beerOne._id}`, 
@@ -213,6 +214,11 @@ const BeerDetail = (props) =>{
                                 }}>
                             리뷰쓰기</ReviewButton>
                         </div>
+                        */}
+                        <WriteButton onClick={() => {
+                            loginConfirm();
+                        }}></WriteButton>
+
                         <div style={{marginLeft: "-20px"}}>
                         <ReviewWriteModal
                             open={modalOpen}
@@ -415,3 +421,14 @@ const ReviewEdit = styled.div`
     position: absolute;
     z-index: 2;
 `
+const WriteButton = styled.div`
+    position: fixed;
+    bottom: 100px;
+    right: 36px;
+    //margin-left: -25px;
+    width: 60px;
+    height: 60px;
+    background-image: url(${writeIcon});
+    background-size: cover;
+    cursor: pointer;
+`;

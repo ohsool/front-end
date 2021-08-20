@@ -19,9 +19,8 @@ const categorySlice = createSlice({
             state.categoryList = [];
           })
           .addCase(getCategory.fulfilled, (state, action) => {
-            const new_list = action.payload.beerCategories;
-            new_list.unshift({ name: "All", _id: "all"});
-            state.categoryList = new_list;
+            const data = { name: "All", _id: "all"}
+            state.categoryList = [data, ...action.payload.beerCategories]
           })
           .addCase(getCategoryBeer.pending, (state, action) => {
             state.categoryBeerList = [];

@@ -22,19 +22,13 @@ const Search = (props) => {
     const [input, setInput] = useState(true);
     // const words = useSelector(getSearchList);
     const beers = useSelector(getBeerList);
-   // const [show_recent_words, setShow_Recent_Words] = useState(false);//최근 검색어 보여줄지, 실시간 자동완성 검색어 보여줄지
-    //const [openModal,setOpen_Modal] = useState(false);
+    const [show_recent_words, setShow_Recent_Words] = useState(false);//최근 검색어 보여줄지, 실시간 자동완성 검색어 보여줄지
     const dispatch = useDispatch();
     useEffect(()=>{
         if(word === null || word === "" || words.length===0){//검색창에 아무것도 입력 하지 않은 상태면 검색 모달 닫기 
             setOpen_Modal(false);
         }
     },[word, words])
-    
-    const searchWord =  _.debounce((e) =>{
-        console.log("debounce!");
-        dispatch(getSearchWord(word));       
-    },300);
  
     const onChange = (e) =>{     
         if(e.target.value === ''){//검색어 지웠을 때 검색목록 사라지도록 함
@@ -43,6 +37,13 @@ const Search = (props) => {
             setWord(e.target.value);
         }    
     }
+
+    const searchWord = () =>{//실시간으로 자동완성 된 값 불러옴   
+        dispatch(getSearchWord(word)); 
+    }
+    const searchDebounce = _.debounce(() => {
+        searchWord();
+    }, 300)
 
     const EnterSubmit = (e) =>{
         if(e.key === "Enter"){
@@ -102,6 +103,7 @@ const Search = (props) => {
                     onKeyUp={() => {
                         setInput(true);
                         searchWord();
+                        searchDebounce();
                         if(word !== null){//아무것도 입력 안한상태면 모달 닫기
                             setOpen_Modal(true);
                         }
@@ -185,14 +187,15 @@ const SearchModal = styled.div`
     z-index: 5;
     padding-left: 26px;
     width: 360px;
-    height: 100vh;
     background-color: #FFFFFF;
+    border-bottom: 2px solid #F7F7F7;
     //글자 라인 수 제한하기
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 5;
     -webkit-box-orient: vertical;
     & > p {
+        margin-left: 20px;
         font-weight: 500;
         font-size: 14px;
         line-height: 20.51px;

@@ -30,7 +30,7 @@ const SignUp = (props) => {
     useEffect(() => { //회원가입 후 응답이 오면 로그인페이지로 이동
         if(is_signup === "success"){
             alert("회원가입이 완료되었습니다!");
-            history.push("/");
+            window.location.href = "/"
         }
     }, [is_signup]);
 

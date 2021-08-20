@@ -4,6 +4,9 @@ import EachBeer from "./EachBeer";
 import Search from "./Search";
 import HeartButton from "./HeartButton";
 import Slider from "./Slider";
+import BeerListAll from "./BeerListAll";
+import BeerListCategory from "./BeerListCategory";
+import HashTagList from "./HashTagList";
 
 
 export {
@@ -12,4 +15,7 @@ export {
     Search,
     HeartButton,
     Slider,
+    BeerListAll,
+    BeerListCategory,
+    HashTagList,
     };
