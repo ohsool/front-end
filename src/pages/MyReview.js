@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import {TasteGraph,StarRate} from "../componentsBeerDetail/BeerDetailIndex";
 import Header from "../Header";
+import NavigationBar from "../NavigationBar";
 
 const MyReview = (props) =>{
     const item = props.location.state; //
@@ -41,6 +42,7 @@ const MyReview = (props) =>{
                 
                 </Grid>
             </Container>
+            <NavigationBar/>
             
         </React.Fragment>
     )

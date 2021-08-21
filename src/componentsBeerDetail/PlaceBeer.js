@@ -4,6 +4,7 @@ import {useDispatch} from "react-redux";
 import { mapReport } from "../redux/async/suggest";
 import MapImage from "./MapImage";
 import Header from "../Header";
+import NavigationBar from "../NavigationBar";
 
 const PlaceBeer = (props) => {
     const dispatch = useDispatch();
@@ -66,6 +67,7 @@ const PlaceBeer = (props) => {
                     </PlaceButton>
             </div>
             </PlaceInfoWrap>
+            <NavigationBar/>
 
 
         </React.Fragment>

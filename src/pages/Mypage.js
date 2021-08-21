@@ -6,6 +6,7 @@ import { history } from "../redux/configureStore";
 
 import MyPageModal from "../componentsMypage/MyPageModal";
 import Header from "../Header";
+import NavigationBar from "../NavigationBar";
 import arrow from "../share/image/suggestarrow.png";
 import UserPreference from '../componentsMypage/UserPerference';
 
@@ -41,7 +42,7 @@ const MyPage = (props) => {
     return (
         <>
         <Container>
-            <Header></Header>
+            <Header/>
             <UserPreference>
 
             </UserPreference>
@@ -87,6 +88,7 @@ const MyPage = (props) => {
                     로그아웃
                 </LogOutButton>
             </PageMoveWrap>
+            <NavigationBar/>
         </Container>
         </>
     )
@@ -134,7 +136,8 @@ const LogOutButton = styled.div`
         position: absolute;
         width: 90px;
         height: 23px;
-        bottom: 50px;
+        //bottom: 50px;
+        bottom: 100px;
         left: 50%;
         transform: translate(-30px, 0);
         border: none;
