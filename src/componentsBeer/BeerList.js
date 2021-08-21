@@ -20,8 +20,6 @@ import {
 } from "../redux/async/beer";
 import { getSearchList } from "../redux/reducer/beerSlice";
 import { userInfo } from "../redux/async/user";
-import { is_Login } from "../redux/reducer/userSlice";
-
 
 const BeerList = (props) =>{
     const get_category_id = props.match.params.beerCategoryId;

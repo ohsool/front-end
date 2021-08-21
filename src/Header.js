@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 const Header = (props) => {
     const userInfo = useSelector(state => state.user.currentUser);
     const is_iphone = navigator.userAgent.toLowerCase();
-
+    
     const comfirm_login = ()=>{
         if(userInfo.message === "success"){
             history.push("/mypage");
