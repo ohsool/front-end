@@ -35,6 +35,9 @@ const BeerList = (props) =>{
     const dispatch = useDispatch();
     const [openModal, setOpen_Modal] = useState(false);
     const is_iphone = navigator.userAgent.toLowerCase();
+    const [hashtagName, setHashtagName] = useState("");
+    
+
 
     useEffect(() => {
         dispatch(getAllBeer("all"));
@@ -101,7 +104,8 @@ const BeerList = (props) =>{
                 <React.Fragment>
                     <List>
                     {search_beer?.map((item, idx) => (
-                        <EachBeer key={idx} item={item}/>
+                        <EachBeer key={idx} item={item} /*setHashtagName={setHashtagName}*/
+                        />
                     ))}
                     </List>
                 </React.Fragment>
@@ -149,6 +153,7 @@ const BeerList = (props) =>{
                             <HashTagList 
                             hashtag={hashtag}
                             setHashtag={setHashtag}
+                            hashtagName={hashtagName}
                             ></HashTagList> // 해시태그리스트 출력
                             : BeerLists() //검색 or 타입별 맥주 출력
                         }

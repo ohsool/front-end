@@ -12,7 +12,7 @@ const Search = (props) => {
             setOpen_Modal,
             openModal,
             setHashtag,
-            words
+            words,
             } = props;
     const check_eng = /[a-zA-Z]/; // 영어체크
     const check_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글체크

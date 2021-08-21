@@ -11,7 +11,7 @@ import HeartButton from "./HeartButton";
 
 const EachBeer = (props) => {
     const dispatch = useDispatch();
-    const { item } = props;
+    const { item, /*setHashtagName*/} = props;
     const userId = useSelector(User);
     const [toggle, setToggle] = useState(false);
 
@@ -41,6 +41,7 @@ const EachBeer = (props) => {
     }
     const searchHashtagWord = (p) => {
         dispatch(getHashtagWord(p));
+        
     }
 
     return(
@@ -76,6 +77,8 @@ const EachBeer = (props) => {
                         searchHashtagWord(p);
                         e.preventDefault();
                         e.stopPropagation(); 
+                        //setHashtagName(p);
+                        
                     }}
                     key={idx}>#{p}
                     </TasteTag>:""
