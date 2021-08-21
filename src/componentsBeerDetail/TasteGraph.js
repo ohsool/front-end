@@ -2,15 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { Radar } from 'react-chartjs-2';
 
 const TasteGraph = ({ beers }) => {
-  const [labels, setLabels] = useState();
-  const [scores, setScores] = useState();
-
+  const labels = ["쓴맛", "청량감", "향", "단맛", "고소한맛"]
+  const [scores, setScores] = useState([0, 0, 0, 0, 0]);
+  
   useEffect(() => { //평점정보 불러오기
       if(beers) {
-        //맛 종류 5가지 불러오기
-        setLabels(["쓴맛", "청량감", "향", "단맛", "고소한맛"]);
         //맛마다 평점 정보 받아오기
-        setScores(Object.values(beers) ?? [0, 0, 0, 0, 0]);
+        setScores(Object.values(beers));
       }
   }, [beers]);
 

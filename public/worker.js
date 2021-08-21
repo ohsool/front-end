@@ -4,8 +4,10 @@ let CACHE_NAME = 'ohsool';
 let urlsToCache = [
     '/',
     './ohsoolIcon150.png',
-    '/beer',
-    '/beer/list'
+    '/mypage',
+    '/mybeer',
+    '/beer/list/all',
+    '/beer/detail/:beerId'
 ];
 
 // Install a service worker

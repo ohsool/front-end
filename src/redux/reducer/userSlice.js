@@ -7,6 +7,7 @@ import {
   checkEmail,
   checkNickname,
   logOut,
+  withDrawl,
 } from "../async/user";
 
 const initialState = {
@@ -47,6 +48,11 @@ const userSlice = createSlice({
         window.alert("아이디나 비밀번호가 틀립니다!")
       })
       .addCase(logOut.fulfilled, (state, action) => {
+        removeCookie("_osid");
+        removeCookie("_osidRe");
+        window.location.href = "/";
+      })
+      .addCase(withDrawl.fulfilled, (state, action) => {
         removeCookie("_osid");
         removeCookie("_osidRe");
         window.location.href = "/";

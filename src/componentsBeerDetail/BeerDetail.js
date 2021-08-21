@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useRef} from "react";
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
 import { useSelector, useDispatch } from "react-redux";
@@ -13,7 +13,7 @@ import { TasteGraph, EachReview} from "./BeerDetailIndex";
 import mapIcon from "../share/image/mapIcon.png";
 import writeIcon from "../share/image/review_write.png";
 import {ReviewWriteModal} from "../componentsBeerDetail/BeerDetailIndex";
-
+import _ from "lodash";
 
 const BeerDetail = (props) =>{
     const [toggle, setToggle] = useState(false);
@@ -23,9 +23,10 @@ const BeerDetail = (props) =>{
     const userId = useSelector(User);
     const beer_infos = useSelector(getReviewList);
     const is_iphone = navigator.userAgent.toLowerCase();
-    const dispatch = useDispatch();
+    const [scrollHeightInfo, SetScrollHeightInfo] = useState(0);
     const [modalOpen, setModalOpen] = useState(false);
     const is_comment = beer_infos.find((p) => p.userId._id === userId);
+    const dispatch = useDispatch();
 
     useEffect(() => { //맥주 정보, 사용자정보 및 리뷰정보 불러오기
         dispatch(getOneBeer(props.match.params.beerId));
@@ -68,26 +69,34 @@ const BeerDetail = (props) =>{
         if(userId){
             history.push("/place", beerOne._id)
         }else{
-            if(window.confirm("로그인이 필요한 서비스입니다. 로그인하시겠습니까?")){
-                history.push("/login");
-                return;
-            }
+            is_Login();
         }
     }
+    
     const loginConfirm = ()=>{
         if(userId){
             if(is_comment){
                 alert("이미 멋진 리뷰를 작성하셨습니다!")
             }else{
                 setModalOpen(true);
-        }
-        }else{
-            if(window.confirm("로그인이 필요한 서비스입니다. 로그인하시겠습니까?")){
-                history.push("/login")
-                return;
             }
+        }else{
+            is_Login();
         }
     }
+
+    const _scrollPosition = _.debounce(() => {
+        const scrollHeight = document.documentElement.scrollTop;
+        SetScrollHeightInfo(scrollHeight);
+    }, 200)
+  
+    useEffect(() => {
+        window.addEventListener("scroll", _scrollPosition); // scroll event listener 등록
+        return () => {
+            window.removeEventListener("scroll", _scrollPosition); // scroll event listener 해제
+        };
+    }, [beerOne]);
+
     const openModal = () => {
         setModalOpen(true);
       };
@@ -165,7 +174,11 @@ const BeerDetail = (props) =>{
                         <span style={{ fontWeight: "700"}}>Taste 그래프</span>                      
                     </Wrap>
                     <Graph>
-                        <TasteGraph beers={beerOne?.features}/>
+                        <TasteGraph 
+                        beers={scrollHeightInfo > 150 ? 
+                            beerOne?.features
+                        : ""
+                        }/>
                     </Graph>
                     <Line/>
                     <Wrap>

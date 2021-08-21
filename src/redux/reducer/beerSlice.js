@@ -46,7 +46,7 @@ export const beerSlice = createSlice({
         })
         //검색기능
         .addCase(getSearchWord.fulfilled, (state, action) => {
-            state.searchList = action.payload.words;
+            // state.searchList = action.payload.words;
         })
         .addCase(getHashtagWord.fulfilled, (state, action) => {
             state.hashtagList = action.payload.beers;
