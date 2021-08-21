@@ -12,20 +12,25 @@ import {HeartButton}  from "../componentsBeer/BeerIndex";
 import { TasteGraph, EachReview} from "./BeerDetailIndex";
 import mapIcon from "../share/image/mapIcon.png";
 import writeIcon from "../share/image/review_write.png";
+import star from "../share/image/star.png";
+import like from "../share/image/heart.png";
 import {ReviewWriteModal} from "../componentsBeerDetail/BeerDetailIndex";
-
-
+import _ from "lodash";
+//렌더링 8번 됨
 const BeerDetail = (props) =>{
     const [toggle, setToggle] = useState(false);
     const heart_detail = "detail"
     const beerOne = useSelector(oneBeer);
     const hashtag = beerOne?.hashtag;
+    const avgRate = beerOne?.avgRate;
+    const likeCount = beerOne?.like_array.length;
     const userId = useSelector(User);
     const beer_infos = useSelector(getReviewList);
     const is_iphone = navigator.userAgent.toLowerCase();
     const dispatch = useDispatch();
     const [modalOpen, setModalOpen] = useState(false);
     const is_comment = beer_infos.find((p) => p.userId._id === userId);
+    const [scrollHeightInfo, SetScrollHeightInfo] = useState(0);
 
     useEffect(() => { //맥주 정보, 사용자정보 및 리뷰정보 불러오기
         dispatch(getOneBeer(props.match.params.beerId));
@@ -77,10 +82,11 @@ const BeerDetail = (props) =>{
     const loginConfirm = ()=>{
         if(userId){
             if(is_comment){
-                alert("이미 멋진 리뷰를 작성하셨습니다!")
+                alert("이미 리뷰를 작성하셨습니다!")
             }else{
                 setModalOpen(true);
-        }
+                
+            }
         }else{
             if(window.confirm("로그인이 필요한 서비스입니다. 로그인하시겠습니까?")){
                 history.push("/login")
@@ -111,6 +117,36 @@ const BeerDetail = (props) =>{
         }
     }
 
+
+    const showWriteButton = () => {
+        if(scrollHeightInfo > 720){
+            return (
+            <WriteButtonWrap>
+                <WriteButton 
+                    onClick={() => {
+                    loginConfirm();
+                }}></WriteButton>
+            </WriteButtonWrap>
+                    
+            )
+            }else{
+                return null;
+            }
+    }
+
+    const _scrollPosition = _.debounce(() => {
+        const scrollHeight = document.documentElement.scrollTop;
+
+        SetScrollHeightInfo(scrollHeight);
+    }, 150)
+
+    useEffect(() => {
+        window.addEventListener("scroll", _scrollPosition); // scroll event listener 등록
+        return () => {
+            window.removeEventListener("scroll", _scrollPosition); // scroll event listener 해제
+        };
+    }, [scrollHeightInfo]);
+
     return(
         <React.Fragment>
             <Container style={is_iphone.indexOf("iphone") !== -1 ? {marginTop: "40px"} : {marginTop: "0px"}}>
@@ -138,11 +174,34 @@ const BeerDetail = (props) =>{
                             </HeartWrap>
                         </JustifyAlign>
 
-                        {hashtag?.map((item, idx)=>(
-                            idx < 3 ? "": <TasteTag>
-                                <span>#{item}</span>
-                            </TasteTag>
-                        ))}    
+                        <div style={{display: "flex"}}>
+                            <div style={{width: "219px",flexWrap: "wrap"}}>
+                            {hashtag?.map((item, idx)=>(
+                                idx < 3 ? "": 
+                                <TasteTag>
+                                    <span>#{item}</span>
+                                </TasteTag>
+                            ))}
+                            </div>
+
+                            <div style={{display: "flex", marginLeft: "32px"}}>
+                                <div style={{display: "flex", margin: "5px 7px"}}>
+                                    <StarIcon style={{backgroundImage: `url(${star})`}}/>
+                                    <NumberText>
+                                        { avgRate ? avgRate.toFixed(1) : 0.0}
+                                        
+                                    </NumberText>
+                                </div>
+                                <div style={{display: "flex", margin: "5px 7px"}}>
+                                    <LikeIcon style={{backgroundImage: `url(${like})`}}/>
+                                    <NumberText>
+                                        {likeCount}
+                                    </NumberText>
+                                </div>
+
+                            </div>
+                        </div>
+  
                     </Wrap>
                     <Line/>
                     <Wrap>
@@ -200,24 +259,9 @@ const BeerDetail = (props) =>{
                                     </>) : null
                             )): ""}
                         </Gradient>
-                        {/*
-                        <div style={{display: "flex", bottom: "300px"}}>
-                            <ReviewButton
-                                onClick={()=>{
-                                    history.push(`/beer/review/${beerOne._id}`, 
-                                   // { beer_infos, userId,setModalOpen, modalOpen, beerOne, is_comment })
-                                    { beer_infos, userId })
-                            }}>전체보기</ReviewButton>
-                            <ReviewButton
-                                onClick={() => {
-                                    loginConfirm();
-                                }}>
-                            리뷰쓰기</ReviewButton>
-                        </div>
-                        */}
-                        <WriteButton onClick={() => {
-                            loginConfirm();
-                        }}></WriteButton>
+                        <Wrap>
+                        {showWriteButton()}
+                        </Wrap>
 
                         <div style={{marginLeft: "-20px"}}>
                         <ReviewWriteModal
@@ -244,6 +288,7 @@ const Container = styled.div`
     height: 754px;
     background-color: #FFFFFF;
     flex-direction: column;
+    bottom: 110px;
     & > span{
         display: -webkit-box;
         -webkit-box-orient: vertical;
@@ -253,27 +298,29 @@ const Container = styled.div`
     }
 `;
 const Grid = styled.div`
-    width: 100%;
+    //width: 100%;
+    width: 360px;
     margin: 0 auto;
     margin-top: 40px;
 `;
 
 const BeerImage = styled.div`
-    width: 100%;
+    margin: 0 auto;
+    width: 360px;
     height: 380px;
-    text-align: center;
     background-color: #F6F6F6;
     & > img{ 
         width: 315px;
         height: 315px;
-        margin: 23px auto;
+        margin: 24px 0 22px 20px;
+        
     }
     @media (img: img) {
         & > img { 
             width: 315px;
             height: 315px;
-            margin: 22px auto;
-         }
+            margin: 24px 0 22px 20px;
+        }
     }
 `;
 const Wrap = styled.div`
@@ -316,6 +363,15 @@ const BeerNameEng = styled.p`
     margin: 0;
     bold: bolder;
     margin-top: -5px;
+    padding: 3px 3px;
+`
+const NumberText = styled.span`
+    margin-left: 2px;
+    font-wright: 400;
+    font-style: normal;
+    font-size: 10px;
+    color: #FFC44F;
+
 `
 const BeerContent = styled.div`
     padding: 14px 0;
@@ -369,6 +425,7 @@ const PlaceButton = styled.button`
 
 const TasteTag = styled.div`
     display: inline-block;
+    margin-top: 2px; 
     margin-right: 3px;
     padding: 0 6px;
     height: 16px;
@@ -380,7 +437,7 @@ const TasteTag = styled.div`
     text-align: center;
     color: #333333;
 `;
-/*
+/*//리뷰들 뿌옇게 하는 효과
 const Gradient = styled.div`
     margin: 0 auto;
     //position: relative;
@@ -401,34 +458,36 @@ const JustifyAlign = styled.div`
     justify-content: space-between;
     align-items: center;
 `
-const ReviewButton = styled.button`
-    text-align: center;
-    color: #FFC44F;
-    font-size: 14px;
-    font-weight: bold;
-    line-height: 45px;
-    width: 151px;
-    height: 45px;
+
+const StarIcon = styled.div`
+    background-size: cover;
+    width: 11px;
+    height: 11px;
+
+`
+const LikeIcon = styled.div`
+    background-size: cover;
+    width: 12px;
+    height: 12px;
+
+`
+const WriteButtonWrap = styled.div`
+    width: 360px;
     margin: 0 auto;
-    margin-top: 30px;
-    background-color: transparent;
-    border: 1px solid #FFC44F;
-    border-radius: 22.5px;
-    cursor: pointer;
 `;
 
-const ReviewEdit = styled.div`
-    position: absolute;
-    z-index: 2;
-`
 const WriteButton = styled.div`
     position: fixed;
-    bottom: 100px;
+    bottom: 36px;
     right: 36px;
-    //margin-left: -25px;
     width: 60px;
     height: 60px;
     background-image: url(${writeIcon});
     background-size: cover;
     cursor: pointer;
+    animation: scaleUp 1.0s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+    @keyframes zoomOut { from { transform: scale(1); } to { transform: scale(0); } }
+
 `;
+
+

@@ -13,7 +13,7 @@ import { useSelector } from "react-redux";
 const TestHeader = (props) => {
     const is_login = useSelector(state => state.user.currentUser.message);
     const [scrollPosition, setScrollPosition] = useState(0);
-    const is_iphone = navigator.userAgent.toLowerCase();
+    const is_iphone = navigator.userAgent.toLowerCase(null);
 
     const comfirm_login = ()=>{
         if(is_login === "success"){

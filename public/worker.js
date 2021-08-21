@@ -3,7 +3,9 @@
 let CACHE_NAME = 'ohsool';
 let urlsToCache = [
     '/',
-    "/index.html"
+    './ohsoolIcon150.png',
+    '/beer',
+    '/beer/list'
 ];
 
 // Install a service worker
@@ -31,7 +33,7 @@ self.addEventListener('fetch', event => {
 });
 // Update a service worker
 self.addEventListener('activate', event => {
-    var cacheWhitelist = ['pwa-task-manager'];
+    var cacheWhitelist = ['ohsool'];
     event.waitUntil(
         caches.keys().then(cacheNames => {
             return Promise.all(

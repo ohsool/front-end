@@ -1,4 +1,3 @@
-import { set } from "lodash";
 import React, { useEffect } from "react";
 import { history } from "../redux/configureStore";
 import { setCookie } from "./Cookie";

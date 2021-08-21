@@ -7,6 +7,7 @@ import NavigationBar from "../NavigationBar";
 const MyReview = (props) =>{
     const item = props.location.state; //
     const is_my = true;
+    const is_starsmall = false;
     const is_iphone = navigator.userAgent.toLowerCase();
 
     return(
@@ -15,30 +16,24 @@ const MyReview = (props) =>{
             
             <Container>
             <Grid style={is_iphone.indexOf("iphone") !== -1 ? {marginTop: "80px"} : {marginTop: "40px"}}>
-                <Div>
+                
                 <div style={{margin: "0 auto"}}>
-                        <Title><span>작성한 게시물</span></Title>
-                    <WritedBeerInfo >
-                        <BeerImage>
-                            <img src={item?.beerId?.image}></img>
-                        </BeerImage>
+                    <BeerImage>
+                        <img src={item?.beerId?.image}></img>
+                    </BeerImage>
+
+                    <Title><span>작성한 리뷰</span></Title>                   
                         <BeerTextWrap>
-                            <div>
                                 <span>{item?.review}</span>
-                            </div>
                         </BeerTextWrap>
-                    </WritedBeerInfo>
                 </div>
-                <Text><span>별점</span></Text>
-                <div style={{margin: "0 auto"}}>
-                    <StarRate init_star={item.rate} is_my={is_my}/>
-                </div>
+                <Text><span>점수</span></Text>
+                <StarWrap>
+                    <StarRate init_star={item.rate} is_my={is_my} is_starsmall={is_starsmall}/>
+                </StarWrap>
                 <Graph>
                     <TasteGraph beers={item?.myFeatures}/>
                 </Graph>
-                <div style={{textAlign: "center"}}>
-                </div>
-                </Div>
                 
                 </Grid>
             </Container>
@@ -69,7 +64,7 @@ const Grid = styled.div`
     margin: 0 auto;
     margin-top: 40px;
 `;
-
+/*
 const Div = styled.div`
     display: flex;
     flex-direction: column;
@@ -81,15 +76,34 @@ const Div = styled.div`
         font-weight: 700;
     }
 `
-
+*/
 const Title = styled.div`
-    padding-left: 10px;
+    margin: 0 auto;
+    width: 360px;
+    margin-top: 20px;
+    padding-left: 24px;
     & > span{
         font-weight: 700;
         font-size: 14px;
         line-height: 20.27px;
     } 
 `
+const BeerTextWrap = styled.div`
+    margin: 0 auto;
+    width: 360px;
+    min-height: 30px;
+    margin-top: 14px;
+    word-break:break-all;
+    word-wrap:break-word;
+    & > span{
+        margin-left: 14px;
+        float: left;
+        font-size: 12px;
+        font-weight: 300;
+        line-height: 17.38px;
+    }
+`;
+
 const Text = styled.div`
     margin: 20px 0 0 0;;
     text-align: center;
@@ -99,6 +113,13 @@ const Text = styled.div`
         line-height: 20.27px;
     }
 `
+
+const StarWrap = styled.div`
+    margin: 5px auto;
+    display: flex;
+    flex-direction: column;
+    text-align: center;  
+`
 const WritedBeerInfo = styled.div`
     display: flex;
     //padding-left: 20px;
@@ -106,34 +127,23 @@ const WritedBeerInfo = styled.div`
 `;
 
 const BeerImage = styled.div`
-    margin:  10px 5px;
-    width: 100px;
-    height: 100px;
-    border-radius: 10px;
-    background-color: #FFFFFF;
-    border: 1px solid #c4c4c4;
-    & > img{
-        width: 100px;
-        height: 100px;
+    margin: 0 auto;
+    width: 360px;
+    height: 380px;
+    
+    background-color: #F6F6F6;
+    & > img{ 
+        width: 315px;
+        height: 315px;
+        margin: 24px 0 22px 20px;
+        
     }
-`;
-
-const BeerTextWrap = styled.div`
-    margin: 10px 5px;
-    width: 208px;
-    height: 100px;
-    padding: 
-    border-radius: 10px;
-    border: 1px solid #c4c4c4;
-    word-break:break-all;
-    word-wrap:break-word;
-
-    & > span{
-        float: left;
-        margin: 10px;
-        font-size: 12px;
-        font-weight: 300;
-        line-height: 17.38px;
+    @media (img: img) {
+        & > img { 
+            width: 315px;
+            height: 315px;
+            margin: 24px 0 22px 20px;
+        }
     }
 `;
 

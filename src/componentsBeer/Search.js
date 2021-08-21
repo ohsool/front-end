@@ -2,8 +2,6 @@ import React,{ useState,useEffect, useCallback } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { getSearchWord } from "../redux/async/beer";
-// import { getSearchList } from "../redux/reducer/beerSlice";
-import { getBeerList } from "../redux/reducer/beerSlice";
 import _ from 'lodash';
 import remove from "../share/image/remove_gray.png";
 import search from "../share/image/search_gray.png";
@@ -20,15 +18,14 @@ const Search = (props) => {
     const check_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글체크
     const [word, setWord] = useState(""); //실시간으로 입력하는 단어담김
     const [input, setInput] = useState(true);
-    // const words = useSelector(getSearchList);
-    const beers = useSelector(getBeerList);
-    //const [show_recent_words, setShow_Recent_Words] = useState(false);//최근 검색어 보여줄지, 실시간 자동완성 검색어 보여줄지
+    const [language, setLanguage] = useState("");
     const dispatch = useDispatch();
     useEffect(()=>{
-        if(word === null || word === "" || words.length===0){//검색창에 아무것도 입력 하지 않은 상태면 검색 모달 닫기 
-            setOpen_Modal(false);
+        if(word === null || word === "" || words.length===0 ||language==="" ){//검색창에 아무것도 입력 하지 않은 상태면 검색 모달 닫기 
+            setOpen_Modal(false);           
         }
-    },[word, words])
+        checkLanguage();
+    },[word, words ])
  
     const onChange = (e) =>{     
         if(e.target.value === ''){//검색어 지웠을 때 검색목록 사라지도록 함
@@ -47,50 +44,86 @@ const Search = (props) => {
 
     const EnterSubmit = (e) =>{
         if(e.key === "Enter"){
-            findBeer();
-            setOpen_Modal(false);
+            findBeerbySearchButtonClick();
+            //setOpen_Modal(false);
             setInput(false);
+            setLanguage("");
         }
     }
     const clickSearch = () =>{
-        findBeer();
-        setOpen_Modal(false);
+        findBeerbySearchButtonClick();
+        //setOpen_Modal(false);
         setInput(false);
+        setLanguage("");
+    }
+    const searchModalOpen = ()=>{
+        if(language==="english"){
+            return (
+                <SearchModal>
+                {words?.length > 0 ? words.map((item, idx) => (
+                    idx > 4 ? "":
+                    <p key={idx} onClick={()=>{
+                        findBeerbyWordClick(item.name_english);
+                        setLanguage("");
+                        }}>{item.name_english}</p> 
+                )):""}                                          
+                </SearchModal>
+            )
+        }else if(language==="korean"){
+            return (
+                <SearchModal>
+                {words?.length > 0 ? words.map((item, idx) => (
+                    idx > 4 ? "":
+                    <p key={idx} onClick={()=>{
+                        findBeerbyWordClick(item.name_korean);
+                        setLanguage("");
+                        }}>{item.name_korean}</p> 
+                )):""}                                          
+                </SearchModal>
+            )
+
+        }else{
+            return(
+                null
+            )
+        }
     }
 
-    const findBeer = ()=>{//엔터 키를 누른 경우 해당 단어로 검색
-        setSearch_Beer([]);
-        if(check_eng.test(word)){//영어로 검색           
-            words.map((w)=>{
-                setSearch_Beer(search_beer => [...search_beer,
-                beers?.filter((p) => p.name_english.includes(w))[0]]);
-                setIs_Search(true);
-            })
-        }else if(check_kor.test(word)){//한국어로 검색            
-            words.map((w)=>{
-                setSearch_Beer(search_beer => [...search_beer,
-                beers?.filter((p) => p.name_korean.includes(w))[0]]);
-                setIs_Search(true);
-            })
-        }else{
-            window.alert("잘못 입력 하셨습니다.");
+    const checkLanguage =()=>{//검색어가 한국어인지 영어인지 체크
+        if(check_kor.test(word)){
+            setLanguage("korean");
+        }else if(check_eng.test(word)){
+            setLanguage("english");
         }
     }
-    const findBeerbyClick = (name)=>{//특정 맥주명을 누른 경우 해당 맥주 명으로 검색
+
+    const findBeerbyWordClick = (name)=>{//특정 맥주명을 누른 경우 해당 맥주 명으로 검색
         setSearch_Beer([]);
         setHashtag([]);
-        if(check_eng.test(word)){//영어로 검색            
-            setSearch_Beer(search_beer => [...search_beer, 
-            beers?.filter((p) => p.name_english.includes(name))[0]]);
-        }else if(check_kor.test(word)){ //한국어로 검색           
-            setSearch_Beer(search_beer => [...search_beer, 
-            beers?.filter((p) => p.name_korean.includes(name))[0]]);
-            
+        if(language==="english"){//영어로 검색            
+            setSearch_Beer(words?.filter((p) => p.name_english.includes(name)));
+        }else if(language==="korean"){ //한국어로 검색           
+            setSearch_Beer(words?.filter((p) => p.name_korean.includes(name)));   
         }
         setIs_Search(true);
-        setOpen_Modal(false);
+        //setOpen_Modal(false);
         //localStorage.setItem("recent_words", recent_words.concat(search_beer[0]?.name_korean));//최근 검색어 리스트에 저장
     }
+    const findBeerbySearchButtonClick = ()=>{//엔터 키를 누른 경우 해당 단어로 검색
+        setSearch_Beer([]);
+        setHashtag([])
+        if(words.length === 0){
+            window.alert("검색 결과가 없습니다.");
+            //검색 결과가 없습니다 페이지 보이기
+            return;
+        }
+        setSearch_Beer(words);
+        setIs_Search(true);
+        //setOpen_Modal(false);
+
+
+    }
+
     return (
         <React.Fragment>
             <SearchInput>
@@ -120,33 +153,30 @@ const Search = (props) => {
                 ></input>
                 
             }
-
                 <ButtonWrap>
-                    
                     <ImageWrap style={{backgroundImage: `url(${remove})`}}
                         onClick={()=>{ 
                             setWord(null);
                             setInput(false);
+                            setLanguage("");
+
+                            //setOpen_Modal(false);
+
                          }}
                     />
                     <ImageWrap style={{backgroundImage: `url(${search})`}}
                         onClick={()=>{
                             clickSearch();
+                            //setOpen_Modal(false);
+                                                    
                         }}
                     
                     />
                 </ButtonWrap>
             </SearchInput>
-            { openModal ? 
-                <SearchModal>
-                {words?.length > 0 ? words.map((item, idx) => (
-                    idx > 4 ? "":
-                    <p key={idx} onClick={()=>{
-                        findBeerbyClick(item);
-                        }}>{item}</p> 
-            )):""}                                          
-                </SearchModal>
-            :null}
+
+            {searchModalOpen()}
+
         </React.Fragment>
     )
 }
@@ -160,11 +190,12 @@ const SearchInput = styled.div`
     outline: none;
 
     & > input{
-        width: 220px;
+        width: 200px;
         height: 30px;
         border:none;
         background: #F6F6F6;
         margin-left: 20px;
+        outline: none;
     }
 `
 const ButtonWrap = styled.div`

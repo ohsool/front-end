@@ -2,7 +2,7 @@ import React,{  useState } from "react";
 import styled from "styled-components";
 import star_filled from "../share/image/star_filled.png";
 import star_empty from "../share/image/star_empty.png";
-const StarButton = ({setStarScore, init_star, is_my}) =>{
+const StarButton = ({setStarScore, init_star,is_my, is_starsmall}) =>{
     const [score, setScore] = useState(init_star); //별점
     const totalStarCount = 5;   
     const starCount = score; 
@@ -10,30 +10,59 @@ const StarButton = ({setStarScore, init_star, is_my}) =>{
   const handleScore = (score) => {
     setStarScore(score);
   };
-  return (
-    is_my ?  <Container>
-      <div style={{display:"flex"}}>
-        {[...Array(starCount)].map((n, index) => {
-          return (
-            <StarFilled
-              key={index}
-              style={{backgroundImage: `url(${star_filled})`,cursor:"unset"}}
-            ></StarFilled>
-          );
-        })}
-        {[...Array(removeCount)].map((n, index) => {
-          return (
-            <StarEmpty
-              key={index}
-              style={{backgroundImage: `url(${star_empty})`,cursor:"unset"}}
-              
-            ></StarEmpty>
-          );
-        })}
-      </div>
-    </Container>
-:
-    <Container>
+  const showStar = ()=>{
+    if(is_my){
+      if(is_starsmall){
+        return(
+          <Container>
+          <div style={{display:"flex"}}>
+            {[...Array(starCount)].map((n, index) => {
+              return (
+                <StarFilledSmall
+                  key={index}
+                  style={{backgroundImage: `url(${star_filled})`,cursor:"unset"}}
+                ></StarFilledSmall>
+              );
+            })}
+            {[...Array(removeCount)].map((n, index) => {
+              return (
+                <StarEmptySmall
+                  key={index}
+                  style={{backgroundImage: `url(${star_empty})`,cursor:"unset"}}
+                ></StarEmptySmall>
+              );
+            })}
+          </div>
+        </Container>
+        )
+      }else{
+        return(
+        <Container>
+        <div style={{display:"flex"}}>
+          {[...Array(starCount)].map((n, index) => {
+            return (
+              <StarFilled
+                key={index}
+                style={{backgroundImage: `url(${star_filled})`,cursor:"unset"}}
+              ></StarFilled>
+            );
+          })}
+          {[...Array(removeCount)].map((n, index) => {
+            return (
+              <StarEmpty
+                key={index}
+                style={{backgroundImage: `url(${star_empty})`,cursor:"unset"}}
+              ></StarEmpty>
+            );
+          })}
+        </div>
+      </Container>
+        )
+      }
+
+    }else{
+      return(
+      <Container>
       <div style={{display:"flex"}}>
         {[...Array(starCount)].map((n, index) => {
           return (
@@ -61,6 +90,14 @@ const StarButton = ({setStarScore, init_star, is_my}) =>{
         })}
       </div>
     </Container>
+      )
+    }
+
+  }
+  return (
+    <>
+    {showStar()}
+    </>
   )
 }
 export default React.memo(StarButton);
@@ -71,9 +108,27 @@ const StarFilled = styled.div`
   width: 36px;
   height: 36px;
   cursor: pointer;
+
 `
 const StarEmpty = styled.div`
   width: 36px;
   height: 36px;
   cursor: pointer;
+`
+const StarFilledSmall = styled.div`
+  width: 20px;
+  height: 20px;
+  background-size: cover;
+  margin-left: -2px;
+  margin-right: -2px;
+
+`
+const StarEmptySmall = styled.div`
+  width: 20px;
+  height: 20px;
+  background-size: cover;
+  margin-left: -2px;
+  margin-right: -2px;
+
+
 `

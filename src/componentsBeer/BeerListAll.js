@@ -11,7 +11,6 @@ const InfinityChildren = (props) => {
     const [loading, setLoading] = useState(false);
     const [paging, setPaging] = useState(0);
     const beersIF = useSelector(InfinityBeer);
-    console.log("all");
 
     const getInfinityList = useCallback (() => {
         async function getData(){

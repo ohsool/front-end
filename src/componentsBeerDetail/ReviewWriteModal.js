@@ -97,15 +97,12 @@ const ReviewWriteModal = (props) => {
                     <CloseIcon 
                      style={{backgroundImage: `url(${remove})`}}
                     onClick={close}/>
-                    <BeerInfo>
-                            <BeerImage>
-                                {is_edit ? (
-                                    <img src={item.beerId.image}/>
-                                ):(
-                                    <img src={beerOne.image}/>
-                                )}
-                                
-                            </BeerImage>
+                    <BeerInfo>                        
+                        {is_edit ? (
+                            <BeerImage style={{backgroundImage: `url(${item.beerId.image})`}}/>
+                        ):(
+                            <BeerImage style={{backgroundImage: `url(${beerOne.image})`}}/>
+                        )}
                             {is_edit ? ( 
                                  <>
                                     <BeerTextarea 
@@ -190,8 +187,6 @@ const ReviewWriteModal = (props) => {
                             </ReviewButton>
                         )}
 
-
-
                 </ModalWrap>
             </Background>
             : null }
@@ -220,7 +215,7 @@ const Background = styled.div`
 const ModalWrap = styled.div`
     position: fixed !important;
     animation: scaleUp 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
-    background-color: #FDF9F0;
+    background-color: #FFF;
     border-radius: 10px 10px 0 0;
     bottom: 0px;
     width: 360px;
@@ -238,12 +233,6 @@ const ModalWrap = styled.div`
     }
 `;
 
-const ScoreWrap = styled.div`
-    width: 360px;
-    box-sizing: border-box;
-    margin: 0 auto;
-
-`;
 const SuggestTitle = styled.div`
     height: 50px;
     width: 280px;
@@ -278,11 +267,10 @@ const BeerImage = styled.div`
     margin: 0 10px;
     width: 100px;
     height: 100px;
-    background-color: #FFFFFF;
-    & > img{
-        width: 100px;
-        height: 100px; 
-    }
+    //background-color: #FFFFFF;
+    background-size: cover;
+    border:1.7px solid #c4c4c4;
+
 `;
 
 const BeerTextarea = styled.textarea`
@@ -292,7 +280,8 @@ const BeerTextarea = styled.textarea`
     height: 80px;
     resize:none;
     border-radius: 10px;
-    border: none;
+    //border: none;
+    border:1.7px solid #c4c4c4;
 `;
 
 const Div = styled.div`

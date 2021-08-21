@@ -20,8 +20,6 @@ import {
 } from "../redux/async/beer";
 import { getSearchList } from "../redux/reducer/beerSlice";
 import { userInfo } from "../redux/async/user";
-import { is_Login } from "../redux/reducer/userSlice";
-
 
 const BeerList = (props) =>{
     const get_category_id = props.match.params.beerCategoryId;
@@ -37,7 +35,6 @@ const BeerList = (props) =>{
     const dispatch = useDispatch();
     const [openModal, setOpen_Modal] = useState(false);
     const is_iphone = navigator.userAgent.toLowerCase();
-    console.log("list");
 
     useEffect(() => {
         dispatch(getAllBeer("all"));
@@ -95,15 +92,19 @@ const BeerList = (props) =>{
 
     useEffect(()=>{
         BeerLists();
+        setOpen_Modal(false);
     },[words])
     
     const BeerLists = () => {
         if(is_search){
             return(
-                search_beer?.length > 0 ? 
-                    search_beer?.map((item, idx) => (
-                    <EachBeer key={idx} item={item}/>
-                )): ""
+                <React.Fragment>
+                    <List>
+                    {search_beer?.map((item, idx) => (
+                        <EachBeer key={idx} item={item}/>
+                    ))}
+                    </List>
+                </React.Fragment>
             )
         }else{
             if(get_category_id === "all"){

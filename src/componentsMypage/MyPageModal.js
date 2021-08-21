@@ -21,7 +21,6 @@ const MyPageModal = (props) => {
     // suggestTitle이 맥주 건의하기면은 맥주건의하기로 modal띄우고
     // 아닐경우 관리자에게 건의하기
     const EnterSubmit = (e) => {
-        //console.log(suggestChat);
         if(e.key === "Enter"){  
             if(window.confirm("작성한 내용을 보내시겠습니까?")){
                 if(suggestInfo.suggestTitle === "맥주 건의하기"){

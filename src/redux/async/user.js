@@ -9,7 +9,7 @@ export const signUp = createAsyncThunk(
   async (data, thunkAPI) => {
 
     const response = await axiosInstance.post(`/api/user`, data);
-    console.log(response.data);
+    
     return response.data;
   }
 );

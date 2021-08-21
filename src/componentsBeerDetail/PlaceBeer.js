@@ -67,7 +67,6 @@ const PlaceBeer = (props) => {
                     </PlaceButton>
             </div>
             </PlaceInfoWrap>
-            <NavigationBar/>
 
 
         </React.Fragment>

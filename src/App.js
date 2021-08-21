@@ -5,7 +5,8 @@ import { history } from "./redux/configureStore";
 import { ConnectedRouter } from "connected-react-router";
 
 
-import "./App.css"
+import "./App.css";
+//import FixPage from "./pages/FixPage";
 import { Main, Test, Beer, Mypage, TestResult, SignUp, MyBeer, Login , MyReview} from "./pages/indexPage";
 import Token from "./share/Token";
 import PlaceBeer from "./componentsBeerDetail/PlaceBeer";
@@ -22,6 +23,7 @@ useEffect(() => { // 만약 공유 기능이 2개이상으로 바뀌면 kakao.li
     <React.Fragment>
       <ConnectedRouter history={history}>
         <Route path="/" exact component={Main}/>
+        {/*<Route path="/" exact component={FixPage}/>*/}
         <Route path="/test" component={Test}/>
         <Route path="/result/:category" component={TestResult}/>
         <Route path="/beer" component={Beer}/>

@@ -16,7 +16,7 @@ const Beer = (props) => {
             <Route path="/beer/detail/:beerId" component={BeerDetail}/>
             <Route path="/beer/review/:beerId" component={ReviewList}/>
             <Route path="/beer/list/search/:word" component={BeerList}/>
-            <NavigationBar/>
+            {/*<NavigationBar/>*/}
         </React.Fragment>
     )
 

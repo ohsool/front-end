@@ -36,7 +36,6 @@
     <link rel="apple-touch-icon" sizes="192x192" href="ohsoolIcon150.png">
     <link rel="apple-touch-icon" sizes="512x512" href="ohsoolIcon512.png">
 
-    <link rel="dns-prefetch" href="http://localhost.com:3000" />
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -60,7 +59,7 @@
     <script>
       if ('serviceWorker' in navigator) {
           window.addEventListener('load', function() {
-              navigator.serviceWorker.register('worker.js').then(function(registration) {
+              navigator.serviceWorker.register('./worker.js').then(function(registration) {
 
               }, function(err) {
                   console.log('Worker registration failed', err);
@@ -68,9 +67,9 @@
                   console.log(err);
               });
           });
-      } /*else {
+      }else {
           console.log('Service Worker is not supported by browser.');
-      }*/
+      }
     </script>
     <!--
       This HTML file is a template.

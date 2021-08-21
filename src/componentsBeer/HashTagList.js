@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import EachBeer from "./EachBeer";
 
-const HashTagList = ({hashtag}) => {
+const HashTagList = ({ hashtag }) => {
 
     return(
         <React.Fragment>

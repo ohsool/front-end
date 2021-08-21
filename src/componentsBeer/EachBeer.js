@@ -70,7 +70,7 @@ const EachBeer = (props) => {
                     <p>{item.name_english}</p>
                 </BeerInfoWrap>
                 {item.hashtag.map((p, idx) => (
-                idx < 3 ? "":
+                idx === 3 ||idx === 4? //해시태그 2개만 정렬
                     <TasteTag 
                     onClick={(e)=>{
                         searchHashtagWord(p);
@@ -78,7 +78,7 @@ const EachBeer = (props) => {
                         e.stopPropagation(); 
                     }}
                     key={idx}>#{p}
-                    </TasteTag>
+                    </TasteTag>:""
                 ))}
            
             </RecommendBeerWrap>
