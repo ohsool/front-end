@@ -19,6 +19,15 @@ export const setCookieRefresh = (name, value) => {
     })
 };
 
+export const setCookieNotification = (name, value) => {
+    const expires = new Date();
+    expires.setDate(expires.getDate() + 30);
+    return cookies.set(name, value, {
+        path: "/",
+        expires,
+    })
+}
+
 export const getCookie = (name) => {
     return cookies.get(name);
 };

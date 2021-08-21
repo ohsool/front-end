@@ -3,11 +3,8 @@
 let CACHE_NAME = 'ohsool';
 let urlsToCache = [
     '/',
-    './ohsoolIcon150.png',
-    '/mypage',
     '/mybeer',
-    '/beer/list/all',
-    '/beer/detail/:beerId'
+    '/mypage',
 ];
 
 // Install a service worker
@@ -48,3 +45,26 @@ self.addEventListener('activate', event => {
         })
     );
 });
+
+self.addEventListener('push', (event) => {
+    let body
+    if (event.data) {
+      //You can set an original message by passing it on the event.
+      body = event.data.text()
+    } else {
+      body = 'Default body'
+    }
+   
+    const options = {
+      body: body,
+      icon: '/ohsoolIcon150.png',
+      vibrate: [100, 50, 100],
+      data: {
+        dateOfArrival: Date.now(),
+        primaryKey: 1,
+      },
+    }
+    event.waitUntil(
+      self.registration.showNotification('알림!!!!',    
+      options))
+  })

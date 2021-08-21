@@ -34,10 +34,10 @@ const userSlice = createSlice({
         alert("회원가입에 실패했습니다!");
       })
       .addCase(checkEmail.fulfilled, (state, action) => {
-        state.checkEmail = action.payload.existed;
+        state.checkEmail = action.payload.message;
       })
       .addCase(checkNickname.fulfilled, (state, action) => {
-        state.checkNickname = action.payload.existed;
+        state.checkNickname = action.payload.message;
       })
       .addCase(logIn.fulfilled, (state, action) => {
         setCookie("_osid", action.payload.accessToken);

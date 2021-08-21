@@ -189,9 +189,6 @@ const ReviewWriteModal = (props) => {
                                 </button>
                             </ReviewButton>
                         )}
-
-
-
                 </ModalWrap>
             </Background>
             : null }
