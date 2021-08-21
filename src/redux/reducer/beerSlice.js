@@ -48,8 +48,6 @@ export const beerSlice = createSlice({
         .addCase(getSearchWord.fulfilled, (state, action) => {
             //state.searchList = action.payload.words;
             state.searchList = action.payload.beers;
-            console.log("state.searchList",state.searchList);
-
         })
         .addCase(getHashtagWord.fulfilled, (state, action) => {
             state.hashtagList = action.payload.beers;

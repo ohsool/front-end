@@ -26,7 +26,6 @@ const Search = (props) => {
         }
         checkLanguage();
     },[word, words ])
- 
     const onChange = (e) =>{     
         if(e.target.value === ''){//검색어 지웠을 때 검색목록 사라지도록 함
             setWord(null);
@@ -34,7 +33,6 @@ const Search = (props) => {
             setWord(e.target.value);
         }    
     }
-
     const searchWord = () =>{//실시간으로 자동완성 된 값 불러옴   
         dispatch(getSearchWord(word)); 
     }
@@ -45,14 +43,12 @@ const Search = (props) => {
     const EnterSubmit = (e) =>{
         if(e.key === "Enter"){
             findBeerbySearchButtonClick();
-            //setOpen_Modal(false);
             setInput(false);
             setLanguage("");
         }
     }
     const clickSearch = () =>{
         findBeerbySearchButtonClick();
-        //setOpen_Modal(false);
         setInput(false);
         setLanguage("");
     }
@@ -81,7 +77,6 @@ const Search = (props) => {
                 )):""}                                          
                 </SearchModal>
             )
-
         }else{
             return(
                 null
@@ -106,7 +101,6 @@ const Search = (props) => {
             setSearch_Beer(words?.filter((p) => p.name_korean.includes(name)));   
         }
         setIs_Search(true);
-        //setOpen_Modal(false);
         //localStorage.setItem("recent_words", recent_words.concat(search_beer[0]?.name_korean));//최근 검색어 리스트에 저장
     }
     const findBeerbySearchButtonClick = ()=>{//엔터 키를 누른 경우 해당 단어로 검색
@@ -119,7 +113,6 @@ const Search = (props) => {
         }
         setSearch_Beer(words);
         setIs_Search(true);
-        //setOpen_Modal(false);
 
 
     }
@@ -159,16 +152,11 @@ const Search = (props) => {
                             setWord(null);
                             setInput(false);
                             setLanguage("");
-
-                            //setOpen_Modal(false);
-
                          }}
                     />
                     <ImageWrap style={{backgroundImage: `url(${search})`}}
                         onClick={()=>{
                             clickSearch();
-                            //setOpen_Modal(false);
-                                                    
                         }}
                     
                     />
@@ -193,18 +181,20 @@ const SearchInput = styled.div`
         width: 200px;
         height: 30px;
         border:none;
+        outline: none;
         background: #F6F6F6;
         margin-left: 20px;
         outline: none;
     }
 `
 const ButtonWrap = styled.div`
-    display: flex;
+    display: inline-block;
     float: right;
     margin-right: 8px;
 
 `
 const ImageWrap = styled.div`
+    display: inline-block;
     margin: 8px ;
     width: 16px;
     height: 16px;

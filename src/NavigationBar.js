@@ -63,8 +63,6 @@ const NavBox = styled.div`
     margin: 0 auto;
     left: 0;
     right: 0;
-    border: 0.5px solid #888888;
-    border-style: solid none none none;
 `;
 
 const SearchWrap = styled.div`

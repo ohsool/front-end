@@ -7,6 +7,7 @@ import {
   checkEmail,
   checkNickname,
   logOut,
+  withDrawl,
 } from "../async/user";
 
 const initialState = {
@@ -47,6 +48,11 @@ const userSlice = createSlice({
         window.alert("아이디나 비밀번호가 틀립니다!")
       })
       .addCase(logOut.fulfilled, (state, action) => {
+        removeCookie("_osid");
+        removeCookie("_osidRe");
+        window.location.href = "/";
+      })
+      .addCase(withDrawl.fulfilled, (state, action) => {
         removeCookie("_osid");
         removeCookie("_osidRe");
         window.location.href = "/";
@@ -92,6 +98,18 @@ const current_User = (state) => state.user.currentUser.userId;
 const is_login = (state) => state.user.is_login;
 
 const is_signup = (state) => state.user.is_signup;
+
+const check_Email = (state) => state.user.checkEmail;
+
+const check_Nickname = (state) => state.user.checkNickname;
+
+export const is_Nickname = createSelector(check_Nickname, check_Nickname => {
+  return check_Nickname;
+});
+
+export const is_Email = createSelector(check_Email, check_Email => {
+  return check_Email;
+});
 
 export const User = createSelector(current_User, current_User => {
   return current_User;

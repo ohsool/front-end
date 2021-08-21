@@ -1,18 +1,18 @@
-import React, {useEffect, useState } from "react";
+import React, {useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 
 import {useDispatch, useSelector} from "react-redux";
 import { signUp, checkEmail, checkNickname } from "../redux/async/user";
-import { is_Signup } from "../redux/reducer/userSlice";
+import { is_Signup, is_Nickname, is_Email } from "../redux/reducer/userSlice";
 import { emailCheck, pwdReg} from "../share/checkReg";
-import { history } from "../redux/configureStore";
+
 import "../share/style/loginButton.css";
 
 const SignUp = (props) => {
     const dispatch = useDispatch();
     const [is_typed, setIs_Typed] = useState(false);
-    const is_email = useSelector(state => state.user.checkEmail); //이메일중복체크 서버에서 응답
-    const is_nickname = useSelector(state => state.user.checkNickname); // 닉네임 중복체크 서버에서 응답
+    const is_email = useSelector(is_Email); //이메일중복체크 서버에서 응답
+    const is_nickname = useSelector(is_Nickname); // 닉네임 중복체크 서버에서 응답
     const is_signup = useSelector(is_Signup); //회원가입 된 지 서버에서 체크
     const [email_check_text, setEamil_Check_Text] = useState("");
     const [nickname_check_text, setNickname_Check_Text] = useState("");
@@ -33,15 +33,20 @@ const SignUp = (props) => {
             window.location.href = "/"
         }
     }, [is_signup]);
-
+    
+    console.log("render");
     useEffect(() => {   //아이디 중복및 형식 체크
         if(email === ""){  // 인풋이 비어있으면 인풋 밑의 글자 초기화
             setEamil_Check_Text("");
             return;
         }
-        if(emailCheck(email) === false || is_email === true){
+        if(emailCheck(email) === false){
             setEmail_Double(false);
-            setEamil_Check_Text("사용중이거나 올바른 이메일 형식이 아닙니다.");
+            setEamil_Check_Text("올바른 이메일 형식이 아닙니다.");
+        }
+        if(is_email === true){
+            setEmail_Double(false);
+            setEamil_Check_Text("사용중인 이메일입니다.");
         }
         if(emailCheck(email) === true && is_email === false){
             setEmail_Double(true);
@@ -98,13 +103,13 @@ const SignUp = (props) => {
             submitSignUp();
         }
     }
-    const doubleCheckEmail = () => {
+    const doubleCheckEmail = useCallback(() => {
         dispatch(checkEmail(email));
-    } //이메일 중복체크 디스패치
+    }, [email]); //이메일 중복체크 디스패치
 
-    const doubleCheckNickname = () => {
+    const doubleCheckNickname = useCallback(() => {
         dispatch(checkNickname(nickname));
-    } //닉네임 중복체크 디스패치
+    }, [nickname]); //닉네임 중복체크 디스패치
 
     const onKeyUp = () => {    //비밀번호 및 이메일 양식 맞을 때 버튼색 변화
         if(emailCheck(email) && pwdReg(password) && pwdReg(confirmPassword) ){

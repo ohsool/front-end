@@ -10,7 +10,6 @@ import "./App.css";
 import { Main, Test, Beer, Mypage, TestResult, SignUp, MyBeer, Login , MyReview} from "./pages/indexPage";
 import Token from "./share/Token";
 import PlaceBeer from "./componentsBeerDetail/PlaceBeer";
-import Infinity from "./Infinity";
 
 function App(props) {
 
@@ -34,7 +33,6 @@ useEffect(() => { // 만약 공유 기능이 2개이상으로 바뀌면 kakao.li
         <Route path="/refresh=:tokens" component={Token}/>
         <Route path="/review/:reviewId" component={MyReview}/>
         <Route path="/place" component={PlaceBeer}/>
-        <Route path="/demo" exact component={Infinity}/>
       </ConnectedRouter>
       <GlobalStyle/>
     </React.Fragment>   

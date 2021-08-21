@@ -1,6 +1,6 @@
 import React,{ useState } from 'react';
 import styled from 'styled-components';
-import { logOut } from "../redux/async/user";
+import { logOut, withDrawl } from "../redux/async/user";
 import { useDispatch } from "react-redux";
 import { history } from "../redux/configureStore";
 
@@ -36,6 +36,11 @@ const MyPage = (props) => {
     const confirmLogout = () => { // 로그아웃
         if(window.confirm("로그아웃 하시겠어요?")){
             dispatch(logOut());
+        }
+    }
+    const confirmWithDrawl = () => { // 로그아웃
+        if(window.confirm("정말로 탈퇴하시겠어요?")){
+            dispatch(withDrawl());
         }
     }
 
@@ -84,9 +89,13 @@ const MyPage = (props) => {
                 <LogOutButton
                     style={{fontFamily: "Noto Sans KR"}}
                     onClick={confirmLogout}
-                >
-                    로그아웃
+                >로그아웃
                 </LogOutButton>
+                <WithDrawlButton
+                    style={{fontFamily: "Noto Sans KR"}}
+                    onClick={confirmWithDrawl}
+                >회원탈퇴
+                </WithDrawlButton>
             </PageMoveWrap>
             <NavigationBar/>
         </Container>
@@ -136,8 +145,7 @@ const LogOutButton = styled.div`
         position: absolute;
         width: 90px;
         height: 23px;
-        //bottom: 50px;
-        bottom: 100px;
+        bottom: 150px;
         left: 50%;
         transform: translate(-30px, 0);
         border: none;
@@ -147,4 +155,20 @@ const LogOutButton = styled.div`
         font-weight: 700;
         font-size: 16px;
         font-family : inherit;
+`;
+
+const WithDrawlButton = styled.div`
+    position: absolute;
+    width: 90px;
+    height: 23px;
+    bottom: 100px;
+    left: 50%;
+    transform: translate(-30px, 0);
+    border: none;
+    background-color: transparent;
+    color: #FFC44F;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 16px;
+    font-family : inherit;
 `;
