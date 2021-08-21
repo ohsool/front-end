@@ -4,7 +4,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {getBeerCategoryList} from "../redux/async/beer";
 import { beerCategory } from "../redux/reducer/beerSlice";
 import EachBeer from "./EachBeer";
-
 const BeerListCategory = ({get_category_id}) => {
     const category_beers = useSelector(beerCategory);
     const [beers, setBeers] = useState([]);

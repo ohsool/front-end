@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import kakaoshareButton from "../share/image/share.png"
 
-const ShareButton = ({category}) => {
+const ShareButton = ({category}) => { //a=category.name, b=category.description, c=category.image
     const Kakao = window.Kakao;
   
     const shareKakao = () => {
@@ -28,7 +28,7 @@ const ShareButton = ({category}) => {
                   },
                 },
                 {
-                  title: '테스트하러 가기',
+                  title: '오술 바로가기',
                   link: {
                     webUrl: 'http://ohsool.com',
                     mobileWebUrl: 'http://ohsool.com',

@@ -47,7 +47,8 @@ export const beerSlice = createSlice({
         })
         //검색기능
         .addCase(getSearchWord.fulfilled, (state, action) => {
-            // state.searchList = action.payload.words;
+            //state.searchList = action.payload.words;
+            state.searchList = action.payload.beers;
         })
         .addCase(getHashtagWord.fulfilled, (state, action) => {
             state.hashtagList = action.payload.beers;
@@ -133,8 +134,8 @@ export const getHashtagList = createSelector(beerHashtag, beerHashtag => {
 }); //해시태그로 맥주 검색
 
 export const getSearchList = createSelector(beerSearch, beerSearch => {
-  //console.log("beer", beerSearch);
-  return beerSearch.slice(0,5);
+  //return beerSearch.slice(0,5);
+  return beerSearch;
 }); //맥주 검색
 
 export const recommendCate = createSelector(beer_Today, beer_Today => {

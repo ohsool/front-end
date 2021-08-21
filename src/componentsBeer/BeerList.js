@@ -92,15 +92,19 @@ const BeerList = (props) =>{
 
     useEffect(()=>{
         BeerLists();
+        setOpen_Modal(false);
     },[words])
     
     const BeerLists = () => {
         if(is_search){
             return(
-                search_beer?.length > 0 ? 
-                    search_beer?.map((item, idx) => (
-                    <EachBeer key={idx} item={item}/>
-                )): ""
+                <React.Fragment>
+                    <List>
+                    {search_beer?.map((item, idx) => (
+                        <EachBeer key={idx} item={item}/>
+                    ))}
+                    </List>
+                </React.Fragment>
             )
         }else{
             if(get_category_id === "all"){

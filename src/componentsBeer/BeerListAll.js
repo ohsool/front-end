@@ -41,7 +41,7 @@ const InfinityChildren = (props) => {
             setPaging(paging+1);
         }
         if(beersIF.length !== 0 ){
-        setPaging(beersIF.length/8)
+            setPaging(beersIF.length/8)
         }
     }, []);
 

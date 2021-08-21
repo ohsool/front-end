@@ -22,6 +22,7 @@ useEffect(() => { // 만약 공유 기능이 2개이상으로 바뀌면 kakao.li
     <React.Fragment>
       <ConnectedRouter history={history}>
         <Route path="/" exact component={Main}/>
+        {/*<Route path="/" exact component={FixPage}/>*/}
         <Route path="/test" component={Test}/>
         <Route path="/result/:category" component={TestResult}/>
         <Route path="/beer" component={Beer}/>
