@@ -78,6 +78,7 @@ export const checkEmail = createAsyncThunk(
       email: data
     }
     const response = await axiosInstance.post(`/api/user/email`, server_email);
+    
     return response.data;
   }
 );
@@ -89,6 +90,7 @@ export const checkNickname = createAsyncThunk(
       nickname: data
     }
     const response = await axiosInstance.post(`/api/user/nickname`, server_nickname);   
+    
     return response.data;
   }
 );

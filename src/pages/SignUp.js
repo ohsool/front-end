@@ -34,7 +34,6 @@ const SignUp = (props) => {
         }
     }, [is_signup]);
     
-    console.log("render");
     useEffect(() => {   //아이디 중복및 형식 체크
         if(email === ""){  // 인풋이 비어있으면 인풋 밑의 글자 초기화
             setEamil_Check_Text("");
@@ -44,11 +43,11 @@ const SignUp = (props) => {
             setEmail_Double(false);
             setEamil_Check_Text("올바른 이메일 형식이 아닙니다.");
         }
-        if(is_email === true){
+        else if(is_email === "fail"){
             setEmail_Double(false);
             setEamil_Check_Text("사용중인 이메일입니다.");
         }
-        if(emailCheck(email) === true && is_email === false){
+        else if(emailCheck(email) === true && is_email === "success"){
             setEmail_Double(true);
             setEamil_Check_Text("사용 가능한 이메일입니다.");
         }
@@ -60,7 +59,7 @@ const SignUp = (props) => {
             setNickname_Check_Text("");
             return;
         }
-        if(is_nickname === true){
+        if(is_nickname === "fail"){
             setNickName_Double(false);
             setNickname_Check_Text("이미 사용중인 닉네임입니다.");
         }else{
@@ -144,11 +143,13 @@ const SignUp = (props) => {
                         </InputSignUpWrap>
                         <InputSignUpWrap>
                             <InputSignUP 
+                                type="text"
+                                maxLength="8"
                                 onChange={onChange}
                                 onKeyUp={doubleCheckNickname}
                                 name="nickname"
                                 value={nickname}
-                                placeholder="닉네임을 입력해주세요"
+                                placeholder="닉네임을 입력해주세요 (8자미만)"
                             ></InputSignUP>
                             <p
                             className={nickname_double === true ? "inputCheckDoubleNicknameGreen" : "inputCheckDoubleNicknameRed"}
@@ -159,7 +160,7 @@ const SignUp = (props) => {
                             onChange={onChange}
                             name="password"
                             value={password}
-                            placeholder="비밀번호를 입력해주세요"
+                            placeholder="비밀번호를 입력해주세요 (4자 이상)"
                         ></InputSignUP>
                         <InputSignUP 
                             type="password"

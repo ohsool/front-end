@@ -22,7 +22,7 @@ const InfinityChildren = (props) => {
             return;
         }
         return getData();
-    }, [paging, beersIF.length]);
+    }, [paging, beersIF]);
 
     const _handleScroll = _.debounce(() => {
         const scrollHeight = document.documentElement.scrollHeight;
