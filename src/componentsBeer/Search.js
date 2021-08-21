@@ -22,7 +22,7 @@ const Search = (props) => {
     const [input, setInput] = useState(true);
     // const words = useSelector(getSearchList);
     const beers = useSelector(getBeerList);
-    const [show_recent_words, setShow_Recent_Words] = useState(false);//최근 검색어 보여줄지, 실시간 자동완성 검색어 보여줄지
+    //const [show_recent_words, setShow_Recent_Words] = useState(false);//최근 검색어 보여줄지, 실시간 자동완성 검색어 보여줄지
     const dispatch = useDispatch();
     useEffect(()=>{
         if(word === null || word === "" || words.length===0){//검색창에 아무것도 입력 하지 않은 상태면 검색 모달 닫기 
@@ -139,13 +139,12 @@ const Search = (props) => {
             </SearchInput>
             { openModal ? 
                 <SearchModal>
-                {words?.length > 0 ? words.map((item, idx) => {
-                    return (
+                {words?.length > 0 ? words.map((item, idx) => (
+                    idx > 4 ? "":
                     <p key={idx} onClick={()=>{
                         findBeerbyClick(item);
                         }}>{item}</p> 
-                    )       
-                }):""}                                          
+            )):""}                                          
                 </SearchModal>
             :null}
         </React.Fragment>

@@ -133,7 +133,8 @@ export const getHashtagList = createSelector(beerHashtag, beerHashtag => {
 
 export const getSearchList = createSelector(beerSearch, beerSearch => {
   //console.log("beer", beerSearch);
-  return beerSearch.slice(0,5);
+  //return beerSearch.slice(0,5);
+  return beerSearch;
 }); //맥주 검색
 
 export const recommendCate = createSelector(beer_Today, beer_Today => {

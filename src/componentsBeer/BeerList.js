@@ -37,6 +37,7 @@ const BeerList = (props) =>{
     const dispatch = useDispatch();
     const [openModal, setOpen_Modal] = useState(false);
     const is_iphone = navigator.userAgent.toLowerCase();
+    console.log("list");
 
     useEffect(() => {
         dispatch(getAllBeer("all"));
