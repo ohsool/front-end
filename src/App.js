@@ -9,14 +9,13 @@ import "./App.css"
 import { Main, Test, Beer, Mypage, TestResult, SignUp, MyBeer, Login , MyReview} from "./pages/indexPage";
 import Token from "./share/Token";
 import PlaceBeer from "./componentsBeerDetail/PlaceBeer";
-import Infinity from "./Infinity";
 
 function App(props) {
 
   const Kakao = window.Kakao;
 
 useEffect(() => { // 만약 공유 기능이 2개이상으로 바뀌면 kakao.link.createdefaultbutton 사용하기 (그때는 내용에 container가 포함 되어있아야한다)
-    Kakao.init("05e106dead8f4edabc80bafcaef225ce");
+    Kakao.init("");
 }, []);
   return (
     <React.Fragment>
@@ -32,7 +31,6 @@ useEffect(() => { // 만약 공유 기능이 2개이상으로 바뀌면 kakao.li
         <Route path="/refresh=:tokens" component={Token}/>
         <Route path="/review/:reviewId" component={MyReview}/>
         <Route path="/place" component={PlaceBeer}/>
-        <Route path="/demo" exact component={Infinity}/>
       </ConnectedRouter>
       <GlobalStyle/>
     </React.Fragment>   

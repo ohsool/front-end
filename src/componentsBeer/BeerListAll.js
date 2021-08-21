@@ -33,7 +33,7 @@ const InfinityChildren = (props) => {
           setPaging(paging + 1);
           getInfinityList();
         }
-    }, 500);
+    }, 400);
     
     useEffect(() => {
         if(paging === 0 && beersIF.length === 0){

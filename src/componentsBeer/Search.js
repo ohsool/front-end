@@ -120,21 +120,16 @@ const Search = (props) => {
                 ></input>
                 
             }
-
                 <ButtonWrap>
-                    
                     <ImageWrap style={{backgroundImage: `url(${remove})`}}
                         onClick={()=>{ 
                             setWord(null);
                             setInput(false);
-                         }}
-                    />
+                         }}/>
                     <ImageWrap style={{backgroundImage: `url(${search})`}}
                         onClick={()=>{
                             clickSearch();
-                        }}
-                    
-                    />
+                        }}/>
                 </ButtonWrap>
             </SearchInput>
             { openModal ? 
@@ -161,20 +156,22 @@ const SearchInput = styled.div`
     outline: none;
 
     & > input{
-        width: 220px;
+        width: 215px;
         height: 30px;
         border:none;
+        outline: none;
         background: #F6F6F6;
         margin-left: 20px;
     }
 `
 const ButtonWrap = styled.div`
-    display: flex;
+    display: inline-block;
     float: right;
     margin-right: 8px;
 
 `
 const ImageWrap = styled.div`
+    display: inline-block;
     margin: 8px ;
     width: 16px;
     height: 16px;

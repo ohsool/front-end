@@ -208,7 +208,7 @@ const Background = styled.div`
     //z-index: 9999;
     top: 0;
     left: 0;
-    bottom: 0;
+    bottom: 71px;
     right: 0;
     background-color: rgba(0,0,0,0.50);
     animation: fadeIn .5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
@@ -220,9 +220,9 @@ const Background = styled.div`
 const ModalWrap = styled.div`
     position: fixed !important;
     animation: scaleUp 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
-    background-color: #FDF9F0;
+    background-color: #FFFFFF;
     border-radius: 10px 10px 0 0;
-    bottom: 0px;
+    bottom: 71px;
     width: 360px;
     display: flex;
     flex-direction: column;

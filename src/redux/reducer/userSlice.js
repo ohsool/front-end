@@ -99,6 +99,18 @@ const is_login = (state) => state.user.is_login;
 
 const is_signup = (state) => state.user.is_signup;
 
+const check_Email = (state) => state.user.checkEmail;
+
+const check_Nickname = (state) => state.user.checkNickname;
+
+export const is_Nickname = createSelector(check_Nickname, check_Nickname => {
+  return check_Nickname;
+});
+
+export const is_Email = createSelector(check_Email, check_Email => {
+  return check_Email;
+});
+
 export const User = createSelector(current_User, current_User => {
   return current_User;
 });
