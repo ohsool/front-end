@@ -7,6 +7,7 @@ import Slider from "./Slider";
 import BeerListAll from "./BeerListAll";
 import BeerListCategory from "./BeerListCategory";
 import HashTagList from "./HashTagList";
+import NoSearchResult from "./NoSearchResult";
 
 
 export {
@@ -18,4 +19,5 @@ export {
     BeerListAll,
     BeerListCategory,
     HashTagList,
+    NoSearchResult
     };

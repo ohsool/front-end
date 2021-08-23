@@ -1,4 +1,4 @@
-import firebase from "firebase";
+/*import firebase from "firebase";
 import { setCookieNotification } from "./Cookie";
 
 const  firebaseConfig = {
@@ -38,5 +38,5 @@ export const ReceiveNotifications = async () => {
         console.error(error);
     }
 }
-
+*/
 

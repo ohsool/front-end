@@ -106,11 +106,12 @@ const Search = (props) => {
     const findBeerbySearchButtonClick = ()=>{//엔터 키를 누른 경우 해당 단어로 검색
         setSearch_Beer([]);
         setHashtag([])
+        /*
         if(words.length === 0){
             window.alert("검색 결과가 없습니다.");
             //검색 결과가 없습니다 페이지 보이기
             return;
-        }
+        }*/
         setSearch_Beer(words);
         setIs_Search(true);
 

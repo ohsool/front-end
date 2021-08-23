@@ -6,8 +6,8 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from "react-redux";
 import { store } from "./redux/configureStore";
-import firebase from "firebase";
-import {initializeFirebase} from "./share/firebase";
+//import firebase from "firebase";
+//import {initializeFirebase} from "./share/firebase";
 
 ReactDOM.render(
   <Provider store={store}>
@@ -16,7 +16,7 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-initializeFirebase();
+//initializeFirebase();
 serviceWorkerRegistration.register();
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

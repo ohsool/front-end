@@ -10,7 +10,8 @@ import {
     EachBeer,
     BeerListAll,
     BeerListCategory,
-    HashTagList} from "./BeerIndex";
+    HashTagList,
+    NoSearchResult} from "./BeerIndex";
 import Loader from "../share/Loader.js";
 import { getCategory } from "../redux/async/category";
 import upButton from "../share/image/upArrow.png";
@@ -36,8 +37,6 @@ const BeerList = (props) =>{
     const [openModal, setOpen_Modal] = useState(false);
     const is_iphone = navigator.userAgent.toLowerCase();
     const [hashtagName, setHashtagName] = useState("");
-    
-
 
     useEffect(() => {
         dispatch(getAllBeer("all"));
@@ -96,18 +95,24 @@ const BeerList = (props) =>{
     useEffect(()=>{
         BeerLists();
         setOpen_Modal(false);
+        console.log("search_beer",search_beer);
+        console.log("words",words);
+        console.log("search_beer.length",search_beer.length);
+        console.log("words.lenght",words.length);
     },[words])
     
     const BeerLists = () => {
         if(is_search){
             return(
                 <React.Fragment>
+                    { words.length === 0 ? <NoSearchResult/> : 
                     <List>
                     {search_beer?.map((item, idx) => (
                         <EachBeer key={idx} item={item} /*setHashtagName={setHashtagName}*/
                         />
                     ))}
                     </List>
+                    }
                 </React.Fragment>
             )
         }else{
@@ -179,6 +184,7 @@ const Container = styled.div`
 const Grid = styled.div`
     width: 360px;
     margin: 0 auto;
+    bottom: 80px;
 `
 const TopNav = styled.div`
     margin-top: 60px;

@@ -19,7 +19,7 @@ export const logIn = createAsyncThunk(
   "user/logIn",
   async (data, thunkAPI) => {
 
-    const response = await axiosInstance.post(`api/user/auth`, data);   
+    const response = await axiosInstance.post(`api/user/auth`, data);
     
     return response.data;
   }

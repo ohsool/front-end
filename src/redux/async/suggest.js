@@ -29,9 +29,9 @@ export const mapReport = createAsyncThunk(
     
     const response = await axiosInstance.post(`/api/beer/report-location`, data);
     if(response.data.message === "fail"){
-      alert("이미 신청한 장소입니다!")
+      alert("이미 제보한 장소입니다!")
     }else{
-      alert("신청이 완료되었습니다!")
+      alert("제보가 완료되었습니다! \n장소는 검증후 반영될 예정입니다.")
     }
     return response.data;
   }

@@ -124,7 +124,7 @@ const BeerDetail = (props) =>{
 
 
     const showWriteButton = () => {
-        if(scrollHeightInfo > 720){
+        if(scrollHeightInfo > 500){
             return (
             <WriteButtonWrap>
                 <WriteButton 
@@ -210,7 +210,7 @@ const BeerDetail = (props) =>{
                                 
                                 <br/>
                                 <br/>
-                                퇴근 후 <span>{beerOne?.name_korean}</span> 한잔 어떠세요?
+                                오늘 <span>{beerOne?.name_korean}</span> 한잔 어떠세요?
                             </p>
                         </BeerContent> :null}
                     </Wrap>
