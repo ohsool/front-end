@@ -16,24 +16,24 @@ const InfinityChildren = (props) => {
         async function getData(){
             setLoading(true);
         await dispatch(getBeerInfinity(paging));
-        setLoading(false);
+            setLoading(false);
         }
         if(paging >= 13){
             return;
         }
         return getData();
     }, [paging, beersIF]);
-
+    
     const _handleScroll = _.debounce(() => {
         const scrollHeight = document.documentElement.scrollHeight;
         const scrollTop = document.documentElement.scrollTop;
         const clientHeight = document.documentElement.clientHeight;
         if (scrollTop + clientHeight + 100 >= scrollHeight && loading === false) {
           // 페이지 끝에 도달하면 추가 데이터를 받아온다
-          setPaging(paging + 1);
-          getInfinityList();
+            setPaging(paging + 1);
+            getInfinityList();
         }
-    }, 400);
+    }, 700);
     
     useEffect(() => {
         if(paging === 0 && beersIF.length === 0){

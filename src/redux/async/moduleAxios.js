@@ -1,6 +1,5 @@
 import axios from "axios";
 import crypto from "crypto";
-import { gzip } from "zlib";
 import { getCookie, setCookie } from "../../share/Cookie";
 
 const secretAPIkey = () => {
@@ -27,10 +26,14 @@ export const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
     function (config){
-        const accessToken = getCookie("_osid");
-        const refreshToken = getCookie("_osidRe");
-        config.headers.common["access"] = `Bearer ${accessToken}`;
-        config.headers.common["refresh"] = `Bearer ${refreshToken}`;
+        const dhtnf = getCookie("_dhtnf");
+        const chlrh = getCookie("_chlrh");
+        const dlfwh = getCookie("_dlfwh");
+        const ghkxld = getCookie("_ghkxld");
+        config.headers.common["ghkxld"] = `Bearer ${ghkxld}`;
+        config.headers.common["dhtnf"] = `Bearer ${dhtnf}`;
+        config.headers.common["chlrh"] = `Bearer ${chlrh}`;
+        config.headers.common["dlfwh"] = `Bearer ${dlfwh}`;
         config.headers.common["Secretkey"] = key;
         return config;
     }
@@ -39,5 +42,20 @@ axiosInstance.interceptors.request.use(
 axiosInstance.interceptors.request.use(
     (response) => {
         return response;
-    }
-)
+    }, async function (error) {
+        const originalRequest = error.config;
+        if(error.response.status === 401 && !originalRequest._retry){
+            originalRequest._retry = true;
+            const response = await axios.get('/api/user/me')
+            if(response.data.dhtnf){
+                setCookie("_dhtnf", response.data.dhtnf);
+                setCookie("_chlrh", response.data.chlrh);
+            }
+            else if(response.data.dlfwh){
+              setCookie("_dlfwh", response.data.dlfwh);
+              setCookie("_ghkxld", response.data.ghkxld);
+            }
+            return axios(originalRequest);
+        }
+        return Promise.reject(error);
+    });
