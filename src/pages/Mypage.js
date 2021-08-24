@@ -1,4 +1,4 @@
-import React,{ useState } from 'react';
+import React,{ useState ,useEffect} from 'react';
 import styled from 'styled-components';
 import { logOut, withDrawl } from "../redux/async/user";
 import { useDispatch } from "react-redux";
@@ -8,11 +8,13 @@ import Header from "../Header";
 import NavigationBar from "../NavigationBar";
 import arrow from "../share/image/suggestarrow.png";
 import UserPreference from '../componentsMypage/UserPerference';
+import { useSelector } from "react-redux";
 
 const MyPage = (props) => {
+    const userInfo = useSelector(state => state.user.currentUser);
     const [modalOpen, setModalOpen] = useState(false);
     const dispatch = useDispatch();
-
+    
     const [modal_info, setModal_Info] = useState({ //건의하기 modal창 text정보
         suggestTitle: "",
         titlePlaceholder: "",
@@ -31,6 +33,27 @@ const MyPage = (props) => {
             commentPlaceholder: "",
         });
     };
+
+    const comfirm_login = ()=>{
+        if(userInfo.message === "success"){
+            return(
+                <>
+                    <LogOutWrap>
+                    <LogOutButton
+                        style={{fontFamily: "Noto Sans KR"}}
+                        onClick={confirmLogout}
+                    >로그아웃
+                    </LogOutButton>
+                    <WithDrawlButton
+                        style={{fontFamily: "Noto Sans KR"}}
+                        onClick={confirmWithDrawl}
+                    >회원탈퇴
+                    </WithDrawlButton>
+                    </LogOutWrap>
+                </>
+            )        
+        }
+    }
 
     const confirmLogout = () => { // 로그아웃
         if(window.confirm("로그아웃 하시겠어요?")){
@@ -80,18 +103,9 @@ const MyPage = (props) => {
                         open={modalOpen}
                         close={closeModal}
                 ></MyPageModal>
-                <LogOutWrap>
-                <LogOutButton
-                    style={{fontFamily: "Noto Sans KR"}}
-                    onClick={confirmLogout}
-                >로그아웃
-                </LogOutButton>
-                <WithDrawlButton
-                    style={{fontFamily: "Noto Sans KR"}}
-                    onClick={confirmWithDrawl}
-                >회원탈퇴
-                </WithDrawlButton>
-                </LogOutWrap>
+
+                {comfirm_login()}
+                
             </PageMoveWrap>
             <NavigationBar/>
         </Container>

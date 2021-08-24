@@ -25,8 +25,6 @@ const PlaceBeer = (props) => {
           }
         if(window.confirm(`${clickReport.place_name}을 제보하시겠어요?`)){
             dispatch(mapReport(mapData));
-            alert("제보되었습니다!");
-
         }else{
             alert("취소되었습니다!");
         }

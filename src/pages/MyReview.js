@@ -48,7 +48,8 @@ export default React.memo(MyReview);
 
 const Container = styled.div`
     display: flex;
-    height: 754px;
+    //height: 754px;
+    bottom: 71px;
     background-color: #FFFFFF;
     flex-direction: column;
     & > span{
@@ -63,6 +64,7 @@ const Grid = styled.div`
     width: 100%;
     margin: 0 auto;
     margin-top: 40px;
+
 `;
 /*
 const Div = styled.div`
@@ -156,4 +158,5 @@ const Graph = styled.div`
     height: 270px;
     border: 2px solid #C4C4C4;
     border-radius: 10px;
+    margin-bottom: 74px;
 `;

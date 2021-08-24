@@ -10,9 +10,8 @@ const Search = (props) => {
     const { setSearch_Beer,
             setIs_Search,
             setOpen_Modal,
-            openModal,
             setHashtag,
-            words
+            words,
             } = props;
     const check_eng = /[a-zA-Z]/; // 영어체크
     const check_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글체크
@@ -21,11 +20,12 @@ const Search = (props) => {
     const [language, setLanguage] = useState("");
     const dispatch = useDispatch();
     useEffect(()=>{
-        if(word === null || word === "" || words.length===0 ||language==="" ){//검색창에 아무것도 입력 하지 않은 상태면 검색 모달 닫기 
+        if(word === null || words.length===0 /*|| word === "" || language==="" */){//검색창에 아무것도 입력 하지 않은 상태면 검색 모달 닫기 
             setOpen_Modal(false);           
+        } else{
+            checkLanguage();
         }
-        checkLanguage();
-    },[word, words ])
+    },[word, words])
     const onChange = (e) =>{     
         if(e.target.value === ''){//검색어 지웠을 때 검색목록 사라지도록 함
             setWord(null);
@@ -58,7 +58,8 @@ const Search = (props) => {
                 <SearchModal>
                 {words?.length > 0 ? words.map((item, idx) => (
                     idx > 4 ? "":
-                    <p key={idx} onClick={()=>{
+                    <p  key={idx} 
+                        onClick={()=>{
                         findBeerbyWordClick(item.name_english);
                         setLanguage("");
                         }}>{item.name_english}</p> 
@@ -84,6 +85,7 @@ const Search = (props) => {
         }
     }
 
+
     const checkLanguage =()=>{//검색어가 한국어인지 영어인지 체크
         if(check_kor.test(word)){
             setLanguage("korean");
@@ -106,15 +108,8 @@ const Search = (props) => {
     const findBeerbySearchButtonClick = ()=>{//엔터 키를 누른 경우 해당 단어로 검색
         setSearch_Beer([]);
         setHashtag([])
-        if(words.length === 0){
-            window.alert("검색 결과가 없습니다.");
-            //검색 결과가 없습니다 페이지 보이기
-            return;
-        }
         setSearch_Beer(words);
         setIs_Search(true);
-
-
     }
 
     return (
@@ -141,6 +136,7 @@ const Search = (props) => {
                     value={""}
                     onClick={()=>{
                         setInput(true);
+                        setOpen_Modal(true)
                     }}
                     placeholder="검색어를 입력하세요."
                 ></input>
@@ -199,6 +195,7 @@ const ImageWrap = styled.div`
     width: 16px;
     height: 16px;
     background-size: cover;
+    cursor: pointer;
 `;
 
 const SearchModal = styled.div`

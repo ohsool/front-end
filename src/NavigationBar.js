@@ -8,9 +8,9 @@ import "./share/style/TestHeader.css";
 import { useSelector } from "react-redux";
 
 const NavigationBar = (props) => {
-    const userInfo = useSelector(state => state.user.currentUser);
+    //const userInfo = useSelector(state => state.user.currentUser);
 
-    const comfirm_login = ()=>{
+/*    const comfirm_login = ()=>{
         if(userInfo.message === "success"){
             history.push("/mypage");
         }else{
@@ -20,6 +20,7 @@ const NavigationBar = (props) => {
             }
         }
     }
+*/
     return (
         <React.Fragment>
             <NavBox>
@@ -28,7 +29,7 @@ const NavigationBar = (props) => {
                     history.push("/mybeer");
                 }}>
                     <ImageWrap style={{backgroundImage: `url(${search})`}}/>
-                    <Text><span>MYBEER</span></Text>
+                    <Text><span>MY BEER</span></Text>
                 </SearchWrap>
                 <BeerListWrap
                 onClick={() => {
@@ -38,9 +39,13 @@ const NavigationBar = (props) => {
                     <Text><span>BEER LIST</span></Text>
                 </BeerListWrap>                    
                 <MyPageWrap
-                onClick={() => {
+                onClick={()=>{ 
+                    history.push("/mypage");
+                }}
+                /*onClick={() => {
                     comfirm_login();
-                }}>
+                }}*/
+                >
                     <ImageWrap style={{backgroundImage: `url(${myPage})`}}/>
                     <Text><span>MY PAGE</span></Text></MyPageWrap>
 
@@ -59,6 +64,7 @@ const NavBox = styled.div`
     font-family: "GmarketSansM";
     display: flex;
     position:fixed; 
+    border-top: 0.2px solid #C4C4c4; 
     bottom:0;
     margin: 0 auto;
     left: 0;
@@ -86,7 +92,6 @@ const MyPageWrap = styled.div`
     text-align: center;
     float:right;
     cursor: pointer;
-
 `;
 const Text = styled.div`
     margin: 9px auto;
@@ -100,5 +105,3 @@ const ImageWrap = styled.div`
     height: 22px;
     background-size: cover;
 `;
-
-

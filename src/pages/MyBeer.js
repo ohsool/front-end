@@ -4,6 +4,7 @@ import { history } from "../redux/configureStore";
 import { getMyDogam, getMyReview } from "../redux/async/mybeer";
 import { userInfo } from "../redux/async/user";
 import { likeList, myReviewList } from "../redux/reducer/mybeerSlice";
+import NavigationBar from "../NavigationBar";
 
 import EachBeer from "../componentsBeer/EachBeer";
 import Header from "../Header";
@@ -44,50 +45,50 @@ const MyBeer = (props)=>{
     return (
         <React.Fragment>
             <Header/>
-        <Grid style={is_iphone.indexOf("iphone") !== -1 ? {marginTop: "40px"} : {marginTop: "0px"}}>
-            <Wrap>  
-            <ButtonContainerWrap>
-                <button
-                    style={{fontFamily:"Noto Sans KR"}}
-                    className={is_Dogam === true ? "clickedButtonContainer" : "buttonContainer"} //클릭시 css변경
-                    onClick={()=>{
-                        setIs_Dogam(true)
-                    }}>
-                    좋아요한 맥주
-                </button>
-                <button
-                    style={{fontFamily:"Noto Sans KR"}}
-                    className={is_Dogam === false ? "clickedButtonContainer" : "buttonContainer"} //클릭시 css변경
-                    onClick={()=>{
-                        setIs_Dogam(false)
-                    }
-                    }>
-                    내가 쓴 맥주도감
-                </button>
-            </ButtonContainerWrap>
-            {is_Dogam === true ? 
-                <List>
-                {mydogam?.map((item, idx) => (
-                    <EachBeer key={idx} item={item} 
-                        _onClick={() =>{
-                            history.push("/beer/detail")
+            <Grid style={is_iphone.indexOf("iphone") !== -1 ? {marginTop: "40px"} : {marginTop: "0px"}}>
+                <Wrap>  
+                <ButtonContainerWrap>
+                    <button
+                        style={{fontFamily:"Noto Sans KR"}}
+                        className={is_Dogam === true ? "clickedButtonContainer" : "buttonContainer"} //클릭시 css변경
+                        onClick={()=>{
+                            setIs_Dogam(true)
+                        }}>
+                        좋아요한 맥주
+                    </button>
+                    <button
+                        style={{fontFamily:"Noto Sans KR"}}
+                        className={is_Dogam === false ? "clickedButtonContainer" : "buttonContainer"} //클릭시 css변경
+                        onClick={()=>{
+                            setIs_Dogam(false)
                         }
-                    }/>
-                ))}
-                </List>
-            : 
-                <Container>  {/* 데이터 이미지가공 까지해서 */}
-                {is_Dogam === false ? 
-                    myReview?.map((item, idx) => (
-                        <WritedReview key={idx} item={item}
-                        />
-                    )) :
-                    ""}
-                </Container>
-            }
-            </Wrap>
-        </Grid>
-
+                        }>
+                        내가 쓴 맥주도감
+                    </button>
+                </ButtonContainerWrap>
+                {is_Dogam === true ? 
+                    <List>
+                    {mydogam?.map((item, idx) => (
+                        <EachBeer key={idx} item={item} 
+                            _onClick={() =>{
+                                history.push("/beer/detail")
+                            }
+                        }/>
+                    ))}
+                    </List>
+                : 
+                    <Container>  {/* 데이터 이미지가공 까지해서 */}
+                    {is_Dogam === false ? 
+                        myReview?.map((item, idx) => (
+                            <WritedReview key={idx} item={item}
+                            />
+                        )) :
+                        ""}
+                    </Container>
+                }
+                </Wrap>
+            </Grid>
+            <NavigationBar/>
 
         </React.Fragment>
     )
@@ -100,6 +101,7 @@ const Grid = styled.div`
     height: 754px;
     background-color: #FFFFFF;
     flex-direction: column;
+    margin-bottom: 74px;
     
 `;
 

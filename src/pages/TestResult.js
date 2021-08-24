@@ -6,6 +6,7 @@ import { testShare } from "../redux/async/beer";
 import { recommendCate, recommendBeerToday } from "../redux/reducer/beerSlice";
 import { userInfo } from "../redux/async/user";
 import Loader from "../share/Loader";
+import NavigationBar from "../NavigationBar";
 
 import BackgroundCateImage from "../componentsTest/BackgroundCateImage";
 import { ResultInfo } from "../componentsTest/TestIndex";
@@ -46,7 +47,9 @@ const TestResult = (props) => {
 
     return (
         <React.Fragment>
-            {loading ? <Grid>  
+            {loading ? 
+                    <>
+                    <Grid>  
                     <BackgroundCateImage category={category}/>
                     <Wrap>
                         <ResultInfo category={category}/>
@@ -64,6 +67,8 @@ const TestResult = (props) => {
                         {/* <img src="https://image.flaticon.com/icons/png/512/724/724863.png"></img> */}
                     </ReButton>
                 </Grid>
+                <NavigationBar/>
+                </>
                 :
                 <Loader/>}
         </React.Fragment>
@@ -76,6 +81,7 @@ const Grid = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
+    margin-bottom: 74px;
 `;
 
 const RecommendBeerWrap = styled.div`

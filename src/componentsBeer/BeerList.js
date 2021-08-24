@@ -10,7 +10,8 @@ import {
     EachBeer,
     BeerListAll,
     BeerListCategory,
-    HashTagList} from "./BeerIndex";
+    HashTagList,
+    NoSearchResult} from "./BeerIndex";
 import Loader from "../share/Loader.js";
 import { getCategory } from "../redux/async/category";
 import upButton from "../share/image/upArrow.png";
@@ -30,10 +31,10 @@ const BeerList = (props) =>{
     const [search_beer, setSearch_Beer] = useState([]); //검색한 맥주 정보
     const [hashtag, setHashtag] = useState([]);
     const [scrollHeightInfo, SetScrollHeightInfo] = useState(0);
-    const [hashtagName, setHashtagName] = useState("");
     const dispatch = useDispatch();
     const [openModal, setOpen_Modal] = useState(false);
     const is_iphone = navigator.userAgent.toLowerCase();
+    const [hashtagName, setHashtagName] = useState("");
 
     useEffect(() => {
         dispatch(getAllBeer("all"));
@@ -98,12 +99,14 @@ const BeerList = (props) =>{
         if(is_search){
             return(
                 <React.Fragment>
+                    { words.length === 0 ? <NoSearchResult/> : 
                     <List>
                     {search_beer?.map((item, idx) => (
                         <EachBeer 
                         key={idx} item={item}/>
                     ))}
                     </List>
+                    }
                 </React.Fragment>
             )
         }else{
@@ -153,6 +156,7 @@ const BeerList = (props) =>{
                             hashtagName={hashtagName}
                             hashtag={hashtag}
                             setHashtag={setHashtag}
+                            hashtagName={hashtagName}
                             ></HashTagList> // 해시태그리스트 출력
                             : BeerLists() //검색 or 타입별 맥주 출력
                         }
