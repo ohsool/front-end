@@ -18,6 +18,7 @@ const Test = (props) => {
     const dispatch = useDispatch();
     const [pageAnimation, setPageAnimation] = useState(false); //테스트 페이지 애니메이션 상태
     const [index, setIndex] = useState(0);
+    const [testResultArray, setTestResultArray] = useState([]);
 
     useEffect(()=> { //유저 정보(아이디, 닉네임 등) 불러오기위한 디스패치
         dispatch(userInfo());
@@ -26,12 +27,24 @@ const Test = (props) => {
     useEffect(() => { //테스트마다 페이지 이동 애니메이션 적용
         setPageAnimation(true);
     }, []);
-    
+    useEffect(() => {
+        if(testResultArray[testResultArray.length -1] === "Lager" 
+        || testResultArray[testResultArray.length -1] === "Pilsner"
+        || testResultArray[testResultArray.length -1] === "Pale Ale"
+        || testResultArray[testResultArray.length -1] === "IPA" 
+        || testResultArray[testResultArray.length -1] === "Weizen"
+        || testResultArray[testResultArray.length -1] === "Dunkel" 
+        || testResultArray[testResultArray.length -1] === "Stout" 
+        || testResultArray[testResultArray.length -1] === "Bock"){
+            dispatch(testResult({
+                userId: userId,
+                result: testResultArray
+            }));
+            history.push(`/result/${testResultArray[testResultArray.length -1]}`);
+        }
+    });
     // choice = 버튼 눌렀을때 value받아오는 부분
     const goToNext = (choice) => {
-        if(choice){ //question_id하고 choice가 같은 데이터 불러와서 index번호 찾기
-            setIndex(question.findIndex((p) => p.question_id === choice));
-        }
         //각 맥주종류들이 결과값으로나오면 그 카테고리의 결과페이지로 이동
         if(choice === "Lager" 
         || choice === "Pilsner"
@@ -41,12 +54,24 @@ const Test = (props) => {
         || choice === "Dunkel" 
         || choice === "Stout" 
         || choice === "Bock"){
-        dispatch(testResult({
-            userId: userId,
-            result: choice,
-        }));
-        history.push(`/result/${choice}`);
+            setTestResultArray([...testResultArray, choice]);
+            setTestResultArray(testResultArray.splice(3));
+        }
+        else if(choice){ //question_id하고 choice가 같은 데이터 불러와서 index번호 찾기
+            setIndex(question.findIndex((p) => p.question_id === choice));
+        }
     }
+    const lastTestButton = () => {
+        if(question[index].anwer){
+            <TestButton 
+                goToNext={goToNext} 
+                question={question[index].answer}
+                testResultArray={testResultArray}
+                setTestResultArray={setTestResultArray}
+            />
+        }else{
+            <></>
+        }
     }
     return (
         <React.Fragment>
@@ -59,7 +84,12 @@ const Test = (props) => {
             <Grid className="page">
                 <TestWrap>
                     <TestQuestion question={question[index]}/>
-                    <TestButton goToNext={goToNext} question={question[index].answer}/>
+                    <TestButton 
+                        goToNext={goToNext} 
+                        question={question[index].answer}
+                        testResultArray={testResultArray}
+                        setTestResultArray={setTestResultArray}
+                    />
                 </TestWrap>
             </Grid>
         </CSSTransitionGroup>

@@ -141,7 +141,7 @@ export const checkNickname = createAsyncThunk(
   }
 );
 
-
+//테스트 결과값 받는 api
 export const testResult = createAsyncThunk(
   "beer/testResult",
   async (data, thunkAPI) => {
