@@ -8,12 +8,14 @@ import {
   checkNickname,
   logOut,
   withDrawl,
+  socialLoginUser
 } from "../async/user";
 
 const initialState = {
   userList: null,
   is_login: null,
   is_signup: null,
+  social_login: null,
   currentUser: [],
   checkEmail: null,
   checkNickname: null,
@@ -39,6 +41,9 @@ const userSlice = createSlice({
       .addCase(checkNickname.fulfilled, (state, action) => {
         state.checkNickname = action.payload.message;
       })
+      .addCase(socialLoginUser.fulfilled, (state, action) => {
+        state.social_login = action.payload.message;
+      })
       .addCase(logIn.fulfilled, (state, action) => {
         setCookie("_dhtnf", action.payload.dhtnf);
         setCookie("_chlrh", action.payload.chlrh);
@@ -50,29 +55,23 @@ const userSlice = createSlice({
         window.alert("아이디나 비밀번호가 틀립니다!")
       })
       .addCase(logOut.fulfilled, (state, action) => {
-        removeCookie("_osid");
-        removeCookie("_osidRe");
+        removeCookie("_dhtnf");
+        removeCookie("_chlrh");
+        removeCookie("_dlfwh");
+        removeCookie("_ghkxld");
         window.location.href = "/";
       })
       .addCase(withDrawl.fulfilled, (state, action) => {
-        removeCookie("_osid");
-        removeCookie("_osidRe");
+        removeCookie("_dhtnf");
+        removeCookie("_chlrh");
+        removeCookie("_dlfwh");
+        removeCookie("_ghkxld");
         window.location.href = "/";
       })
       .addCase(userInfo.fulfilled, (state, action) => {
         state.currentUser = action.payload;
       })
       // 공통
-      .addMatcher(
-        (action) => {
-          return action.type.includes("/pending");
-        },
-        (state, action) => {
-          state.isLoading = true;
-          state.isDone = false;
-          state.isError = null;
-        }
-      )
       .addMatcher(
         (action) => {
           return action.type.includes("/fulfilled");

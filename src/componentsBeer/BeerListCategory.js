@@ -3,33 +3,35 @@ import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
 import {getBeerCategoryList} from "../redux/async/beer";
 import { beerCategory } from "../redux/reducer/beerSlice";
+import {useParams} from "react-router-dom";
 import EachBeer from "./EachBeer";
-import _, { set } from "lodash";
+import _ from "lodash";
 
-const BeerListCategory = ({get_category_id}) => {
+const BeerListCategory = ({ setHashtagName }) => {
     const category_beers = useSelector(beerCategory);
+    const [forDidmountId, setForDidmoutId] = useState("");
+    const {beerCategoryId} = useParams();
     const [beers, setBeers] = useState([]);
     const [loading, setLoading] = useState(false);
     const [paging, setPaging] = useState(0);
     const dispatch = useDispatch();
-
-    const dispatchData = {
-        categoryId: get_category_id,
+    
+    const dispatchData= {
+        categoryId: beerCategoryId,
         pageNo: paging,
     }
 
     useEffect(() => {
         setBeers([...beers, ...category_beers]);
     }, [category_beers]);
-
     const getCategoryBeerList = useCallback (() => {
         async function getData(){
             setLoading(true);
         await dispatch(getBeerCategoryList(dispatchData));
-        setLoading(false);
+            setLoading(false);
         }
         return getData();
-    }, [paging, category_beers]);
+    }, [paging, category_beers, beerCategoryId]);
 
 
     const _handleScroll = _.debounce(() => {
@@ -41,13 +43,13 @@ const BeerListCategory = ({get_category_id}) => {
           setPaging(paging + 1);
           if (paging >= 4){
             return;
-        }
+            }
           getCategoryBeerList();
         }
     }, 700);
     
     useEffect(() => {
-        if(paging === 0){
+        if(paging === 0 && beers.length === 0){
             dispatch(getBeerCategoryList(dispatchData));
             setPaging(paging+1);
         }
@@ -60,7 +62,7 @@ const BeerListCategory = ({get_category_id}) => {
                 setPaging(0);
                 setBeers([]);
                 dispatch(getBeerCategoryList({
-                    categoryId: get_category_id,
+                    categoryId: beerCategoryId,
                     pageNo: 0,
                 }));
                 setPaging(1);
@@ -68,7 +70,7 @@ const BeerListCategory = ({get_category_id}) => {
             } else{
                 didMount.current = true;
             }
-        },[deps, get_category_id]);
+        },[deps, beerCategoryId]);
     }
 
     useDidMountEffect(() => {
@@ -88,8 +90,12 @@ const BeerListCategory = ({get_category_id}) => {
         <React.Fragment>
             <List>
             {beers?.map((item, idx) => (
-                <EachBeer key={idx} item={item} />
+                <EachBeer 
+                setHashtagName={setHashtagName}
+                key={idx} item={item} />
             ))}
+            {loading ? <h1>Loading...</h1>: 
+            ""}
             </List>
         </React.Fragment>
     )

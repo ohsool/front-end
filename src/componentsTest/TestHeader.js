@@ -15,17 +15,6 @@ const TestHeader = (props) => {
     const [scrollPosition, setScrollPosition] = useState(0);
     const is_iphone = navigator.userAgent.toLowerCase(null);
 
-    const comfirm_login = ()=>{
-        if(is_login === "success"){
-            history.push("/mypage");
-        }else{
-            if(window.confirm("로그인이 필요한 서비스입니다. 로그인하시겠습니까?")){
-                history.push("/login");
-                return;
-            }
-        }
-    }
-
     const _updateScroll = _.throttle(() => {
         setScrollPosition(window.scrollY || document.documentElement.scrollTop);
     }, 300);
@@ -48,8 +37,6 @@ const TestHeader = (props) => {
                         }}>오늘의술
                     </WhiteHeaderLogo>
                     <WhiteUserImage
-                        style={{backgroundImage: `url(${myIconWhite})`}}
-                        onClick={comfirm_login}
                     ></WhiteUserImage>
                     </HeaderBox>
                     )
@@ -64,10 +51,6 @@ const TestHeader = (props) => {
                     history.push("/")
                     }}>오늘의술</BlackHeaderLogo>
                     <BlackUserImage
-                        style={{backgroundImage: `url(${myIconBlack})`}}
-                        onClick={() => {
-                            history.push("/mypage")
-                        }}
                     ></BlackUserImage>
                     </HeaderBox>
                     )
@@ -120,13 +103,9 @@ const WhiteHeaderLogo = styled.div`
 const WhiteUserImage = styled.div`
     width: 24px;
     height: 24px;
-    margin: 10px 12px 0 0;
-    cursor: pointer;
 `;
 
 const BlackUserImage = styled.div`
     width: 24px;
     height: 24px;
-    margin: 10px 12px 0 0;
-    cursor: pointer;
 `;

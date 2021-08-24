@@ -36,7 +36,7 @@ export const getBeerInfinity = createAsyncThunk(
 export const getBeerCategoryList = createAsyncThunk(
   "beer/getBeerCategoryList",
   async (data, thunkAPI) => {
-
+    
     const response = await axiosInstance.get(`/api/beer/categorylist?categoryId=${data.categoryId}&pageNo=${data.pageNo}`);
     
     return response.data
@@ -95,6 +95,16 @@ export  const unLikeBeerDetail = createAsyncThunk(
   }
 );
 
+export const starRateDetail = createAsyncThunk(
+  "beer/starRateDetail",
+  async (data, thunkAPI) => {
+    const starRate = thunkAPI.getState().beer.beerOne.avgRate;
+    const count = thunkAPI.getState().beer.beerOne.count;
+    const new_Rate = (starRate*count + data) / (count + 1)
+
+    return new_Rate;
+  }
+)
 
 
 //한글, 영어 맥주명으로 검색하기

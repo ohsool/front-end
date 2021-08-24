@@ -16,9 +16,7 @@ import Loader from "../share/Loader.js";
 import { getCategory } from "../redux/async/category";
 import upButton from "../share/image/upArrow.png";
 import _ from "lodash";
-import { 
-    getAllBeer,
-} from "../redux/async/beer";
+import { getAllBeer } from "../redux/async/beer";
 import { getSearchList } from "../redux/reducer/beerSlice";
 import { userInfo } from "../redux/async/user";
 
@@ -104,7 +102,8 @@ const BeerList = (props) =>{
                     { words.length === 0 ? <NoSearchResult/> : 
                     <List>
                     {search_beer?.map((item, idx) => (
-                        <EachBeer key={idx} item={item}/>
+                        <EachBeer 
+                        key={idx} item={item}/>
                     ))}
                     </List>
                     }
@@ -113,12 +112,14 @@ const BeerList = (props) =>{
         }else{
             if(get_category_id === "all"){
                 return (
-                    <BeerListAll></BeerListAll>
+                    <BeerListAll setHashtagName={setHashtagName}></BeerListAll>
                 );          
             }else{
                 return(
-                    <BeerListCategory 
-                        get_category_id={get_category_id}>
+                    <BeerListCategory
+                        setHashtagName={setHashtagName}
+                        get_category_id={get_category_id}
+                        >    
                     </BeerListCategory>
                 );
             }
@@ -151,6 +152,8 @@ const BeerList = (props) =>{
                             ></Search>
                             {hashtag.length > 0 ?
                             <HashTagList 
+                            setHashtagName={setHashtagName}
+                            hashtagName={hashtagName}
                             hashtag={hashtag}
                             setHashtag={setHashtag}
                             hashtagName={hashtagName}

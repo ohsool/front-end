@@ -4,19 +4,19 @@ import { history } from "../redux/configureStore";
 import { getMyDogam, getMyReview } from "../redux/async/mybeer";
 import { userInfo } from "../redux/async/user";
 import { likeList, myReviewList } from "../redux/reducer/mybeerSlice";
+import NavigationBar from "../NavigationBar";
 
 import EachBeer from "../componentsBeer/EachBeer";
 import Header from "../Header";
 import "../share/style/myBeer.css";
 import WritedReview from "../componentsMypage/WritedReview";
 import { useDispatch, useSelector } from "react-redux";
-import { getCookie } from "../share/Cookie";
 
 const MyBeer = (props)=>{
     const mydogam = useSelector(likeList); //좋아요한 맥주 리스트
     const myReview = useSelector(myReviewList); //사용자가 단 리뷰리스트
     const [is_Dogam, setIs_Dogam] = useState(true); //맥주리스트인지 리뷰리스트인지
-    const is_login = getCookie("_osid");
+    const is_login = useSelector((state) => state.user.currentUser.message);
     const is_iphone = navigator.userAgent.toLowerCase();
     const dispatch = useDispatch();
 
@@ -32,7 +32,7 @@ const MyBeer = (props)=>{
 
 
     useEffect(() => {
-        if(!is_login){
+        if(is_login !== "success"){
             if(window.confirm("로그인이 필요한 서비스입니다. 로그인하시겠습니까?")){
                 history.push("/login")
                 return;
@@ -45,50 +45,50 @@ const MyBeer = (props)=>{
     return (
         <React.Fragment>
             <Header/>
-        <Grid style={is_iphone.indexOf("iphone") !== -1 ? {marginTop: "40px"} : {marginTop: "0px"}}>
-            <Wrap>  
-            <ButtonContainerWrap>
-                <button
-                    style={{fontFamily:"Noto Sans KR"}}
-                    className={is_Dogam === true ? "clickedButtonContainer" : "buttonContainer"} //클릭시 css변경
-                    onClick={()=>{
-                        setIs_Dogam(true)
-                    }}>
-                    좋아요한 맥주
-                </button>
-                <button
-                    style={{fontFamily:"Noto Sans KR"}}
-                    className={is_Dogam === false ? "clickedButtonContainer" : "buttonContainer"} //클릭시 css변경
-                    onClick={()=>{
-                        setIs_Dogam(false)
-                    }
-                    }>
-                    내가 쓴 맥주도감
-                </button>
-            </ButtonContainerWrap>
-            {is_Dogam === true ? 
-                <List>
-                {mydogam?.map((item, idx) => (
-                    <EachBeer key={idx} item={item} 
-                        _onClick={() =>{
-                            history.push("/beer/detail")
+            <Grid style={is_iphone.indexOf("iphone") !== -1 ? {marginTop: "40px"} : {marginTop: "0px"}}>
+                <Wrap>  
+                <ButtonContainerWrap>
+                    <button
+                        style={{fontFamily:"Noto Sans KR"}}
+                        className={is_Dogam === true ? "clickedButtonContainer" : "buttonContainer"} //클릭시 css변경
+                        onClick={()=>{
+                            setIs_Dogam(true)
+                        }}>
+                        좋아요한 맥주
+                    </button>
+                    <button
+                        style={{fontFamily:"Noto Sans KR"}}
+                        className={is_Dogam === false ? "clickedButtonContainer" : "buttonContainer"} //클릭시 css변경
+                        onClick={()=>{
+                            setIs_Dogam(false)
                         }
-                    }/>
-                ))}
-                </List>
-            : 
-                <Container>  {/* 데이터 이미지가공 까지해서 */}
-                {is_Dogam === false ? 
-                    myReview?.map((item, idx) => (
-                        <WritedReview key={idx} item={item}
-                        />
-                    )) :
-                    ""}
-                </Container>
-            }
-            </Wrap>
-        </Grid>
-
+                        }>
+                        내가 쓴 맥주도감
+                    </button>
+                </ButtonContainerWrap>
+                {is_Dogam === true ? 
+                    <List>
+                    {mydogam?.map((item, idx) => (
+                        <EachBeer key={idx} item={item} 
+                            _onClick={() =>{
+                                history.push("/beer/detail")
+                            }
+                        }/>
+                    ))}
+                    </List>
+                : 
+                    <Container>  {/* 데이터 이미지가공 까지해서 */}
+                    {is_Dogam === false ? 
+                        myReview?.map((item, idx) => (
+                            <WritedReview key={idx} item={item}
+                            />
+                        )) :
+                        ""}
+                    </Container>
+                }
+                </Wrap>
+            </Grid>
+            <NavigationBar/>
 
         </React.Fragment>
     )
@@ -101,6 +101,7 @@ const Grid = styled.div`
     height: 754px;
     background-color: #FFFFFF;
     flex-direction: column;
+    margin-bottom: 74px;
     
 `;
 

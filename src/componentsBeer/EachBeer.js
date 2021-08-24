@@ -4,14 +4,14 @@ import styled from "styled-components";
 import {history} from "../redux/configureStore";
 import { useSelector, useDispatch } from "react-redux";
 import { likeBeer, unLikeBeer} from "../redux/async/beer";
-import { getHashtagWord} from "../redux/async/beer";
 import { User } from "../redux/reducer/userSlice";
+import { getHashtagWord} from "../redux/async/beer";
 
 import HeartButton from "./HeartButton";
 
 const EachBeer = (props) => {
     const dispatch = useDispatch();
-    const { item, /*setHashtagName*/} = props;
+    const { item, setHashtagName } = props;
     const userId = useSelector(User);
     const [toggle, setToggle] = useState(false);
 
@@ -39,9 +39,10 @@ const EachBeer = (props) => {
             }
         }
     }
+
     const searchHashtagWord = (p) => {
         dispatch(getHashtagWord(p));
-        
+        setHashtagName(p);
     }
 
     return(
@@ -74,13 +75,11 @@ const EachBeer = (props) => {
                 idx === 3 ||idx === 4? //해시태그 2개만 정렬
                     <TasteTag 
                     onClick={(e)=>{
-                        searchHashtagWord(p);
                         e.preventDefault();
                         e.stopPropagation(); 
-                        //setHashtagName(p);
-                        
+                        searchHashtagWord(p);
                     }}
-                    key={idx}><span>#{p}</span>
+                    key={idx}>#{p}
                     </TasteTag>:""
                 ))}
            

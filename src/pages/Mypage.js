@@ -1,19 +1,20 @@
-import React,{ useState } from 'react';
+import React,{ useState ,useEffect} from 'react';
 import styled from 'styled-components';
 import { logOut, withDrawl } from "../redux/async/user";
 import { useDispatch } from "react-redux";
-import { history } from "../redux/configureStore";
 
 import MyPageModal from "../componentsMypage/MyPageModal";
 import Header from "../Header";
 import NavigationBar from "../NavigationBar";
 import arrow from "../share/image/suggestarrow.png";
 import UserPreference from '../componentsMypage/UserPerference';
+import { useSelector } from "react-redux";
 
 const MyPage = (props) => {
+    const userInfo = useSelector(state => state.user.currentUser);
     const [modalOpen, setModalOpen] = useState(false);
     const dispatch = useDispatch();
-
+    
     const [modal_info, setModal_Info] = useState({ //건의하기 modal창 text정보
         suggestTitle: "",
         titlePlaceholder: "",
@@ -33,12 +34,33 @@ const MyPage = (props) => {
         });
     };
 
+    const comfirm_login = ()=>{
+        if(userInfo.message === "success"){
+            return(
+                <>
+                    <LogOutWrap>
+                    <LogOutButton
+                        style={{fontFamily: "Noto Sans KR"}}
+                        onClick={confirmLogout}
+                    >로그아웃
+                    </LogOutButton>
+                    <WithDrawlButton
+                        style={{fontFamily: "Noto Sans KR"}}
+                        onClick={confirmWithDrawl}
+                    >회원탈퇴
+                    </WithDrawlButton>
+                    </LogOutWrap>
+                </>
+            )        
+        }
+    }
+
     const confirmLogout = () => { // 로그아웃
         if(window.confirm("로그아웃 하시겠어요?")){
             dispatch(logOut());
         }
     }
-    const confirmWithDrawl = () => { // 로그아웃
+    const confirmWithDrawl = () => { // 회원 탈퇴
         if(window.confirm("정말로 탈퇴하시겠어요?")){
             dispatch(withDrawl());
         }
@@ -52,11 +74,6 @@ const MyPage = (props) => {
 
             </UserPreference>
             <PageMoveWrap>
-                <MoveBoxWrap
-                onClick={()=> history.push('/mybeer')}>
-                    <span>마이 비어</span>
-                    <ArrowImage src={arrow}></ArrowImage>
-                </MoveBoxWrap>
                 <MoveBoxWrap
                     onClick={() => {
                         setModal_Info({
@@ -86,16 +103,9 @@ const MyPage = (props) => {
                         open={modalOpen}
                         close={closeModal}
                 ></MyPageModal>
-                <LogOutButton
-                    style={{fontFamily: "Noto Sans KR"}}
-                    onClick={confirmLogout}
-                >로그아웃
-                </LogOutButton>
-                <WithDrawlButton
-                    style={{fontFamily: "Noto Sans KR"}}
-                    onClick={confirmWithDrawl}
-                >회원탈퇴
-                </WithDrawlButton>
+
+                {comfirm_login()}
+                
             </PageMoveWrap>
             <NavigationBar/>
         </Container>
@@ -140,30 +150,32 @@ const ArrowImage = styled.img`
     width: 5px;
     height: 10px;
 `;
+const LogOutWrap = styled.div`
+    margin: 0 auto;
+    width: 360px;
+    justify-content: space-around;
+    display: flex;
+    position: absolute;
+    bottom: 100px;
+`;
 
 const LogOutButton = styled.div`
-        position: absolute;
-        width: 90px;
-        height: 23px;
-        bottom: 150px;
-        left: 50%;
-        transform: translate(-30px, 0);
-        border: none;
-        background-color: transparent;
-        color: #FFC44F;
-        cursor: pointer;
-        font-weight: 700;
-        font-size: 16px;
-        font-family : inherit;
+    margin: 0 auto;
+    width: 70px;
+    height: 23px;
+    border: none;
+    background-color: transparent;
+    color: #FFC44F;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 16px;
+    font-family : inherit;
 `;
 
 const WithDrawlButton = styled.div`
-    position: absolute;
-    width: 90px;
+    margin: 0 auto;
+    width: 70px;
     height: 23px;
-    bottom: 100px;
-    left: 50%;
-    transform: translate(-30px, 0);
     border: none;
     background-color: transparent;
     color: #FFC44F;

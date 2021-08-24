@@ -10,7 +10,6 @@ import { CSSTransitionGroup } from 'react-transition-group';
 import { TestQuestion, TestButton } from "../componentsTest/TestIndex";
 import "../share/style/testStyle.css";
 import Header from "../Header";
-import NavigationBar from "../NavigationBar";
 import {question} from "../componentsTest/Question";
 
 const Test = (props) => {
@@ -63,7 +62,6 @@ const Test = (props) => {
                 </TestWrap>
             </Grid>
         </CSSTransitionGroup>
-        <NavigationBar/>
         </React.Fragment>
     )
 };

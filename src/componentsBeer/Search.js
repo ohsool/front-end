@@ -110,8 +110,6 @@ const Search = (props) => {
         setHashtag([])
         setSearch_Beer(words);
         setIs_Search(true);
-
-
     }
 
     return (
