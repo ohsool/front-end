@@ -1,18 +1,57 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { history } from "../redux/configureStore";
-import { setCookie } from "./Cookie";
+import { setCookie, setCookieRefresh } from "./Cookie";
+import SocialLoginUserInfo from "./SocialLoginUserInfo";
+import {useSelector} from "react-redux";
 const Token = (props) => {
     const tokens = props.match.params.tokens;
-    const refresh = tokens.split("&")[0];
-    const access = tokens.split("&")[1].split("=")[1];
+    const is_write = useSelector((state) => state.user.social_login);
+    const tokensInfo = tokens.split("&");
+    const dlfwh = tokensInfo[0]
+    const ghkxld = tokensInfo[1].split("=")[1];
+    const dhtnf = tokensInfo[2].split("=")[1];
+    const chlrh = tokensInfo[3].split("=")[1];
+    const first = tokensInfo[4].split("=")[1];
+    const [modalOpen, setModalOpen] = useState(false);
+
+    const openModal = () => {
+        setModalOpen(true);
+      };
+    const closeModal = () => {
+        setModalOpen(false);
+    };
+
+    useEffect(() => {
+        console.log(first);
+    }, [])
+
     useEffect(() =>{
-        setCookie("_osid", access);
-        setCookie("_osidRe", refresh);
-        history.push("/")
+        setCookie("_dhtnf", dhtnf);
+        setCookie("_chlrh", chlrh);
+        setCookieRefresh("_dlfwh", dlfwh);
+        setCookieRefresh("_ghkxld", ghkxld);
     }, []);
+
+    useEffect(() => {
+        if(first === "true"){
+            openModal();
+        }else{
+            history.push("/");
+        }
+    }, [])
+
+    useEffect(() => {
+    if(is_write === "success"){
+        history.push("/")
+    }   
+    })
+
     return(
         <React.Fragment>
-            소셜 로그인 진행중입니다...
+            <SocialLoginUserInfo
+                    open={modalOpen}
+                    close={closeModal}
+            ></SocialLoginUserInfo>  
         </React.Fragment>
     )
 }

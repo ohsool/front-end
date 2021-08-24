@@ -6,7 +6,7 @@ import { InfinityBeer } from "../redux/reducer/beerSlice";
 import EachBeer from "./EachBeer";
 import _ from "lodash";
 
-const InfinityChildren = (props) => {
+const InfinityChildren = ({setHashtagName}) => {
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
     const [paging, setPaging] = useState(0);
@@ -59,7 +59,9 @@ const InfinityChildren = (props) => {
         <React.Fragment>
             <List>
             {beersIF?.map((item, idx) => (
-                <EachBeer key={idx} item={item}/>
+                <EachBeer 
+                setHashtagName={setHashtagName}
+                key={idx} item={item}/>
             ))}
             {loading ? <h1>Loading...</h1>: 
             ""}

@@ -10,13 +10,12 @@ import Header from "../Header";
 import "../share/style/myBeer.css";
 import WritedReview from "../componentsMypage/WritedReview";
 import { useDispatch, useSelector } from "react-redux";
-import { getCookie } from "../share/Cookie";
 
 const MyBeer = (props)=>{
     const mydogam = useSelector(likeList); //좋아요한 맥주 리스트
     const myReview = useSelector(myReviewList); //사용자가 단 리뷰리스트
     const [is_Dogam, setIs_Dogam] = useState(true); //맥주리스트인지 리뷰리스트인지
-    const is_login = getCookie("_osid");
+    const is_login = useSelector((state) => state.user.currentUser.message);
     const is_iphone = navigator.userAgent.toLowerCase();
     const dispatch = useDispatch();
 
@@ -32,7 +31,7 @@ const MyBeer = (props)=>{
 
 
     useEffect(() => {
-        if(!is_login){
+        if(is_login !== "success"){
             if(window.confirm("로그인이 필요한 서비스입니다. 로그인하시겠습니까?")){
                 history.push("/login")
                 return;

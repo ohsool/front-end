@@ -65,7 +65,6 @@ const ReviewList = (props)=>{
                         )
                         }):""}            
                 </Grid>
-
                 <ReviewWriteModal
                     open={modalOpen}
                     close={closeModal}

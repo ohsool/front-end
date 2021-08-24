@@ -6,6 +6,7 @@ import remove from "../share/image/remove.png";
 import "../share/style/ReviewWriteModal.css";
 import { StarRate, SelectBar} from "./BeerDetailIndex";
 import { writeReview, editReview} from "../redux/async/review";
+import { starRateDetail } from "../redux/async/beer";
 
 const ReviewWriteModal = (props) => {
 
@@ -49,8 +50,8 @@ const ReviewWriteModal = (props) => {
             rate: starScore,
             review: review,
             beerId: beerOne._id
-
         }));
+        dispatch(starRateDetail(starScore));
         alert("작성 완료!🍻");
         setReview("");
         setStarScore(0);

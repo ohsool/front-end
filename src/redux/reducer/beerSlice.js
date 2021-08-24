@@ -1,5 +1,4 @@
 import { createSlice, createSelector } from "@reduxjs/toolkit";
-import { set } from "lodash";
 
 import { 
   getAllBeer, 
@@ -9,7 +8,7 @@ import {
   getSearchWord, 
   testShare,
   getHashtagWord,
-  testResult,
+  starRateDetail,
   likeBeer,
   unLikeBeer,
   likeBeerDetail,
@@ -78,20 +77,13 @@ export const beerSlice = createSlice({
         .addCase(unLikeBeerDetail.fulfilled, (state, action) => {
           state.beerOne.like_array = action.payload.likes;
         })
+        .addCase(starRateDetail.fulfilled, (state, action) => {
+          state.beerOne.avgRate = action.payload;
+        })
         .addCase(testShare.fulfilled, (state, action) => {
           state.beerToday = action.payload;
         })
       // 공통
-      .addMatcher(
-        (action) => {
-          return action.type.includes("/pending");
-        },
-        (state, action) => {
-          state.isLoading = true;
-          state.isDone = false;
-          state.isError = null;
-        }
-      )
       .addMatcher(
         (action) => {
           return action.type.includes("/fulfilled");

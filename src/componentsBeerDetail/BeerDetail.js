@@ -57,7 +57,7 @@ const BeerDetail = (props) =>{
         if(userId){
             if(toggle === true){
                 dispatch(unLikeBeerDetail(beerOne._id));
-                 setToggle(false)
+                 setToggle(false);
             }else{
                 dispatch(likeBeerDetail(beerOne._id));
                 setToggle(true);
@@ -150,7 +150,7 @@ const BeerDetail = (props) =>{
                             <div style={{width: "219px",flexWrap: "wrap"}}>
                             {beerOne?.hashtag.map((item, idx)=>(
                                 idx < 3 ? "": 
-                                <TasteTag>
+                                <TasteTag key={idx}>
                                     <span>#{item}</span>
                                 </TasteTag>
                             ))}
@@ -241,10 +241,13 @@ const BeerDetail = (props) =>{
                             is_edit={false}
                         ></ReviewWriteModal>
                         </div> 
-                        <WriteButton 
+                        {scrollHeightInfo > 500 ? 
+                            <WriteButton 
                             onClick={() => {
                             loginConfirm();
                         }}></WriteButton>
+                        : null    
+                        }
                     </Wrap>                            
                 </Grid>
             </Container>

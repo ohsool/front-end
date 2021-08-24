@@ -19,8 +19,7 @@ const categorySlice = createSlice({
             state.categoryList = [];
           })
           .addCase(getCategory.fulfilled, (state, action) => {
-            const data = { name: "All", _id: "all"}
-            state.categoryList = [data, ...action.payload.beerCategories]
+            state.categoryList = action.payload;
           })
           .addCase(getCategoryBeer.pending, (state, action) => {
             state.categoryBeerList = [];
@@ -29,16 +28,6 @@ const categorySlice = createSlice({
             state.categoryBeerList = action.payload;
           })
         // 공통
-        .addMatcher(
-          (action) => {
-            return action.type.includes("/pending");
-          },
-          (state, action) => {
-            state.isLoading = true;
-            state.isDone = false;
-            state.isError = null;
-          }
-        )
         .addMatcher(
           (action) => {
             return action.type.includes("/fulfilled");

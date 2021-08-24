@@ -14,14 +14,28 @@ const UserPreference = (props) => {
     return(
         <React.Fragment>
             <Container style={is_iphone.indexOf("iphone") !== -1 ? {marginTop: "133px"} : {marginTop: "93px"}}>
-                <PreferenceWrap
-                style={{backgroundImage: `url(${userInfos.image})`}}
-                >
-                </PreferenceWrap>
-                <UserInfoWrap>
-                    <span>안녕하세요 <strong>{userInfos.nickname}</strong>님!</span><br/>
-                    <span>오늘의술은 <strong>{userInfos.preference}</strong>입니다.</span>
-                </UserInfoWrap>
+                {userInfos.message !== "success" ? 
+                <>
+                    <PreferenceWrap
+                    style={{backgroundImage: `url(${userInfos.image})`}}
+                    >
+                    </PreferenceWrap>
+                    <UserInfoWrap>
+                        <span>안녕하세요!</span><br/>
+                        <span>오늘의술입니다.</span>
+                    </UserInfoWrap>
+                </> :
+                <>
+                    <PreferenceWrap
+                    style={{backgroundImage: `url(${userInfos.image})`}}
+                    >
+                    </PreferenceWrap>
+                    <UserInfoWrap>
+                        <span>안녕하세요 <strong>{userInfos.nickname}</strong>님!</span><br/>
+                        <span>오늘의술은 <strong>{userInfos.preference}</strong>입니다.</span>
+                    </UserInfoWrap>
+                </>
+                }
             </Container>
         </React.Fragment>
     )

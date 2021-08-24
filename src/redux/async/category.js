@@ -5,10 +5,12 @@ import { axiosInstance } from "./moduleAxios";
 export const getCategory = createAsyncThunk(
   "category/getCategory",
   async (data, thunkAPI) => {
-
+    const addAllData = { name: "All", _id: "all"}
     const response = await axiosInstance.get(`/api/beerCategory`, data);
+    
+    const categories = [addAllData, ...response.data.beerCategories]
 
-    return response.data;
+    return categories;
   }
 );
 //특정 카테고리 맥주 가져오기 

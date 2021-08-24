@@ -15,9 +15,7 @@ import Loader from "../share/Loader.js";
 import { getCategory } from "../redux/async/category";
 import upButton from "../share/image/upArrow.png";
 import _ from "lodash";
-import { 
-    getAllBeer,
-} from "../redux/async/beer";
+import { getAllBeer } from "../redux/async/beer";
 import { getSearchList } from "../redux/reducer/beerSlice";
 import { userInfo } from "../redux/async/user";
 
@@ -32,6 +30,7 @@ const BeerList = (props) =>{
     const [search_beer, setSearch_Beer] = useState([]); //검색한 맥주 정보
     const [hashtag, setHashtag] = useState([]);
     const [scrollHeightInfo, SetScrollHeightInfo] = useState(0);
+    const [hashtagName, setHashtagName] = useState("");
     const dispatch = useDispatch();
     const [openModal, setOpen_Modal] = useState(false);
     const is_iphone = navigator.userAgent.toLowerCase();
@@ -101,7 +100,8 @@ const BeerList = (props) =>{
                 <React.Fragment>
                     <List>
                     {search_beer?.map((item, idx) => (
-                        <EachBeer key={idx} item={item}/>
+                        <EachBeer 
+                        key={idx} item={item}/>
                     ))}
                     </List>
                 </React.Fragment>
@@ -109,12 +109,14 @@ const BeerList = (props) =>{
         }else{
             if(get_category_id === "all"){
                 return (
-                    <BeerListAll></BeerListAll>
+                    <BeerListAll setHashtagName={setHashtagName}></BeerListAll>
                 );          
             }else{
                 return(
-                    <BeerListCategory 
-                        get_category_id={get_category_id}>
+                    <BeerListCategory
+                        setHashtagName={setHashtagName}
+                        get_category_id={get_category_id}
+                        >    
                     </BeerListCategory>
                 );
             }
@@ -147,6 +149,8 @@ const BeerList = (props) =>{
                             ></Search>
                             {hashtag.length > 0 ?
                             <HashTagList 
+                            setHashtagName={setHashtagName}
+                            hashtagName={hashtagName}
                             hashtag={hashtag}
                             setHashtag={setHashtag}
                             ></HashTagList> // 해시태그리스트 출력

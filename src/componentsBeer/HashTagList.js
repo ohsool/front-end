@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import EachBeer from "./EachBeer";
 
-const HashTagList = ({ hashtag }) => {
+const HashTagList = ({ hashtag, hashtagName, setHashtagName }) => {
 
     return(
         <React.Fragment>
@@ -11,6 +11,7 @@ const HashTagList = ({ hashtag }) => {
                 marginRight: "30px",
                 fontSize:"14px", 
                 fontWeight:"500"}}>
+                    {hashtagName}
                 총 
                 <span style={{color:"#FFC44F",fontWeight:"700"}}>
                     {hashtag?.length}
@@ -18,7 +19,9 @@ const HashTagList = ({ hashtag }) => {
             </span>
             <List>                    
                 {hashtag?.length > 0 ? hashtag?.map((item, idx) => (
-                    <EachBeer key={idx} item={item} />
+                    <EachBeer 
+                    setHashtagName={setHashtagName}
+                    key={idx} item={item} />
                 )):""}
             </List>
 

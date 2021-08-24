@@ -23,16 +23,6 @@ const beerSlice = createSlice({
       // 공통
       .addMatcher(
         (action) => {
-          return action.type.includes("/pending");
-        },
-        (state, action) => {
-          state.isLoading = true;
-          state.isDone = false;
-          state.isError = null;
-        }
-      )
-      .addMatcher(
-        (action) => {
           return action.type.includes("/fulfilled");
         },
         (state, action) => {

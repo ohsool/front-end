@@ -25,10 +25,10 @@ const NavigationBar = (props) => {
             <NavBox>
                 <SearchWrap 
                 onClick={()=>{ 
-                    console.log("Search Click!")
+                    history.push("/mybeer");
                 }}>
                     <ImageWrap style={{backgroundImage: `url(${search})`}}/>
-                    <Text><span>SEARCH</span></Text>
+                    <Text><span>MYBEER</span></Text>
                 </SearchWrap>
                 <BeerListWrap
                 onClick={() => {

@@ -88,3 +88,12 @@ export const checkNickname = createAsyncThunk(
     return response.data;
   }
 );
+
+export const socialLoginUser = createAsyncThunk(
+  "user/socialLoginUser",
+  async (data, thunkAPI) => {
+    const response = await axiosInstance.post(`/api/user/socialuser`, data);
+
+    return response.data;
+  }
+)
