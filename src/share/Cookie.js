@@ -4,7 +4,7 @@ const cookies = new Cookies();
 
 export const setCookie = (name, value) => {
     const expires = new Date();
-    expires.setMinutes(expires.getMinutes() + 60);
+    expires.setMinutes(expires.getMinutes() + 1);
     return cookies.set(name, value, {
         path: "/",
         expires,

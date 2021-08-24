@@ -1,6 +1,7 @@
 import axios from "axios";
 import crypto from "crypto";
-import { getCookie, setCookie } from "../../share/Cookie";
+import { getCookie, setCookie, setCookieRefresh } from "../../share/Cookie";
+import { userInfo } from "./user";
 
 const secretAPIkey = () => {
     const time = new Date();
@@ -39,23 +40,31 @@ axiosInstance.interceptors.request.use(
     }
 );
 
-axiosInstance.interceptors.request.use(
+axiosInstance.interceptors.response.use(
     (response) => {
         return response;
     }, async function (error) {
         const originalRequest = error.config;
         if(error.response.status === 418 && !originalRequest._retry){
+            // const result = await axiosInstance.get(`/api/user/me`)
             originalRequest._retry = true;
-            const response = await axios.get('/api/user/me')
-            if(response.data.dhtnf){
-                setCookie("_dhtnf", response.data.dhtnf);
-                setCookie("_chlrh", response.data.chlrh);
+            if(error.response.data.dlfwh){
+                setCookie("_dlfwh", originalRequest.headers.dlfwh);
+                setCookie("_ghkxld", originalRequest.headers.ghkxld);
+                setCookieRefresh("_dhtnf", error.response.data.dlfwh);
+                setCookieRefresh("_chlrh", error.response.data.ghkxld);
+                originalRequest.headers.ghkxld = `Bearer ${error.response.data.ghkxld}`;
+                originalRequest.headers.dlfwh = `Bearer ${error.response.data.dlfwh}`;
             }
-            else if(response.data.dlfwh){
-              setCookie("_dlfwh", response.data.dlfwh);
-              setCookie("_ghkxld", response.data.ghkxld);
+            else{
+                setCookie("_dlfwh", error.response.data.dhtnf);
+                setCookie("_ghkxld", error.response.data.chlrh);
+                setCookieRefresh("_dhtnf", error.response.data.dhtnf);
+                setCookieRefresh("_chlrh", error.response.data.chlrh);
+                originalRequest.headers.dhtnf = `Bearer ${error.response.data.dhtnf}`;
+                originalRequest.headers.chlrh = `Bearer ${error.response.data.chlrh}`;
             }
-            return axios(originalRequest);
+        return axiosInstance(originalRequest);
         }
-        return Promise.reject(error);
-    });
+    return Promise.reject(error);
+});

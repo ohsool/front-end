@@ -53,7 +53,6 @@ export const withDrawl = createAsyncThunk(
 export const userInfo = createAsyncThunk(
   "user/userInfo",
   async (data, thunkAPI) => {
-
     const response = await axiosInstance.get(`/api/user/me`);
     if(response.data.message === "fail" && response.data.error === "all tokens are expired"){
       removeCookie("osid");

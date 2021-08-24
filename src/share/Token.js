@@ -21,10 +21,6 @@ const Token = (props) => {
         setModalOpen(false);
     };
 
-    useEffect(() => {
-        console.log(first);
-    }, [])
-
     useEffect(() =>{
         setCookie("_dhtnf", dhtnf);
         setCookie("_chlrh", chlrh);
@@ -38,7 +34,7 @@ const Token = (props) => {
         }else{
             history.push("/");
         }
-    }, [])
+    }, []);
 
     useEffect(() => {
     if(is_write === "success"){

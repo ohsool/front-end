@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 const Main = (props) => {
     const dispatch = useDispatch();
     useEffect(() => {
+        
         dispatch(userInfo());
     }, [])
 
