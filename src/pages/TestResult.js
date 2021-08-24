@@ -16,7 +16,6 @@ const TestResult = (props) => {
     const dispatch = useDispatch();
     const categoryParams = props.match.params.category;
     const [loading, setLoading] = useState(false);
-
     //테스트 후 나온 결과(카테고리)
     const category = useSelector(recommendCate);
     //테스트 후 나온 결과(맥주추천)
