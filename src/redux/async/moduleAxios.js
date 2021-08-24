@@ -44,7 +44,7 @@ axiosInstance.interceptors.request.use(
         return response;
     }, async function (error) {
         const originalRequest = error.config;
-        if(error.response.status === 401 && !originalRequest._retry){
+        if(error.response.status === 418 && !originalRequest._retry){
             originalRequest._retry = true;
             const response = await axios.get('/api/user/me')
             if(response.data.dhtnf){
