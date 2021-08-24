@@ -21,7 +21,6 @@ export const ReceiveNotificationsToken = async () => {
       await messaging.requestPermission();
       const token = await messaging.getToken();
         setCookieNotification("_noti", token);
-        console.log(token);
       return token;
     } catch (error) {
         console.error(error);

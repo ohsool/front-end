@@ -40,8 +40,10 @@ const userSlice = createSlice({
         state.checkNickname = action.payload.message;
       })
       .addCase(logIn.fulfilled, (state, action) => {
-        setCookie("_osid", action.payload.accessToken);
-        setCookieRefresh("_osidRe", action.payload.refreshToken);
+        setCookie("_dhtnf", action.payload.dhtnf);
+        setCookie("_chlrh", action.payload.chlrh);
+        setCookieRefresh("_dlfwh", action.payload.dlfwh);
+        setCookieRefresh("_ghkxld", action.payload.ghkxld);
         state.is_login = action.payload.message;
       })
       .addCase(logIn.rejected, (state, action) => {

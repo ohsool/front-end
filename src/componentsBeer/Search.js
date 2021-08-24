@@ -21,7 +21,7 @@ const Search = (props) => {
     const [language, setLanguage] = useState("");
     const dispatch = useDispatch();
     useEffect(()=>{
-        if(word === null || word === "" || words.length===0 ||language==="" ){//검색창에 아무것도 입력 하지 않은 상태면 검색 모달 닫기 
+        if(word === null || words.length===0 /*|| word === "" || language==="" */){//검색창에 아무것도 입력 하지 않은 상태면 검색 모달 닫기 
             setOpen_Modal(false);           
         }
         checkLanguage();

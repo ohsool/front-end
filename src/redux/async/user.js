@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { axiosInstance } from "./moduleAxios";
-import { setCookie, removeCookie, getCookie } from "../../share/Cookie";
+import { removeCookie } from "../../share/Cookie";
 import { history } from "../configureStore";
 
 // 회원 가입
@@ -55,17 +55,11 @@ export const userInfo = createAsyncThunk(
   async (data, thunkAPI) => {
 
     const response = await axiosInstance.get(`/api/user/me`);
-    if(response.data.accessToken){
-        setCookie("_osid", response.data.accessToken);
-    }
-    else if(response.data.refreshToken){
-      setCookie("_osidRe", response.data.refreshToken);
-    }
     if(response.data.message === "fail" && response.data.error === "all tokens are expired"){
       removeCookie("osid");
       removeCookie("_osidRe");
       alert("로그인기간이 만료되었습니다. 다시 로그인하시겠어요?")
-      history.push("/login");
+      window.location.href = "/"
     }
     return response.data;
   }

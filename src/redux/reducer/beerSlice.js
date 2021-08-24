@@ -1,4 +1,5 @@
 import { createSlice, createSelector } from "@reduxjs/toolkit";
+import { set } from "lodash";
 
 import { 
   getAllBeer, 
@@ -11,6 +12,8 @@ import {
   testResult,
   likeBeer,
   unLikeBeer,
+  likeBeerDetail,
+  unLikeBeerDetail
 } from "../async/beer";
 
 const initialState = {
@@ -42,12 +45,10 @@ export const beerSlice = createSlice({
             state.beerOne = action.payload.beer;
         })
         .addCase(getBeerInfinity.fulfilled, (state, action) => {
-          // state.testBeerList = action.payload.beers;
           state.testBeerList = [...state.testBeerList, ...action.payload.beers];
         })
         //검색기능
         .addCase(getSearchWord.fulfilled, (state, action) => {
-            //state.searchList = action.payload.words;
             state.searchList = action.payload.beers;
         })
         .addCase(getHashtagWord.fulfilled, (state, action) => {
@@ -58,14 +59,24 @@ export const beerSlice = createSlice({
         .addCase(likeBeer.fulfilled, (state, action) => {
           const indexIf = action.payload.indexIf;
           const likes_array = action.payload.response.likes;
+          if(indexIf === -1){
+          }else{
           state.testBeerList[indexIf].like_array = likes_array;
-        })
-        .addCase(likeBeer.rejected, (state, action) => {
+          }
         })
         .addCase(unLikeBeer.fulfilled, (state, action) => {
           const indexIf = action.payload.indexIf;
           const likes_array = action.payload.response.likes;
+          if(indexIf === -1){
+          }else{
           state.testBeerList[indexIf].like_array = likes_array;
+          }
+        })
+        .addCase(likeBeerDetail.fulfilled, (state, action) => {
+          state.beerOne.like_array = action.payload.likes;
+        })
+        .addCase(unLikeBeerDetail.fulfilled, (state, action) => {
+          state.beerOne.like_array = action.payload.likes;
         })
         .addCase(testShare.fulfilled, (state, action) => {
           state.beerToday = action.payload;

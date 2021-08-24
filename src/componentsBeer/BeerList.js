@@ -184,7 +184,7 @@ const Container = styled.div`
 const Grid = styled.div`
     width: 360px;
     margin: 0 auto;
-    bottom: 80px;
+    padding-bottom: 74px;
 `
 const TopNav = styled.div`
     margin-top: 60px;

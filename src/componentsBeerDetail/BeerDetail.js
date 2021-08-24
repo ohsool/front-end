@@ -2,7 +2,7 @@ import React, {useEffect, useState, useRef} from "react";
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
 import { useSelector, useDispatch } from "react-redux";
-import { getOneBeer, likeBeer, unLikeBeer } from "../redux/async/beer";
+import { getOneBeer, likeBeerDetail, unLikeBeerDetail } from "../redux/async/beer";
 import { getReview } from "../redux/async/review";
 import { userInfo } from "../redux/async/user";
 import { oneBeer } from "../redux/reducer/beerSlice";
@@ -22,8 +22,6 @@ const BeerDetail = (props) =>{
     const heart_detail = "detail"
     const beerOne = useSelector(oneBeer);
     const hashtag = beerOne?.hashtag;
-    const avgRate = beerOne?.avgRate;
-    const likeCount = beerOne?.like_array.length;
     const userId = useSelector(User);
     const beer_infos = useSelector(getReviewList);
     const is_iphone = navigator.userAgent.toLowerCase();
@@ -58,10 +56,10 @@ const BeerDetail = (props) =>{
     const clickLike = () => { //좋아요 및 좋아요 취소 기능
         if(userId){
             if(toggle === true){
-                dispatch(unLikeBeer(beerOne._id));
+                dispatch(unLikeBeerDetail(beerOne._id));
                  setToggle(false)
             }else{
-                dispatch(likeBeer(beerOne._id));
+                dispatch(likeBeerDetail(beerOne._id));
                 setToggle(true);
             }
         }else{ //로그인 안한 유저가 좋아요 눌렀을때 눌리는 것 방지
@@ -121,25 +119,6 @@ const BeerDetail = (props) =>{
             );
         }
     }
-
-
-    const showWriteButton = () => {
-        if(scrollHeightInfo > 500){
-            return (
-            <WriteButtonWrap>
-                <WriteButton 
-                    onClick={() => {
-                    loginConfirm();
-                }}></WriteButton>
-            </WriteButtonWrap>
-                    
-            )
-            }else{
-                return null;
-            }
-    }
-
-
  
 
     return(
@@ -171,7 +150,7 @@ const BeerDetail = (props) =>{
 
                         <div style={{display: "flex"}}>
                             <div style={{width: "219px",flexWrap: "wrap"}}>
-                            {hashtag?.map((item, idx)=>(
+                            {beerOne?.hashtag.map((item, idx)=>(
                                 idx < 3 ? "": 
                                 <TasteTag>
                                     <span>#{item}</span>
@@ -183,17 +162,16 @@ const BeerDetail = (props) =>{
                                 <div style={{display: "flex", margin: "5px 7px"}}>
                                     <StarIcon style={{backgroundImage: `url(${star})`}}/>
                                     <NumberText>
-                                        { avgRate ? avgRate.toFixed(1) : 0.0}
+                                        {beerOne?.avgRate.toFixed(1)}
                                         
                                     </NumberText>
                                 </div>
                                 <div style={{display: "flex", margin: "5px 7px"}}>
                                     <LikeIcon style={{backgroundImage: `url(${like})`}}/>
                                     <NumberText>
-                                        {likeCount}
+                                        {beerOne?.like_array.length}
                                     </NumberText>
                                 </div>
-
                             </div>
                         </div>
   
@@ -249,7 +227,6 @@ const BeerDetail = (props) =>{
 
                     <Wrap>
                     <p style={{ fontWeight: "700",paddingBottom: "14px"}}>리뷰</p>
-                    
                         <Gradient>
                             {beer_infos?.length > 0 ? beer_infos?.map((item, idx) => (
                                 idx < 4 ? (
@@ -258,10 +235,6 @@ const BeerDetail = (props) =>{
                                     </>) : null
                             )): ""}
                         </Gradient>
-                        <Wrap>
-                        {showWriteButton()}
-                        </Wrap>
-
                         <div style={{marginLeft: "-20px"}}>
                         <ReviewWriteModal
                             open={modalOpen}
@@ -270,11 +243,12 @@ const BeerDetail = (props) =>{
                             is_edit={false}
                         ></ReviewWriteModal>
                         </div> 
-                    </Wrap>
-            
-                    
+                        <WriteButton 
+                            onClick={() => {
+                            loginConfirm();
+                        }}></WriteButton>
+                    </Wrap>                            
                 </Grid>
-
             </Container>
         </React.Fragment>
     )
@@ -451,6 +425,7 @@ const Gradient = styled.div`
 const Gradient = styled.div`
     z-index: 1;
     margin: 0 auto;
+    margin-bottom: 74px;
 `
 const JustifyAlign = styled.div`
     display: flex;
@@ -470,23 +445,23 @@ const LikeIcon = styled.div`
     height: 12px;
 
 `
-const WriteButtonWrap = styled.div`
-    width: 360px;
-    margin: 0 auto;
-`;
+// const WriteButtonWrap = styled.div`
+//     width: 360px;
+//     margin: 0 auto;
+// `;
 
 const WriteButton = styled.div`
     position: fixed;
-    bottom: 36px;
-    right: 36px;
+    bottom: 96px;
+    left: 50%;
+    margin-left: 120px;
     width: 60px;
     height: 60px;
     background-image: url(${writeIcon});
     background-size: cover;
     cursor: pointer;
-    animation: scaleUp 1.0s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
-    @keyframes zoomOut { from { transform: scale(1); } to { transform: scale(0); } }
-
+    //animation: scaleUp 1.0s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+    //@keyframes zoomOut { from { transform: scale(1); } to { transform: scale(0); } }
 `;
 
 

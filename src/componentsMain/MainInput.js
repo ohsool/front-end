@@ -1,23 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 import { history } from "../redux/configureStore";
-import { getCookie } from "../share/Cookie";
 
 const MainInput = (props) => {
-    const [is_login, setIs_Login] = useState(false);
-    const cookie = getCookie("_osid");
-
-    useEffect(()=> {  //로그인해있는지 체크
-        if(cookie){
-            setIs_Login(true);
-        }else{
-            setIs_Login(false);
-        }
-    }, [is_login]);
+    const is_login = useSelector((state) => state.user.currentUser.message);
 
     const goBeerDogam = () => { //쿠키에 token없으면 로그인페이지로
-        if(!cookie){
+        if(is_login !== "success"){
             window.alert("로그인이 필요한 서비스입니다!")
         }else{
             history.push("/mybeer")
@@ -42,7 +33,7 @@ const MainInput = (props) => {
                         나의 맥주 도감
                     </LinkBox2>
                 </Wrap>
-                {is_login === false ? 
+                {is_login !== "success" ? 
                 (<ButtonWrap>
                     <LoginButton 
                         onClick={() => {

@@ -37,7 +37,7 @@ export const getBeerCategoryList = createAsyncThunk(
   "beer/getBeerCategoryList",
   async (data, thunkAPI) => {
 
-    const response = await axiosInstance.get(`/api/beer/list/category/${data}`);
+    const response = await axiosInstance.get(`/api/beer/categorylist?categoryId=${data.categoryId}&pageNo=${data.pageNo}`);
     
     return response.data
   }
@@ -67,14 +67,35 @@ export  const unLikeBeer = createAsyncThunk(
     const indexIf = beersIf.findIndex((p) => p._id === data);
     
     const response = await axiosInstance.put(`/api/beer/unlike/${data}`)
-
-    const unLike_Data = {
+    const unlike_Data = {
       indexIf: indexIf,
       response: response.data
     }
-    return unLike_Data;
+    return unlike_Data;
   }
 );
+
+export  const likeBeerDetail = createAsyncThunk(
+  "beer/likeBeerDetail",
+  async (data, thunkAPI) => {
+
+    const response = await axiosInstance.put(`/api/beer/like/${data}`);
+    
+    return response.data;
+  }
+);
+
+export  const unLikeBeerDetail = createAsyncThunk(
+  "beer/unlikeBeerDetail",
+  async (data, thunkAPI) => {
+
+    const response = await axiosInstance.put(`/api/beer/unlike/${data}`);
+    
+    return response.data;
+  }
+);
+
+
 
 //한글, 영어 맥주명으로 검색하기
 export const getSearchWord = createAsyncThunk(
