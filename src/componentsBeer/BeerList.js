@@ -95,10 +95,6 @@ const BeerList = (props) =>{
     useEffect(()=>{
         BeerLists();
         setOpen_Modal(false);
-        console.log("search_beer",search_beer);
-        console.log("words",words);
-        console.log("search_beer.length",search_beer.length);
-        console.log("words.lenght",words.length);
     },[words])
     
     const BeerLists = () => {
@@ -108,8 +104,7 @@ const BeerList = (props) =>{
                     { words.length === 0 ? <NoSearchResult/> : 
                     <List>
                     {search_beer?.map((item, idx) => (
-                        <EachBeer key={idx} item={item} /*setHashtagName={setHashtagName}*/
-                        />
+                        <EachBeer key={idx} item={item}/>
                     ))}
                     </List>
                     }

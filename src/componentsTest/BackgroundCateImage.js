@@ -16,7 +16,12 @@ const BackgroundCateImage = ({ category }) => {
                         <p>당신을 위한 <br/>오늘의 맥주는,</p>
                         <h1>‘{category?.name}’</h1>
                     </TextWrap>
-                    <ShareButton category={category}></ShareButton>
+                    <ShareButton 
+                        page={'testResult'}
+                        name={category.name} 
+                        description={category.description} 
+                        image={category.image}
+                    ></ShareButton>
                 </Wrap>
                 </BackgroundImageStyle>
             </BackgroundImage>

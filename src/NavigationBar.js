@@ -23,10 +23,7 @@ const NavigationBar = (props) => {
     return (
         <React.Fragment>
             <NavBox>
-                <SearchWrap 
-                onClick={()=>{ 
-                    console.log("Search Click!")
-                }}>
+                <SearchWrap>
                     <ImageWrap style={{backgroundImage: `url(${search})`}}/>
                     <Text><span>SEARCH</span></Text>
                 </SearchWrap>
@@ -63,6 +60,7 @@ const NavBox = styled.div`
     margin: 0 auto;
     left: 0;
     right: 0;
+    border-top: 0.2px solid #C4C4c4; 
 `;
 
 const SearchWrap = styled.div`

@@ -120,7 +120,7 @@ const ReviewWriteModal = (props) => {
                                         maxLength="48"
                                         onChange={onChange}
                                         review={review}
-                                        placeholder={"맥주에 대한 평가와 소감을 적어주세요.(최대 48자)"}
+                                        placeholder={"맥주에 대한 \n평가와 소감을 적어주세요.\n(최대 48자)"}
                                     ></BeerTextarea>
                                 </>
                             )}
@@ -281,6 +281,7 @@ const BeerTextarea = styled.textarea`
     border-radius: 10px;
     //border: none;
     border:1.7px solid #c4c4c4;
+    font-size: 12px;
 `;
 
 const Div = styled.div`

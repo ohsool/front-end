@@ -80,7 +80,7 @@ const EachBeer = (props) => {
                         //setHashtagName(p);
                         
                     }}
-                    key={idx}>#{p}
+                    key={idx}><span>#{p}</span>
                     </TasteTag>:""
                 ))}
            

@@ -16,7 +16,8 @@ import star from "../share/image/star.png";
 import like from "../share/image/heart.png";
 import {ReviewWriteModal} from "../componentsBeerDetail/BeerDetailIndex";
 import _ from "lodash";
-//렌더링 8번 됨
+import ShareButton from "../componentsTest/ShareButton";
+
 const BeerDetail = (props) =>{
     const [toggle, setToggle] = useState(false);
     const heart_detail = "detail"
@@ -119,8 +120,6 @@ const BeerDetail = (props) =>{
             );
         }
     }
- 
-
     return(
         <React.Fragment>
             <Container style={is_iphone.indexOf("iphone") !== -1 ? {marginTop: "40px"} : {marginTop: "0px"}}>
@@ -174,11 +173,23 @@ const BeerDetail = (props) =>{
                                 </div>
                             </div>
                         </div>
+
   
                     </Wrap>
                     <Line/>
                     <Wrap>
-                        <span style={{ fontWeight: "700"}}>맥주소개</span>
+                        <JustifyAlign>
+                            <span style={{ fontWeight: "700"}}>맥주소개</span>
+                        
+                            <div style={{marginTop: "-60px",marginBottom: "10px"}}>
+                                <ShareButton
+                                    page={'detail'}
+                                    name={beerOne?.name_korean}
+                                    description={'ohsool에서 '+ beerOne?.name_korean + '맥주의 특징을 확인해보세요!🍺 '}
+                                    image={beerOne?.image}
+                                ></ShareButton>
+                            </div>
+                        </JustifyAlign>
                         {hashtag ?
                         <BeerContent>
                             <p>
@@ -188,7 +199,7 @@ const BeerDetail = (props) =>{
                                 
                                 <br/>
                                 <br/>
-                                오늘 <span>{beerOne?.name_korean}</span> 한잔 어떠세요?
+                                퇴근 후 <span>{beerOne?.name_korean}</span> 한잔 어떠세요?
                             </p>
                         </BeerContent> :null}
                     </Wrap>
@@ -344,10 +355,10 @@ const NumberText = styled.span`
     font-style: normal;
     font-size: 10px;
     color: #FFC44F;
-
 `
+
 const BeerContent = styled.div`
-    padding: 14px 0;
+    padding: 0 0 14px 0;
     margin: 0;
     width: 300px;
     & > p{
@@ -437,13 +448,11 @@ const StarIcon = styled.div`
     background-size: cover;
     width: 11px;
     height: 11px;
-
 `
 const LikeIcon = styled.div`
     background-size: cover;
     width: 12px;
     height: 12px;
-
 `
 // const WriteButtonWrap = styled.div`
 //     width: 360px;
@@ -463,5 +472,3 @@ const WriteButton = styled.div`
     //animation: scaleUp 1.0s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
     //@keyframes zoomOut { from { transform: scale(1); } to { transform: scale(0); } }
 `;
-
-

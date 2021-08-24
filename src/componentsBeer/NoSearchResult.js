@@ -5,7 +5,7 @@ const NoSearchResult = () => {
     return (
         <Container>
             <Grid>
-                <Wrap><p>검색 결과가 없음 페이지</p></Wrap>
+                <Wrap><span>🍻검색 결과가 없습니다.🍻</span></Wrap>
             </Grid>
         </Container>
     )
@@ -25,6 +25,8 @@ const Grid = styled.div`
     bottom: 80px;
 `
 const Wrap = styled.div`
-    margin-left:24px;
-
+    //margin-left:50spx;
+    //margin: 0 auto;
+    margin-top: 150px;
+    text-align: center;
 `
