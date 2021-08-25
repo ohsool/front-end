@@ -46,23 +46,30 @@ axiosInstance.interceptors.response.use(
     }, async function (error) {
         const originalRequest = error.config;
         if(error.response.status === 418 && !originalRequest._retry){
-            // const result = await axiosInstance.get(`/api/user/me`)
             originalRequest._retry = true;
-            if(error.response.data.dlfwh){
-                setCookie("_dlfwh", originalRequest.headers.dlfwh);
-                setCookie("_ghkxld", originalRequest.headers.ghkxld);
-                setCookieRefresh("_dhtnf", error.response.data.dlfwh);
-                setCookieRefresh("_chlrh", error.response.data.ghkxld);
-                originalRequest.headers.ghkxld = `Bearer ${error.response.data.ghkxld}`;
-                originalRequest.headers.dlfwh = `Bearer ${error.response.data.dlfwh}`;
+            const dhtnf = originalRequest.headers.dhtnf.split(" ")[1];
+            const chlrh = originalRequest.headers.chlrh.split(" ")[1];
+            const dlfwh = originalRequest.headers.dlfwh.split(" ")[1];
+            const ghkxld = originalRequest.headers.ghkxld.split(" ")[1];
+            if(error.response.data.dlfwh){ //get new refresh
+                setCookie("_dhtnf", dhtnf); //access
+                setCookie("_chlrh", chlrh); //access
+                setCookieRefresh("_dlfwh", error.response.data.dlfwh); //refresh
+                setCookieRefresh("_ghkxld", error.response.data.ghkxld); //refresh
+                originalRequest.headers.dhtnf = `${originalRequest.headers.dhtnf}`; // access
+                originalRequest.headers.chlrh = `${originalRequest.headers.chlrh}`; // access
+                originalRequest.headers.ghkxld = `Bearer ${error.response.data.ghkxld}`; //refresh
+                originalRequest.headers.dlfwh = `Bearer ${error.response.data.dlfwh}`; //refresh
             }
-            else{
-                setCookie("_dlfwh", error.response.data.dhtnf);
-                setCookie("_ghkxld", error.response.data.chlrh);
-                setCookieRefresh("_dhtnf", error.response.data.dhtnf);
-                setCookieRefresh("_chlrh", error.response.data.chlrh);
-                originalRequest.headers.dhtnf = `Bearer ${error.response.data.dhtnf}`;
-                originalRequest.headers.chlrh = `Bearer ${error.response.data.chlrh}`;
+            else{  //get new access
+                setCookie("_dhtnf", error.response.data.dhtnf);  //access
+                setCookie("_chlrh", error.response.data.chlrh);  //access
+                setCookieRefresh("_dlfwh", dlfwh);
+                setCookieRefresh("_ghkxld", ghkxld);
+                originalRequest.headers.ghkxld = `${originalRequest.headers.ghkxld}`; //refresh
+                originalRequest.headers.dlfwh = `${originalRequest.headers.dlfwh}`; //refresh
+                originalRequest.headers.dhtnf = `Bearer ${error.response.data.dhtnf}`; // access
+                originalRequest.headers.chlrh = `Bearer ${error.response.data.chlrh}`; // access
             }
         return axiosInstance(originalRequest);
         }
