@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import myPage from "./share/image/myPage.png";
 import beer from "./share/image/beer.png";
-import search from "./share/image/search.png";
+import myBeer from "./share/image/mybeer.png";
 import { history } from "./redux/configureStore";
 import "./share/style/TestHeader.css";
 import { useSelector } from "react-redux";
@@ -10,15 +10,29 @@ import { useSelector } from "react-redux";
 const NavigationBar = (props) => {
     const userInfo = useSelector(state => state.user.currentUser);
     const pathNow = props.props.match.path;
-    const comfirm_login = ()=>{
-        if(userInfo.message === "success"){
-            history.push("/mybeer");
-        }else{
-            if(window.confirm("로그인이 필요한 서비스입니다. 로그인하시겠습니까?")){
-                history.push("/login");
-                return;
+
+    const comfirm_login = (page)=>{
+        if(page==='myBeer'){
+            if(userInfo.message === "success"){
+                history.push("/mybeer");
+            }else{
+                if(window.confirm("로그인 후 이용 가능한 서비스입니다. \n로그인하고 나만의 맥주 리스트를 관리해보세요!🍻")){
+                    history.push("/login");
+                    return;
+                }
             }
+        }else if(page==='myPage'){
+            if(userInfo.message === "success"){
+                history.push("/myPage");
+            }else{
+                if(window.confirm("로그인 후 이용 가능한 서비스입니다. \n로그인 하시겠습니까?")){
+                    history.push("/login");
+                    return;
+                }
+            }
+
         }
+
     }
 
     return (
@@ -26,8 +40,8 @@ const NavigationBar = (props) => {
             <NavBox>
                 <SearchWrap 
                     style={pathNow === "/mybeer" ? {backgroundColor: "#F7F7F7"} : null}
-                    onClick={comfirm_login}>
-                    <ImageWrap style={{backgroundImage: `url(${search})`}}/>
+                    onClick={()=>{comfirm_login('myBeer')}}>
+                    <ImageWrap style={{backgroundImage: `url(${myBeer})`}}/>
                     <Text><span>MY BEER</span></Text>
                 </SearchWrap>
                 <SearchWrap
@@ -40,10 +54,8 @@ const NavigationBar = (props) => {
                 </SearchWrap>                    
                 <SearchWrap
                     style={pathNow === "/mypage" ? {backgroundColor: "#F7F7F7"} : null}
-                    onClick={()=>{ 
-                        history.push("/mypage");
-                    }}
-                >
+                    onClick={()=>{comfirm_login('myPage')}}>
+                
                     <ImageWrap style={{backgroundImage: `url(${myPage})`}}/>
                     <Text><span>MY PAGE</span></Text>
                 </SearchWrap>
@@ -71,11 +83,6 @@ const NavBox = styled.div`
     right: 0;
 `;
 
-const SearchWrap = styled.div`
-    text-align: center;
-    width:120px;
-    cursor: pointer;
-`;
 const Text = styled.div`
     margin: 9px auto;
     & > span{
@@ -84,7 +91,12 @@ const Text = styled.div`
 `
 const ImageWrap = styled.div`
     margin: 13px 58px 0 48px;
-    width: 22px;
+    width: 24px;
     height: 22px;
     background-size: cover;
+`;
+const SearchWrap = styled.div`
+    text-align: center;
+    width:120px;
+    cursor: pointer;
 `;

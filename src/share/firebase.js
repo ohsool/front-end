@@ -36,4 +36,3 @@ export const ReceiveNotifications = async () => {
         console.error(error);
     }
 }
-

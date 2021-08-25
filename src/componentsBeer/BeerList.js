@@ -36,6 +36,7 @@ const BeerList = (props) =>{
     const [openModal, setOpen_Modal] = useState(false);
     const is_iphone = navigator.userAgent.toLowerCase();
     const [hashtagName, setHashtagName] = useState("");
+    const [is_recent, setIs_Recent] = useState(false);
 
     useEffect(() => {
         dispatch(getAllBeer("all"));
@@ -90,7 +91,7 @@ const BeerList = (props) =>{
         if(is_search){
             return(
                 <React.Fragment>
-                    { words.length === 0 ? <NoSearchResult/> : 
+                    { words.length === 0 && openModal===false? <NoSearchResult/> : 
                     <List>
                     {search_beer?.map((item, idx) => (
                         <EachBeer 
@@ -140,6 +141,7 @@ const BeerList = (props) =>{
                                 search_beer={search_beer}
                                 openModal={openModal}
                                 setOpen_Modal={setOpen_Modal}
+                                setIs_Recent={setIs_Recent}
                             ></Search>
                             {hashtag.length > 0 ?
                             <HashTagList 

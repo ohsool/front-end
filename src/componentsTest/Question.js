@@ -124,7 +124,7 @@ export const question =
         question_id: "Strong",
         questionNum: "",
         question: "진한맛의 맥주를\n 좋아하시나요?",
-        explain: "아메리카노를 연하게 마신다면 NO!!",
+        explain: "진~한 아메리카노를 좋아한다면 YES!!",
         answer: [{"Bock" : "네"}, {"Stout": "아니요"}]
     },
 ]

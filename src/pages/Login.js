@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logIn } from "../redux/async/user";
 import { is_Login } from "../redux/reducer/userSlice";
 import "../share/style/loginButton.css";
+import NavigationBar from "../NavigationBar";
 
 const Login = (props) => {
     const dispatch = useDispatch();
@@ -95,6 +96,7 @@ const Login = (props) => {
                                 카카오톡으로 로그인하기
                             </SocialLoginButton>
                             <SocialLoginButton
+                                style={{ marginBottom: "80px" }}
                                 onClick={() => {
                                     window.location.href = "https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount?response_type=code&redirect_uri=https%3A%2F%2FXN--WH1BO80AC4CI9A.shop%2Fapi%2Fuser%2Fgoogle%2Fcallback&scope=email%20profile&client_id=191938571707-m8nhi8j2inb8dn0c0pq99f3gc1hd9sfd.apps.googleusercontent.com&flowName=GeneralOAuthFlow"
                                 }}>
@@ -102,6 +104,7 @@ const Login = (props) => {
                             </SocialLoginButton>
                         </div>
                     </InputWrap>
+                    <NavigationBar/>
             </Container>
             </LoginWrap>
         </React.Fragment>

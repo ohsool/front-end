@@ -184,7 +184,7 @@ const BeerDetail = (props) =>{
                         <JustifyAlign>
                             <span style={{ fontWeight: "700"}}>맥주소개</span>
                         
-                            <div style={{marginTop: "-60px",marginBottom: "10px"}}>
+                            <div style={{marginTop: "-60px",marginBottom: "10px", marginRight: "-15px"}}>
                                 <ShareButton
                                     page={'detail'}
                                     name={beerOne?.name_korean}
@@ -198,7 +198,7 @@ const BeerDetail = (props) =>{
                             <p>
                                 <span>{beerOne?.name_korean}</span> 맥주는 <span>'{hashtag[1]}'</span> 도수를 지닌 <span>{hashtag[0]}</span> 맥주입니다.
                                 <span>{hashtag[2]}</span>이 매력적인 친구죠.🍺
-                                최근 떠오르는 맥주 중 하나로 요즘 같은 무더운 여름날 인기있는 맥주입니다.
+                                최근 떠오르는 맥주 중 하나로, 인기있는 맥주입니다.
                                 
                                 <br/>
                                 <br/>
@@ -247,7 +247,14 @@ const BeerDetail = (props) =>{
                                     <>
                                     <EachReview key={idx} item={item} userId={userId}/>
                                     </>) : null
-                            )): ""}
+                            )): 
+                                <>
+                                    <Text>첫 리뷰를 장식해 보세요✍</Text>
+                                    <Line_short/>
+                                    <div style={{paddingBottom: "40px"}}/>
+
+                                </>
+                            }    
                         </Gradient>
                         <div style={{marginLeft: "-20px"}}>
                         <ReviewWriteModal
@@ -462,3 +469,18 @@ const WriteButton = styled.div`
     //animation: scaleUp 1.0s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
     //@keyframes zoomOut { from { transform: scale(1); } to { transform: scale(0); } }
 `;
+
+const Text = styled.div`
+    width: 320px;
+    text-align: center;
+    margin: 0 auto;
+    border-radius: 10px;
+`
+const Line_short = styled.hr`
+    width: 220px;
+    text-align: center;
+    border: 0;
+    border:solid #FFC44F;
+    border-width: 0.5px;
+`
+

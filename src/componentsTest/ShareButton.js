@@ -42,16 +42,15 @@ const ShareButton = ({name,description,image,page}) => { //a=category.name, b=ca
     <React.Fragment>
       {page==='testResult'?
         <ShareButtonkakao
-          style={{backgroundImage: `url(${share_white})`}}
+          style={{backgroundImage: `url(${share_white})`, width:"24px",height: "24px"}}
           id="kakao-link-btn"
           onClick={shareKakao}
         ></ShareButtonkakao>
         :<ShareButtonkakao
-          style={{backgroundImage: `url(${share_yellow})`}}
+          style={{backgroundImage: `url(${share_yellow})`,width:"38px",height: "38px"}}
           id="kakao-link-btn"
           onClick={shareKakao}
         ></ShareButtonkakao>
-    
     }
         
     </React.Fragment>
