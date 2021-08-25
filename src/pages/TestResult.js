@@ -10,7 +10,7 @@ import NavigationBar from "../NavigationBar";
 
 import BackgroundCateImage from "../componentsTest/BackgroundCateImage";
 import { ResultInfo } from "../componentsTest/TestIndex";
-import { EachBeer } from "../componentsBeer/BeerIndex"
+import { EachBeer } from "../componentsBeer/BeerIndex";
 
 const TestResult = (props) => {
     const dispatch = useDispatch();

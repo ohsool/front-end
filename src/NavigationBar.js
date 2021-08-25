@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import myPage from "./share/image/myPage.png";
 import beer from "./share/image/beer.png";
@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 
 const NavigationBar = (props) => {
     const userInfo = useSelector(state => state.user.currentUser);
-
+    const pathNow = props.props.match.path;
     const comfirm_login = ()=>{
         if(userInfo.message === "success"){
             history.push("/mybeer");
@@ -25,24 +25,28 @@ const NavigationBar = (props) => {
         <React.Fragment>
             <NavBox>
                 <SearchWrap 
-                onClick={comfirm_login}>
+                    style={pathNow === "/mybeer" ? {backgroundColor: "#F7F7F7"} : null}
+                    onClick={comfirm_login}>
                     <ImageWrap style={{backgroundImage: `url(${search})`}}/>
                     <Text><span>MY BEER</span></Text>
                 </SearchWrap>
-                <BeerListWrap
-                onClick={() => {
+                <SearchWrap
+                    style={pathNow === "/beer" ? {backgroundColor: "#F7F7F7"} : null}
+                    onClick={() => {
                     history.push("/beer/list/all")
                 }}>
                     <ImageWrap style={{backgroundImage: `url(${beer})`}}/>
                     <Text><span>BEER LIST</span></Text>
-                </BeerListWrap>                    
-                <MyPageWrap
-                onClick={()=>{ 
-                    history.push("/mypage");
-                }}
+                </SearchWrap>                    
+                <SearchWrap
+                    style={pathNow === "/mypage" ? {backgroundColor: "#F7F7F7"} : null}
+                    onClick={()=>{ 
+                        history.push("/mypage");
+                    }}
                 >
                     <ImageWrap style={{backgroundImage: `url(${myPage})`}}/>
-                    <Text><span>MY PAGE</span></Text></MyPageWrap>
+                    <Text><span>MY PAGE</span></Text>
+                </SearchWrap>
 
             </NavBox>
         </React.Fragment>
@@ -70,18 +74,6 @@ const NavBox = styled.div`
 const SearchWrap = styled.div`
     text-align: center;
     width:120px;
-    cursor: pointer;
-`;
-
-const BeerListWrap = styled.div`
-    width:120px;
-    text-align: center; 
-    cursor: pointer;
-`;
-
-const MyPageWrap = styled.div`
-    width:120px;
-    text-align: center;
     cursor: pointer;
 `;
 const Text = styled.div`

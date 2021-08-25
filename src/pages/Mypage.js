@@ -107,7 +107,7 @@ const MyPage = (props) => {
                 {comfirm_login()}
                 
             </PageMoveWrap>
-            <NavigationBar/>
+            <NavigationBar props={props}/>
         </Container>
         </>
     )
