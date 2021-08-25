@@ -116,17 +116,7 @@ export const getSearchWord = createAsyncThunk(
     return response.data;
   }
 );
-/*
-//해시태그 명으로 검색하기
-export const getSearchHashtag = createAsyncThunk(
-  "beer/getSearchHashtagResult",
-  async (data, thunkAPI) => {
 
-    const response = await axiosInstance.get(`/api/search?word=${data}`);  
-    return response.data;
-  }
-);
-*/
 export const getHashtagWord = createAsyncThunk(
   "beer/getHashtagResult",
   async (data, thunkAPI) => {
@@ -136,7 +126,6 @@ export const getHashtagWord = createAsyncThunk(
     return response.data;
   }
 );
-
 
 export const checkNickname = createAsyncThunk(
   "user/checkNickname",

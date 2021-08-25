@@ -31,7 +31,6 @@ export const ReceiveNotifications = async () => {
     try {
         const messaging = firebase.messaging();
         const noti = await messaging.onMessage();
-        console.log(noti);
         return noti;
     } catch (error) {
         console.error(error);
