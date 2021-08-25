@@ -1,5 +1,5 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
-import { getMyDogam, getMyReview } from "../async/mybeer";
+import { getMyDogam, getMyReview, unLikeBeerDogam, deleteReviewDogam } from "../async/mybeer";
 
 const initialState = {
     mydogam: [],
@@ -19,6 +19,13 @@ const beerSlice = createSlice({
         })
         .addCase(getMyReview.fulfilled, (state, action) => {
             state.myReview = action.payload.mybeers;
+        })
+        .addCase(unLikeBeerDogam.fulfilled, (state, action) => {
+          state.mydogam.splice(action.payload, 1);
+        })
+        .addCase(deleteReviewDogam.fulfilled, (state, action) => {
+          state.myReview.splice(action.payload, 1);
+          window.alert("삭제되었습니다.😊");
         })
       // 공통
       .addMatcher(

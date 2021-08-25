@@ -33,28 +33,21 @@ const MyPage = (props) => {
             commentPlaceholder: "",
         });
     };
-/*
+
     const comfirm_login = ()=>{
         if(userInfo.message === "success"){
             return(
-                <>
-                    <LogOutWrap>
+                <LogOutWrap>
                     <LogOutButton
                         style={{fontFamily: "Noto Sans KR"}}
                         onClick={confirmLogout}
                     >로그아웃
                     </LogOutButton>
-                    <WithDrawlButton
-                        style={{fontFamily: "Noto Sans KR"}}
-                        onClick={confirmWithDrawl}
-                    >회원탈퇴
-                    </WithDrawlButton>
-                    </LogOutWrap>
-                </>
+                </LogOutWrap>
             )        
         }
     }
-*/
+
     const confirmLogout = () => { // 로그아웃
         if(window.confirm("로그아웃 하시겠어요?")){
             dispatch(logOut());
@@ -104,22 +97,10 @@ const MyPage = (props) => {
                         close={closeModal}
                 ></MyPageModal>
 
-                {/*{comfirm_login()}*/}
-                <LogOutWrap>
-                    <LogOutButton
-                        style={{fontFamily: "Noto Sans KR"}}
-                        onClick={confirmLogout}
-                    >로그아웃
-                    </LogOutButton>
-                    <WithDrawlButton
-                        style={{fontFamily: "Noto Sans KR"}}
-                        onClick={confirmWithDrawl}
-                    >회원탈퇴
-                    </WithDrawlButton>
-                </LogOutWrap>
+                {comfirm_login()}
                 
             </PageMoveWrap>
-            <NavigationBar/>
+            <NavigationBar props={props}/>
         </Container>
         </>
     )
@@ -172,19 +153,6 @@ const LogOutWrap = styled.div`
 `;
 
 const LogOutButton = styled.div`
-    margin: 0 auto;
-    width: 70px;
-    height: 23px;
-    border: none;
-    background-color: transparent;
-    color: #FFC44F;
-    cursor: pointer;
-    font-weight: 700;
-    font-size: 16px;
-    font-family : inherit;
-`;
-
-const WithDrawlButton = styled.div`
     margin: 0 auto;
     width: 70px;
     height: 23px;

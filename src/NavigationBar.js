@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import myPage from "./share/image/myPage.png";
 import beer from "./share/image/beer.png";
@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 
 const NavigationBar = (props) => {
     const userInfo = useSelector(state => state.user.currentUser);
+    const pathNow = props.props.match.path;
 
     const comfirm_login = (page)=>{
         if(page==='myBeer'){
@@ -37,29 +38,27 @@ const NavigationBar = (props) => {
     return (
         <React.Fragment>
             <NavBox>
-                <Wrap 
-                onClick={()=>{ 
-                    comfirm_login('myBeer');
-                    //history.push("/mybeer");
-                }}>
-                    <ImageWrapMybeer style={{backgroundImage: `url(${myBeer})`}}/>
-                    <Text ㄴ쇼ㅣㄷ><span>MY BEER</span></Text>
-                </Wrap>
-                <Wrap
-                onClick={() => {
+                <SearchWrap 
+                    style={pathNow === "/mybeer" ? {backgroundColor: "#F7F7F7"} : null}
+                    onClick={()=>{comfirm_login('myBeer')}}>
+                    <ImageWrap style={{backgroundImage: `url(${myBeer})`}}/>
+                    <Text><span>MY BEER</span></Text>
+                </SearchWrap>
+                <SearchWrap
+                    style={pathNow === "/beer" ? {backgroundColor: "#F7F7F7"} : null}
+                    onClick={() => {
                     history.push("/beer/list/all")
                 }}>
                     <ImageWrap style={{backgroundImage: `url(${beer})`}}/>
                     <Text><span>BEER LIST</span></Text>
-                </Wrap>                    
-                <Wrap
-                onClick={()=>{ 
-                    comfirm_login('myPage');
-                    //history.push("/mypage");
-               }}
-                >
+                </SearchWrap>                    
+                <SearchWrap
+                    style={pathNow === "/mypage" ? {backgroundColor: "#F7F7F7"} : null}
+                    onClick={()=>{comfirm_login('myPage')}}>
+                
                     <ImageWrap style={{backgroundImage: `url(${myPage})`}}/>
-                    <Text><span>MY PAGE</span></Text></Wrap>
+                    <Text><span>MY PAGE</span></Text>
+                </SearchWrap>
 
             </NavBox>
         </React.Fragment>
@@ -84,13 +83,6 @@ const NavBox = styled.div`
     right: 0;
 `;
 
-const Wrap = styled.div`
-    text-align: center;
-    width:120px;
-    cursor: pointer;
-`;
-
-
 const Text = styled.div`
     margin: 9px auto;
     & > span{
@@ -99,14 +91,12 @@ const Text = styled.div`
 `
 const ImageWrap = styled.div`
     margin: 13px 58px 0 48px;
-    width: 22px;
-    height: 22px;
-    background-size: cover;
-`;
-
-const ImageWrapMybeer = styled.div`
-    margin: 12px 55px 0 48px;
     width: 24px;
     height: 22px;
     background-size: cover;
+`;
+const SearchWrap = styled.div`
+    text-align: center;
+    width:120px;
+    cursor: pointer;
 `;

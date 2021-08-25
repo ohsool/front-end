@@ -10,7 +10,7 @@ import NavigationBar from "../NavigationBar";
 
 import BackgroundCateImage from "../componentsTest/BackgroundCateImage";
 import { ResultInfo } from "../componentsTest/TestIndex";
-import { EachBeer } from "../componentsBeer/BeerIndex"
+import { EachBeer } from "../componentsBeer/BeerIndex";
 
 const TestResult = (props) => {
     const dispatch = useDispatch();
@@ -67,7 +67,7 @@ const TestResult = (props) => {
                         {/* <img src="https://image.flaticon.com/icons/png/512/724/724863.png"></img> */}
                     </ReButton>
                 </Grid>
-                <NavigationBar/>
+                <NavigationBar props={props}/>
                 </>
                 :
                 <Loader/>}

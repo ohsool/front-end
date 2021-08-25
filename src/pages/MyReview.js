@@ -37,7 +37,7 @@ const MyReview = (props) =>{
                 
                 </Grid>
             </Container>
-            <NavigationBar/>
+            <NavigationBar props={props}/>
             
         </React.Fragment>
     )

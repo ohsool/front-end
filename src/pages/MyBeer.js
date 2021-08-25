@@ -78,7 +78,7 @@ const MyBeer = (props)=>{
                 }
                 </Wrap>
             </Grid>
-            <NavigationBar/>
+            <NavigationBar props={props}/>
 
         </React.Fragment>
     )
