@@ -8,7 +8,7 @@ const UserPreference = (props) => {
     const is_iphone = navigator.userAgent.toLowerCase();
     const userInfos = useSelector(state => state.user.currentUser);
     const dispatch = useDispatch();
-
+    
     useEffect(() => {
         dispatch(userInfo());
         if(userInfos.preference === 'Unknown'){//사용자의 맥주 타입이 unknown 상테면 테스트 페이지로 이동유도
@@ -16,7 +16,6 @@ const UserPreference = (props) => {
                 history.push("/test")
             }
         }
-
     }, []);
     return(
         <React.Fragment>
