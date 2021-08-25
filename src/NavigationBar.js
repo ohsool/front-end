@@ -68,10 +68,8 @@ const NavBox = styled.div`
 `;
 
 const SearchWrap = styled.div`
-    display: inline-block;
     text-align: center;
     width:120px;
-    background-size: cover;
     cursor: pointer;
 `;
 

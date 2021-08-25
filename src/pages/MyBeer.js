@@ -111,6 +111,7 @@ const List = styled.div`
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    padding-bottom: 74px;
 `;
 
 const Container = styled.div`

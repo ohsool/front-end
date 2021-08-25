@@ -205,7 +205,7 @@ const BeerDetail = (props) =>{
                     </Wrap>
                     <Line/>
                     <Wrap>
-                        <span style={{ fontWeight: "700"}}>Taste 그래프</span>                      
+                        <span style={{ fontWeight: "700"}}>맥주 맛 평점표</span>                    
                     </Wrap>
                     <Graph>
                         <TasteGraph 
