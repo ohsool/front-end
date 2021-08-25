@@ -13,7 +13,6 @@ const MyReview = (props) =>{
     return(
         <React.Fragment>
             <Header/>
-            
             <Container>
             <Grid style={is_iphone.indexOf("iphone") !== -1 ? {marginTop: "80px"} : {marginTop: "40px"}}>
                 
@@ -37,7 +36,7 @@ const MyReview = (props) =>{
                 
                 </Grid>
             </Container>
-            <NavigationBar/>
+            <NavigationBar props={props}/>
             
         </React.Fragment>
     )
