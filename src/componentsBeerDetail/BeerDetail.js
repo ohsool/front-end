@@ -181,7 +181,7 @@ const BeerDetail = (props) =>{
                         <JustifyAlign>
                             <span style={{ fontWeight: "700"}}>맥주소개</span>
                         
-                            <div style={{marginTop: "-60px",marginBottom: "10px"}}>
+                            <div style={{marginTop: "-60px",marginBottom: "10px", marginRight: "-15px"}}>
                                 <ShareButton
                                     page={'detail'}
                                     name={beerOne?.name_korean}
@@ -195,7 +195,7 @@ const BeerDetail = (props) =>{
                             <p>
                                 <span>{beerOne?.name_korean}</span> 맥주는 <span>'{hashtag[1]}'</span> 도수를 지닌 <span>{hashtag[0]}</span> 맥주입니다.
                                 <span>{hashtag[2]}</span>이 매력적인 친구죠.🍺
-                                최근 떠오르는 맥주 중 하나로 요즘 같은 무더운 여름날 인기있는 맥주입니다.
+                                최근 떠오르는 맥주 중 하나로, 인기있는 맥주입니다.
                                 
                                 <br/>
                                 <br/>
@@ -332,7 +332,6 @@ const LineShort = styled.hr`
 const HeartWrap = styled.div`
     width: 38px;
     height: 38px;
-    display: flex;
 `;
 
 
@@ -424,17 +423,6 @@ const TasteTag = styled.div`
     text-align: center;
     color: #333333;
 `;
-/*//리뷰들 뿌옇게 하는 효과
-const Gradient = styled.div`
-    margin: 0 auto;
-    //position: relative;
-    z-index: 1;
-    -webkit-mask-size: 312px 420px; 
-    -webkit-mask-image: -webkit-gradient(linear, center bottom, center top,
-    color-stop(1.00, rgba(0,0,0,1)), 
-    color-stop(0.00, rgba(0,0,0,0)));
-`;
-*/
 
 const Gradient = styled.div`
     z-index: 1;
@@ -457,10 +445,6 @@ const LikeIcon = styled.div`
     width: 12px;
     height: 12px;
 `
-// const WriteButtonWrap = styled.div`
-//     width: 360px;
-//     margin: 0 auto;
-// `;
 
 const WriteButton = styled.div`
     position: fixed;

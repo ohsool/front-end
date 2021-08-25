@@ -34,7 +34,7 @@ const SocialLoginUserInfo = (props) => {
                         <span>사용할 이메일 및 닉네임</span>
                     </SuggestTitle>
                     <SubmitText 
-                         onClick={sendSocialLoginUserInfo}
+                        onClick={sendSocialLoginUserInfo}
                         >
                         <span>보내기</span>
                     </SubmitText>

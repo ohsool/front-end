@@ -33,7 +33,7 @@ const MyPage = (props) => {
             commentPlaceholder: "",
         });
     };
-
+/*
     const comfirm_login = ()=>{
         if(userInfo.message === "success"){
             return(
@@ -54,7 +54,7 @@ const MyPage = (props) => {
             )        
         }
     }
-
+*/
     const confirmLogout = () => { // 로그아웃
         if(window.confirm("로그아웃 하시겠어요?")){
             dispatch(logOut());
@@ -104,7 +104,19 @@ const MyPage = (props) => {
                         close={closeModal}
                 ></MyPageModal>
 
-                {comfirm_login()}
+                {/*{comfirm_login()}*/}
+                <LogOutWrap>
+                    <LogOutButton
+                        style={{fontFamily: "Noto Sans KR"}}
+                        onClick={confirmLogout}
+                    >로그아웃
+                    </LogOutButton>
+                    <WithDrawlButton
+                        style={{fontFamily: "Noto Sans KR"}}
+                        onClick={confirmWithDrawl}
+                    >회원탈퇴
+                    </WithDrawlButton>
+                </LogOutWrap>
                 
             </PageMoveWrap>
             <NavigationBar/>

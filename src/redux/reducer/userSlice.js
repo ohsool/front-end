@@ -39,7 +39,7 @@ const userSlice = createSlice({
         state.checkEmail = action.payload.message;
       })
       .addCase(checkNickname.fulfilled, (state, action) => {
-        state.checkNickname = action.payload.message;
+        state.checkNickname = action.payload;
       })
       .addCase(socialLoginUser.fulfilled, (state, action) => {
         state.social_login = action.payload.message;

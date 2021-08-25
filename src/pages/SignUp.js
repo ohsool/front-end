@@ -59,9 +59,13 @@ const SignUp = (props) => {
             setNickname_Check_Text("");
             return;
         }
-        if(is_nickname === "fail"){
+        if(is_nickname?.message === "fail" && is_nickname?.error === "exist nickname"){
             setNickName_Double(false);
-            setNickname_Check_Text("이미 사용중인 닉네임입니다.");
+            setNickname_Check_Text("사용중인 닉네임입니다.");
+        }
+        else if(is_nickname?.message === "fail" && is_nickname?.error === "wrong nickname"){
+            setNickName_Double(false);
+            setNickname_Check_Text("사용할 수 없는 닉네임입니다.");
         }else{
             setNickName_Double(true);
             setNickname_Check_Text("사용 가능한 닉네임입니다.");
@@ -144,7 +148,7 @@ const SignUp = (props) => {
                         <InputSignUpWrap>
                             <InputSignUP 
                                 type="text"
-                                maxLength="8"
+                                // maxLength="7"
                                 onChange={onChange}
                                 onKeyUp={doubleCheckNickname}
                                 name="nickname"
@@ -178,7 +182,7 @@ const SignUp = (props) => {
                             가입하기
                         </div>
                     </InputWrap>
-            </Container>
+                </Container>
             </SignUpWrap>
         </React.Fragment>
     )

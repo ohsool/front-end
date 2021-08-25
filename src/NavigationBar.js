@@ -2,15 +2,15 @@ import React from "react";
 import styled from "styled-components";
 import myPage from "./share/image/myPage.png";
 import beer from "./share/image/beer.png";
-import search from "./share/image/search.png";
+import myBeer from "./share/image/mybeer.png";
 import { history } from "./redux/configureStore";
 import "./share/style/TestHeader.css";
 import { useSelector } from "react-redux";
 
 const NavigationBar = (props) => {
-    //const userInfo = useSelector(state => state.user.currentUser);
+    const userInfo = useSelector(state => state.user.currentUser);
 
-/*    const comfirm_login = ()=>{
+    const comfirm_login = ()=>{
         if(userInfo.message === "success"){
             history.push("/mypage");
         }else{
@@ -20,7 +20,7 @@ const NavigationBar = (props) => {
             }
         }
     }
-*/
+
     return (
         <React.Fragment>
             <NavBox>
@@ -28,7 +28,7 @@ const NavigationBar = (props) => {
                 onClick={()=>{ 
                     history.push("/mybeer");
                 }}>
-                    <ImageWrap style={{backgroundImage: `url(${search})`}}/>
+                    <ImageWrap style={{backgroundImage: `url(${myBeer})`}}/>
                     <Text><span>MY BEER</span></Text>
                 </SearchWrap>
                 <BeerListWrap
@@ -40,11 +40,9 @@ const NavigationBar = (props) => {
                 </BeerListWrap>                    
                 <MyPageWrap
                 onClick={()=>{ 
-                    history.push("/mypage");
-                }}
-                /*onClick={() => {
+                    //history.push("/mypage");
                     comfirm_login();
-                }}*/
+                }}
                 >
                     <ImageWrap style={{backgroundImage: `url(${myPage})`}}/>
                     <Text><span>MY PAGE</span></Text></MyPageWrap>
@@ -57,14 +55,15 @@ const NavigationBar = (props) => {
 export default NavigationBar;
 
 const NavBox = styled.div`
-    width: 360px;
+    max-width: 400px;
     height: 71px;
     z-index: 10;
     background-color: white;
     font-family: "GmarketSansM";
     display: flex;
     position:fixed; 
-    border-top: 0.2px solid #C4C4c4; 
+    border-top: 0.2px solid #F7F7F7; 
+    justify-content: space-around;
     bottom:0;
     margin: 0 auto;
     left: 0;
@@ -75,22 +74,19 @@ const SearchWrap = styled.div`
     display: inline-block;
     text-align: center;
     width:120px;
-    float:left;
     background-size: cover;
     cursor: pointer;
 `;
 
 const BeerListWrap = styled.div`
     width:120px;
-    text-align: center;
-    float:center;
+    text-align: center; 
     cursor: pointer;
 `;
 
 const MyPageWrap = styled.div`
     width:120px;
     text-align: center;
-    float:right;
     cursor: pointer;
 `;
 const Text = styled.div`
