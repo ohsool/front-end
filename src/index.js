@@ -6,7 +6,6 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from "react-redux";
 import { store } from "./redux/configureStore";
-import firebase from "firebase";
 import {initializeFirebase} from "./share/firebase";
 
 ReactDOM.render(

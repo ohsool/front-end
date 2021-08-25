@@ -5,7 +5,7 @@ import {socialLoginUser} from "../redux/async/user";
 
 const SocialLoginUserInfo = (props) => {
     const { open, close } = props;
-     const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
     const [socialUserInfo, setSoccialUserInfo] = useState({
         email: "",
@@ -17,9 +17,9 @@ const SocialLoginUserInfo = (props) => {
         setSoccialUserInfo({...socialUserInfo, [e.target.name]: e.target.value});
     }
 
-     const sendSocialLoginUserInfo = () => {
-         dispatch(socialLoginUser(socialUserInfo));
-     }
+    const sendSocialLoginUserInfo = () => {
+        dispatch(socialLoginUser(socialUserInfo));
+    }
 
     return(
         <React.Fragment>

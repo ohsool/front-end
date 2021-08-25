@@ -11,7 +11,7 @@ const MyPageModal = (props) => {
         title: "",
         chat: "",
     })
-    const {title, chat} = suggestChat
+    const {title, chat} = suggestChat;
     const { open, close, suggestInfo } = props;
 
     const onChange = (e) => {
