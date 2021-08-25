@@ -6,18 +6,16 @@ const HashTagList = ({ hashtag, hashtagName, setHashtagName }) => {
 
     return(
         <React.Fragment>
-            <span style={{
-                float:"right", 
-                marginRight: "30px",
-                fontSize:"12.5px", 
-                fontWeight:"500",
-                paddingBottom: "10px"
-                }}>
-                    <strong>#{hashtagName}</strong>로 검색된 맥주는
-                총 <strong>
-                     {hashtag?.length}
-                </strong>건입니다.
+            <HashTagSearchResultWrap>
+            <span>
+            <span style={{color:"#FFC44F",fontWeight:"700"}}>
+                #{hashtagName}</span>
+                으로 검색된 맥주는 총 
+                <span style={{color:"#FFC44F",fontWeight:"700"}}>
+                {hashtag?.length}
+            </span>건입니다.
             </span>
+            </HashTagSearchResultWrap>
             <List>                    
                 {hashtag?.length > 0 ? hashtag?.map((item, idx) => (
                     <EachBeer 
@@ -37,4 +35,13 @@ const List = styled.div`
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+`;
+
+const HashTagSearchResultWrap = styled.div`
+    margin: 20px auto;
+    width: 300px;
+    & > span{
+        font-size: 14px; 
+        font-weight: 500;
+    }
 `;

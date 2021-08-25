@@ -7,10 +7,10 @@ import {useParams} from "react-router-dom";
 import EachBeer from "./EachBeer";
 import _ from "lodash";
 import Loader from "../share/Loader";
+import useDidMountEffect from "./useDidMountEffect.js";
 
 const BeerListCategory = ({ setHashtagName }) => {
     const category_beers = useSelector(beerCategory);
-    const [forDidmountId, setForDidmoutId] = useState("");
     const {beerCategoryId} = useParams();
     const [beers, setBeers] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -56,26 +56,16 @@ const BeerListCategory = ({ setHashtagName }) => {
         }
     }, []);
 
-    const useDidMountEffect = (func, deps) => {
-        const didMount = useRef(false);
-        useEffect(()=>{
-            if(didMount.current){
-                setPaging(0);
-                setBeers([]);
-                dispatch(getBeerCategoryList({
-                    categoryId: beerCategoryId,
-                    pageNo: 0,
-                }));
-                setPaging(1);
-                setLoading(false);
-            } else{
-                didMount.current = true;
-            }
-        },[deps, beerCategoryId]);
-    }
-
     useDidMountEffect(() => {
-    })
+        setPaging(0);
+        setBeers([]);
+        dispatch(getBeerCategoryList({
+            categoryId: beerCategoryId,
+            pageNo: 0,
+        }));
+        setPaging(1);
+        setLoading(false);
+    }, [beerCategoryId]);
 
     useEffect(() => {
         if(loading){

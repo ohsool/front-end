@@ -19,6 +19,7 @@ import _ from "lodash";
 import { getAllBeer } from "../redux/async/beer";
 import { getSearchList } from "../redux/reducer/beerSlice";
 import { userInfo } from "../redux/async/user";
+import useDidMountEffect from "./useDidMountEffect.js";
 
 const BeerList = (props) =>{
     const get_category_id = props.match.params.beerCategoryId;
@@ -59,7 +60,7 @@ const BeerList = (props) =>{
         })
     }
 
-    const _scrollPosition = _.debounce(() => {
+    const _scrollPosition = _.throttle(() => {
         const scrollHeight = document.documentElement.scrollTop;
         SetScrollHeightInfo(scrollHeight);
     }, 300)
@@ -77,19 +78,9 @@ const BeerList = (props) =>{
         }
     }, [beers])
 
-    const useDidMountEffect = (func, deps) => {
-        const didMount = useRef(false);
-        useEffect(()=>{
-            if(didMount.current){
-                setHashtag(hashtag_beers);
-            } else{
-                didMount.current = true;
-            }
-        },[deps, hashtag_beers]);
-    }
-
-    useDidMountEffect(() => {
-    })
+    useDidMountEffect(() => {;
+        setHashtag(hashtag_beers);
+    }, [hashtag_beers]);
 
     useEffect(()=>{
         BeerLists();
@@ -209,11 +200,11 @@ const List = styled.div`
 
 const TopButton = styled.div`
     position: fixed;
-    bottom: 10px;
+    bottom: 74px;
     left: 50%;
-    margin-left: -25px;
-    width: 50px;
-    height: 50px;
+    margin-left: -20px;
+    width: 40px;
+    height: 40px;
     background-image: url(${upButton});
     background-size: cover;
     cursor: pointer;

@@ -23,7 +23,6 @@ const Beer = (props) => {
             <NavigationBar props={props}/>
         </React.Fragment>
     )
-
 }
 
 export default React.memo(Beer);

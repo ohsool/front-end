@@ -18,7 +18,7 @@ const MyBeer = (props)=>{
     const [is_Dogam, setIs_Dogam] = useState(true); //맥주리스트인지 리뷰리스트인지
     const is_iphone = navigator.userAgent.toLowerCase();
     const dispatch = useDispatch();
-
+    console.log(props);
     useEffect(() => {
         dispatch(userInfo());//현재 로그인한사용자 정보 (새로고침시 상태 날라가는 것 방지)
     }, []);
