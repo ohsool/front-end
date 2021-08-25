@@ -70,12 +70,14 @@ export const beerSlice = createSlice({
           }else{
           state.testBeerList[indexIf].like_array = likes_array;
           }
+          alert("취소되었습니다.");
         })
         .addCase(likeBeerDetail.fulfilled, (state, action) => {
           state.beerOne.like_array = action.payload.likes;
         })
         .addCase(unLikeBeerDetail.fulfilled, (state, action) => {
           state.beerOne.like_array = action.payload.likes;
+          alert("취소되었습니다.");
         })
         .addCase(starRateDetail.fulfilled, (state, action) => {
           state.beerOne.avgRate = action.payload;

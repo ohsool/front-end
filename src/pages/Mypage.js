@@ -37,20 +37,13 @@ const MyPage = (props) => {
     const comfirm_login = ()=>{
         if(userInfo.message === "success"){
             return(
-                <>
-                    <LogOutWrap>
+                <LogOutWrap>
                     <LogOutButton
                         style={{fontFamily: "Noto Sans KR"}}
                         onClick={confirmLogout}
                     >로그아웃
                     </LogOutButton>
-                    <WithDrawlButton
-                        style={{fontFamily: "Noto Sans KR"}}
-                        onClick={confirmWithDrawl}
-                    >회원탈퇴
-                    </WithDrawlButton>
-                    </LogOutWrap>
-                </>
+                </LogOutWrap>
             )        
         }
     }
@@ -160,19 +153,6 @@ const LogOutWrap = styled.div`
 `;
 
 const LogOutButton = styled.div`
-    margin: 0 auto;
-    width: 70px;
-    height: 23px;
-    border: none;
-    background-color: transparent;
-    color: #FFC44F;
-    cursor: pointer;
-    font-weight: 700;
-    font-size: 16px;
-    font-family : inherit;
-`;
-
-const WithDrawlButton = styled.div`
     margin: 0 auto;
     width: 70px;
     height: 23px;

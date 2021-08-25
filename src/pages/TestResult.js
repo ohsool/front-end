@@ -67,7 +67,7 @@ const TestResult = (props) => {
                         {/* <img src="https://image.flaticon.com/icons/png/512/724/724863.png"></img> */}
                     </ReButton>
                 </Grid>
-                <NavigationBar/>
+                <NavigationBar props={props}/>
                 </>
                 :
                 <Loader/>}

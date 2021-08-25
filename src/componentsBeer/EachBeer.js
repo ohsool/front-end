@@ -8,6 +8,7 @@ import { User } from "../redux/reducer/userSlice";
 import { getHashtagWord} from "../redux/async/beer";
 
 import HeartButton from "./HeartButton";
+import { unLikeBeerDogam } from "../redux/async/mybeer";
 
 const EachBeer = (props) => {
     const dispatch = useDispatch();
@@ -26,8 +27,12 @@ const EachBeer = (props) => {
     const clickLike = () => { //좋아요 토글 함수
         if(userId){
             if(toggle === true){
-                dispatch(unLikeBeer(item._id));
-                setToggle(false)
+                if(window.confirm(`좋아요를 취소하시겠어요?`)){
+                    dispatch(unLikeBeer(item._id));
+                    dispatch(unLikeBeerDogam(item._id));
+                    setToggle(false)
+                    return;
+                }
             }else{
                 dispatch(likeBeer(item._id));
                 setToggle(true);

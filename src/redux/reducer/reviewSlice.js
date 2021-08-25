@@ -42,7 +42,6 @@ const reviewSlice = createSlice({
         })
         .addCase(deleteReview.fulfilled, (state, action) => {
           state.reviewList.splice(action.payload, 1);
-          window.alert("삭제되었습니다.😊");
         })
       // 공통
       .addMatcher(

@@ -57,8 +57,11 @@ const BeerDetail = (props) =>{
     const clickLike = () => { //좋아요 및 좋아요 취소 기능
         if(userId){
             if(toggle === true){
-                dispatch(unLikeBeerDetail(beerOne._id));
-                 setToggle(false);
+                if(window.confirm(`좋아요를 취소하시겠어요?`)){
+                    dispatch(unLikeBeerDetail(beerOne._id));
+                    setToggle(false)
+                    return;
+                }
             }else{
                 dispatch(likeBeerDetail(beerOne._id));
                 setToggle(true);
