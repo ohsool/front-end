@@ -180,6 +180,7 @@ const TasteTag = styled.div`
     line-height: 14px;
     text-align: center;
     color: #333333;
+    cursor: pointer;
 `;
 
 const JustifyAlign = styled.div`
