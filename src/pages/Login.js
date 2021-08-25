@@ -104,7 +104,7 @@ const Login = (props) => {
                             </SocialLoginButton>
                         </div>
                     </InputWrap>
-                    <NavigationBar/>
+                    <NavigationBar props={props}/>
             </Container>
             </LoginWrap>
         </React.Fragment>

@@ -185,7 +185,7 @@ const SignUp = (props) => {
                             가입하기
                         </div>
                     </InputWrap>
-                    <NavigationBar/>
+                    <NavigationBar props={props}/>
                 </Container>
             </SignUpWrap>
         </React.Fragment>

@@ -27,7 +27,7 @@ export const question =
         id: 4,
         question_id: "many",
         questionNum: "",
-        question: "마시는 위치:\n 어디서 마실거에요?",
+        question: "마시는 위치:\n 어디서 마실거예요?",
         explain: "",
         answer: [{"home" : "집밖은 위험해! 집에서"}, {"outside": "맛있는건 밖에서"}]
     },
@@ -35,7 +35,7 @@ export const question =
         id: 5,
         question_id: "couple",
         questionNum: "",
-        question: "마시는 위치:\n 어디서 마실거에요?",
+        question: "마시는 위치:\n 어디서 마실거예요?",
         explain: "",
         answer: [{"home" : "집밖은 위험해! 집에서"}, {"outside": "맛있는건 밖에서"}]
     },
@@ -43,7 +43,7 @@ export const question =
         id: 6,
         question_id: "single",
         questionNum: "",
-        question: "마시는 위치:\n 어디서 마실거에요?",
+        question: "마시는 위치:\n 어디서 마실거예요?",
         explain: "",
         answer: [{"home" : "집밖은 위험해! 집에서"}, {"outside": "맛있는건 밖에서"}]
     },
