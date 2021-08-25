@@ -143,7 +143,7 @@ export const checkNickname = createAsyncThunk(
 export const testResult = createAsyncThunk(
   "beer/testResult",
   async (data, thunkAPI) => {
-    
+
     const response = await axiosInstance.post(`/api/user/test`, data);
     
     return response.data;

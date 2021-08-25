@@ -33,7 +33,7 @@ const TestResult = (props) => {
     useEffect(() => {
         if(categoryParams === "Lager" 
         || categoryParams === "Pilsner" 
-        || categoryParams === "Pale Ale" 
+        || categoryParams === "Ale" 
         || categoryParams === "IPA" 
         || categoryParams === "Weizen"
         || categoryParams === "Dunkel" 

@@ -26,10 +26,11 @@ const Test = (props) => {
     useEffect(() => { //테스트마다 페이지 이동 애니메이션 적용
         setPageAnimation(true);
     }, []);
+
     useEffect(() => {
         if(testResultArray[testResultArray.length -1] === "Lager" 
         || testResultArray[testResultArray.length -1] === "Pilsner"
-        || testResultArray[testResultArray.length -1] === "Pale Ale"
+        || testResultArray[testResultArray.length -1] === "Ale"
         || testResultArray[testResultArray.length -1] === "IPA" 
         || testResultArray[testResultArray.length -1] === "Weizen"
         || testResultArray[testResultArray.length -1] === "Dunkel" 
@@ -55,6 +56,7 @@ const Test = (props) => {
         || choice === "Bock"){
             setTestResultArray([...testResultArray, choice]);
             setTestResultArray(testResultArray.splice(3));
+            return;
         }
         else if(choice){ //question_id하고 choice가 같은 데이터 불러와서 index번호 찾기
             setIndex(question.findIndex((p) => p.question_id === choice));

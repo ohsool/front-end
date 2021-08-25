@@ -27,7 +27,7 @@ export const question =
         id: 4,
         question_id: "many",
         questionNum: "",
-        question: "오늘,\n 어느나라로\n 여행가고 싶어요?",
+        question: "마시는 위치:\n 어디서 마실거에요?",
         explain: "",
         answer: [{"home" : "집밖은 위험해! 집에서"}, {"outside": "맛있는건 밖에서"}]
     },
@@ -35,7 +35,7 @@ export const question =
         id: 5,
         question_id: "couple",
         questionNum: "",
-        question: "오늘,\n 어느나라로\n 여행가고 싶어요?",
+        question: "마시는 위치:\n 어디서 마실거에요?",
         explain: "",
         answer: [{"home" : "집밖은 위험해! 집에서"}, {"outside": "맛있는건 밖에서"}]
     },
@@ -43,7 +43,7 @@ export const question =
         id: 6,
         question_id: "single",
         questionNum: "",
-        question: "오늘,\n 어느나라로\n 여행가고 싶어요?",
+        question: "마시는 위치:\n 어디서 마실거에요?",
         explain: "",
         answer: [{"home" : "집밖은 위험해! 집에서"}, {"outside": "맛있는건 밖에서"}]
     },
@@ -117,7 +117,7 @@ export const question =
         questionNum: "",
         question: "쓴맛의 맥주를\n 좋아하시나요?",
         explain: "인생의 쓴맛을 쓴맛 맥주로 해소한다면 YES!!",
-        answer: [{"Pale Ale" : "네"}, {"IPA": "아니요"}]
+        answer: [{"Ale" : "네"}, {"IPA": "아니요"}]
     },
     {
         id: 16,

@@ -10,7 +10,17 @@ import { useSelector } from "react-redux";
 const NavigationBar = (props) => {
     const userInfo = useSelector(state => state.user.currentUser);
 
-    const comfirm_login = ()=>{
+    const comfirm_login_mybeer = ()=>{
+        if(userInfo.message === "success"){
+            history.push("/mybeer");
+        }else{
+            if(window.confirm("로그인 후 이용 가능한 서비스입니다. \n로그인하고 나만의 맥주 리스트를 관리해보세요!🍻")){
+                history.push("/login");
+                return;
+            }
+        }
+    }
+    const comfirm_login_mypage = ()=>{
         if(userInfo.message === "success"){
             history.push("/mypage");
         }else{
@@ -24,28 +34,29 @@ const NavigationBar = (props) => {
     return (
         <React.Fragment>
             <NavBox>
-                <SearchWrap 
+                <Wrap 
                 onClick={()=>{ 
-                    history.push("/mybeer");
+                    comfirm_login_mybeer();
+                    //history.push("/mybeer");
                 }}>
-                    <ImageWrap style={{backgroundImage: `url(${myBeer})`}}/>
+                    <ImageWrapMybeer style={{backgroundImage: `url(${myBeer})`}}/>
                     <Text><span>MY BEER</span></Text>
-                </SearchWrap>
-                <BeerListWrap
+                </Wrap>
+                <Wrap
                 onClick={() => {
                     history.push("/beer/list/all")
                 }}>
                     <ImageWrap style={{backgroundImage: `url(${beer})`}}/>
                     <Text><span>BEER LIST</span></Text>
-                </BeerListWrap>                    
-                <MyPageWrap
+                </Wrap>                    
+                <Wrap
                 onClick={()=>{ 
                     //history.push("/mypage");
-                    comfirm_login();
+                    comfirm_login_mypage();
                 }}
                 >
                     <ImageWrap style={{backgroundImage: `url(${myPage})`}}/>
-                    <Text><span>MY PAGE</span></Text></MyPageWrap>
+                    <Text><span>MY PAGE</span></Text></Wrap>
 
             </NavBox>
         </React.Fragment>
@@ -70,25 +81,13 @@ const NavBox = styled.div`
     right: 0;
 `;
 
-const SearchWrap = styled.div`
-    display: inline-block;
+const Wrap = styled.div`
     text-align: center;
     width:120px;
-    background-size: cover;
     cursor: pointer;
 `;
 
-const BeerListWrap = styled.div`
-    width:120px;
-    text-align: center; 
-    cursor: pointer;
-`;
 
-const MyPageWrap = styled.div`
-    width:120px;
-    text-align: center;
-    cursor: pointer;
-`;
 const Text = styled.div`
     margin: 9px auto;
     & > span{
@@ -98,6 +97,13 @@ const Text = styled.div`
 const ImageWrap = styled.div`
     margin: 13px 58px 0 48px;
     width: 22px;
+    height: 22px;
+    background-size: cover;
+`;
+
+const ImageWrapMybeer = styled.div`
+    margin: 13px 55px 0 48px;
+    width: 30px;
     height: 22px;
     background-size: cover;
 `;
