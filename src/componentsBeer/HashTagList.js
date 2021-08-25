@@ -9,13 +9,14 @@ const HashTagList = ({ hashtag, hashtagName, setHashtagName }) => {
             <span style={{
                 float:"right", 
                 marginRight: "30px",
-                fontSize:"14px", 
-                fontWeight:"500"}}>
-                    {hashtagName}
-                총 
-                <span style={{color:"#FFC44F",fontWeight:"700"}}>
-                    {hashtag?.length}
-                </span>건입니다.
+                fontSize:"12.5px", 
+                fontWeight:"500",
+                paddingBottom: "10px"
+                }}>
+                    <strong>#{hashtagName}</strong>로 검색된 맥주는
+                총 <strong>
+                     {hashtag?.length}
+                </strong>건입니다.
             </span>
             <List>                    
                 {hashtag?.length > 0 ? hashtag?.map((item, idx) => (
