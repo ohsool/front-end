@@ -8,11 +8,11 @@ import "./share/style/TestHeader.css";
 import { useSelector } from "react-redux";
 
 const NavigationBar = (props) => {
-    //const userInfo = useSelector(state => state.user.currentUser);
+    const userInfo = useSelector(state => state.user.currentUser);
 
-/*    const comfirm_login = ()=>{
+    const comfirm_login = ()=>{
         if(userInfo.message === "success"){
-            history.push("/mypage");
+            history.push("/mybeer");
         }else{
             if(window.confirm("로그인이 필요한 서비스입니다. 로그인하시겠습니까?")){
                 history.push("/login");
@@ -20,14 +20,12 @@ const NavigationBar = (props) => {
             }
         }
     }
-*/
+
     return (
         <React.Fragment>
             <NavBox>
                 <SearchWrap 
-                onClick={()=>{ 
-                    history.push("/mybeer");
-                }}>
+                onClick={comfirm_login}>
                     <ImageWrap style={{backgroundImage: `url(${search})`}}/>
                     <Text><span>MY BEER</span></Text>
                 </SearchWrap>

@@ -16,30 +16,17 @@ const MyBeer = (props)=>{
     const mydogam = useSelector(likeList); //좋아요한 맥주 리스트
     const myReview = useSelector(myReviewList); //사용자가 단 리뷰리스트
     const [is_Dogam, setIs_Dogam] = useState(true); //맥주리스트인지 리뷰리스트인지
-    const is_login = useSelector((state) => state.user.currentUser.message);
     const is_iphone = navigator.userAgent.toLowerCase();
     const dispatch = useDispatch();
 
+    useEffect(() => {
+        dispatch(userInfo());//현재 로그인한사용자 정보 (새로고침시 상태 날라가는 것 방지)
+    }, []);
+
     useEffect(()=> {
         setIs_Dogam(true);
-        async function getData(){
-            await dispatch(getMyDogam()); //좋아요한 맥주 리스트 디스패치
-            await dispatch(getMyReview()); //사용자가 쓴 리뷰리스트 디스패치
-            await dispatch(userInfo()); //현재 로그인한사용자 정보 (새로고침시 상태 날라가는 것 방지)
-        }
-        return getData();
-    }, [])
-
-
-    useEffect(() => {
-        if(is_login !== "success"){
-            if(window.confirm("로그인이 필요한 서비스입니다. 로그인하시겠습니까?")){
-                history.push("/login")
-                return;
-            }else{
-                history.goBack("/")
-            }
-        }
+            dispatch(getMyDogam()); //좋아요한 맥주 리스트 디스패치
+            dispatch(getMyReview()); //사용자가 쓴 리뷰리스트 디스패치
     }, []);
 
     return (
