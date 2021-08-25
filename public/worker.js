@@ -3,9 +3,6 @@
 let CACHE_NAME = 'ohsool';
 let urlsToCache = [
     '/',
-    '/mybeer',
-    '/mypage',
-    '/beer/list/:categoryId'
 ];
 
 // Install a service worker

@@ -4,6 +4,7 @@ import { getBeerInfinity } from "../redux/async/beer";
 import { useDispatch, useSelector } from "react-redux";
 import { InfinityBeer } from "../redux/reducer/beerSlice";
 import EachBeer from "./EachBeer";
+import Loader from "../share/Loader";
 import _ from "lodash";
 
 const InfinityChildren = ({setHashtagName}) => {
@@ -63,9 +64,9 @@ const InfinityChildren = ({setHashtagName}) => {
                 setHashtagName={setHashtagName}
                 key={idx} item={item}/>
             ))}
-            {loading ? <h1>Loading...</h1>: 
-            ""}
             </List>
+            {loading ? <Loader></Loader>: 
+            ""}
         </React.Fragment>
     )
 }

@@ -48,7 +48,7 @@ const Test = (props) => {
         //각 맥주종류들이 결과값으로나오면 그 카테고리의 결과페이지로 이동
         if(choice === "Lager" 
         || choice === "Pilsner"
-        || choice === "Pale Ale"
+        || choice === "Ale"
         || choice === "IPA" 
         || choice === "Weizen"
         || choice === "Dunkel" 
@@ -60,18 +60,6 @@ const Test = (props) => {
         }
         else if(choice){ //question_id하고 choice가 같은 데이터 불러와서 index번호 찾기
             setIndex(question.findIndex((p) => p.question_id === choice));
-        }
-    }
-    const lastTestButton = () => {
-        if(question[index].anwer){
-            <TestButton 
-                goToNext={goToNext} 
-                question={question[index].answer}
-                testResultArray={testResultArray}
-                setTestResultArray={setTestResultArray}
-            />
-        }else{
-            <></>
         }
     }
     return (

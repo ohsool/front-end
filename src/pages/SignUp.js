@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import { signUp, checkEmail, checkNickname } from "../redux/async/user";
 import { is_Signup, is_Nickname, is_Email } from "../redux/reducer/userSlice";
 import { emailCheck, pwdReg} from "../share/checkReg";
+import NavigationBar from "../NavigationBar";
 
 import "../share/style/loginButton.css";
 
@@ -176,12 +177,15 @@ const SignUp = (props) => {
                             placeholder="비밀번호를 한번 더 입력해주세요"
                         ></InputSignUP>
                         <div 
-                            style={{marginTop: "100px"}}
+                            style={{marginTop: "100px",
+                                    marginBottom: "80px"
+                            }}
                             className={is_typed ? "yellowButton" : "whiteButton"}
                             onClick={submitSignUp}>
                             가입하기
                         </div>
                     </InputWrap>
+                    <NavigationBar/>
                 </Container>
             </SignUpWrap>
         </React.Fragment>
@@ -200,6 +204,7 @@ const SignUpWrap = styled.div`
 const Container = styled.div`
     width: 360px;
     margin: 0 auto;
+
 `;
 
 const Wrap = styled.div`
@@ -229,6 +234,7 @@ const InputWrap = styled.div`
     position: absolute;
     width: 360px;
     margin-top: 45px;
+
 `;
 
 const InputSignUpWrap = styled.div`

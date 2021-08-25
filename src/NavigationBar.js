@@ -10,25 +10,28 @@ import { useSelector } from "react-redux";
 const NavigationBar = (props) => {
     const userInfo = useSelector(state => state.user.currentUser);
 
-    const comfirm_login_mybeer = ()=>{
-        if(userInfo.message === "success"){
-            history.push("/mybeer");
-        }else{
-            if(window.confirm("로그인 후 이용 가능한 서비스입니다. \n로그인하고 나만의 맥주 리스트를 관리해보세요!🍻")){
-                history.push("/login");
-                return;
+    const comfirm_login = (page)=>{
+        if(page==='myBeer'){
+            if(userInfo.message === "success"){
+                history.push("/mybeer");
+            }else{
+                if(window.confirm("로그인 후 이용 가능한 서비스입니다. \n로그인하고 나만의 맥주 리스트를 관리해보세요!🍻")){
+                    history.push("/login");
+                    return;
+                }
             }
-        }
-    }
-    const comfirm_login_mypage = ()=>{
-        if(userInfo.message === "success"){
-            history.push("/mypage");
-        }else{
-            if(window.confirm("로그인이 필요한 서비스입니다. 로그인하시겠습니까?")){
-                history.push("/login");
-                return;
+        }else if(page==='myPage'){
+            if(userInfo.message === "success"){
+                history.push("/myPage");
+            }else{
+                if(window.confirm("로그인 후 이용 가능한 서비스입니다. \n로그인 하시겠습니까?")){
+                    history.push("/login");
+                    return;
+                }
             }
+
         }
+
     }
 
     return (
@@ -36,11 +39,11 @@ const NavigationBar = (props) => {
             <NavBox>
                 <Wrap 
                 onClick={()=>{ 
-                    comfirm_login_mybeer();
+                    comfirm_login('myBeer');
                     //history.push("/mybeer");
                 }}>
                     <ImageWrapMybeer style={{backgroundImage: `url(${myBeer})`}}/>
-                    <Text><span>MY BEER</span></Text>
+                    <Text ㄴ쇼ㅣㄷ><span>MY BEER</span></Text>
                 </Wrap>
                 <Wrap
                 onClick={() => {
@@ -51,9 +54,9 @@ const NavigationBar = (props) => {
                 </Wrap>                    
                 <Wrap
                 onClick={()=>{ 
+                    comfirm_login('myPage');
                     //history.push("/mypage");
-                    comfirm_login_mypage();
-                }}
+               }}
                 >
                     <ImageWrap style={{backgroundImage: `url(${myPage})`}}/>
                     <Text><span>MY PAGE</span></Text></Wrap>
@@ -102,8 +105,8 @@ const ImageWrap = styled.div`
 `;
 
 const ImageWrapMybeer = styled.div`
-    margin: 13px 55px 0 48px;
-    width: 30px;
+    margin: 12px 55px 0 48px;
+    width: 24px;
     height: 22px;
     background-size: cover;
 `;

@@ -55,22 +55,25 @@ const MyBeer = (props)=>{
                 </ButtonContainerWrap>
                 {is_Dogam === true ? 
                     <List>
-                    {mydogam?.map((item, idx) => (
+                    {mydogam.length !== 0 ? mydogam?.map((item, idx) => (
                         <EachBeer key={idx} item={item} 
                             _onClick={() =>{
                                 history.push("/beer/detail")
                             }
                         }/>
-                    ))}
+                    )): <Text>좋아요한 맥주 목록이 <br/>🍺BEER🍺 있소</Text> }
                     </List>
                 : 
                     <Container>  {/* 데이터 이미지가공 까지해서 */}
                     {is_Dogam === false ? 
-                        myReview?.map((item, idx) => (
+                        <>
+                        { myReview.length !== 0 ?  myReview?.map((item, idx) => (
                             <WritedReview key={idx} item={item}
                             />
-                        )) :
-                        ""}
+                        ))  : <Text>도감 목록이 <br/>🍺BEER🍺 있소</Text> }
+                        </>
+                        : ""
+                    }
                     </Container>
                 }
                 </Wrap>
@@ -116,4 +119,10 @@ const List = styled.div`
 
 const Container = styled.div`
     margin-top: 10px;
+`
+const Text = styled.div`
+    width: 320px;
+    text-align: center;
+    margin: 0 auto;
+    padding-top: 150px;
 `

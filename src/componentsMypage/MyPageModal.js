@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { useDispatch } from "react-redux";
@@ -6,7 +6,7 @@ import {suggestBeer, suggestComment} from "../redux/async/suggest";
 
 const MyPageModal = (props) => {
     const dispatch = useDispatch();
-    // const [chat, setChat] = useState();
+    const [isWrited, setIsWrited] = useState(false);
     const [suggestChat, setSuggestChat] = useState({
         title: "",
         chat: "",
@@ -17,42 +17,18 @@ const MyPageModal = (props) => {
     const onChange = (e) => {
         setSuggestChat({...suggestChat, [e.target.name]: e.target.value});
     }
-
     // suggestTitle이 맥주 건의하기면은 맥주건의하기로 modal띄우고
     // 아닐경우 관리자에게 건의하기
     const EnterSubmit = (e) => {
-        if(e.key === "Enter"){  
-            if(window.confirm("작성한 내용을 보내시겠습니까?")){
-                if(suggestInfo.suggestTitle === "맥주 건의하기"){
-                    dispatch(suggestBeer({
-                        beer: title,
-                        description: chat,
-                        image: "맥주",
-                    }));
-                    setSuggestChat({
-                        title: "",
-                        chat: "",
-                    });
-                    alert("맥주 건의하기가 완료되었습니다!")
-                    close();
-                }
-                else{
-                    dispatch(suggestComment({
-                        title: title,
-                        description: chat
-                    }));
-                    setSuggestChat({
-                        title: "",
-                        chat: "",
-                    });
-                    alert("관리자에게 건의하기가 완료되었습니다!")
-                    close();
-                }
-                return;
-            }            
+        if(e.key === "Enter"){
+            clickSubmit();
         }
     }
     const clickSubmit = ()=>{
+        if(title === "" && chat === ""){
+            alert("건의 내용을 입력해주세요!")
+            return;
+        }
         if(window.confirm("작성한 내용을 보내시겠습니까?")){
             if(suggestInfo.suggestTitle === "맥주 건의하기"){
                 dispatch(suggestBeer({
@@ -68,6 +44,10 @@ const MyPageModal = (props) => {
                 close();
             }
             else{
+                if(title === "" && chat === ""){
+                    alert("건의 내용을 입력해주세요!")
+                    return;
+                }
                 dispatch(suggestComment({
                     title: title,
                     description: chat
@@ -81,8 +61,13 @@ const MyPageModal = (props) => {
             }
             return;
         }
-        
     }
+
+    useEffect(() => {
+        if(title.length > 1 && chat.length > 1){
+            setIsWrited(true);
+        }
+    }, [title, chat])
 
     return(
         <React.Fragment>
@@ -96,7 +81,11 @@ const MyPageModal = (props) => {
                         <SuggestTitle>
                             <span>{suggestInfo.suggestTitle}</span>
                         </SuggestTitle>
-                        <SubmitText onClick={clickSubmit}><span>보내기</span></SubmitText>
+                        <SubmitText onClick={clickSubmit}>
+                            <span
+                            style={isWrited ? {color: "black"} : {color: "#C4C4C4"}}
+                            >보내기</span>
+                        </SubmitText>
 
                     </Div>
                     
@@ -202,8 +191,6 @@ const Div = styled.div`
 `
 const SuggestTitle = styled.div`
     height: 50px;
-    //width: 280px;
-    //text-align: left;
     & > span {
         position: absolute;
         margin: 17px 0 0 10px;
@@ -214,11 +201,9 @@ const SuggestTitle = styled.div`
 
 const SubmitText= styled.div`
     & > span{
-        //position: absolute;
         margin: 20px 15px -5px 0;
         font-weight: 700;
         font-size: 14px;
         line-height: 20.27px;
-        color: #C4C4C4;
     }
 `;

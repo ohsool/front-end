@@ -205,7 +205,7 @@ const BeerDetail = (props) =>{
                     </Wrap>
                     <Line/>
                     <Wrap>
-                        <span style={{ fontWeight: "700"}}>맥주 맛 평점표</span>                      
+                        <span style={{ fontWeight: "700"}}>맥주 맛 평점표</span>                    
                     </Wrap>
                     <Graph>
                         <TasteGraph 
@@ -244,7 +244,14 @@ const BeerDetail = (props) =>{
                                     <>
                                     <EachReview key={idx} item={item} userId={userId}/>
                                     </>) : null
-                            )): ""}
+                            )): 
+                                <>
+                                    <Text>첫 리뷰를 장식해 보세요✍</Text>
+                                    <Line_short/>
+                                    <div style={{paddingBottom: "40px"}}/>
+
+                                </>
+                            }    
                         </Gradient>
                         <div style={{marginLeft: "-20px"}}>
                         <ReviewWriteModal
@@ -459,3 +466,18 @@ const WriteButton = styled.div`
     //animation: scaleUp 1.0s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
     //@keyframes zoomOut { from { transform: scale(1); } to { transform: scale(0); } }
 `;
+
+const Text = styled.div`
+    width: 320px;
+    text-align: center;
+    margin: 0 auto;
+    border-radius: 10px;
+`
+const Line_short = styled.hr`
+    width: 220px;
+    text-align: center;
+    border: 0;
+    border:solid #FFC44F;
+    border-width: 0.5px;
+`
+

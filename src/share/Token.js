@@ -39,7 +39,7 @@ const Token = (props) => {
     useEffect(() => {
     if(is_write === "success"){
         history.push("/")
-    }   
+        }   
     })
 
     return(

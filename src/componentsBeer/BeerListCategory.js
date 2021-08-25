@@ -6,6 +6,7 @@ import { beerCategory } from "../redux/reducer/beerSlice";
 import {useParams} from "react-router-dom";
 import EachBeer from "./EachBeer";
 import _ from "lodash";
+import Loader from "../share/Loader";
 
 const BeerListCategory = ({ setHashtagName }) => {
     const category_beers = useSelector(beerCategory);
@@ -94,9 +95,9 @@ const BeerListCategory = ({ setHashtagName }) => {
                 setHashtagName={setHashtagName}
                 key={idx} item={item} />
             ))}
-            {loading ? <h1>Loading...</h1>: 
-            ""}
             </List>
+            {loading ? <Loader></Loader>: 
+            ""}
         </React.Fragment>
     )
 }

@@ -39,7 +39,11 @@ const UserPreference = (props) => {
                     </PreferenceWrap>
                     <UserInfoWrap>
                         <span>안녕하세요 <strong>{userInfos.nickname}</strong>님!</span><br/>
-                        <span>오늘의술은 <strong>{userInfos.preference}</strong>입니다.</span>
+                        {userInfos?.preference === 'Unknown' ? 
+                            <Typetext> <strong>테스트 진행 후</strong> 이곳에 <br/>고객님의 <strong>맥주 타입</strong>이 보여집니다</Typetext>
+                            : <span>오늘의술은 <strong>{userInfos.preference}</strong>입니다.</span>
+                        }
+                        
                     </UserInfoWrap>
                 </>
                 }
@@ -80,3 +84,8 @@ const UserInfoWrap = styled.div`
         font-weight: bold;
     }
 `;
+const Typetext = styled.div`
+    font-size: 12px;
+    padding-top: 4px;
+
+`
