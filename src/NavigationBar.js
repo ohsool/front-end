@@ -42,9 +42,6 @@ const NavigationBar = (props) => {
                 onClick={()=>{ 
                     history.push("/mypage");
                 }}
-                /*onClick={() => {
-                    comfirm_login();
-                }}*/
                 >
                     <ImageWrap style={{backgroundImage: `url(${myPage})`}}/>
                     <Text><span>MY PAGE</span></Text></MyPageWrap>
@@ -57,14 +54,15 @@ const NavigationBar = (props) => {
 export default NavigationBar;
 
 const NavBox = styled.div`
-    width: 360px;
+    max-width: 400px;
     height: 71px;
     z-index: 10;
     background-color: white;
     font-family: "GmarketSansM";
     display: flex;
     position:fixed; 
-    border-top: 0.2px solid #C4C4c4; 
+    border-top: 0.2px solid #F7F7F7; 
+    justify-content: space-around;
     bottom:0;
     margin: 0 auto;
     left: 0;
@@ -75,22 +73,19 @@ const SearchWrap = styled.div`
     display: inline-block;
     text-align: center;
     width:120px;
-    float:left;
     background-size: cover;
     cursor: pointer;
 `;
 
 const BeerListWrap = styled.div`
     width:120px;
-    text-align: center;
-    float:center;
+    text-align: center; 
     cursor: pointer;
 `;
 
 const MyPageWrap = styled.div`
     width:120px;
     text-align: center;
-    float:right;
     cursor: pointer;
 `;
 const Text = styled.div`
