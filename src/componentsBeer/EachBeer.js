@@ -146,7 +146,7 @@ const BeerName = styled.p`
     white-space: nowrap;
     text-overflow:ellipsis
 `;
-
+/*
 const TasteTag = styled.div`
     display: inline-block;
     margin-right: 3px;
@@ -160,6 +160,21 @@ const TasteTag = styled.div`
     text-align: center;
     color: #333333;
     cursor: pointer;
+`;*/
+
+const TasteTag = styled.div`
+    display: inline-block;
+    margin-top: 2px; 
+    margin-right: 3px;
+    padding: 0 6px;
+    height: 16px;
+    border: 0.5px solid #888888;
+    box-sizing: border-box;
+    border-radius: 33px;
+    font-size: 10px;
+    line-height: 14px;
+    text-align: center;
+    color: #333333;
 `;
 
 const JustifyAlign = styled.div`

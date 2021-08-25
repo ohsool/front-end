@@ -19,13 +19,15 @@ const Search = (props) => {
     const [input, setInput] = useState(true);
     const [language, setLanguage] = useState("");
     const dispatch = useDispatch();
+
     useEffect(()=>{
         if(word === null || words.length===0 /*|| word === "" || language==="" */){//검색창에 아무것도 입력 하지 않은 상태면 검색 모달 닫기 
             setOpen_Modal(false);           
         } else{
             checkLanguage();
         }
-    },[word, words])
+    },[word, words]);
+
     const onChange = (e) =>{     
         if(e.target.value === ''){//검색어 지웠을 때 검색목록 사라지도록 함
             setWord(null);
@@ -33,9 +35,11 @@ const Search = (props) => {
             setWord(e.target.value);
         }    
     }
+
     const searchWord = () =>{//실시간으로 자동완성 된 값 불러옴   
         dispatch(getSearchWord(word)); 
     }
+
     const searchDebounce = _.debounce(() => {
         searchWord();
     }, 300)
@@ -47,11 +51,13 @@ const Search = (props) => {
             setLanguage("");
         }
     }
+
     const clickSearch = () =>{
         findBeerbySearchButtonClick();
         setInput(false);
         setLanguage("");
     }
+    
     const searchModalOpen = ()=>{
         if(language==="english"){
             return (
@@ -85,7 +91,6 @@ const Search = (props) => {
         }
     }
 
-
     const checkLanguage =()=>{//검색어가 한국어인지 영어인지 체크
         if(check_kor.test(word)){
             setLanguage("korean");
@@ -103,7 +108,6 @@ const Search = (props) => {
             setSearch_Beer(words?.filter((p) => p.name_korean.includes(name)));   
         }
         setIs_Search(true);
-        //localStorage.setItem("recent_words", recent_words.concat(search_beer[0]?.name_korean));//최근 검색어 리스트에 저장
     }
     const findBeerbySearchButtonClick = ()=>{//엔터 키를 누른 경우 해당 단어로 검색
         setSearch_Beer([]);
@@ -153,8 +157,7 @@ const Search = (props) => {
                     <ImageWrap style={{backgroundImage: `url(${search})`}}
                         onClick={()=>{
                             clickSearch();
-                        }}
-                    
+                        }} 
                     />
                 </ButtonWrap>
             </SearchInput>
@@ -172,7 +175,6 @@ const SearchInput = styled.div`
     background: #F6F6F6;
     border-radius: 18px;
     outline: none;
-
     & > input{
         width: 200px;
         height: 30px;
@@ -187,7 +189,6 @@ const ButtonWrap = styled.div`
     display: inline-block;
     float: right;
     margin-right: 8px;
-
 `
 const ImageWrap = styled.div`
     display: inline-block;
