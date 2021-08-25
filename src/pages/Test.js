@@ -36,11 +36,12 @@ const Test = (props) => {
         || testResultArray[testResultArray.length -1] === "Dunkel" 
         || testResultArray[testResultArray.length -1] === "Stout" 
         || testResultArray[testResultArray.length -1] === "Bock"){
+            setTestResultArray(testResultArray.splice(4));
             dispatch(testResult({
                 userId: userId,
                 result: testResultArray
             }));
-            history.push(`/result/${testResultArray[testResultArray.length -1]}`);
+            history.push(`/result/${testResultArray[0]}`);
         }
     });
     // choice = 버튼 눌렀을때 value받아오는 부분
@@ -54,8 +55,7 @@ const Test = (props) => {
         || choice === "Dunkel" 
         || choice === "Stout" 
         || choice === "Bock"){
-            setTestResultArray([...testResultArray, choice]);
-            setTestResultArray(testResultArray.splice(3));
+            setTestResultArray(testResultArray.unshift(choice));
             return;
         }
         else if(choice){ //question_id하고 choice가 같은 데이터 불러와서 index번호 찾기

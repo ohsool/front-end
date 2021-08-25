@@ -16,7 +16,7 @@ const secretAPIkey = () => {
 const key = secretAPIkey();
 
 export const axiosInstance = axios.create({
-    baseURL: `https://오늘의술.shop`,
+    baseURL: `https://ohsool.shop/`,
     headers: {
         "Content-Type": "application/json;charset=UTF-8",
         "accept": "application/json,",
