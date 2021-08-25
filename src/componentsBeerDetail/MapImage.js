@@ -1,12 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import imagesrc from "../share/image/marker.png";
+import Loader from "../share/Loader";
 
 const MapImage = ({setClickReport}) => {
         const kakao = window.kakao;
         const container = useRef(null);
         const inputRef = useRef(null);
         const [mapState, setMapState] = useState(false);
+        const [loadingMap, setLoadingMap] = useState(false);
         let map;
 
         const placeView = async () => {
@@ -22,10 +24,11 @@ const MapImage = ({setClickReport}) => {
         
         const findLocation  = (place) => {
             if ("geolocation" in navigator) {  // if i can get my address
+                setLoadingMap(true)
                 navigator.geolocation.getCurrentPosition((position) => {
                     const lat = position.coords.latitude;
                     const long = position.coords.longitude;
-                    
+                    setLoadingMap(false);
                     makeMap(place, lat, long);
                 });
             } else {  // if i cannot get my address. 여삼빌딩
@@ -121,11 +124,14 @@ const MapImage = ({setClickReport}) => {
                 placeholder="검색어를 입력하세요"
                 /></SearchInput>
             </InputWrap>
+            {loadingMap === true ? <Loader></Loader>
+            :
             <div 
                 className= "map"
                 ref={container}
                 style={{width:"100vw", height:"400px"}}>
             </div>
+            }
         </React.Fragment>
     )
 }

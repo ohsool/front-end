@@ -29,7 +29,6 @@ const PlaceBeer = (props) => {
             alert("취소되었습니다!");
         }
     }
-
     return(
         <React.Fragment>
             <Header/>
