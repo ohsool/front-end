@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { categories } from "../redux/reducer/categorySlice";
-import { getBeerList } from "../redux/reducer/beerSlice"
 import { getHashtagList } from "../redux/reducer/beerSlice";
 import {
     Slider,
@@ -14,12 +13,12 @@ import {
     NoSearchResult} from "./BeerIndex";
 import Loader from "../share/Loader.js";
 import { getCategory } from "../redux/async/category";
-import upButton from "../share/image/upArrow.png";
 import _ from "lodash";
-import { getAllBeer } from "../redux/async/beer";
 import { getSearchList } from "../redux/reducer/beerSlice";
 import { userInfo } from "../redux/async/user";
 import useDidMountEffect from "./useDidMountEffect.js";
+
+const upButton = "/images/upArrow.png"
 
 const BeerList = (props) =>{
     const get_category_id = props.match.params.beerCategoryId;

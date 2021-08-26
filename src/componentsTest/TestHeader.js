@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import myIconWhite from "../share/image/testHeaderIcon.png";
-import myIconBlack from "../share/image/HeaderIcon.png";
 import _ from "lodash";
-import backWhite from "../share/image/testHeaderBack.png";
-import backBlack from "../share/image/Back.png";
-
 import { history } from "../redux/configureStore";
 import "../share/style/TestHeader.css";
 import { useSelector } from "react-redux";
+
+const backWhite = "/images/testHeaderBack.png";
+const backBlack = "/images/Back.png";
 
 const TestHeader = (props) => {
     const is_login = useSelector(state => state.user.currentUser.message);

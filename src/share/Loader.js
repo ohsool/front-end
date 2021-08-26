@@ -1,6 +1,5 @@
 import React from "react";
-import styled, { keyframes } from "styled-components";
-import logo from "../share/image/loader.png";
+import styled from "styled-components";
 import "./style/loader.css";
 
 const Loader = () => {
@@ -16,8 +15,12 @@ const Loader = () => {
 };
 
 const Container = styled.div`
-    margin-top: 100px;
+    position: absolute;
     display: flex;
     justify-content: center;
+    left: 50%;
+    top: 50%;
+    margin-left: -100px;
+    margin-top: -100px;
 `;
 export default Loader;

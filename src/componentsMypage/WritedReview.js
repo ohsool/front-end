@@ -1,12 +1,13 @@
 import React,{useState} from "react";
 import styled from "styled-components";
-import edit from "../share/image/edit.png";
-import remove from "../share/image/remove.png";
 import {history} from "../redux/configureStore";
 import {useDispatch} from "react-redux";
 import {ReviewWriteModal} from "../componentsBeerDetail/BeerDetailIndex";
 import {deleteReview} from "../redux/async/review";
 import { deleteReviewDogam } from "../redux/async/mybeer";
+
+const edit = "/images/edit.png";
+const remove = "/images/remove.png";
 
 
 const WritedReview = ({item}) =>   {

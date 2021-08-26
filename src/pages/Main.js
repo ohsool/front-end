@@ -2,13 +2,15 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import MainLogo from "../componentsMain/MainLogo";
 import MainInput from '../componentsMain/MainInput';
-import mainbeer from "../share/image/mainbeer.jpeg";
 import { userInfo } from "../redux/async/user";
 import { useDispatch } from 'react-redux';
+
+const mainbeer = "/images/mainbeer.jpeg";
+
 const Main = (props) => {
     const dispatch = useDispatch();
+
     useEffect(() => {
-        
         dispatch(userInfo());
     }, [])
 

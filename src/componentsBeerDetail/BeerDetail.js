@@ -18,13 +18,14 @@ import { getReviewList } from "../redux/reducer/reviewSlice";
 import { User } from "../redux/reducer/userSlice";
 import {HeartButton}  from "../componentsBeer/BeerIndex";
 import { TasteGraph, EachReview} from "./BeerDetailIndex";
-import mapIcon from "../share/image/mapIcon.png";
-import writeIcon from "../share/image/review_write.png";
-import star from "../share/image/star.png";
-import like from "../share/image/heart.png";
 import {ReviewWriteModal} from "../componentsBeerDetail/BeerDetailIndex";
 import _ from "lodash";
 import ShareButton from "../componentsTest/ShareButton";
+
+const mapIcon = "/images/mapIcon.png"
+const writeIcon = "/images/review_write.png"
+const star = "/images/star.png"
+const like = "/images/heart.png"
 
 const BeerDetail = (props) =>{
     const [toggle, setToggle] = useState(false);

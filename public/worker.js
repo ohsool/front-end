@@ -2,8 +2,10 @@
 //declare var self;
 let CACHE_NAME = 'ohsool';
 let urlsToCache = [
-    '/',
-    '/mybeer'
+    '/images/mainbeer.jpeg',
+    '/images/mainLogo.png',
+    '/images/splash.png',
+    '/images/suggestarrow.png'
 ];
 
 // Install a service worker
@@ -12,7 +14,6 @@ self.addEventListener('install', event => {
     event.waitUntil(
         caches.open(CACHE_NAME)
         .then(function(cache) {
-            console.log(urlsToCache);
             return cache.addAll(urlsToCache);
         })
     );
@@ -38,7 +39,6 @@ self.addEventListener('activate', event => {
         caches.keys().then(cacheNames => {
             return Promise.all(
                 cacheNames.map(cacheName => {
-                    console.log(cacheName);
                     if (cacheWhitelist.indexOf(cacheName) === -1) {
                         return caches.delete(cacheName);
                     }

@@ -1,7 +1,9 @@
 import React,{  useState } from "react";
 import styled from "styled-components";
-import star_filled from "../share/image/star_filled.png";
-import star_empty from "../share/image/star_empty.png";
+
+const star_filled = "/images/star_filled.png";
+const star_empty = "/images/star_empty.png";
+
 const StarButton = ({setStarScore, init_star,is_my, is_starsmall}) =>{
     const [score, setScore] = useState(init_star); //별점
     const totalStarCount = 5;   

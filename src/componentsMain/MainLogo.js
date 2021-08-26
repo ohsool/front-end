@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import Logo from "../share/image/mainLogo.png";
+
+const Logo = "/images/mainLogo.png";
 
 const MainLogo = () => {
     return(

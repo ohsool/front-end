@@ -3,8 +3,9 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { getSearchWord } from "../redux/async/beer";
 import _ from 'lodash';
-import remove from "../share/image/remove_gray.png";
-import search from "../share/image/search_gray.png";
+
+const remove = "/images/remove_gray.png"
+const search = "/images/search_gray.png"
 
 const Search = (props) => {
     const { setSearch_Beer,

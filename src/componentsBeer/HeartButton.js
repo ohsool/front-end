@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
-import heart_filled from "../share/image/heart_filled.png";
-import heart_black from "../share/image/heart_black.png";
-import detail_heart from "../share/image/heart_detail.png";
-import heart_empty from "../share/image/heart_empty.png";
+const heart_filled = "/images/heart_filled.png"
+const heart_black = "/images/heart_black.png"
+const detail_heart = "/images/heart_detail.png"
+const heart_empty = "/images/heart_empty.png"
 
 const HeartButton = ({_onClick, heart_detail, is_like }) => {
   const icon_url = is_like? heart_filled : heart_black;

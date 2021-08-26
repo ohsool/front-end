@@ -4,7 +4,7 @@ import { getBeerInfinity } from "../redux/async/beer";
 import { useDispatch, useSelector } from "react-redux";
 import { InfinityBeer } from "../redux/reducer/beerSlice";
 import EachBeer from "./EachBeer";
-import Loader from "../share/Loader";
+import InfinityScrollLoader from "./InfinityScrollLoader";
 import _ from "lodash";
 
 const InfinityChildren = ({setHashtagName}) => {
@@ -15,7 +15,6 @@ const InfinityChildren = ({setHashtagName}) => {
 
     const getInfinityList = useCallback (() => {
         async function getData(){
-            setLoading(true);
         await dispatch(getBeerInfinity(paging));
             setLoading(false);
         }
@@ -33,6 +32,7 @@ const InfinityChildren = ({setHashtagName}) => {
           // 페이지 끝에 도달하면 추가 데이터를 받아온다
             setPaging(paging + 1);
             getInfinityList();
+            setLoading(true);
         }
     }, 500);
     
@@ -65,7 +65,7 @@ const InfinityChildren = ({setHashtagName}) => {
                 key={idx} item={item}/>
             ))}
             </List>
-            {loading ? <Loader></Loader>: 
+            {loading ? <InfinityScrollLoader/>: 
             ""}
         </React.Fragment>
     )

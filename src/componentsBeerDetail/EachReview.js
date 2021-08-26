@@ -3,16 +3,13 @@ import React,{useState} from 'react';
 import styled from "styled-components";
 import moment from 'moment';
 import 'moment/locale/ko';
-import star from "../share/image/star.png";
-//import edit from "../share/image/edit.png";
-//import remove from "../share/image/remove.png";
 import {StarRate} from "./BeerDetailIndex";
 
-import {shallowEqual, useDispatch} from "react-redux";
-import {deleteReview} from "../redux/async/review";
+import {useDispatch} from "react-redux";
 import { history } from '../redux/configureStore';
-
 import ReviewWriteModal from "../componentsBeerDetail/ReviewWriteModal";
+
+const star = "/images/star.png";
 
 const EachReview=(props)=> {
     const { item, beerOne, userId } = props; 
@@ -134,26 +131,11 @@ const DateText =styled.div`
     }
 
 `
-const StarWrap = styled.div`
-    width: 100px;
-
-
-`
 const ReviewText = styled.div`
     margin: 5px;
     max-height: 55px;
     line-height: 17px;
     font-size: 12px;
-
-`
-const Description = styled.div`
-    //display: block, 
-    word-break:break-all,
-    word-wrap:break-word,
-    width: 280px,
-    fontWeight: 300, 
-    fontSize: 12px, 
-    lineHeight: 17.38px,
 
 `
 

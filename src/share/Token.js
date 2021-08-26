@@ -32,15 +32,15 @@ const Token = (props) => {
         if(first === "true"){
             openModal();
         }else{
-            history.push("/");
+            window.location.href = "/";
         }
     }, []);
 
     useEffect(() => {
     if(is_write === "success"){
-        history.push("/")
+        window.location.herf = "/";
         }   
-    })
+    }, [is_write]);
 
     return(
         <React.Fragment>

@@ -1,14 +1,14 @@
 import React ,{useState,useEffect} from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import remove from "../share/image/remove.png";
-
 import "../share/style/ReviewWriteModal.css";
 import { StarRate, SelectBar} from "./BeerDetailIndex";
 import { writeReview, editReview} from "../redux/async/review";
 import { starRateDetail } from "../redux/async/beer";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+const remove = "/images/remove.png";
 
 const ReviewWriteModal = (props) => {
 
