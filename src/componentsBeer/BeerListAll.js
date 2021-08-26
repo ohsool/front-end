@@ -18,9 +18,6 @@ const InfinityChildren = ({setHashtagName}) => {
         await dispatch(getBeerInfinity(paging));
             setLoading(false);
         }
-        if(paging >= 13){
-            return;
-        }
         return getData();
     }, [paging, beersIF]);
     
@@ -32,6 +29,9 @@ const InfinityChildren = ({setHashtagName}) => {
           // 페이지 끝에 도달하면 추가 데이터를 받아온다
             setPaging(paging + 1);
             getInfinityList();
+            if(paging >= 13){
+                return;
+            }
             setLoading(true);
         }
     }, 500);

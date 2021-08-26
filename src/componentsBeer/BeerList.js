@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
+import {useParams} from "react-router-dom";
 import { categories } from "../redux/reducer/categorySlice";
 import { getHashtagList } from "../redux/reducer/beerSlice";
 import {
@@ -21,7 +22,7 @@ import useDidMountEffect from "./useDidMountEffect.js";
 const upButton = "/images/upArrow.png"
 
 const BeerList = (props) =>{
-    const get_category_id = props.match.params.beerCategoryId;
+    const get_category_id = useParams().beerCategoryId;
     const items = useSelector(categories);
     const hashtag_beers = useSelector(getHashtagList);
     const words = useSelector(getSearchList);

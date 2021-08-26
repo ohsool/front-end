@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { history } from "../redux/configureStore";
 import { setCookie, setCookieRefresh } from "./Cookie";
 import SocialLoginUserInfo from "./SocialLoginUserInfo";
 import {useSelector} from "react-redux";
+
 const Token = (props) => {
     const tokens = props.match.params.tokens;
     const is_write = useSelector((state) => state.user.social_login);

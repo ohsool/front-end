@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import {history} from "../redux/configureStore";
-
+import {useParams} from "react-router-dom";
 import Slider from "react-slick";
 import "../share/style/myBeer.css";
 import "slick-carousel/slick/slick.css";
@@ -15,9 +15,9 @@ const BeerType = (props) => {
         setIs_Search,
         setHashtag,
         get_category_id,
-        setPagingCate,
+        setPagingCate
     } = props;
-
+    
     const settings = {
         infinite: false,
         speed: 200,
