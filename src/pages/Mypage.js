@@ -21,17 +21,6 @@ const MyPage = (props) => {
         titlePlaceholder: "",
         commentPlaceholder: "",
     });
-    console.log(userInfos.preference);
-    
-    useEffect(()=>{
-        if(userInfos.preference=== "Unknown"){
-            if(window.confirm("아직 테스트를 하지 않으셨네요!🧒 \n테스트를 통해 맥주 타입을 알아보시겠습니까?")){
-                history.push("/test");
-                return;
-            }
-        }
-    },[])
-    
     
     const openModal = () => { //modal창 오픈
         setModalOpen(true);

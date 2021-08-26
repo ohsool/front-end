@@ -15,10 +15,6 @@ const BeerListCategory = (props) => {
     const [beers, setBeers] = useState([]);
     const [loading, setLoading] = useState(false);
     const dispatch = useDispatch();
-    
-    console.log(pagingCate, beerCategoryId, loading);
-
-
     useEffect(() => {
         setBeers([...beers, ...category_beers]);
     }, [category_beers]);
@@ -30,7 +26,6 @@ const BeerListCategory = (props) => {
 
     const getCategoryBeerList = useCallback (() => {
         async function getData(){
-            console.log("dispatch", pagingCate, beerCategoryId);
         await dispatch(getBeerCategoryList(dispatchData));
             setLoading(false);
         }
@@ -44,7 +39,6 @@ const BeerListCategory = (props) => {
         const clientHeight = document.documentElement.clientHeight;
         if (scrollTop + clientHeight >= scrollHeight-100 && loading === false) {
           // 페이지 끝에 도달하면 추가 데이터를 받아온다
-          console.log("scroll", beerCategoryId);
           if (pagingCate >= 4){
             return;
             }

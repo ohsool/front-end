@@ -40,9 +40,6 @@ const BeerDetail = (props) =>{
     const is_comment = beer_infos.find((p) => p.userId._id === userId);
     const dispatch = useDispatch();
 
-    console.log("userId",userId);
-    console.log("is_comment",is_comment);
-
     useEffect(() => { //맥주 정보, 사용자정보 및 리뷰정보 불러오기
         dispatch(getOneBeer(props.match.params.beerId));
         dispatch(getReview(props.match.params.beerId));
