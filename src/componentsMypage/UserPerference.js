@@ -39,7 +39,14 @@ const UserPreference = (props) => {
                     <UserInfoWrap>
                         <span>안녕하세요 <strong>{userInfos.nickname}</strong>님!</span><br/>
                         {userInfos?.preference === 'Unknown' ? 
-                            <Typetext> <strong>테스트 진행 후</strong> 이곳에 <br/>고객님의 <strong>맥주 타입</strong>이 보여집니다</Typetext>
+                            <>
+                            <Typetext><strong>테스트 진행 후</strong> 이곳에 <br/>고객님의 <strong>맥주 타입</strong>이 보여집니다.</Typetext>
+                            <TestButton
+                                onClick={()=>{
+                                    history.push("/test");
+                                }}
+                            >테스트 하기</TestButton>
+                            </>
                             : <span>오늘의술은 <strong>{userInfos.preference}</strong>입니다.</span>
                         }
                         
@@ -86,5 +93,14 @@ const UserInfoWrap = styled.div`
 const Typetext = styled.div`
     font-size: 12px;
     padding-top: 4px;
+
+`
+const TestButton = styled.div`
+    float: right;    
+    cursor: pointer;
+    color: #FFC44F;
+    font-size: 12px;
+    margin-right: 37px;
+    border-bottom: 1px solid #FFC44F;
 
 `

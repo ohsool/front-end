@@ -3,9 +3,7 @@
 let CACHE_NAME = 'ohsool';
 let urlsToCache = [
     '/',
-    '/mybeer',
-    '/mypage',
-    '/beer/list/:categoryId'
+    '/mybeer'
 ];
 
 // Install a service worker
@@ -14,10 +12,12 @@ self.addEventListener('install', event => {
     event.waitUntil(
         caches.open(CACHE_NAME)
         .then(function(cache) {
+            console.log(urlsToCache);
             return cache.addAll(urlsToCache);
         })
     );
 });
+
 // Cache and return requests
 self.addEventListener('fetch', event => {
     event.respondWith(
@@ -33,11 +33,12 @@ self.addEventListener('fetch', event => {
 });
 // Update a service worker
 self.addEventListener('activate', event => {
-    var cacheWhitelist = ['ohsool'];
+    let cacheWhitelist = ['ohsool'];
     event.waitUntil(
         caches.keys().then(cacheNames => {
             return Promise.all(
                 cacheNames.map(cacheName => {
+                    console.log(cacheName);
                     if (cacheWhitelist.indexOf(cacheName) === -1) {
                         return caches.delete(cacheName);
                     }
@@ -69,3 +70,6 @@ self.addEventListener('push', (event) => {
       self.registration.showNotification('알림!!!!',    
       options))
   })
+
+
+  

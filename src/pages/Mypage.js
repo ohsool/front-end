@@ -11,15 +11,17 @@ import UserPreference from '../componentsMypage/UserPerference';
 import { useSelector } from "react-redux";
 
 const MyPage = (props) => {
-    const userInfo = useSelector(state => state.user.currentUser);
+    const userInfos = useSelector(state => state.user.currentUser);
     const [modalOpen, setModalOpen] = useState(false);
     const dispatch = useDispatch();
-    
+
     const [modal_info, setModal_Info] = useState({ //건의하기 modal창 text정보
         suggestTitle: "",
         titlePlaceholder: "",
         commentPlaceholder: "",
     });
+
+
     
     const openModal = () => { //modal창 오픈
         setModalOpen(true);
@@ -35,7 +37,7 @@ const MyPage = (props) => {
     };
 
     const comfirm_login = ()=>{
-        if(userInfo.message === "success"){
+        if(userInfos.message === "success"){
             return(
                 <LogOutWrap>
                     <LogOutButton
@@ -53,18 +55,12 @@ const MyPage = (props) => {
             dispatch(logOut());
         }
     }
-    const confirmWithDrawl = () => { // 회원 탈퇴
-        if(window.confirm("정말로 탈퇴하시겠어요?")){
-            dispatch(withDrawl());
-        }
-    }
 
     return (
         <>
         <Container>
             <Header/>
             <UserPreference>
-
             </UserPreference>
             <PageMoveWrap>
                 <MoveBoxWrap
@@ -89,6 +85,14 @@ const MyPage = (props) => {
                         openModal();
                     }}>
                     <span>관리자에게 건의하기</span>
+                    <ArrowImage src={arrow}></ArrowImage>
+                </MoveBoxWrap>
+                <MoveBoxWrap
+                    onClick={() => {
+                        window.location.href = "https://docs.google.com/forms/d/16Rv2SKdodPuZ5YB2w_7Ei-jvKJVwKCFyut61Lk71ctM"
+                    }}
+                >
+                    <span>설문조사 하러가기</span>
                     <ArrowImage src={arrow}></ArrowImage>
                 </MoveBoxWrap>
                 <MyPageModal

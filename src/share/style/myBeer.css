@@ -27,21 +27,21 @@
 }
 
 .clickSlider {
-    font-size: 14px;
+    font-size: 16px;
     outline: none;
     font-weight: 700;
     padding: 0 13px;
     text-align: center;
     cursor: pointer;
     color: black;
-    text-decoration: underline;
+    /* text-decoration: underline; */
 }
+
 .nonClickSlider{
     color: #C4C4C4;
-    font-size: 14px;
+    font-size: 16px;
     outline: none;
     padding: 0 13px;
     text-align: center;
     cursor: pointer;
-
 }

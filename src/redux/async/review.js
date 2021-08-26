@@ -44,8 +44,6 @@ export const editReview = createAsyncThunk(
     return dataSlice;
   }
 );
-
-
 //맥주 리뷰 삭제
 export const deleteReview = createAsyncThunk(
   "review/deleteReview",

@@ -24,7 +24,6 @@ import useDidMountEffect from "./useDidMountEffect.js";
 const BeerList = (props) =>{
     const get_category_id = props.match.params.beerCategoryId;
     const items = useSelector(categories);
-    const beers = useSelector(getBeerList);
     const hashtag_beers = useSelector(getHashtagList);
     const words = useSelector(getSearchList);
     const [is_Loading, setIs_Loading] = useState(false); //로딩 여부 판별
@@ -36,16 +35,16 @@ const BeerList = (props) =>{
     const [openModal, setOpen_Modal] = useState(false);
     const is_iphone = navigator.userAgent.toLowerCase();
     const [hashtagName, setHashtagName] = useState("");
+    const [pagingCate, setPagingCate] = useState(0);
     const [is_recent, setIs_Recent] = useState(false);
 
     useEffect(() => {
-        dispatch(getAllBeer("all"));
         dispatch(getCategory());
         dispatch(userInfo());
     }, []);
 
     const showTopButton = () => {
-        if(scrollHeightInfo > 4000){
+        if(scrollHeightInfo > 2000){
         return (<TopButton
                     onClick={ScrollToTop}>
                 </TopButton>)
@@ -73,10 +72,10 @@ const BeerList = (props) =>{
     }, [scrollHeightInfo]);
 
     useEffect(() => {
-        if(beers){
+        if(items){
             setIs_Loading(true);
         }
-    }, [beers])
+    }, [items])
 
     useDidMountEffect(() => {;
         setHashtag(hashtag_beers);
@@ -109,6 +108,8 @@ const BeerList = (props) =>{
             }else{
                 return(
                     <BeerListCategory
+                        pagingCate={pagingCate}
+                        setPagingCate={setPagingCate}
                         setHashtagName={setHashtagName}
                         get_category_id={get_category_id}
                         >    
@@ -126,6 +127,7 @@ const BeerList = (props) =>{
                         <Grid>
                             <TopNav>
                             <Slider
+                                setPagingCate={setPagingCate}
                                 get_category_id={get_category_id}
                                 setOpen_Modal={setOpen_Modal}
                                 setIs_Search={setIs_Search}
@@ -175,7 +177,7 @@ const Container = styled.div`
 const Grid = styled.div`
     width: 360px;
     margin: 0 auto;
-    padding-bottom: 74px;
+    padding-bottom: 120px;
 `
 const TopNav = styled.div`
     margin-top: 60px;

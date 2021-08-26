@@ -16,7 +16,7 @@ const NavigationBar = (props) => {
             if(userInfo.message === "success"){
                 history.push("/mybeer");
             }else{
-                if(window.confirm("로그인 후 이용 가능한 서비스입니다. \n로그인하고 나만의 맥주 리스트를 관리해보세요!🍻")){
+                if(window.confirm("로그인 후 이용 가능한 서비스입니다. \n로그인하고 나만의 맥주를 관리해보세요!🍻")){
                     history.push("/login");
                     return;
                 }
@@ -41,7 +41,7 @@ const NavigationBar = (props) => {
                 <SearchWrap 
                     style={pathNow === "/mybeer" ? {backgroundColor: "#F7F7F7"} : null}
                     onClick={()=>{comfirm_login('myBeer')}}>
-                    <ImageWrap style={{backgroundImage: `url(${myBeer})`}}/>
+                    <ImageWrapmyBeer style={{backgroundImage: `url(${myBeer})`}}/>
                     <Text><span>MY BEER</span></Text>
                 </SearchWrap>
                 <SearchWrap
@@ -90,6 +90,12 @@ const Text = styled.div`
     }
 `
 const ImageWrap = styled.div`
+    margin: 13px 58px 0 48px;
+    width: 22px;
+    height: 22px;
+    background-size: cover;
+`;
+const ImageWrapmyBeer = styled.div`
     margin: 13px 58px 0 48px;
     width: 24px;
     height: 22px;

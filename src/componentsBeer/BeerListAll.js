@@ -25,7 +25,7 @@ const InfinityChildren = ({setHashtagName}) => {
         return getData();
     }, [paging, beersIF]);
     
-    const _handleScroll = _.debounce(() => {
+    const _handleScroll = _.throttle(() => {
         const scrollHeight = document.documentElement.scrollHeight;
         const scrollTop = document.documentElement.scrollTop;
         const clientHeight = document.documentElement.clientHeight;
@@ -34,7 +34,7 @@ const InfinityChildren = ({setHashtagName}) => {
             setPaging(paging + 1);
             getInfinityList();
         }
-    }, 700);
+    }, 500);
     
     useEffect(() => {
         if(paging === 0 && beersIF.length === 0){
@@ -54,7 +54,7 @@ const InfinityChildren = ({setHashtagName}) => {
         return () => {
             window.removeEventListener("scroll", _handleScroll); // scroll event listener 해제
         };
-    }, [paging]);
+    }, [paging, loading]);
 
     return(
         <React.Fragment>
