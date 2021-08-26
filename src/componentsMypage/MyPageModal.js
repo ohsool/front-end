@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import { useDispatch } from "react-redux";
 import {suggestBeer, suggestComment} from "../redux/async/suggest";
+import { toast } from "react-toastify";
 
 const MyPageModal = (props) => {
     const dispatch = useDispatch();
@@ -26,8 +27,8 @@ const MyPageModal = (props) => {
     }
     const clickSubmit = ()=>{
         if(title === "" || chat === ""){
-            alert("건의 내용을 입력해주세요!")
-            return;
+            alert("건의 내용을 입력해주세요!");
+            return;// toast("건의 내용을 입력해주세요!");
         }
         if(window.confirm("작성한 내용을 보내시겠습니까?")){
             if(suggestInfo.suggestTitle === "맥주 건의하기"){

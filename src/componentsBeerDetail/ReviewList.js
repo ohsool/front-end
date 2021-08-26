@@ -10,6 +10,7 @@ import { getReviewList } from "../redux/reducer/reviewSlice";
 import { oneBeer } from "../redux/reducer/beerSlice";
 import { User } from "../redux/reducer/userSlice";
 import {EachReview,ReviewWriteModal} from "../componentsBeerDetail/BeerDetailIndex";
+import { toast } from "react-toastify";
 
 const ReviewList = (props)=>{
     const [modalOpen, setModalOpen] = useState(false);
@@ -36,7 +37,8 @@ const ReviewList = (props)=>{
     const loginConfirm = ()=>{
         if(userId){
             if(is_comment){
-                alert("이미 댓글을 작성하셨습니다!")
+                //alert("이미 댓글을 작성하셨습니다!");
+                return toast("이미 댓글을 작성하셨습니다!");
             }else{
             openModal();
         }

@@ -9,6 +9,10 @@ import { is_Login } from "../redux/reducer/userSlice";
 import "../share/style/loginButton.css";
 import NavigationBar from "../NavigationBar";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+
 const Login = (props) => {
     const dispatch = useDispatch();
     const is_login = useSelector(is_Login);
@@ -31,9 +35,10 @@ const Login = (props) => {
     }
 
     const submitLogin = () => {
-        if(email === "" && password === ""){  //공란 체크
-            window.alert("아이디 혹은 비밀번호를 입력하세요.");
-            return;
+        if(email === "" || password === ""){  //공란 체크
+            //alert("아이디 혹은 비밀번호를 입력하세요.");
+            //return;
+            return toast("아이디 혹은 비밀번호를 입력하세요.")
         }
         dispatch(logIn(login_info)) //로그인 정보 디스패치
         setLogin_Info({  //로그인인풋 초기화
@@ -82,6 +87,7 @@ const Login = (props) => {
                             onKeyUp={onKeyUp}
                             placeholder="비밀번호"
                         ></InputLogin>
+                        <ToastContainer/>
                         <div
                             className = {is_typed ? "yellowButton" : "whiteButton"}
                             onClick={submitLogin}

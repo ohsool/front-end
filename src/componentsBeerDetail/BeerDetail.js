@@ -1,5 +1,7 @@
 import React, {useEffect, useState, useRef} from "react";
 import styled from "styled-components";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { history } from "../redux/configureStore";
 import { useSelector, useDispatch } from "react-redux";
 import { 
@@ -36,6 +38,9 @@ const BeerDetail = (props) =>{
     const [modalOpen, setModalOpen] = useState(false);
     const is_comment = beer_infos.find((p) => p.userId._id === userId);
     const dispatch = useDispatch();
+
+    console.log("userId",userId);
+    console.log("is_comment",is_comment);
 
     useEffect(() => { //맥주 정보, 사용자정보 및 리뷰정보 불러오기
         dispatch(getOneBeer(props.match.params.beerId));
@@ -95,8 +100,8 @@ const BeerDetail = (props) =>{
     
     const loginConfirm = ()=>{
         if(userId){
-            if(is_comment){
-                alert("이미 리뷰를 작성하셨습니다!")
+            if(is_comment !== undefined){
+                return toast("이미 리뷰를 작성하셨습니다!")
             }else{
                 setModalOpen(true);
                 
@@ -278,6 +283,7 @@ const BeerDetail = (props) =>{
                             is_edit={false}
                         ></ReviewWriteModal>
                         </div> 
+                        <ToastContainer/>
                         {scrollHeightInfo > 300 ? 
                             <WriteButton 
                             onClick={() => {

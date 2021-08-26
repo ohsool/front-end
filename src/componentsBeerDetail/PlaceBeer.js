@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {useDispatch} from "react-redux";
 import { mapReport } from "../redux/async/suggest";
 import MapImage from "./MapImage";
@@ -14,8 +16,7 @@ const PlaceBeer = (props) => {
 
     const ReportPlace = () => {
         if(!clickReport){
-            alert("위치를 선택해주세요!!");
-            return;
+            return toast("위치를 선택해주세요!!");
         };
         const mapData = {
             beerId: beerId,
@@ -26,7 +27,7 @@ const PlaceBeer = (props) => {
         if(window.confirm(`${clickReport.place_name}을 제보하시겠어요?`)){
             dispatch(mapReport(mapData));
         }else{
-            alert("취소되었습니다!");
+            return toast("취소되었습니다!");
         }
     }
     return(
@@ -57,6 +58,7 @@ const PlaceBeer = (props) => {
                         }}>{clickReport.address_name}</span>
                     </div>
                 </PlaceInfo> : ""}
+                <ToastContainer />
                 <div style={{textAlign: "center"}}>
                     <PlaceButton 
                     onClick={ReportPlace}>

@@ -55,8 +55,7 @@ const WritedReview = ({item}) =>   {
                                 }
                             }}></DeleteButton>
                         </Div>
-                    </GridHorizon>
-                    <span>{item?.review}</span>
+                    </GridHorizon><span>{item?.review.length > 50 ? item?.review.slice(0,50)+'...' : item?.review}</span>
                 </BeerTextWrap>
             </WritedBeerInfo>
 
@@ -76,7 +75,7 @@ export default WritedReview;
 
 const WritedBeerInfo = styled.div`
     width: 312px;
-    height: 100px;
+    height: 110px;
     display: flex;
     background-color: #F6F6F6;
     border-radius: 10px;
@@ -88,7 +87,7 @@ const BeerImage = styled.div`
     margin: 10px;
     border-radius: 10px;
     width: 80px;
-    height: 80px;
+    height: 90px;
     background-color: #FFFFFF;
     & > img{
         width: 80px;

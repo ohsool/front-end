@@ -8,7 +8,7 @@ import star from "../share/image/star.png";
 //import remove from "../share/image/remove.png";
 import {StarRate} from "./BeerDetailIndex";
 
-import {useDispatch} from "react-redux";
+import {shallowEqual, useDispatch} from "react-redux";
 import {deleteReview} from "../redux/async/review";
 import { history } from '../redux/configureStore';
 
@@ -32,11 +32,7 @@ const EachReview=(props)=> {
 
     return (
         <React.Fragment>
-        <Container
-        onClick={()=>{
-            history.push(`/review/${item._id}`, item, userId)
-        }}
-        >
+        <Container>
             <Grid>
                 <GridHorizon>
                     <Div>
@@ -57,10 +53,20 @@ const EachReview=(props)=> {
 
                 </GridHorizon>
                 <ReviewText>
-                    <span style={{ display: "block", width: "280px",fontWeight: "300", fontSize: "12px", lineHeight: "17.38px"}}>
-                        {item?.review}
-
-                    </span>               
+                    <ReviewTextWrap>
+                        {item?.review.length > 50 ? 
+                            <>{item?.review.slice(0,50)+'...'}
+                            <br/>
+                            <MoreButton onClick={(e)=>{
+                                console.log("Click!");
+                                history.push(`/review/${item._id}`, item, userId);
+                            }}><span>더보기</span></MoreButton>
+                            </>
+                            : <>{item?.review}
+                                <br/>
+                                <MoreButton><span>더보기</span></MoreButton></>
+                        }
+                    </ReviewTextWrap>               
                 </ReviewText>
             </Grid>
         </Container> 
@@ -82,7 +88,7 @@ export default React.memo(EachReview);
 
 const Container = styled.div`
     width: 312px;
-    height: 100px;
+    min-height: 110px;
     border-radius: 5px;
     margin: 5px auto;
     border:1.7px solid #c4c4c4;
@@ -91,7 +97,7 @@ const Container = styled.div`
 
 const Grid = styled.div`
     position: absolute;
-    margin: 16px 14px;
+    margin: 8px 14px;
 
 `
 
@@ -135,8 +141,43 @@ const StarWrap = styled.div`
 `
 const ReviewText = styled.div`
     margin: 5px;
-    max-height: 51px;
+    max-height: 55px;
     line-height: 17px;
     font-size: 12px;
 
+`
+const Description = styled.div`
+    //display: block, 
+    word-break:break-all,
+    word-wrap:break-word,
+    width: 280px,
+    fontWeight: 300, 
+    fontSize: 12px, 
+    lineHeight: 17.38px,
+
+`
+
+const ReviewTextWrap = styled.div`
+    //margin: 0 auto;
+    width: 280px;
+    //min-height: 30px;
+    //margin-top: 14px;
+    word-break:break-all;
+    word-wrap:break-word;
+    & > span{
+        margin-left: 14px;
+        float: left;
+        font-size: 12px;
+        font-weight: 300;
+        line-height: 17.38px;
+    }
+`;
+
+const MoreButton = styled.div`
+    float: left;
+    padding: 4px 0;
+    & > span{
+        color:#FFC44F;
+        font-weight: 700;
+    }
 `
