@@ -11,11 +11,11 @@ const UserPreference = (props) => {
     
     useEffect(() => {
         dispatch(userInfo());
-        if(userInfos.preference === 'Unknown'){//사용자의 맥주 타입이 unknown 상테면 테스트 페이지로 이동유도
+        /*if(userInfos.preference === 'Unknown'){//사용자의 맥주 타입이 unknown 상테면 테스트 페이지로 이동유도
             if(window.confirm("아직 테스트를 하지 않으셨네요!🧒 \n테스트를 통해 맥주 타입을 알아보시겠습니까?")){
                 history.push("/test")
             }
-        }
+        }*/
     }, []);
     return(
         <React.Fragment>

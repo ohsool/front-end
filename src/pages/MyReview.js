@@ -22,14 +22,16 @@ const MyReview = (props) =>{
                     </BeerImage>
 
                     <Title><span>작성한 리뷰</span></Title>                   
-                        <BeerTextWrap>
-                                <span>{item?.review}</span>
-                        </BeerTextWrap>
+                    <BeerTextWrap>
+                            <span>{item?.review}</span>
+                    </BeerTextWrap>
                 </div>
+                <div style={{marginTop: "20px"}}/>
                 <Text><span>점수</span></Text>
                 <StarWrap>
                     <StarRate init_star={item.rate} is_my={is_my} is_starsmall={is_starsmall}/>
                 </StarWrap>
+
                 <Graph>
                     <TasteGraph beers={item?.myFeatures}/>
                 </Graph>
@@ -106,7 +108,12 @@ const BeerTextWrap = styled.div`
 `;
 
 const Text = styled.div`
-    margin: 20px 0 0 0;;
+    //display: block; 
+    //margin-top: 20px;
+
+    margin: 0 auto;
+    width: 360px;
+
     text-align: center;
     & > span{
         font-size: 14px;
@@ -116,6 +123,9 @@ const Text = styled.div`
 `
 
 const StarWrap = styled.div`
+    margin: 0 auto;
+    width: 360px;
+
     margin: 5px auto;
     display: flex;
     flex-direction: column;
@@ -159,3 +169,8 @@ const Graph = styled.div`
     border-radius: 10px;
     margin-bottom: 74px;
 `;
+
+const Wrap = styled.div`
+
+
+`

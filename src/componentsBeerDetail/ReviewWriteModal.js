@@ -5,6 +5,8 @@ import "../share/style/ReviewWriteModal.css";
 import { StarRate, SelectBar} from "./BeerDetailIndex";
 import { writeReview, editReview} from "../redux/async/review";
 import { starRateDetail } from "../redux/async/beer";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const remove = "/images/remove.png";
 
@@ -32,11 +34,13 @@ const ReviewWriteModal = (props) => {
 
     const addReview = () => { //리뷰 작성시
         if(review === "" || starScore === undefined){
-            alert("답하지 않은 문항이 있어요!")
-            return;
-        }else if(review.length > 48){
-            alert("글자수는 48 글자를 넘을 수 없어요!");
-            return;
+            //alert("답하지 않은 문항이 있어요!")
+            //return;
+            toast("답하지 않은 문항이 있어요!")
+        }else if(review.length > 210){
+            /*alert("글자수는 200 글자를 넘을 수 없어요!");
+            return;*/
+            return toast("글자수는 200 글자를 넘을 수 없어요!");
         }
         dispatch(writeReview({
             myFeatures: {
@@ -52,7 +56,8 @@ const ReviewWriteModal = (props) => {
             beerId: beerOne._id
         }));
         dispatch(starRateDetail(starScore));
-        alert("작성 완료!🍻");
+        //alert("작성 완료!🍻");
+        toast("작성 완료!🍻");
         setReview("");
         setStarScore(0);
         setFeaturesList(arr.fill(0));
@@ -74,7 +79,8 @@ const ReviewWriteModal = (props) => {
             review: review,      
             mybeerId: mybeerId,
         }));
-        window.alert("수정 완료!🍻");
+        //alert("수정 완료!🍻");
+        toast("수정 완료!🍻");
         setReview("");
         setStarScore(0);
         setFeaturesList(arr.fill(0));
@@ -83,8 +89,9 @@ const ReviewWriteModal = (props) => {
 
     const onChange = (e) => {
         setReview(e.target.value);
-        if(e.target.value.length >= 48){
-            alert("48글자를 초과할 수 없습니다.")
+        if(e.target.value.length > 200){
+            return toast("200글자를 초과할 수 없어요!");
+            //alert("200글자를 초과할 수 없어요!")
         }
     }
     return(
@@ -108,7 +115,7 @@ const ReviewWriteModal = (props) => {
                                  <>
                                     <BeerTextarea 
                                         tpye="text"
-                                        maxLength="48"
+                                        maxLength="200"
                                         onChange={onChange}
                                         review={review}
                                         placeholder={""}
@@ -118,10 +125,10 @@ const ReviewWriteModal = (props) => {
                                 <>
                                     <BeerTextarea 
                                         tpye="text"
-                                        maxLength="48"
+                                        maxLength="200"
                                         onChange={onChange}
                                         review={review}
-                                        placeholder={"맥주에 대한 \n평가와 소감을 적어주세요.\n(최대 48자)"}
+                                        placeholder={"맥주에 대한 \n평가와 소감을 적어주세요.\n(200자 이내)"}
                                     ></BeerTextarea>
                                 </>
                             )}
@@ -169,6 +176,7 @@ const ReviewWriteModal = (props) => {
                                 )}
                             
                             </div>
+                        <ToastContainer />
                         {is_edit ? (
                             <ReviewButton>
                                 <button
