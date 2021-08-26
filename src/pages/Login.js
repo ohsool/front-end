@@ -91,14 +91,14 @@ const Login = (props) => {
                         <div>
                             <SocialLoginButton
                                 onClick={() => {
-                                    window.location.href = "https://accounts.kakao.com/login?continue=https%3A%2F%2Fkauth.kakao.com%2Foauth%2Fauthorize%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252F%25EC%2598%25A4%25EB%258A%2598%25EC%259D%2598%25EC%2588%25A0.shop%252Fapi%252Fuser%252Fkakao%252Fcallback%26client_id%3De37e7e15c49d382837d031d60c753b43"
+                                    window.location.href = "https://kauth.kakao.com/oauth/authorize?client_id=e37e7e15c49d382837d031d60c753b43&redirect_uri=https://ohsool.shop/api/user/kakao/callback&response_type=code"
                                 }}>
                                 카카오톡으로 로그인하기
                             </SocialLoginButton>
                             <SocialLoginButton
                                 style={{ marginBottom: "80px" }}
                                 onClick={() => {
-                                    window.location.href = "https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount?response_type=code&redirect_uri=https%3A%2F%2FXN--WH1BO80AC4CI9A.shop%2Fapi%2Fuser%2Fgoogle%2Fcallback&scope=email%20profile&client_id=191938571707-m8nhi8j2inb8dn0c0pq99f3gc1hd9sfd.apps.googleusercontent.com&flowName=GeneralOAuthFlow"
+                                    window.location.href = "https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount?response_type=code&redirect_uri=https://ohsool.shop/api/user/google/callback&scope=email%20profile&client_id=191938571707-m8nhi8j2inb8dn0c0pq99f3gc1hd9sfd.apps.googleusercontent.com&flowName=GeneralOAuthFlow"
                                 }}>
                                 <span>구글로 로그인하기</span>
                             </SocialLoginButton>

@@ -77,7 +77,6 @@ export const beerSlice = createSlice({
         })
         .addCase(unLikeBeerDetail.fulfilled, (state, action) => {
           state.beerOne.like_array = action.payload.likes;
-          alert("취소되었습니다.");
         })
         .addCase(starRateDetail.fulfilled, (state, action) => {
           state.beerOne.avgRate = action.payload;

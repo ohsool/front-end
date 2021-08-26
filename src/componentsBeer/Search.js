@@ -37,13 +37,13 @@ const Search = (props) => {
     }
 
     const searchWord = () =>{//실시간으로 자동완성 된 값 불러옴   
-        dispatch(getSearchWord(word)); 
+        dispatch(getSearchWord(word));
     }
 
-    const searchDebounce = _.debounce(() => {
+    const searchDebounce = _.throttle(() => {
         searchWord();
-    }, 300)
-
+    }, 500);
+    
     const EnterSubmit = (e) =>{
         if(e.key === "Enter"){
             findBeerbySearchButtonClick();
@@ -144,11 +144,10 @@ const Search = (props) => {
                     }}
                     placeholder="검색어를 입력하세요."
                 ></input>
-                
             }
                 <ButtonWrap>
                     <ImageWrap style={{backgroundImage: `url(${remove})`}}
-                        onClick={()=>{ 
+                        onClick={()=>{
                             setWord(null);
                             setInput(false);
                             setLanguage("");

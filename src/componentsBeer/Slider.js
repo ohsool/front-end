@@ -15,6 +15,7 @@ const BeerType = (props) => {
         setIs_Search,
         setHashtag,
         get_category_id,
+        setPagingCate,
     } = props;
 
     const settings = {
@@ -29,6 +30,7 @@ const BeerType = (props) => {
     const clickSlider = () => {
         setIs_Search(false);
         setOpen_Modal(false); //카테고리 클릭시 검색 모달 닫기
+        setPagingCate(1)
         setHashtag([]); 
     }
 

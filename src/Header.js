@@ -87,9 +87,9 @@ const UserImage = styled.div`
     display: flex;
     float: right;
     & > span{
-        font-size: 14px;
+        font-size: 12px;
         font-weight: normal;
-        margin-right: 10px;
+        margin-right: 5px;
         line-height: 45px;
     }
 `;

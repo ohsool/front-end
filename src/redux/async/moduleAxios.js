@@ -1,22 +1,22 @@
 import axios from "axios";
 import crypto from "crypto";
 import { getCookie, setCookie, setCookieRefresh } from "../../share/Cookie";
-import { userInfo } from "./user";
 
 const secretAPIkey = () => {
-    const time = new Date();
+    const unstabletime = new Date();
+    const time = new Date(unstabletime.toLocaleString("en-US", {timeZone: "America/New_York"}));
+
     let key = String(time.getDate()) + String(time.getHours()) + String(time.getUTCFullYear()) + String(time.getUTCHours());
 
     key = crypto.createHmac('sha256', key).digest('base64');
-    key = key.replace(/[^a-zA-Z ]/g, "");
+    key = key.replace(/[^a-zA-Z ]/g, "")
 
     return key;
 };
 
-const key = secretAPIkey();
 
 export const axiosInstance = axios.create({
-    baseURL: `https://ohsool.shop/`,
+    baseURL: `https://ohsool.shop`,
     headers: {
         "Content-Type": "application/json;charset=UTF-8",
         "accept": "application/json,",
@@ -35,7 +35,7 @@ axiosInstance.interceptors.request.use(
         config.headers.common["dhtnf"] = `Bearer ${dhtnf}`;
         config.headers.common["chlrh"] = `Bearer ${chlrh}`;
         config.headers.common["dlfwh"] = `Bearer ${dlfwh}`;
-        config.headers.common["Secretkey"] = key;
+        config.headers.common["Secretkey"] = secretAPIkey();
         return config;
     }
 );

@@ -2,7 +2,13 @@ import React, {useEffect, useState, useRef} from "react";
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
 import { useSelector, useDispatch } from "react-redux";
-import { getOneBeer, likeBeerDetail, unLikeBeerDetail } from "../redux/async/beer";
+import { 
+    getOneBeer, 
+    likeBeerDetail, 
+    unLikeBeerDetail,
+    likeBeer,
+    unLikeBeer
+} from "../redux/async/beer";
 import { getReview } from "../redux/async/review";
 import { userInfo } from "../redux/async/user";
 import { oneBeer } from "../redux/reducer/beerSlice";
@@ -37,6 +43,12 @@ const BeerDetail = (props) =>{
         dispatch(userInfo());
     }, [dispatch, props.match.params.beerId]);
 
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+        })
+    }, [])
+
     useEffect(() => { //좋아요된 상태면 좋아요 눌린걸로 아니면 false그대로
         if(beerOne && userId){
             if(beerOne.like_array.includes(userId)){
@@ -59,11 +71,13 @@ const BeerDetail = (props) =>{
             if(toggle === true){
                 if(window.confirm(`좋아요를 취소하시겠어요?`)){
                     dispatch(unLikeBeerDetail(beerOne._id));
+                    dispatch(unLikeBeer(beerOne._id))
                     setToggle(false)
                     return;
                 }
             }else{
                 dispatch(likeBeerDetail(beerOne._id));
+                dispatch(likeBeer(beerOne._id));
                 setToggle(true);
             }
         }else{ //로그인 안한 유저가 좋아요 눌렀을때 눌리는 것 방지
@@ -264,7 +278,7 @@ const BeerDetail = (props) =>{
                             is_edit={false}
                         ></ReviewWriteModal>
                         </div> 
-                        {scrollHeightInfo > 500 ? 
+                        {scrollHeightInfo > 300 ? 
                             <WriteButton 
                             onClick={() => {
                             loginConfirm();

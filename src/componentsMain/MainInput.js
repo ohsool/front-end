@@ -29,9 +29,9 @@ const MainInput = (props) => {
                     }}>
                         대한민국의 모든 맥주
                     </LinkBox>
-                    <LinkBox2 onClick={goBeerDogam}>
+                    <LinkBox onClick={goBeerDogam}>
                         나의 맥주 도감
-                    </LinkBox2>
+                    </LinkBox>
                 </Wrap>
                 {is_login !== "success" ? 
                 (<ButtonWrap>
@@ -69,21 +69,6 @@ const LinkBox = styled.div`
     height: 45px;
     line-height: 45px;
     margin: 0 0 16px 0;
-    background-color: transparent;
-    border: 1px solid #FFFFFF;
-    border-radius: 22.5px;
-    color: #FFFFFF;
-    z-index: 9999;
-    cursor: pointer;
-`;
-
-const LinkBox2 = styled.div`
-    display: flex;
-    justify-content: center;
-    width: 276px;
-    height: 45px;
-    line-height: 45px;
-    margin: 0 0 30px 0;
     background-color: transparent;
     border: 1px solid #FFFFFF;
     border-radius: 22.5px;

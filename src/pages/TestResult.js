@@ -24,10 +24,6 @@ const TestResult = (props) => {
         if(category){
             setLoading(true);
         }
-    })
-
-    useEffect(() => {
-        dispatch(userInfo());
     }, []);
 
     useEffect(() => {

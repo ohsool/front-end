@@ -25,7 +25,7 @@ const MyPageModal = (props) => {
         }
     }
     const clickSubmit = ()=>{
-        if(title === "" && chat === ""){
+        if(title === "" || chat === ""){
             alert("건의 내용을 입력해주세요!")
             return;
         }
