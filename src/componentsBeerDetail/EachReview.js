@@ -55,13 +55,14 @@ const EachReview=(props)=> {
                             <>{item?.review.slice(0,50)+'...'}
                             <br/>
                             <MoreButton onClick={(e)=>{
-                                console.log("Click!");
                                 history.push(`/review/${item._id}`, item, userId);
                             }}><span>더보기</span></MoreButton>
                             </>
                             : <>{item?.review}
                                 <br/>
-                                <MoreButton><span>더보기</span></MoreButton></>
+                                <MoreButton onClick={(e)=>{
+                                history.push(`/review/${item._id}`, item, userId);
+                            }}><span>더보기</span></MoreButton></>
                         }
                     </ReviewTextWrap>               
                 </ReviewText>

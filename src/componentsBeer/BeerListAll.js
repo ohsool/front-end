@@ -60,7 +60,7 @@ const InfinityChildren = ({setHashtagName}) => {
         <React.Fragment>
             <List>
             {beersIF?.map((item, idx) => (
-                <EachBeer 
+                <EachBeer page={"beerList"}
                 setHashtagName={setHashtagName}
                 key={idx} item={item}/>
             ))}

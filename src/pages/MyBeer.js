@@ -21,6 +21,9 @@ const MyBeer = (props)=>{
     
     useEffect(() => {
         dispatch(userInfo());//현재 로그인한사용자 정보 (새로고침시 상태 날라가는 것 방지)
+        window.scrollTo({
+            top: 0,
+        })
     }, []);
 
     useEffect(()=> {
@@ -56,7 +59,9 @@ const MyBeer = (props)=>{
                 {is_Dogam === true ? 
                     <List>
                     {mydogam.length !== 0 ? mydogam?.map((item, idx) => (
-                        <EachBeer key={idx} item={item} 
+                        <EachBeer 
+                            page={"beerList"}
+                            key={idx} item={item} 
                             _onClick={() =>{
                                 history.push("/beer/detail")
                             }

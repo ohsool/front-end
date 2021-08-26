@@ -5,8 +5,6 @@ import "../share/style/ReviewWriteModal.css";
 import { StarRate, SelectBar} from "./BeerDetailIndex";
 import { writeReview, editReview} from "../redux/async/review";
 import { starRateDetail } from "../redux/async/beer";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 const remove = "/images/remove.png";
 
@@ -34,13 +32,11 @@ const ReviewWriteModal = (props) => {
 
     const addReview = () => { //리뷰 작성시
         if(review === "" || starScore === undefined){
-            //alert("답하지 않은 문항이 있어요!")
-            //return;
-            toast("답하지 않은 문항이 있어요!")
+            alert("답하지 않은 문항이 있어요!")
+            return;
         }else if(review.length > 210){
-            /*alert("글자수는 200 글자를 넘을 수 없어요!");
-            return;*/
-            return toast("글자수는 200 글자를 넘을 수 없어요!");
+            alert("글자수는 200 글자를 넘을 수 없어요!");
+            return;
         }
         dispatch(writeReview({
             myFeatures: {
@@ -56,8 +52,7 @@ const ReviewWriteModal = (props) => {
             beerId: beerOne._id
         }));
         dispatch(starRateDetail(starScore));
-        //alert("작성 완료!🍻");
-        toast("작성 완료!🍻");
+        alert("작성 완료!🍻");
         setReview("");
         setStarScore(0);
         setFeaturesList(arr.fill(0));
@@ -79,8 +74,7 @@ const ReviewWriteModal = (props) => {
             review: review,      
             mybeerId: mybeerId,
         }));
-        //alert("수정 완료!🍻");
-        toast("수정 완료!🍻");
+        alert("수정 완료!🍻");
         setReview("");
         setStarScore(0);
         setFeaturesList(arr.fill(0));
@@ -90,8 +84,7 @@ const ReviewWriteModal = (props) => {
     const onChange = (e) => {
         setReview(e.target.value);
         if(e.target.value.length > 200){
-            return toast("200글자를 초과할 수 없어요!");
-            //alert("200글자를 초과할 수 없어요!")
+            alert("200글자를 초과할 수 없어요!")
         }
     }
     return(
@@ -176,7 +169,6 @@ const ReviewWriteModal = (props) => {
                                 )}
                             
                             </div>
-                        <ToastContainer />
                         {is_edit ? (
                             <ReviewButton>
                                 <button

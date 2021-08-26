@@ -12,7 +12,7 @@ import { unLikeBeerDogam } from "../redux/async/mybeer";
 
 const EachBeer = (props) => {
     const dispatch = useDispatch();
-    const { item, setHashtagName } = props;
+    const { item, setHashtagName, page } = props;
     const userId = useSelector(User);
     const [toggle, setToggle] = useState(false);
 
@@ -51,12 +51,19 @@ const EachBeer = (props) => {
     }
 
     return(
+        
         <React.Fragment>
-            <RecommendBeerWrap 
-            onClick={() => {
-                history.push(`/beer/detail/${item._id}`, item.like_array);
-            }}
-           >
+        {/*
+            {page === "beerList" ? <RecommendBeerWrap 
+                onClick={() => {
+                    history.push(`/beer/detail/${item._id}`, item.like_array);
+                }}> : <RecommendBeerWrap>
+            }
+        */}
+             <RecommendBeerWrap 
+                onClick={() => {
+                    history.push(`/beer/detail/${item._id}`, item.like_array);
+                }}>
                 <BeerImage>
                     <img src={item.image} alt="beer_image">
                     </img>
@@ -76,13 +83,16 @@ const EachBeer = (props) => {
                         
                     <p>{item.name_english}</p>
                 </BeerInfoWrap>
+                
                 {item.hashtag.map((p, idx) => (
                 idx === 3 ||idx === 4? //해시태그 2개만 정렬
                     <TasteTag 
-                    onClick={(e)=>{
-                        e.preventDefault();
-                        e.stopPropagation(); 
-                        searchHashtagWord(p);
+                    onClick={(e)=>{//해시태그 클릭시 해당 해시태그 검색결과 출력
+                        if(page==="beerList"){
+                            e.preventDefault();
+                            e.stopPropagation(); 
+                            searchHashtagWord(p);
+                        }
                     }}
                     key={idx}>#{p}
                     </TasteTag>:""

@@ -10,7 +10,6 @@ import { getReviewList } from "../redux/reducer/reviewSlice";
 import { oneBeer } from "../redux/reducer/beerSlice";
 import { User } from "../redux/reducer/userSlice";
 import {EachReview,ReviewWriteModal} from "../componentsBeerDetail/BeerDetailIndex";
-import { toast } from "react-toastify";
 
 const ReviewList = (props)=>{
     const [modalOpen, setModalOpen] = useState(false);
@@ -38,7 +37,7 @@ const ReviewList = (props)=>{
         if(userId){
             if(is_comment){
                 //alert("이미 댓글을 작성하셨습니다!");
-                return toast("이미 댓글을 작성하셨습니다!");
+                return alert("이미 댓글을 작성하셨습니다!");
             }else{
             openModal();
         }
@@ -63,7 +62,9 @@ const ReviewList = (props)=>{
                 <Grid>
                     {beer_infos?.length > 0 ? beer_infos?.map((item, idx) => {
                         return(
-                            <EachReview key={idx} item={item} userId={userId}/>       
+                            <EachReview 
+                            page={"beerList"}
+                            key={idx} item={item} userId={userId}/>       
                         )
                         }):""}            
                 </Grid>

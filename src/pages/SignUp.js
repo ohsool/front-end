@@ -1,7 +1,5 @@
 import React, {useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import {useDispatch, useSelector} from "react-redux";
 import { signUp, checkEmail, checkNickname } from "../redux/async/user";
 import { is_Signup, is_Nickname, is_Email } from "../redux/reducer/userSlice";
@@ -30,7 +28,7 @@ const SignUp = (props) => {
 
     useEffect(() => { //회원가입 후 응답이 오면 로그인페이지로 이동
         if(is_signup === "success"){
-            toast("회원가입이 완료되었습니다!");
+            alert("회원가입이 완료되었습니다!");
             window.location.href = "/"
         }
     }, [is_signup]);
@@ -81,17 +79,17 @@ const SignUp = (props) => {
 
     const submitSignUp = () => {
         if(email === "" || nickname === "" || password === "" || confirmPassword === "" ){
-            toast("아이디, 닉네임, 비밀번호를 다시 확인 해주세요!")
+            alert("아이디, 닉네임, 비밀번호를 다시 확인 해주세요!")
             return;
         } //공란 체크
 
         if(!pwdReg(password)){
-            toast("비밀번호를 4자 이상 입력해주세요!");
+            alert("비밀번호를 4자 이상 입력해주세요!");
             return;
         } //비밀번호 형식체크
         
         if(password !== confirmPassword){
-            toast("비밀번호 및 비밀번호확인이 다릅니다!");
+            alert("비밀번호 및 비밀번호확인이 다릅니다!");
             return;
         } //비밀번호 체크
 
@@ -178,7 +176,6 @@ const SignUp = (props) => {
                             value={confirmPassword}
                             placeholder="비밀번호를 한번 더 입력해주세요"
                         ></InputSignUP>
-                        <ToastContainer/>
                         <div 
                             style={{marginTop: "100px",
                                     marginBottom: "80px"

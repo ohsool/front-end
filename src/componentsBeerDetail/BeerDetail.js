@@ -1,7 +1,5 @@
 import React, {useEffect, useState, useRef} from "react";
 import styled from "styled-components";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { history } from "../redux/configureStore";
 import { useSelector, useDispatch } from "react-redux";
 import { 
@@ -99,7 +97,7 @@ const BeerDetail = (props) =>{
     const loginConfirm = ()=>{
         if(userId){
             if(is_comment !== undefined){
-                return toast("이미 리뷰를 작성하셨습니다!")
+                return alert("이미 리뷰를 작성하셨습니다!")
             }else{
                 setModalOpen(true);
                 
@@ -201,9 +199,8 @@ const BeerDetail = (props) =>{
                         <JustifyAlign>
                             <span style={{ fontWeight: "700"}}>맥주소개</span>
                         
-                            <div style={{marginTop: "-60px",marginBottom: "10px", marginRight: "-15px"}}>
+                            <div style={{padding: "0 2px 2px 0", marginBottom: "9px", marginRight: "-15px"}}>
                                 <ShareButton
-                                    page={'detail'}
                                     name={beerOne?.name_korean}
                                     description={'ohsool에서 '+ beerOne?.name_korean + '맥주의 특징을 확인해보세요!🍺 '}
                                     image={beerOne?.image}
@@ -262,7 +259,9 @@ const BeerDetail = (props) =>{
                             {beer_infos?.length > 0 ? beer_infos?.map((item, idx) => (
                                 idx < 4 ? (
                                     <>
-                                    <EachReview key={idx} item={item} userId={userId}/>
+                                    <EachReview 
+                                    page={"beerList"}
+                                    key={idx} item={item} userId={userId}/>
                                     </>) : null
                             )): 
                                 <>
@@ -281,7 +280,6 @@ const BeerDetail = (props) =>{
                             is_edit={false}
                         ></ReviewWriteModal>
                         </div> 
-                        <ToastContainer/>
                         {scrollHeightInfo > 300 ? 
                             <WriteButton 
                             onClick={() => {

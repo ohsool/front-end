@@ -7,8 +7,6 @@ import Header from "../Header";
 import NavigationBar from "../NavigationBar";
 import UserPreference from '../componentsMypage/UserPerference';
 import { useSelector } from "react-redux";
-import {history} from "../redux/configureStore"
-
 const arrow = "/images/suggestarrow.png";
 
 const MyPage = (props) => {

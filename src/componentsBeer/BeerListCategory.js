@@ -78,7 +78,7 @@ const BeerListCategory = (props) => {
         <React.Fragment>
             <List>
             {beers?.map((item, idx) => (
-                <EachBeer 
+                <EachBeer page={"beerList"}
                 setHashtagName={setHashtagName}
                 key={idx} item={item} />
             ))}
