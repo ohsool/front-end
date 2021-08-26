@@ -1,12 +1,10 @@
 import React, {useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
-
 import {useDispatch, useSelector} from "react-redux";
 import { signUp, checkEmail, checkNickname } from "../redux/async/user";
 import { is_Signup, is_Nickname, is_Email } from "../redux/reducer/userSlice";
 import { emailCheck, pwdReg} from "../share/checkReg";
 import NavigationBar from "../NavigationBar";
-
 import "../share/style/loginButton.css";
 
 const SignUp = (props) => {

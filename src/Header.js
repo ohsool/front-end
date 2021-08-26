@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import myIcon from "./share/image/HeaderIcon.png";
-import Back from "./share/image/Back2.png";
-
 import { history } from "./redux/configureStore";
 import "./share/style/TestHeader.css";
 import { useSelector } from "react-redux";
+
+const myIcon = "image/HeaderIcon.png";
+const Back = "/images/Back2.png";
 
 const Header = (props) => {
     const userInfo = useSelector(state => state.user.currentUser);

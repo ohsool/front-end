@@ -1,11 +1,12 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import styled from "styled-components";
-import myPage from "./share/image/myPage.png";
-import beer from "./share/image/beer.png";
-import myBeer from "./share/image/mybeer.png";
 import { history } from "./redux/configureStore";
 import "./share/style/TestHeader.css";
 import { useSelector } from "react-redux";
+
+const myPage = "/images/myPage.png";
+const beer = "/images/beer.png";
+const myBeer = "/images/mybeer.png";
 
 const NavigationBar = (props) => {
     const userInfo = useSelector(state => state.user.currentUser);

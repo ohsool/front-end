@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import imagesrc from "../share/image/marker.png";
 import Loader from "../share/Loader";
+
+const imagesrc = "/images/maker.png";
 
 const MapImage = ({setClickReport}) => {
         const kakao = window.kakao;

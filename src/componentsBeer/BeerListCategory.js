@@ -6,14 +6,14 @@ import { beerCategory } from "../redux/reducer/beerSlice";
 import {useParams} from "react-router-dom";
 import EachBeer from "./EachBeer";
 import _ from "lodash";
-import Loader from "../share/Loader";
+import InfinityScrollLoader from "./InfinityScrollLoader";
 
-const BeerListCategory = ({ setHashtagName, pagingCate, setPagingCate }) => {
+const BeerListCategory = (props) => {
+    const { setHashtagName, pagingCate, setPagingCate } = props;
     const category_beers = useSelector(beerCategory);
     const {beerCategoryId} = useParams();
     const [beers, setBeers] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [paging, setPaging] = useState(0);
     const dispatch = useDispatch();
     
     const dispatchData= {
@@ -25,7 +25,6 @@ const BeerListCategory = ({ setHashtagName, pagingCate, setPagingCate }) => {
         setBeers([...beers, ...category_beers]);
     }, [category_beers]);
     const getCategoryBeerList = useCallback (() => {
-            setLoading(true);
         async function getData(){
         await dispatch(getBeerCategoryList(dispatchData));
             setLoading(false);
@@ -45,6 +44,7 @@ const BeerListCategory = ({ setHashtagName, pagingCate, setPagingCate }) => {
             return;
             }
           getCategoryBeerList();
+          setLoading(true);
         }
     }, 500);
     
@@ -83,7 +83,7 @@ const BeerListCategory = ({ setHashtagName, pagingCate, setPagingCate }) => {
                 key={idx} item={item} />
             ))}
             </List>
-            {loading ? <Loader></Loader>: 
+            {loading ? <InfinityScrollLoader/>: 
             ""}
         </React.Fragment>
     )

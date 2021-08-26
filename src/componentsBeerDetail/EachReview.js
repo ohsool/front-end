@@ -3,16 +3,12 @@ import React,{useState} from 'react';
 import styled from "styled-components";
 import moment from 'moment';
 import 'moment/locale/ko';
-import star from "../share/image/star.png";
-//import edit from "../share/image/edit.png";
-//import remove from "../share/image/remove.png";
 import {StarRate} from "./BeerDetailIndex";
-
 import {useDispatch} from "react-redux";
-import {deleteReview} from "../redux/async/review";
 import { history } from '../redux/configureStore';
-
 import ReviewWriteModal from "../componentsBeerDetail/ReviewWriteModal";
+
+const star = "/images/star.png";
 
 const EachReview=(props)=> {
     const { item, beerOne, userId } = props; 
@@ -59,7 +55,6 @@ const EachReview=(props)=> {
                 <ReviewText>
                     <span style={{ display: "block", width: "280px",fontWeight: "300", fontSize: "12px", lineHeight: "17.38px"}}>
                         {item?.review}
-
                     </span>               
                 </ReviewText>
             </Grid>
@@ -82,7 +77,8 @@ export default React.memo(EachReview);
 
 const Container = styled.div`
     width: 312px;
-    height: 100px;
+    min-height: 100px;
+    max-height: 100%;
     border-radius: 5px;
     margin: 5px auto;
     border:1.7px solid #c4c4c4;

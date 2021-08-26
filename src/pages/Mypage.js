@@ -1,14 +1,14 @@
 import React,{ useState ,useEffect} from 'react';
 import styled from 'styled-components';
-import { logOut, withDrawl } from "../redux/async/user";
+import { logOut } from "../redux/async/user";
 import { useDispatch } from "react-redux";
-
 import MyPageModal from "../componentsMypage/MyPageModal";
 import Header from "../Header";
 import NavigationBar from "../NavigationBar";
-import arrow from "../share/image/suggestarrow.png";
 import UserPreference from '../componentsMypage/UserPerference';
 import { useSelector } from "react-redux";
+
+const arrow = "/images/suggestarrow.png";
 
 const MyPage = (props) => {
     const userInfos = useSelector(state => state.user.currentUser);

@@ -24,7 +24,7 @@ const TestResult = (props) => {
         if(category){
             setLoading(true);
         }
-    }, []);
+    }, [category]);
 
     useEffect(() => {
         if(categoryParams === "Lager" 

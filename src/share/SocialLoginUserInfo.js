@@ -25,9 +25,6 @@ const SocialLoginUserInfo = (props) => {
         <React.Fragment>
         {open ?
         <Background>
-                <WhiteSpace
-                    onClick={close}
-                ></WhiteSpace>
                 <ModalWrap>
                 <Div>
                     <SuggestTitle>
