@@ -5,9 +5,7 @@ import { axiosInstance } from "./moduleAxios";
 export const getMyDogam = createAsyncThunk(
   "mybeer/getMyDogam",
   async (data, thunkAPI) => {
-
     const response = await axiosInstance.get(`/api/beer/liked`);
-
     return response.data;
   }
 );
@@ -32,14 +30,46 @@ export  const unLikeBeerDogam = createAsyncThunk(
     return index;
   }
 );
+//맥주도감에서 리뷰 수정
+export const editReviewDogam = createAsyncThunk(
+  "review/editReviewDogam",
+  async (data, thunkAPI) => {
+    const review = thunkAPI.getState().mybeer.myReview;
+    const index  = review.findIndex((p) => p._id === data.mybeerId);
+    // myFeatures, location, rate, review
+    const response = await axiosInstance.put(`/api/mybeer/${data.mybeerId}`, data);
+
+    const dataSlice = {
+      myFeatures: data.myFeatures,
+      rate: data.rate,
+      review: data.review,
+      index: index
+    }
+
+    return dataSlice;
+  }
+);
 
 //맥주도감에서 리뷰 삭제
+/*
 export const deleteReviewDogam = createAsyncThunk(
   "review/deleteReviewDogam",
   async (data, thunkAPI) => {
-    const reviews = thunkAPI.getState().mybeer.mydogam;
+    const reviews = thunkAPI.getState().mybeer.myReview;
     const index = reviews.findIndex((p) => p._id === data);
 
     return index;
+  }
+);
+*/
+export const deleteReviewDogam = createAsyncThunk(
+  "review/deleteReviewDogam",
+  async (data, thunkAPI) => {
+    const review = thunkAPI.getState().mybeer.myReview;
+    const index = review.findIndex((p) => p._id === data);
+    const response = await axiosInstance.delete(`/api/mybeer/${data}`);
+    if(response.data.message === "success"){
+    return index;
+    }
   }
 );

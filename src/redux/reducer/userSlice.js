@@ -95,7 +95,7 @@ const userSlice = createSlice({
 
 export default userSlice;
 
-const current_User = (state) => state.user.currentUser.userId;
+const current_User = (state) => state.user.currentUser.userId; //beerDetail페이지 리뷰 작성자 정보
 
 const is_login = (state) => state.user.is_login;
 

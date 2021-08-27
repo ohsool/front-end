@@ -1,6 +1,7 @@
 import React, {useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
+import {history} from "../redux/configureStore";
 import { signUp, checkEmail, checkNickname } from "../redux/async/user";
 import { is_Signup, is_Nickname, is_Email } from "../redux/reducer/userSlice";
 import { emailCheck, pwdReg} from "../share/checkReg";
@@ -28,7 +29,10 @@ const SignUp = (props) => {
 
     useEffect(() => { //회원가입 후 응답이 오면 로그인페이지로 이동
         if(is_signup === "success"){
-            alert("회원가입이 완료되었습니다!");
+            if(window.confirm("회원가입이 완료되었습니다! 로그인페이지로 이동하시겠습니까?")){
+                history.push("/login");
+                return;
+            }
             window.location.href = "/"
         }
     }, [is_signup]);

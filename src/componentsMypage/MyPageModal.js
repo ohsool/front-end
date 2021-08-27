@@ -28,6 +28,8 @@ const MyPageModal = (props) => {
         if(title === "" || chat === ""){
             alert("건의 내용을 입력해주세요!");
             return;
+        }else if(chat.length > 500){
+            alert("글자수는 500글자를 넘을 수 없습니다.")
         }
         if(window.confirm("작성한 내용을 보내시겠습니까?")){
             if(suggestInfo.suggestTitle === "맥주 건의하기"){
@@ -99,6 +101,7 @@ const MyPageModal = (props) => {
 
                     </SuggestInputTitle>
                     <SuggestInput
+                        maxLength="500"
                         value={chat}
                         name="chat"
                         onChange={onChange}

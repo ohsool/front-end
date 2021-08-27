@@ -29,7 +29,7 @@ export const writeReview = createAsyncThunk(
 export const editReview = createAsyncThunk(
   "review/editReview",
   async (data, thunkAPI) => {
-    const review = thunkAPI.getState().review.reviewList;
+    const review = thunkAPI.getState().mybeer.myReview;
     const index  = review.findIndex((p) => p._id === data.mybeerId);
     // myFeatures, location, rate, review
     const response = await axiosInstance.put(`/api/mybeer/${data.mybeerId}`, data);
@@ -44,11 +44,12 @@ export const editReview = createAsyncThunk(
     return dataSlice;
   }
 );
+
 //맥주 리뷰 삭제
 export const deleteReview = createAsyncThunk(
   "review/deleteReview",
   async (data, thunkAPI) => {
-    const review = thunkAPI.getState().review.reviewList;
+    const review = thunkAPI.getState().mybeer.myReview;
     const index = review.findIndex((p) => p._id === data);
     const response = await axiosInstance.delete(`/api/mybeer/${data}`);
     if(response.data.message === "success"){

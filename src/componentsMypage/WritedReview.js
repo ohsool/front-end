@@ -50,7 +50,7 @@ const WritedReview = ({item}) =>   {
                                 e.preventDefault();
                                 e.stopPropagation();
                                 if(window.confirm("정말로 삭제하시나요?")){
-                                    dispatch(deleteReview(item._id));
+                                    //dispatch(deleteReview(item._id));
                                     dispatch(deleteReviewDogam(item._id));
                                     return;
                                 }

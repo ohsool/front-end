@@ -29,7 +29,7 @@ const MyReview = (props) =>{
 
                     <Title><span>작성한 리뷰</span></Title>                   
                     <BeerTextWrap>
-                            <span style={{paddingBottom:"20px"}}>{item?.review}</span>
+                            <span>{item?.review}</span>
                     </BeerTextWrap>
                 </div>
                 <Text><span>점수</span></Text>
@@ -104,7 +104,7 @@ const BeerTextWrap = styled.div`
     word-break:break-all;
     word-wrap:break-word;
     & > span{
-        margin: 0 14px;
+        margin: 0 24px;
         float: left;
         font-size: 12px;
         font-weight: 300;
@@ -118,7 +118,7 @@ const Text = styled.div`
 
     margin: 0 auto;
     width: 360px;
-    padding-top: 20px;
+    padding-top: 30px;
 
     text-align: center;
     & > span{
@@ -126,15 +126,6 @@ const Text = styled.div`
         font-weight: 700;
         line-height: 20.27px;
     }
-`
-
-const LineShort = styled.hr`
-    width: 340px;
-    margin: 0 auto;
-    text-align: center;
-    border: 0;
-    border:solid #c4c4c4;
-    border-width: 0.5px;
 `
 
 const StarWrap = styled.div`

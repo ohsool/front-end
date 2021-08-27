@@ -18,6 +18,8 @@ const ReviewWriteModal = (props) => {
     const [featuresList, setFeaturesList] = useState(arr.fill(0));
     const [list, setList] = useState();
     const dispatch = useDispatch();
+    console.log("starScore",starScore)
+
     useEffect(() => {
         if(item) {
           setList(Object.values(item?.myFeatures));
@@ -29,13 +31,12 @@ const ReviewWriteModal = (props) => {
         setStarScore(item?.rate);
     },[])
 
-
     const addReview = () => { //리뷰 작성시
         if(review === "" || starScore === undefined){
             alert("답하지 않은 문항이 있어요!")
             return;
-        }else if(review.length > 210){
-            alert("글자수는 200 글자를 넘을 수 없어요!");
+        }else if(review.length > 300){
+            alert("글자수는 300 글자를 넘을 수 없어요!");
             return;
         }
         dispatch(writeReview({
@@ -59,7 +60,6 @@ const ReviewWriteModal = (props) => {
         close();
     }
     const updateReview = () => {
-        
         dispatch(editReview({
             myFeatures: {
                 bitter: featuresList[0], 
@@ -83,8 +83,8 @@ const ReviewWriteModal = (props) => {
 
     const onChange = (e) => {
         setReview(e.target.value);
-        if(e.target.value.length > 200){
-            alert("200글자를 초과할 수 없어요!")
+        if(e.target.value.length > 300){
+            alert("300글자를 초과할 수 없어요!")
         }
     }
     return(
@@ -108,7 +108,7 @@ const ReviewWriteModal = (props) => {
                                  <>
                                     <BeerTextarea 
                                         tpye="text"
-                                        maxLength="200"
+                                        maxLength="300"
                                         onChange={onChange}
                                         review={review}
                                         placeholder={""}
@@ -118,10 +118,10 @@ const ReviewWriteModal = (props) => {
                                 <>
                                     <BeerTextarea 
                                         tpye="text"
-                                        maxLength="200"
+                                        maxLength="300"
                                         onChange={onChange}
                                         review={review}
-                                        placeholder={"맥주에 대한 \n평가와 소감을 적어주세요.\n(200자 이내)"}
+                                        placeholder={"맥주에 대한 \n평가와 소감을 적어주세요.\n(300자 이내)"}
                                     ></BeerTextarea>
                                 </>
                             )}

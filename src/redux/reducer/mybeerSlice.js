@@ -1,5 +1,5 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
-import { getMyDogam, getMyReview, unLikeBeerDogam, deleteReviewDogam } from "../async/mybeer";
+import { getMyDogam, getMyReview, unLikeBeerDogam, deleteReviewDogam, editReviewDogam } from "../async/mybeer";
 
 const initialState = {
     mydogam: [],
@@ -22,6 +22,11 @@ const beerSlice = createSlice({
         })
         .addCase(unLikeBeerDogam.fulfilled, (state, action) => {
           state.mydogam.splice(action.payload, 1);
+        })
+        .addCase(editReviewDogam.fulfilled, (state, action) => {
+          state.myReview[action.payload.index].myFeatures = action.payload.myFeatures;
+          state.myReview[action.payload.index].rate = action.payload.rate;
+          state.myReview[action.payload.index].review = action.payload.review;
         })
         .addCase(deleteReviewDogam.fulfilled, (state, action) => {
           state.myReview.splice(action.payload, 1);
