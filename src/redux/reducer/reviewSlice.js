@@ -38,7 +38,6 @@ const reviewSlice = createSlice({
           state.reviewList[action.payload.index].myFeatures = action.payload.myFeatures;
           state.reviewList[action.payload.index].rate = action.payload.rate;
           state.reviewList[action.payload.index].review = action.payload.review;
-
         })
         .addCase(deleteReview.fulfilled, (state, action) => {
           state.reviewList.splice(action.payload, 1);

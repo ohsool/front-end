@@ -54,11 +54,13 @@
     <script>
       if ('serviceWorker' in navigator) {
           window.addEventListener('load', function() {
-              navigator.serviceWorker.register('worker.js').then(function(registration) {
+              navigator.serviceWorker.register('./worker.js')
+              .then(function(registration) {
+                // console.log(registration);
               }, function(err) {
-                  console.log('Worker registration failed', err);
+                  // console.log('Worker registration failed', err);
               }).catch(function(err) {
-                  console.log(err);
+                  // console.log(err);
               });
           });
       }else{

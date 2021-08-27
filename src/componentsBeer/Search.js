@@ -112,7 +112,7 @@ const Search = (props) => {
     }
     const findBeerbySearchButtonClick = ()=>{//엔터 키를 누른 경우 해당 단어로 검색
         setSearch_Beer([]);
-        setHashtag([])
+        setHashtag([]);
         setSearch_Beer(words);
         setIs_Search(true);
     }

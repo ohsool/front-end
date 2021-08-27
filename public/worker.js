@@ -1,8 +1,8 @@
 //declare var window: Window & typeof globalThis;
 //declare var self;
-let CACHE_NAME = 'ohsool';
+let CACHE_NAME = 'ohsool version-1.1';
 let urlsToCache = [
-    '/images/mainbeer.jpeg',
+    '/index.html',
     '/images/mainLogo.png',
     '/images/splash.png',
     '/images/suggestarrow.png'
@@ -34,7 +34,8 @@ self.addEventListener('fetch', event => {
 });
 // Update a service worker
 self.addEventListener('activate', event => {
-    let cacheWhitelist = ['ohsool'];
+    let cacheWhitelist = [];
+    cacheWhitelist.push(CACHE_NAME);
     event.waitUntil(
         caches.keys().then(cacheNames => {
             return Promise.all(

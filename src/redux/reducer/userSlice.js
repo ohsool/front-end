@@ -36,6 +36,7 @@ const userSlice = createSlice({
         state.is_signup = action.payload.message;
       })
       .addCase(signUp.rejected, (state, action) => {
+        console.log(action.payload);
         alert("회원가입에 실패했습니다!");
       })
       .addCase(checkEmail.fulfilled, (state, action) => {

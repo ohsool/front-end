@@ -51,6 +51,7 @@ export  const likeBeer = createAsyncThunk(
     const indexIf = beersIf.findIndex((p) => p._id === data);
 
     const response = await axiosInstance.put(`/api/beer/like/${data}`)
+    
     const like_Data = {
       indexIf: indexIf,
       response: response.data
@@ -78,20 +79,34 @@ export  const unLikeBeer = createAsyncThunk(
 export  const likeBeerDetail = createAsyncThunk(
   "beer/likeBeerDetail",
   async (data, thunkAPI) => {
+    const beersIf = thunkAPI.getState().beer.testBeerList;
+    const indexIf = beersIf.findIndex((p) => p._id === data);
 
     const response = await axiosInstance.put(`/api/beer/like/${data}`);
     
-    return response.data;
+    const likeDetailData = {
+      indexIf: indexIf,
+      response: response.data
+    }
+
+    return likeDetailData;
   }
 );
 
 export  const unLikeBeerDetail = createAsyncThunk(
   "beer/unlikeBeerDetail",
   async (data, thunkAPI) => {
+    const beersIf = thunkAPI.getState().beer.testBeerList;
+    const indexIf = beersIf.findIndex((p) => p._id === data);
 
     const response = await axiosInstance.put(`/api/beer/unlike/${data}`);
+
+    const unLikeDetailData = {
+      indexIf: indexIf,
+      response: response.data
+    }
     
-    return response.data;
+    return unLikeDetailData;
   }
 );
 
@@ -112,7 +127,8 @@ export const getSearchWord = createAsyncThunk(
   "beer/getSearchResult",
   async (data, thunkAPI) => {
 
-    const response = await axiosInstance.get(`/api/search?word=${data}`);  
+    const response = await axiosInstance.get(`/api/search?word=${data}`); 
+    
     return response.data;
   }
 );
