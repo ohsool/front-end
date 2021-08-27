@@ -1,10 +1,9 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
-import { getMyDogam, getMyReview, getReviewLength, unLikeBeerDogam, deleteReviewDogam, editReviewDogam } from "../async/mybeer";
+import { getMyDogam, getMyReview, unLikeBeerDogam, deleteReviewDogam, editReviewDogam } from "../async/mybeer";
 
 const initialState = {
     mydogam: [],
     myReview: [],
-    length: 0,
     isLoading: false,
     isDone: false,
     isError: false,
@@ -21,11 +20,6 @@ const beerSlice = createSlice({
         .addCase(getMyReview.fulfilled, (state, action) => {
             state.myReview = action.payload.mybeers;
         })
-        /*
-        .addCase(getReviewLength.fullfilled, (state,action)=>{
-            state.length = action.payload.length;
-            console.log("action.payload.length",action.payload.length);
-        })*/
         .addCase(unLikeBeerDogam.fulfilled, (state, action) => {
           state.mydogam.splice(action.payload, 1);
         })
@@ -64,14 +58,8 @@ const liked_list = (state) => state.mybeer.mydogam;
 
 const myReview_list = (state) => state.mybeer.myReview;
 
-export const length = (state) => state.mybeer.length;
-
 export const likeList = createSelector(liked_list, liked_list => {
   return liked_list;
-});
-
-export const count = createSelector(length, length => {
-  return length;
 });
 
 export const myReviewList = createSelector(myReview_list, myReview_list => {

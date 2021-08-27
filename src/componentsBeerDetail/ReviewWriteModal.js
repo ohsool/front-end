@@ -3,7 +3,9 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import "../share/style/ReviewWriteModal.css";
 import { StarRate, SelectBar} from "./BeerDetailIndex";
-import { writeReview, editReview} from "../redux/async/review";
+import { writeReview } from "../redux/async/review";
+import { editReviewDogam} from "../redux/async/mybeer";
+
 import { starRateDetail } from "../redux/async/beer";
 
 const remove = "/images/remove.png";
@@ -18,7 +20,6 @@ const ReviewWriteModal = (props) => {
     const [featuresList, setFeaturesList] = useState(arr.fill(0));
     const [list, setList] = useState();
     const dispatch = useDispatch();
-    console.log("starScore",starScore)
 
     useEffect(() => {
         if(item) {
@@ -60,7 +61,7 @@ const ReviewWriteModal = (props) => {
         close();
     }
     const updateReview = () => {
-        dispatch(editReview({
+        dispatch(editReviewDogam({
             myFeatures: {
                 bitter: featuresList[0], 
                 crispy: featuresList[1], 

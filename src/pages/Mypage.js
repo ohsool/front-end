@@ -1,18 +1,29 @@
 import React,{ useState ,useEffect} from 'react';
 import styled from 'styled-components';
+import {history} from "../redux/configureStore";
 import { logOut } from "../redux/async/user";
 import { useDispatch } from "react-redux";
 import MyPageModal from "../componentsMypage/MyPageModal";
 import Header from "../Header";
 import NavigationBar from "../NavigationBar";
 import UserPreference from '../componentsMypage/UserPerference';
+import ProgressBar from '../componentsMypage/ProgressBar';
+import { getReviewLength } from "../redux/async/mybeer";
+//import {length} from "../redux/reducer/mybeerSlice";
 import { useSelector } from "react-redux";
 const arrow = "/images/suggestarrow.png";
 
 const MyPage = (props) => {
+    //console.log("length",length)
     const userInfos = useSelector(state => state.user.currentUser);
+    //const count = useSelector(length)
     const [modalOpen, setModalOpen] = useState(false);
     const dispatch = useDispatch();
+
+    useEffect(()=> {
+        dispatch(getReviewLength()); //사용자가 쓴 리뷰리스트 개수 디스패치
+    }, []);
+
 
     const [modal_info, setModal_Info] = useState({ //건의하기 modal창 text정보
         suggestTitle: "",
@@ -60,7 +71,29 @@ const MyPage = (props) => {
             <Header/>
             <UserPreference>
             </UserPreference>
+
+            <ProgressBar progress={'30'}/>
+
             <PageMoveWrap>
+
+                {/*
+                <MoveBoxWrap
+                    onClick={() => {
+                        window.location.href = "노션링크"
+                    }}
+                >
+                    <span>공지사항</span>
+                    <ArrowImage src={arrow}></ArrowImage>
+                </MoveBoxWrap>
+                */}
+                <MoveBoxWrap
+                    onClick={() => {
+                        history.push("/setting");
+                    }}
+                >
+                    <span>계정 설정</span>
+                    <ArrowImage src={arrow}></ArrowImage>
+                </MoveBoxWrap>
                 <MoveBoxWrap
                     onClick={() => {
                         setModal_Info({

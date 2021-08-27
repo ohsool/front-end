@@ -82,11 +82,21 @@ const Login = (props) => {
                             onKeyUp={onKeyUp}
                             placeholder="비밀번호"
                         ></InputLogin>
-                        <div
-                            className = {is_typed ? "yellowButton" : "whiteButton"}
-                            onClick={submitLogin}
-                            >
-                            로그인하기
+                        <div>
+                            <div
+                                className = {is_typed ? "yellowButton" : "whiteButton"}
+                                onClick={submitLogin}
+                                >
+                                로그인하기
+                            </div>
+                            <div
+                                className = {"whiteButton"}
+                                onClick={()=>{
+                                    history.push("/signup")
+                                }}
+                                >
+                                회원가입하기
+                            </div>
                         </div>
                         <div>
                             <SocialLoginButton
