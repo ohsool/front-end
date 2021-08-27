@@ -1,19 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
+import { User } from "../redux/reducer/userSlice";
 
 import { history } from "../redux/configureStore";
 
 const MainInput = (props) => {
     const is_login = useSelector((state) => state.user.currentUser.message);
-
-    const goBeerDogam = () => { //쿠키에 token없으면 로그인페이지로
-        if(is_login !== "success"){
-            window.alert("로그인이 필요한 서비스입니다!")
-        }else{
-            history.push("/mybeer")
-        }
-    }
+    const userId = useSelector(User);
 
     return(
         <React.Fragment>
@@ -29,7 +23,9 @@ const MainInput = (props) => {
                     }}>
                         대한민국의 모든 맥주
                     </LinkBox>
-                    <LinkBox onClick={goBeerDogam}>
+                    <LinkBox onClick={() => {
+                        history.push(`/mybeer/${userId}/dogam`)
+                    }}>
                         나의 맥주 도감
                     </LinkBox>
                 </Wrap>

@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import TestHeader from "./TestHeader";
-import ShareButton from "./ShareButton";
 
 const BackgroundCateImage = ({ category }) => {
     const is_iphone = navigator.userAgent.toLowerCase();
@@ -16,12 +15,7 @@ const BackgroundCateImage = ({ category }) => {
                         <p>당신을 위한 <br/>오늘의 맥주는,</p>
                         <h1>‘{category?.name}’</h1>
                     </TextWrap>
-                    <ShareButton 
-                        page={'testResult'}
-                        name={category.name} 
-                        description={category.description} 
-                        image={category.image}
-                    ></ShareButton>
+                    
                 </Wrap>
                 </BackgroundImageStyle>
             </BackgroundImage>

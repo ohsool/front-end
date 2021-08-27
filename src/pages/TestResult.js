@@ -51,7 +51,7 @@ const TestResult = (props) => {
                         <ResultInfo category={category}/>
                         <RecommendBeerWrap>{/* 해당 카테고리 맥주 2종 추천 */}
                             {beerRecommends?.map((item, idx) => (
-                                <EachBeer key={idx} item={item}></EachBeer>
+                                <EachBeer key={idx} item={item} page={"testResult"}></EachBeer>
                             ))}
                         </RecommendBeerWrap>
                     </Wrap>
@@ -60,7 +60,7 @@ const TestResult = (props) => {
                             history.push("/test/");
                         }}
                     >다시 하기
-                        {/* <img src="https://image.flaticon.com/icons/png/512/724/724863.png"></img> */}
+                    {/* <img src="https://image.flaticon.com/icons/png/512/724/724863.png"></img> */}
                     </ReButton>
                 </Grid>
                 <NavigationBar props={props}/>

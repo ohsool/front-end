@@ -1,10 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-
-const share_white = "/images/share.png"
 const share_yellow = "/images/share_yellow.png"
 
-const ShareButton = ({name,description,image,page}) => { //a=category.name, b=category.description, c=category.image
+const ShareButton = ({name,description,image}) => { //a=category.name, b=category.description, c=category.image
     const Kakao = window.Kakao;
   
     const shareKakao = () => {
@@ -41,19 +39,11 @@ const ShareButton = ({name,description,image,page}) => { //a=category.name, b=ca
       }
     return(
     <React.Fragment>
-      {page==='testResult'?
         <ShareButtonkakao
-          style={{backgroundImage: `url(${share_white})`, width:"24px",height: "24px"}}
-          id="kakao-link-btn"
-          onClick={shareKakao}
-        ></ShareButtonkakao>
-        :<ShareButtonkakao
           style={{backgroundImage: `url(${share_yellow})`,width:"38px",height: "38px"}}
           id="kakao-link-btn"
           onClick={shareKakao}
         ></ShareButtonkakao>
-    }
-        
     </React.Fragment>
     )
 };
@@ -62,9 +52,9 @@ export default ShareButton;
 
 const ShareButtonkakao = styled.div`
     display: inline-block;
-    width: 24px;
-    height: 24px;
-    margin: 63px 12px 0 0;
+    width: 25px;
+    height: 25px;
+    margin: 0px 12px 0 0;
     float: right;
     cursor: pointer;
     background-size: cover;

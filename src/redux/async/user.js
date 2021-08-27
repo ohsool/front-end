@@ -2,8 +2,6 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { axiosInstance } from "./moduleAxios";
 import { removeCookie } from "../../share/Cookie";
 import { history } from "../configureStore";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 // 회원 가입
 export const signUp = createAsyncThunk(
@@ -33,8 +31,8 @@ export const logOut = createAsyncThunk(
     
     const response = await axiosInstance.post(`/api/user/logout`);
     if(response.data.message === "success"){
-      //alert("로그아웃되었습니다.")
-      return response.data, toast("로그아웃되었습니다.");
+      alert("로그아웃되었습니다.")
+      return response.data;
     }
   }
 )

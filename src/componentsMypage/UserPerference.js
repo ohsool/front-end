@@ -1,25 +1,44 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { userInfo } from "../redux/async/user";
-import {history} from "../redux/configureStore";
+import { history } from "../redux/configureStore";
 
-const UserPreference = (props) => {
+const UserPreference = ({userInfos, is_me}) => {
     const is_iphone = navigator.userAgent.toLowerCase();
-    const userInfos = useSelector(state => state.user.currentUser);
-    const dispatch = useDispatch();
-    
-    useEffect(() => {
-        dispatch(userInfo());
-        /*if(userInfos.preference === 'Unknown'){//사용자의 맥주 타입이 unknown 상테면 테스트 페이지로 이동유도
-            if(window.confirm("아직 테스트를 하지 않으셨네요!🧒 \n테스트를 통해 맥주 타입을 알아보시겠습니까?")){
-                history.push("/test")
-            }
-        }*/
-    }, []);
+
+    const userTypeText = () => {
+        if(userInfos.preference === 'Unknown'){
+           return( 
+           <>
+           <span>안녕하세요 <strong>{userInfos.nickname}</strong>님!</span><br/>
+            <Typetext><strong>테스트 진행 후</strong> 이곳에 <br/>고객님의 <strong>맥주 타입</strong>이 보여집니다.</Typetext>
+            <TestButton
+                onClick={()=>{
+                    history.push("/test");
+                }}
+            >테스트 하기</TestButton>
+            </>
+            )
+        }else{
+            return(
+                <>
+            <span>안녕하세요 <strong>{userInfos.nickname}</strong>님!</span><br/>
+            <span>오늘의술은 <strong>{userInfos.preference}</strong>입니다.</span>
+            </>
+            )
+        }
+    }
+    const otherUserTypeInfo = () => {
+           return(
+                <span>어서오세요.  
+                <strong> {userInfos.preference}</strong>
+                    님의<br/> 맥주도감입니다.
+                </span>
+           )
+    }
+
     return(
         <React.Fragment>
-            <Container style={is_iphone.indexOf("iphone") !== -1 ? {marginTop: "133px"} : {marginTop: "93px"}}>
+            <Container style={is_iphone.indexOf("iphone") !== -1 ? {marginTop: "115px"} : {marginTop: "75px"}}>
                 {userInfos.message !== "success" ? 
                 <>
                     <PreferenceWrap
@@ -30,26 +49,17 @@ const UserPreference = (props) => {
                         <span>안녕하세요!</span><br/>
                         <span>오늘의술입니다.</span>
                     </UserInfoWrap>
-                </> :
+                </> 
+                :
                 <>
                     <PreferenceWrap
                     style={{backgroundImage: `url(${userInfos.image})`}}
                     >
                     </PreferenceWrap>
                     <UserInfoWrap>
-                        <span>안녕하세요 <strong>{userInfos.nickname}</strong>님!</span><br/>
-                        {userInfos?.preference === 'Unknown' ? 
-                            <>
-                            <Typetext><strong>테스트 진행 후</strong> 이곳에 <br/>고객님의 <strong>맥주 타입</strong>이 보여집니다.</Typetext>
-                            <TestButton
-                                onClick={()=>{
-                                    history.push("/test");
-                                }}
-                            >테스트 하기</TestButton>
-                            </>
-                            : <span>오늘의술은 <strong>{userInfos.preference}</strong>입니다.</span>
+                        {is_me ? userTypeText()
+                        : otherUserTypeInfo()    
                         }
-                        
                     </UserInfoWrap>
                 </>
                 }
@@ -62,7 +72,7 @@ export default UserPreference;
 
 const Container = styled.div`
     display: flex;
-    margin-top: 93px;
+    margin-top: 75px;
     width: 300px;
     height: 65px;
     margin: 0 auto;

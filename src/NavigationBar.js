@@ -14,14 +14,7 @@ const NavigationBar = (props) => {
 
     const comfirm_login = (page)=>{
         if(page==='myBeer'){
-            if(userInfo.message === "success"){
-                history.push("/mybeer");
-            }else{
-                if(window.confirm("로그인 후 이용 가능한 서비스입니다. \n로그인하고 나만의 맥주를 관리해보세요!🍻")){
-                    history.push("/login");
-                    return;
-                }
-            }
+            history.push(`/mybeer/${userInfo.userId}/dogam`)
         }else if(page==='myPage'){
             if(userInfo.message === "success"){
                 history.push("/myPage");
@@ -40,7 +33,7 @@ const NavigationBar = (props) => {
         <React.Fragment>
             <NavBox>
                 <SearchWrap 
-                    style={pathNow === "/mybeer" ? {backgroundColor: "#F7F7F7"} : null}
+                    style={pathNow === "/mybeer/:userId" ? {backgroundColor: "#F7F7F7"} : null}
                     onClick={()=>{comfirm_login('myBeer')}}>
                     <ImageWrapmyBeer style={{backgroundImage: `url(${myBeer})`}}/>
                     <Text><span>MY BEER</span></Text>

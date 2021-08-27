@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import styled from "styled-components";
 import {TasteGraph,StarRate} from "../componentsBeerDetail/BeerDetailIndex";
 import Header from "../Header";
@@ -9,6 +9,12 @@ const MyReview = (props) =>{
     const is_my = true;
     const is_starsmall = false;
     const is_iphone = navigator.userAgent.toLowerCase();
+
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+        })
+    }, [])
 
     return(
         <React.Fragment>
@@ -26,7 +32,6 @@ const MyReview = (props) =>{
                             <span>{item?.review}</span>
                     </BeerTextWrap>
                 </div>
-                <div style={{marginTop: "20px"}}/>
                 <Text><span>점수</span></Text>
                 <StarWrap>
                     <StarRate init_star={item.rate} is_my={is_my} is_starsmall={is_starsmall}/>
@@ -99,11 +104,11 @@ const BeerTextWrap = styled.div`
     word-break:break-all;
     word-wrap:break-word;
     & > span{
-        margin-left: 14px;
+        margin: 0 24px;
         float: left;
         font-size: 12px;
         font-weight: 300;
-        line-height: 17.38px;
+        line-height: 22px;
     }
 `;
 
@@ -113,6 +118,7 @@ const Text = styled.div`
 
     margin: 0 auto;
     width: 360px;
+    padding-top: 30px;
 
     text-align: center;
     & > span{
@@ -126,16 +132,10 @@ const StarWrap = styled.div`
     margin: 0 auto;
     width: 360px;
 
-    margin: 5px auto;
     display: flex;
     flex-direction: column;
     text-align: center;  
 `
-const WritedBeerInfo = styled.div`
-    display: flex;
-    //padding-left: 20px;
-    
-`;
 
 const BeerImage = styled.div`
     margin: 0 auto;
@@ -169,8 +169,3 @@ const Graph = styled.div`
     border-radius: 10px;
     margin-bottom: 74px;
 `;
-
-const Wrap = styled.div`
-
-
-`

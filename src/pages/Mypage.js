@@ -1,26 +1,27 @@
 import React,{ useState ,useEffect} from 'react';
 import styled from 'styled-components';
-import { logOut } from "../redux/async/user";
+import { logOut, userInfo } from "../redux/async/user";
 import { useDispatch } from "react-redux";
 import MyPageModal from "../componentsMypage/MyPageModal";
 import Header from "../Header";
 import NavigationBar from "../NavigationBar";
 import UserPreference from '../componentsMypage/UserPerference';
 import { useSelector } from "react-redux";
-import {history} from "../redux/configureStore"
-
 const arrow = "/images/suggestarrow.png";
 
 const MyPage = (props) => {
     const userInfos = useSelector(state => state.user.currentUser);
     const [modalOpen, setModalOpen] = useState(false);
     const dispatch = useDispatch();
-
     const [modal_info, setModal_Info] = useState({ //건의하기 modal창 text정보
         suggestTitle: "",
         titlePlaceholder: "",
         commentPlaceholder: "",
     });
+
+    useEffect(() => {
+        dispatch(userInfo());
+    }, [])
     
     const openModal = () => { //modal창 오픈
         setModalOpen(true);
@@ -60,7 +61,7 @@ const MyPage = (props) => {
         <>
         <Container>
             <Header/>
-            <UserPreference>
+            <UserPreference userInfos={userInfos}>
             </UserPreference>
             <PageMoveWrap>
                 <MoveBoxWrap

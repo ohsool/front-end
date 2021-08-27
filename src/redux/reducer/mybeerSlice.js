@@ -1,9 +1,24 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
-import { getMyDogam, getMyReview, unLikeBeerDogam, deleteReviewDogam } from "../async/mybeer";
+import { 
+  getMyDogam, 
+  getMyReview, 
+  unLikeBeerDogam, 
+  deleteReviewDogam, 
+  editReviewDogam,
+  checkFollowUser,
+  followUser,
+  unFollowUser,
+  getOtherUserDogam,
+  getOtherUserLikes
+} from "../async/mybeer";
 
 const initialState = {
     mydogam: [],
     myReview: [],
+    otherDogam: [],
+    otherLikes: [],
+    followers: [],
+    following: [],
     isLoading: false,
     isDone: false,
     isError: false,
@@ -15,13 +30,34 @@ const beerSlice = createSlice({
   extraReducers: (builder) =>
     builder
         .addCase(getMyDogam.fulfilled, (state, action) => {
-            state.mydogam = action.payload.likedList;
+          state.mydogam = action.payload.likedList;
         })
         .addCase(getMyReview.fulfilled, (state, action) => {
-            state.myReview = action.payload.mybeers;
+          state.myReview = action.payload.mybeers;
+        })
+        .addCase(getOtherUserDogam.fulfilled, (state, action) => {
+          state.otherDogam = action.payload.mybeers
+        })
+        .addCase(getOtherUserLikes.fulfilled, (state, action) => {
+          state.otherLikes = action.payload.mybeers;
+        })
+        .addCase(checkFollowUser.fulfilled, (state, action) => {
+          state.followers = action.payload.follower_list;
+          state.following = action.payload.follow_list;
+        })
+        .addCase(followUser.fulfilled, (state, action) => {
+          state.followers = [...state.followers, action.payload];
+        })
+        .addCase(unFollowUser.fulfilled, (state, action) => {
+          state.followers.splice(action.payload, 1);
         })
         .addCase(unLikeBeerDogam.fulfilled, (state, action) => {
           state.mydogam.splice(action.payload, 1);
+        })
+        .addCase(editReviewDogam.fulfilled, (state, action) => {
+          state.myReview[action.payload.index].myFeatures = action.payload.myFeatures;
+          state.myReview[action.payload.index].rate = action.payload.rate;
+          state.myReview[action.payload.index].review = action.payload.review;
         })
         .addCase(deleteReviewDogam.fulfilled, (state, action) => {
           state.myReview.splice(action.payload, 1);

@@ -1,8 +1,14 @@
-import React from "react";
+import React,{useEffect} from "react";
 import styled from "styled-components";
 import EachBeer from "./EachBeer";
 
 const HashTagList = ({ hashtag, hashtagName, setHashtagName }) => {
+
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+        })
+    }, []);
 
     return(
         <React.Fragment>
@@ -19,6 +25,7 @@ const HashTagList = ({ hashtag, hashtagName, setHashtagName }) => {
             <List>                    
                 {hashtag?.length > 0 ? hashtag?.map((item, idx) => (
                     <EachBeer 
+                    page={"beerList"}
                     setHashtagName={setHashtagName}
                     key={idx} item={item} />
                 )):""}

@@ -94,7 +94,7 @@ const BeerList = (props) =>{
                     <List>
                     {search_beer?.map((item, idx) => (
                         <EachBeer 
-                        key={idx} item={item}/>
+                        key={idx} item={item} page={"beerList"}/>
                     ))}
                     </List>
                     }

@@ -1,14 +1,21 @@
 import React from "react";
 import styled from "styled-components";
+import ShareButton from "./ShareButton";
 
 const ResultInfo = ({ category }) => {
     
     return(
         <React.Fragment>
             <BackgroundCateInfo>
+                <Div>
                 <p>{category?.title}</p>
+                <ShareButton
+                        name={category.name} 
+                        description={category.description} 
+                        image={category.image}
+                ></ShareButton>
+                </Div>
                 <span>{category?.description}</span>
-                
             </BackgroundCateInfo>
             <RecommendCategory>오늘의 추천 {category?.name}</RecommendCategory>
         </React.Fragment>
@@ -37,3 +44,11 @@ const RecommendCategory = styled.p`
     font-weight: bold;
     margin: 20px 0 0 20px;
 `;
+
+const Div = styled.div`
+    width: 318px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+`

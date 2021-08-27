@@ -1,7 +1,4 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
-//import { ToastContainer ,toast } from "react-toastify";
-//import "react-toastify/dist/ReactToastify.css";
-
 import { setCookie, removeCookie, setCookieRefresh } from "../../share/Cookie";
 import { 
   signUp, 
@@ -57,8 +54,6 @@ const userSlice = createSlice({
       })
       .addCase(logIn.rejected, (state, action) => {
         window.alert("아이디나 비밀번호가 틀립니다!")
-        //<ToastContainer />
-        //return toast("아이디나 비밀번호가 틀립니다!");
         
       })
       .addCase(logOut.fulfilled, (state, action) => {
@@ -101,7 +96,7 @@ const userSlice = createSlice({
 
 export default userSlice;
 
-const current_User = (state) => state.user.currentUser.userId;
+const current_User = (state) => state.user.currentUser.userId; //beerDetail페이지 리뷰 작성자 정보
 
 const is_login = (state) => state.user.is_login;
 

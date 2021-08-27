@@ -3,7 +3,6 @@ import styled from "styled-components";
 import {history} from "../redux/configureStore";
 import {useDispatch} from "react-redux";
 import {ReviewWriteModal} from "../componentsBeerDetail/BeerDetailIndex";
-import {deleteReview} from "../redux/async/review";
 import { deleteReviewDogam } from "../redux/async/mybeer";
 
 const edit = "/images/edit.png";
@@ -50,7 +49,7 @@ const WritedReview = ({item}) =>   {
                                 e.preventDefault();
                                 e.stopPropagation();
                                 if(window.confirm("정말로 삭제하시나요?")){
-                                    dispatch(deleteReview(item._id));
+                                    //dispatch(deleteReview(item._id));
                                     dispatch(deleteReviewDogam(item._id));
                                     return;
                                 }

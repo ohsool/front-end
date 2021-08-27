@@ -4,9 +4,8 @@ import { useDispatch } from "react-redux";
 import "../share/style/ReviewWriteModal.css";
 import { StarRate, SelectBar} from "./BeerDetailIndex";
 import { writeReview, editReview} from "../redux/async/review";
+import {editReviewDogam} from "../redux/async/mybeer";
 import { starRateDetail } from "../redux/async/beer";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 const remove = "/images/remove.png";
 
@@ -20,9 +19,10 @@ const ReviewWriteModal = (props) => {
     const [featuresList, setFeaturesList] = useState(arr.fill(0));
     const [list, setList] = useState();
     const dispatch = useDispatch();
+
     useEffect(() => {
         if(item) {
-          setList(Object.values(item?.myFeatures));
+        //   setList(Object.values(item?.myFeatures));
         }
     }, [item]);
 
@@ -31,16 +31,13 @@ const ReviewWriteModal = (props) => {
         setStarScore(item?.rate);
     },[])
 
-
     const addReview = () => { //리뷰 작성시
         if(review === "" || starScore === undefined){
-            //alert("답하지 않은 문항이 있어요!")
-            //return;
-            toast("답하지 않은 문항이 있어요!")
-        }else if(review.length > 210){
-            /*alert("글자수는 200 글자를 넘을 수 없어요!");
-            return;*/
-            return toast("글자수는 200 글자를 넘을 수 없어요!");
+            alert("답하지 않은 문항이 있어요!")
+            return;
+        }else if(review.length > 300){
+            alert("글자수는 300 글자를 넘을 수 없어요!");
+            return;
         }
         dispatch(writeReview({
             myFeatures: {
@@ -56,16 +53,14 @@ const ReviewWriteModal = (props) => {
             beerId: beerOne._id
         }));
         dispatch(starRateDetail(starScore));
-        //alert("작성 완료!🍻");
-        toast("작성 완료!🍻");
+        alert("작성 완료!🍻");
         setReview("");
         setStarScore(0);
         setFeaturesList(arr.fill(0));
         close();
     }
     const updateReview = () => {
-        
-        dispatch(editReview({
+        dispatch(editReviewDogam({
             myFeatures: {
                 bitter: featuresList[0], 
                 crispy: featuresList[1], 
@@ -79,8 +74,7 @@ const ReviewWriteModal = (props) => {
             review: review,      
             mybeerId: mybeerId,
         }));
-        //alert("수정 완료!🍻");
-        toast("수정 완료!🍻");
+        alert("수정 완료!🍻");
         setReview("");
         setStarScore(0);
         setFeaturesList(arr.fill(0));
@@ -89,9 +83,8 @@ const ReviewWriteModal = (props) => {
 
     const onChange = (e) => {
         setReview(e.target.value);
-        if(e.target.value.length > 200){
-            return toast("200글자를 초과할 수 없어요!");
-            //alert("200글자를 초과할 수 없어요!")
+        if(e.target.value.length > 300){
+            alert("300글자를 초과할 수 없어요!")
         }
     }
     return(
@@ -115,7 +108,7 @@ const ReviewWriteModal = (props) => {
                                  <>
                                     <BeerTextarea 
                                         tpye="text"
-                                        maxLength="200"
+                                        maxLength="300"
                                         onChange={onChange}
                                         review={review}
                                         placeholder={""}
@@ -125,10 +118,10 @@ const ReviewWriteModal = (props) => {
                                 <>
                                     <BeerTextarea 
                                         tpye="text"
-                                        maxLength="200"
+                                        maxLength="300"
                                         onChange={onChange}
                                         review={review}
-                                        placeholder={"맥주에 대한 \n평가와 소감을 적어주세요.\n(200자 이내)"}
+                                        placeholder={"맥주에 대한 \n평가와 소감을 적어주세요.\n(300자 이내)"}
                                     ></BeerTextarea>
                                 </>
                             )}
@@ -176,7 +169,6 @@ const ReviewWriteModal = (props) => {
                                 )}
                             
                             </div>
-                        <ToastContainer />
                         {is_edit ? (
                             <ReviewButton>
                                 <button
