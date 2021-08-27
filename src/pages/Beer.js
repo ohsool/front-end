@@ -7,7 +7,7 @@ import { history } from "../redux/configureStore";
 
 import {BeerList} from '../componentsBeer/BeerIndex';
 
-import {BeerDetail,ReviewList} from '../componentsBeerDetail/BeerDetailIndex';
+import { BeerDetail } from '../componentsBeerDetail/BeerDetailIndex';
 
 const Beer = (props) => {
 
@@ -17,7 +17,6 @@ const Beer = (props) => {
             <ConnectedRouter history={history}>
             <Route path="/beer/list/:beerCategoryId" exact component={BeerList}/>
             <Route path="/beer/detail/:beerId" component={BeerDetail}/>
-            <Route path="/beer/review/:beerId" component={ReviewList}/>
             <Route path="/beer/list/search/:word" component={BeerList}/>
             </ConnectedRouter>
             <NavigationBar props={props}/>

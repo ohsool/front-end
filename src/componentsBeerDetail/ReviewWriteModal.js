@@ -3,9 +3,8 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import "../share/style/ReviewWriteModal.css";
 import { StarRate, SelectBar} from "./BeerDetailIndex";
-import { writeReview } from "../redux/async/review";
-import { editReviewDogam} from "../redux/async/mybeer";
-
+import { writeReview} from "../redux/async/review";
+import {editReviewDogam} from "../redux/async/mybeer";
 import { starRateDetail } from "../redux/async/beer";
 
 const remove = "/images/remove.png";
@@ -23,7 +22,7 @@ const ReviewWriteModal = (props) => {
 
     useEffect(() => {
         if(item) {
-          setList(Object.values(item?.myFeatures));
+        //   setList(Object.values(item?.myFeatures));
         }
     }, [item]);
 

@@ -73,10 +73,22 @@ export const beerSlice = createSlice({
           alert("취소되었습니다.");
         })
         .addCase(likeBeerDetail.fulfilled, (state, action) => {
-          state.beerOne.like_array = action.payload.likes;
+          const index = action.payload.indexIf
+          const likes_array = action.payload.response.likes
+          state.beerOne.like_array = likes_array;
+          if(index === -1){
+          }else{
+          state.testBeerList[index].like_array = likes_array;
+          }
         })
         .addCase(unLikeBeerDetail.fulfilled, (state, action) => {
-          state.beerOne.like_array = action.payload.likes;
+          const index = action.payload.indexIf
+          const likes_array = action.payload.response.likes
+          state.beerOne.like_array = likes_array;
+          if(index === -1){
+          }else{
+          state.testBeerList[index].like_array = likes_array;
+          }
         })
         .addCase(starRateDetail.fulfilled, (state, action) => {
           state.beerOne.avgRate = action.payload;

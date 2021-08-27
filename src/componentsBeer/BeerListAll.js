@@ -27,11 +27,11 @@ const InfinityChildren = ({setHashtagName}) => {
         const clientHeight = document.documentElement.clientHeight;
         if (scrollTop + clientHeight >= scrollHeight - 100 && loading === false) {
           // 페이지 끝에 도달하면 추가 데이터를 받아온다
-            setPaging(paging + 1);
-            getInfinityList();
             if(paging >= 13){
                 return;
             }
+            setPaging(paging + 1);
+            getInfinityList();
             setLoading(true);
         }
     }, 500);
@@ -42,7 +42,7 @@ const InfinityChildren = ({setHashtagName}) => {
             setPaging(paging+1);
         }
         if(beersIF.length !== 0 ){
-            setPaging(beersIF.length/8)
+            setPaging(beersIF.length/8 + 1)
         }
     }, []);
 

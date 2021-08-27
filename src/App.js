@@ -27,7 +27,7 @@ useEffect(() => { // 만약 공유 기능이 2개이상으로 바뀌면 kakao.li
         <Route path="/login" exact component={Login}/>
         <Route path="/mypage" component={Mypage}/>
         <Route path="/setting" component={Setting}/>
-        <Route path="/mybeer" component={MyBeer}/>
+        <Route path="/mybeer/:userId/:dogam" component={MyBeer}/>
         <Route path="/dlfwh=:tokens" component={Token}/>
         <Route path="/review/:reviewId" component={MyReview}/>
         <Route path="/place" component={PlaceBeer}/>

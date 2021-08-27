@@ -27,7 +27,7 @@ const SignUp = (props) => {
 
     const {email, nickname, password, confirmPassword} = signup_info;
 
-    useEffect(() => { //회원가입 후 응답이 오면 로그인페이지로 이동
+    useEffect(() => { //회원가입 후 응답이 오면 메인페이지로 이동
         if(is_signup === "success"){
             if(window.confirm("회원가입이 완료되었습니다! 로그인페이지로 이동하시겠습니까?")){
                 history.push("/login");

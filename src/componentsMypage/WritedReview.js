@@ -3,7 +3,6 @@ import styled from "styled-components";
 import {history} from "../redux/configureStore";
 import {useDispatch} from "react-redux";
 import {ReviewWriteModal} from "../componentsBeerDetail/BeerDetailIndex";
-import {deleteReview} from "../redux/async/review";
 import { deleteReviewDogam } from "../redux/async/mybeer";
 
 const edit = "/images/edit.png";

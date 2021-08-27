@@ -17,10 +17,12 @@ const EachBeer = (props) => {
     const [toggle, setToggle] = useState(false);
 
     useEffect(() => { //좋아요 눌렀는지 아닌지 판별
-        if(item.like_array.includes(userId)){
-            setToggle(true);
-        }else{
-            setToggle(false);
+        if(item.like_array){
+            if(item.like_array.includes(userId)){
+                setToggle(true);
+            }else{
+                setToggle(false);
+            }
         }
     }, [item, userId]);
    
@@ -53,13 +55,6 @@ const EachBeer = (props) => {
     return(
         
         <React.Fragment>
-        {/*
-            {page === "beerList" ? <RecommendBeerWrap 
-                onClick={() => {
-                    history.push(`/beer/detail/${item._id}`, item.like_array);
-                }}> : <RecommendBeerWrap>
-            }
-        */}
              <RecommendBeerWrap 
                 onClick={() => {
                     history.push(`/beer/detail/${item._id}`, item.like_array);

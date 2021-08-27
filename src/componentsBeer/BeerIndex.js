@@ -1,4 +1,3 @@
-
 import BeerList from "./BeerList";
 import EachBeer from "./EachBeer";
 import Search from "./Search";

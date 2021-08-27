@@ -6,7 +6,7 @@ export const getReview = createAsyncThunk(
   "review/getReview",
   async (data, thunkAPI) => {
 
-    const response = await axiosInstance.get(`/api/mybeer/beer/${data}`);
+    const response = await axiosInstance.get(`/api/mybeer/beer?beerId=${data}&pageNo=0`);
     
     return response.data;
   }
@@ -20,7 +20,7 @@ export const writeReview = createAsyncThunk(
     delete data.beerId;
 
     const response = await axiosInstance.post(`/api/mybeer/${beerId}`, data);
-    
+
       return response.data;
     }
 );
@@ -52,6 +52,7 @@ export const deleteReview = createAsyncThunk(
     const review = thunkAPI.getState().mybeer.myReview;
     const index = review.findIndex((p) => p._id === data);
     const response = await axiosInstance.delete(`/api/mybeer/${data}`);
+
     if(response.data.message === "success"){
     return index;
     }

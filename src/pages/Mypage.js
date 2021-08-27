@@ -1,7 +1,7 @@
 import React,{ useState ,useEffect} from 'react';
 import styled from 'styled-components';
 import {history} from "../redux/configureStore";
-import { logOut } from "../redux/async/user";
+import { logOut, userInfo } from "../redux/async/user";
 import { useDispatch } from "react-redux";
 import MyPageModal from "../componentsMypage/MyPageModal";
 import Header from "../Header";
@@ -30,6 +30,10 @@ const MyPage = (props) => {
         titlePlaceholder: "",
         commentPlaceholder: "",
     });
+
+    useEffect(() => {
+        dispatch(userInfo());
+    }, [])
     
     const openModal = () => { //modal창 오픈
         setModalOpen(true);
@@ -69,7 +73,7 @@ const MyPage = (props) => {
         <>
         <Container>
             <Header/>
-            <UserPreference>
+            <UserPreference userInfos={userInfos}>
             </UserPreference>
 
             <ProgressBar progress={'30'}/>
@@ -135,8 +139,8 @@ const MyPage = (props) => {
                 {comfirm_login()}
                 
             </PageMoveWrap>
-            <NavigationBar props={props}/>
         </Container>
+        <NavigationBar props={props}/>
         </>
     )
 };
