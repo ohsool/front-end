@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import "../share/style/ReviewWriteModal.css";
 import { StarRate, SelectBar} from "./BeerDetailIndex";
-import { writeReview, editReview} from "../redux/async/review";
+import { writeReview} from "../redux/async/review";
 import {editReviewDogam} from "../redux/async/mybeer";
 import { starRateDetail } from "../redux/async/beer";
 

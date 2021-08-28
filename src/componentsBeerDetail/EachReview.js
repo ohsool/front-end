@@ -17,7 +17,6 @@ const EachReview=(props)=> {
     const dispatch = useDispatch();
     const is_my = true;
     const is_starsmall = true;
-
     const closeModal = () => {
         setModalOpen(false);
     };

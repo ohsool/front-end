@@ -1,25 +1,9 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
-import { 
-  getMyDogam, 
-  getMyReview, 
-  unLikeBeerDogam, 
-  deleteReviewDogam, 
-  editReviewDogam,
-  checkFollowUser,
-  followUser,
-  unFollowUser,
-  getOtherUserDogam,
-  getOtherUserLikes
-} from "../async/mybeer";
+import { getMyDogam, getMyReview, unLikeBeerDogam, deleteReviewDogam, editReviewDogam } from "../async/mybeer";
 
 const initialState = {
     mydogam: [],
     myReview: [],
-    length: 0,
-    otherDogam: [],
-    otherLikes: [],
-    followers: [],
-    following: [],
     isLoading: false,
     isDone: false,
     isError: false,
@@ -31,32 +15,11 @@ const beerSlice = createSlice({
   extraReducers: (builder) =>
     builder
         .addCase(getMyDogam.fulfilled, (state, action) => {
-          state.mydogam = action.payload.likedList;
+            state.mydogam = action.payload.likedList;
         })
         .addCase(getMyReview.fulfilled, (state, action) => {
-          state.myReview = action.payload.mybeers;
+            state.myReview = action.payload.mybeers;
         })
-        .addCase(getOtherUserDogam.fulfilled, (state, action) => {
-          state.otherDogam = action.payload.mybeers
-        })
-        .addCase(getOtherUserLikes.fulfilled, (state, action) => {
-          state.otherLikes = action.payload.mybeers;
-        })
-        .addCase(checkFollowUser.fulfilled, (state, action) => {
-          state.followers = action.payload.follower_list;
-          state.following = action.payload.follow_list;
-        })
-        .addCase(followUser.fulfilled, (state, action) => {
-          state.followers = [...state.followers, action.payload];
-        })
-        .addCase(unFollowUser.fulfilled, (state, action) => {
-          state.followers.splice(action.payload, 1);
-        })
-        /*
-        .addCase(getReviewLength.fullfilled, (state,action)=>{
-            state.length = action.payload.length;
-            console.log("action.payload.length",action.payload.length);
-        })*/
         .addCase(unLikeBeerDogam.fulfilled, (state, action) => {
           state.mydogam.splice(action.payload, 1);
         })
@@ -95,14 +58,8 @@ const liked_list = (state) => state.mybeer.mydogam;
 
 const myReview_list = (state) => state.mybeer.myReview;
 
-export const length = (state) => state.mybeer.length;
-
 export const likeList = createSelector(liked_list, liked_list => {
   return liked_list;
-});
-
-export const count = createSelector(length, length => {
-  return length;
 });
 
 export const myReviewList = createSelector(myReview_list, myReview_list => {

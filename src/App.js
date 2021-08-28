@@ -4,7 +4,7 @@ import { Route } from "react-router-dom";
 import { history } from "./redux/configureStore";
 import { ConnectedRouter } from "connected-react-router";
 import "./App.css"
-import { Main, Test, Beer, Mypage, TestResult, SignUp, MyBeer, Login , MyReview, NotFoundPage} from "./pages/indexPage";
+import { Main, Test, Beer, Mypage, TestResult, SignUp, MyBeer, Login , MyReview, Setting} from "./pages/indexPage";
 import Token from "./share/Token";
 import PlaceBeer from "./componentsBeerDetail/PlaceBeer";
 import { ReceiveNotificationsToken } from "./share/firebase";
@@ -26,6 +26,7 @@ useEffect(() => { // 만약 공유 기능이 2개이상으로 바뀌면 kakao.li
         <Route path="/signup" exact component={SignUp}/>
         <Route path="/login" exact component={Login}/>
         <Route path="/mypage" component={Mypage}/>
+        <Route path="/setting" component={Setting}/>
         <Route path="/mybeer/:userId/:dogam" component={MyBeer}/>
         <Route path="/dlfwh=:tokens" component={Token}/>
         <Route path="/review/:reviewId" component={MyReview}/>
