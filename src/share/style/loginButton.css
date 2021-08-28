@@ -48,14 +48,14 @@
 .inputCheckDoubleNicknameRed{
     position: absolute;
     margin-top: -13px;
-    margin-left: 10px;
+    margin-left: 24px;
     font-size: 10px;
     color: #FF1010;
 }
 .inputCheckDoubleNicknameGreen{
     position: absolute;
     margin-top: -13px;
-    margin-left: 10px;
+    margin-left: 24px;
     font-size: 10px;
     color: green;
 }
