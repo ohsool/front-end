@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import {useParams} from "react-router-dom";
@@ -12,7 +12,6 @@ import {
     BeerListCategory,
     HashTagList,
     NoSearchResult} from "./BeerIndex";
-import Loader from "../share/Loader.js";
 import { getCategory } from "../redux/async/category";
 import _ from "lodash";
 import { getSearchList } from "../redux/reducer/beerSlice";
@@ -26,7 +25,6 @@ const BeerList = (props) =>{
     const items = useSelector(categories);
     const hashtag_beers = useSelector(getHashtagList);
     const words = useSelector(getSearchList);
-    const [is_Loading, setIs_Loading] = useState(false); //로딩 여부 판별
     const [is_search, setIs_Search] = useState(false);
     const [search_beer, setSearch_Beer] = useState([]); //검색한 맥주 정보
     const [hashtag, setHashtag] = useState([]);
@@ -70,12 +68,6 @@ const BeerList = (props) =>{
             window.removeEventListener("scroll", _scrollPosition); // scroll event listener 해제
         };
     }, [scrollHeightInfo]);
-
-    useEffect(() => {
-        if(items){
-            setIs_Loading(true);
-        }
-    }, [items])
 
     useDidMountEffect(() => {;
         setHashtag(hashtag_beers);
@@ -121,47 +113,41 @@ const BeerList = (props) =>{
 
     return(
         <React.Fragment>
-            {is_Loading ? (
-                <>
-                    <Container style={is_iphone.indexOf("iphone") !== -1 ? {marginTop: "40px"} : {marginTop: "0px"}}>
-                        <Grid>
-                            <TopNav>
-                            <Slider
-                                setPagingCate={setPagingCate}
-                                get_category_id={get_category_id}
-                                setOpen_Modal={setOpen_Modal}
-                                setIs_Search={setIs_Search}
-                                setHashtag={setHashtag}
-                                items={items}/>
-                            </TopNav>
-                            <Search //맥주 검색 부분
-                                setSearch_Beer = {setSearch_Beer}
-                                //beers={beers}
-                                words={words}
-                                setIs_Search={setIs_Search}
-                                setHashtag={setHashtag}
-                                search_beer={search_beer}
-                                openModal={openModal}
-                                setOpen_Modal={setOpen_Modal}
-                                setIs_Recent={setIs_Recent}
-                            ></Search>
-                            {hashtag.length > 0 ?
-                            <HashTagList 
-                            setHashtagName={setHashtagName}
-                            hashtagName={hashtagName}
-                            hashtag={hashtag}
-                            setHashtag={setHashtag}
-                            hashtagName={hashtagName}
-                            ></HashTagList> // 해시태그리스트 출력
-                            : BeerLists() //검색 or 타입별 맥주 출력
-                        }
-                        {showTopButton()}
-                        </Grid>
-                    </Container>
-                </>
-            ):(
-                <LoaderWrap><Loader/></LoaderWrap>
-            )}
+            <Container style={is_iphone.indexOf("iphone") !== -1 ? {marginTop: "40px"} : {marginTop: "0px"}}>
+                <Grid>
+                    <TopNav>
+                    <Slider
+                        setPagingCate={setPagingCate}
+                        get_category_id={get_category_id}
+                        setOpen_Modal={setOpen_Modal}
+                        setIs_Search={setIs_Search}
+                        setHashtag={setHashtag}
+                        items={items}/>
+                    </TopNav>
+                    <Search //맥주 검색 부분
+                        setSearch_Beer = {setSearch_Beer}
+                        //beers={beers}
+                        words={words}
+                        setIs_Search={setIs_Search}
+                        setHashtag={setHashtag}
+                        search_beer={search_beer}
+                        openModal={openModal}
+                        setOpen_Modal={setOpen_Modal}
+                        setIs_Recent={setIs_Recent}
+                    ></Search>
+                    {hashtag.length > 0 ?
+                    <HashTagList 
+                    setHashtagName={setHashtagName}
+                    hashtagName={hashtagName}
+                    hashtag={hashtag}
+                    setHashtag={setHashtag}
+                    hashtagName={hashtagName}
+                    ></HashTagList> // 해시태그리스트 출력
+                    : BeerLists() //검색 or 타입별 맥주 출력
+                }
+                {showTopButton()}
+                </Grid>
+            </Container>
         </React.Fragment>
     )
 }
