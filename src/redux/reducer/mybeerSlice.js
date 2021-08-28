@@ -10,7 +10,8 @@ import {
   unFollowUser,
   getOtherUserDogam,
   getOtherUserLikes,
-  getReviewLength
+  getReviewLength,
+  OtherUserInfo
 } from "../async/mybeer";
 
 const initialState = {
@@ -18,6 +19,7 @@ const initialState = {
     myReview: [],
     otherDogam: [],
     otherLikes: [],
+    others: [],
     followers: [],
     following: [],
     isLoading: false,
@@ -38,6 +40,9 @@ const beerSlice = createSlice({
         })
         .addCase(getOtherUserDogam.fulfilled, (state, action) => {
           state.otherDogam = action.payload.mybeers
+        })
+        .addCase(OtherUserInfo.fulfilled, (state, action) => {
+          state.others = action.payload.user;
         })
         .addCase(getOtherUserLikes.fulfilled, (state, action) => {
           state.otherLikes = action.payload.mybeers;
@@ -95,6 +100,14 @@ const liked_list = (state) => state.mybeer.mydogam;
 
 const myReview_list = (state) => state.mybeer.myReview;
 
+const others_info = (state) => state.mybeer.others;
+
+export const otherStatus = createSelector(others_info, others_info => {
+  return others_info;
+})
+
+export const length = (state) => state.mybeer.length;
+
 export const likeList = createSelector(liked_list, liked_list => {
   return liked_list;
 });
@@ -103,7 +116,6 @@ export const myReviewList = createSelector(myReview_list, myReview_list => {
   return myReview_list;
 });
 
-export const length = (state) => state.mybeer.length;
 
 export const count = createSelector(length, length => {
   return length;

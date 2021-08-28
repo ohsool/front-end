@@ -36,3 +36,5 @@ export const ReceiveNotifications = async () => {
         console.error(error);
     }
 }
+
+export const kakaoApiKey = "05e106dead8f4edabc80bafcaef225ce"

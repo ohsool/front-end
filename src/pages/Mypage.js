@@ -71,13 +71,12 @@ const MyPage = (props) => {
         <>
         <Container>
             <Header/>
-            <UserPreference userInfos={userInfos}>
+            <UserPreference userInfos={userInfos} is_me={true}>
             </UserPreference>
-
-            <ProgressBar progress={'30'}/>
-
+            
+            {/*<ProgressBar progress={'0'}/>*/}
             <PageMoveWrap>
-
+            
                 {/*
                 <MoveBoxWrap
                     onClick={() => {
@@ -88,8 +87,11 @@ const MyPage = (props) => {
                     <ArrowImage src={arrow}></ArrowImage>
                 </MoveBoxWrap>
                 */}
+
                 <MoveBoxWrap
                     onClick={() => {
+                        //alert("coming soon🍹")
+                        //return;
                         history.push("/setting",userInfos);
                     }}
                 >

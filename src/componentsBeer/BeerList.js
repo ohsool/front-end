@@ -160,7 +160,7 @@ const BeerList = (props) =>{
                     </Container>
                 </>
             ):(
-                <Loader/>
+                <LoaderWrap><Loader/></LoaderWrap>
             )}
         </React.Fragment>
     )
@@ -210,4 +210,12 @@ const TopButton = styled.div`
     background-image: url(${upButton});
     background-size: cover;
     cursor: pointer;
+`;
+
+const LoaderWrap = styled.div`
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -100px;
+    margin-left: -100px;
 `;

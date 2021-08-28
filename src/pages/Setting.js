@@ -9,12 +9,15 @@ import { changeNickname,
     //changePassword
 
 } from "../redux/async/user";
+import { useLocation } from "react-router-dom";
 
 import { is_Nickname} from "../redux/reducer/userSlice";
 import { pwdReg } from "../share/checkReg";
 import CustomizedSwitches from "../componentsMypage/CustomizedSwitches";
 
-const Setting = ({props}) =>{
+const Setting = (props) =>{
+    const location = useLocation(); 
+    const userInfos = location.state?.userInfos;
     const is_nickname = useSelector(is_Nickname); // 닉네임 중복체크 서버에서 응답
     const [nickname_check_text, setNickname_Check_Text] = useState("");
     const [nickname_double, setNickName_Double] = useState("");
@@ -193,7 +196,6 @@ const Setting = ({props}) =>{
                         setPassword_Change(true)
                     }}style={{marginBottom: "-2px"}}>확인</ChangeButton>
                     </InfoWrap>
-
                     </>
                     :
                     <>
@@ -209,8 +211,6 @@ const Setting = ({props}) =>{
                     </InfoWrap>
                     </>
                     }
-                    
-
                 <InfoWrap>
                     <JustifyAlign>
                         <span>{"맥주 도감 공유 허용하기"}</span>
@@ -226,9 +226,7 @@ const Setting = ({props}) =>{
                     저장하기
                 </div>
 */}
-
             </PageWrap>
-
         </Container>
 
         </>

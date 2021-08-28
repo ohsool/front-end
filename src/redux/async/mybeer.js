@@ -21,7 +21,6 @@ export const getMyReview = createAsyncThunk(
 });
 
 
-
 //맥주도감에서 맥주 좋아요 취소
 export  const unLikeBeerDogam = createAsyncThunk(
   "mybeer/unLikeBeerDogam",
@@ -51,7 +50,7 @@ export const editReviewDogam = createAsyncThunk(
   }
 );
 
-
+//맥주도감 리뷰삭제
 export const deleteReviewDogam = createAsyncThunk(
   "mybeer/deleteReviewDogam",
   async (data, thunkAPI) => {
@@ -81,7 +80,7 @@ export const getOtherUserLikes = createAsyncThunk(
   async (data, thunkAPI) => {
     
     const response = await axiosInstance.get(`/api/mybeer/others/${data}?sort="rate"&pageNo=0&type=liked`);
-
+    
     return response.data;
   }
 )
@@ -100,19 +99,19 @@ export const changeMyDescription = createAsyncThunk(
 )
 
 export const followUser = createAsyncThunk(
-  "user/followUser",
+  "mybeer/followUser",
   async (data, thunkAPI) => {
     const followId = {
       userId: data.otheruserId
     }
     const response = await axiosInstance.put(`/api/user/follow/follow`, followId);
-    console.log(data.userId);
+    
     return data.userId;
   }
 )
 
 export const unFollowUser = createAsyncThunk(
-  "user/unFollowUser",
+  "mybeer/unFollowUser",
   async (data, thunkAPI) => {
     const unFollowId = {
       userId: data.otheruserId
@@ -120,13 +119,13 @@ export const unFollowUser = createAsyncThunk(
     const followers = thunkAPI.getState().mybeer.followers;
     const index = followers.findIndex((p) => p === data.userId);
     const response = await axiosInstance.put(`/api/user/follow/unfollow`, unFollowId);
-    console.log(index);
+
     return data.userId;
   }
 )
 
 export const checkFollowUser = createAsyncThunk(
-  "user/checkFollowUser",
+  "mybeer/checkFollowUser",
   async (data, thunkAPI) => {
 
     const response = await axiosInstance.get(`/api/user/follow/followers/${data}`);
@@ -143,3 +142,13 @@ export const getReviewLength = createAsyncThunk(
 
   return response.data;
 });
+
+export const OtherUserInfo = createAsyncThunk(
+  "mybeer/OtherUserInfo",
+  async (data, thunkAPI) => {
+
+    const response = await axiosInstance.get(`/api/user/user-info/${data}`);
+
+    return response.data;
+  }
+)

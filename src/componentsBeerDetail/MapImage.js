@@ -24,7 +24,7 @@ const MapImage = ({setClickReport}) => {
         }, [mapState]);
         
         const findLocation  = (place) => {
-            if ("geolocation" in navigator) {  // if i can get my address
+            if (navigator.geolocation.getCurrentPosition) {  // if i can get my address
                 setLoadingMap(true)
                 navigator.geolocation.getCurrentPosition((position) => {
                     const lat = position.coords.latitude;
@@ -125,7 +125,7 @@ const MapImage = ({setClickReport}) => {
                 placeholder="검색어를 입력하세요"
                 /></SearchInput>
             </InputWrap>
-            {loadingMap === true ? <Loader></Loader>
+            {loadingMap === true ? <LoaderWrap><Loader/></LoaderWrap>
             :
             <div 
                 className= "map"
@@ -158,3 +158,10 @@ const SearchInput = styled.div`
     }
     margin: 0 auto;
 `
+
+const LoaderWrap = styled.div`
+    position: absolute;
+    top: 200px;
+    left: 50%;
+    margin-left: -100px;
+`;

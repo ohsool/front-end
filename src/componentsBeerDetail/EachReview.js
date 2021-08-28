@@ -4,8 +4,6 @@ import styled from "styled-components";
 import moment from 'moment';
 import 'moment/locale/ko';
 import {StarRate} from "./BeerDetailIndex";
-
-import {useDispatch} from "react-redux";
 import { history } from '../redux/configureStore';
 import ReviewWriteModal from "../componentsBeerDetail/ReviewWriteModal";
 
@@ -37,8 +35,9 @@ const EachReview=(props)=> {
                 <GridHorizon>
                     <Div>
                         <NicknameText onClick={pushOtherUserDogam}>
-                            <span style={{ fontWeight: "700", fontSize: "14px", lineHeight: "20.27px"}}>
-                                {item.userId.nickname}</span>
+                            <img src={item.userId.image}></img>
+                            <span>
+                            {item.userId.nickname}</span>
                         </NicknameText>
                         <DateText>
                             <span style={{ fontWeight: "300", fontSize: "10px", lineHeight: "14.48px"}}>
@@ -99,7 +98,6 @@ const Container = styled.div`
 const Grid = styled.div`
     position: absolute;
     margin: 8px 14px;
-
 `
 
 const GridHorizon = styled.div`
@@ -117,11 +115,19 @@ const Div = styled.div`
 `
 
 const NicknameText =styled.div`
+    display: flex;
     padding: 2px;
-    span{
+    cursor: pointer;
+    align-items: center;
+    & > span{
         font-weight: 700;
         font-style: normal;
-        font-sixe: 14px;
+        font-size: 14px;
+    }
+    & > img{
+        margin-right: 5px;
+        width: 24px;
+        height: 24px;
     }
 
 `

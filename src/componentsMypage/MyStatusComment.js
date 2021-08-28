@@ -5,22 +5,38 @@ import {
     followUser, 
     unFollowUser, 
     checkFollowUser,
-    changeMyDescription
+    changeMyDescription,
 } from "../redux/async/mybeer";
 import { useParams } from "react-router-dom";
 
-const MyStatusComment = ({ userInfos, is_me }) => {
+const MyStatusComment = ({ userInfos, is_me, othersInfo }) => {
     const followers = useSelector(state => state.mybeer.followers);
     const [toggle, setToggle] = useState(false);
     const [is_Edit, setIs_Edit] = useState(true);
-    const [comment, setComment] = useState("");
+    const [comment, setComment] = useState();
     const { userId } = useParams();
     const dispatch = useDispatch();
-    const [text, setText] = useState("나는 오늘도 맥주를 마신다.. 나는 맥주 일진짱이기 때문이다. 나는 오늘도 맥주를마신다..나는 맥주 일진짱")
-    
+    const [text, setText] = useState("");
+
     useEffect(() => {
         dispatch(checkFollowUser(userId));
     }, []);
+
+    useEffect(() => {
+        if(is_me){
+            if(othersInfo.description === ""){
+                setText("상태명을 작성해주세요!");
+            }else{
+                setText(userInfos.description);
+            }
+        }else{
+            if(othersInfo.description === ""){
+                setText("아직 작성전입니다.");
+            }else{
+                setText(othersInfo.description);
+            }
+        }
+    }, [is_me, othersInfo]);
 
     useEffect(() => {
         if(followers.includes(userInfos.userId)){

@@ -6,7 +6,7 @@ export const getReview = createAsyncThunk(
   "review/getReview",
   async (data, thunkAPI) => {
 
-    const response = await axiosInstance.get(`/api/mybeer/beer?beerId=${data}&pageNo=0`);
+    const response = await axiosInstance.get(`/api/mybeer/beer?beerId=${data}&sort=rate&pageNo=0`);
     
     return response.data;
   }

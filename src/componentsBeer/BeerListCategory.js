@@ -7,7 +7,6 @@ import {useParams} from "react-router-dom";
 import EachBeer from "./EachBeer";
 import _ from "lodash";
 import InfinityScrollLoader from "./InfinityScrollLoader";
-import useDidMountEffect from "./useDidMountEffect.js";
 
 const BeerListCategory = (props) => {
     const { setHashtagName, pagingCate, setPagingCate } = props;
