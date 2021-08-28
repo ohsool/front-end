@@ -73,7 +73,7 @@ const MyPage = (props) => {
         <>
         <Container>
             <Header/>
-            <UserPreference userInfos={userInfos}>
+            <UserPreference userInfos={userInfos} is_me={true}>
             </UserPreference>
 
             <ProgressBar progress={'30'}/>
