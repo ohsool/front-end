@@ -38,19 +38,19 @@ const BeerDetail = (props) =>{
     const dispatch = useDispatch();
     
     useEffect(() => { //맥주 정보, 사용자정보 및 리뷰정보 불러오기
-            dispatch(getOneBeer(props.match.params.beerId));
-            dispatch(getReview(props.match.params.beerId));
-            dispatch(userInfo());
+        dispatch(getOneBeer(props.match.params.beerId));
+        dispatch(getReview(props.match.params.beerId));
+        dispatch(userInfo());
             return () => {
                 dispatch(beerOneCleanUp());
             }
     }, [props.match.params.beerId]);
 
-    // useEffect(() => {
-    //     window.scrollTo({
-    //         top: 0,
-    //     })
-    // }, [])
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+        })
+    }, [])
 
     useEffect(() => { //좋아요된 상태면 좋아요 눌린걸로 아니면 false그대로
         if(beerOne && userId){

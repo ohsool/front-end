@@ -3,12 +3,11 @@ import styled from "styled-components";
 
 import {history} from "../redux/configureStore";
 import { useSelector, useDispatch } from "react-redux";
-import { likeBeer, unLikeBeer} from "../redux/async/beer";
+import { likeBeer, unLikeBeer, getHashtagWord} from "../redux/async/beer";
 import { User } from "../redux/reducer/userSlice";
-import { getHashtagWord} from "../redux/async/beer";
-
-import HeartButton from "./HeartButton";
 import { unLikeBeerDogam } from "../redux/async/mybeer";
+import HeartButton from "./HeartButton";
+
 
 const EachBeer = (props) => {
     const dispatch = useDispatch();

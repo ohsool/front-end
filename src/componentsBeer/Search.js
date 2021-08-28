@@ -1,6 +1,6 @@
-import React,{ useState,useEffect, useCallback } from "react";
+import React,{ useState,useEffect } from "react";
 import styled from "styled-components";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getSearchWord } from "../redux/async/beer";
 import _ from 'lodash';
 

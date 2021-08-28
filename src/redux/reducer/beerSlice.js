@@ -48,8 +48,8 @@ export const beerSlice = createSlice({
             state.beerOne = action.payload.beer;
         })
         .addCase(beerOneCleanUp.fulfilled, (state, action) => {
-          state.beerOne.image= "";
-      })
+          state.beerOne = null;
+        })
         .addCase(getBeerInfinity.fulfilled, (state, action) => {
           state.testBeerList = [...state.testBeerList, ...action.payload.beers];
         })
