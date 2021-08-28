@@ -7,7 +7,7 @@ import "./App.css"
 import { Main, Test, Beer, Mypage, TestResult, SignUp, MyBeer, Login , MyReview, Setting} from "./pages/indexPage";
 import Token from "./share/Token";
 import PlaceBeer from "./componentsBeerDetail/PlaceBeer";
-import { ReceiveNotificationsToken,kakaoApiKey } from "./share/firebase";
+import { ReceiveNotificationsToken, kakaoApiKey } from "./share/firebase";
 
 function App(props) {
   const Kakao = window.Kakao;

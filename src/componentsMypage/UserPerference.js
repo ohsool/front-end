@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
 
-const UserPreference = ({userInfos, is_me}) => {
+const UserPreference = ({userInfos, is_me, othersInfo}) => {
     const is_iphone = navigator.userAgent.toLowerCase();
 
     const userTypeText = () => {
@@ -30,7 +30,7 @@ const UserPreference = ({userInfos, is_me}) => {
     const otherUserTypeInfo = () => {
            return(
                 <span>어서오세요.  
-                <strong> {userInfos.preference}</strong>
+                <strong> {othersInfo.nickname}</strong>
                     님의<br/> 맥주도감입니다.
                 </span>
            )

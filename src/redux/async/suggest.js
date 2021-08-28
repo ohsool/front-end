@@ -14,7 +14,7 @@ export const suggestComment = createAsyncThunk(
 
 // 맥주 추천
 export const suggestBeer = createAsyncThunk(
-  "/api/suggestBeer",
+  "suggest/suggestBeer",
   async (data, thunkAPI) => {
     
     const response = await axiosInstance.post(`/api/recommendation`, data);
@@ -24,7 +24,7 @@ export const suggestBeer = createAsyncThunk(
 
 //맥주 장소 제보하기
 export const mapReport = createAsyncThunk(
-  "/api/mapReport",
+  "suggest/mapReport",
   async (data, thunkAPI) => {
     
     const response = await axiosInstance.post(`/api/beer/report-location`, data);
