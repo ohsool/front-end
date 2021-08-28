@@ -158,10 +158,6 @@ const Setting = ({}) =>{
                     </InfoWrap>
                   </>
                 }
-
-                
-                
-                
                     {password_change ? 
                     <>
                     <InfoWrap>
@@ -191,9 +187,7 @@ const Setting = ({}) =>{
                         setPassword_Change(true)
                     }}style={{marginBottom: "-2px"}}>확인</ChangeButton>
                     </InfoWrap>
-
                     </>
-                    
                     :
                     <>
                     <InfoWrap>
@@ -208,8 +202,6 @@ const Setting = ({}) =>{
                     </InfoWrap>
                     </>
                     }
-                    
-
                 <InfoWrap>
                     <JustifyAlign>
                         <span>{"맥주 도감 공유 허용하기"}</span>
@@ -225,9 +217,7 @@ const Setting = ({}) =>{
                     저장하기
                 </div>
 */}
-
             </PageWrap>
-
         </Container>
 
         </>
