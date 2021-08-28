@@ -110,7 +110,6 @@ const Setting = ({}) =>{
     const onChangePassword = (e) => {
         setAfter_Password(e.target.value);
     }
-
     return (
         <>
         {/*userId로 아이디 / 비밀번호 넘겨받는 api 필요 */}
@@ -193,7 +192,6 @@ const Setting = ({}) =>{
                     </InfoWrap>
 
                     </>
-                    
                     :
                     <>
                     <InfoWrap>
