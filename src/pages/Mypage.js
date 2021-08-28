@@ -20,7 +20,6 @@ const MyPage = (props) => {
     const length = useSelector(count)
     const [modalOpen, setModalOpen] = useState(false);
     const dispatch = useDispatch();
-    const level = (length/10)+1;
 
     useEffect(()=> {
         dispatch(getReviewLength(userInfos.userId)); //사용자가 쓴 리뷰리스트 개수 디스패치
@@ -34,8 +33,6 @@ const MyPage = (props) => {
 
     useEffect(() => {
         dispatch(userInfo());
-        return () => {
-        }
     }, [])
     
     const openModal = () => { //modal창 오픈
@@ -72,13 +69,16 @@ const MyPage = (props) => {
     }
 
     return (
-        <>
+        <React.Fragment>
         <Container>
             <Header/>
             <GaugeWrap>
+                {/*
                 <UserPreference userInfos={userInfos} is_me={true}>
                 </UserPreference>
-                <Line/>
+                */}
+
+                <Line1/>
                 <JustifyAlign>
                     <LevelText><span>Lv.{parseInt(length/10)+1}</span> <span style={{color: "#FFC44F"}}>맥주덕후</span></LevelText>
                     <DogamText><span>도감: {length}/100</span></DogamText>
@@ -156,7 +156,7 @@ const MyPage = (props) => {
             </PageMoveWrap>
         </Container>
         <NavigationBar props={props}/>
-        </>
+        </React.Fragment>
     )
 };
 
@@ -223,6 +223,14 @@ const LogOutButton = styled.div`
 const Line = styled.hr`
     width: 320px;
     margin-top: 35px;
+    text-align: center;
+    border: 0;
+    border:solid #C4C4C4;
+    border-width: 0.1px;
+`
+const Line1 = styled.hr`
+    width: 320px;
+    margin-top: 70px;
     text-align: center;
     border: 0;
     border:solid #C4C4C4;

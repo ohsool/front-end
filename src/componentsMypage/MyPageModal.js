@@ -69,8 +69,6 @@ const MyPageModal = (props) => {
         if(title.length > 1 && chat.length > 1){
             setIsWrited(true);
         }
-        return () => {
-        }
     }, [title, chat])
 
     return(

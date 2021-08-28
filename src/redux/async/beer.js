@@ -23,6 +23,14 @@ export const getOneBeer = createAsyncThunk(
     }
 );
 
+export const beerOneCleanUp = createAsyncThunk(
+  "beer/cleanBeerOne",
+  async (data, thunkAPI) => {
+    
+    return;
+  }
+)
+
 export const getBeerInfinity = createAsyncThunk(
   "beer/getBeerInfinity",
   async (data, thunkAPI) => {

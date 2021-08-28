@@ -12,7 +12,8 @@ import {
   likeBeer,
   unLikeBeer,
   likeBeerDetail,
-  unLikeBeerDetail
+  unLikeBeerDetail,
+  beerOneCleanUp
 } from "../async/beer";
 
 const initialState = {
@@ -40,8 +41,14 @@ export const beerSlice = createSlice({
         .addCase(getBeerCategoryList.fulfilled, (state, action) => {
             state.categoryBeer = action.payload.beers;
         })
+        .addCase(getBeerCategoryList.pending, (state, action) => {
+          state.categoryBeer = [];
+        })
         .addCase(getOneBeer.fulfilled, (state, action) => {
             state.beerOne = action.payload.beer;
+        })
+        .addCase(beerOneCleanUp.fulfilled, (state, action) => {
+          state.beerOne = null;
         })
         .addCase(getBeerInfinity.fulfilled, (state, action) => {
           state.testBeerList = [...state.testBeerList, ...action.payload.beers];

@@ -63,8 +63,6 @@ const Setting = (props) =>{
                 setNickName_Double(true);
                 setNickname_Check_Text("사용 가능한 닉네임입니다.");
             }   
-            return () => {
-            }
     }, [nickname, is_nickname]);
 
     const clickNickConfirm=()=>{//변경된 정보 사항으로 디스패치
@@ -136,7 +134,6 @@ const Setting = (props) =>{
 
     const onChangePassword = (e) => {
         setPasswords({...passwords, [e.target.name]: e.target.value});
-        console.log(passwords)
     }
 
     return (
@@ -275,14 +272,17 @@ const InfoWrap = styled.div`
     }
     & > input{
         width: 227px;
-        height: 30px;
+        height: 32px;
         border:none;
         outline: none;
         margin-left: 20px;
+<<<<<<< HEAD
         outline: none;
         margin-bottom:2px;
         padding-bottom:2px;
 
+=======
+>>>>>>> 487a5bc9a26c8a18f57f0bef536415a19868e55f
     }
 `;
 

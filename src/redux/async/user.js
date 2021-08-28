@@ -114,7 +114,6 @@ export const changePassword = createAsyncThunk(
   async (data, thunkAPI) => { //data : {"password": "oldpassword","new_password": "newpassword"}
 
     const response = await axiosInstance.put(`/api/user/password`, data);
-    console.log("response",response);
     return data.new_password;
   }
 

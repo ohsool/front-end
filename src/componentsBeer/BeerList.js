@@ -39,7 +39,7 @@ const BeerList = (props) =>{
     useEffect(() => {
         dispatch(getCategory());
         dispatch(userInfo());
-    }, []);
+    }, [dispatch]);
 
     const showTopButton = () => {
         if(scrollHeightInfo > 2000){

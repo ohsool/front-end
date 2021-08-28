@@ -42,7 +42,6 @@ const BeerListCategory = (props) => {
           if (pagingCate >= 4){
             return;
             }
-            console.log(pagingCate, beerCategoryId, category_beers);
           setPagingCate(pagingCate + 1);
           getCategoryBeerList();
           setLoading(true);
@@ -54,8 +53,6 @@ const BeerListCategory = (props) => {
             dispatch(getBeerCategoryList(dispatchData));
             setPagingCate(pagingCate + 1);
         }
-        return () => {
-        }
     }, []);
 
     useEffect(() => {
@@ -64,8 +61,6 @@ const BeerListCategory = (props) => {
             categoryId: beerCategoryId,
             pageNo: 0,
         }));
-        return () => {
-        }
     }, [beerCategoryId]);
 
     useEffect(() => {

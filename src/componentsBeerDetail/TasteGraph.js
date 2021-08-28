@@ -10,8 +10,6 @@ const TasteGraph = ({ beers }) => {
         //맛마다 평점 정보 받아오기
         setScores(Object.values(beers));
       }
-      return () => {
-      }
   }, [beers]);
 
   const data = {
