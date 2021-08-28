@@ -43,6 +43,8 @@ const Test = (props) => {
             }));
             history.push(`/result/${testResultArray[0]}`);
         }
+        return () => {
+        }
     });
     // choice = 버튼 눌렀을때 value받아오는 부분
     const goToNext = (choice) => {

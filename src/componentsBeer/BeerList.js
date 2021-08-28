@@ -151,7 +151,7 @@ const BeerList = (props) =>{
         </React.Fragment>
     )
 }
-export default React.memo(BeerList);
+export default BeerList;
 
 
 const Container = styled.div`

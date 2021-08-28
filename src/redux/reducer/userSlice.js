@@ -9,7 +9,10 @@ import {
   logOut,
   withDrawl,
   socialLoginUser,
-  changeNickname
+  changeNickname,
+  changePassword,
+  shareAgree,
+  shareDisagree
 } from "../async/user";
 
 const initialState = {
@@ -75,14 +78,18 @@ const userSlice = createSlice({
         state.currentUser = action.payload;
       })
       .addCase(changeNickname.fulfilled, (state, action) => {
-        console.log("action.payload.message",action.payload.message);
-        //window.alert("변경되었습니다!");
+        state.currentUser.nickname = action.payload;
+        window.alert("닉네임이 변경되었습니다!");
       })
-      //.addCase(
-        //state.currentUser.nickname = action.payload;
-
-
-      //)
+      .addCase(changePassword.fulfilled, (state, action) => {
+        window.alert("비밀번호가 변경되었습니다!");
+      })
+      .addCase(shareAgree.fulfilled, (state, action) => {
+        window.alert("맥주도감이 공개로 전환되었습니다.");
+      })
+      .addCase(shareDisagree.fulfilled, (state, action) => {
+        window.alert("맥주도감이 비공개로 전환되었습니다.");
+      })
       // 공통
       .addMatcher(
         (action) => {

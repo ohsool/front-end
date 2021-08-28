@@ -12,6 +12,8 @@ const Main = (props) => {
 
     useEffect(() => {
         dispatch(userInfo());
+        return () => {
+        }
     }, [])
 
     return (

@@ -10,8 +10,8 @@ import {
   unFollowUser,
   getOtherUserDogam,
   getOtherUserLikes,
-  getReviewLength,
-  OtherUserInfo
+  OtherUserInfo,
+  getReviewLength
 } from "../async/mybeer";
 
 const initialState = {
@@ -28,7 +28,7 @@ const initialState = {
     isError: false,
 };
 
-const beerSlice = createSlice({
+const mybeerSlice = createSlice({
   name: "mybeer",
   initialState,
   extraReducers: (builder) =>
@@ -52,6 +52,9 @@ const beerSlice = createSlice({
           state.followers = action.payload.follower_list;
           state.following = action.payload.follow_list;
         })
+        .addCase(getReviewLength.fulfilled, (state, action) => {
+          state.length = action.payload.length;
+        })
         .addCase(followUser.fulfilled, (state, action) => {
           state.followers = [...state.followers, action.payload];
         })
@@ -69,9 +72,6 @@ const beerSlice = createSlice({
         .addCase(deleteReviewDogam.fulfilled, (state, action) => {
           state.myReview.splice(action.payload, 1);
           window.alert("삭제되었습니다.😊");
-        })
-        .addCase(getReviewLength.fulfilled, (state, action) => { 
-          state.length = action.payload.length; 
         })
       // 공통
       .addMatcher(
@@ -93,7 +93,7 @@ const beerSlice = createSlice({
         }
       ),
 });
-export default beerSlice;
+export default mybeerSlice;
 
 const liked_list = (state) => state.mybeer.mydogam;
 

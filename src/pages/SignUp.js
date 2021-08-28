@@ -54,7 +54,8 @@ const SignUp = (props) => {
             setEmail_Double(true);
             setEamil_Check_Text("사용 가능한 이메일입니다.");
         }
-
+        return () => {
+        }
     }, [email, is_email]);
 
     useEffect(() => {  //닉네임 중복체크
@@ -74,6 +75,8 @@ const SignUp = (props) => {
         }else{
             setNickName_Double(true);
             setNickname_Check_Text("사용 가능한 닉네임입니다.");
+        }
+        return () => {
         }
     }, [nickname, is_nickname]);
 

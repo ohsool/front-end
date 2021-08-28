@@ -20,6 +20,15 @@ export const getMyReview = createAsyncThunk(
   return response.data;
 });
 
+// 작성한 review 개수 가지고오기
+export const getReviewLength = createAsyncThunk(
+  "mybeer/getReviewLength", 
+  async (data, thunkAPI) => {
+    
+  const response = await axiosInstance.get(`/api/mybeer/length/${data}`);
+    
+  return response.data;
+});
 
 //맥주도감에서 맥주 좋아요 취소
 export  const unLikeBeerDogam = createAsyncThunk(
@@ -133,15 +142,6 @@ export const checkFollowUser = createAsyncThunk(
     return response.data;
   }
 )
-// 작성한 review 개수 가지고오기
-export const getReviewLength = createAsyncThunk(
-  "mybeer/getReviewLength", 
-  async (data, thunkAPI) => {
-  const response = await axiosInstance.get(`/api/mybeer/length/${data}`);
-
-  return response.data;
-  }
-);
 
 export const OtherUserInfo = createAsyncThunk(
   "mybeer/OtherUserInfo",

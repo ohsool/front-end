@@ -9,7 +9,7 @@ const SwitchButton = withStyles((theme) => ({
     width: 42,
     height: 26,
     padding: 0,
-    left: 17
+    left: 17,
     //margin: theme.spacing(1)
   },
   switchBase: {
@@ -25,7 +25,7 @@ const SwitchButton = withStyles((theme) => ({
     },
     "&$focusVisible $thumb": {
       color: "#eee",
-      border: "6px solid #fff"
+      border: "6px solid #fff",
     }
   },
   thumb: {
@@ -57,10 +57,7 @@ const SwitchButton = withStyles((theme) => ({
     />
   );
 });
-const CustomizedSwitch = ()=>{
-    const [state, setState] = React.useState({
-        checked: true
-      });
+const CustomizedSwitch = ({setState,state})=>{
     
       const handleChange = (event) => {
         setState({ ...state, [event.target.name]: event.target.checked });
@@ -71,6 +68,7 @@ const CustomizedSwitch = ()=>{
           <FormControlLabel
             control={
               <SwitchButton
+                label="iOS style"
                 checked={state.checked}
                 onChange={handleChange}
                 name="checked"
@@ -83,4 +81,3 @@ const CustomizedSwitch = ()=>{
 
 }
 export default CustomizedSwitch;
-
