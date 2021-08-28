@@ -3,9 +3,10 @@ import styled from "styled-components";
 import { history } from "../redux/configureStore";
 import { useSelector, useDispatch } from "react-redux";
 import { 
+    beerOneCleanUp,
     getOneBeer, 
     likeBeerDetail, 
-    unLikeBeerDetail,
+    unLikeBeerDetail
 } from "../redux/async/beer";
 import { getReview } from "../redux/async/review";
 import { userInfo } from "../redux/async/user";
@@ -37,18 +38,19 @@ const BeerDetail = (props) =>{
     const dispatch = useDispatch();
     
     useEffect(() => { //맥주 정보, 사용자정보 및 리뷰정보 불러오기
-        dispatch(getOneBeer(props.match.params.beerId));
-        dispatch(getReview(props.match.params.beerId));
-        dispatch(userInfo());
-        return () => {
-        }
-    }, [dispatch, props.match.params.beerId]);
+            dispatch(getOneBeer(props.match.params.beerId));
+            dispatch(getReview(props.match.params.beerId));
+            dispatch(userInfo());
+            return () => {
+                dispatch(beerOneCleanUp());
+            }
+    }, [props.match.params.beerId]);
 
-    useEffect(() => {
-        window.scrollTo({
-            top: 0,
-        })
-    }, [])
+    // useEffect(() => {
+    //     window.scrollTo({
+    //         top: 0,
+    //     })
+    // }, [])
 
     useEffect(() => { //좋아요된 상태면 좋아요 눌린걸로 아니면 false그대로
         if(beerOne && userId){
@@ -57,8 +59,6 @@ const BeerDetail = (props) =>{
             }else{
                 setToggle(false);
             }
-        }
-        return () => {
         }
     }, [beerOne, userId]);
 
@@ -110,13 +110,13 @@ const BeerDetail = (props) =>{
         const scrollHeight = document.documentElement.scrollTop;
         SetScrollHeightInfo(scrollHeight);
     }, 200)
-  
+
     useEffect(() => {
         window.addEventListener("scroll", _scrollPosition); // scroll event listener 등록
         return () => {
             window.removeEventListener("scroll", _scrollPosition); // scroll event listener 해제
         };
-    }, [beerOne,scrollHeightInfo]);
+    }, [scrollHeightInfo]);
 
     const closeModal = () => {
         setModalOpen(false);
@@ -190,8 +190,6 @@ const BeerDetail = (props) =>{
                                 </div>
                             </div>
                         </div>
-
-  
                     </Wrap>
                     <Line/>
                     <Wrap>

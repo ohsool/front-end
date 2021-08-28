@@ -31,8 +31,6 @@ const MyPage = (props) => {
 
     useEffect(() => {
         dispatch(userInfo());
-        return () => {
-        }
     }, [])
     
     const openModal = () => { //modal창 오픈

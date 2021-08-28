@@ -24,15 +24,11 @@ const ReviewWriteModal = (props) => {
         if(item) {
           setList(Object.values(item?.myFeatures));
         }
-        return () => {
-        }
     }, [item]);
 
     useEffect(()=>{
         setReview(item?.review);
         setStarScore(item?.rate);
-        return () => {
-        }
     },[])
 
     const addReview = () => { //리뷰 작성시

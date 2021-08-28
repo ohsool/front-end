@@ -27,8 +27,6 @@ const Search = (props) => {
         } else{
             checkLanguage();
         }
-        return () => {
-        }
     },[word, words]);
 
     const onChange = (e) =>{     

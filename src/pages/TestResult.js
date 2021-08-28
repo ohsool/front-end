@@ -4,8 +4,6 @@ import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 import { testShare } from "../redux/async/beer";
 import { recommendCate, recommendBeerToday } from "../redux/reducer/beerSlice";
-import { userInfo } from "../redux/async/user";
-import Loader from "../share/Loader";
 import NavigationBar from "../NavigationBar";
 
 import BackgroundCateImage from "../componentsTest/BackgroundCateImage";
@@ -32,8 +30,6 @@ const TestResult = (props) => {
         dispatch(testShare({
             result: categoryParams
         }));
-        }
-        return () => {
         }
     }, []);
 

@@ -21,8 +21,8 @@ const Beer = (props) => {
                 <Route path="/beer/detail/:beerId" component={BeerDetail}/>
                 <Route path="/beer/list/search/:word" component={BeerList}/>
                 </ConnectedRouter>
-                </Suspense>
-            <NavigationBar props={props}/>
+                <NavigationBar props={props}/>
+            </Suspense>
         </React.Fragment>
     )
 }

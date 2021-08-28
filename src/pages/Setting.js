@@ -39,8 +39,6 @@ const Setting = ({}) =>{
                 setNickName_Double(true);
                 setNickname_Check_Text("사용 가능한 닉네임입니다.");
             }   
-            return () => {
-            }
     }, [nickname, is_nickname]);
 
     const clickNickConfirm=()=>{//변경된 정보 사항으로 디스패치

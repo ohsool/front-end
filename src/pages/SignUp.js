@@ -76,8 +76,6 @@ const SignUp = (props) => {
             setNickName_Double(true);
             setNickname_Check_Text("사용 가능한 닉네임입니다.");
         }
-        return () => {
-        }
     }, [nickname, is_nickname]);
 
     const onChange = (e) => {
