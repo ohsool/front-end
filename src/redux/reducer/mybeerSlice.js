@@ -20,6 +20,7 @@ const initialState = {
     otherDogam: [],
     otherLikes: [],
     others: [],
+    length: 0,
     followers: [],
     following: [],
     isLoading: false,
@@ -69,11 +70,9 @@ const beerSlice = createSlice({
           state.myReview.splice(action.payload, 1);
           window.alert("삭제되었습니다.😊");
         })
-        /*
-        .addCase(getReviewLength.fullfilled, (state,action)=>{
-            //state.length = action.payload;
-            console.log("action.payload.length",action.payload.length);
-        })*/
+        .addCase(getReviewLength.fulfilled, (state, action) => { 
+          state.length = action.payload.length; 
+        })
       // 공통
       .addMatcher(
         (action) => {
@@ -102,11 +101,11 @@ const myReview_list = (state) => state.mybeer.myReview;
 
 const others_info = (state) => state.mybeer.others;
 
+const length = (state) => state.mybeer.length;
+
 export const otherStatus = createSelector(others_info, others_info => {
   return others_info;
 })
-
-export const length = (state) => state.mybeer.length;
 
 export const likeList = createSelector(liked_list, liked_list => {
   return liked_list;
@@ -115,7 +114,6 @@ export const likeList = createSelector(liked_list, liked_list => {
 export const myReviewList = createSelector(myReview_list, myReview_list => {
   return myReview_list;
 });
-
 
 export const count = createSelector(length, length => {
   return length;

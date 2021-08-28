@@ -14,15 +14,15 @@ import { getReviewLength } from "../redux/async/mybeer";
 const arrow = "/images/suggestarrow.png";
 
 const MyPage = (props) => {
-    console.log("length",count);
+    //console.log("length",count);
     const userInfos = useSelector(state => state.user.currentUser);
-    //const count = useSelector(count)
+    const length = useSelector(count);
     const [modalOpen, setModalOpen] = useState(false);
     const dispatch = useDispatch();
+
     useEffect(()=> {
         dispatch(getReviewLength(userInfos.userId)); //사용자가 쓴 리뷰리스트 개수 디스패치
-    }, []);
-
+    }, [userInfos]);
 
     const [modal_info, setModal_Info] = useState({ //건의하기 modal창 text정보
         suggestTitle: "",
@@ -90,9 +90,9 @@ const MyPage = (props) => {
 
                 <MoveBoxWrap
                     onClick={() => {
-                        //alert("coming soon🍹")
-                        //return;
-                        history.push("/setting",userInfos);
+                        alert("coming soon🍹")
+                        return;
+                        //history.push("/setting",userInfos);
                     }}
                 >
                     <span>계정 설정</span>

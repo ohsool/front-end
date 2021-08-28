@@ -138,10 +138,10 @@ export const getReviewLength = createAsyncThunk(
   "mybeer/getReviewLength", 
   async (data, thunkAPI) => {
   const response = await axiosInstance.get(`/api/mybeer/length/${data}`);
-  console.log("data",response.data.length)
 
   return response.data;
-});
+  }
+);
 
 export const OtherUserInfo = createAsyncThunk(
   "mybeer/OtherUserInfo",

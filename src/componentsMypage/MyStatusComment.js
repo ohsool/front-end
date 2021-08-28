@@ -31,7 +31,7 @@ const MyStatusComment = ({ userInfos, is_me, othersInfo }) => {
             }
         }else{
             if(othersInfo.description === ""){
-                setText("아직 작성전입니다.");
+                setText("아직 작성 전입니다.");
             }else{
                 setText(othersInfo.description);
             }
@@ -50,6 +50,7 @@ const MyStatusComment = ({ userInfos, is_me, othersInfo }) => {
         if(is_Edit){
             setIs_Edit(false);
         }else{
+            changeStatuscomment();
             setIs_Edit(true);
         }
     }
@@ -141,7 +142,7 @@ const CommentWrap = styled.div`
     & > textarea {
         width: 197px;
         height: 54px;
-        border: 1px solid #151515;
+        border: 1px solid #FFC44F;
         outline: none;
     }
 `;

@@ -1,6 +1,6 @@
 {
   "name": "mobile_ohsool",
-  "version": "0.1.0",
+  "version": "1.2.0",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.12.3",
@@ -16,6 +16,7 @@
     "history": "4.10.1",
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
+    "properties-reader": "^2.2.0",
     "react": "^17.0.2",
     "react-chartjs-2": "^3.0.4",
     "react-cookie": "^4.1.0",
@@ -49,9 +50,10 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "npm run add && react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "add": "node ./build.js"
   },
   "eslintConfig": {
     "extends": [

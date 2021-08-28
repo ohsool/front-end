@@ -10,9 +10,9 @@ const ResultInfo = ({ category }) => {
                 <Div>
                 <p>{category?.title}</p>
                 <ShareButton
-                        name={category.name} 
-                        description={category.description} 
-                        image={category.image}
+                        name={category?.name} 
+                        description={category?.description} 
+                        image={category?.image}
                 ></ShareButton>
                 </Div>
                 <span>{category?.description}</span>

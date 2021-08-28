@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useRef} from "react";
+import React, {useEffect, useState } from "react";
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
 import { useSelector, useDispatch } from "react-redux";
@@ -6,8 +6,6 @@ import {
     getOneBeer, 
     likeBeerDetail, 
     unLikeBeerDetail,
-    likeBeer,
-    unLikeBeer
 } from "../redux/async/beer";
 import { getReview } from "../redux/async/review";
 import { userInfo } from "../redux/async/user";
