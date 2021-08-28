@@ -21,7 +21,7 @@ const MyPage = (props) => {
     const dispatch = useDispatch();
 
     useEffect(()=> {
-        dispatch(getReviewLength()); //사용자가 쓴 리뷰리스트 개수 디스패치
+        dispatch(getReviewLength("data")); //사용자가 쓴 리뷰리스트 개수 디스패치
     }, []);
 
 

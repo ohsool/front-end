@@ -6,6 +6,8 @@ import Header from "../Header";
 import "../share/style/myBeer.css";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { OtherUserInfo } from "../redux/async/mybeer";
+import { otherStatus } from "../redux/reducer/mybeerSlice"
 import {
     MyLikeBeerList,
     MyReviewList,
@@ -17,15 +19,18 @@ import {
 const MyBeer = (props)=>{
     const [is_Dogam, setIs_Dogam] = useState(true); //맥주리스트인지 리뷰리스트인지
     const userInfos = useSelector(state => state.user.currentUser);
-    const is_iphone = navigator.userAgent.toLowerCase();
-    const { userId } = useParams();
-    const [is_me, setIs_Me] = useState(true);
-    const { dogam } = useParams();
+    const othersInfo = useSelector(otherStatus);
+    const is_iphone = navigator.userAgent.toLowerCase(); //아이폰인지 아닌지(노치디자인때문에)
+    const { userId } = useParams(); //userId 파라미터
+    const { dogam } = useParams(); //도감 or 좋아요리스트 파라미터(dogam or like)
+    const [is_me, setIs_Me] = useState(true); //타유저의 맥주도감인지 내맥주도감인지 구별
+    
 
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(userInfo());//현재 로그인한사용자 정보 (새로고침시 상태 날라가는 것 방지)
+        dispatch(OtherUserInfo(userId));
         window.scrollTo({
             top: 0,
         })
@@ -42,7 +47,7 @@ const MyBeer = (props)=>{
         dispatch(userInfo());
     }, []);
     
-    useEffect(()=> {
+    useEffect(()=> { //맥주도감인지 좋아요한 맥주리스트인지 판별
         if(dogam === "dogam"){
             setIs_Dogam(true);
         }else{
@@ -54,8 +59,14 @@ const MyBeer = (props)=>{
     return (
         <React.Fragment>
             <Header/>
-            <UserPerference userInfos={userInfos} is_me={is_me}></UserPerference>
-            <MyStatusComment userInfos={userInfos} is_me={is_me}></MyStatusComment>
+            <UserPerference 
+                othersInfo={othersInfo}
+                userInfos={userInfos} 
+                is_me={is_me}></UserPerference>
+            <MyStatusComment 
+                othersInfo={othersInfo}
+                userInfos={userInfos} 
+                is_me={is_me}></MyStatusComment>
             <Grid style={is_iphone.indexOf("iphone") !== -1 ? {marginTop: "40px"} : {marginTop: "0px"}}>
                 <Wrap>  
                 <MyDogamButton is_Dogam={is_Dogam}/>
