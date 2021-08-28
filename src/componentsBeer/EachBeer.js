@@ -17,13 +17,11 @@ const EachBeer = (props) => {
     const [toggle, setToggle] = useState(false);
 
     useEffect(() => { //좋아요 눌렀는지 아닌지 판별
-        if(item.like_array){
             if(item.like_array.includes(userId)){
                 setToggle(true);
             }else{
                 setToggle(false);
             }
-        }
     }, [item, userId]);
    
     const clickLike = () => { //좋아요 토글 함수

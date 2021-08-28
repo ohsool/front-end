@@ -22,7 +22,7 @@ const ReviewWriteModal = (props) => {
 
     useEffect(() => {
         if(item) {
-        //   setList(Object.values(item?.myFeatures));
+          setList(Object.values(item?.myFeatures));
         }
     }, [item]);
 

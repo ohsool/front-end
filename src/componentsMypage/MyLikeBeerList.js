@@ -10,7 +10,7 @@ import { useParams } from "react-router";
 const MyLikeBeerList = ({is_me}) => {
     const mydogam = useSelector(likeList);
     const { userId } = useParams();
-    const otherUserLikes = useSelector(state => state.mybeer.otherLikes)
+    const otherUserLikes = useSelector(state => state.mybeer.otherLikes);
     const dispatch = useDispatch();
 
     useEffect(()=> {

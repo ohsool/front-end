@@ -14,7 +14,6 @@ const star = "/images/star.png";
 const EachReview=(props)=> {
     const { item, beerOne, userId } = props; 
     const [modalOpen, setModalOpen] = useState(false); //수정 버튼 클릭시 리뷰 수정 모달 띄우기
-    const dispatch = useDispatch();
     const is_my = true;
     const is_starsmall = true;
     const closeModal = () => {
@@ -22,6 +21,14 @@ const EachReview=(props)=> {
     };
     
     const date = item.date.replace(/-/g,'/');
+    
+    const pushOtherUserDogam = () => {
+        if(window.confirm(`${item.userId.nickname}님의 맥주도감으로 이동하시겠어요?`)){
+            return history.push(`/mybeer/${item.userId._id}/dogam`);
+        }else{
+            return;
+        }
+    }
 
     return (
         <React.Fragment>
@@ -29,7 +36,7 @@ const EachReview=(props)=> {
             <Grid>
                 <GridHorizon>
                     <Div>
-                        <NicknameText>
+                        <NicknameText onClick={pushOtherUserDogam}>
                             <span style={{ fontWeight: "700", fontSize: "14px", lineHeight: "20.27px"}}>
                                 {item.userId.nickname}</span>
                         </NicknameText>
