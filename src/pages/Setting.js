@@ -29,7 +29,7 @@ const Setting = (props) =>{
     const [password_change,setPassword_Change] = useState(false) //비밀번호 변경 버튼 클릭시 true로 바뀜
     const dispatch = useDispatch();
 
-    console.log("props",props);
+    console.log("userInfos",userInfos);
 
     useEffect(() => {  //닉네임 중복체크
             if(nickname === ""){
