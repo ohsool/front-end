@@ -23,6 +23,14 @@ const EachReview=(props)=> {
     };
     
     const date = item.date.replace(/-/g,'/');
+    
+    const pushOtherUserDogam = () => {
+        if(window.confirm(`${item.userId.nickname}님의 맥주도감으로 이동하시겠어요?`)){
+            return history.push(`/mybeer/${item.userId._id}/dogam`);
+        }else{
+            return;
+        }
+    }
 
     return (
         <React.Fragment>
@@ -30,7 +38,7 @@ const EachReview=(props)=> {
             <Grid>
                 <GridHorizon>
                     <Div>
-                        <NicknameText>
+                        <NicknameText onClick={pushOtherUserDogam}>
                             <span style={{ fontWeight: "700", fontSize: "14px", lineHeight: "20.27px"}}>
                                 {item.userId.nickname}</span>
                         </NicknameText>
