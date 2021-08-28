@@ -34,12 +34,16 @@ const MyBeer = (props)=>{
         window.scrollTo({
             top: 0,
         })
+        return () => {
+        }
     }, []);
     useEffect(() => {
         if(userId === undefined || userId === userInfos.userId){
             setIs_Me(true);
         }else{
             setIs_Me(false);
+        }
+        return () => {
         }
     }, [userInfos]);
 
@@ -52,6 +56,8 @@ const MyBeer = (props)=>{
             setIs_Dogam(true);
         }else{
             setIs_Dogam(false);
+        }
+        return () => {
         }
     }, [dogam, is_Dogam]);
 

@@ -49,7 +49,7 @@
     "workbox-streams": "^5.1.3"
   },
   "scripts": {
-    "start": "npm run add && react-scripts start",
+    "start": "react-scripts start",
     "build": "npm run add && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",

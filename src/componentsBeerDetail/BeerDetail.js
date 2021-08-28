@@ -40,6 +40,8 @@ const BeerDetail = (props) =>{
         dispatch(getOneBeer(props.match.params.beerId));
         dispatch(getReview(props.match.params.beerId));
         dispatch(userInfo());
+        return () => {
+        }
     }, [dispatch, props.match.params.beerId]);
 
     useEffect(() => {
@@ -55,6 +57,8 @@ const BeerDetail = (props) =>{
             }else{
                 setToggle(false);
             }
+        }
+        return () => {
         }
     }, [beerOne, userId]);
 
@@ -96,7 +100,6 @@ const BeerDetail = (props) =>{
                 return alert("이미 리뷰를 작성하셨습니다!")
             }else{
                 setModalOpen(true);
-                
             }
         }else{
             is_Login();
@@ -290,7 +293,7 @@ const BeerDetail = (props) =>{
     )
 }
 
-export default React.memo(BeerDetail, TasteGraph);
+export default React.memo(BeerDetail);
 
 const Container = styled.div`
     display: flex;

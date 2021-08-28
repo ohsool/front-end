@@ -36,6 +36,8 @@ const MyStatusComment = ({ userInfos, is_me, othersInfo }) => {
                 setText(othersInfo.description);
             }
         }
+        return () => {
+        }
     }, [is_me, othersInfo]);
 
     useEffect(() => {
@@ -43,6 +45,8 @@ const MyStatusComment = ({ userInfos, is_me, othersInfo }) => {
             setToggle(true);
         }else{
             setToggle(false);
+        }
+        return () => {
         }
     }, [followers, userInfos])
 

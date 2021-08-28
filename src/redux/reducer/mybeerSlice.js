@@ -10,7 +10,8 @@ import {
   unFollowUser,
   getOtherUserDogam,
   getOtherUserLikes,
-  OtherUserInfo
+  OtherUserInfo,
+  getReviewLength
 } from "../async/mybeer";
 
 const initialState = {
@@ -27,7 +28,7 @@ const initialState = {
     isError: false,
 };
 
-const beerSlice = createSlice({
+const mybeerSlice = createSlice({
   name: "mybeer",
   initialState,
   extraReducers: (builder) =>
@@ -50,6 +51,9 @@ const beerSlice = createSlice({
         .addCase(checkFollowUser.fulfilled, (state, action) => {
           state.followers = action.payload.follower_list;
           state.following = action.payload.follow_list;
+        })
+        .addCase(getReviewLength.fulfilled, (state, action) => {
+          state.length = action.payload.length;
         })
         .addCase(followUser.fulfilled, (state, action) => {
           state.followers = [...state.followers, action.payload];
@@ -89,7 +93,7 @@ const beerSlice = createSlice({
         }
       ),
 });
-export default beerSlice;
+export default mybeerSlice;
 
 const liked_list = (state) => state.mybeer.mydogam;
 
@@ -97,11 +101,11 @@ const myReview_list = (state) => state.mybeer.myReview;
 
 const others_info = (state) => state.mybeer.others;
 
+const length = (state) => state.mybeer.length;
+
 export const otherStatus = createSelector(others_info, others_info => {
   return others_info;
 })
-
-export const length = (state) => state.mybeer.length;
 
 export const likeList = createSelector(liked_list, liked_list => {
   return liked_list;

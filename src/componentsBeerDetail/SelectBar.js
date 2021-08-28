@@ -13,6 +13,8 @@ const SelectBar = ({index, setFeaturesList, featuresList, taste, is_edit}) => {
     useEffect(()=>{
       setCur_Position(taste*25-25)
       setScore(taste)
+      return () => {
+      }
     },[taste])
 
     return (

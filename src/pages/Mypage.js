@@ -9,21 +9,19 @@ import NavigationBar from "../NavigationBar";
 import UserPreference from '../componentsMypage/UserPerference';
 import ProgressBar from '../componentsMypage/ProgressBar';
 import { getReviewLength } from "../redux/async/mybeer";
-//import {length} from "../redux/reducer/mybeerSlice";
+import { count } from "../redux/reducer/mybeerSlice";
 import { useSelector } from "react-redux";
 const arrow = "/images/suggestarrow.png";
 
 const MyPage = (props) => {
-    //console.log("length",length)
     const userInfos = useSelector(state => state.user.currentUser);
-    //const count = useSelector(length)
+    const length = useSelector(count)
     const [modalOpen, setModalOpen] = useState(false);
     const dispatch = useDispatch();
 
     useEffect(()=> {
-        dispatch(getReviewLength("data")); //사용자가 쓴 리뷰리스트 개수 디스패치
-    }, []);
-
+        dispatch(getReviewLength(userInfos.userId)); //사용자가 쓴 리뷰리스트 개수 디스패치
+    }, [userInfos]);
 
     const [modal_info, setModal_Info] = useState({ //건의하기 modal창 text정보
         suggestTitle: "",
@@ -33,6 +31,8 @@ const MyPage = (props) => {
 
     useEffect(() => {
         dispatch(userInfo());
+        return () => {
+        }
     }, [])
     
     const openModal = () => { //modal창 오픈

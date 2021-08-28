@@ -18,6 +18,8 @@ const MyReviewList = ({is_me}) => {
         }else{
             dispatch(getOtherUserDogam(userId));
         }
+        return () => {
+        }
     }, [is_me]);
     return(
         <React.Fragment>

@@ -19,6 +19,8 @@ const MyLikeBeerList = ({is_me}) => {
         }else{
             dispatch(getOtherUserLikes(userId));
         }
+        return () => {
+        }
     }, [is_me]);
 
     return(

@@ -25,9 +25,9 @@ export const getReviewLength = createAsyncThunk(
   "mybeer/getReviewLength", 
   async (data, thunkAPI) => {
     
-  const response = await axiosInstance.get(`/api/mybeer/my/length`);
-
-return response.data;
+  const response = await axiosInstance.get(`/api/mybeer/length/${data}`);
+    
+  return response.data;
 });
 
 //맥주도감에서 맥주 좋아요 취소
