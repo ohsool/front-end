@@ -42,7 +42,6 @@ const BeerListCategory = (props) => {
           if (pagingCate >= 4){
             return;
             }
-            console.log(pagingCate, beerCategoryId, category_beers);
           setPagingCate(pagingCate + 1);
           getCategoryBeerList();
           setLoading(true);

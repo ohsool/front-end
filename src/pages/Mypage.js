@@ -68,7 +68,7 @@ const MyPage = (props) => {
     }
 
     return (
-        <>
+        <React.Fragment>
         <Container>
             <Header/>
             <UserPreference userInfos={userInfos} is_me={true}>
@@ -139,7 +139,7 @@ const MyPage = (props) => {
             </PageMoveWrap>
         </Container>
         <NavigationBar props={props}/>
-        </>
+        </React.Fragment>
     )
 };
 

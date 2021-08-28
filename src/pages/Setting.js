@@ -257,11 +257,10 @@ const InfoWrap = styled.div`
     }
     & > input{
         width: 227px;
-        height: 30px;
+        height: 32px;
         border:none;
         outline: none;
         margin-left: 20px;
-        outline: none;
     }
 `;
 
