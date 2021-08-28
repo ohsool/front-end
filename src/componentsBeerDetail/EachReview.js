@@ -14,7 +14,6 @@ const star = "/images/star.png";
 const EachReview=(props)=> {
     const { item, beerOne, userId } = props; 
     const [modalOpen, setModalOpen] = useState(false); //수정 버튼 클릭시 리뷰 수정 모달 띄우기
-    const dispatch = useDispatch();
     const is_my = true;
     const is_starsmall = true;
     const closeModal = () => {
