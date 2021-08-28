@@ -9,13 +9,13 @@ import {
   followUser,
   unFollowUser,
   getOtherUserDogam,
-  getOtherUserLikes
+  getOtherUserLikes,
+  getReviewLength
 } from "../async/mybeer";
 
 const initialState = {
     mydogam: [],
     myReview: [],
-    length: 0,
     otherDogam: [],
     otherLikes: [],
     followers: [],
@@ -52,11 +52,6 @@ const beerSlice = createSlice({
         .addCase(unFollowUser.fulfilled, (state, action) => {
           state.followers.splice(action.payload, 1);
         })
-        /*
-        .addCase(getReviewLength.fullfilled, (state,action)=>{
-            state.length = action.payload.length;
-            console.log("action.payload.length",action.payload.length);
-        })*/
         .addCase(unLikeBeerDogam.fulfilled, (state, action) => {
           state.mydogam.splice(action.payload, 1);
         })
@@ -69,6 +64,11 @@ const beerSlice = createSlice({
           state.myReview.splice(action.payload, 1);
           window.alert("삭제되었습니다.😊");
         })
+        /*
+        .addCase(getReviewLength.fullfilled, (state,action)=>{
+            //state.length = action.payload;
+            console.log("action.payload.length",action.payload.length);
+        })*/
       // 공통
       .addMatcher(
         (action) => {
@@ -95,16 +95,16 @@ const liked_list = (state) => state.mybeer.mydogam;
 
 const myReview_list = (state) => state.mybeer.myReview;
 
-export const length = (state) => state.mybeer.length;
-
 export const likeList = createSelector(liked_list, liked_list => {
   return liked_list;
 });
 
-export const count = createSelector(length, length => {
-  return length;
-});
-
 export const myReviewList = createSelector(myReview_list, myReview_list => {
   return myReview_list;
+});
+
+export const length = (state) => state.mybeer.length;
+
+export const count = createSelector(length, length => {
+  return length;
 });

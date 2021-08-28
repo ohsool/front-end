@@ -8,20 +8,19 @@ import Header from "../Header";
 import NavigationBar from "../NavigationBar";
 import UserPreference from '../componentsMypage/UserPerference';
 import ProgressBar from '../componentsMypage/ProgressBar';
-import { getReviewLength } from "../redux/async/mybeer";
-//import {length} from "../redux/reducer/mybeerSlice";
+import {count} from "../redux/reducer/mybeerSlice";
 import { useSelector } from "react-redux";
+import { getReviewLength } from "../redux/async/mybeer";
 const arrow = "/images/suggestarrow.png";
 
 const MyPage = (props) => {
-    //console.log("length",length)
+    console.log("length",count);
     const userInfos = useSelector(state => state.user.currentUser);
-    //const count = useSelector(length)
+    //const count = useSelector(count)
     const [modalOpen, setModalOpen] = useState(false);
     const dispatch = useDispatch();
-
     useEffect(()=> {
-        dispatch(getReviewLength()); //사용자가 쓴 리뷰리스트 개수 디스패치
+        dispatch(getReviewLength(userInfos.userId)); //사용자가 쓴 리뷰리스트 개수 디스패치
     }, []);
 
 
@@ -50,7 +49,6 @@ const MyPage = (props) => {
 
     const comfirm_login = ()=>{
         if(userInfos.message === "success"){
-            
             return(
                 <LogOutWrap>
                     <LogOutButton
@@ -92,7 +90,7 @@ const MyPage = (props) => {
                 */}
                 <MoveBoxWrap
                     onClick={() => {
-                        history.push("/setting");
+                        history.push("/setting",userInfos);
                     }}
                 >
                     <span>계정 설정</span>

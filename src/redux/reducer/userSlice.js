@@ -8,7 +8,8 @@ import {
   checkNickname,
   logOut,
   withDrawl,
-  socialLoginUser
+  socialLoginUser,
+  changeNickname
 } from "../async/user";
 
 const initialState = {
@@ -73,6 +74,15 @@ const userSlice = createSlice({
       .addCase(userInfo.fulfilled, (state, action) => {
         state.currentUser = action.payload;
       })
+      .addCase(changeNickname.fulfilled, (state, action) => {
+        console.log("action.payload.message",action.payload.message);
+        //window.alert("변경되었습니다!");
+      })
+      //.addCase(
+        //state.currentUser.nickname = action.payload;
+
+
+      //)
       // 공통
       .addMatcher(
         (action) => {

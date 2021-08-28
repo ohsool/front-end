@@ -3,23 +3,30 @@ import {useDispatch, useSelector} from "react-redux";
 import styled from 'styled-components';
 import "../share/style/loginButton.css";
 import Header from "../Header";
-import { checkNickname } from "../redux/async/user";
+import { changeNickname,
+    checkNickname,
+    //checkPassword, 
+    //changePassword
+
+} from "../redux/async/user";
+
 import { is_Nickname} from "../redux/reducer/userSlice";
 import { pwdReg } from "../share/checkReg";
 import CustomizedSwitches from "../componentsMypage/CustomizedSwitches";
 
-const Setting = ({}) =>{
+const Setting = ({props}) =>{
     const is_nickname = useSelector(is_Nickname); // 닉네임 중복체크 서버에서 응답
     const [nickname_check_text, setNickname_Check_Text] = useState("");
     const [nickname_double, setNickName_Double] = useState("");
     //const [is_change,setIs_Change] = useState(false);
-
     const [nickname, setNickname] = useState(""); //회원정보 입력 
     const [before_password, setBefore_Password] = useState(""); //회원정보 입력 
     const [after_password, setAfter_Password] = useState(""); //회원정보 입력 
     const [nick_change, setNick_Change] = useState(false); //닉네임 변경 버튼 클릭시 true로 바뀜
     const [password_change,setPassword_Change] = useState(false) //비밀번호 변경 버튼 클릭시 true로 바뀜
     const dispatch = useDispatch();
+
+    console.log("props",props);
 
     useEffect(() => {  //닉네임 중복체크
             if(nickname === ""){
@@ -66,7 +73,7 @@ const Setting = ({}) =>{
         }else{
             setNickName_Double(true);
             if(window.confirm("닉네임을 변경하습니까?")){
-                //dispatch(); 닉네임을 변경하는 api & 그 slice에서 변경되었습니다 띄우기!!
+                dispatch(changeNickname(nickname));//dispatch(); 닉네임을 변경하는 api & 그 slice에서 변경되었습니다 띄우기!!
             }
             setNick_Change(false);
             return;
@@ -117,7 +124,7 @@ const Setting = ({}) =>{
             <Header/>
             <PageWrap>
                 <InfoWrap>
-                    <span>{"jjy306105@gmail.com"}</span>{/*user/me 에서 이멜 가지오곰 */}
+                    <span>{"user_id"}</span>{/*user/me 에서 이멜 가지오곰 */}
                 </InfoWrap>
                 {nick_change ? 
                 <>
@@ -147,7 +154,7 @@ const Setting = ({}) =>{
                 : <>
                     <InfoWrap>
                     <JustifyAlign>
-                    <span>{'닉네임자리'}</span>
+                    <span>{"user_nickname"}</span>
                     <ChangeButton
                         onClick={()=>{
                             setNick_Change(true)
@@ -157,10 +164,6 @@ const Setting = ({}) =>{
                     </InfoWrap>
                   </>
                 }
-
-                
-                
-                
                     {password_change ? 
                     <>
                     <InfoWrap>
@@ -276,7 +279,7 @@ const InfoWrap = styled.div`
 const ChangeButton = styled.div`
     display: inline-block;
     padding-top: 6px;
-    margin-bottom: 7px;
+    //margin-bottom: 7px;
     width: 42px;
     height: 26px;
     border: 0.5px solid #888888;
@@ -287,6 +290,7 @@ const ChangeButton = styled.div`
     text-align: center;
     color: #333333;
     cursor: pointer;
+    vertical-align: center;
 `
 const JustifyAlign = styled.div`
     display: flex;

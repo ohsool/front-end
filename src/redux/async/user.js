@@ -96,3 +96,22 @@ export const socialLoginUser = createAsyncThunk(
     return response.data;
   }
 )
+
+//계정 설정 닉네임 변경
+export const changeNickname = createAsyncThunk(
+  "user/changeNickname",
+  async (data, thunkAPI) => {
+
+    const response = await axiosInstance.put(`/api/user/nickname`, {'nickname' : data});
+    if(response.data.message === "success"){
+      window.alert("변경되었습니다!");
+      //return data;
+      //window.location.reload();//reload 없이 상태 변경 되도록 수정하기
+    }else{
+      window.alert("변경에 실패했습니다.")
+    }
+    
+    return response.data;
+  }
+
+);

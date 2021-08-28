@@ -1,36 +1,25 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
-import { getMyDogam, getMyReview, unLikeBeerDogam, deleteReviewDogam, editReviewDogam } from "../async/mybeer";
+
+import { getReviewLength } from "../async/mypage";
+
 
 const initialState = {
     mydogam: [],
     myReview: [],
+    length: 0,
     isLoading: false,
     isDone: false,
     isError: false,
 };
 
-const beerSlice = createSlice({
-  name: "mybeer",
+const mypageSlice = createSlice({
+  name: "mypage",
   initialState,
   extraReducers: (builder) =>
     builder
-        .addCase(getMyDogam.fulfilled, (state, action) => {
-            state.mydogam = action.payload.likedList;
-        })
-        .addCase(getMyReview.fulfilled, (state, action) => {
-            state.myReview = action.payload.mybeers;
-        })
-        .addCase(unLikeBeerDogam.fulfilled, (state, action) => {
-          state.mydogam.splice(action.payload, 1);
-        })
-        .addCase(editReviewDogam.fulfilled, (state, action) => {
-          state.myReview[action.payload.index].myFeatures = action.payload.myFeatures;
-          state.myReview[action.payload.index].rate = action.payload.rate;
-          state.myReview[action.payload.index].review = action.payload.review;
-        })
-        .addCase(deleteReviewDogam.fulfilled, (state, action) => {
-          state.myReview.splice(action.payload, 1);
-          window.alert("삭제되었습니다.😊");
+        .addCase(getReviewLength.fullfilled, (state,action)=>{
+            //state.length = action.payload;
+            console.log("action.payload.length",action.payload);
         })
       // 공통
       .addMatcher(
@@ -52,16 +41,6 @@ const beerSlice = createSlice({
         }
       ),
 });
-export default beerSlice;
+//export default beerSlice;
 
-const liked_list = (state) => state.mybeer.mydogam;
 
-const myReview_list = (state) => state.mybeer.myReview;
-
-export const likeList = createSelector(liked_list, liked_list => {
-  return liked_list;
-});
-
-export const myReviewList = createSelector(myReview_list, myReview_list => {
-  return myReview_list;
-});
