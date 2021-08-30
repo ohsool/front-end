@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 const BeerTextarea = ({onChange, review, placeholder, })=>{
 
-
     return (
         <React.Fragment>
             <Textarea

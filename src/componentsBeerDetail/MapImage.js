@@ -14,7 +14,7 @@ const MapImage = ({setClickReport}) => {
 
         const placeView = async () => {
             await findLocation();
-        }
+        } 
 
         useEffect(() => {
             if(kakao?.maps !== undefined){
@@ -130,7 +130,7 @@ const MapImage = ({setClickReport}) => {
             <div 
                 className= "map"
                 ref={container}
-                style={{width:"100vw", height:"400px"}}>
+                style={{width:"400px", height:"400px"}}>
             </div>
             }
         </React.Fragment>

@@ -19,10 +19,10 @@ const BeerType = (props) => {
     
     const settings = {
         infinite: false,
-        speed: 200,
-        slidesToShow: 5,
-        slidesToScroll: 5,
-        variableWidth: true,
+        speed: 200, //옆으로넘어가는 속도
+        slidesToShow: 5,  //한번에 보여주는 목록 개수(div가 더 좁으면 반영이 잘안됨)
+        slidesToScroll: 5, //한번에 넘기는 목록의 개수
+        variableWidth: true, //div커스텀하기위한 설정
         initialSlide: 0,
     };
 

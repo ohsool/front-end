@@ -10,9 +10,9 @@ import { changeNickname,
         shareAgree,
         shareDisagree
 } from "../redux/async/user";
-import { is_Nickname} from "../redux/reducer/userSlice";
+import { is_Nickname } from "../redux/reducer/userSlice";
 import { pwdReg } from "../share/checkReg";
-import CustomizedSwitches from "../componentsMypage/CustomizedSwitches";
+import { CustomizedSwitches } from "../componentsMypage/MyBeerIndex";
 import { otherStatus } from "../redux/reducer/mybeerSlice";
 import { withDrawal } from "../redux/async/user";
 import { userInfo } from "../redux/async/user";
@@ -274,7 +274,6 @@ const Container = styled.div`
     width: 100%;
 `;
 
-
 const PageWrap = styled.div`
     width: 400;
     display: flex;
@@ -283,7 +282,6 @@ const PageWrap = styled.div`
     margin: 0 auto;
     margin-top: 110px;
 `;
-
 
 const InfoWrap = styled.div`
     display: inline-block;

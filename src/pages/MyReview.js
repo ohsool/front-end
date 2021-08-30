@@ -24,12 +24,12 @@ const MyReview = (props) =>{
                 
                 <div style={{margin: "0 auto"}}>
                     <BeerImage>
-                        <img src={item?.beerId?.image}></img>
+                        <img src={item.beerId.image}></img>
                     </BeerImage>
 
                     <Title><span>작성한 리뷰</span></Title>                   
                     <BeerTextWrap>
-                            <span>{item?.review}</span>
+                            <span>{item.review}</span>
                     </BeerTextWrap>
                 </div>
                 <Text><span>점수</span></Text>

@@ -17,6 +17,7 @@ const EachReview=(props)=> {
     const closeModal = () => {
         setModalOpen(false);
     };
+    
     const date = item.date.replace(/-/g,'/');
     
     const pushOtherUserDogam = () => {
@@ -161,6 +162,7 @@ const ReviewTextWrap = styled.div`
 const MoreButton = styled.div`
     float: left;
     padding: 4px 0;
+    cursor: pointer;
     & > span{
         color:#FFC44F;
         font-weight: 700;

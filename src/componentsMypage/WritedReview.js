@@ -35,9 +35,6 @@ const WritedReview = ({item}) =>   {
                 </BeerImage>
                 <BeerTextWrap>
                     <GridHorizon>
-                        {/*<NicknameText>
-                            {item?.userId?.nickname}
-                        </NicknameText>*/}
                         <Div>
                         <NicknameText>
                             <span>
@@ -50,14 +47,15 @@ const WritedReview = ({item}) =>   {
                         </DateText>
                         </Div>
 
-                        <Div>
+                        <Div style={{marginRight:"5px"}}>
                             <StarRate init_star={item.rate} is_my={true} is_starsmall={true}/>
                         </Div>
 
 
-                    </GridHorizon><span>{item?.review.length > 50 ? item?.review.slice(0,50)+'...' : item?.review}</span>
-
-                    {userInfos.userId ===item?.userId._id ?
+                    </GridHorizon>
+                    <span>{item?.review.length > 50 ? item?.review.slice(0,50)+'...' : item?.review}</span>
+                </BeerTextWrap>
+                {userInfos.userId ===item?.userId._id ?
                             <DivReview>
                             <EditButton 
                                 style={{backgroundImage: `url(${edit})`}}
@@ -81,7 +79,6 @@ const WritedReview = ({item}) =>   {
                             </DivReview>
                             : ""
                         }
-                </BeerTextWrap>
             </WritedBeerInfo>
 
             <ReviewWriteModal
@@ -122,11 +119,14 @@ const BeerImage = styled.div`
 
 const BeerTextWrap = styled.div`
     margin: 14px 0 0 6px;
-    width: 194px;
+    width: 200px;
+    word-break: break-all; 
+    word-wrap: break-word;
     & > span{
         font-size: 12px;
         font-weight: 300;
-        font-height: 46px;
+        width: 150px;
+        height: 50px;
     }
 `;
 
@@ -135,39 +135,36 @@ const GridHorizon = styled.div`
     align-items: center;
     justify-content: space-between;
     height: 20px;
+`;
 
-`
 const NicknameText = styled.p`
     margin: 0;
     font-size: 14px;
     font-weight: 700;
-    font-height: 20px;
-`
+    line-height: 20px;
+`;
+
 const Div = styled.div`
     display: flex;
     padding: 0 2px;
-    align-items: center
-`
+`;
 
 const EditButton =styled.div`
-    margin: 25px 5px 25px 0;
     width: 16px;
     height: 16px;
-    float: left;
     cursor: pointer;
 `
 
 const DeleteButton =styled.div`
-    margin: 25px 5px;
     width: 16px;
     height: 16px;
     cursor: pointer;
 `
 
-
 const DateText =styled.div`
-    padding: 2px 7px;
     span{
+        padding-left: 4px;
+        line-height: 20px;
         font-weight: 500;
         font-style: normal;
         font-sixe: 8px;
@@ -175,6 +172,11 @@ const DateText =styled.div`
 
 `
 const DivReview = styled.div`
+    position: absolute;
+    left: 50%;
+    margin-left: -50px;
+    margin-top: 80px;
     display: flex;
-    top: 300px;
+    width: 50px;
+    justify-content: space-around;
 `

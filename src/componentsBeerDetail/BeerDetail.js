@@ -25,32 +25,34 @@ const star = "/images/star.png"
 const like = "/images/heart.png"
 
 const BeerDetail = (props) =>{
-    const [toggle, setToggle] = useState(false);
-    const heart_detail = "detail"
-    const beerOne = useSelector(oneBeer);
+    const beerOne = useSelector(oneBeer); //store에서 맥주 정보 가지고오기
+    const userId = useSelector(User); //store에서 유저 정보
+    const beer_infos = useSelector(getReviewList); //리뷰리스트 가지고오기
     const hashtag = beerOne?.hashtag;
-    const userId = useSelector(User);
-    const beer_infos = useSelector(getReviewList);
+    const heart_detail = "detail" //detail페이지 하트 이미지 
     const is_iphone = navigator.userAgent.toLowerCase();
     const [scrollHeightInfo, SetScrollHeightInfo] = useState(0);
+    const [toggle, setToggle] = useState(false);
     const [modalOpen, setModalOpen] = useState(false);
     const is_comment = beer_infos.find((p) => p.userId._id === userId);
     const dispatch = useDispatch();
     
     useEffect(() => { //맥주 정보, 사용자정보 및 리뷰정보 불러오기
-        dispatch(getOneBeer(props.match.params.beerId));
-        dispatch(getReview(props.match.params.beerId));
-        dispatch(userInfo());
+        dispatch(getOneBeer(props.match.params.beerId)); //맥주데이터 api요청
+        dispatch(getReview(props.match.params.beerId)); //리뷰데이터 api요청
+        dispatch(userInfo()); //유저정보 api요청
             return () => {
+                //맥주 데이터 cleanup함수 다른페이지 갔다가 다른 맥주 클릭했을 시
+                //잠시 그전 데이터가 보이는 것 방지
                 dispatch(beerOneCleanUp());
             }
-    }, [props.match.params.beerId]);
+    }, [props.match.params.beerId]); //deps에 beerId넣어서 beerId바뀔때마다 위 요청들 실행
 
     useEffect(() => {
         window.scrollTo({
             top: 0,
         })
-    }, [])
+    }, []); //첫 렌더링시 맨위로 스크롤 이동
 
     useEffect(() => { //좋아요된 상태면 좋아요 눌린걸로 아니면 false그대로
         if(beerOne && userId){
@@ -93,7 +95,7 @@ const BeerDetail = (props) =>{
             is_Login();
         }
     }
-    
+    // 리뷰작성 로그인 한 사람만 할 수 있도록
     const loginConfirm = ()=>{
         if(userId){
             if(is_comment !== undefined){
@@ -106,7 +108,9 @@ const BeerDetail = (props) =>{
         }
     }
 
-    const _scrollPosition = _.debounce(() => {
+    //스크롤 이벤트 많이 일어나는 것 방지 및 스크롤 위치저장
+    //맥주 맛 평점표 및 리뷰버튼 스크롤 내려갔을때 보이도록 설정
+    const _scrollPosition = _.throttle(() => {
         const scrollHeight = document.documentElement.scrollTop;
         SetScrollHeightInfo(scrollHeight);
     }, 200)

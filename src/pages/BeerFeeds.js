@@ -5,6 +5,7 @@ import _ from "lodash";
 import Header from "../Header";
 import NavigationBar from "../NavigationBar";
 import { getAllBeerDogam } from "../redux/async/mybeer";
+import { userInfo } from "../redux/async/user";
 import EachReview from "../componentsBeerDetail/EachReview";
 import InfinityScrollLoader from "../componentsBeer/InfinityScrollLoader";
 import BeerFeedsInfo from "../componentsMypage/BeerFeedsInfo";
@@ -16,6 +17,10 @@ const BeerFeeds = (props) => {
     const [loading, setLoading] = useState(false);
     const [paging, setPaging] = useState(0);
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(userInfo());
+    }, []);
 
     const getAllFeeds = useCallback (() => {
         async function getData(){
@@ -57,6 +62,13 @@ const BeerFeeds = (props) => {
             window.removeEventListener("scroll", _handleScroll); // scroll event listener 해제
         };
     }, [paging, loading]);
+
+    const ScrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        })
+    }
 
     return(
         <React.Fragment>
