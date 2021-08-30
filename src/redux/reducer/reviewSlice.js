@@ -1,9 +1,11 @@
 import { createSlice, createSelector } from "@reduxjs/toolkit";
-import { getReview, writeReview, editReview, deleteReview } from "../async/review";
+import { getReview, writeReview, getAllBeerDogam } from "../async/review";
 
 
 const initialState = {
     reviewList: [],
+    allDogam: [],
+    dogamLast: null,
     isLoading: false,
     isDone: false,
     isError: false,
@@ -34,14 +36,13 @@ const reviewSlice = createSlice({
         })
         .addCase(writeReview.fulfilled, (state, action) => {
           state.reviewList.unshift(action.payload.mybeer)
+          state.allDogam.unshift(action.payload.mybeer);
         })
-        .addCase(editReview.fulfilled, (state, action) => {
-          state.reviewList[action.payload.index].myFeatures = action.payload.myFeatures;
-          state.reviewList[action.payload.index].rate = action.payload.rate;
-          state.reviewList[action.payload.index].review = action.payload.review;
+        .addCase(getAllBeerDogam.fulfilled, (state, action) => {
+          state.allDogam = [...state.allDogam, ...action.payload.mybeers];
         })
-        .addCase(deleteReview.fulfilled, (state, action) => {
-          state.reviewList.splice(action.payload, 1);
+        .addCase(getAllBeerDogam.rejected, (state, action) => {
+          state.dogamLast = "lastPage";
         })
       // 공통
       .addMatcher(

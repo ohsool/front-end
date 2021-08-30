@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { testShare } from "../redux/async/beer";
 import { recommendCate, recommendBeerToday } from "../redux/reducer/beerSlice";
 import NavigationBar from "../NavigationBar";
-import { userInfo } from "../redux/async/user";
 import BackgroundCateImage from "../componentsTest/BackgroundCateImage";
 import { ResultInfo } from "../componentsTest/TestIndex";
 import { EachBeer } from "../componentsBeer/BeerIndex";
@@ -18,9 +17,6 @@ const TestResult = (props) => {
     //테스트 후 나온 결과(맥주추천)
     const beerRecommends = useSelector(recommendBeerToday);
 
-    useEffect(() => {
-        dispatch(userInfo());
-    }, []);
     useEffect(() => {
         if(categoryParams === "Lager" 
         || categoryParams === "Pilsner" 
@@ -53,7 +49,6 @@ const TestResult = (props) => {
                         history.push("/test/");
                     }}
                 >다시 하기
-                {/* <img src="https://image.flaticon.com/icons/png/512/724/724863.png"></img> */}
                 </ReButton>
             </Grid>
             <NavigationBar props={props}/>

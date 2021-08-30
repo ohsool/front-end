@@ -12,7 +12,6 @@ import {
   getOtherUserLikes,
   OtherUserInfo,
   getReviewLength,
-  getAllBeerDogam,
 } from "../async/mybeer";
 
 const initialState = {
@@ -20,7 +19,6 @@ const initialState = {
     myReview: [],
     length: 0,
     allDogam: [],
-    dogamLast: null,
     otherDogam: [],
     otherLikes: [],
     others: [],
@@ -41,16 +39,10 @@ const mybeerSlice = createSlice({
           state.mydogam = action.payload.likedList;
         })
         .addCase(getMyReview.fulfilled, (state, action) => {
-          state.myReview = action.payload.mybeers;
-        })
-        .addCase(getAllBeerDogam.fulfilled, (state, action) => {
-          state.allDogam = [...state.allDogam, ...action.payload.mybeers];
-        })
-        .addCase(getAllBeerDogam.rejected, (state, action) => {
-          state.dogamLast = "lastPage";
+          state.myReview = action.payload.mybeers.reverse();
         })
         .addCase(getOtherUserDogam.fulfilled, (state, action) => {
-          state.otherDogam = action.payload.mybeers
+          state.otherDogam = action.payload.mybeers.reverse();
         })
         .addCase(OtherUserInfo.fulfilled, (state, action) => {
           state.others = action.payload.user;
@@ -80,6 +72,7 @@ const mybeerSlice = createSlice({
           state.myReview[action.payload.index].review = action.payload.review;
         })
         .addCase(deleteReviewDogam.fulfilled, (state, action) => {
+          
           state.myReview.splice(action.payload, 1);
           window.alert("삭제되었습니다.😊");
         })

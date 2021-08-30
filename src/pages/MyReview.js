@@ -9,12 +9,12 @@ const MyReview = (props) =>{
     const is_my = true;
     const is_starsmall = false;
     const is_iphone = navigator.userAgent.toLowerCase();
-
+    
     useEffect(() => {
         window.scrollTo({
             top: 0,
         })
-    }, [])
+    }, []);
 
     return(
         <React.Fragment>
@@ -38,7 +38,7 @@ const MyReview = (props) =>{
                 </StarWrap>
 
                 <Graph>
-                    <TasteGraph beers={item?.myFeatures}/>
+                    <TasteGraph beers={item.myFeatures}/>
                 </Graph>
                 
                 </Grid>

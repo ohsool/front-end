@@ -25,38 +25,16 @@ export const writeReview = createAsyncThunk(
     }
 );
 
-//맥주 리뷰 수정
-export const editReview = createAsyncThunk(
-  "review/editReview",
-  async (data, thunkAPI) => {
-    const review = thunkAPI.getState().mybeer.myReview;
-    const index  = review.findIndex((p) => p._id === data.mybeerId);
-    // myFeatures, location, rate, review
-    const response = await axiosInstance.put(`/api/mybeer/${data.mybeerId}`, data);
-
-    const dataSlice = {
-      myFeatures: data.myFeatures,
-      rate: data.rate,
-      review: data.review,
-      index: index
-    }
-
-    return dataSlice;
+//전체 맥주도감 받아오기
+export const getAllBeerDogam = createAsyncThunk(
+  "review/getAllBeerDogam",
+  async(data, thunkAPI) => {
+    
+    const response = await axiosInstance.get(`/api/mybeer/all?sort=date&pageNo=${data}`);
+    
+    return response.data;
   }
 );
 
-//맥주 리뷰 삭제
-export const deleteReview = createAsyncThunk(
-  "review/deleteReview",
-  async (data, thunkAPI) => {
-    const review = thunkAPI.getState().mybeer.myReview;
-    const index = review.findIndex((p) => p._id === data);
-    const response = await axiosInstance.delete(`/api/mybeer/${data}`);
-
-    if(response.data.message === "success"){
-    return index;
-    }
-  }
-);
 
 

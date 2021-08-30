@@ -66,9 +66,8 @@ export const deleteReviewDogam = createAsyncThunk(
     const review = thunkAPI.getState().mybeer.myReview;
     const index = review.findIndex((p) => p._id === data);
     const response = await axiosInstance.delete(`/api/mybeer/${data}`);
-    if(response.data.message === "success"){
+    
     return index;
-    }
   }
 );
 
@@ -156,14 +155,3 @@ export const OtherUserInfo = createAsyncThunk(
     return response.data;
   }
 )
-
-//전체 맥주도감 받아오기
-export const getAllBeerDogam = createAsyncThunk(
-  "mybeer/getAllBeerDogam",
-  async(data, thunkAPI) => {
-    
-    const response = await axiosInstance.get(`/api/mybeer/all?sort=date&pageNo=${data}`);
-    
-    return response.data;
-  }
-);

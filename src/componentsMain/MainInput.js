@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { User } from "../redux/reducer/userSlice";
-
+import {is_Login} from "../share/checkLoginUser";
 import { history } from "../redux/configureStore";
 
 const MainInput = (props) => {
@@ -10,7 +10,7 @@ const MainInput = (props) => {
     const userId = useSelector(User); //유저 정보 가지고오기
     
     const goBeerDogam = () => {//나의 맥주 도감은 로그인 후 이용 가능
-        if(userId){
+        if(is_Login()){
             history.push(`/mybeer/${userId}/dogam`);
         }else{
             alert("로그인이 필요한 서비스입니다. \n로그인하고 나만의 맥주도감을 관리해보세요!✍ ");
