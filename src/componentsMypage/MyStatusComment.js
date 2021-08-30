@@ -76,7 +76,7 @@ const MyStatusComment = ({ userInfos, is_me, othersInfo }) => {
     }
     const dispatchFollowData = {
         otheruserId: userId,
-        userId: userInfos.userId
+        userId: userInfos?.userId
     }
     const clickFollowButton = () => {
         if(!toggle){

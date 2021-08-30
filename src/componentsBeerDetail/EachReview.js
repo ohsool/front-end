@@ -53,13 +53,13 @@ const EachReview=(props)=> {
                             <>{item?.review.slice(0,50)+'...'}
                             <br/>
                             <MoreButton onClick={(e)=>{
-                                history.push(`/review/${item._id}`, item, userId);
+                                history.push(`/review/${item._id}`, userId);
                             }}><span>도감 상세보기</span></MoreButton>
                             </>
                             : <>{item?.review}
                                 <br/>
                                 <MoreButton onClick={(e)=>{
-                                history.push(`/review/${item._id}`, item, userId);
+                                history.push(`/review/${item._id}`, item._id, userId);
                             }}><span>도감 상세보기</span></MoreButton></>
                         }
                     </ReviewTextWrap>               
@@ -146,10 +146,7 @@ const ReviewText = styled.div`
 `
 
 const ReviewTextWrap = styled.div`
-    //margin: 0 auto;
     width: 280px;
-    //min-height: 30px;
-    //margin-top: 14px;
     word-break:break-all;
     word-wrap:break-word;
     & > span{

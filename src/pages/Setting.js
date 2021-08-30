@@ -12,7 +12,7 @@ import { changeNickname,
 } from "../redux/async/user";
 import { is_Nickname} from "../redux/reducer/userSlice";
 import { pwdReg } from "../share/checkReg";
-import {CustomizedSwitches} from "../componentsMypage/MyBeerIndex";
+import CustomizedSwitches from "../componentsMypage/CustomizedSwitches";
 import { otherStatus } from "../redux/reducer/mybeerSlice";
 import { withDrawal } from "../redux/async/user";
 import { userInfo } from "../redux/async/user";
@@ -276,7 +276,7 @@ const Container = styled.div`
 
 
 const PageWrap = styled.div`
-    width: 360px;
+    width: 400;
     display: flex;
     flex-direction: column;
     test-align: center;
@@ -342,7 +342,7 @@ const JustifyAlign = styled.div`
 
 const WithdrawalWrap = styled.div`
     margin: 0 auto;
-    width: 360px;
+    width: 400px;
     justify-content: space-around;
     display: flex;
     position: absolute;
@@ -352,7 +352,7 @@ const WithdrawalWrap = styled.div`
 
 const WithdrawalButton = styled.div`
     margin: 0 auto;
-    width: 360px;
+    width: 400px;
     height: 23px;
     border: none;
     text-align:center;
