@@ -7,7 +7,7 @@ import {
   checkEmail,
   checkNickname,
   logOut,
-  withDrawl,
+  withDrawal,
   socialLoginUser,
   changeNickname,
   changePassword,
@@ -66,7 +66,7 @@ const userSlice = createSlice({
         removeCookie("_ghkxld");
         window.location.href = "/";
       })
-      .addCase(withDrawl.fulfilled, (state, action) => {
+      .addCase(withDrawal.fulfilled, (state, action) => {
         removeCookie("_dhtnf");
         removeCookie("_chlrh");
         removeCookie("_dlfwh");

@@ -24,9 +24,7 @@ const NavigationBar = (props) => {
                     return;
                 }
             }
-
         }
-
     }
 
     return (

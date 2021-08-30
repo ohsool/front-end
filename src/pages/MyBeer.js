@@ -23,10 +23,11 @@ const MyBeer = (props)=>{
     const is_iphone = navigator.userAgent.toLowerCase(); //아이폰인지 아닌지(노치디자인때문에)
     const { userId } = useParams(); //userId 파라미터
     const { dogam } = useParams(); //도감 or 좋아요리스트 파라미터(dogam or like)
-    const [is_me, setIs_Me] = useState(true); //타유저의 맥주도감인지 내맥주도감인지 구별
-    
+    const [is_me, setIs_Me] = useState(true); //타유저의 맥주도감인지 내 맥주도감인지 구별
 
     const dispatch = useDispatch();
+    //console.log("othersInfo",othersInfo.is_public)
+    //console.log("is_me",is_me)
 
     useEffect(() => {
         dispatch(userInfo());//현재 로그인한사용자 정보 (새로고침시 상태 날라가는 것 방지)
@@ -42,11 +43,6 @@ const MyBeer = (props)=>{
             setIs_Me(false);
         }
     }, [userInfos]);
-
-    useEffect(() => { //사용자정보 및 리뷰정보 불러오기
-        dispatch(userInfo());
-    }, []);
-    
     useEffect(()=> { //맥주도감인지 좋아요한 맥주리스트인지 판별
         if(dogam === "dogam"){
             setIs_Dogam(true);
@@ -56,6 +52,28 @@ const MyBeer = (props)=>{
         return () => {
         }
     }, [dogam, is_Dogam]);
+
+    const myBeerShow = ()=>{
+        if(is_me === true || (is_me === false && othersInfo.is_public=== true)){//허용 비허용 상관없이 보여줌
+            return(
+                <>
+                    <MyDogamButton is_Dogam={is_Dogam}/>
+                    {is_Dogam === true ? 
+                        <MyReviewList is_me={is_me}/>
+                    : 
+                        <MyLikeBeerList is_me={is_me}/>
+                    }
+                </>
+            )
+
+        }else if(is_me === false && othersInfo.is_public === false ){
+            return(
+                <>
+                        <Text>비허용 상태입니다.</Text>
+                </>
+            )
+        }
+    }
 
 
     return (
@@ -70,13 +88,24 @@ const MyBeer = (props)=>{
                 userInfos={userInfos} 
                 is_me={is_me}></MyStatusComment>
             <Grid style={is_iphone.indexOf("iphone") !== -1 ? {marginTop: "40px"} : {marginTop: "0px"}}>
-                <Wrap>  
-                <MyDogamButton is_Dogam={is_Dogam}/>
-                {is_Dogam === true ? 
-                    <MyReviewList is_me={is_me}/>
-                : 
-                    <MyLikeBeerList is_me={is_me}/>
+                <Wrap>
+                {myBeerShow()}
+{/*
+                { is_me===true && othersInfo.is_public? 
+                    <>
+                    <MyDogamButton is_Dogam={is_Dogam}/>
+                    {is_Dogam === true ? 
+                        <MyReviewList is_me={is_me}/>
+                    : 
+                        <MyLikeBeerList is_me={is_me}/>
+                    }
+                     </>              
+                :
+                    <>
+                        <Text>비허용 상태입니다.</Text>
+                    </>
                 }
+*/}
                 </Wrap>
             </Grid>
             <NavigationBar props={props}/>
@@ -99,3 +128,10 @@ const Wrap = styled.div`
     padding-top: 16px;
     border-top: 0.5px solid #C4C4C4; 
 `;
+
+const Text = styled.div`
+    width: 320px;
+    text-align: center;
+    margin: 0 auto;
+    padding-top: 150px;
+`

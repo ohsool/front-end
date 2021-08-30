@@ -256,7 +256,7 @@ const BeerDetail = (props) =>{
                             {beer_infos?.length > 0 ? beer_infos?.map((item, idx) => (
                                 idx < 4 ? (
                                     <>
-                                    <EachReview 
+                                    <EachReview
                                     page={"beerList"}
                                     key={idx} item={item} userId={userId}/>
                                     </>) : null

@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { ReviewWriteModal } from "../componentsBeerDetail/BeerDetailIndex";
 import { deleteReviewDogam } from "../redux/async/mybeer";
 
 const edit = "/images/edit.png";
 const remove = "/images/remove.png";
 
-
 const WritedReview = ({item}) =>   {
     const [modalOpen, setModalOpen] = useState(false);
+    const userInfos = useSelector(state => state.user.currentUser);
+
     const dispatch = useDispatch();
     const openModal = () => {
         setModalOpen(true);
@@ -34,7 +35,8 @@ const WritedReview = ({item}) =>   {
                         <NicknameText>
                             {item?.userId?.nickname}
                         </NicknameText>
-                        <Div>
+                        {userInfos.userId ===item?.userId._id ?
+                            <Div>
                             <EditButton 
                                 style={{backgroundImage: `url(${edit})`}}
                                 onClick={(e) => {
@@ -54,7 +56,10 @@ const WritedReview = ({item}) =>   {
                                     return;
                                 }
                             }}></DeleteButton>
-                        </Div>
+                            </Div>
+                            : ""
+                        }
+
                     </GridHorizon><span>{item?.review.length > 50 ? item?.review.slice(0,50)+'...' : item?.review}</span>
                 </BeerTextWrap>
             </WritedBeerInfo>
