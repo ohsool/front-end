@@ -19,6 +19,7 @@ const MyReview = lazy(() => import("./pages/MyReview"));
 const Setting = lazy(() => import("./pages/Setting"));
 const Token = lazy(() => import("./share/Token"));
 const PlaceBeer = lazy(() => import("./componentsBeerDetail/PlaceBeer"));
+const BeerFeeds = lazy(() => import("./pages/BeerFeeds"));
 
 const code = process.env.REACT_APP_VERSION_CODE;
 
@@ -38,6 +39,7 @@ useEffect(() => { // 만약 공유 기능이 2개이상으로 바뀌면 kakao.li
             <Route path="/result/:category" component={TestResult}/>
             <Route path="/beer" component={Beer}/>
             <Route path="/signup" exact component={SignUp}/>
+            <Route path="/feeds" exact component={BeerFeeds}/>
             <Route path="/login" exact component={Login}/>
             <Route path="/mypage" component={Mypage}/>
             <Route path="/setting" component={Setting}/>

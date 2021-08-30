@@ -94,6 +94,7 @@ export const getOtherUserLikes = createAsyncThunk(
   }
 )
 
+//마이비어 상태명 변경
 export const changeMyDescription = createAsyncThunk(
   "mybeer/changeMyDescription",
   async (data, thunkAPI) => {
@@ -107,6 +108,7 @@ export const changeMyDescription = createAsyncThunk(
   }
 )
 
+//유저 팔로우 기능
 export const followUser = createAsyncThunk(
   "mybeer/followUser",
   async (data, thunkAPI) => {
@@ -119,6 +121,7 @@ export const followUser = createAsyncThunk(
   }
 )
 
+//유저 언팔로우 기능
 export const unFollowUser = createAsyncThunk(
   "mybeer/unFollowUser",
   async (data, thunkAPI) => {
@@ -133,6 +136,7 @@ export const unFollowUser = createAsyncThunk(
   }
 )
 
+//팔로우 유저수 체크
 export const checkFollowUser = createAsyncThunk(
   "mybeer/checkFollowUser",
   async (data, thunkAPI) => {
@@ -142,13 +146,24 @@ export const checkFollowUser = createAsyncThunk(
     return response.data;
   }
 )
-
+//다른유저의 정보(마이비어페이지)
 export const OtherUserInfo = createAsyncThunk(
   "mybeer/OtherUserInfo",
   async (data, thunkAPI) => {
 
     const response = await axiosInstance.get(`/api/user/user-info/${data}`);
 
+    return response.data;
+  }
+)
+
+//전체 맥주도감 받아오기
+export const getAllBeerDogam = createAsyncThunk(
+  "mybeer/getAllBeerDogam",
+  async(data, thunkAPI) => {
+    
+    const response = await axiosInstance.get(`/api/mybeer/all?sort=date&pageNo=${data}`);
+    
     return response.data;
   }
 )

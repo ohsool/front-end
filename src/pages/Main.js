@@ -5,7 +5,7 @@ import MainInput from '../componentsMain/MainInput';
 import { userInfo } from "../redux/async/user";
 import { useDispatch } from 'react-redux';
 
-const mainbeer = "/images/mainbeer.jpeg";
+const mainbeer = "/images/mainBeer.png";
 
 const Main = (props) => {
     const dispatch = useDispatch();

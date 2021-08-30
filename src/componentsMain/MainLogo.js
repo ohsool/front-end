@@ -6,6 +6,8 @@ const Logo = "/images/mainLogo.png";
 const MainLogo = () => {
     return(
         <React.Fragment>
+            <ImageBlurWrap>
+            </ImageBlurWrap>
             <ImageGridcenter>
                 <MainLogoWrap>
                     <img src={Logo}></img>
@@ -19,10 +21,24 @@ const MainLogo = () => {
 export default MainLogo;
 
 const ImageGridcenter = styled.div`
-    display: inline-block;
+    position: absolute;
+    top: 115px;
+    left: 50%;
+    margin-left: -63px;
     height: 141px;
-    margin: 0 auto;
-    margin-top: 115px;
+    z-index: 10;
+`;
+
+const ImageBlurWrap = styled.div`
+    justify-content: center;
+    align-items: center;
+    margin: 37px auto;
+    width: 250px;
+    height: 250px;
+    border-radius: 250px;
+    background-color: #000000;
+    filter: blur(50px);
+    opacity: 0.7;
 `;
 const MainLogoWrap = styled.div`
     display: inline-block;

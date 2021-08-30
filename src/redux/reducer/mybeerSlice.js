@@ -11,13 +11,15 @@ import {
   getOtherUserDogam,
   getOtherUserLikes,
   OtherUserInfo,
-  getReviewLength
+  getReviewLength,
+  getAllBeerDogam
 } from "../async/mybeer";
 
 const initialState = {
     mydogam: [],
     myReview: [],
     length: 0,
+    allDogam: [],
     otherDogam: [],
     otherLikes: [],
     others: [],
@@ -38,6 +40,9 @@ const mybeerSlice = createSlice({
         })
         .addCase(getMyReview.fulfilled, (state, action) => {
           state.myReview = action.payload.mybeers;
+        })
+        .addCase(getAllBeerDogam.fulfilled, (state, action) => {
+          state.allDogam = action.payload.mybeers
         })
         .addCase(getOtherUserDogam.fulfilled, (state, action) => {
           state.otherDogam = action.payload.mybeers

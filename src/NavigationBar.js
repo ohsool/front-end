@@ -35,7 +35,7 @@ const NavigationBar = (props) => {
                 <SearchWrap 
                     style={pathNow === "/mybeer/:userId" ? {backgroundColor: "#F7F7F7"} : null}
                     onClick={()=>{comfirm_login('myBeer')}}>
-                    <ImageWrapmyBeer style={{backgroundImage: `url(${myBeer})`}}/>
+                    <ImageWrap style={{backgroundImage: `url(${myBeer})`}}/>
                     <Text><span>MY BEER</span></Text>
                 </SearchWrap>
                 <SearchWrap
@@ -45,7 +45,16 @@ const NavigationBar = (props) => {
                 }}>
                     <ImageWrap style={{backgroundImage: `url(${beer})`}}/>
                     <Text><span>BEER LIST</span></Text>
-                </SearchWrap>                    
+                </SearchWrap>
+                <SearchWrap
+                    style={pathNow === "/feeds" ? {backgroundColor: "#F7F7F7"} : null}
+                    onClick={() => {
+                    history.push("/feeds")
+                }}
+                >
+                    <ImageWrap style={{backgroundImage: `url(${beer})`}}/>
+                    <Text><span>BEER FEED</span></Text>
+                </SearchWrap>
                 <SearchWrap
                     style={pathNow === "/mypage" ? {backgroundColor: "#F7F7F7"} : null}
                     onClick={()=>{comfirm_login('myPage')}}>
@@ -84,19 +93,15 @@ const Text = styled.div`
     }
 `
 const ImageWrap = styled.div`
-    margin: 13px 58px 0 48px;
+    margin: 0 auto;
+    margin-top: 13px;
     width: 22px;
     height: 22px;
     background-size: cover;
 `;
-const ImageWrapmyBeer = styled.div`
-    margin: 13px 58px 0 48px;
-    width: 24px;
-    height: 22px;
-    background-size: cover;
-`;
+
 const SearchWrap = styled.div`
     text-align: center;
-    width:120px;
+    width:90px;
     cursor: pointer;
 `;

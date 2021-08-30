@@ -65,9 +65,9 @@ const LinkBox = styled.div`
     height: 45px;
     line-height: 45px;
     margin: 0 0 16px 0;
-    background-color: transparent;
-    border: 1px solid #FFFFFF;
-    border-radius: 22.5px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 0.5px solid #FFFFFF;
+    border-radius: 12px;
     color: #FFFFFF;
     z-index: 9999;
     cursor: pointer;

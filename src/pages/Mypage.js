@@ -71,11 +71,7 @@ const MyPage = (props) => {
         <React.Fragment>
         <Container>
             <Header/>
-            <UserPreference userInfos={userInfos} is_me={true}>
-            </UserPreference>
-
             <ProgressBar progress={'30'}/>
-
             <PageMoveWrap>
 
                 {/*
