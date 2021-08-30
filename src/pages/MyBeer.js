@@ -13,7 +13,7 @@ import {
     MyReviewList,
     UserPerference,
     MyDogamButton,
-    MyStatusComment
+    MyStatusComment,
     } from "../componentsMypage/MyBeerIndex";
 
 const MyBeer = (props)=>{

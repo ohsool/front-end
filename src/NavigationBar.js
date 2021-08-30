@@ -3,9 +3,11 @@ import styled from "styled-components";
 import { history } from "./redux/configureStore";
 import "./share/style/TestHeader.css";
 import { useSelector } from "react-redux";
+import {is_Login} from "./share/checkLoginUser";
 
 const myPage = "/images/myPage.png";
 const beer = "/images/beer.png";
+const feed = "/images/feed.png";
 const myBeer = "/images/mybeer.png";
 
 const NavigationBar = (props) => {
@@ -13,7 +15,7 @@ const NavigationBar = (props) => {
     const pathNow = props.props.match.path;
 
     const goMyPage = () => {
-        if(userInfo.userId){
+        if(is_Login()){
             history.push("/myPage");
         }else{
             if(window.confirm("로그인이 필요한 서비스입니다. 로그인하시겠습니까?")){
@@ -24,7 +26,7 @@ const NavigationBar = (props) => {
     }
 
     const goBeerDogam = () => {
-        if(userInfo.userId){
+        if(is_Login()){
             history.push(`/mybeer/${userInfo.userId}/dogam`);
         }else{
             if(window.confirm("로그인이 필요한 서비스입니다. \n로그인하고 나만의 맥주도감을 관리해보세요!✍")){
@@ -34,21 +36,6 @@ const NavigationBar = (props) => {
         }
     }
 
-    /*
-    const comfirm_login = (page)=>{
-        if(page==='myBeer'){
-            history.push(`/mybeer/${userInfo.userId}/dogam`)
-        }else if(page==='myPage'){
-            if(userInfo.message === "success"){
-                history.push("/myPage");
-            }else{
-                if(window.confirm("로그인 후 이용 가능한 서비스입니다. \n로그인 하시겠습니까?")){
-                    history.push("/login");
-                    return;
-                }
-            }
-        }
-    */
 
     return (
         <React.Fragment>
@@ -73,7 +60,7 @@ const NavigationBar = (props) => {
                     history.push("/feeds")
                 }}
                 >
-                    <ImageWrap style={{backgroundImage: `url(${beer})`}}/>
+                    <ImageWrap style={{backgroundImage: `url(${feed})`}}/>
                     <Text><span>BEER FEED</span></Text>
                 </SearchWrap>
                 <SearchWrap

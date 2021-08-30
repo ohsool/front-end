@@ -3,9 +3,8 @@ import { withStyles } from '@material-ui/core/styles';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
-import { identity } from 'lodash';
 
-const SwitchButton = withStyles({
+const SwitchButton = withStyles({//setting 페이지 Switch 버튼
   switchBase: {
     color: "#FFCC4F",
     '&$checked': {
@@ -19,24 +18,15 @@ const SwitchButton = withStyles({
   track: {},
 })(Switch);
 
-
-export default function CustomizedSwitches({setState,state,setIs_Toggle}) {
-
-  const handleChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
-    //state.checked ===true ? setIs_Toggle(true) : setIs_Toggle(false)
-  };
+export default function CustomizedSwitches({ toggle, clickSwitch}) {
 
   return (
     <FormGroup style={{width: "37px"}}>
       <FormControlLabel
         control={<SwitchButton 
-                  checked={state.checked} 
-                  onChange={handleChange}
-                  onClick={()=> {
-                    alert("aaaa")
-                  }}
-                  name="checked" />}
+                  checked={toggle} 
+                  onClick={clickSwitch} 
+                  name="checked"/>}
       />
     </FormGroup>
   );

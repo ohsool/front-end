@@ -26,7 +26,7 @@ const BackgroundCateImage = ({ category }) => {
 export default BackgroundCateImage;
 
 const BackgroundImage = styled.div`
-    width: 100%;
+    width: 400px;
     height: 270px;
     background-size: cover;
     text-aligin: center;
@@ -37,7 +37,7 @@ const BackgroundImage = styled.div`
 const BackgroundImageStyle = styled.div`
     display: flex;
     justify-content: center;
-    width: 100%;
+    width: 400px;
     height: 270px;
     opacity: 0.8;
     background: radial-gradient(66.94% 68.52% at 66.94% 53.82%, 

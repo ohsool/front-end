@@ -121,7 +121,7 @@ export const shareAgree = createAsyncThunk(
   "user/shareAgree",
   async (data, thunkAPI) => {
     const response = await axiosInstance.put(`/api/user/public/public`)
-    return ; //어떤 값 return 할지?
+    return ; 
   }
 )
 //맥주도감 공유 비허용
@@ -131,6 +131,6 @@ export const shareDisagree = createAsyncThunk(
     
     const response = await axiosInstance.put(`/api/user/public/private`)
     
-    return ; //어떤 값 return 할지?
+    return ; 
   }
 )

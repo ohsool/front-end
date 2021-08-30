@@ -10,11 +10,13 @@ import { changeNickname,
         shareAgree,
         shareDisagree
 } from "../redux/async/user";
-import { is_Nickname} from "../redux/reducer/userSlice";
+import { is_Nickname } from "../redux/reducer/userSlice";
 import { pwdReg } from "../share/checkReg";
-import CustomizedSwitches from "../componentsMypage/CustomizedSwitches";
+import { CustomizedSwitches } from "../componentsMypage/MyBeerIndex";
 import { otherStatus } from "../redux/reducer/mybeerSlice";
 import { withDrawal } from "../redux/async/user";
+import { userInfo } from "../redux/async/user";
+import { OtherUserInfo } from "../redux/async/mybeer";
 
 const Setting = (props) =>{
     const is_nickname = useSelector(is_Nickname); // 닉네임 중복체크 서버에서 응답
@@ -32,22 +34,33 @@ const Setting = (props) =>{
     const { password, new_password } = passwords;
     const [password_change,setPassword_Change] = useState(false) //비밀번호 변경 버튼 클릭시 true로 바뀜
     const othersInfo = useSelector(otherStatus);
-    const [state, setState] = useState({//도감 공유 허용 여부
-        checked: othersInfo.is_public
-      });
+    const [toggle,setToggle] = useState("");
+    const [state, setState] = useState(//도감 공유 허용 여부
+        toggle
+      );
     const dispatch = useDispatch();
-    //const [is_toggle, setIs_Toggle] = useState("");
-    //const [email, setEmail] = useState(userInfos.email);  //새로 고치후userInfos데이터 날라가지 않도록
 
+    useEffect(() => {
+        dispatch(userInfo());
+    }, [])
+
+    useEffect(() => {
+        dispatch(OtherUserInfo(userInfos.userId));
+    }, [userInfos.userId])
+    
     useEffect(()=>{
-        if(state.checked===true){
-            dispatch(shareAgree())
-            return;
-        }else if(state.checked===false){
-            dispatch(shareDisagree())
-            return;
+
+    },[state.checked])
+
+    useEffect(() => { //좋아요된 상태면 좋아요 눌린걸로 아니면 false그대로
+        if(othersInfo.is_public === true){
+            setToggle(true);
+            setState(toggle);
+
+        }else{
+            setToggle(false);
         }
-    },[state])
+    }, [othersInfo]);
 
     useEffect(() => {  //닉네임 중복체크
             if(nickname === ""){
@@ -136,7 +149,15 @@ const Setting = (props) =>{
             return;
         }
     }
-
+    const clickSwitch = ()=>{//맥주 도감 공유 허용/비허용 상태 전환
+        if(toggle===true){
+            dispatch(shareDisagree());
+            setToggle(false);
+        }else{
+            dispatch(shareAgree());
+            setToggle(true);
+        }
+    }
     return (
         <>
         <Container>
@@ -227,7 +248,8 @@ const Setting = (props) =>{
                             <CustomizedSwitches
                             setState={setState}
                             state={state}
-                            //setIs_Toggle={setIs_Toggle}
+                            clickSwitch={clickSwitch}
+                            toggle={toggle}
                         /></div>
                     </JustifyAlign>
                 </InfoWrap>
@@ -252,7 +274,6 @@ const Container = styled.div`
     width: 100%;
 `;
 
-
 const PageWrap = styled.div`
     width: 360px;
     display: flex;
@@ -261,7 +282,6 @@ const PageWrap = styled.div`
     margin: 0 auto;
     margin-top: 110px;
 `;
-
 
 const InfoWrap = styled.div`
     display: inline-block;
@@ -277,7 +297,7 @@ const InfoWrap = styled.div`
         font-weight: bold;
     }
     & > input{
-        width: 224px;
+        width: 227px;
         height: 32px;
         border:none;
         outline: none;

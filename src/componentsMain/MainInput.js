@@ -6,14 +6,14 @@ import { User } from "../redux/reducer/userSlice";
 import { history } from "../redux/configureStore";
 
 const MainInput = (props) => {
-    const is_login = useSelector((state) => state.user.currentUser.message);
-    const userId = useSelector(User);
+    const is_login = useSelector((state) => state.user.currentUser.message); //로그인 여부 확인
+    const userId = useSelector(User); //유저 정보 가지고오기
     
-    const goBeerDogam = () => {
+    const goBeerDogam = () => {//나의 맥주 도감은 로그인 후 이용 가능
         if(userId){
             history.push(`/mybeer/${userId}/dogam`);
         }else{
-            alert("로그인이 필요한 서비스입니다!");
+            alert("로그인이 필요한 서비스입니다. \n로그인하고 나만의 맥주도감을 관리해보세요!✍ ");
         }
     }
     return(

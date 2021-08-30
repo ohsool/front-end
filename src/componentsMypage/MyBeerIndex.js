@@ -3,6 +3,8 @@ import MyReviewList from "./MyReviewList";
 import UserPerference from "./UserPerference";
 import MyDogamButton from "./MyDogamButton";
 import MyStatusComment from "./MyStatusComment"
+import CustomizedSwitches from "./CustomizedSwitches"
+
 
 
 export {
@@ -10,5 +12,6 @@ export {
     MyReviewList,
     UserPerference,
     MyDogamButton,
-    MyStatusComment
+    MyStatusComment,
+    CustomizedSwitches
     };
