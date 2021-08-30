@@ -18,6 +18,7 @@ import { TasteGraph, EachReview} from "./BeerDetailIndex";
 import {ReviewWriteModal} from "../componentsBeerDetail/BeerDetailIndex";
 import _ from "lodash";
 import ShareButton from "../componentsTest/ShareButton";
+import {is_Login} from "../share/checkLoginUser";
 
 const mapIcon = "/images/mapIcon.png"
 const writeIcon = "/images/review_write.png"
@@ -64,7 +65,7 @@ const BeerDetail = (props) =>{
         }
     }, [beerOne, userId]);
 
-    const is_Login = () => {
+    const go_LoginPage = () => {
         if(window.confirm("로그인이 필요한 서비스입니다. 로그인하시겠습니까?")){
             history.push("/login");
             return;
@@ -72,7 +73,7 @@ const BeerDetail = (props) =>{
     }
 
     const clickLike = () => { //좋아요 및 좋아요 취소 기능
-        if(userId){
+        if(is_Login()){
             if(toggle === true){
                 if(window.confirm(`좋아요를 취소하시겠어요?`)){
                     dispatch(unLikeBeerDetail(beerOne._id));
@@ -84,15 +85,15 @@ const BeerDetail = (props) =>{
                 setToggle(true);
             }
         }else{ //로그인 안한 유저가 좋아요 눌렀을때 눌리는 것 방지
-            is_Login();
+            go_LoginPage();
         }
     }
 
     const clickPlaceReport = () => {
-        if(userId){
+        if(is_Login()){
             history.push("/place", beerOne._id)
         }else{
-            is_Login();
+            go_LoginPage();
         }
     }
     // 리뷰작성 로그인 한 사람만 할 수 있도록
@@ -104,7 +105,7 @@ const BeerDetail = (props) =>{
                 setModalOpen(true);
             }
         }else{
-            is_Login();
+            go_LoginPage();
         }
     }
 
@@ -126,6 +127,7 @@ const BeerDetail = (props) =>{
         setModalOpen(false);
     };
 
+    //제보된 장소 있을경우 데이터에서 받아오고 없으면 제보된장소 없음 표시
     const reportedPlace = () => {
         if(beerOne?.location_report[0]){
             return(

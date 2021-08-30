@@ -7,6 +7,7 @@ import { likeBeer, unLikeBeer, getHashtagWord} from "../redux/async/beer";
 import { User } from "../redux/reducer/userSlice";
 import { unLikeBeerDogam } from "../redux/async/mybeer";
 import HeartButton from "./HeartButton";
+import {is_Login} from "../share/checkLoginUser";
 
 
 const EachBeer = (props) => {
@@ -27,7 +28,7 @@ const EachBeer = (props) => {
     //좋아요 누를때 로그인해있는지 판별하고 로그인되있으면 좋아요 취소 혹은 좋아요
     //로그인 안한 상태일경우 로그인페이지로
     const clickLike = () => { //좋아요 토글 함수
-        if(userId){
+        if(is_Login()){
             if(toggle === true){
                 if(window.confirm(`좋아요를 취소하시겠어요?`)){
                     dispatch(unLikeBeer(item._id));

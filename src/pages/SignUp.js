@@ -32,15 +32,6 @@ const SignUp = (props) => {
             alert("회원가입을 축하합니다!")
             window.location.href = "/"  
             return;
-            //아래처럼하면 에러남
-            /*if(window.confirm("회원가입이 완료되었습니다! 로그인페이지로 이동하시겠습니까?")){
-                history.push("/login");
-                return;
-            }else{
-                window.location.href = "/"  
-                return;
-            }*/
-            
         }
     }, [is_signup]);
     

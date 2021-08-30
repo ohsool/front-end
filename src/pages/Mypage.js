@@ -10,6 +10,7 @@ import ProgressBar from '../componentsMypage/ProgressBar';
 import { getReviewLength } from "../redux/async/mybeer";
 import { count } from "../redux/reducer/mybeerSlice";
 import { useSelector } from "react-redux";
+import {is_Login} from "../share/checkLoginUser";
 const arrow = "/images/suggestarrow.png";
 
 const version = parseFloat(process.env.REACT_APP_VERSION_CODE).toFixed(1);
@@ -49,7 +50,7 @@ const MyPage = (props) => {
     };
 
     const comfirm_login = ()=>{
-        if(userInfos.message === "success"){
+        if(is_Login()){
             return(
                 <LogOutWrap>
                     <LogOutButton
