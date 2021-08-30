@@ -17,9 +17,6 @@ const BeerListCategory = (props) => {
     const dispatch = useDispatch();
     useEffect(() => {
         setBeers([...beers, ...category_beers]);
-        if(category_beers.length < 8){
-            return setPagingCate(9999);
-        }
     }, [category_beers]);
 
     const dispatchData= {
@@ -42,7 +39,7 @@ const BeerListCategory = (props) => {
         const clientHeight = document.documentElement.clientHeight;
         if (scrollTop + clientHeight >= scrollHeight-100 && loading === false) {
           // 페이지 끝에 도달하면 추가 데이터를 받아온다
-          if (pagingCate >= 9998){
+          if (pagingCate >= 4){
             return;
             }
           setPagingCate(pagingCate + 1);

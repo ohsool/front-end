@@ -166,4 +166,11 @@ export const getAllBeerDogam = createAsyncThunk(
     
     return response.data;
   }
+);
+
+export const getAllBeerDogamCleanUp = createAsyncThunk(
+  "mybeer/getAllBeerDogamCleanUp",
+  async(data, thunkAPI) => {
+    return ;
+  }
 )

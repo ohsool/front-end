@@ -12,29 +12,28 @@ const NavigationBar = (props) => {
     const userInfo = useSelector(state => state.user.currentUser);
     const pathNow = props.props.match.path;
 
-    const comfirm_login = (page)=>{
-        if(page==='myBeer'){
-            history.push(`/mybeer/${userInfo.userId}/dogam`)
-        }else if(page==='myPage'){
-            if(userInfo.message === "success"){
-                history.push("/myPage");
-            }else{
-                if(window.confirm("로그인 후 이용 가능한 서비스입니다. \n로그인 하시겠습니까?")){
-                    history.push("/login");
-                    return;
-                }
-            }
-
+    const goMyPage = () => {
+        if(userInfo.userId){
+            history.push(`/mybeer/${userInfo.userId}/dogam`);
+        }else{
+            alert("로그인이 필요한 서비스입니다!");
         }
+    }
 
+    const goBeerDogam = () => {
+        if(userInfo.userId){
+            history.push(`/mybeer/${userInfo.userId}/dogam`);
+        }else{
+            alert("로그인이 필요한 서비스입니다!");
+        }
     }
 
     return (
         <React.Fragment>
             <NavBox>
                 <SearchWrap 
-                    style={pathNow === "/mybeer/:userId" ? {backgroundColor: "#F7F7F7"} : null}
-                    onClick={()=>{comfirm_login('myBeer')}}>
+                    style={pathNow === `/mybeer/:userId/:dogam` ? {backgroundColor: "#F7F7F7"} : null}
+                    onClick={goBeerDogam}>
                     <ImageWrap style={{backgroundImage: `url(${myBeer})`}}/>
                     <Text><span>MY BEER</span></Text>
                 </SearchWrap>
@@ -57,7 +56,7 @@ const NavigationBar = (props) => {
                 </SearchWrap>
                 <SearchWrap
                     style={pathNow === "/mypage" ? {backgroundColor: "#F7F7F7"} : null}
-                    onClick={()=>{comfirm_login('myPage')}}>
+                    onClick={goMyPage}>
                 
                     <ImageWrap style={{backgroundImage: `url(${myPage})`}}/>
                     <Text><span>MY PAGE</span></Text>

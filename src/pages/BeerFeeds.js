@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import _ from "lodash";
 import Header from "../Header";
 import NavigationBar from "../NavigationBar";
-import { getAllBeerDogam } from "../redux/async/mybeer";
+import { getAllBeerDogam, getAllBeerDogamCleanUp } from "../redux/async/mybeer";
 import EachReview from "../componentsBeerDetail/EachReview";
 import InfinityScrollLoader from "../componentsBeer/InfinityScrollLoader";
 
@@ -15,10 +15,10 @@ const BeerFeeds = (props) => {
     const [paging, setPaging] = useState(0);
     const [allFeeds, setAllFeeds] = useState([])
     const dispatch = useDispatch();
-    
+
     useEffect(() => {
         setAllFeeds([...allFeeds, ...allFeedsData]);
-        if(allFeedsData.length < 8){
+        if(allFeeds.length % 8 !== 0){
             return setPaging(9999);
         }
     }, [allFeedsData]);
@@ -35,7 +35,7 @@ const BeerFeeds = (props) => {
         const scrollHeight = document.documentElement.scrollHeight;
         const scrollTop = document.documentElement.scrollTop;
         const clientHeight = document.documentElement.clientHeight;
-        if (scrollTop + clientHeight >= scrollHeight - 100 && loading === false) {
+        if (scrollTop + clientHeight >= scrollHeight && loading === false) {
           // 페이지 끝에 도달하면 추가 데이터를 받아온다
             if(paging >= 9998){
                 return;
@@ -50,11 +50,12 @@ const BeerFeeds = (props) => {
         if(paging === 0 && allFeeds.length === 0){
             dispatch(getAllBeerDogam(paging));
             setPaging(paging+1);
+            return;
         }
-        if(allFeeds.length !== 0 ){
-            setPaging(allFeeds.length/8 + 1)
+        if(allFeeds.length % 8 !== 0){
+            setPaging(9999);
         }
-    }, []);
+    }, [paging]);
 
     useEffect(() => {
         if(loading){
@@ -64,7 +65,7 @@ const BeerFeeds = (props) => {
         return () => {
             window.removeEventListener("scroll", _handleScroll); // scroll event listener 해제
         };
-    }, [paging, loading]);
+    }, [paging, loading, allFeedsData]);
 
     return(
         <React.Fragment>

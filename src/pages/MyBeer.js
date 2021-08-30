@@ -25,7 +25,6 @@ const MyBeer = (props)=>{
     const { dogam } = useParams(); //도감 or 좋아요리스트 파라미터(dogam or like)
     const [is_me, setIs_Me] = useState(true); //타유저의 맥주도감인지 내맥주도감인지 구별
     
-
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -35,17 +34,14 @@ const MyBeer = (props)=>{
             top: 0,
         })
     }, []);
+    
     useEffect(() => {
         if(userId === undefined || userId === userInfos.userId){
             setIs_Me(true);
         }else{
             setIs_Me(false);
         }
-    }, [userInfos]);
-
-    useEffect(() => { //사용자정보 및 리뷰정보 불러오기
-        dispatch(userInfo());
-    }, []);
+    }, [userInfos, userId]);
     
     useEffect(()=> { //맥주도감인지 좋아요한 맥주리스트인지 판별
         if(dogam === "dogam"){

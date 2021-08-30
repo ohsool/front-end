@@ -6,7 +6,6 @@ import { useDispatch } from "react-redux";
 import MyPageModal from "../componentsMypage/MyPageModal";
 import Header from "../Header";
 import NavigationBar from "../NavigationBar";
-import UserPreference from '../componentsMypage/UserPerference';
 import ProgressBar from '../componentsMypage/ProgressBar';
 import { getReviewLength } from "../redux/async/mybeer";
 import { count } from "../redux/reducer/mybeerSlice";
@@ -73,11 +72,6 @@ const MyPage = (props) => {
         <Container>
             <Header/>
             <GaugeWrap>
-                {/*
-                <UserPreference userInfos={userInfos} is_me={true}>
-                </UserPreference>
-                */}
-
                 <Line1/>
                 <JustifyAlign>
                     <LevelText><span>Lv.{parseInt(length/10)+1}</span> <span style={{color: "#FFC44F"}}>맥주덕후</span></LevelText>
