@@ -96,11 +96,11 @@ const MyStatusComment = ({ userInfos, is_me, othersInfo }) => {
                         {text}
                     </span>
                     :
-                    <textarea
+                    <CommentTextarea
                         onKeyPress={enterKeyPress}
                         value={comment}
                         onChange={onChange}
-                    ></textarea>
+                    ></CommentTextarea>
                     }
                 </CommentWrap>
                 <FollowOrCommentButtonWrap>
@@ -140,13 +140,18 @@ const CommentWrap = styled.div`
         color: #151515;
         font-family: Noto Sans KR;
     }
-    & > textarea {
-        width: 197px;
-        height: 54px;
-        border: 1px solid #FFC44F;
-        outline: none;
-    }
+
 `;
+const CommentTextarea = styled.textarea`
+    width: 197px;
+    height: 54px;
+    border: 1px solid #FFC44F;
+    outline: none;
+    resize:none;
+    border-radius: 10px;
+    font-size: 12px;
+`;
+
 
 const FollowOrCommentButtonWrap = styled.div`
     margin: 20px 0 0 10px;

@@ -17,7 +17,6 @@ const EachReview=(props)=> {
     const closeModal = () => {
         setModalOpen(false);
     };
-    //console.log("item.userId",item.userId);
     const date = item.date.replace(/-/g,'/');
     
     const pushOtherUserDogam = () => {

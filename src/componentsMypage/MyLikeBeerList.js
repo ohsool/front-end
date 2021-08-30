@@ -27,7 +27,7 @@ const MyLikeBeerList = ({is_me}) => {
             {is_me ?
             mydogam.length !== 0 ? mydogam?.map((item, idx) => (
                 <EachBeer 
-                    page={"beerList"}
+                    page={"notbeerList"}
                     key={idx} item={item} 
                     _onClick={() =>{
                         history.push("/beer/detail")
@@ -37,7 +37,7 @@ const MyLikeBeerList = ({is_me}) => {
             :
             otherUserLikes.length !== 0 ? otherUserLikes?.map((item, idx) => (
                 <EachBeer 
-                    page={"beerList"}
+                    page={"notbeerList"}
                     key={idx} item={item} 
                     _onClick={() =>{
                         history.push("/beer/detail")
