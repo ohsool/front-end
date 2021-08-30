@@ -128,6 +128,7 @@ const Container = styled.div`
     display: flex;
     width: 360px;
     margin: 0 auto;
+    padding-top: 15px;
 `;
 
 const CommentWrap = styled.div`

@@ -10,7 +10,7 @@ const SwitchButton = withStyles((theme) => ({
     height: 26,
     padding: 0,
     left: 17,
-    margin: theme.spacing(1)
+    //margin: theme.spacing(1)
   },
   switchBase: {
     padding: 1,
@@ -57,10 +57,7 @@ const SwitchButton = withStyles((theme) => ({
     />
   );
 });
-const CustomizedSwitch = ()=>{
-    const [state, setState] = React.useState({
-        checked: true
-      });
+const CustomizedSwitch = ({setState,state})=>{
     
       const handleChange = (event) => {
         setState({ ...state, [event.target.name]: event.target.checked });
@@ -84,4 +81,3 @@ const CustomizedSwitch = ()=>{
 
 }
 export default CustomizedSwitch;
-

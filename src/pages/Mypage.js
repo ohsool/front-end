@@ -13,6 +13,8 @@ import { count } from "../redux/reducer/mybeerSlice";
 import { useSelector } from "react-redux";
 const arrow = "/images/suggestarrow.png";
 
+const version = parseFloat(process.env.REACT_APP_VERSION_CODE).toFixed(1);
+
 const MyPage = (props) => {
     const userInfos = useSelector(state => state.user.currentUser);
     const length = useSelector(count)
@@ -48,7 +50,6 @@ const MyPage = (props) => {
 
     const comfirm_login = ()=>{
         if(userInfos.message === "success"){
-            
             return(
                 <LogOutWrap>
                     <LogOutButton
@@ -71,9 +72,22 @@ const MyPage = (props) => {
         <React.Fragment>
         <Container>
             <Header/>
-            <ProgressBar progress={'30'}/>
-            <PageMoveWrap>
+            <GaugeWrap>
+                {/*
+                <UserPreference userInfos={userInfos} is_me={true}>
+                </UserPreference>
+                */}
 
+                <Line1/>
+                <JustifyAlign>
+                    <LevelText><span>Lv.{parseInt(length/10)+1}</span> <span style={{color: "#FFC44F"}}>맥주덕후</span></LevelText>
+                    <DogamText><span>도감: {length}/100</span></DogamText>
+                </JustifyAlign>
+                <ProgressBar progress={length}/>
+            </GaugeWrap>
+            <Line/>
+            <PageMoveWrap>
+            
                 {/*
                 <MoveBoxWrap
                     onClick={() => {
@@ -84,8 +98,11 @@ const MyPage = (props) => {
                     <ArrowImage src={arrow}></ArrowImage>
                 </MoveBoxWrap>
                 */}
+
                 <MoveBoxWrap
                     onClick={() => {
+                        //alert("coming soon🍹")
+                        //return;
                         history.push("/setting");
                     }}
                 >
@@ -130,6 +147,10 @@ const MyPage = (props) => {
                         close={closeModal}
                 ></MyPageModal>
 
+                <VersionWrap>
+                <VersionText>ver.1.1</VersionText>
+                </VersionWrap>
+
                 {comfirm_login()}
                 
             </PageMoveWrap>
@@ -143,6 +164,7 @@ export default MyPage;
 
 const Container = styled.div`
     width: 100%;
+    bottom: 10px;
 `;
 
 const PageMoveWrap = styled.div`
@@ -190,6 +212,7 @@ const LogOutButton = styled.div`
     width: 70px;
     height: 23px;
     border: none;
+    text-align:center;
     background-color: transparent;
     color: #FFC44F;
     cursor: pointer;
@@ -197,3 +220,70 @@ const LogOutButton = styled.div`
     font-size: 16px;
     font-family : inherit;
 `;
+const Line = styled.hr`
+    width: 320px;
+    margin-top: 35px;
+    text-align: center;
+    border: 0;
+    border:solid #C4C4C4;
+    border-width: 0.1px;
+`
+const Line1 = styled.hr`
+    width: 320px;
+    margin-top: 70px;
+    text-align: center;
+    border: 0;
+    border:solid #C4C4C4;
+    border-width: 0.1px;
+`
+const VersionWrap = styled.div`
+    margin: 0 auto;
+    width: 360px;
+    justify-content: space-around;
+    display: flex;
+    position: absolute;
+    bottom: 140px;
+`;
+const VersionText = styled.div`
+    margin: 0 auto;
+    text-align:center;
+    width: 70px;
+    height: 23px;
+    border: none;
+    background-color: transparent;
+    color: #FFC44F;
+    cursor: pointer;
+    font-weight: 300;
+    font-size: 18px;
+    font-family : inherit;
+
+`
+const JustifyAlign = styled.div`
+    margin: 0 auto;
+    text-align: center;
+    width: 320px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+`
+const GaugeWrap = styled.div`
+`
+const LevelText = styled.div`
+    //width: 120px;
+    padding-left: 24px;
+
+    & > span{
+        font-weight: 700;
+        font-size: 16px;
+    }
+`
+
+const DogamText = styled.div`
+    //width: 120px;
+    padding-right: 24px;
+
+    & > span{
+        font-weight: 400;
+        font-size: 10px;
+    }
+`

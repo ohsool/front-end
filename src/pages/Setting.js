@@ -3,23 +3,47 @@ import {useDispatch, useSelector} from "react-redux";
 import styled from 'styled-components';
 import "../share/style/loginButton.css";
 import Header from "../Header";
-import { checkNickname } from "../redux/async/user";
+import { changeNickname,
+        checkNickname,
+        changePassword,
+        shareAgree,
+        shareDisagree
+} from "../redux/async/user";
 import { is_Nickname} from "../redux/reducer/userSlice";
 import { pwdReg } from "../share/checkReg";
 import CustomizedSwitches from "../componentsMypage/CustomizedSwitches";
 
-const Setting = ({}) =>{
+const Setting = (props) =>{
     const is_nickname = useSelector(is_Nickname); // 닉네임 중복체크 서버에서 응답
+    const userInfos = useSelector(state => state.user.currentUser);
     const [nickname_check_text, setNickname_Check_Text] = useState("");
-    const [nickname_double, setNickName_Double] = useState("");
-    //const [is_change,setIs_Change] = useState(false);
-
-    const [nickname, setNickname] = useState(""); //회원정보 입력 
-    const [before_password, setBefore_Password] = useState(""); //회원정보 입력 
-    const [after_password, setAfter_Password] = useState(""); //회원정보 입력 
+    const [nickname_double, setNickName_Double] = useState("");//비밀번호 alert
+    const [password_check_text, setPassword_Check_Text] = useState("");
+    const [password_check, setPassword_check] = useState("");
+    const [nickname, setNickname] = useState(""); //회원정보 입력
     const [nick_change, setNick_Change] = useState(false); //닉네임 변경 버튼 클릭시 true로 바뀜
+    const [passwords, setPasswords] = useState(
+        {
+            "password": "",
+            "new_password": ""
+        }
+    ); //회원정보 입력
+    const { password, new_password } = passwords;
     const [password_change,setPassword_Change] = useState(false) //비밀번호 변경 버튼 클릭시 true로 바뀜
+    const [state, setState] = useState({//도감 공유 허용 여부
+        checked: "" //!!!나중엔 user의 허용/비허용 상태가 들어감!!! checked: true
+      });
+    
     const dispatch = useDispatch();
+    useEffect(()=>{
+        if(state.checked===true){
+            dispatch(shareAgree())
+            return;
+        }else if(state.checked===false){
+            dispatch(shareDisagree())
+            return;
+        }
+    },[state])
 
     useEffect(() => {  //닉네임 중복체크
             if(nickname === ""){
@@ -42,7 +66,6 @@ const Setting = ({}) =>{
     }, [nickname, is_nickname]);
 
     const clickNickConfirm=()=>{//변경된 정보 사항으로 디스패치
-
         if(nickname === ""){
             setNickname("");
             alert("닉네임을 다시 확인 해주세요!")
@@ -66,24 +89,30 @@ const Setting = ({}) =>{
         }else{
             setNickName_Double(true);
             if(window.confirm("닉네임을 변경하습니까?")){
-                //dispatch(); 닉네임을 변경하는 api & 그 slice에서 변경되었습니다 띄우기!!
+                if(dispatch(changeNickname(nickname)))//dispatch(); 닉네임을 변경하는 api & 그 slice에서 변경되었습니다 띄우기!!
+                    setNick_Change(false);
             }
-            setNick_Change(false);
             return;
         }
     }
-    const clickAfterPasswordConfirm=()=>{//변경된 정보 사항으로 디스패치
+    const clickPasswordConfirm=()=>{//변경된 정보 사항으로 디스패치
 
-        if(after_password === ""  ){
+        if(new_password === "" ){
             alert("비밀번호를 다시 확인 해주세요!")
             return;
         } //공란 체크
     
-        if(!pwdReg(after_password)){
-            alert("비밀번호를 4자 이상 입력해주세요!");
+        if(!pwdReg(new_password)){
+            alert("새로운 비밀번호를 4자 이상 입력해주세요!");
             return;
         } //비밀번호 형식체크
-        setPassword_Change(false);
+        else{
+            if(window.confirm("비밀번호를 변경하습니까?")){
+                if(dispatch(changePassword(passwords)))//dispatch(); 닉네임을 변경하는 api & 그 slice에서 변경되었습니다 띄우기!!
+                    setPassword_Change(false);
+            }
+            return;
+        }
 
     }
 /*
@@ -95,10 +124,6 @@ const Setting = ({}) =>{
 
     }
 */  
-    const clickBeforePasswordConfirm = ()=>{
-
-    }
-
     const doubleCheckNickname = useCallback(() => {
         dispatch(checkNickname(nickname));
     }, [nickname]); //닉네임 중복체크 디스패치
@@ -108,7 +133,7 @@ const Setting = ({}) =>{
     }
 
     const onChangePassword = (e) => {
-        setAfter_Password(e.target.value);
+        setPasswords({...passwords, [e.target.name]: e.target.value});
     }
 
     return (
@@ -118,7 +143,7 @@ const Setting = ({}) =>{
             <Header/>
             <PageWrap>
                 <InfoWrap>
-                    <span>{"jjy306105@gmail.com"}</span>{/*user/me 에서 이멜 가지오곰 */}
+                    <span>{userInfos.email}</span>{/*user/me 에서 이멜 가지오곰 */}
                 </InfoWrap>
                 {nick_change ? 
                 <>
@@ -136,7 +161,6 @@ const Setting = ({}) =>{
                         style={{marginBottom: "-2px"}}
                         onClick={()=>{
                             clickNickConfirm()
-                            setNick_Change(true)
                         }}
                     >확인</ChangeButton>
                 </InfoWrap>
@@ -148,7 +172,7 @@ const Setting = ({}) =>{
                 : <>
                     <InfoWrap>
                     <JustifyAlign>
-                    <span>{'닉네임자리'}</span>
+                    <span>{"닉네임"}</span>
                     <ChangeButton
                         onClick={()=>{
                             setNick_Change(true)
@@ -163,28 +187,23 @@ const Setting = ({}) =>{
                     <InfoWrap>
                     <input
                         type="password"
-                        name="beforePassword"
-                        value={before_password}
+                        name="password"
+                        value={password}
+                        onChange={onChangePassword}
                         placeholder="기존 비밀번호를 입력해주세요"
                     ></input>
-                    <ChangeButton 
-                    onClick={()=>{
-                        clickBeforePasswordConfirm()
-                        setPassword_Change(true)
-                    }}style={{marginBottom: "-2px"}}>확인</ChangeButton>
                 </InfoWrap>
                 <InfoWrap>
                     <input
                      type="password"
                      onChange={onChangePassword}
-                     name="afterpassword"
-                     value={after_password}
+                     name="new_password"
+                     value={new_password}
                      placeholder="비밀번호를 입력해주세요 (4자 이상)"
                     ></input>
                     <ChangeButton 
                     onClick={()=>{
-                        clickAfterPasswordConfirm()
-                        setPassword_Change(true)
+                        clickPasswordConfirm();
                     }}style={{marginBottom: "-2px"}}>확인</ChangeButton>
                     </InfoWrap>
                     </>
@@ -205,18 +224,14 @@ const Setting = ({}) =>{
                 <InfoWrap>
                     <JustifyAlign>
                         <span>{"맥주 도감 공유 허용하기"}</span>
-                        <CustomizedSwitches/>
+                        <div style={{marginLeft: "14px"}}>
+                            <CustomizedSwitches 
+                            setState={setState}
+                            state={state}
+                        /></div>
                     </JustifyAlign>
                 </InfoWrap>
 
-{/*
-                <div
-                    className = {is_change ? "yellowButton" : "whiteButton"}
-                    onClick={clickSubmitChange}
-                    >
-                    저장하기
-                </div>
-*/}
             </PageWrap>
         </Container>
 
@@ -246,11 +261,11 @@ const InfoWrap = styled.div`
     display: inline-block;
     margin: 0 auto;
     width: 312px;
-    height: 40px;
+    height: 44px;
     border-bottom: 0.5px solid #C4C4C4;
-    margin-bottom: 16px;
+    margin-bottom: 18px;
     & > span{
-        line-height: 40px;
+        //line-height: 40px;
         margin-left: 24px;
         font-size: 14px;
         font-weight: bold;
@@ -261,13 +276,20 @@ const InfoWrap = styled.div`
         border:none;
         outline: none;
         margin-left: 20px;
+<<<<<<< HEAD
+        outline: none;
+        margin-bottom:2px;
+        padding-bottom:2px;
+
+=======
+>>>>>>> 487a5bc9a26c8a18f57f0bef536415a19868e55f
     }
 `;
 
 const ChangeButton = styled.div`
     display: inline-block;
     padding-top: 6px;
-    margin-bottom: 7px;
+    //margin-bottom: 7px;
     width: 42px;
     height: 26px;
     border: 0.5px solid #888888;
@@ -278,6 +300,7 @@ const ChangeButton = styled.div`
     text-align: center;
     color: #333333;
     cursor: pointer;
+    vertical-align: center;
 `
 const JustifyAlign = styled.div`
     display: flex;

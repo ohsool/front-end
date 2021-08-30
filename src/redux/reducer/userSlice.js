@@ -8,7 +8,11 @@ import {
   checkNickname,
   logOut,
   withDrawl,
-  socialLoginUser
+  socialLoginUser,
+  changeNickname,
+  changePassword,
+  shareAgree,
+  shareDisagree
 } from "../async/user";
 
 const initialState = {
@@ -33,7 +37,6 @@ const userSlice = createSlice({
         state.is_signup = action.payload.message;
       })
       .addCase(signUp.rejected, (state, action) => {
-        console.log(action.payload);
         alert("회원가입에 실패했습니다!");
       })
       .addCase(checkEmail.fulfilled, (state, action) => {
@@ -72,6 +75,19 @@ const userSlice = createSlice({
       })
       .addCase(userInfo.fulfilled, (state, action) => {
         state.currentUser = action.payload;
+      })
+      .addCase(changeNickname.fulfilled, (state, action) => {
+        state.currentUser.nickname = action.payload;
+        window.alert("닉네임이 변경되었습니다!");
+      })
+      .addCase(changePassword.fulfilled, (state, action) => {
+        window.alert("비밀번호가 변경되었습니다!");
+      })
+      .addCase(shareAgree.fulfilled, (state, action) => {
+        window.alert("맥주도감이 공개로 전환되었습니다.");
+      })
+      .addCase(shareDisagree.fulfilled, (state, action) => {
+        window.alert("맥주도감이 비공개로 전환되었습니다.");
       })
       // 공통
       .addMatcher(

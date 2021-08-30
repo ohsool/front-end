@@ -77,7 +77,7 @@ const EachBeer = (props) => {
                 </BeerInfoWrap>
                 
                 {item.hashtag.map((p, idx) => (
-                idx === 3 ||idx === 4? //해시태그 2개만 정렬
+                idx === 4 ||idx === 0? //해시태그 2개만 정렬
                     <TasteTag 
                     onClick={(e)=>{//해시태그 클릭시 해당 해시태그 검색결과 출력
                         if(page==="beerList"){

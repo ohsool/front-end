@@ -23,6 +23,7 @@ const initialState = {
     otherDogam: [],
     otherLikes: [],
     others: [],
+    length: 0,
     followers: [],
     following: [],
     isLoading: false,
@@ -116,10 +117,10 @@ export const likeList = createSelector(liked_list, liked_list => {
   return liked_list;
 });
 
-export const count = createSelector(length, length => {
-  return length;
-});
-
 export const myReviewList = createSelector(myReview_list, myReview_list => {
   return myReview_list;
+});
+
+export const count = createSelector(length, length => {
+  return length;
 });

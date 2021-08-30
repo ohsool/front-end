@@ -96,3 +96,45 @@ export const socialLoginUser = createAsyncThunk(
     return response.data;
   }
 )
+
+//계정 설정 닉네임 변경
+export const changeNickname = createAsyncThunk(
+  "user/changeNickname",
+  async (data, thunkAPI) => {
+
+    const response = await axiosInstance.put(`/api/user/nickname`, {'nickname' : data});
+    
+    return data;
+  }
+
+);
+//계정 설정 비밀번호 변경
+export const changePassword = createAsyncThunk(
+  "user/changePassword",
+  async (data, thunkAPI) => { //data : {"password": "oldpassword","new_password": "newpassword"}
+
+    const response = await axiosInstance.put(`/api/user/password`, data);
+    return data.new_password;
+  }
+
+);
+//맥주도감 공유 허용
+export const shareAgree = createAsyncThunk(
+  "user/shareAgree",
+  async (data, thunkAPI) => {
+
+    const response = await axiosInstance.put(`/api/user/public/public`)
+    
+    return ; //어떤 값 return 할지?
+  }
+)
+//맥주도감 공유 비허용
+export const shareDisagree = createAsyncThunk(
+  "user/shareDisagree",
+  async (data, thunkAPI) => {
+
+    const response = await axiosInstance.put(`/api/user/public/private`)
+    
+    return ; //어떤 값 return 할지?
+  }
+)
