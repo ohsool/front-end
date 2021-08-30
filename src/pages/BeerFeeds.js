@@ -4,24 +4,18 @@ import { useDispatch, useSelector } from "react-redux";
 import _ from "lodash";
 import Header from "../Header";
 import NavigationBar from "../NavigationBar";
-import { getAllBeerDogam, getAllBeerDogamCleanUp } from "../redux/async/mybeer";
+import { getAllBeerDogam } from "../redux/async/mybeer";
 import EachReview from "../componentsBeerDetail/EachReview";
 import InfinityScrollLoader from "../componentsBeer/InfinityScrollLoader";
+import BeerFeedsInfo from "../componentsMypage/BeerFeedsInfo";
 
 const BeerFeeds = (props) => {
-    const allFeedsData = useSelector((state) => state.mybeer.allDogam);
+    const allFeeds = useSelector((state) => state.mybeer.allDogam);
+    const last = useSelector((state) => state.mybeer.dogamLast);
     const is_iphone = navigator.userAgent.toLowerCase(); //아이폰인지 아닌지(노치디자인때문에)
     const [loading, setLoading] = useState(false);
     const [paging, setPaging] = useState(0);
-    const [allFeeds, setAllFeeds] = useState([])
     const dispatch = useDispatch();
-
-    useEffect(() => {
-        setAllFeeds([...allFeeds, ...allFeedsData]);
-        if(allFeeds.length % 8 !== 0){
-            return setPaging(9999);
-        }
-    }, [allFeedsData]);
 
     const getAllFeeds = useCallback (() => {
         async function getData(){
@@ -35,25 +29,22 @@ const BeerFeeds = (props) => {
         const scrollHeight = document.documentElement.scrollHeight;
         const scrollTop = document.documentElement.scrollTop;
         const clientHeight = document.documentElement.clientHeight;
-        if (scrollTop + clientHeight >= scrollHeight && loading === false) {
+        if(last){
+            return;
+        }
+        if (scrollTop + clientHeight >= scrollHeight - 100 && loading === false) {
           // 페이지 끝에 도달하면 추가 데이터를 받아온다
-            if(paging >= 9998){
-                return;
-            }
             setPaging(paging + 1);
             getAllFeeds();
             setLoading(true);
         }
     }, 500);
-    
+
     useEffect(() => {
         if(paging === 0 && allFeeds.length === 0){
-            dispatch(getAllBeerDogam(paging));
+            dispatch(getAllBeerDogam(0));
             setPaging(paging+1);
-            return;
-        }
-        if(allFeeds.length % 8 !== 0){
-            setPaging(9999);
+            return
         }
     }, [paging]);
 
@@ -65,7 +56,7 @@ const BeerFeeds = (props) => {
         return () => {
             window.removeEventListener("scroll", _handleScroll); // scroll event listener 해제
         };
-    }, [paging, loading, allFeedsData]);
+    }, [paging, loading]);
 
     return(
         <React.Fragment>
@@ -74,10 +65,9 @@ const BeerFeeds = (props) => {
                 {allFeeds?.map((item, idx) => {
                     return(
                         <>
+                        <BeerFeedsInfo item={item}/>
                         <EachReview item={item} key={idx} />
-                        <FeedsBeerInfo>
-                            <img src={item.beerId?.image}></img>
-                        </FeedsBeerInfo>
+                        <BottomLine></BottomLine>
                         </>
                     )
                 })}
@@ -99,11 +89,8 @@ const FeedsContainer = styled.div`
     margin-bottom: 120px;
 `;
 
-const FeedsBeerInfo = styled.div`
-    display: flex;
-    justify-content: center;
-    & > img{
-        width: 80px;
-        height: 80px;
-    }
+const BottomLine = styled.div`
+    border-bottom: 0.5px solid #C4C4C4;
+    max-width: 400px;
+    margin: 16px auto;
 `;

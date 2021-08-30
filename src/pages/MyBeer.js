@@ -24,7 +24,6 @@ const MyBeer = (props)=>{
     const { userId } = useParams(); //userId 파라미터
     const { dogam } = useParams(); //도감 or 좋아요리스트 파라미터(dogam or like)
     const [is_me, setIs_Me] = useState(true); //타유저의 맥주도감인지 내맥주도감인지 구별
-    
     const dispatch = useDispatch();
 
     useEffect(() => {

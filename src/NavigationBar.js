@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 
 const myPage = "/images/myPage.png";
 const beer = "/images/beer.png";
-const bee = "/images/beer.png";
+const feed = "/images/feed.png";
 const myBeer = "/images/mybeer.png";
 
 const NavigationBar = (props) => {
@@ -59,7 +59,7 @@ const NavigationBar = (props) => {
                     history.push("/feeds")
                 }}
                 >
-                    <ImageWrap style={{backgroundImage: `url(${beer})`}}/>
+                    <ImageWrap style={{backgroundImage: `url(${feed})`}}/>
                     <Text><span>BEER FEED</span></Text>
                 </SearchWrap>
                 <SearchWrap

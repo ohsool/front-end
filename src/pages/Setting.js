@@ -253,8 +253,6 @@ const Setting = (props) =>{
                         /></div>
                     </JustifyAlign>
                 </InfoWrap>
-
-            
             <WithdrawalWrap>               
                 <WithdrawalButton
                     style={{fontFamily: "Noto Sans KR"}}
@@ -265,10 +263,8 @@ const Setting = (props) =>{
         </PageWrap>
         </Container>      
         <NavigationBar props={props}/>
-
         </>
     );
-
 }
 
 export default Setting;

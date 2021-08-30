@@ -10,7 +10,7 @@ const MainLogo = () => {
             </ImageBlurWrap>
             <ImageGridcenter>
                 <MainLogoWrap>
-                    <img src={Logo}></img>
+                    <img alt="메인로고" src={Logo}></img>
                 </MainLogoWrap>
                 <MainLogoText>오늘의술</MainLogoText>
             </ImageGridcenter>
