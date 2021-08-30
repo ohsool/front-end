@@ -49,7 +49,6 @@ const Setting = (props) =>{
         }
     },[state])
 
-
     useEffect(() => {  //닉네임 중복체크
             if(nickname === ""){
                 setNickname_Check_Text("");
@@ -232,8 +231,6 @@ const Setting = (props) =>{
                         /></div>
                     </JustifyAlign>
                 </InfoWrap>
-
-            
             <WithdrawalWrap>               
                 <WithdrawalButton
                     style={{fontFamily: "Noto Sans KR"}}
@@ -244,10 +241,8 @@ const Setting = (props) =>{
         </PageWrap>
         </Container>      
         <NavigationBar props={props}/>
-
         </>
     );
-
 }
 
 export default Setting;

@@ -37,12 +37,12 @@ const BeerList = (props) =>{
     const [is_recent, setIs_Recent] = useState(false);
 
     useEffect(() => {
-        dispatch(getCategory());
-        dispatch(userInfo());
+        dispatch(getCategory()); //첫 렌더링시에 카테고리 메뉴들 받아오기
+        dispatch(userInfo()); //로그인한 유저정보 받아오기 
     }, [dispatch]);
 
     const showTopButton = () => {
-        if(scrollHeightInfo > 2000){//무한 스크롤이 3번 이상 실행되면 위로가는 Top 버튼 보이기
+        if(scrollHeightInfo > 2000){//2000px밑으로 스크롤 내려갔을때 위로가는 Top 버튼 보이기
         return (<TopButton
                     onClick={ScrollToTop}>
                 </TopButton>)
@@ -56,8 +56,9 @@ const BeerList = (props) =>{
             behavior: "smooth"
         })
     }
-
-    const _scrollPosition = _.throttle(() => { //스크롤 해 맥주 목록 불러올 때  0.3 딜레이 적용이
+    //스크롤 위치계산시 연산 너무 많이되는 것 
+    //방지하기 위해 300ms 쓰로틀적용
+    const _scrollPosition = _.throttle(() => {
         const scrollHeight = document.documentElement.scrollTop;
         SetScrollHeightInfo(scrollHeight);
     }, 300)
@@ -65,12 +66,14 @@ const BeerList = (props) =>{
     useEffect(() => {
         window.addEventListener("scroll", _scrollPosition); // scroll event listener 등록
         return () => {
-            window.removeEventListener("scroll", _scrollPosition); // scroll event listener 해제
+            window.removeEventListener("scroll", _scrollPosition); // scroll event listener 해제(스크롤이벤트 클린업)
         };
     }, [scrollHeightInfo]);
 
+    //처음 렌더링시 유즈이펙트 실행 막고 그 이후부터
+    //hashtag_beers바뀔때마다 실행
     useDidMountEffect(() => {
-        setHashtag(hashtag_beers);
+        setHashtag(hashtag_beers); 
     }, [hashtag_beers]);
 
     useEffect(()=>{

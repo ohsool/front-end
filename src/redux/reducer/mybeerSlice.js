@@ -20,6 +20,7 @@ const initialState = {
     myReview: [],
     length: 0,
     allDogam: [],
+    dogamLast: null,
     otherDogam: [],
     otherLikes: [],
     others: [],
@@ -44,6 +45,9 @@ const mybeerSlice = createSlice({
         })
         .addCase(getAllBeerDogam.fulfilled, (state, action) => {
           state.allDogam = [...state.allDogam, ...action.payload.mybeers];
+        })
+        .addCase(getAllBeerDogam.rejected, (state, action) => {
+          state.dogamLast = "lastPage";
         })
         .addCase(getOtherUserDogam.fulfilled, (state, action) => {
           state.otherDogam = action.payload.mybeers
