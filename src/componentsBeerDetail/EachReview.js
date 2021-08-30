@@ -130,7 +130,7 @@ const NicknameText =styled.div`
 `
 
 const DateText =styled.div`
-    padding: 2px;
+    padding: 2px 7px;
     span{
         font-weight: 500;
         font-style: normal;

@@ -23,10 +23,10 @@ const MyBeer = (props)=>{
     const is_iphone = navigator.userAgent.toLowerCase(); //아이폰인지 아닌지(노치디자인때문에)
     const { userId } = useParams(); //userId 파라미터
     const { dogam } = useParams(); //도감 or 좋아요리스트 파라미터(dogam or like)
-    const [is_me, setIs_Me] = useState(true); //타유저의 맥주도감인지 내 맥주도감인지 구별
-
+    const [is_me, setIs_Me] = useState(true); //타유저의 맥주도감인지 내맥주도감인지 구별
+    
     const dispatch = useDispatch();
-    //console.log("othersInfo",othersInfo.is_public)
+    console.log("othersInfo",othersInfo.is_public)
     //console.log("is_me",is_me)
 
     useEffect(() => {
@@ -36,13 +36,15 @@ const MyBeer = (props)=>{
             top: 0,
         })
     }, []);
+    
     useEffect(() => {
         if(userId === undefined || userId === userInfos.userId){
             setIs_Me(true);
         }else{
             setIs_Me(false);
         }
-    }, [userInfos]);
+    }, [userInfos, userId]);
+    
     useEffect(()=> { //맥주도감인지 좋아요한 맥주리스트인지 판별
         if(dogam === "dogam"){
             setIs_Dogam(true);
@@ -74,40 +76,23 @@ const MyBeer = (props)=>{
             )
         }
     }
-
-
     return (
         <React.Fragment>
             <Header/>
-            <UserPerference 
-                othersInfo={othersInfo}
-                userInfos={userInfos} 
-                is_me={is_me}></UserPerference>
-            <MyStatusComment 
-                othersInfo={othersInfo}
-                userInfos={userInfos} 
-                is_me={is_me}></MyStatusComment>
-            <Grid style={is_iphone.indexOf("iphone") !== -1 ? {marginTop: "40px"} : {marginTop: "0px"}}>
-                <Wrap>
-                {myBeerShow()}
-{/*
-                { is_me===true && othersInfo.is_public? 
-                    <>
-                    <MyDogamButton is_Dogam={is_Dogam}/>
-                    {is_Dogam === true ? 
-                        <MyReviewList is_me={is_me}/>
-                    : 
-                        <MyLikeBeerList is_me={is_me}/>
-                    }
-                     </>              
-                :
-                    <>
-                        <Text>비허용 상태입니다.</Text>
-                    </>
-                }
-*/}
-                </Wrap>
-            </Grid>
+                <UserPerference 
+                    othersInfo={othersInfo}
+                    userInfos={userInfos} 
+                    is_me={is_me}></UserPerference>
+                <MyStatusComment 
+                    othersInfo={othersInfo}
+                    userInfos={userInfos} 
+                    is_me={is_me}>    
+                </MyStatusComment>
+                <Container style={is_iphone.indexOf("iphone") !== -1 ? {marginTop: "40px"} : {marginTop: "0px"}}>
+                    <GridWrap>        
+                        {myBeerShow()}
+                    </GridWrap>
+                </Container>
             <NavigationBar props={props}/>
 
         </React.Fragment>
@@ -115,6 +100,18 @@ const MyBeer = (props)=>{
 }
 
 export default React.memo(MyBeer);
+
+const Container = styled.div`
+    display: flex;
+    height: 754px;
+    background-color: #FFFFFF;
+    flex-direction: column;
+`;
+const GridWrap = styled.div`
+    width: 360px;
+    margin: 0 auto;
+    padding-bottom: 120px;
+`
 
 const Grid = styled.div`
     display: flex;

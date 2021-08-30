@@ -8,7 +8,14 @@ import { history } from "../redux/configureStore";
 const MainInput = (props) => {
     const is_login = useSelector((state) => state.user.currentUser.message);
     const userId = useSelector(User);
-
+    
+    const goBeerDogam = () => {
+        if(userId){
+            history.push(`/mybeer/${userId}/dogam`);
+        }else{
+            alert("로그인이 필요한 서비스입니다!");
+        }
+    }
     return(
         <React.Fragment>
             <LinkWrap>
@@ -23,9 +30,7 @@ const MainInput = (props) => {
                     }}>
                         대한민국의 모든 맥주
                     </LinkBox>
-                    <LinkBox onClick={() => {
-                        history.push(`/mybeer/${userId}/dogam`)
-                    }}>
+                    <LinkBox onClick={goBeerDogam}>
                         나의 맥주 도감
                     </LinkBox>
                 </Wrap>
@@ -65,9 +70,9 @@ const LinkBox = styled.div`
     height: 45px;
     line-height: 45px;
     margin: 0 0 16px 0;
-    background-color: transparent;
-    border: 1px solid #FFFFFF;
-    border-radius: 22.5px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 0.5px solid #FFFFFF;
+    border-radius: 12px;
     color: #FFFFFF;
     z-index: 9999;
     cursor: pointer;

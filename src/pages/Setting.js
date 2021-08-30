@@ -37,7 +37,7 @@ const Setting = (props) =>{
       });
     const dispatch = useDispatch();
     //const [is_toggle, setIs_Toggle] = useState("");
-    const [email, setEmail] = useState(userInfos.email);
+    //const [email, setEmail] = useState(userInfos.email);  //새로 고치후userInfos데이터 날라가지 않도록
 
     useEffect(()=>{
         if(state.checked===true){
@@ -48,21 +48,6 @@ const Setting = (props) =>{
             return;
         }
     },[state])
-    //console.log("othersInfo",othersInfo.is_public)
-
-
-  /*  
-    useEffect(()=>{
-        if(is_toggle){
-            dispatch(shareAgree())
-            return;
-        }else if(state.checked===false){
-            dispatch(shareDisagree())
-            return;
-        }
-    },[is_toggle])
-    */
-
 
 
     useEffect(() => {  //닉네임 중복체크
@@ -155,19 +140,17 @@ const Setting = (props) =>{
 
     return (
         <>
-        {/*userId로 아이디 / 비밀번호 넘겨받는 api 필요 */}
         <Container>
             <Header/>
             <PageWrap>
                 <InfoWrap>
-                    <span>{email}</span>{/*user/me 에서 이멜 가지오곰 */}
+                    <span>{userInfos.email}</span>
                 </InfoWrap>
                 {nick_change ? 
                 <>
                 <div style={{margin: "0 auto"}}>
                 <InfoWrap><input
                         type="text"
-                        // maxLength="7"
                         onChange={onChangeNickname}
                         onKeyUp={doubleCheckNickname}
                         name="nickname"
@@ -250,15 +233,16 @@ const Setting = (props) =>{
                     </JustifyAlign>
                 </InfoWrap>
 
-            </PageWrap>
-        </Container>
-        <WithdrawalWrap>               
-            <WithdrawalButton
-                style={{fontFamily: "Noto Sans KR"}}
-                onClick={confirmWithDrawl}
-            >회원탈퇴
-            </WithdrawalButton>
-        </WithdrawalWrap>        
+            
+            <WithdrawalWrap>               
+                <WithdrawalButton
+                    style={{fontFamily: "Noto Sans KR"}}
+                    onClick={confirmWithDrawl}
+                >회원탈퇴
+                </WithdrawalButton>
+            </WithdrawalWrap>  
+        </PageWrap>
+        </Container>      
         <NavigationBar props={props}/>
 
         </>
@@ -267,6 +251,7 @@ const Setting = (props) =>{
 }
 
 export default Setting;
+
 
 const Container = styled.div`
     width: 100%;
@@ -345,11 +330,12 @@ const WithdrawalWrap = styled.div`
     display: flex;
     position: absolute;
     bottom: 100px;
+    text-align: center;
 `;
 
 const WithdrawalButton = styled.div`
     margin: 0 auto;
-    width: 70px;
+    width: 360px;
     height: 23px;
     border: none;
     text-align:center;

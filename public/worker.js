@@ -3,9 +3,6 @@
 let CACHE_NAME = 'ohsool version-1.2';
 let urlsToCache = [
     '/index.html',
-    '/images/mainLogo.png',
-    '/images/splash.png',
-    '/images/suggestarrow.png'
 ];
 
 // Install a service worker

@@ -6,7 +6,6 @@ import { useDispatch } from "react-redux";
 import MyPageModal from "../componentsMypage/MyPageModal";
 import Header from "../Header";
 import NavigationBar from "../NavigationBar";
-import UserPreference from '../componentsMypage/UserPerference';
 import ProgressBar from '../componentsMypage/ProgressBar';
 import { getReviewLength } from "../redux/async/mybeer";
 import { count } from "../redux/reducer/mybeerSlice";

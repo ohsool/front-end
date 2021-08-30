@@ -60,8 +60,6 @@ export const beerSlice = createSlice({
         .addCase(getHashtagWord.fulfilled, (state, action) => {
             state.hashtagList = action.payload.beers;
         })
-        .addCase(getSearchWord.rejected, (state, action) => {
-        })
         .addCase(likeBeer.fulfilled, (state, action) => {
           const indexIf = action.payload.indexIf;
           const likes_array = action.payload.response.likes;

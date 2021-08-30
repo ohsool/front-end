@@ -27,12 +27,12 @@ const BeerList = (props) =>{
     const words = useSelector(getSearchList);
     const [is_search, setIs_Search] = useState(false);
     const [search_beer, setSearch_Beer] = useState([]); //검색한 맥주 정보
-    const [hashtag, setHashtag] = useState([]);
     const [scrollHeightInfo, SetScrollHeightInfo] = useState(0);
     const dispatch = useDispatch();
     const [openModal, setOpen_Modal] = useState(false);
     const is_iphone = navigator.userAgent.toLowerCase();
-    const [hashtagName, setHashtagName] = useState("");
+    const [hashtagName, setHashtagName] = useState(""); //검색할 해시태그명
+    const [hashtag, setHashtag] = useState([]);//해당 해시태그로 검색한 결과
     const [pagingCate, setPagingCate] = useState(0);
     const [is_recent, setIs_Recent] = useState(false);
 
@@ -42,7 +42,7 @@ const BeerList = (props) =>{
     }, [dispatch]);
 
     const showTopButton = () => {
-        if(scrollHeightInfo > 2000){
+        if(scrollHeightInfo > 2000){//무한 스크롤이 3번 이상 실행되면 위로가는 Top 버튼 보이기
         return (<TopButton
                     onClick={ScrollToTop}>
                 </TopButton>)
@@ -57,7 +57,7 @@ const BeerList = (props) =>{
         })
     }
 
-    const _scrollPosition = _.throttle(() => {
+    const _scrollPosition = _.throttle(() => { //스크롤 해 맥주 목록 불러올 때  0.3 딜레이 적용이
         const scrollHeight = document.documentElement.scrollTop;
         SetScrollHeightInfo(scrollHeight);
     }, 300)
@@ -69,7 +69,7 @@ const BeerList = (props) =>{
         };
     }, [scrollHeightInfo]);
 
-    useDidMountEffect(() => {;
+    useDidMountEffect(() => {
         setHashtag(hashtag_beers);
     }, [hashtag_beers]);
 
@@ -82,9 +82,9 @@ const BeerList = (props) =>{
         if(is_search){
             return(
                 <React.Fragment>
-                    { words.length === 0 && openModal===false? <NoSearchResult/> : 
+                    { words.length === 0 && openModal===false? <NoSearchResult/> : //검색 결과가 없는 경우
                     <List>
-                    {search_beer?.map((item, idx) => (
+                    {search_beer?.map((item, idx) => ( //
                         <EachBeer 
                         key={idx} item={item} page={"beerList"}/>
                     ))}
@@ -94,12 +94,12 @@ const BeerList = (props) =>{
             )
         }else{
             if(get_category_id === "all"){
-                return (
+                return (// 전체 All 페이지
                     <BeerListAll setHashtagName={setHashtagName}></BeerListAll>
                 );          
             }else{
-                return(
-                    <BeerListCategory
+                return(// 8종 카테고리 페이지 
+                    <BeerListCategory //
                         pagingCate={pagingCate}
                         setPagingCate={setPagingCate}
                         setHashtagName={setHashtagName}

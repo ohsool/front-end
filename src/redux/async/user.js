@@ -40,12 +40,10 @@ export const logOut = createAsyncThunk(
 export const withDrawal = createAsyncThunk(
   "user/withDrawal",
   async (data, thunkAPI) => {
-
     const response = await axiosInstance.delete(`/api/user`);
-    if(response.data.message === "success"){
       alert("회원탈퇴가 완료되었습니다.")
       return response.data;
-    }
+    //}
   }
 )
 
