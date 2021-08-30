@@ -1,16 +1,20 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
-import { useDispatch } from "react-redux";
-import { ReviewWriteModal } from "../componentsBeerDetail/BeerDetailIndex";
+import { useDispatch,useSelector } from "react-redux";
+import { ReviewWriteModal,StarRate } from "../componentsBeerDetail/BeerDetailIndex";
 import { deleteReviewDogam } from "../redux/async/mybeer";
+import moment from 'moment';
+import 'moment/locale/ko';
 
 const edit = "/images/edit.png";
 const remove = "/images/remove.png";
 
-
 const WritedReview = ({item}) =>   {
     const [modalOpen, setModalOpen] = useState(false);
+    const userInfos = useSelector(state => state.user.currentUser);
+    const date = item.date.replace(/-/g,'/');
+
     const dispatch = useDispatch();
     const openModal = () => {
         setModalOpen(true);
@@ -31,10 +35,30 @@ const WritedReview = ({item}) =>   {
                 </BeerImage>
                 <BeerTextWrap>
                     <GridHorizon>
-                        <NicknameText>
+                        {/*<NicknameText>
                             {item?.userId?.nickname}
-                        </NicknameText>
+                        </NicknameText>*/}
                         <Div>
+                        <NicknameText>
+                            <span>
+                            {item.userId.nickname}</span>
+                        </NicknameText>
+                        <DateText>
+                            <span style={{ fontWeight: "300", fontSize: "10px", lineHeight: "14.48px"}}>
+                            {  moment(date).fromNow()}
+                            </span>
+                        </DateText>
+                        </Div>
+
+                        <Div>
+                            <StarRate init_star={item.rate} is_my={true} is_starsmall={true}/>
+                        </Div>
+
+
+                    </GridHorizon><span>{item?.review.length > 50 ? item?.review.slice(0,50)+'...' : item?.review}</span>
+
+                    {userInfos.userId ===item?.userId._id ?
+                            <DivReview>
                             <EditButton 
                                 style={{backgroundImage: `url(${edit})`}}
                                 onClick={(e) => {
@@ -54,8 +78,9 @@ const WritedReview = ({item}) =>   {
                                     return;
                                 }
                             }}></DeleteButton>
-                        </Div>
-                    </GridHorizon><span>{item?.review.length > 50 ? item?.review.slice(0,50)+'...' : item?.review}</span>
+                            </DivReview>
+                            : ""
+                        }
                 </BeerTextWrap>
             </WritedBeerInfo>
 
@@ -125,7 +150,7 @@ const Div = styled.div`
 `
 
 const EditButton =styled.div`
-    margin: 2px;
+    margin: 25px 5px 25px 0;
     width: 16px;
     height: 16px;
     float: left;
@@ -133,8 +158,23 @@ const EditButton =styled.div`
 `
 
 const DeleteButton =styled.div`
-    margin: 2px;
+    margin: 25px 5px;
     width: 16px;
     height: 16px;
     cursor: pointer;
+`
+
+
+const DateText =styled.div`
+    padding: 2px 7px;
+    span{
+        font-weight: 500;
+        font-style: normal;
+        font-sixe: 8px;
+    }
+
+`
+const DivReview = styled.div`
+    display: flex;
+    top: 300px;
 `

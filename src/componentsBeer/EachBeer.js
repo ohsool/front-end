@@ -75,9 +75,9 @@ const EachBeer = (props) => {
                         
                     <p>{item.name_english}</p>
                 </BeerInfoWrap>
-                
+                <div>
                 {item.hashtag.map((p, idx) => (
-                idx === 4 ||idx === 0? //해시태그 2개만 정렬
+                idx === 0 ||idx === 4? //해시태그 2개만 정렬
                     <TasteTag 
                     onClick={(e)=>{//해시태그 클릭시 해당 해시태그 검색결과 출력
                         if(page==="beerList"){
@@ -88,7 +88,11 @@ const EachBeer = (props) => {
                     }}
                     key={idx}>#{p}
                     </TasteTag>:""
-                ))}
+                ))
+                }
+                {/*<MoreTag><span>...</span>
+                </MoreTag>*/}
+                </div>
            
             </RecommendBeerWrap>
         </React.Fragment>
@@ -169,6 +173,24 @@ const TasteTag = styled.div`
     color: #333333;
     cursor: pointer;
 `;
+
+const MoreTag = styled.div`
+    display: inline-block;
+    margin-top:2px; 
+    margin-right: 3px;
+    padding: 0 6px;
+    height: 16px;
+    border: 0.5px solid #888888;
+    box-sizing: border-box;
+    border-radius: 33px;
+    font-size: 14px;
+    line-height: 14px;
+    text-align: center;
+    color: #FFCC4F;
+    &> span {
+        vertical-align: center;
+    }
+`
 
 const JustifyAlign = styled.div`
     display: flex;

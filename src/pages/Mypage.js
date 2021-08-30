@@ -15,6 +15,7 @@ const arrow = "/images/suggestarrow.png";
 const version = parseFloat(process.env.REACT_APP_VERSION_CODE).toFixed(1);
 
 const MyPage = (props) => {
+    const is_iphone = navigator.userAgent.toLowerCase(); //아이폰인지 아닌지(노치디자인때문에)
     const userInfos = useSelector(state => state.user.currentUser);
     const length = useSelector(count)
     const [modalOpen, setModalOpen] = useState(false);
@@ -71,7 +72,12 @@ const MyPage = (props) => {
         <React.Fragment>
         <Container>
             <Header/>
-            <GaugeWrap>
+            <GaugeWrap style={is_iphone.indexOf("iphone") !== -1 ? {marginTop: "40px"} : {marginTop: "0px"}}>
+                {/*
+                <UserPreference userInfos={userInfos} is_me={true}>
+                </UserPreference>
+                */}
+
                 <Line1/>
                 <JustifyAlign>
                     <LevelText><span>Lv.{parseInt(length/10)+1}</span> <span style={{color: "#FFC44F"}}>맥주덕후</span></LevelText>
@@ -95,8 +101,6 @@ const MyPage = (props) => {
 
                 <MoveBoxWrap
                     onClick={() => {
-                        //alert("coming soon🍹")
-                        //return;
                         history.push("/setting");
                     }}
                 >
@@ -142,7 +146,7 @@ const MyPage = (props) => {
                 ></MyPageModal>
 
                 <VersionWrap>
-                <VersionText>ver.1.1</VersionText>
+                <VersionText>ver.1.2</VersionText>
                 </VersionWrap>
 
                 {comfirm_login()}
@@ -261,9 +265,11 @@ const JustifyAlign = styled.div`
     align-items: center;
 `
 const GaugeWrap = styled.div`
+    top: 40px;
 `
 const LevelText = styled.div`
     //width: 120px;
+    padding-top: 10px;
     padding-left: 24px;
 
     & > span{
@@ -273,11 +279,9 @@ const LevelText = styled.div`
 `
 
 const DogamText = styled.div`
-    //width: 120px;
     padding-right: 24px;
-
     & > span{
         font-weight: 400;
-        font-size: 10px;
+        font-size: 11px;
     }
 `

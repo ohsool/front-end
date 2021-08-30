@@ -24,7 +24,7 @@ const ProgressBar = ({progress}) => {
         paddingTop: "2.5px",
         color: 'black',
         fontWeight: 800,
-        fontSize:"9px"
+        fontSize:"9px",
       }
         
     return (

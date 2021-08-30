@@ -14,9 +14,12 @@ const NavigationBar = (props) => {
 
     const goMyPage = () => {
         if(userInfo.userId){
-            history.push(`/mybeer/${userInfo.userId}/dogam`);
+            history.push("/myPage");
         }else{
-            alert("로그인이 필요한 서비스입니다!");
+            if(window.confirm("로그인이 필요한 서비스입니다. 로그인하시겠습니까?")){
+                history.push("/login");
+                return;
+            }
         }
     }
 
@@ -24,9 +27,28 @@ const NavigationBar = (props) => {
         if(userInfo.userId){
             history.push(`/mybeer/${userInfo.userId}/dogam`);
         }else{
-            alert("로그인이 필요한 서비스입니다!");
+            if(window.confirm("로그인이 필요한 서비스입니다. \n로그인하고 나만의 맥주도감을 관리해보세요!✍")){
+                history.push("/login");
+                return;
+            }
         }
     }
+
+    /*
+    const comfirm_login = (page)=>{
+        if(page==='myBeer'){
+            history.push(`/mybeer/${userInfo.userId}/dogam`)
+        }else if(page==='myPage'){
+            if(userInfo.message === "success"){
+                history.push("/myPage");
+            }else{
+                if(window.confirm("로그인 후 이용 가능한 서비스입니다. \n로그인 하시겠습니까?")){
+                    history.push("/login");
+                    return;
+                }
+            }
+        }
+    */
 
     return (
         <React.Fragment>

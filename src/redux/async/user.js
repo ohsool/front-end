@@ -37,15 +37,13 @@ export const logOut = createAsyncThunk(
   }
 )
 
-export const withDrawl = createAsyncThunk(
-  "user/withDrawl",
+export const withDrawal = createAsyncThunk(
+  "user/withDrawal",
   async (data, thunkAPI) => {
-
     const response = await axiosInstance.delete(`/api/user`);
-    if(response.data.message === "success"){
       alert("회원탈퇴가 완료되었습니다.")
       return response.data;
-    }
+    //}
   }
 )
 
@@ -122,9 +120,7 @@ export const changePassword = createAsyncThunk(
 export const shareAgree = createAsyncThunk(
   "user/shareAgree",
   async (data, thunkAPI) => {
-
     const response = await axiosInstance.put(`/api/user/public/public`)
-    
     return ; //어떤 값 return 할지?
   }
 )
@@ -132,7 +128,7 @@ export const shareAgree = createAsyncThunk(
 export const shareDisagree = createAsyncThunk(
   "user/shareDisagree",
   async (data, thunkAPI) => {
-
+    
     const response = await axiosInstance.put(`/api/user/public/private`)
     
     return ; //어떤 값 return 할지?

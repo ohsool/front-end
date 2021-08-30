@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import styled from 'styled-components';
 import "../share/style/loginButton.css";
 import Header from "../Header";
+import NavigationBar from "../NavigationBar";
 import { changeNickname,
         checkNickname,
         changePassword,
@@ -12,14 +13,14 @@ import { changeNickname,
 import { is_Nickname} from "../redux/reducer/userSlice";
 import { pwdReg } from "../share/checkReg";
 import CustomizedSwitches from "../componentsMypage/CustomizedSwitches";
+import { otherStatus } from "../redux/reducer/mybeerSlice";
+import { withDrawal } from "../redux/async/user";
 
 const Setting = (props) =>{
     const is_nickname = useSelector(is_Nickname); // 닉네임 중복체크 서버에서 응답
     const userInfos = useSelector(state => state.user.currentUser);
     const [nickname_check_text, setNickname_Check_Text] = useState("");
     const [nickname_double, setNickName_Double] = useState("");//비밀번호 alert
-    const [password_check_text, setPassword_Check_Text] = useState("");
-    const [password_check, setPassword_check] = useState("");
     const [nickname, setNickname] = useState(""); //회원정보 입력
     const [nick_change, setNick_Change] = useState(false); //닉네임 변경 버튼 클릭시 true로 바뀜
     const [passwords, setPasswords] = useState(
@@ -30,11 +31,14 @@ const Setting = (props) =>{
     ); //회원정보 입력
     const { password, new_password } = passwords;
     const [password_change,setPassword_Change] = useState(false) //비밀번호 변경 버튼 클릭시 true로 바뀜
+    const othersInfo = useSelector(otherStatus);
     const [state, setState] = useState({//도감 공유 허용 여부
-        checked: "" //!!!나중엔 user의 허용/비허용 상태가 들어감!!! checked: true
+        checked: othersInfo.is_public
       });
-    
     const dispatch = useDispatch();
+    //const [is_toggle, setIs_Toggle] = useState("");
+    //const [email, setEmail] = useState(userInfos.email);  //새로 고치후userInfos데이터 날라가지 않도록
+
     useEffect(()=>{
         if(state.checked===true){
             dispatch(shareAgree())
@@ -44,6 +48,7 @@ const Setting = (props) =>{
             return;
         }
     },[state])
+
 
     useEffect(() => {  //닉네임 중복체크
             if(nickname === ""){
@@ -115,15 +120,6 @@ const Setting = (props) =>{
         }
 
     }
-/*
-    const clickSubmitChange = () => {//저장하기 버튼 클릭
-        //dispatch(change(nickname, password)); //회원가입 회원정보 디스패치
-        setNickname("");
-        setBefore_Password("");
-        setAfter_Password("");
-
-    }
-*/  
     const doubleCheckNickname = useCallback(() => {
         dispatch(checkNickname(nickname));
     }, [nickname]); //닉네임 중복체크 디스패치
@@ -135,22 +131,26 @@ const Setting = (props) =>{
     const onChangePassword = (e) => {
         setPasswords({...passwords, [e.target.name]: e.target.value});
     }
+    const confirmWithDrawl = ()=>{
+        if(window.confirm("정말로 탈퇴하시겠습니까?")){
+            dispatch(withDrawal());
+            return;
+        }
+    }
 
     return (
         <>
-        {/*userId로 아이디 / 비밀번호 넘겨받는 api 필요 */}
         <Container>
             <Header/>
             <PageWrap>
                 <InfoWrap>
-                    <span>{userInfos.email}</span>{/*user/me 에서 이멜 가지오곰 */}
+                    <span>{userInfos.email}</span>
                 </InfoWrap>
                 {nick_change ? 
                 <>
                 <div style={{margin: "0 auto"}}>
                 <InfoWrap><input
                         type="text"
-                        // maxLength="7"
                         onChange={onChangeNickname}
                         onKeyUp={doubleCheckNickname}
                         name="nickname"
@@ -224,16 +224,26 @@ const Setting = (props) =>{
                 <InfoWrap>
                     <JustifyAlign>
                         <span>{"맥주 도감 공유 허용하기"}</span>
-                        <div style={{marginLeft: "14px"}}>
-                            <CustomizedSwitches 
+                        <div style={{float: "right"}}>
+                            <CustomizedSwitches
                             setState={setState}
                             state={state}
+                            //setIs_Toggle={setIs_Toggle}
                         /></div>
                     </JustifyAlign>
                 </InfoWrap>
 
-            </PageWrap>
-        </Container>
+            
+            <WithdrawalWrap>               
+                <WithdrawalButton
+                    style={{fontFamily: "Noto Sans KR"}}
+                    onClick={confirmWithDrawl}
+                >회원탈퇴
+                </WithdrawalButton>
+            </WithdrawalWrap>  
+        </PageWrap>
+        </Container>      
+        <NavigationBar props={props}/>
 
         </>
     );
@@ -241,6 +251,7 @@ const Setting = (props) =>{
 }
 
 export default Setting;
+
 
 const Container = styled.div`
     width: 100%;
@@ -271,25 +282,22 @@ const InfoWrap = styled.div`
         font-weight: bold;
     }
     & > input{
-        width: 227px;
+        width: 224px;
         height: 32px;
         border:none;
         outline: none;
         margin-left: 20px;
-<<<<<<< HEAD
         outline: none;
         margin-bottom:2px;
         padding-bottom:2px;
 
-=======
->>>>>>> 487a5bc9a26c8a18f57f0bef536415a19868e55f
     }
 `;
 
 const ChangeButton = styled.div`
     display: inline-block;
     padding-top: 6px;
-    //margin-bottom: 7px;
+    margin-bottom: 13px;
     width: 42px;
     height: 26px;
     border: 0.5px solid #888888;
@@ -300,7 +308,7 @@ const ChangeButton = styled.div`
     text-align: center;
     color: #333333;
     cursor: pointer;
-    vertical-align: center;
+
 `
 const JustifyAlign = styled.div`
     display: flex;
@@ -314,3 +322,27 @@ const JustifyAlign = styled.div`
         font-weight: bold;
     }
 `
+
+const WithdrawalWrap = styled.div`
+    margin: 0 auto;
+    width: 360px;
+    justify-content: space-around;
+    display: flex;
+    position: absolute;
+    bottom: 100px;
+    text-align: center;
+`;
+
+const WithdrawalButton = styled.div`
+    margin: 0 auto;
+    width: 360px;
+    height: 23px;
+    border: none;
+    text-align:center;
+    background-color: transparent;
+    color: #FFC44F;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 16px;
+    font-family : inherit;
+`;

@@ -17,16 +17,12 @@ const EachReview=(props)=> {
     const closeModal = () => {
         setModalOpen(false);
     };
-    
+    //console.log("item.userId",item.userId);
     const date = item.date.replace(/-/g,'/');
     
     const pushOtherUserDogam = () => {
-        /*if(window.confirm(`${item.userId.nickname}님의 맥주도감으로 이동하시겠어요?`)){*/
         history.push(`/mybeer/${item.userId._id}/dogam`);
         return;
-        /*}else{
-            return;
-        }*/
     }
 
     return (
@@ -59,13 +55,13 @@ const EachReview=(props)=> {
                             <br/>
                             <MoreButton onClick={(e)=>{
                                 history.push(`/review/${item._id}`, item, userId);
-                            }}><span>더보기</span></MoreButton>
+                            }}><span>도감 상세보기</span></MoreButton>
                             </>
                             : <>{item?.review}
                                 <br/>
                                 <MoreButton onClick={(e)=>{
                                 history.push(`/review/${item._id}`, item, userId);
-                            }}><span>더보기</span></MoreButton></>
+                            }}><span>도감 상세보기</span></MoreButton></>
                         }
                     </ReviewTextWrap>               
                 </ReviewText>
@@ -134,7 +130,7 @@ const NicknameText =styled.div`
 `
 
 const DateText =styled.div`
-    padding: 2px;
+    padding: 2px 7px;
     span{
         font-weight: 500;
         font-style: normal;

@@ -61,12 +61,13 @@ const TestResult = (props) => {
 export default TestResult;
 
 const Grid = styled.div`
-    width: 100%;
+    max-width: 400px;
     display: flex;
     flex-direction: column;
     margin-bottom: 74px;
+    text-align: center;
+    margin: 0 auto;
 `;
-
 const RecommendBeerWrap = styled.div`
     margin: 14px 0 0 24px;
     width: 312px;
