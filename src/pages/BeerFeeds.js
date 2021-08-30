@@ -4,24 +4,16 @@ import { useDispatch, useSelector } from "react-redux";
 import _ from "lodash";
 import Header from "../Header";
 import NavigationBar from "../NavigationBar";
-import { getAllBeerDogam, getAllBeerDogamCleanUp } from "../redux/async/mybeer";
+import { getAllBeerDogam } from "../redux/async/mybeer";
 import EachReview from "../componentsBeerDetail/EachReview";
 import InfinityScrollLoader from "../componentsBeer/InfinityScrollLoader";
 
 const BeerFeeds = (props) => {
-    const allFeedsData = useSelector((state) => state.mybeer.allDogam);
+    const allFeeds = useSelector((state) => state.mybeer.allDogam);
     const is_iphone = navigator.userAgent.toLowerCase(); //아이폰인지 아닌지(노치디자인때문에)
     const [loading, setLoading] = useState(false);
     const [paging, setPaging] = useState(0);
-    const [allFeeds, setAllFeeds] = useState([])
     const dispatch = useDispatch();
-
-    useEffect(() => {
-        setAllFeeds([...allFeeds, ...allFeedsData]);
-        if(allFeeds.length % 8 !== 0){
-            return setPaging(9999);
-        }
-    }, [allFeedsData]);
 
     const getAllFeeds = useCallback (() => {
         async function getData(){
@@ -65,7 +57,7 @@ const BeerFeeds = (props) => {
         return () => {
             window.removeEventListener("scroll", _handleScroll); // scroll event listener 해제
         };
-    }, [paging, loading, allFeedsData]);
+    }, [paging, loading]);
 
     return(
         <React.Fragment>

@@ -26,7 +26,6 @@ export const getOneBeer = createAsyncThunk(
 export const beerOneCleanUp = createAsyncThunk(
   "beer/cleanBeerOne",
   async (data, thunkAPI) => {
-    
     return;
   }
 )
@@ -34,7 +33,7 @@ export const beerOneCleanUp = createAsyncThunk(
 export const getBeerInfinity = createAsyncThunk(
   "beer/getBeerInfinity",
   async (data, thunkAPI) => {
-
+   
     const response = await axiosInstance.get(`/api/beer/list/all/page?pageNo=${data}&sort=createDate`);
     
     return response.data;
