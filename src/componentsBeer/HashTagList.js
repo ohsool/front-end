@@ -8,7 +8,7 @@ const HashTagList = ({ hashtag, hashtagName, setHashtagName }) => {
         window.scrollTo({
             top: 0,
         })
-    }, []);
+    }, [hashtagName]); //새로운 해시태그 누를때마다 페이지 맨위로 이동
 
     return(
         <React.Fragment>

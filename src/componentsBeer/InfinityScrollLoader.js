@@ -1,6 +1,7 @@
 import React from "react";
 import "../share/style/scrollLoader.css"
 
+//무한스크롤 로딩 컴포넌트
 const InfinityScrollLoader = (props) => {
     return(
         <React.Fragment>

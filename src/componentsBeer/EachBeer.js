@@ -11,11 +11,12 @@ import HeartButton from "./HeartButton";
 
 const EachBeer = (props) => {
     const dispatch = useDispatch();
-    const { item, setHashtagName, page } = props;
-    const userId = useSelector(User);
-    const [toggle, setToggle] = useState(false);
+    const { item, setHashtagName, page } = props; //beer
+    const userId = useSelector(User); //유저아이디 스토어에서 가져오기
+    const [toggle, setToggle] = useState(false); //좋아요 상태
 
-    useEffect(() => { //좋아요 눌렀는지 아닌지 판별
+    //like_array에 userId있으면 true 없으면 false
+    useEffect(() => {
             if(item.like_array.includes(userId)){
                 setToggle(true);
             }else{
@@ -23,6 +24,8 @@ const EachBeer = (props) => {
             }
     }, [item, userId]);
    
+    //좋아요 누를때 로그인해있는지 판별하고 로그인되있으면 좋아요 취소 혹은 좋아요
+    //로그인 안한 상태일경우 로그인페이지로
     const clickLike = () => { //좋아요 토글 함수
         if(userId){
             if(toggle === true){
@@ -44,6 +47,7 @@ const EachBeer = (props) => {
         }
     }
 
+    //해시태그 값 받아서 api요청
     const searchHashtagWord = (p) => {
         dispatch(getHashtagWord(p));
         setHashtagName(p);
@@ -72,12 +76,10 @@ const EachBeer = (props) => {
                         is_like={toggle}
                     />
                     </JustifyAlign>
-                        
                     <p>{item.name_english}</p>
                 </BeerInfoWrap>
-                <div>
                 {item.hashtag.map((p, idx) => (
-                idx === 0 ||idx === 4? //해시태그 2개만 정렬
+                idx === 4 ||idx === 0? //해시태그 2개만 정렬
                     <TasteTag 
                     onClick={(e)=>{//해시태그 클릭시 해당 해시태그 검색결과 출력
                         if(page==="beerList"){
@@ -88,11 +90,7 @@ const EachBeer = (props) => {
                     }}
                     key={idx}>#{p}
                     </TasteTag>:""
-                ))
-                }
-                {/*<MoreTag><span>...</span>
-                </MoreTag>*/}
-                </div>
+                ))}
            
             </RecommendBeerWrap>
         </React.Fragment>
@@ -173,24 +171,6 @@ const TasteTag = styled.div`
     color: #333333;
     cursor: pointer;
 `;
-
-const MoreTag = styled.div`
-    display: inline-block;
-    margin-top:2px; 
-    margin-right: 3px;
-    padding: 0 6px;
-    height: 16px;
-    border: 0.5px solid #888888;
-    box-sizing: border-box;
-    border-radius: 33px;
-    font-size: 14px;
-    line-height: 14px;
-    text-align: center;
-    color: #FFCC4F;
-    &> span {
-        vertical-align: center;
-    }
-`
 
 const JustifyAlign = styled.div`
     display: flex;
