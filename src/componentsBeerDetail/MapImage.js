@@ -5,11 +5,11 @@ import Loader from "../share/Loader";
 const imagesrc = "/images/marker.png";
 
 const MapImage = ({setClickReport}) => {
-        const kakao = window.kakao;
-        const container = useRef(null);
-        const inputRef = useRef(null);
+        const kakao = window.kakao; //카카오객체 불러오기
+        const container = useRef(null); //맵 컨테이너 Ref로 받아오기 
+        const inputRef = useRef(null); //지도에 검색한 값 받아오기
         const [mapState, setMapState] = useState(false);
-        const [loadingMap, setLoadingMap] = useState(false);
+        const [loadingMap, setLoadingMap] = useState(false); //맵 로딩전까지 로더 보여주기 
         let map;
 
         const placeView = async () => {
@@ -33,6 +33,7 @@ const MapImage = ({setClickReport}) => {
                     makeMap(place, lat, long);
                 });
             } else {  // if i cannot get my address. 여삼빌딩
+                setLoadingMap(true)
                 const lat = 37.4995482;
                 const long = 127.0291611;
                 makeMap(place, lat, long);

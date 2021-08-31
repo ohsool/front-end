@@ -7,8 +7,6 @@ import {StarRate} from "./BeerDetailIndex";
 import { history } from '../redux/configureStore';
 import ReviewWriteModal from "../componentsBeerDetail/ReviewWriteModal";
 
-const star = "/images/star.png";
-
 const EachReview=(props)=> {
     const { item, beerOne, userId } = props; 
     const [modalOpen, setModalOpen] = useState(false); //수정 버튼 클릭시 리뷰 수정 모달 띄우기
@@ -50,17 +48,17 @@ const EachReview=(props)=> {
                 </GridHorizon>
                 <ReviewText>
                     <ReviewTextWrap>
-                        {item?.review.length > 50 ? 
+                        {item?.review.length > 50 ?
                             <>{item?.review.slice(0,50)+'...'}
                             <br/>
                             <MoreButton onClick={(e)=>{
-                                history.push(`/review/${item._id}`, userId);
+                                history.push(`/review/${item._id}`, item);
                             }}><span>도감 상세보기</span></MoreButton>
                             </>
                             : <>{item?.review}
                                 <br/>
                                 <MoreButton onClick={(e)=>{
-                                history.push(`/review/${item._id}`, item._id, userId);
+                                history.push(`/review/${item._id}`, item);
                             }}><span>도감 상세보기</span></MoreButton></>
                         }
                     </ReviewTextWrap>               

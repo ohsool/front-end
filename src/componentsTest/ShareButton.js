@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 const share_yellow = "/images/share_yellow.png"
 
+//카카오톡 공유버튼
 const ShareButton = ({name,description,image}) => { //a=category.name, b=category.description, c=category.image
     const Kakao = window.Kakao;
   

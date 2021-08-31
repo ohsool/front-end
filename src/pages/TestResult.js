@@ -17,6 +17,7 @@ const TestResult = (props) => {
     //테스트 후 나온 결과(맥주추천)
     const beerRecommends = useSelector(recommendBeerToday);
 
+    //새로고침시에 데이터 새로 요청 
     useEffect(() => {
         if(categoryParams === "Lager" 
         || categoryParams === "Pilsner" 

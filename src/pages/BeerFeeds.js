@@ -25,13 +25,14 @@ const BeerFeeds = (props) => {
         return getData();
     }, [paging, allFeeds]);
     
+    //스크롤위치 계산
     const _handleScroll = _.throttle(() => {
         const scrollHeight = document.documentElement.scrollHeight;
         const scrollTop = document.documentElement.scrollTop;
         const clientHeight = document.documentElement.clientHeight;
         if(last){
             return;
-        }
+        } //마지막페이지에 닿으면 함수 실행 방지
         if (scrollTop + clientHeight >= scrollHeight - 100 && loading === false) {
           // 페이지 끝에 도달하면 추가 데이터를 받아온다
             setPaging(paging + 1);
@@ -41,7 +42,7 @@ const BeerFeeds = (props) => {
     }, 500);
 
     useEffect(() => {
-        if(paging === 0 && allFeeds.length === 0){
+        if(paging === 0 && allFeeds.length === 0){ //처음 실행시 0번째 페이지 불러오기
             dispatch(getAllBeerDogam(0));
             setPaging(paging+1);
             return
@@ -68,8 +69,8 @@ const BeerFeeds = (props) => {
                 {allFeeds?.map((item, idx) => {
                     return(
                         <>
-                        <BeerFeedsInfo item={item}/>
-                        <EachReview item={item} key={idx} />
+                        <BeerFeedsInfo item={item}/> {/*리뷰단 맥주의 정보*/}
+                        <EachReview item={item} key={idx} /> {/*리뷰 정보*/}
                         <BottomLine></BottomLine>
                         </>
                     )

@@ -14,9 +14,9 @@ const MyReviewList = ({is_me}) => {
 
     useEffect(()=> {
         if(is_me){
-            dispatch(getMyReview()); //사용자가 쓴 리뷰리스트 디스패치
+            dispatch(getMyReview()); //사용자가 쓴 리뷰리스트 api요청
         }else{
-            dispatch(getOtherUserDogam(userId));
+            dispatch(getOtherUserDogam(userId)); //타유저의 리뷰리스트 api요청
         }
     }, [is_me]);
     return(
