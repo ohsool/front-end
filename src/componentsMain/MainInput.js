@@ -5,8 +5,7 @@ import { User } from "../redux/reducer/userSlice";
 import {is_Login} from "../share/checkLoginUser";
 import { history } from "../redux/configureStore";
 
-const MainInput = (props) => {
-    const is_login = useSelector((state) => state.user.currentUser.message); //로그인 여부 확인
+const MainInput = (props) => { //로그인 여부 확인
     const userId = useSelector(User); //유저 정보 가지고오기
     
     const goBeerDogam = () => {//나의 맥주 도감은 로그인 후 이용 가능
@@ -34,7 +33,7 @@ const MainInput = (props) => {
                         나의 맥주 도감
                     </LinkBox>
                 </Wrap>
-                {is_login !== "success" ? 
+                {!is_Login() ? 
                 (<ButtonWrap>
                     <LoginButton 
                         onClick={() => {

@@ -26,7 +26,7 @@ const Token = (props) => {
         setCookie("_chlrh", chlrh);
         setCookieRefresh("_dlfwh", dlfwh);
         setCookieRefresh("_ghkxld", ghkxld);
-    }, []);
+    }, [dhtnf, chlrh, dlfwh, ghkxld]);
 
     useEffect(() => {
         if(first === "true"){

@@ -46,7 +46,10 @@ const BeerFeeds = (props) => {
             setPaging(paging+1);
             return
         }
-    }, [paging]);
+        if(allFeeds.length !== 0 ){
+            setPaging(allFeeds.length/8 + 1)
+        } //다른컴포넌트 갔다 올때 렌더링시 페이지넘버 계산
+    }, []);
 
     useEffect(() => {
         if(loading){
@@ -57,13 +60,6 @@ const BeerFeeds = (props) => {
             window.removeEventListener("scroll", _handleScroll); // scroll event listener 해제
         };
     }, [paging, loading]);
-
-    const ScrollToTop = () => {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        })
-    }
 
     return(
         <React.Fragment>

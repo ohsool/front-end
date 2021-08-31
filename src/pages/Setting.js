@@ -252,14 +252,12 @@ const Setting = (props) =>{
                             toggle={toggle}
                         /></div>
                     </JustifyAlign>
-                </InfoWrap>
-            <WithdrawalWrap>               
+                </InfoWrap>            
                 <WithdrawalButton
                     style={{fontFamily: "Noto Sans KR"}}
                     onClick={confirmWithDrawl}
                 >회원탈퇴
                 </WithdrawalButton>
-            </WithdrawalWrap>  
         </PageWrap>
         </Container>      
         <NavigationBar props={props}/>
@@ -338,22 +336,14 @@ const JustifyAlign = styled.div`
     }
 `
 
-const WithdrawalWrap = styled.div`
-    margin: 0 auto;
-    width: 400px;
-    justify-content: space-around;
-    display: flex;
-    position: absolute;
-    bottom: 100px;
-    text-align: center;
-`;
-
 const WithdrawalButton = styled.div`
-    margin: 0 auto;
-    width: 400px;
+    position: absolute;
+    width: 60px;
     height: 23px;
+    bottom: 100px;
+    left: 50%;
+    margin-left: -30px;
     border: none;
-    text-align:center;
     background-color: transparent;
     color: #FFC44F;
     cursor: pointer;

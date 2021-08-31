@@ -260,12 +260,11 @@ const BeerDetail = (props) =>{
                     <p style={{ fontWeight: "700",paddingBottom: "14px"}}>리뷰</p>
                         <Gradient>
                             {beer_infos?.length > 0 ? beer_infos?.map((item, idx) => (
-                                idx < 4 ? (
                                     <>
                                     <EachReview
                                     page={"beerList"}
                                     key={idx} item={item} userId={userId} />
-                                    </>) : null
+                                    </>
                             )): 
                                 <>
                                     <Text>첫 리뷰를 장식해 보세요✍</Text>

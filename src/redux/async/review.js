@@ -36,5 +36,16 @@ export const getAllBeerDogam = createAsyncThunk(
   }
 );
 
+//피드리뷰 삭제
+export const deleteBeerDogaminFeeds = createAsyncThunk(
+  "review/deleteBeerDogaminFeeds",
+  async (data, thunkAPI) => {
+    const feeds = thunkAPI.getState().review.allDogam;
+    const index = feeds.findIndex((p) => p._id === data);
+    
+    return index;
+  }
+);
+
 
 

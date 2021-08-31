@@ -3,14 +3,15 @@ import styled from "styled-components";
 
 import { emailCheck, pwdReg } from "../share/checkReg";
 import { history } from "../redux/configureStore";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logIn } from "../redux/async/user";
 import "../share/style/loginButton.css";
 import NavigationBar from "../NavigationBar";
-import {is_Login} from "../share/checkLoginUser";
+import { is_Login } from "../redux/reducer/userSlice";
 
 const Login = (props) => {
     const dispatch = useDispatch();
+    const is_login = useSelector(is_Login);
     const [is_typed, setIs_Typed] = useState(false);
     const [login_info, setLogin_Info] = useState({
         email: "",
@@ -21,10 +22,10 @@ const Login = (props) => {
     console.log("is_Login",is_Login);
     
     useEffect(() => { //로그인 요청후 응답이 성공으로 오면 이전 화면으로 되돌아가게 함
-        if(is_Login()){
+        if(is_login === "success"){
             history.goBack();
         }
-    }, [is_Login]);
+    }, [is_login]);
 
     const onChange = (e) => {  // 로그인 아이디, 비밀번호 인풋값
         setLogin_Info({...login_info, [e.target.name]: e.target.value});

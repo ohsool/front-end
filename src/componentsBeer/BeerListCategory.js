@@ -11,13 +11,14 @@ import InfinityScrollLoader from "./InfinityScrollLoader";
 const BeerListCategory = (props) => {
     const { setHashtagName, pagingCate, setPagingCate } = props;
     const category_beers = useSelector(beerCategory);
-    const {beerCategoryId} = useParams();
-    const [beers, setBeers] = useState([]);
+    const {beerCategoryId} = useParams(); //url에서 categoryId 파라미터값
+    const [beers, setBeers] = useState([]); //카테고리별 맥주 리스트 저장 스테이트
     const [loading, setLoading] = useState(false);
     const dispatch = useDispatch();
+
     useEffect(() => {
         setBeers([...beers, ...category_beers]);
-    }, [category_beers]);
+    }, [category_beers]); //받아오는 데이터 추가
 
     const dispatchData= {
         categoryId: beerCategoryId,
@@ -71,7 +72,7 @@ const BeerListCategory = (props) => {
         return () => {
             window.removeEventListener("scroll", _handleScroll); // scroll event listener 해제
         };
-    }, [pagingCate, loading, beerCategoryId]);
+    }, [pagingCate, loading, beerCategoryId]); //스크롤 이벤트 페이지, 로딩, 카테고리id바뀔때마다 실행
 
     return(
         <React.Fragment>
