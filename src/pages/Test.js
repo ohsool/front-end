@@ -19,7 +19,9 @@ const Test = (props) => {
     const [index, setIndex] = useState(0);
     const [testResultArray, setTestResultArray] = useState([]);
 
-    useEffect(()=> { //유저 정보(아이디, 닉네임 등) 불러오기위한 디스패치
+    //유저 정보(아이디, 닉네임 등) 불러오기위한 디스패치
+    //유저정보에 테스트결과값 저장할려고 api요청
+    useEffect(()=> {
         dispatch(userInfo());
     }, []);
 
@@ -27,6 +29,7 @@ const Test = (props) => {
         setPageAnimation(true);
     }, []);
 
+    //마지막 결과값이 맥주종류일경우 테스트선택문항들 배열값 전달해서 api요청
     useEffect(() => {
         if(testResultArray[testResultArray.length -1] === "Lager" 
         || testResultArray[testResultArray.length -1] === "Pilsner"

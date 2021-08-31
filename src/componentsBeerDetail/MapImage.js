@@ -5,26 +5,26 @@ import Loader from "../share/Loader";
 const imagesrc = "/images/marker.png";
 
 const MapImage = ({setClickReport}) => {
-        const kakao = window.kakao;
-        const container = useRef(null);
-        const inputRef = useRef(null);
+        const kakao = window.kakao; //카카오객체 불러오기
+        const container = useRef(null); //맵 컨테이너 Ref로 받아오기 
+        const inputRef = useRef(null); //지도에 검색한 값 받아오기
         const [mapState, setMapState] = useState(false);
-        const [loadingMap, setLoadingMap] = useState(false);
+        const [loadingMap, setLoadingMap] = useState(false); //맵 로딩전까지 로더 보여주기 
         let map;
 
         const placeView = async () => {
             await findLocation();
         } 
 
-        useEffect(() => {
+        useEffect(() => { // 카카오 맵 실행
             if(kakao?.maps !== undefined){
                 setMapState(true);
             }
             placeView();
         }, [mapState]);
         
-        const findLocation  = (place) => {
-            if (navigator.geolocation.getCurrentPosition) {  // if i can get my address
+        const findLocation  = (place) => {//사용자의 현위치 허용/차단 여부 반영
+            if (navigator.geolocation.getCurrentPosition) {  // 현위치로 맵 위치 변경
                 setLoadingMap(true)
                 navigator.geolocation.getCurrentPosition((position) => {
                     const lat = position.coords.latitude;
@@ -32,7 +32,8 @@ const MapImage = ({setClickReport}) => {
                     setLoadingMap(false);
                     makeMap(place, lat, long);
                 });
-            } else {  // if i cannot get my address. 여삼빌딩
+            } else {  // 현위치를 못 불러올 때 default 위치 적용
+                setLoadingMap(true)
                 const lat = 37.4995482;
                 const long = 127.0291611;
                 makeMap(place, lat, long);
@@ -43,7 +44,7 @@ const MapImage = ({setClickReport}) => {
             const options = {
                 center: new kakao.maps.LatLng(lat, long),
                 level: 3
-            };    // make kakao MAP
+            };    // 카카오 맵 생성
 
             map = new kakao.maps.Map(container.current, options);
 
@@ -68,10 +69,10 @@ const MapImage = ({setClickReport}) => {
             } 
         }
 
-        const displayMarker = (place) => {
+        const displayMarker = (place) => {//마커 표시하기
             const imageSrc = imagesrc, // 마커이미지 주소
                 imageSize = new kakao.maps.Size(24.56, 33.4), // 마커이미지의 크기
-                imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+                imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커의 좌표와 일치시킬 이미지 안에서의 좌표 설정
             
              const markerImage = new kakao.maps.MarkerImage(
                 imageSrc,
@@ -103,7 +104,7 @@ const MapImage = ({setClickReport}) => {
             });
         }
 
-        function searchbtnclicked() {
+        function searchbtnclicked() { //입력된 장소명으로 장소 검색
 
             const place = inputRef.current.value;
 

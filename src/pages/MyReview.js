@@ -1,16 +1,16 @@
 import React,{useEffect} from "react";
 import styled from "styled-components";
-import {TasteGraph,StarRate} from "../componentsBeerDetail/BeerDetailIndex";
+import { TasteGraph,StarRate } from "../componentsBeerDetail/BeerDetailIndex";
 import Header from "../Header";
 import NavigationBar from "../NavigationBar";
 
 const MyReview = (props) =>{
-    const item = props.location.state; //
+    const item = props.location.state; 
     const is_my = true;
     const is_starsmall = false;
     const is_iphone = navigator.userAgent.toLowerCase();
-    
-    useEffect(() => {
+
+    useEffect(() => { //첫 렌더링시 스크롤위치 맨위로
         window.scrollTo({
             top: 0,
         })

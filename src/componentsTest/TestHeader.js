@@ -3,21 +3,24 @@ import styled from "styled-components";
 import _ from "lodash";
 import { history } from "../redux/configureStore";
 import "../share/style/TestHeader.css";
-import { useSelector } from "react-redux";
 
 const backWhite = "/images/testHeaderBack.png";
 const backBlack = "/images/Back.png";
 
+//테스트페이지 헤더
 const TestHeader = (props) => {
-    const is_login = useSelector(state => state.user.currentUser.message);
     const [scrollPosition, setScrollPosition] = useState(0);
     const is_iphone = navigator.userAgent.toLowerCase(null);
 
     const _updateScroll = _.throttle(() => {
         setScrollPosition(window.scrollY || document.documentElement.scrollTop);
     }, 300);
+
     useEffect(()=>{
         window.addEventListener('scroll', _updateScroll);
+        return() => {
+            window.removeEventListener('scroll', _updateScroll);
+        }
     }, [scrollPosition]);
 
     return (

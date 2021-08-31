@@ -20,7 +20,6 @@ export const axiosInstance = axios.create({
     headers: {
         "Content-Type": "application/json;charset=UTF-8",
         "accept": "application/json,",
-        // 'Content-Encoding': 'gzip'
     }
 });
 

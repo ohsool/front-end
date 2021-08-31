@@ -18,7 +18,7 @@ const EachReview=(props)=> {
     
     const date = item.date.replace(/-/g,'/'); //ios 환경에서 날짜 보이도록 ios 날짜형식 적용
     
-    const pushOtherUserDogam = () => {
+    const pushOtherUserDogam = () => {//다른 사람 myBeer 페이지로 이동
         history.push(`/mybeer/${item.userId._id}/dogam`);
         return;
     }
@@ -36,7 +36,7 @@ const EachReview=(props)=> {
                         </NicknameText>
                         <DateText>
                             <span style={{ fontWeight: "300", fontSize: "10px", lineHeight: "14.48px"}}>
-                            {moment(date).fromNow()}
+                            {moment(date).fromNow()} {/* 현재 시간을 기준으로 시간계산 (1분전, 1일전 등) */}
                             </span>
                         </DateText>
                     </Div>
@@ -48,17 +48,17 @@ const EachReview=(props)=> {
                 </GridHorizon>
                 <ReviewText>
                     <ReviewTextWrap>
-                        {item?.review.length > 50 ? 
+                        {item?.review.length > 50 ? //글자수 50자로 제한해 보여지기 
                             <>{item?.review.slice(0,50)+'...'}
                             <br/>
                             <MoreButton onClick={(e)=>{
-                                history.push(`/review/${item._id}`, item );
+                                history.push(`/review/${item._id}`, item);
                             }}><span>도감 상세보기</span></MoreButton>
                             </>
                             : <>{item?.review}
                                 <br/>
                                 <MoreButton onClick={(e)=>{
-                                history.push(`/review/${item._id}`, item );
+                                history.push(`/review/${item._id}`, item);
                             }}><span>도감 상세보기</span></MoreButton></>
                         }
                     </ReviewTextWrap>               

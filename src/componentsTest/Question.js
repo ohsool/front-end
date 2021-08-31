@@ -1,3 +1,4 @@
+//테스트 문제들 answer를 키밸류형태로 만들고 선택한 키값을 다음 문제의 question_id랑 일치하게해서 검색
 export const question =  
     [{
         id: 1,

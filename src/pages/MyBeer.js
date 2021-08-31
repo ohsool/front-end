@@ -32,7 +32,7 @@ const MyBeer = (props)=>{
         window.scrollTo({
             top: 0,
         })
-    }, []);
+    }, []); //컴포넌트 첫 렌더링시 실행
     
     useEffect(() => {
         if(userId === undefined || userId === userInfos.userId){
@@ -64,7 +64,6 @@ const MyBeer = (props)=>{
                     }
                 </>
             )
-
         }else if(is_me === false && othersInfo.is_public === false ){
             return(
                 <>

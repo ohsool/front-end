@@ -10,17 +10,17 @@ import {
 import { useParams } from "react-router-dom";
 
 const MyStatusComment = ({ userInfos, is_me, othersInfo }) => {
-    const followers = useSelector(state => state.mybeer.followers);
-    const [toggle, setToggle] = useState(false);
-    const [is_Edit, setIs_Edit] = useState(true);
-    const [comment, setComment] = useState();
-    const { userId } = useParams();
+    const followers = useSelector(state => state.mybeer.followers); //팔로워 유저 아이디배열값
+    const [toggle, setToggle] = useState(false); //팔로우 상태
+    const [is_Edit, setIs_Edit] = useState(true); // 상태명 수정
+    const [comment, setComment] = useState(); //상태명
+    const { userId } = useParams(); //url파라미터값 userId
+    const [text, setText] = useState(""); //상태명 작성 스테이트
     const dispatch = useDispatch();
-    const [text, setText] = useState("");
 
     useEffect(() => {
         dispatch(checkFollowUser(userId));
-    }, []);
+    }, []); //팔로잉 및 팔로워 유저 체크 
 
     useEffect(() => {
         if(is_me){
@@ -39,14 +39,14 @@ const MyStatusComment = ({ userInfos, is_me, othersInfo }) => {
     }, [is_me, othersInfo]);
 
     useEffect(() => {
-        if(followers.includes(userInfos.userId)){
+        if(followers.includes(userInfos.userId)){//팔로우 여부에 따라 버튼 다르게 표시
             setToggle(true);
         }else{
             setToggle(false);
         }
     }, [followers, userInfos])
 
-    const editStatusComment = () => {
+    const editStatusComment = () => {//상태명 작성중인지 판별
         if(is_Edit){
             setIs_Edit(false);
         }else{

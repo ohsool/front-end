@@ -14,21 +14,21 @@ const MyReviewList = ({is_me}) => {
 
     useEffect(()=> {
         if(is_me){
-            dispatch(getMyReview()); //사용자가 쓴 리뷰리스트 디스패치
+            dispatch(getMyReview()); //사용자가 쓴 리뷰리스트 api요청
         }else{
-            dispatch(getOtherUserDogam(userId));
+            dispatch(getOtherUserDogam(userId)); //타유저의 리뷰리스트 api요청
         }
     }, [is_me]);
     return(
         <React.Fragment>
             <Container>  {/* 데이터 이미지가공 까지해서 */}
             {is_me ? 
-            myReview.length !== 0 ?  myReview?.map((item, idx) => (
+            myReview.length !== 0 ?  myReview?.map((item, idx) => (//유저가 작성한 맥주 도감 목록
                 <WritedReview key={idx} item={item}
                 />
             ))  : <Text>도감 목록이 <br/>🍺BEER🍺 있소</Text>
             :
-            otherUserReview.length !== 0 ?  otherUserReview?.map((item, idx) => (
+            otherUserReview.length !== 0 ?  otherUserReview?.map((item, idx) => (//타유저가 작성한 맥주 도감 목록
                 <WritedReview key={idx} item={item}
                 />
             ))  : <Text>도감 목록이 <br/>🍺BEER🍺 있소</Text>   

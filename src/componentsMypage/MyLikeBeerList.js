@@ -15,9 +15,9 @@ const MyLikeBeerList = ({is_me}) => {
 
     useEffect(()=> {
         if(is_me){
-            dispatch(getMyDogam()); //좋아요한 맥주 리스트 디스패치
+            dispatch(getMyDogam()); //유저가 좋아요한 맥주 리스트 디스패치
         }else{
-            dispatch(getOtherUserLikes(userId));
+            dispatch(getOtherUserLikes(userId)); //타유저가 좋아요한 맥주 리스트 디스패치
         }
     }, [is_me]);
 
@@ -26,7 +26,7 @@ const MyLikeBeerList = ({is_me}) => {
             <List>
             {is_me ?
             mydogam.length !== 0 ? mydogam?.map((item, idx) => (
-                <EachBeer 
+                <EachBeer //유저가 좋아요한 맥주 목록 
                     page={"notbeerList"}
                     key={idx} item={item} 
                     _onClick={() =>{
@@ -36,7 +36,7 @@ const MyLikeBeerList = ({is_me}) => {
             )): <Text>좋아요한 맥주 목록이 <br/>🍺BEER🍺 있소</Text>
             :
             otherUserLikes.length !== 0 ? otherUserLikes?.map((item, idx) => (
-                <EachBeer 
+                <EachBeer //타유저가 좋아요한 맥주 목록
                     page={"notbeerList"}
                     key={idx} item={item} 
                     _onClick={() =>{

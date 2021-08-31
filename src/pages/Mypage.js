@@ -74,10 +74,6 @@ const MyPage = (props) => {
         <Container>
             <Header/>
             <GaugeWrap style={is_iphone.indexOf("iphone") !== -1 ? {marginTop: "40px"} : {marginTop: "0px"}}>
-                {/*
-                <UserPreference userInfos={userInfos} is_me={true}>
-                </UserPreference>
-                */}
 
                 <Line1/>
                 <JustifyAlign>
@@ -269,7 +265,6 @@ const GaugeWrap = styled.div`
     top: 40px;
 `
 const LevelText = styled.div`
-    //width: 120px;
     padding-top: 10px;
     padding-left: 24px;
 

@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import {suggestBeer, suggestComment} from "../redux/async/suggest";
 
-const MyPageModal = (props) => {
+const MyPageModal = (props) => {//맥주 건의하기, 관리자에게 건의하기 클릭시 나오는 작성 모달
     const dispatch = useDispatch();
     const [isWrited, setIsWrited] = useState(false);
     const [suggestChat, setSuggestChat] = useState({

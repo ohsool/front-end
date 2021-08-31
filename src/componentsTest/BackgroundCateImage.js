@@ -3,7 +3,7 @@ import styled from "styled-components";
 import TestHeader from "./TestHeader";
 
 const BackgroundCateImage = ({ category }) => {
-    const is_iphone = navigator.userAgent.toLowerCase();
+    const is_iphone = navigator.userAgent.toLowerCase(); //아이폰 노치디자인시 헤더좀더 밑으로
 
     return(
         <React.Fragment>

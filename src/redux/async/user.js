@@ -1,7 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { axiosInstance } from "./moduleAxios";
 import { removeCookie } from "../../share/Cookie";
-import { history } from "../configureStore";
 
 // 회원 가입
 export const signUp = createAsyncThunk(
@@ -25,6 +24,7 @@ export const logIn = createAsyncThunk(
   }
 );
 
+//로그아웃
 export const logOut = createAsyncThunk(
   "user/logOut",
   async (data, thunkAPI) => {
@@ -37,13 +37,13 @@ export const logOut = createAsyncThunk(
   }
 )
 
+//회원탈퇴
 export const withDrawal = createAsyncThunk(
   "user/withDrawal",
   async (data, thunkAPI) => {
     const response = await axiosInstance.delete(`/api/user`);
       alert("회원탈퇴가 완료되었습니다.")
       return response.data;
-    //}
   }
 )
 

@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import "../share/style/TestHeader.css";
 
-const TestButton = ({ goToNext, question, testResultArray, setTestResultArray }) => { //goToNext 함수 및 question context API
-    
+//goToNext 함수 및 question context API
+const TestButton = ({ goToNext, question, testResultArray, setTestResultArray }) => {
+
     return (
         <React.Fragment>
             <ButtonWrap>
                 <QuestionButton
-                    onClick={() => {
+                    onClick={() => { //선택한 버튼의 키값으로 다음문제 찾고 키값 배열에 저장
                         let choice = Object.keys(question[0]).join()
                         goToNext(choice);
                         setTestResultArray([...testResultArray, choice])

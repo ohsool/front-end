@@ -11,11 +11,11 @@ import 'moment/locale/ko';
 
 const edit = "/images/edit.png";
 const remove = "/images/remove.png";
-
-const WritedReview = ({item}) =>   {
+ 
+const WritedReview = ({item}) =>   {//마이비어에 작성한 도감 표시
     const [modalOpen, setModalOpen] = useState(false);
     const userInfos = useSelector(state => state.user.currentUser);
-    const date = item.date.replace(/-/g,'/');
+    const date = item.date.replace(/-/g,'/');//ios 날짜 형식으로 변환
 
     const dispatch = useDispatch();
 
@@ -45,7 +45,7 @@ const WritedReview = ({item}) =>   {
                         </NicknameText>
                         <DateText>
                             <span style={{ fontWeight: "300", fontSize: "10px", lineHeight: "14.48px"}}>
-                            {  moment(date).fromNow()}
+                            {  moment(date).fromNow()} {/* 현재시간과 비교해 작성 시간 표시 */}
                             </span>
                         </DateText>
                         </Div>
@@ -58,7 +58,7 @@ const WritedReview = ({item}) =>   {
                     </GridHorizon>
                     <span>{item?.review.length > 50 ? item?.review.slice(0,50)+'...' : item?.review}</span>
                 </BeerTextWrap>
-                {userInfos.userId ===item?.userId._id ?
+                {userInfos.userId ===item?.userId._id ? //유저 본인인 경우에만 수정,삭제 버튼 보이기
                             <DivReview>
                             <EditButton 
                                 style={{backgroundImage: `url(${edit})`}}
