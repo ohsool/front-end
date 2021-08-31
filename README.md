@@ -55,13 +55,17 @@
 ## 기술 소개
 1)무한 스크롤 기능
 - 설명
+
 2)PWA을 활용한 앱 버전 제공
 - 설명
+
 3) kakao map / link api 활용
 - kakao map api를 이용한 장소 제보하기 기능
 - kakao share api를 이용한 소셜 공유 기능
+
 4)https 배포
 - AWS S3 배포 후, CloudFront에서 인증서 발급 후 https 배포 
+
 5)ExtraReducer를 활용한 효율적 상태관리 
 
 
