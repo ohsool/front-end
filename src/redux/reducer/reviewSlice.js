@@ -1,5 +1,10 @@
 import { createSlice, createSelector } from "@reduxjs/toolkit";
-import { getReview, writeReview, getAllBeerDogam } from "../async/review";
+import { 
+  getReview, 
+  writeReview,
+  getAllBeerDogam,
+  deleteBeerDogaminFeeds
+} from "../async/review";
 
 
 const initialState = {
@@ -43,6 +48,11 @@ const reviewSlice = createSlice({
         })
         .addCase(getAllBeerDogam.rejected, (state, action) => {
           state.dogamLast = "lastPage";
+        })
+        .addCase(deleteBeerDogaminFeeds.fulfilled, (state, action) => {
+          if(action.payload !== -1){
+            state.allDogam.splice(action.payload, 1);
+          }
         })
       // 공통
       .addMatcher(

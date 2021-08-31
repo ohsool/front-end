@@ -46,7 +46,7 @@ const RecommendCategory = styled.p`
 `;
 
 const Div = styled.div`
-    width: 318px;
+    width: 360px;
     display: flex;
     justify-content: space-between;
     align-items: center;

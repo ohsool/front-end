@@ -141,7 +141,8 @@ const ModalWrap = styled.div`
     background-color: #F6F6F6;
     border-radius: 10px 10px 0 0;
     bottom: 0px;
-    width: 100%;
+    //width: 100%;
+    width: 400px;
     padding-bottom: 20px;
     display: flex;
     flex-direction: column;

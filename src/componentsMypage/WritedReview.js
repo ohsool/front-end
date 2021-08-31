@@ -4,8 +4,10 @@ import { history } from "../redux/configureStore";
 import { useDispatch,useSelector } from "react-redux";
 import { ReviewWriteModal,StarRate } from "../componentsBeerDetail/BeerDetailIndex";
 import { deleteReviewDogam } from "../redux/async/mybeer";
+import { deleteBeerDogaminFeeds } from "../redux/async/review";
 import moment from 'moment';
 import 'moment/locale/ko';
+
 
 const edit = "/images/edit.png";
 const remove = "/images/remove.png";
@@ -16,6 +18,7 @@ const WritedReview = ({item}) =>   {
     const date = item.date.replace(/-/g,'/');
 
     const dispatch = useDispatch();
+
     const openModal = () => {
         setModalOpen(true);
       };
@@ -71,7 +74,7 @@ const WritedReview = ({item}) =>   {
                                 e.preventDefault();
                                 e.stopPropagation();
                                 if(window.confirm("정말로 삭제하시나요?")){
-                                    //dispatch(deleteReview(item._id));
+                                    dispatch(deleteBeerDogaminFeeds(item._id));
                                     dispatch(deleteReviewDogam(item._id));
                                     return;
                                 }

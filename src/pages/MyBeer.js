@@ -79,7 +79,8 @@ const MyBeer = (props)=>{
                 <UserPerference 
                     othersInfo={othersInfo}
                     userInfos={userInfos} 
-                    is_me={is_me}></UserPerference>
+                    is_me={is_me}>
+                </UserPerference>
                 <MyStatusComment 
                     othersInfo={othersInfo}
                     userInfos={userInfos} 

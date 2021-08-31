@@ -263,7 +263,7 @@ const BeerDetail = (props) =>{
                                     <>
                                     <EachReview
                                     page={"beerList"}
-                                    key={idx} item={item} userId={userId}/>
+                                    key={idx} item={item} userId={userId} />
                                     </>
                             )): 
                                 <>

@@ -46,7 +46,10 @@ const BeerFeeds = (props) => {
             setPaging(paging+1);
             return
         }
-    }, [paging]);
+        if(allFeeds.length !== 0 ){
+            setPaging(allFeeds.length/8 + 1)
+        } //다른컴포넌트 갔다 올때 렌더링시 페이지넘버 계산
+    }, []);
 
     useEffect(() => {
         if(loading){
