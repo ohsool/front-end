@@ -24,7 +24,7 @@ const MyReview = (props) =>{
                 
                 <div style={{margin: "0 auto"}}>
                     <BeerImage>
-                        <img src={item.beerId.image}></img>
+                        <img src={item.beerId?.image}></img>
                     </BeerImage>
 
                     <Title><span>작성한 리뷰</span></Title>                   
@@ -54,7 +54,6 @@ export default React.memo(MyReview);
 
 const Container = styled.div`
     display: flex;
-    //height: 754px;
     bottom: 71px;
     background-color: #FFFFFF;
     flex-direction: column;
@@ -72,19 +71,6 @@ const Grid = styled.div`
     margin-top: 40px;
 
 `;
-/*
-const Div = styled.div`
-    display: flex;
-    flex-direction: column;
-    text-align: legt; 
-    margin: 20px;
-    
-    & > span{
-        float: left;
-        font-weight: 700;
-    }
-`
-*/
 const Title = styled.div`
     margin: 0 auto;
     width: 360px;

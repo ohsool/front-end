@@ -7,10 +7,8 @@ import {StarRate} from "./BeerDetailIndex";
 import { history } from '../redux/configureStore';
 import ReviewWriteModal from "../componentsBeerDetail/ReviewWriteModal";
 
-const star = "/images/star.png";
-
 const EachReview=(props)=> {
-    const { item, beerOne, userId } = props; 
+    const { item, beerOne } = props; 
     const [modalOpen, setModalOpen] = useState(false); //수정 버튼 클릭시 리뷰 수정 모달 띄우기
     const is_my = true;
     const is_starsmall = true;
@@ -18,7 +16,7 @@ const EachReview=(props)=> {
         setModalOpen(false);
     };
     
-    const date = item.date.replace(/-/g,'/');
+    const date = item.date.replace(/-/g,'/'); //ios 환경에서 날짜 보이도록 ios 날짜형식 적용
     
     const pushOtherUserDogam = () => {
         history.push(`/mybeer/${item.userId._id}/dogam`);
@@ -54,13 +52,13 @@ const EachReview=(props)=> {
                             <>{item?.review.slice(0,50)+'...'}
                             <br/>
                             <MoreButton onClick={(e)=>{
-                                history.push(`/review/${item._id}`, userId);
+                                history.push(`/review/${item._id}`, item );
                             }}><span>도감 상세보기</span></MoreButton>
                             </>
                             : <>{item?.review}
                                 <br/>
                                 <MoreButton onClick={(e)=>{
-                                history.push(`/review/${item._id}`, item._id, userId);
+                                history.push(`/review/${item._id}`, item );
                             }}><span>도감 상세보기</span></MoreButton></>
                         }
                     </ReviewTextWrap>               

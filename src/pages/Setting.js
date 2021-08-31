@@ -338,7 +338,7 @@ const JustifyAlign = styled.div`
 
 const WithdrawalButton = styled.div`
     position: absolute;
-    width: 60px;
+    width: 80px;
     height: 23px;
     bottom: 100px;
     left: 50%;

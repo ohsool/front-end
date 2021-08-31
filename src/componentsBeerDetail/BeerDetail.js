@@ -49,11 +49,11 @@ const BeerDetail = (props) =>{
             }
     }, [props.match.params.beerId]); //deps에 beerId넣어서 beerId바뀔때마다 위 요청들 실행
 
-    useEffect(() => {
+    useEffect(() => {//첫 렌더링시 맨위로 스크롤 이동
         window.scrollTo({
             top: 0,
         })
-    }, []); //첫 렌더링시 맨위로 스크롤 이동
+    }, []); 
 
     useEffect(() => { //좋아요된 상태면 좋아요 눌린걸로 아니면 false그대로
         if(beerOne && userId){
@@ -89,7 +89,7 @@ const BeerDetail = (props) =>{
         }
     }
 
-    const clickPlaceReport = () => {
+    const clickPlaceReport = () => {//로그인한 사람에게만 맥주 판매 장소 제보하기 권한 주기 
         if(is_Login()){
             history.push("/place", beerOne._id)
         }else{

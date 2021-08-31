@@ -19,7 +19,6 @@ const Login = (props) => {
     }); //로그인 정보
 
     const {email, password} = login_info;
-    console.log("is_Login",is_Login);
     
     useEffect(() => { //로그인 요청후 응답이 성공으로 오면 이전 화면으로 되돌아가게 함
         if(is_login === "success"){
