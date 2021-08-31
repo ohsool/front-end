@@ -41,9 +41,6 @@ export const beerSlice = createSlice({
         .addCase(getBeerCategoryList.fulfilled, (state, action) => {
             state.categoryBeer = action.payload.beers;
         })
-        .addCase(getBeerCategoryList.pending, (state, action) => {
-            state.categoryBeer = [];
-        })
         .addCase(getOneBeer.fulfilled, (state, action) => {
             state.beerOne = action.payload.beer;
         })

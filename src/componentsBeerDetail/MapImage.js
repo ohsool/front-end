@@ -46,12 +46,12 @@ const MapImage = ({setClickReport}) => {
                 level: 3
             };    // 카카오 맵 생성
 
-            map = new kakao.maps.Map(container.current, options);
+            map = new kakao.maps.Map(container.current, options); //맵객체
 
             if (place) {  // keyword of address
                 const places = new kakao.maps.services.Places();
-
-                places.keywordSearch(place, placesSearchWithKeyword);  // find places with keywords. callback
+                // place 키워드로 장소검색
+                places.keywordSearch(place, placesSearchWithKeyword); 
             }
         }
 

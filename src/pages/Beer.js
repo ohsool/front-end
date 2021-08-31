@@ -11,7 +11,8 @@ const BeerList = lazy(() => import("../componentsBeer/BeerList"));
 const BeerDetail = lazy(() => import("../componentsBeerDetail/BeerDetail"));
 
 const Beer = (props) => {
-
+    //중첩라우팅 구현 beer안에서 beerlist와 beerdetail로 나누고 코드분할 적용해서
+    //각각 실행시 비동기적으로 컴포넌트 불러오도록 구현
     return (
         <React.Fragment>
             <Header/>
