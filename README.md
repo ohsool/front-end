@@ -25,17 +25,17 @@
 - 개발기간: 2021년 7월 23일 ~ 2021년 8월 31일
 - 개발언어: JavaScript
 - 개발 라이브러리:
-    -React.js(^17.0.2)
-    -Node(^14.17.3) 
-    -Yarn(^1.22.10)
-    -npm(^6.14.13)
-    -npx(^6.14.13)
-    -미들웨어:history(^4.10.1)
-    -배포(예정): AWS S3
-    -통신(서버간): axios(^0.21.1)
-    -라이브러리: react-slick(^0.28.1), react-chartjs-2"(^3.0.4), chart.js(^3.5.0), lodash(^4.17.21), react-slick(^0.28.1), moment(^2.29.1),react-step-progress-bar(^1.0.3)
-    -스타일: styled-components(^5.3.0)
-    -상태관리: redux-toolkit(^1.6.1)
+    - React.js(^17.0.2)
+    - Node(^14.17.3) 
+    - Yarn(^1.22.10)
+    - npm(^6.14.13)
+    - npx(^6.14.13)
+    - 미들웨어:history(^4.10.1)
+    - 배포(예정): AWS S3
+    - 통신(서버간): axios(^0.21.1)
+    - 라이브러리: react-slick(^0.28.1), react-chartjs-2"(^3.0.4), chart.js(^3.5.0), lodash(^4.17.21), react-slick(^0.28.1), moment(^2.29.1),react-step-progress-bar(^1.0.3)
+    - 스타일: styled-components(^5.3.0)
+    - 상태관리: redux-toolkit(^1.6.1)
     
 - 협업 툴: git / notion / figma / slack
 - 프로젝트 취지: 다양한 맥주 정보를 한눈에 비교하고, 자신만의 맥주 도감을 만들어 소통하는 맥주 정보 공유 플랫폼을 만들고자 함
