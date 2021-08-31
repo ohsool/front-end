@@ -68,16 +68,16 @@
 - redux-toolkit v1.6.1
 	- 전역 상태관리 라이브러리(redux, immer, reselect, thunk 한번에 사용가능)
 ## 5. 기술 소개
-- 무한 스크롤 기능
-	- 설명
-- PWA을 활용한 앱 버전 제공
-	- 설명
+- 맥주 카테고리별 무한스크롤 기능
+- PWA을 활용해 페이지 캐싱 및 오프라인페이지 구현
 - kakao map / link api 활용
 - kakao map api를 이용한 장소 제보하기 기능
 - kakao share api를 이용한 소셜 공유 기능
 - https 배포
 	- AWS S3 배포 후, CloudFront에서 인증서 발급 후 https 배포 
-- ExtraReducer를 활용한 효율적 상태관리 
+- ExtraReducer를 활용해 스토어 데이터들 재사용 및 효율적으로 관리 
+- 코드분할(Code-splitting)
+	- lazy-suspense를 이용해서 라우팅처리된 컴포넌트들 비동기화
 
 
 ## 6. 트러블 슈팅
