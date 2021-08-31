@@ -72,9 +72,8 @@
 - 맥주 카테고리별 무한스크롤 기능
 - PWA구현
 	- serviceworker활용해서 파일 캐싱 및 네트워크 불안정할때 오프라인 페이지 구현 및 푸시알림 기능(구현 진행중)
-- kakao map / link api 활용
-- kakao map api를 이용한 장소 제보하기 기능
-- kakao link api를 이용한 소셜 공유 기능
+- kakao developer API 이용
+	- kakao map구현해서 장소제보할수 있게 구현 및 테스트결과 및 맥주도감 페이지 공유기능 
 - https 배포
 	- AWS S3 버킷 등록 후, ACM(Amazon Certificate Manager)에서 인증서 발급 후 cloudfront를 이용해서 https  
 - 상태관리
