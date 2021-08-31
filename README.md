@@ -19,7 +19,7 @@
 
 - [팀 노션](https://www.notion.so/6d5c61254bf541c0bb5931de59a8d5ca)
 - 📁 [백엔드 Repository 링크](https://github.com/ohsool/backend)
-- [디자인 Figma WireFrame](https://www.figma.com/file/c2M6Yjvm5IjSAnsrQ41XLv/%ED%95%AD%ED%95%B499_WireFrame?node-id=0%3A1)
+- [디자인 작업물 ?????](https://www.figma.com/file/c2M6Yjvm5IjSAnsrQ41XLv/%ED%95%AD%ED%95%B499_WireFrame?node-id=0%3A1)
 
 ## 2. 프로젝트 설명
 - 개발기간: 2021년 7월 23일 ~ 2021년 8월 31일
@@ -37,26 +37,37 @@
 - 협업 툴: git / notion / figma / slack
 - 프로젝트 취지: 다양한 맥주 정보를 한눈에 비교하고, 자신만의 맥주 도감을 만들어 소통하는 맥주 정보 공유 플랫폼을 만들고자 함
 ## 3. 기능 소개
--테스트를 통한 사용자 맥주 타입 및 맥주 2종 추천 기능      
--맥주별 맛, 판매처, 후기 정보 한곳에서 비교하기 기능
--마셔본 맥주의 후기를 작성하여 다른사람과 공유하는 기능 
--전체 맥주의 후기를 실시간 피드로 확인하는 기능   
--마이비어에서 자신이 작성한 도감 및 좋아요한 맥주 목록 모아보기 기능
+      1)테스트를 통한 사용자 맥주 타입 및 맥주 2종 추천 기능
       
--맥주 및 관리자에게 건의하기 기능
+      2)맥주별 맛, 판매처, 후기 정보 한곳에서 비교하기 기능
+      
+      3)마셔본 맥주의 후기를 작성하여 다른사람과 공유하는 기능
+      
+      4)전체 맥주의 후기를 실시간 피드로 확인하는 기능
+      
+      5)마이비어에서 자신이 작성한 도감 및 좋아요한 맥주 목록 모아보기 기능
+      
+      6)맥주 및 관리자에게 건의하기 기능
 ## 4. 사용한 라이브러리(패키지)
 - history v4.10.1, react-router-dom v5.2.0
 	- 라우팅 관련 미들웨어 및 라이브러리
 - axios v0.21.1
-- react-slick v0.28.1 
-- react-chartjs-2 v3.0.4 
-- chart.js v3.5.0 
+	- 서버와 통신을 위한 라이브러리
+- UI용 패키지
+	- react-slick v0.28.1 
+		- 슬라이더를 구현용 라이브러리 
+	- react-chartjs-2 v3.0.4 / chart.js v3.5.0 
+		- 그래프 구현 라이브러리
+	- react-step-progress-bar v1.0.3
+		- 프로그래스 바 라이브러리
+	- styled-components v5.3.0
+		- CSS-in-JS 라이브러리
 - lodash v4.17.21
+	- 자바스크립트의 유틸리티 라이브러리(디바운스와 쓰로틀 사용)
 - moment v2.29.1
-- react-step-progress-bar v1.0.3
-- styled-components v5.3.0
+	- 날짜 라이브러리
 - redux-toolkit v1.6.1
-	- 전역 상태관리 라이브러리
+	- 전역 상태관리 라이브러리(redux, immer, reselect, thunk 한번에 사용가능)
 ## 5. 기술 소개
 - 무한 스크롤 기능
 	- 설명
