@@ -159,6 +159,7 @@ export default MyPage;
 
 const Container = styled.div`
     width: 100%;
+    max-height: 100vh;
     bottom: 10px;
 `;
 

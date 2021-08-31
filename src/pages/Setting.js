@@ -270,6 +270,7 @@ export default Setting;
 
 const Container = styled.div`
     width: 100%;
+    max-height: 100vh;
 `;
 
 const PageWrap = styled.div`

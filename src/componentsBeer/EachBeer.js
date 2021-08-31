@@ -204,7 +204,7 @@ const TasteTag = styled.div`
     box-sizing: border-box;
     border-radius: 33px;
     font-size: 10px;
-    line-height: 14px;
+    line-height: 16px;
     text-align: center;
     color: #333333;
     cursor: pointer;
@@ -220,7 +220,7 @@ const CountryTag = styled.div`
     box-sizing: border-box;
     border-radius: 33px;
     font-size: 10px;
-    line-height: 14px;
+    line-height: 16px;
     text-align: center;
     color: #FCB425;
     cursor: pointer;
