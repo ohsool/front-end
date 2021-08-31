@@ -10,9 +10,9 @@ const ResultInfo = ({ category }) => {
                 <Div>
                 <p>{category?.title}</p>
                 <ShareButton
-                        name={category?.name} 
-                        description={category?.description} 
-                        image={category?.image}
+                    name={category?.name} 
+                    description={category?.description} 
+                    image={category?.image}
                 ></ShareButton>
                 </Div>
                 <span>{category?.description}</span>
@@ -25,14 +25,13 @@ const ResultInfo = ({ category }) => {
 export default ResultInfo;
 
 const BackgroundCateInfo = styled.div`
-    width: 308px;
-    margin: 20px;
+    width: 312px;
+    margin: 20px auto;
     & > p {
         font-size: 14px;
         font-weight: bold;
     }
     & > span{
-        margin-top: 14px;
         font-size: 14px;
         line-height: 146.5%;
         color: #555555;
@@ -40,15 +39,16 @@ const BackgroundCateInfo = styled.div`
 `;
 
 const RecommendCategory = styled.p`
+    width: 312px;
+    margin: 20px auto;
     font-size: 14px;
     font-weight: bold;
-    margin: 20px 0 0 20px;
 `;
 
 const Div = styled.div`
-    width: 360px;
+    width: 325px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-`
+    margin-bottom: 20px;
+`;

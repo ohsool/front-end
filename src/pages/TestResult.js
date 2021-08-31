@@ -37,14 +37,12 @@ const TestResult = (props) => {
         <React.Fragment>
             <Grid>  
                 <BackgroundCateImage category={category}/>
-                <Wrap>
                     <ResultInfo category={category}/>
-                    <RecommendBeerWrap>{/* 해당 카테고리 맥주 2종 추천 */}
+                    <List>{/* 해당 카테고리 맥주 2종 추천 */}
                         {beerRecommends?.map((item, idx) => (
                             <EachBeer key={idx} item={item} page={"notBeerList"}></EachBeer>
                         ))}
-                    </RecommendBeerWrap>
-                </Wrap>
+                    </List>
                 <ReButton
                     onClick={() => {
                         history.push("/test/");
@@ -64,19 +62,13 @@ const Grid = styled.div`
     display: flex;
     flex-direction: column;
     margin-bottom: 74px;
-    text-align: center;
     margin: 0 auto;
 `;
-const RecommendBeerWrap = styled.div`
-    margin: 14px 0 0 24px;
+const List = styled.div`
     width: 312px;
-    display: flex;
-    justify-content: space-between;
-`;
-
-const Wrap = styled.div`
-    width: 360px;
     margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
 `;
 
 const ReButton = styled.div`
@@ -98,12 +90,4 @@ const ReButton = styled.div`
         height: 11px;
     }
     cursor: pointer;
-`;
-
-const LoaderWrap = styled.div`
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-top: -100px;
-    margin-left: -100px;
 `;

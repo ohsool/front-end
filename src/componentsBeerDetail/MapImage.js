@@ -24,7 +24,7 @@ const MapImage = ({setClickReport}) => {
         }, [mapState]);
         
         const findLocation  = (place) => {
-            if (navigator.geolocation.getCurrentPosition) {  // if i can get my address
+            if (navigator.geolocation.getCurrentPosition) {  // 현재위치 받아올 수 있으면 현재위치
                 setLoadingMap(true)
                 navigator.geolocation.getCurrentPosition((position) => {
                     const lat = position.coords.latitude;
@@ -32,7 +32,7 @@ const MapImage = ({setClickReport}) => {
                     setLoadingMap(false);
                     makeMap(place, lat, long);
                 });
-            } else {  // if i cannot get my address. 여삼빌딩
+            } else {  // 현재위치값 없을 경우 여삼빌딩으로 맵 고정
                 setLoadingMap(true)
                 const lat = 37.4995482;
                 const long = 127.0291611;
@@ -44,14 +44,14 @@ const MapImage = ({setClickReport}) => {
             const options = {
                 center: new kakao.maps.LatLng(lat, long),
                 level: 3
-            };    // make kakao MAP
+            };    // 카카오 맵 만들기
 
-            map = new kakao.maps.Map(container.current, options);
+            map = new kakao.maps.Map(container.current, options); //맵객체
 
             if (place) {  // keyword of address
                 const places = new kakao.maps.services.Places();
-
-                places.keywordSearch(place, placesSearchWithKeyword);  // find places with keywords. callback
+                // place 키워드로 장소검색
+                places.keywordSearch(place, placesSearchWithKeyword); 
             }
         }
 
