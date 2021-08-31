@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 const myIcon = "image/HeaderIcon.png";
 const Back = "/images/Back2.png";
 
-const Header = (props) => {
+const Header = (props) => {//상위 헤더바
     const userInfo = useSelector(state => state.user.currentUser);
     const is_iphone = navigator.userAgent.toLowerCase();
     

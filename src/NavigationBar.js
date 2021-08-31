@@ -10,7 +10,7 @@ const beer = "/images/beer.png";
 const feed = "/images/feed.png";
 const myBeer = "/images/mybeer.png";
 
-const NavigationBar = (props) => {
+const NavigationBar = (props) => {//하단 네비게이션 바
     const userInfo = useSelector(state => state.user.currentUser);
     const pathNow = props.props.match.path;
 
@@ -100,6 +100,7 @@ const Text = styled.div`
         font-size: 8px;
     }
 `
+
 const ImageWrap = styled.div`
     margin: 0 auto;
     margin-top: 13px;

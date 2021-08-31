@@ -9,7 +9,7 @@ import { starRateDetail } from "../redux/async/beer";
 
 const remove = "/images/remove.png";
 
-const ReviewWriteModal = (props) => {
+const ReviewWriteModal = (props) => {//도감 작성 모달창
 
     const { open, close, beerOne, item, is_edit, mybeerId } = props; 
     const taste_data = ["쓴맛", "청량감", "향", "단맛", "고소한맛"];
@@ -31,7 +31,7 @@ const ReviewWriteModal = (props) => {
         setStarScore(item?.rate);
     },[])
 
-    const addReview = () => { //리뷰 작성시
+    const addReview = () => { //작성하기 버튼 클릭시 
         if(review === "" || starScore === undefined){
             alert("답하지 않은 문항이 있어요!")
             return;
@@ -39,7 +39,7 @@ const ReviewWriteModal = (props) => {
             alert("글자수는 300 글자를 넘을 수 없어요!");
             return;
         }
-        dispatch(writeReview({
+        dispatch(writeReview({//해당 맥주에 '느낀 맛, 별점, 리뷰'를 묶어 전달
             myFeatures: {
                 bitter: featuresList[0], 
                 crispy: featuresList[1], 
@@ -54,12 +54,13 @@ const ReviewWriteModal = (props) => {
         }));
         dispatch(starRateDetail(starScore));
         alert("작성 완료!🍻");
+        //값 초기화
         setReview("");
         setStarScore(0);
         setFeaturesList(arr.fill(0));
         close();
     }
-    const updateReview = () => {
+    const updateReview = () => {//수정시 도감 기존 데이터 불러오기
         dispatch(editReviewDogam({
             myFeatures: {
                 bitter: featuresList[0], 
@@ -69,7 +70,6 @@ const ReviewWriteModal = (props) => {
                 nutty: featuresList[4]
             },
             location: "default",
-            //rate: starScore.toFixed(1),
             rate: starScore,
             review: review,      
             mybeerId: mybeerId,
@@ -267,7 +267,6 @@ const BeerImage = styled.div`
     margin: 0 10px;
     width: 100px;
     height: 100px;
-    //background-color: #FFFFFF;
     background-size: cover;
     border:1.7px solid #c4c4c4;
 
@@ -280,7 +279,6 @@ const BeerTextarea = styled.textarea`
     height: 80px;
     resize:none;
     border-radius: 10px;
-    //border: none;
     border:1.7px solid #c4c4c4;
     font-size: 12px;
 `;

@@ -16,13 +16,13 @@ const PlaceBeer = (props) => {
             return alert("위치를 선택해주세요!!");
         };
         const mapData = {
-            beerId: beerId,
-            name: clickReport.place_name,
-            address: clickReport.address_name,
-            url: clickReport.place_url,
+            beerId: beerId,//맥주id
+            name: clickReport.place_name,//장소명
+            address: clickReport.address_name,//주소
+            url: clickReport.place_url,//장소 url
           }
         if(window.confirm(`${clickReport.place_name}을 제보하시겠어요?`)){
-            dispatch(mapReport(mapData));
+            dispatch(mapReport(mapData));//장소 제보
         }else{
             return alert("취소되었습니다!");
         }

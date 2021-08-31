@@ -5,7 +5,7 @@ import Header from "../Header";
 import NavigationBar from "../NavigationBar";
 
 const MyReview = (props) =>{
-    const item = props.location.state; //
+    const item = props.location.state; 
     const is_my = true;
     const is_starsmall = false;
     const is_iphone = navigator.userAgent.toLowerCase();
@@ -54,7 +54,6 @@ export default React.memo(MyReview);
 
 const Container = styled.div`
     display: flex;
-    //height: 754px;
     bottom: 71px;
     background-color: #FFFFFF;
     flex-direction: column;
@@ -72,19 +71,6 @@ const Grid = styled.div`
     margin-top: 40px;
 
 `;
-/*
-const Div = styled.div`
-    display: flex;
-    flex-direction: column;
-    text-align: legt; 
-    margin: 20px;
-    
-    & > span{
-        float: left;
-        font-weight: 700;
-    }
-`
-*/
 const Title = styled.div`
     margin: 0 auto;
     width: 360px;

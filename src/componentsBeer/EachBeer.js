@@ -53,7 +53,41 @@ const EachBeer = (props) => {
         dispatch(getHashtagWord(p));
         setHashtagName(p);
     }
+    const confirmIndex=(p,idx)=>{
+        if(idx === 0){
+            return(
+                <>
+                    <CountryTag 
+                        onClick={(e)=>{//해시태그 클릭시 해당 해시태그 검색결과 출력
+                            if(page==="beerList"){
+                                e.preventDefault();
+                                e.stopPropagation(); 
+                                searchHashtagWord(p);
+                            }
+                        }}
+                        key={idx}> #{p}
+                    </CountryTag>
+                </>
+            )
+        }else if(idx === 4){
+            return(
+                <>
+                    <TasteTag 
+                        onClick={(e)=>{//해시태그 클릭시 해당 해시태그 검색결과 출력
+                            if(page==="beerList"){
+                                e.preventDefault();
+                                e.stopPropagation(); 
+                                searchHashtagWord(p);
+                            }
+                        }}
+                        key={idx}> #{p}
+                    </TasteTag>
+                </>
 
+            )
+
+        }
+    }
     return(
         
         <React.Fragment>
@@ -80,6 +114,8 @@ const EachBeer = (props) => {
                     <p>{item.name_english}</p>
                 </BeerInfoWrap>
                 {item.hashtag.map((p, idx) => (
+                    confirmIndex(p, idx)
+                /*    
                 idx === 4 ||idx === 0? //해시태그 2개만 정렬
                     <TasteTag 
                     onClick={(e)=>{//해시태그 클릭시 해당 해시태그 검색결과 출력
@@ -89,8 +125,9 @@ const EachBeer = (props) => {
                             searchHashtagWord(p);
                         }
                     }}
-                    key={idx}>#{p}
+                    key={idx}> #{p}
                     </TasteTag>:""
+                */
                 ))}
            
             </RecommendBeerWrap>
@@ -170,6 +207,22 @@ const TasteTag = styled.div`
     line-height: 14px;
     text-align: center;
     color: #333333;
+    cursor: pointer;
+`;
+
+const CountryTag = styled.div`
+    display: inline-block;
+    margin-top: 2px; 
+    margin-right: 3px;
+    padding: 0 6px;
+    height: 16px;
+    border: 0.5px solid #FCB425;
+    box-sizing: border-box;
+    border-radius: 33px;
+    font-size: 10px;
+    line-height: 14px;
+    text-align: center;
+    color: #FCB425;
     cursor: pointer;
 `;
 

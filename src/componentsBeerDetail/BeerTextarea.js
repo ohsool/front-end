@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const BeerTextarea = ({onChange, review, placeholder, })=>{
-
+const BeerTextarea = ({onChange, review, placeholder, })=>{ //도감 작성 모달의 textarea 
     return (
         <React.Fragment>
             <Textarea

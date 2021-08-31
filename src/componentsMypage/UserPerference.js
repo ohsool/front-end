@@ -6,7 +6,7 @@ const UserPreference = ({userInfos, is_me, othersInfo}) => {
     const is_iphone = navigator.userAgent.toLowerCase();
 
     const userTypeText = () => {
-        if(userInfos.preference === 'Unknown'){
+        if(userInfos.preference === 'Unknown'){//테스트 하지 않은 경우 안내 글과 테스트로 이동버튼 표시
            return( 
            <>
            <span>안녕하세요 <strong>{userInfos.nickname}</strong>님!</span><br/>
@@ -18,7 +18,7 @@ const UserPreference = ({userInfos, is_me, othersInfo}) => {
             >테스트 하기</TestButton>
             </>
             )
-        }else{
+        }else{//테스트 한 경우 유저의 preference로 텍스트 표시
             return(
                 <>
             <span>안녕하세요 <strong>{userInfos.nickname}</strong>님!</span><br/>

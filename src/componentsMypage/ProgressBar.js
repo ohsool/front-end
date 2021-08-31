@@ -1,6 +1,6 @@
 import React from 'react';
   
-const ProgressBar = ({progress}) => {
+const ProgressBar = ({progress}) => {//전체 맥주 도감 101개 중 몇개 작성했는지 progress bar로 표시
      
     const Parentdiv = {
         margin: "0 auto",
@@ -30,7 +30,7 @@ const ProgressBar = ({progress}) => {
     return (
       <div style={Parentdiv}> 
         <div style={Childdiv}> 
-            <div style={progresstext}>{`${progress}%`}</div> 
+            <div style={progresstext}>{`${progress}%`}</div> {/*진도율 표시*/}
         </div> 
       </div>
     )

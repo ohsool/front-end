@@ -4,8 +4,9 @@ import styled from "styled-components";
 const star_filled = "/images/star_filled.png";
 const star_empty = "/images/star_empty.png";
 
+//별점 
 const StarButton = ({setStarScore, init_star,is_my, is_starsmall}) =>{
-    const [score, setScore] = useState(init_star); //별점
+    const [score, setScore] = useState(init_star);
     const totalStarCount = 5;   
     const starCount = score; 
     const removeCount = totalStarCount - starCount;
@@ -20,7 +21,7 @@ const StarButton = ({setStarScore, init_star,is_my, is_starsmall}) =>{
           <div style={{display:"flex"}}>
             {[...Array(starCount)].map((n, index) => {
               return (
-                <StarFilledSmall
+                <StarFilledSmall //별점 채워진 상태
                   key={index}
                   style={{backgroundImage: `url(${star_filled})`,cursor:"unset"}}
                 ></StarFilledSmall>
@@ -28,7 +29,7 @@ const StarButton = ({setStarScore, init_star,is_my, is_starsmall}) =>{
             })}
             {[...Array(removeCount)].map((n, index) => {
               return (
-                <StarEmptySmall
+                <StarEmptySmall //별점 비워진 상태
                   key={index}
                   style={{backgroundImage: `url(${star_empty})`,cursor:"unset"}}
                 ></StarEmptySmall>

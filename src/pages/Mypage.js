@@ -74,15 +74,11 @@ const MyPage = (props) => {
         <Container>
             <Header/>
             <GaugeWrap style={is_iphone.indexOf("iphone") !== -1 ? {marginTop: "40px"} : {marginTop: "0px"}}>
-                {/*
-                <UserPreference userInfos={userInfos} is_me={true}>
-                </UserPreference>
-                */}
 
                 <Line1/>
                 <JustifyAlign>
                     <LevelText><span>Lv.{parseInt(length/10)+1}</span> <span style={{color: "#FFC44F"}}>맥주덕후</span></LevelText>
-                    <DogamText><span>도감: {length}/100</span></DogamText>
+                    <DogamText><span>도감: {length}/101</span></DogamText>
                 </JustifyAlign>
                 <ProgressBar progress={length}/>
             </GaugeWrap>
@@ -269,7 +265,6 @@ const GaugeWrap = styled.div`
     top: 40px;
 `
 const LevelText = styled.div`
-    //width: 120px;
     padding-top: 10px;
     padding-left: 24px;
 
