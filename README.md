@@ -19,7 +19,7 @@
 
 - [팀 노션](https://www.notion.so/6d5c61254bf541c0bb5931de59a8d5ca)
 - 📁 [백엔드 Repository 링크](https://github.com/ohsool/backend)
-- [디자인 작업물 ?????](https://www.figma.com/file/c2M6Yjvm5IjSAnsrQ41XLv/%ED%95%AD%ED%95%B499_WireFrame?node-id=0%3A1)
+- [디자인 작업물](https://www.figma.com/file/c2M6Yjvm5IjSAnsrQ41XLv/%ED%95%AD%ED%95%B499_WireFrame?node-id=0%3A1)
 
 ## 2. 프로젝트 설명
 - 개발기간: 2021년 7월 23일 ~ 2021년 8월 31일
