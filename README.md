@@ -18,8 +18,6 @@
 - 라이브러리: redux-toolkit, react-motion, react-slick, recharts
 - 스타일: styled-components
 
-# 3. DB Schema
-
 # 4. 기능
 
 # 5. 트러블 슈팅 
