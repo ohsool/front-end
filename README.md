@@ -77,7 +77,7 @@
 	- AWS S3 버킷 등록 후, ACM(Amazon Certificate Manager)에서 인증서 발급 후 cloudfront를 이용해서 https  
 - 상태관리
 	- reselect를 이용해 store데이터를 메모이징
-	- ExtraReducer를 활용해 스토어 데이터들 재사용 및 효율적으로 관리 
+	- ExtraReducer를 활용해 스토어 데이터들 통합 접근 및 api요청 reject시 에러  
 	- thunk를 이용한 비동기적 디스패치 및 데이터 관리
 - 코드분할(Code-splitting)
 	- lazy-suspense를 이용해서 라우팅처리된 컴포넌트들 비동기화
