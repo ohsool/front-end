@@ -5,7 +5,8 @@
 🚩 [사이트 링크](https://ohsool.com/)<br/>
 🎬 [YouTube 시연영상(반영 예정)]<br/>
 
-요약 설명 ,,,,
+* 다양한 종류의 맥주들을 한곳에 모아 개인의 취향을 바탕으로 맥주를 추천해주는 서비스
+* 맥주에 대한 평점 및 시음 노트가 포함된 도감을 작성할 수 있으며 다른 유저의 도감도 같이 확인할 수 있다.
 
 ## 1. 팀 소개
 - React, Node.js 기반
@@ -18,7 +19,7 @@
    3) Designer: 문지혜, 이근호
 
 - 📝[팀 노션](https://www.notion.so/6d5c61254bf541c0bb5931de59a8d5ca)
-- 📁 [백엔드 Repository 링크](https://github.com/ohsool/backend)
+- 📁[백엔드 Repository 링크](https://github.com/ohsool/backend)
 - 🎨[디자인 작업물](https://www.figma.com/file/c2M6Yjvm5IjSAnsrQ41XLv/%ED%95%AD%ED%95%B499_WireFrame?node-id=0%3A1)
 
 ## 2. 프로젝트 설명
@@ -86,6 +87,9 @@
 - 카테고리별 무한스크롤 적용할때 해당카테고리가 다음페이지 없을 시 다른카테고리페이지로 넘어갔을때 이전ID값의 상태가 남아있는 문제 발생
 
 그래서 첫렌더링 이후 부터 categoryId가 바뀔때마다 해당카테고리의 첫번째 페이지를 불러오기 위해 함수를 구현
+<details>
+<summary> 코드보기 </summary>
+<br>
 ~~~javascript
 import React, { useEffect, useRef } from 'react';
 
@@ -100,6 +104,8 @@ const useDidMountEffect = (func, deps) => {
 
 export default useDidMountEffect;
 ~~~
+</details> 
+
 useDidMountEffect를 이용해서 beerCategoryId가 바뀔때마다 실행되도록 함수를 구현
 ~~~javascript
 useDidMountEffect(() => {
