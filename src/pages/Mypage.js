@@ -82,7 +82,7 @@ const MyPage = (props) => {
                 <Line1/>
                 <JustifyAlign>
                     <LevelText><span>Lv.{parseInt(length/10)+1}</span> <span style={{color: "#FFC44F"}}>맥주덕후</span></LevelText>
-                    <DogamText><span>도감: {length}/100</span></DogamText>
+                    <DogamText><span>도감: {length}/101</span></DogamText>
                 </JustifyAlign>
                 <ProgressBar progress={length}/>
             </GaugeWrap>

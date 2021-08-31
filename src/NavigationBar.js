@@ -100,6 +100,7 @@ const Text = styled.div`
         font-size: 8px;
     }
 `
+
 const ImageWrap = styled.div`
     margin: 0 auto;
     margin-top: 13px;
