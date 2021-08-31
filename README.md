@@ -1,6 +1,5 @@
 # 맥주계의 왓챠! 오늘의 술 (ohsool)🍺
 
-![](https://user-images.githubusercontent.com/79817823/119860706-9059ea00-bf51-11eb-8169-57e080a501ec.jpg)
 
 ## 프로젝트 요약
 🚩 [사이트 링크](https://ohsool.com/)
