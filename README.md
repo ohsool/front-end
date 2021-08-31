@@ -5,7 +5,8 @@
 🚩 [사이트 링크](https://ohsool.com/)<br/>
 🎬 [YouTube 시연영상(반영 예정)]<br/>
 
-요약 설명 ,,,,
+* 다양한 종류의 맥주들을 한곳에 모아 개인의 취향을 바탕으로 맥주를 추천해주는 서비스
+* 맥주에 대한 평점 및 시음 노트를 도감에 작성할 수 있으며 다른 유저와 도감을 확인하여 맥주 다양한 정보를 볼 수 있음
 
 ## 1. 팀 소개
 - React, Node.js 기반
@@ -17,9 +18,9 @@
 
    3) Designer: 문지혜, 이근호
 
-- [팀 노션](https://www.notion.so/6d5c61254bf541c0bb5931de59a8d5ca)
+- 📝[팀 노션](https://www.notion.so/6d5c61254bf541c0bb5931de59a8d5ca)
 - 📁 [백엔드 Repository 링크](https://github.com/ohsool/backend)
-- [디자인 작업물](https://www.figma.com/file/c2M6Yjvm5IjSAnsrQ41XLv/%ED%95%AD%ED%95%B499_WireFrame?node-id=0%3A1)
+- 🎨[디자인 작업물](https://www.figma.com/file/c2M6Yjvm5IjSAnsrQ41XLv/%ED%95%AD%ED%95%B499_WireFrame?node-id=0%3A1)
 
 ## 2. 프로젝트 설명
 - 개발기간: 2021년 7월 23일 ~ 2021년 8월 31일
@@ -73,7 +74,7 @@
 	- serviceworker활용해서 파일 캐싱 및 네트워크 불안정할때 오프라인 페이지 구현 및 푸시알림 기능(구현 진행중)
 - kakao map / link api 활용
 - kakao map api를 이용한 장소 제보하기 기능
-- kakao share api를 이용한 소셜 공유 기능
+- kakao link api를 이용한 소셜 공유 기능
 - https 배포
 	- AWS S3 버킷 등록 후, ACM(Amazon Certificate Manager)에서 인증서 발급 후 cloudfront를 이용해서 https  
 - 상태관리
