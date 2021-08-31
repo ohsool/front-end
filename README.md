@@ -53,15 +53,14 @@
 	- 라우팅 관련 미들웨어 및 라이브러리
 - axios v0.21.1
 	- 서버와 통신을 위한 라이브러리
-- UI용 패키지
-	- react-slick v0.28.1 
-		- 슬라이더를 구현용 라이브러리 
-	- react-chartjs-2 v3.0.4 / chart.js v3.5.0 
-		- 그래프 구현 라이브러리
-	- react-step-progress-bar v1.0.3
-		- 프로그래스 바 라이브러리
-	- styled-components v5.3.0
-		- CSS-in-JS 라이브러리
+- react-slick v0.28.1 
+	- 슬라이더를 구현용 라이브러리 
+- react-chartjs-2 v3.0.4 / chart.js v3.5.0 
+	- 그래프 구현 라이브러리
+- react-step-progress-bar v1.0.3
+	- 프로그래스 바 라이브러리
+- styled-components v5.3.0
+	- CSS-in-JS 라이브러리
 - lodash v4.17.21
 	- 자바스크립트의 유틸리티 라이브러리(디바운스와 쓰로틀 사용)
 - moment v2.29.1
