@@ -25,26 +25,14 @@
 - 개발기간: 2021년 7월 23일 ~ 2021년 8월 31일
 - 개발언어: JavaScript
 - 개발 라이브러리:
-    - React.js v17.0.2
-    	- 자바스크립트 라이브러리, 웹 인터페이스를 만들기 위해 사용됨
-    - Node v14.17.3 
-    	- 소프트웨어 플랫폼 
-    - Yarn v1.22.10
-    	- 자바스크립트 
-    - npm v6.14.13
-    - npx v6.14.13
-    - 미들웨어:history v4.10.1
-    - 배포(예정): AWS S3
-    - 통신(서버간): axios v0.21.1
-    - 라이브러리: 
-    	- react-slick v0.28.1 
-    	- react-chartjs-2" v3.0.4 
-    	- chart.js v3.5.0, lodash v4.17.21
-    	- react-slick v0.28.1
-    	- moment v2.29.1
-    	- react-step-progress-bar v1.0.3
-    - 스타일: styled-components v5.3.0
-    - 상태관리: redux-toolkit v1.6.1
+	- React.js v17.0.2
+		-자바스크립트 라이브러리, 웹 인터페이스를 만들기 위해 사용됨
+- 배포 환경:
+	- Amazon S3, CloundFront
+- 소프트웨어 플랫폼 
+	- Node v14.17.3 
+- Yarn v1.22.10 / npm v6.14.13 / npx v6.14.13
+	- 자바스크립트 패키지 매니저
     
 - 협업 툴: git / notion / figma / slack
 - 프로젝트 취지: 다양한 맥주 정보를 한눈에 비교하고, 자신만의 맥주 도감을 만들어 소통하는 맥주 정보 공유 플랫폼을 만들고자 함
@@ -60,7 +48,19 @@
       5)마이비어에서 자신이 작성한 도감 및 좋아요한 맥주 목록 모아보기 기능
       
       6)맥주 및 관리자에게 건의하기 기능
-
+## 사용한 라이브러리(패키지)
+- history v4.10.1, react-router-dom v5.2.0
+	- 라우팅 관련 미들웨어 및 라이브러리
+- axios v0.21.1
+- react-slick v0.28.1 
+- react-chartjs-2 v3.0.4 
+- chart.js v3.5.0 
+- lodash v4.17.21
+- moment v2.29.1
+- react-step-progress-bar v1.0.3
+- styled-components v5.3.0
+- redux-toolkit v1.6.1
+	- 전역 상태관리 라이브러리
 ## 기술 소개
 1)무한 스크롤 기능
 - 설명
