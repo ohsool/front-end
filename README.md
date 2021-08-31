@@ -2,8 +2,8 @@
 
 
 ## 프로젝트 요약
-🚩 [사이트 링크](https://ohsool.com/)
-🎬 [YouTube 시연영상(반영 예정)]
+🚩 [사이트 링크](https://ohsool.com/)<br/>
+🎬 [YouTube 시연영상(반영 예정)]<br/>
 📁 [백엔드 Repository 링크](https://ohsool.com/)https://github.com/hyemigwak/dongmulmarket/edit/master/README.md
 
 요약 설명 ,,,,
