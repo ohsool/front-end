@@ -17,7 +17,7 @@ const SelectBar = ({index, setFeaturesList, featuresList, taste, is_edit}) => {
 
     return (
       <React.Fragment>
-      { is_edit ? (
+      {is_edit ? (
         <>
             <div style={{width: "200px", marginBottom: "38px"}} >
             <ProgressBar percent={cur_position} filledBackground="#FFC44F">{/* 프로그래스바 */}
