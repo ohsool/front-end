@@ -4,7 +4,6 @@
 ## 프로젝트 요약
 🚩 [사이트 링크](https://ohsool.com/)<br/>
 🎬 [YouTube 시연영상(반영 예정)]<br/>
-📁 [백엔드 Repository 링크](https://github.com/backend/)
 
 요약 설명 ,,,,
 
@@ -19,6 +18,7 @@
    3) Designer: 문지혜, 이근호
 
 - [팀 노션](https://www.notion.so/6d5c61254bf541c0bb5931de59a8d5ca)
+- 📁 [백엔드 Repository 링크](https://github.com/ohsool/backend)
 - [디자인 작업물 ?????](https://www.figma.com/file/c2M6Yjvm5IjSAnsrQ41XLv/%ED%95%AD%ED%95%B499_WireFrame?node-id=0%3A1)
 
 ## 프로젝트 설명
