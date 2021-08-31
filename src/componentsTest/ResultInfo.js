@@ -25,7 +25,8 @@ const ResultInfo = ({ category }) => {
 export default ResultInfo;
 
 const BackgroundCateInfo = styled.div`
-    width: 312px;
+    //width: 312px;
+    width: 360px;
     margin: 20px auto;
     & > p {
         font-size: 14px;
@@ -46,7 +47,8 @@ const RecommendCategory = styled.p`
 `;
 
 const Div = styled.div`
-    width: 325px;
+    //width: 325px;
+    width: 360px;
     display: flex;
     justify-content: space-between;
     align-items: center;

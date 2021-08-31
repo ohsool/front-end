@@ -143,7 +143,7 @@ const MyPage = (props) => {
                 ></MyPageModal>
 
                 <VersionWrap>
-                <VersionText>ver.1.2</VersionText>
+                <VersionText>ver.1.4</VersionText>
                 </VersionWrap>
 
                 {comfirm_login()}
