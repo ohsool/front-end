@@ -41,7 +41,7 @@ const Search = (props) => {
         dispatch(getSearchWord(word));
     }
 
-    const searchDebounce = _.throttle(() => {
+    const searchThrottle = _.throttle(() => {
         searchWord();
     }, 500);
     
@@ -129,7 +129,7 @@ const Search = (props) => {
                     onKeyUp={() => {
                         setInput(true);
                         searchWord();
-                        searchDebounce();
+                        searchThrottle();
                         if(word !== null){//아무것도 입력 안한상태면 모달 닫기
                             setOpen_Modal(true);
                         }
