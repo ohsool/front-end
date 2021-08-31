@@ -6,7 +6,7 @@ import { history } from "../redux/configureStore";
 
 const MyDogamButton = ({is_Dogam}) => {
     const { userId } = useParams();
-
+    //url파라미터 받아서 버튼클릭
     return(
         <React.Fragment>
             <ButtonContainerWrap>

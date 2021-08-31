@@ -131,7 +131,7 @@ const MapImage = ({setClickReport}) => {
             <div 
                 className= "map"
                 ref={container}
-                style={{width:"400px", height:"400px"}}>
+                style={{width:"400px", height:"400px", margin: "0 auto"}}>
             </div>
             }
         </React.Fragment>
