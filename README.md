@@ -58,12 +58,13 @@
 	- 전역 상태관리 라이브러리(redux, immer, reselect, thunk 한번에 사용가능)
 ## 4. 기술 소개
 - 맥주 카테고리별 무한스크롤 기능
+- 맥주 및 해시태그 검색 기능
 - PWA구현
 	- serviceworker활용해서 파일 캐싱 및 네트워크 불안정할때 오프라인 페이지 구현 및 푸시알림 기능(구현 진행중)
 - kakao developer API 이용
 	- kakao map구현해서 장소제보할수 있게 구현 및 테스트결과 및 맥주도감 페이지 공유기능 
 - https 배포
-	- AWS S3 버킷 등록 후, ACM(Amazon Certificate Manager)에서 인증서 발급 후 cloudfront를 이용해서 https  
+	- AWS S3 버킷 등록 후, ACM(Amazon Certificate Manager)에서 인증서 발급 후 cloudfront를 이용해서 https 적용
 - 상태관리
 	- reselect를 이용해 store데이터를 메모이징
 	- ExtraReducer를 활용해 스토어 데이터들 통합 접근 및 api요청 reject시 에러  
