@@ -69,7 +69,8 @@
 	- 전역 상태관리 라이브러리(redux, immer, reselect, thunk 한번에 사용가능)
 ## 5. 기술 소개
 - 맥주 카테고리별 무한스크롤 기능
-- PWA을 활용해 페이지 캐싱 및 오프라인페이지 구현
+- PWA구현
+	- serviceworker활용해서 파일 캐싱 및 네트워크 불안정할때 오프라인 페이지 구현 및 푸시알림 기능(구현 진행중)
 - kakao map / link api 활용
 - kakao map api를 이용한 장소 제보하기 기능
 - kakao share api를 이용한 소셜 공유 기능
