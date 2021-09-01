@@ -34,7 +34,21 @@
 	- Node v14.17.3 
 - Yarn v1.22.10 / npm v6.14.13 / npx v6.14.13
 	- 자바스크립트 패키지 매니저
-    
+- 환경설정
+	- node 설치 (V14.17.3) 홈페이지에서 다운
+https://nodejs.org/ko/ 
+	- yarn/npm 설치 (Mac기준) yarn v1.22.10 npm v6.14.13
+		~~~
+		brew install yarn 
+		brew install npm
+		~~~
+	- create-react-app 설치 react v17.0.2
+		~~~
+		yarn -g add create-react-app
+		~~~
+		~~~
+		yarn start //앱실행 
+		~~~
 - 협업 툴: git / notion / figma / slack
 - 프로젝트 취지: 다양한 맥주 정보를 한눈에 비교하고, 자신만의 맥주 도감을 만들어 소통하는 맥주 정보 공유 플랫폼을 만들고자 함
 ## 3. 사용한 라이브러리(패키지)
