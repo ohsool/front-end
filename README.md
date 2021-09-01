@@ -44,7 +44,11 @@ https://nodejs.org/ko/
 		~~~
 	- create-react-app 설치 react v17.0.2
 		~~~
-		yarn -g add create-react-app
+		yarn -g add create-react-app 
+		~~~
+	- react-app 생성
+		~~~
+		yarn create react-app [App name] --template cra-template-pwa
 		~~~
 		~~~
 		yarn start //앱실행 
