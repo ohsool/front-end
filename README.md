@@ -156,12 +156,14 @@ extraReducers: (builder) =>
  ~~~
  여기서 pending으로 넘어갈 때마다 상태가 초기화가 되서 리렌더링이 계속 되는 문제가 발생
  ~~~javascript
-useEffect(() => {//deps에 beerId를 넣어 beerId가 바뀔때마다 요청들 실행
-        dispatch(getOneBeer(props.match.params.beerId)); 
+useEffect(() => { //맥주 정보, 사용자정보 및 리뷰정보 불러오기
+        dispatch(getOneBeer(props.match.params.beerId)); //맥주데이터 api요청
             return () => {
+                //맥주 데이터 cleanup함수 다른페이지 갔다가 다른 맥주 클릭했을 시
+                //잠시 그전 데이터가 보이는 것 방지
                 dispatch(beerOneCleanUp());
             }
-    }, [props.match.params.beerId]); 
+    }, [props.match.params.beerId]); //deps에 beerId넣어서 beerId바뀔때마다 위 요청들 실행
  ~~~
  초기화가 필요한 스토어의 데이터들은 위와 같은 방식으로 useEffect의 클린업을 이용해서 초기화를 해주는 방식으로 진행함. 그 결과 데이터가 받아온 이후로 리렌더링 되는 부분도 없어지고 대부분의 컴포넌트들이 마운트될 때 렌더링횟수도 6~7회에서 3회 이하로 개선됨
  
