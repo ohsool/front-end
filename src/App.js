@@ -20,6 +20,7 @@ const Setting = lazy(() => import("./pages/Setting"));
 const Token = lazy(() => import("./share/Token"));
 const PlaceBeer = lazy(() => import("./componentsBeerDetail/PlaceBeer"));
 const BeerFeeds = lazy(() => import("./pages/BeerFeeds"));
+const LostPassword = lazy(() => import("./pages/LostPassword"));
 
 const code = process.env.REACT_APP_VERSION_CODE;
 
@@ -47,6 +48,7 @@ useEffect(() => {
             <Route path="/dlfwh=:tokens" component={Token}/>
             <Route path="/review/:reviewId" component={MyReview}/>
             <Route path="/place" component={PlaceBeer}/>
+            <Route path="/lostpassword" component={LostPassword}/>
         </ConnectedRouter>
       </Suspense>
       <GlobalStyle/>

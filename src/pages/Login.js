@@ -82,7 +82,16 @@ const Login = (props) => {
                             onKeyUp={onKeyUp}
                             placeholder="비밀번호"
                         ></InputLogin>
-                        <div>
+                        <div style={{marginTop:"-10px", marginBottom:"70px"}}>
+                        <LostPasswordButton
+                            onClick={()=>{
+                                history.push("/lostpassword");
+                            }}
+                        >비밀번호를 분실했어요</LostPasswordButton>
+                        </div>
+
+
+                        <div style={{marginTop:"-10px", marginBottom:"60px"}}>
                             <div
                                 className = {is_typed ? "yellowButton" : "whiteButton"}
                                 onClick={submitLogin}
@@ -162,9 +171,6 @@ const InputWrap = styled.div`
     position: absolute;
     width: 360px;
     margin-top: 40px;
-    & > div { 
-        margin-top: 60px;
-    }
 `;
 
 const InputLogin = styled.input`
@@ -197,5 +203,12 @@ const SocialLoginButton = styled.div`
     cursor: pointer;
 `;
 
+const LostPasswordButton = styled.div`
+    float: right;    
+    cursor: pointer;
+    color: #FFC44F;
+    font-size: 12px;
+    margin-right: 37px;
+    border-bottom: 1px solid #FFC44F;
 
-
+`
