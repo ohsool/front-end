@@ -37,12 +37,15 @@
 - 환경설정
 	- node 설치 (V14.17.3) 홈페이지에서 다운
 https://nodejs.org/ko/ 
-	- yarn/npm 설치 (Mac기준) yarn v1.22.10 npm v6.14.13
+	- yarn/npm 설치 (Mac기준) 
+		- yarn v1.22.10 
+		- npm v6.14.13
 		~~~
 		brew install yarn 
 		brew install npm
 		~~~
-	- create-react-app 설치 react v17.0.2
+	- create-react-app 설치 
+		- react v17.0.2
 		~~~
 		yarn -g add create-react-app 
 		~~~
