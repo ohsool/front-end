@@ -1,4 +1,4 @@
-let CACHE_NAME = 'ohsool version-1.4'; //Cache Storage에 들어갈 캐시저장소 이름
+let CACHE_NAME = 'ohsool version-1.5'; //Cache Storage에 들어갈 캐시저장소 이름
 let urlsToCache = [
     '/index.html', //캐싱할 파일들
     '/offline.html' //오프라인일때 보여줄 페이지 (네트워크가 아예 끊어졌을때 새로고침하면 나오는 페이지)

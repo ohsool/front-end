@@ -16,7 +16,7 @@ const EachReview=(props)=> {
         setModalOpen(false);
     };
     
-    const date = item.date.replace(/-/g,'/'); //ios 환경에서 날짜 보이도록 ios 날짜형식 적용
+    const date = item.date.replace(/-/g,'/'); //ios 환경에서 날짜 보이도록 날짜형식 적용
     
     const pushOtherUserDogam = () => {//다른 사람 myBeer 페이지로 이동
         history.push(`/mybeer/${item.userId._id}/dogam`);

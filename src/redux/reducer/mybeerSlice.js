@@ -72,7 +72,6 @@ const mybeerSlice = createSlice({
           state.myReview[action.payload.index].review = action.payload.review;
         })
         .addCase(deleteReviewDogam.fulfilled, (state, action) => {
-          
           state.myReview.splice(action.payload, 1);
           window.alert("삭제되었습니다.😊");
         })

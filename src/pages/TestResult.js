@@ -61,8 +61,8 @@ const Grid = styled.div`
     max-width: 400px;
     display: flex;
     flex-direction: column;
-    margin-bottom: 74px;
     margin: 0 auto;
+    margin-bottom: 80px;
 `;
 const List = styled.div`
     width: 312px;

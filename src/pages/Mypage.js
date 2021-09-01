@@ -143,7 +143,7 @@ const MyPage = (props) => {
                 ></MyPageModal>
 
                 <VersionWrap>
-                <VersionText>ver.1.4</VersionText>
+                <VersionText>ver.1.5</VersionText>
                 </VersionWrap>
 
                 {comfirm_login()}
@@ -159,6 +159,7 @@ export default MyPage;
 
 const Container = styled.div`
     width: 100%;
+    max-height: 100vh;
     bottom: 10px;
 `;
 
@@ -225,7 +226,7 @@ const Line = styled.hr`
 `
 const Line1 = styled.hr`
     width: 320px;
-    margin-top: 70px;
+    margin-top: 100px;
     text-align: center;
     border: 0;
     border:solid #C4C4C4;
