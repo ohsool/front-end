@@ -81,9 +81,9 @@ https://nodejs.org/ko/
 - 맥주 카테고리별 무한스크롤 기능
 - 맥주 및 해시태그 검색 기능
 - PWA구현
-	- serviceworker활용해서 파일 캐싱 및 네트워크 불안정할때 오프라인 페이지 구현 및 푸시알림 기능(구현 진행중)
+	- serviceworker활용해서 파일 캐싱 및 네트워크 불안정할 때 오프라인 페이지 구현 및 푸시알림 기능(구현 진행중)
 - kakao developer API 이용
-	- kakao map구현해서 장소제보할수 있게 구현 및 테스트결과 및 맥주도감 페이지 공유기능 
+	- kakao map구현해서 장소제보할 수 있게 구현 및 테스트 결과 및 맥주 도감 페이지 공유 기능 
 - https 배포
 	- AWS S3 버킷 등록 후, ACM(Amazon Certificate Manager)에서 인증서 발급 후 cloudfront를 이용해서 https 적용
 - 상태관리
