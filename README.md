@@ -156,7 +156,7 @@ extraReducers: (builder) =>
  ~~~
  여기서 pending으로 넘어갈 때마다 상태가 초기화가 되서 리렌더링이 계속 되는 문제가 발생
  ~~~javascript
-useEffect(() => {//deps에 beerId넣어서 beerId바뀔때마다 위 요청들 실행
+useEffect(() => {//deps에 beerId를 넣어 beerId가 바뀔때마다 요청들 실행
         dispatch(getOneBeer(props.match.params.beerId)); 
             return () => {
                 dispatch(beerOneCleanUp());
