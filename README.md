@@ -154,7 +154,7 @@ extraReducers: (builder) =>
             state.beerOne = action.payload.beer;
         })
  ~~~
- 여기서 pending으로 넘어갈 때마다 상태가 초기화가 되서 리렌더링이 계속 되는 문제가 발생
+ 여기서 pending으로 넘어갈 때마다 상태가 초기화가 되서 리렌더링이 계속 되는 문제가 발생함
  ~~~javascript
 useEffect(() => { //맥주 정보, 사용자정보 및 리뷰정보 불러오기
         dispatch(getOneBeer(props.match.params.beerId)); //맥주데이터 api요청
@@ -222,7 +222,7 @@ self.addEventListener('activate', event => { //업데이트용
     );
 });
 ~~~
-새로 업데이트를 할때마다 현재 캐시스토리지를 제외한 나머지 캐싱된 파일들을 다 지우도록 구현
+새로 업데이트를 할때마다 현재 캐시스토리지를 제외한 나머지 캐싱된 파일들을 다 지우도록 구현함
 그 결과 업데이트 된 캐시 스토리지만 남아 있고 이전 캐싱 파일들이 삭제되면서 정상적으로 작동
 
 ### Amazon S3 & Cloudfront
