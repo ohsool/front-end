@@ -14,19 +14,19 @@ const TestHeader = (props) => {
 
     const _updateScroll = _.throttle(() => {
         setScrollPosition(window.scrollY || document.documentElement.scrollTop);
-    }, 300);
+    }, 300); //스크롤 쓰로틀로 제어
 
     useEffect(()=>{
-        window.addEventListener('scroll', _updateScroll);
+        window.addEventListener('scroll', _updateScroll); //스크롤이벤트 구독
         return() => {
-            window.removeEventListener('scroll', _updateScroll);
+            window.removeEventListener('scroll', _updateScroll); //스크롤이벤트 해제
         }
     }, [scrollPosition]);
 
     return (
         <React.Fragment>
             <div className={is_iphone.indexOf("iphone") !== -1 ? "iphoneHeaderTest" : "headerTest"}>
-            {scrollPosition < 270 ? 
+            {scrollPosition < 270 ?  //270밑으로 내려갔을때 헤더 글자색 바뀌게
                 (<HeaderBox>             
                     <Back style={{backgroundImage: `url(${backWhite})`}}
                     onClick={()=>{ 
@@ -70,7 +70,6 @@ const HeaderBox = styled.div`
     justify-content: space-between;
     position: absolute;
     bottom: 0;
-    display: flex;
 `;
 
 const Back = styled.div`

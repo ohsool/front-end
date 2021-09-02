@@ -31,6 +31,7 @@ useEffect(() => {
     Kakao.init(kakaoApiKey);
     ReceiveNotificationsToken();
 }, []);
+
   return (
     <React.Fragment>
       <Suspense fallback={<LoaderWrap><Loader/></LoaderWrap>}>

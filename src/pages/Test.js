@@ -58,7 +58,7 @@ const Test = (props) => {
         || choice === "Dunkel" 
         || choice === "Stout" 
         || choice === "Bock"){
-            setTestResultArray(testResultArray.unshift(choice));
+            setTestResultArray(testResultArray.unshift(choice)); //마지막 값 배열에 저장
             return;
         }
         else if(choice){ //question_id하고 choice가 같은 데이터 불러와서 index번호 찾기

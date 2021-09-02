@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
+//피드의 맥주 사진및 맥주이름 정보
 const BeerFeedsInfo = ({item}) => {
     return(
         <React.Fragment>

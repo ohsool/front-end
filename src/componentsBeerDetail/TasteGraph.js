@@ -16,8 +16,8 @@ const TasteGraph = ({ beers }) => {
     labels: labels,
     datasets: [
       {
-        label: "맥주맛평점",
-        data: scores,
+        label: "맥주맛평점", //그래프 위의 라벨
+        data: scores, //맛 평점 표시
         backgroundColor: 'rgba(255, 196, 79, 0.5)', 
         borderColor: '#FFC44F',
         borderWidth: 3,

@@ -35,69 +35,69 @@ export const beerSlice = createSlice({
   initialState,
   extraReducers: (builder) =>
     builder
-        .addCase(getAllBeer.fulfilled, (state, action) => {
-            state.beerList = action.payload;
-        })
-        .addCase(getBeerCategoryList.fulfilled, (state, action) => {
-            state.categoryBeer = action.payload.beers;
-        })
-        .addCase(getOneBeer.fulfilled, (state, action) => {
-            state.beerOne = action.payload.beer;
-        })
-        .addCase(beerOneCleanUp.fulfilled, (state, action) => {
-          state.beerOne = null;
-        })
-        .addCase(getBeerInfinity.fulfilled, (state, action) => {
-          state.testBeerList = [...state.testBeerList, ...action.payload.beers];
-        })
-        //검색기능
-        .addCase(getSearchWord.fulfilled, (state, action) => {
-            state.searchList = action.payload.beers;
-        })
-        .addCase(getHashtagWord.fulfilled, (state, action) => {
-            state.hashtagList = action.payload.beers;
-        })
-        .addCase(likeBeer.fulfilled, (state, action) => {
-          const indexIf = action.payload.indexIf;
-          const likes_array = action.payload.response.likes;
-          if(indexIf === -1){
-          }else{
-          state.testBeerList[indexIf].like_array = likes_array;
-          }
-        })
-        .addCase(unLikeBeer.fulfilled, (state, action) => {
-          const indexIf = action.payload.indexIf;
-          const likes_array = action.payload.response.likes;
-          if(indexIf === -1){
-          }else{
-          state.testBeerList[indexIf].like_array = likes_array;
-          }
-          alert("취소되었습니다.");
-        })
-        .addCase(likeBeerDetail.fulfilled, (state, action) => {
-          const index = action.payload.indexIf
-          const likes_array = action.payload.response.likes
-          state.beerOne.like_array = likes_array;
-          if(index === -1){
-          }else{
-          state.testBeerList[index].like_array = likes_array;
-          }
-        })
-        .addCase(unLikeBeerDetail.fulfilled, (state, action) => {
-          const index = action.payload.indexIf
-          const likes_array = action.payload.response.likes
-          state.beerOne.like_array = likes_array;
-          if(index === -1){
-          }else{
-          state.testBeerList[index].like_array = likes_array;
-          }
-        })
-        .addCase(starRateDetail.fulfilled, (state, action) => {
-          state.beerOne.avgRate = action.payload;
-        })
-        .addCase(testShare.fulfilled, (state, action) => {
-          state.beerToday = action.payload;
-        })
+      .addCase(getAllBeer.fulfilled, (state, action) => {
+          state.beerList = action.payload;
+      })
+      .addCase(getBeerCategoryList.fulfilled, (state, action) => {
+          state.categoryBeer = action.payload.beers;
+      })
+      .addCase(getOneBeer.fulfilled, (state, action) => {
+          state.beerOne = action.payload.beer;
+      })
+      .addCase(beerOneCleanUp.fulfilled, (state, action) => {
+        state.beerOne = null;
+      })
+      .addCase(getBeerInfinity.fulfilled, (state, action) => {
+        state.testBeerList = [...state.testBeerList, ...action.payload.beers];
+      })
+      //검색기능
+      .addCase(getSearchWord.fulfilled, (state, action) => {
+          state.searchList = action.payload.beers;
+      })
+      .addCase(getHashtagWord.fulfilled, (state, action) => {
+          state.hashtagList = action.payload.beers;
+      })
+      .addCase(likeBeer.fulfilled, (state, action) => {
+        const indexIf = action.payload.indexIf;
+        const likes_array = action.payload.response.likes;
+        if(indexIf === -1){
+        }else{
+        state.testBeerList[indexIf].like_array = likes_array;
+        }
+      })
+      .addCase(unLikeBeer.fulfilled, (state, action) => {
+        const indexIf = action.payload.indexIf;
+        const likes_array = action.payload.response.likes;
+        if(indexIf === -1){
+        }else{
+        state.testBeerList[indexIf].like_array = likes_array;
+        }
+        alert("취소되었습니다.");
+      })
+      .addCase(likeBeerDetail.fulfilled, (state, action) => {
+        const index = action.payload.indexIf
+        const likes_array = action.payload.response.likes
+        state.beerOne.like_array = likes_array;
+        if(index === -1){
+        }else{
+        state.testBeerList[index].like_array = likes_array;
+        }
+      })
+      .addCase(unLikeBeerDetail.fulfilled, (state, action) => {
+        const index = action.payload.indexIf
+        const likes_array = action.payload.response.likes
+        state.beerOne.like_array = likes_array;
+        if(index === -1){
+        }else{
+        state.testBeerList[index].like_array = likes_array;
+        }
+      })
+      .addCase(starRateDetail.fulfilled, (state, action) => {
+        state.beerOne.avgRate = action.payload;
+      })
+      .addCase(testShare.fulfilled, (state, action) => {
+        state.beerToday = action.payload;
+      })
       // 공통
       .addMatcher(
         (action) => {
