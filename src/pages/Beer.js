@@ -15,8 +15,8 @@ const Beer = (props) => {
     //각각 실행시 비동기적으로 컴포넌트 불러오도록 구현
     return (
         <React.Fragment>
-            <Header/>
             <Suspense fallback={<LoaderWrap><Loader/></LoaderWrap>}>
+                <Header/>
                 <ConnectedRouter history={history}>
                 <Route path="/beer/list/:beerCategoryId" exact component={BeerList}/>
                 <Route path="/beer/detail/:beerId" component={BeerDetail}/>
