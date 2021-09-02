@@ -19,7 +19,7 @@
 
    3) Designer: 문지혜, 이근호
 
-- 📝[팀 노션](https://www.notion.so/6d5c61254bf541c0bb5931de59a8d5ca)
+- 📝[팀 노션](https://well-astronaut-b13.notion.site/team-OHSOOL-844e5fefc1d14df2b97f8b1cda4fb3ed)
 - 📁[백엔드 Repository 링크](https://github.com/ohsool/backend)
 - 🎨[디자인 작업물](https://www.figma.com/file/c2M6Yjvm5IjSAnsrQ41XLv/%ED%95%AD%ED%95%B499_WireFrame?node-id=0%3A1)
 
