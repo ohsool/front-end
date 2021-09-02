@@ -56,7 +56,7 @@ const WritedReview = ({item}) =>   {//마이비어에 작성한 도감 표시
 
 
                     </GridHorizon>
-                    <span>{item?.review.length > 50 ? item?.review.slice(0,50)+'...' : item?.review}</span>
+                    <span>{item?.review.length > 35 ? item?.review.slice(0,35)+'...' : item?.review}</span>
                 </BeerTextWrap>
                 {userInfos.userId ===item?.userId._id ? //유저 본인인 경우에만 수정,삭제 버튼 보이기
                             <DivReview>

@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1RSVH80T25"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-1RSVH80T25');
-  </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1RSVH80T25"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-1RSVH80T25');
+    </script>
     
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=05e106dead8f4edabc80bafcaef225ce&libraries=services"></script>
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
@@ -66,18 +67,7 @@
     <div id="root">
     </div>
     <script>
-      if ('serviceWorker' in navigator) { //서비스워커 불러오는 파트
-          window.addEventListener('load', function() {
-              navigator.serviceWorker.register('./worker.js')
-              .then(function(registration) {
-                // console.log(registration);
-              }, function(err) {
-                  // console.log('Worker registration failed', err);
-              }).catch(function(err) {
-                  // console.log(err);
-              });
-          });
-      }
+      
     </script>
     <!--
       This HTML file is a template.

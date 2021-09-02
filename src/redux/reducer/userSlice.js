@@ -12,7 +12,8 @@ import {
   changeNickname,
   changePassword,
   shareAgree,
-  shareDisagree
+  shareDisagree,
+  passwordReset
 } from "../async/user";
 
 const initialState = {
@@ -82,6 +83,13 @@ const userSlice = createSlice({
       })
       .addCase(changePassword.fulfilled, (state, action) => {
         window.alert("비밀번호가 변경되었습니다!");
+      })
+      .addCase(passwordReset.fulfilled, (state, action) => {
+        window.alert("이메일로 새로운 비밀번호를 전송했습니다.😊");
+      })
+      .addCase(passwordReset.rejected, (state, action) => {
+        window.alert("없는 아이디(이메일) 입니다!")
+        
       })
       .addCase(shareAgree.fulfilled, (state, action) => {
         window.alert("맥주도감이 공개로 전환되었습니다.");

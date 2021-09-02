@@ -47,6 +47,17 @@ export const withDrawal = createAsyncThunk(
   }
 )
 
+//비밀번호 분실시 재발급
+export const passwordReset = createAsyncThunk(
+  "user/passwordReset",
+  async (data, thunkAPI) => {
+    const response = await axiosInstance.put(`/api/user/password/reset`, data);
+      return response.data;
+  }
+)
+
+
+
 //유저 정보 불러오기
 export const userInfo = createAsyncThunk(
   "user/userInfo",
@@ -62,6 +73,7 @@ export const userInfo = createAsyncThunk(
   }
 );
 
+//실시간 이메일 이용가능 여부 체크
 export const checkEmail = createAsyncThunk(
   "user/checkEmail",
   async (data, thunkAPI) => {
@@ -74,6 +86,7 @@ export const checkEmail = createAsyncThunk(
   }
 );
 
+//실시간 닉네임 이용가능 여부 체크
 export const checkNickname = createAsyncThunk(
   "user/checkNickname",
   async (data, thunkAPI) => {
@@ -86,6 +99,7 @@ export const checkNickname = createAsyncThunk(
   }
 );
 
+//소셜로그인 유저
 export const socialLoginUser = createAsyncThunk(
   "user/socialLoginUser",
   async (data, thunkAPI) => {

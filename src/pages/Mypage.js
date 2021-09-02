@@ -1,5 +1,6 @@
 import React,{ useState ,useEffect} from 'react';
 import styled from 'styled-components';
+import {isMobile} from 'react-device-detect';
 import {history} from "../redux/configureStore";
 import { logOut, userInfo } from "../redux/async/user";
 import { useDispatch } from "react-redux";
@@ -21,7 +22,6 @@ const MyPage = (props) => {
     const length = useSelector(count)
     const [modalOpen, setModalOpen] = useState(false);
     const dispatch = useDispatch();
-
     useEffect(()=> {
         dispatch(getReviewLength(userInfos.userId)); //사용자가 쓴 리뷰리스트 개수 디스패치
     }, [userInfos]);
@@ -84,17 +84,6 @@ const MyPage = (props) => {
             </GaugeWrap>
             <Line/>
             <PageMoveWrap>
-            
-                {/*
-                <MoveBoxWrap
-                    onClick={() => {
-                        window.location.href = "노션링크"
-                    }}
-                >
-                    <span>공지사항</span>
-                    <ArrowImage src={arrow}></ArrowImage>
-                </MoveBoxWrap>
-                */}
 
                 <MoveBoxWrap
                     onClick={() => {
@@ -127,13 +116,17 @@ const MyPage = (props) => {
                     }}>
                     <span>관리자에게 건의하기</span>
                     <ArrowImage src={arrow}></ArrowImage>
-                </MoveBoxWrap>
+                </MoveBoxWrap>                
                 <MoveBoxWrap
                     onClick={() => {
-                        window.location.href = "https://docs.google.com/forms/d/16Rv2SKdodPuZ5YB2w_7Ei-jvKJVwKCFyut61Lk71ctM"
+                        if(isMobile){
+                            window.location.href = "https://well-astronaut-b13.notion.site/team-OHSOOL-6fd0c0a5edec4040932f208321dcba2c"
+                        }else{
+                            window.location.href = "https://well-astronaut-b13.notion.site/team-OHSOOL-844e5fefc1d14df2b97f8b1cda4fb3ed"
+                        }
                     }}
                 >
-                    <span>설문조사 하러가기</span>
+                    <span>오술 팀소개</span>
                     <ArrowImage src={arrow}></ArrowImage>
                 </MoveBoxWrap>
                 <MyPageModal
@@ -143,7 +136,7 @@ const MyPage = (props) => {
                 ></MyPageModal>
 
                 <VersionWrap>
-                <VersionText>ver.1.2</VersionText>
+                <VersionText>ver.1.5</VersionText>
                 </VersionWrap>
 
                 {comfirm_login()}
@@ -226,7 +219,7 @@ const Line = styled.hr`
 `
 const Line1 = styled.hr`
     width: 320px;
-    margin-top: 70px;
+    margin-top: 100px;
     text-align: center;
     border: 0;
     border:solid #C4C4C4;
