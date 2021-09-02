@@ -19,8 +19,9 @@ const version = parseFloat(process.env.REACT_APP_VERSION_CODE).toFixed(1);
 const MyPage = (props) => {
     const is_iphone = navigator.userAgent.toLowerCase(); //아이폰인지 아닌지(노치디자인때문에)
     const userInfos = useSelector(state => state.user.currentUser);
-    const length = useSelector(count)
+    const length = useSelector(count);
     const [modalOpen, setModalOpen] = useState(false);
+    const [levelText, setLevelText] = useState("");
     const dispatch = useDispatch();
     useEffect(()=> {
         dispatch(getReviewLength(userInfos.userId)); //사용자가 쓴 리뷰리스트 개수 디스패치
@@ -34,6 +35,7 @@ const MyPage = (props) => {
 
     useEffect(() => {
         dispatch(userInfo());
+        levelTextconfirm();
     }, [])
     
     const openModal = () => { //modal창 오픈
@@ -68,7 +70,17 @@ const MyPage = (props) => {
             dispatch(logOut());
         }
     }
+    const levelTextconfirm = () => {
+        if(length < 33){
+            setLevelText("리틀애주가")
+        }else if(length < 66){
+            setLevelText("맥주덕후")
+        }else{
+            setLevelText("맥주소믈리에")
+        }
 
+
+    }
     return (
         <React.Fragment>
         <Container>
@@ -76,11 +88,12 @@ const MyPage = (props) => {
             <GaugeWrap style={is_iphone.indexOf("iphone") !== -1 ? {marginTop: "40px"} : {marginTop: "0px"}}>
 
                 <Line1/>
+                
                 <JustifyAlign>
-                    <LevelText><span>Lv.{parseInt(length/10)+1}</span> <span style={{color: "#FFC44F"}}>맥주덕후</span></LevelText>
+                    <LevelText><span>Lv.{parseInt(length/10)+1}</span> <span style={{color: "#FFC44F"}}>{levelText}</span></LevelText>
                     <DogamText><span>도감: {length}/101</span></DogamText>
                 </JustifyAlign>
-                <ProgressBar progress={length}/>
+                <ProgressBar progress={length}/>                
             </GaugeWrap>
             <Line/>
             <PageMoveWrap>
